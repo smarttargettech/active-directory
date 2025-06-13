@@ -4,7 +4,7 @@ Este é o repositório de código do [**_Smarties Active Directory_ (SAD)**](htt
 
 Em resumo, o sistema **SAD** é um diretório de serviços, baseado em um servidor samba, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, como o gerenciamento de servidores, serviços de rede e controle de acesso (**IAM**).
 
-O **SAD** é composto por diversas interfaces e pode ser acessado através de aplicativo web, linha de comando, ou chamadas de API. Essas ferramentas permitem a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
+A infraestrutura do sistema **SAD** provê algumas interfaces que permitem o gerenciamento do sistema, e podem ser acessadas por meio de aplicativo web, de linha de comando (CLI), ou através de chamadas à API, permitindo a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
 
 ## Termos de Licença 
 
