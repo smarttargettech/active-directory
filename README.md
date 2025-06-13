@@ -1,14 +1,20 @@
 # Smarties Active Directory
 
-Welcome to the git mirror of Univention Corporate Server (UCS). [UCS](https://www.univention.com/products/ucs/) is an open source platform for identity management and to integrate server and cloud based applications.
-It features comprehensive Active Directory services based on Samba, an extensive App Center for easy application provisioning and various infrastructure services like management of virtual machine and IP addresses.
+Este é o repositório de código do [**_Smarties Active Directory (SAD)_**](https://sad.repository.smarttarget.tech), que consiste em uma plataforma de código aberto para gerenciamento de identidade e integração de aplicativos e servidores.
 
-At the core of UCS is an integrated identity and infrastructure management system including a modern Web GUI as well as various APIs and command line interfaces.
-These tools make it very easy to administrate applications, users and resources in almost any environment.
+Primariamente, o **_SAD_** é um diretório de serviços, baseado no servidor **_Samba_**, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, como o gerenciamento de servidores, serviços de rede e controle de acesso (**_IAM_**).
 
-## Download and Demo
+O sistema é composto por diversas interfaces e pode ser acessado através de aplicativo web, linha de comando, ou chamadas de _API_. Essas ferramentas permitem a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
 
-ISO and virtual machine images of UCS are [available for download](https://www.univention.com/products/download/)
+## Termos de Licença 
+
+A plataforma **_SAD_** é baseada no código do sistema [**_Univention Corporate Server_** (UCS)](https://github.com/univention/univention-corporate-server) e segue os termos de licença AGPLv3. Outros termos de licença podem ser utilizados em parte específica dos arquivos do código-fonte, caso no qual esses termos serão descritos no respectivo arquivo.
+
+Diversos projetos de código aberto são utilizados pelo **_UCS_**, cada qual apresenta seus próprios termos de licença. Informações sobre os termos de licença desses projetos e do **_UCS_** podem ser consultadas no arquivo [_LICENSE_](https://github.com/univention/univention-corporate-server/LICENSE) de origem.
+
+## Downloads
+
+Imagens ISO e de maquina virtual do sistema-basdvirtual machine images of UCS are [available for download](https://www.univention.com/products/download/)
 
 The online demo of UCS is available at [demo.univention.de](https://demo.univention.de/).
 
@@ -22,7 +28,7 @@ offerings](https://www.univention.com/download-and-support/support/commercial-su
 
 ## Termos de Licença 
 
-O __*Smarties Active Directory*__ foi desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
+O sistema **_SAD_** é desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
 
 O código-base da fonte primária (__*Univention Corporate Server*__) está licenciado sob os termos AGPLv3, caso não tenha outro termo de licença no código-fonte.
 
