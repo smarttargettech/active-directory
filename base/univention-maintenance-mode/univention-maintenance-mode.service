@@ -1,0 +1,7 @@
+[Unit]
+Description=A UCS maintenance mode site
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/share/univention-maintenance-mode-update-progress

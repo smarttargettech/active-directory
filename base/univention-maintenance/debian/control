@@ -1,0 +1,30 @@
+Source: univention-maintenance
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-maintenance
+Architecture: all
+Depends:
+ bc,
+ cron,
+ httpd,
+ ldap-utils,
+ netcat-traditional,
+ nmap,
+ univention-config,
+ univention-mail-postfix | mail-transport-agent,
+ ${misc:Depends},
+Description: UCS - maintenance tools
+ This package monitors the server root's homedir and
+ produces HTML statistics about filesystem usage and
+ system load.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

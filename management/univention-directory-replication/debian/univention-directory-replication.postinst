@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# Univention Directory Replication
+#  postinst script for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+# Univention LDAP Listener replication module
+
+. /usr/share/univention-lib/all.sh
+
+
+create_logfile /var/log/univention/ldap-replication-resync.log "root:adm" 640
+
+# make sure rootpw.conf is not readable
+rootpw_filepath="/etc/ldap/rootpw.conf"
+test -f "$rootpw_filepath" && chmod 600 "$rootpw_filepath" || true
+
+univention-config-registry set	ldap/replication/filesystem/check?false \
+						ldap/replication/filesystem/limit?10 \
+						ldap/replication/filesystem/recipient?root
+
+install -d -o listener -g root -m 0700 /var/lib/univention-directory-replication
+chown -R listener:root /var/lib/univention-directory-replication
+install -d -o listener -g root -m 0700 /var/univention-backup/replication
+
+#DEBHELPER#
+
+if [ "$1" = configure ] && dpkg --compare-versions "$2" lt-nl 12.0.0-3 && [ -f "$rootpw_filepath" ]; then
+	listenerpid=$(pgrep -f /usr/sbin/univention-directory-listener)
+	if [ -n "$listenerpid" ]; then
+		systemctl stop univention-directory-listener
+	fi
+
+	new_password="$(pwgen --numerals --capitalize --secure 64 1)"
+	echo "rootpw \"$new_password\"" > "$rootpw_filepath"
+	service slapd crestart
+
+	if [ -n "$listenerpid" ]; then
+		systemctl start univention-directory-listener
+	fi
+else
+	systemctl try-restart univention-directory-listener
+fi
+
+exit 0

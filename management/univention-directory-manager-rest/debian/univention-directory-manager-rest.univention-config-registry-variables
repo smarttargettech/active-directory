@@ -1,0 +1,88 @@
+[directory/manager/rest/debug/level]
+Description[de]=Der Detailgrad der Logmeldungen in /var/log/univention/directory-manager-rest.log. Mögliche Werte: 0-4/99 (0: nur Fehlermeldungen bis 4: alle Debugausgaben, mit 99 werden auch sensible Daten wie Klartext-Passwörter protokolliert).
+Description[en]=The verbosity of log messages in /var/log/univention/directory-manager-rest.log. Possible values: 0-4/99 (0: only error messages to 4: all debug statements, with = 99 sensitive data like cleartext passwords is logged as well).
+Type=int
+Min=0
+Max=99
+Default=2
+Categories=service-udm
+
+[directory/manager/rest/debug/prefix-with-request-id]
+Description[de]=Definiert, ob Logmeldungen die Anfrage-ID vorangestellt wird.
+Description[en]=Defines, whether log messages are prefixed with the request ID.
+Type=bool
+Default=true
+Categories=service-udm
+
+[directory/manager/rest/authorized-groups/.*]
+Description[de]=Spezifiziert die LDAP-DNs der Gruppen, denen Zugriff auf die Univention Directory Manager REST Schnittstelle erlaubt ist.
+Description[en]=Specifies the LDAP DNs of the groups, which are allowed to access the Univention Directory Manager REST interface.
+Type=str
+Categories=service-udm
+
+[directory/manager/rest/require-auth]
+Description[de]=Definiert ob eine Authentifizierung beim Zugriff auf "http(s)://FQDN/univention/udm/schema/*" und "univention/udm/openapi.json" notwendig ist. Nach dem Setzen dieser Variable muss der Dienst durch "service univention-directory-manager-rest restart" neu gestartet werden. Ist die Variable nicht gesetzt, dann ist keine Authentifizierung notwendig.
+Description[en]=Defines whether authentication is necessary when accessing "http(s)://FQDN/univention/udm/schema/*" and "univention/udm/openapi.json". After setting this variable the service has to be restarted by running "service univention-directory-manager-rest restart".
+Type=bool
+Default=true
+Categories=service-udm
+
+[directory/manager/rest/show-tracebacks]
+Description[de]=Definiert, ob Tracebacks in Fehlerfällen dem Benutzer angezeigt werden.
+Description[en]=Defines whether tracebacks are shown to the user in error cases.
+Type=bool
+Default=true
+Categories=service-udm
+
+[directory/manager/rest/autostart]
+Description[de]=Definiert, den Autostart der Univention Directory Manager REST Schnittstelle.
+Description[en]=Defines the autostart of the Univention Directory Manager REST interface
+Type=bool
+Default=true
+Categories=service-udm
+
+[directory/manager/rest/server/address]
+Description[de]=Auf diesem Netzwerk-Interface wartet der UDM-REST-API-Server auf Anfragen.
+Description[en]=The UDM REST API server is listening on this network interface.
+Type=ipaddress
+Default=127.0.0.1
+Categories=service-udm
+
+[directory/manager/rest/server/port]
+Description[de]=Auf diesem Port wartet der UDM-REST-API-Server auf Anfragen.
+Description[en]=The UDM REST API server is listening on this port.
+Type=portnumber
+Default=9979
+Categories=service-udm
+
+[directory/manager/rest/processes]
+Description[de]=Anzahl paralleler Prozesse, die gestartet werden. Durch den Wert 0 wird die Anzahl an Prozessorkernen verwendet.
+Description[en]=Number of parallel processes that are started. The value 0 starts a processs for each CPU core.
+Type=uint
+Default=1
+Categories=service-udm
+
+[directory/manager/rest/ldap-connection/.*/uri]
+Description[de]=Ein LDAP-URI, der für die Verbindung mit dem LDAP-Server verwendet wird. Platzhalter sind "user-read", "user-write", "machine-read", "machine-write".
+Description[en]=A LDAP URI used for connecting to the LDAP server. Placeholders are "user-read", "user-write", "machine-read", "machine-write".
+Type=str
+Categories=service-udm
+
+[directory/manager/rest/ldap-connection/.*/start-tls]
+Description[de]=Spezifiziert, ob STARTTLS für die LDAP-Verbindungstypen "user-read", "user-write", "machine-read", "machine-write" aktiviert werden soll (0=deaktiviert, 1=versuchen, 2=erzwingen).
+Description[en]=Specifies if STARTTLS should be enabled (0=disabled, 1=try, 2=enforce) for the LDAP connection types "user-read", "user-write", "machine-read", "machine-write".
+Type=int
+Default=2
+Categories=service-udm
+
+[directory/manager/rest/ldap-connection/.*/binddn]
+Description[de]=Gibt den binddn für die LDAP-Verbindungstypen "machine-read", "machine-write" an.
+Description[en]=Specifies the binddn for the LDAP connection types "machine-read", "machine-write".
+Type=str
+Categories=service-udm
+
+[directory/manager/rest/ldap-connection/.*/password-file]
+Description[de]=Gibt die Passwortdatei an, die das bind-Passwort für die LDAP-Verbindungstypen "machine-read", "machine-write" enthält.
+Description[en]=Specifies the password file containing the bind password for the LDAP connection types "machine-read", "machine-write".
+Type=str
+Categories=service-udm

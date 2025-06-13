@@ -1,0 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2021-2025 Univention GmbH
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+@import 'styles/univention.css';
+
+table.grid td {
+    border:1px solid rgb(222, 226, 230);
+}
+
+table.grid th {
+    border:1px solid rgb(222, 226, 230);
+}

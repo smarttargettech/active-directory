@@ -1,0 +1,315 @@
+@require "../variables"
+
+$moduleTabOverhang = 12px
+.umc .umcHeader
+	background-color: var(--bgc-content-header)
+	height: var(--layout-height-header)
+	position: relative
+	padding: 0
+	overflow: hidden
+	display: flex
+	align-items: center
+
+	.umcBackToOverviewButton
+		--button-size: var(--layout-height-header)
+		border-radius: 0
+
+	$moduleTabBGCTransitionDur = 250ms
+	.umcModuleTab
+		display: inline-flex
+		align-items: center
+		padding: 0
+		height: 100%
+		--tabColor: transparent
+		z-index: 1
+		padding-top: 0.3rem
+		&.dijit
+			&Checked
+				z-index: 2
+
+		&:before,
+		&:after
+			content: ''
+			display: block
+			height: 1.2rem
+			width: 1px
+			background: var(--bgc-tab-separator)
+			position: absolute
+			z-index: -2
+		&:before
+			left: 0
+		&:after
+			right: 0
+
+		.tabLabel
+			outline: none
+	.umcModuleTab:nth-child(2):before // the first tab is the hidden overview tab so start at 2
+		width: 2px
+	.umcModuleTab:last-child:after
+		width: 2px
+
+	.umcModuleTab__closeButton
+		--button-size: 1.3em
+		--button-icon-bgc-hover: rgba(0, 0, 0, 0.08)
+		--button-icon-bgc-active: rgba(0, 0, 0, 0.16)
+		margin-right: spacing(1, true)
+		.featherIcon
+			transition: none
+	.umcModuleTab__background__svg
+		position: absolute
+		bottom: 0
+		height: $moduleTabOverhang
+		width: $moduleTabOverhang
+		fill: currentColor
+		color: var(--tabColor)
+		transition: color $moduleTabBGCTransitionDur
+
+		&--left
+			left: -@width
+		&--right
+			right: -@width
+	.umcModuleTab__background
+		transition: background-color $moduleTabBGCTransitionDur
+		position: absolute
+		top: 10px
+		right: 0px
+		bottom: 0
+		left: 0px
+		border-radius: 8px 8px 0 0
+		background-color: var(--tabColor)
+		z-index: -1
+	.umcModuleTab .tabLabel
+		margin: 0 spacing(1)
+		font-size: var(--font-size-4)
+		line-height: 1
+		max-width: 264px
+		overflow: hidden
+		text-overflow: ellipsis
+
+		.umcModuleTitleBreadCrumb
+			color: inherit
+			transition: none
+	.umcModuleTab
+		&.contrastDark
+			&.dijitTabChecked,
+			&.dijitTabActive,
+			&.dijitTabHover
+				color: #1e1e1d
+		&.contrastLight
+			&.dijitTabChecked,
+			&.dijitTabActive,
+			&.dijitTabHover
+				color: #fff
+	.umcMainTabController
+		height: 100%
+
+	// (optiona) left part of header with logo and name
+	.umcHeaderLeft
+		display: flex
+		align-items: center
+		margin-left: spacing(2)
+
+		svg
+			height: var(--font-size-2)
+			width: @height
+			margin-right: spacing(1)
+			fill: currentColor
+			color: inherit
+
+	// (optional) right part of header with buttons
+	.umcHeaderRight
+		display: flex
+		align-items: center
+		margin-right: spacing(2)
+		margin-left: auto
+
+		.ucsButton
+			margin: 0 spacing(1, true)
+
+.umc.umcHeaderTryHide
+	.umcHeader .umcModuleTab:nth-child(1):before
+		width: 2px
+
+	.umcHeader .umcModuleTab:nth-child(2):before
+		width: 1px
+
+	.umcHeader--umc
+		background-color: transparent
+		transition: top 250ms
+
+	.umcHeader--umc.umcHeader--hidden
+		top: calc(-1 * var(--layout-height-header))
+
+	.umcHeader .umcModuleTab
+		color: var(--font-color-contrast-middle) !important
+
+		*
+			vertical-align: bottom
+
+		&.dijitTabChecked,
+		&.dijitTabHover
+			text-decoration: underline
+		&.dijitTabChecked
+			color: var(--font-color-contrast-high) !important
+
+	#headerButtonsCloseOverlay
+		top: 0
+
+	.ucsNotificationsButton
+		z-index: 31
+		&.dijitFocused
+			--bgc: transparent
+
+		&.dijitToggleButtonChecked
+			--bgc: var(--button-icon-bgc-hover)
+
+
+/* special stylings depending on device class */
+
+@media (max-width: 500px)
+	.col-xxs-12
+		width: 100%
+
+@media (min-width: 1755px)
+	.col-xlg-4
+		width: 33.33333333%
+
+	.col-xlg-push-3
+		left: 25%
+
+	.col-xlg-pull-4
+		right: 33.33333333%
+
+/**
+ * style the main container of UMC
+ */
+.umc .umcTopContainer .dijitTabContainerTop
+	clear: both
+
+.umc .umcHeader--umc
+	.umcMainTabController
+		display: flex
+		flex: 1 1 auto
+		&--overviewless
+			margin-left: $moduleTabOverhang
+	.umcHeaderStretch
+		flex: 1 1 auto
+	.umcHeaderRight
+		position: relative
+		flex: 0 0 auto
+
+.umc
+	.umcMobileTabsToggleButton
+		position: relative
+	.umcHeaderButton__counter
+		position: absolute
+		color: var(--bgc-content-header)
+		background-color: var(--bgc-header-number-circle)
+		font-size: var(--font-size-5)
+		width: 1.6em
+		height: 1.6em
+		left: 2em
+		top: 0em
+		border-radius: var(--border-radius-circles)
+		display: flex
+		align-items: center
+		justify-content: center
+		pointer-events: none
+		&--hidden
+			display: none
+
+	.umcMobileTabs
+		position: fixed
+		top: var(--layout-height-header)
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: 31
+		display: flex
+		flex-direction: column
+		align-items: center
+		overflow: auto
+		visibility: hidden
+		opacity 0
+		transition: opacity 250ms, visibility 260ms
+
+		&--visible
+			visibility: visible
+			opacity: 1
+			transition: opacity 250ms, visibility 0ms
+
+	.umcMobileTab
+		flex: 0 0 auto
+		outline: 0
+		cursor: pointer
+		display: flex
+		align-items: center
+		min-height: spacing(7)
+		width: 90%
+		max-width: spacing(50)
+		border-radius: var(--border-radius-container)
+		background: var(--bgc-content-container)
+		padding: spacing(2)
+		margin-bottom: spacing(3)
+		transition: background-color 250ms, color 250ms
+		&:first-child
+			margin-top: spacing(3)
+
+	.umcMobileTab__label
+		flex: 1 1 auto
+		display: flex
+		align-items: center
+
+		.umcModuleTitleBreadCrumb
+			color: inherit
+	.umcMobileTab__closeButton
+		--button-icon-bgc-hover: rgba(0, 0, 0, 0.08)
+		--button-icon-bgc-active: rgba(0, 0, 0, 0.08)
+		flex: 0 0 auto
+		margin-left: spacing(1)
+		.featherIcon
+			transition: none
+
+
+
+// module search
+.umcModuleSearch
+	width: 95%
+	max-width: calc(40 * var(--layout-spacing-unit))
+	position: fixed
+	top: calc(var(--layout-height-header) + var(--layout-height-header-separator))
+	transition: right 250ms
+	right: calc(-40 * var(--layout-spacing-unit))
+	z-index: 1
+
+	&--open
+		right: 0
+
+	.umcSearchBox
+		background-color: var(--bgc-content-container)
+	.umcSearchBox__searchButton
+		display: none
+// module search end
+
+
+// close overlay
+#headerButtonsCloseOverlay
+	position: fixed
+	top: var(--layout-height-header)
+	bottom: 0
+	left: 0
+	right: 0
+	z-index: 30
+	visibility: hidden
+	transition: opacity 250ms, visibility 260ms
+	background: var(--bgc-underlay)
+	opacity: 0
+
+.ucsOverlay--menu,
+.ucsOverlay--notifications,
+.ucsOverlay--tabs
+	#headerButtonsCloseOverlay
+		visibility: visible
+		transition: opacity 250ms, visibility 0ms
+		opacity: 1
+// close overlay end

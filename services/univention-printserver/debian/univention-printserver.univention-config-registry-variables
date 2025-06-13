@@ -1,0 +1,109 @@
+[cups/admin]
+Description[de]=An die hier angegebene E-Mail-Adresse werden Fehler- und Statusmeldungen des CUPS-Dienstes geschickt.
+Description[en]=Error and status messages of the CUPS service are sent to the email address specified here.
+Type=str
+Categories=service-cups
+
+[cups/errorpolicy]
+Description[de]=Diese Variable konfiguriert das Verhalten, wenn ein Druckauftrag nicht an einen Drucker gesendet werden konnte: Die möglichen Werte sind: 'abort-job' (Abbruch des aktuellen Auftrags und Fortfahren mit dem nächsten), 'retry-current-job' (Erneuter sofortiger Versuch den Druckauftrag zu senden), 'retry-job' (Erneuter Versuch den Druckauftrag nach 30 Sekunden zu senden) und 'stop-printer' (Anhalten des Druckers und Zurückhalten des Druckauftrags für späteren Druck).
+Description[en]=This variable configures the behavior if a print job could not be sent to a printer. The possible values are: 'abort-job' (Aborting the current job and proceed with the next), 'retry-current-job' (Immediately retry to send the print job), 'retry-job' (Retry to send the print job after 30 seconds) and 'stop-printer' (Stop the printer and hold back the print job for later).
+Type=str
+Categories=service-cups
+
+[cups/filedevice]
+Description[de]=Ist diese Option aktiviert, erlaubt CUPS den Raw-Druck in eine Datei über das 'file'-Protokoll. Ist die Variable nicht gesetzt, wird kein 'file'-Druck angeboten.
+Description[en]=If this option is activated CUPS supports raw printing using the 'file' protocol. If the variable is unset no 'file' printing is offered.
+Type=bool
+Categories=service-cups
+
+[cups/location/admin]
+Description[de]=Mit dieser Variable wird festgelegt, von wo auf das CUPS-interne Administrations-Webinterface auf Port 631 zugegriffen werden kann. Hier kann entweder eine Liste von Rechnernamen in FQDN-Form, eine Liste von Netzen (z.B. '192.168.1.*') oder der Sonderwert 'networks' angegeben werden. Mehrere Werte werden durch Leerzeichen getrennt. Bei 'networks' wird der Zugriff aus dem lokalen Netz des CUPS-Servers erlaubt.
+Description[en]=This variable configures from where the CUPS-internal administration web interface on port 631 can be accessed. It can be specified as a list of hostnames in FQDN format, a list of networks (e.g. '192.168.1.*') or as the special value 'networks'. Multiple values need to be separated by commas. If 'networks' is set, access is granted from the local network of the CUPS server.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-cups
+
+[cups/location/base]
+Description[de]=Mit dieser Variable wird festgelegt, von wo über den CUPS-Server gedruckt werden kann. Hier kann entweder eine Liste von Rechnernamen in FQDN-Form, eine Liste von Netzen (z.B. '192.168.1.*') oder der Sonderwert 'networks' angegeben werden. Mehrere Werte werden durch Leerzeichen getrennt. Bei 'networks' wird der Druck aus dem lokalen Netz des CUPS-Servers erlaubt.
+Description[en]=This variable configures from where the CUPS print server can be accessed. It can be specified as a list of hostnames in FQDN format, a list of networks (e.g. '192.168.1.*') or as the special value 'networks'. Multiple values need to be separated by commas. If 'networks' is set, printing is allowed from the local network of the CUPS server.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-cups
+
+[cups/systemgroup]
+Description[de]=Die hier angegebenen Gruppen haben Administrationszugriff auf die Drucker. Mehrere Werte müssen durch Komma getrennt werden.
+Description[en]=The groups specified here have printer administration access. Multiple values need to be separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-cups
+
+[cups/printserver]
+Description[de]=Ist diese Option aktiviert, läuft auf dem System ein CUPS-Druckserver. Diese Variable wird von dem Univention Directory-Listener-Modul zur Konfiguration von Druck-Clients ausgewertet.
+Description[en]=If this option is activated, a CUPS print server is running on the system. This variable is evaluated by the Univention Directory Listener module, which configures print clients.
+Type=bool
+Categories=service-cups
+
+[cups/debug/level]
+Description[de]=Diese Variable konfiguriert den Detailgrad der CUPS-Logmeldungen. Mögliche Werte sind: none, emerg, alert, crit, error, warn, notice, info, debug, debug2.
+Description[en]=This variable configures the verbosity level for the CUPS print server. Possible values: none, emerg, alert, crit, error, warn, notice, info, debug, debug2.
+Type=str
+Categories=service-cups
+
+[cups/restrictedprinters]
+Description[de]=Alle hier eingetragenen Druckerfreigaben erfordern eine Authentifizierung. Ist die Variable 'cups/automaticrestrict' aktiviert, werden hier automatisch alle Drucker eingetragen, für die eine Zugriffsbeschränkung in der UMC konfiguriert wurde.
+Description[en]=All printer shares listed here require authentication. If the variable 'cups/automaticrestrict' is enabled, all printer shares for which access restrictions have been configured in the UMC are listed.
+Type=str
+Categories=service-cups
+
+[cups/automaticrestrict]
+Description[de]=Ist diese Option deaktiviert, werden alle Druckerfreigaben für die in der UMC Zugriffsberechtigungen konfiguriert sind, automatisch in die Variable 'cups/restrictedprinters' eingetragen. Ist die Variable nicht gesetzt, erfolgt eine automatische Aktualisierung.
+Description[en]=If this option is deactivated, all printer shares for which UMC access restrictions have been configured are automatically added to the variable 'cups/restrictedprinters'. If the variable is unset, the variable is automatically updated.
+Type=bool
+Categories=service-cups
+
+[cups/server/alias]
+Description[de]=Hier kann ein Alias-Name angegeben werden, unter dem der Server bekannt ist. Dieser Alias wird für die Validierung von HTTP-Host-Headern verwendet. Der besondere Name '*' erlaubt die Verwendung eines beliebigen Namens.
+Description[en]=An alias name under which the server is known can be provided here. This alias is used for the validation of HTTP host headers. The special value '*' allows every hostname.
+Type=str
+Categories=service-cups
+
+[cups/include/local]
+Description[de]=Ist diese Option aktiviert, wird am Ende der Konfigurationsdatei /etc/cups/cupsd.conf die zusätzliche Konfigurationsdatei /etc/cups/cupsd.local.conf eingebunden, in die beliebige weitere Optionen eingetragen werden können. Ist die Variable nicht gesetzt, wird die Datei nicht eingebunden. Änderungen an /etc/cups/cupsd.local.conf benötigen das Ausführen von ucr commit /etc/cups/cupsd.conf.
+Description[en]=If this option is activated, the additional configuration file /etc/cups/cupsd.local.conf is included at the end of the configuration file /etc/cups/cupsd.conf. This allows the configuration of arbitrary options. If the variable is unset, the file is not included. Changes in /etc/cups/cupsd.local.conf require to execute ucr commit /etc/cups/cupsd.conf.
+Type=bool
+Categories=service-cups
+
+[cups/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des CUPS-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the CUPS service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-cups
+
+[cups/printmode/hosts/none]
+Description[de]=Eine durch Leerzeichen separierte Liste von IP Adressen, denen das Drucken verboten ist.
+Description[en]=A blank separated list of IP addresses which are forbidden to print.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-cups
+
+[samba/force_printername]
+Description[de]=Über diese Variable lässt sich die Voreinstellung für die Samba Druckeroption "force printername" konfigurieren. Veränderte Einstellungen für diese Varable wirken sich nur auf neue und modifizierte Druckfreigaben aus.
+Description[en]=This variable configures the default for the Samba printer option "force printername". Adjustments of this variable only affect new or modified printer shares.
+Type=str
+Categories=service-cups
+
+[cups/access/limit]
+Description[de]=Ist diese Variable auf 'false' gesetzt, werden die cups/policy/.* Variablen und cups/printmode/hosts/none nicht ausgewertet.
+Description[en]=If this variable is set to 'false' the cups/policy/.* variables and cups/printmode/hosts/none are ignored.
+Type=bool
+Categories=service-cups
+
+[cups/policy/.*]
+Description[de]=Mit diesen Variablen können Policy Limits für cups definiert werden.
+Description[en]=These variables can be used to configure cups policy limits.
+Type=str
+Categories=service-cups

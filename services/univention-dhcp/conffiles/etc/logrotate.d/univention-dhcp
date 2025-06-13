@@ -1,0 +1,18 @@
+@%@UCRWARNING=# @%@
+
+@!@
+import univention.lib.ucrLogrotate
+
+name = "dhcp"
+settings = univention.lib.ucrLogrotate.getLogrotateConfig(name, configRegistry)
+
+print("/var/log/univention/%s.log {" % name)
+
+for setting in sorted(settings):
+    print("\t%s" % settings[setting])
+@!@
+
+	lastaction
+		systemctl try-reload-or-restart -- isc-dhcp-server.service
+	endscript
+}

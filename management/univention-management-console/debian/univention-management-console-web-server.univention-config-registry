@@ -1,0 +1,43 @@
+Type: file
+File: etc/apache2/sites-available/univention.conf
+Variables: umc/http/port
+Variables: umc/http/interface
+Variables: umc/http/response-timeout
+Variables: umc/http/content-security-policy/default-src
+Variables: umc/http/content-security-policy/script-src
+Variables: umc/http/content-security-policy/object-src
+Variables: umc/http/content-security-policy/style-src
+Variables: umc/http/content-security-policy/img-src
+Variables: umc/http/content-security-policy/media-src
+Variables: umc/http/content-security-policy/frame-src
+Variables: umc/http/content-security-policy/font-src
+Variables: umc/http/content-security-policy/connect-src
+Variables: umc/http/content-security-policy/form-action
+Variables: umc/http/content-security-policy/frame-ancestors
+Variables: umc/web/piwik
+Variables: updater/maintenance
+Variables: umc/login/content-security-policy/.*
+Variables: umc/http/processes
+Variables: umc/http/processes/start-port
+Variables: ucs/server/sso/uri
+
+Type: file
+File: etc/apache2/sso-vhost.conf.d/01redirect.conf
+Variables: ucs/server/sso/uri
+Variables: hostname
+Variables: domainname
+Variables: ucs/server/sso/virtualhost
+
+Type: module
+Module: setup_saml_sp.py
+Variables: umc/saml/idp-server
+
+Type: module
+Module: configure_umc_multiprocessing.py
+Variables: umc/http/processes
+Variables: umc/http/processes/start-port
+
+Type: module
+Module: setup_oidc_rp.py
+Variables: umc/oidc/issuer
+Variables: umc/oidc/rp/server

@@ -1,0 +1,151 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Mirror local repository and blocking component
+##  Check locally mirrored repository with blocking component
+##  1. Create main and component repositories
+##  2. Mirror using u-repository-update
+##  3. Install first version
+##  4. Mirror and install second version using u-updater
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+##  - apt-mirror
+## exposure: dangerous
+
+. pool.sh || exit 137
+FIXED_18225=false
+
+# Change repoprefix, because both repositories are hosted on the same server
+srcprefix="source-repository-$$-${RANDOM}"
+repoprefix="mirrored-repository-$$-${RANDOM}"
+compname="test${RANDOM}"
+
+alias="Alias /${repoprefix} ${BASEDIR}/mirror/mirror" \
+setup_apache "" # setup server to / for ${repoprefix} and ${srcprefix}
+
+REPODIR="${REPODIR}/${srcprefix}"
+mkdir -p "${REPODIR}"
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 0:dists/ucs500/main/binary-amd64/
+# 1:dists/errata500/main/binary-amd64/
+mkdeb "${pkgname}ua" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+
+mkdeb "${pkgname}ea" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+
+mksh "${DIR}" preup postup
+
+mkpdir "${major}.${minor}--component/${compname}" maintained all "${ARCH}"
+# 2:5.0/maintained/component/test00000/all
+# 3:5.0/maintained/component/test00000/amd64
+mkdeb "${pkgname}ca" 1 all "${DIRS[2]}"
+mkpkg "${DIRS[2]}" "${DIRS[2]}"
+mksh "${DIRS[2]}" preup postup
+
+mkdeb "${pkgname}cb" 1 "${ARCH}" "${DIRS[3]}"
+mkpkg "${DIRS[3]}" "${DIRS[3]}"
+
+BDIR=("${DIRS[@]}")
+
+minor+=1
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 4:dists/ucs510/main/binary-amd64/
+# 5:dists/errata510/main/binary-amd64/
+mkdeb "${pkgname}ua" 2 all "${DIR_POOL}"
+mkpkg "${DIRS[4]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 2 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[4]}" "${DIR_POOL}"
+
+mkdeb "${pkgname}ea" 2 all "${DIR_POOL}"
+mkpkg "${DIRS[5]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 2 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[5]}" "${DIR_POOL}"
+
+mksh "${DIR}" preup postup
+
+mkpdir "${major}.${minor}--component/${compname}" maintained all "${ARCH}"
+# 6:5.1/maintained/component/test00000/all
+# 7:5.1/maintained/component/test00000/amd64
+mkdeb "${pkgname}ca" 2 all "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+mksh "${DIR}" preup postup
+
+mkdeb "${pkgname}cb" 2 "${ARCH}" "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+
+dirs_except "${BDIR[@]}" && declare -a CDIR=("${result[@]}")
+
+minor+=1
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 8:dists/ucs520/main/binary-amd64/
+# 9:dists/errata520/main/binary-amd64/
+mkdeb "${pkgname}ua" 3 all "${DIR_POOL}"
+mkpkg "${DIRS[8]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 3 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[8]}" "${DIR_POOL}"
+
+mkdeb "${pkgname}ea" 3 all "${DIR_POOL}"
+mkpkg "${DIRS[9]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 3 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[9]}" "${DIR_POOL}"
+
+mksh "${DIR}" preup postup
+
+minor+=-1
+
+comp="repository/online/component/${compname}"
+config_mirror "/${srcprefix}" \
+	repository/online=yes \
+	repository/online/server="http://localhost:80/${repoprefix#/}" \
+	"${comp}=yes" \
+	"${comp}/version=current"
+if ! "${FIXED_18225}"
+then
+	mkdir -p "${BASEDIR}/mirror/mirror"
+	ln -s . "${BASEDIR}/mirror/mirror/${repoprefix}"
+	ln -s . "${BASEDIR}/mirror/mirror/${srcprefix}"
+fi
+
+	set -e
+	checkapt --mirror "http://localhost\\(:80\\)\\?/${srcprefix}/" "${BDIR[@]}"
+	grep -v '^#\|^[[:space:]]*$' /etc/apt/sources.list.d/*.list && false
+	univention-repository-update net
+	ucr commit /etc/apt/sources.list.d/*.list
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${BDIR[@]}"
+
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"{u,e,c}{a,b}
+	dpkg-query -W "${pkgname}ua" | grep -Fqx "${pkgname}ua	1"
+	dpkg-query -W "${pkgname}ub" | grep -Fqx "${pkgname}ub	1"
+	dpkg-query -W "${pkgname}ea" | grep -Fqx "${pkgname}ea	1"
+	dpkg-query -W "${pkgname}eb" | grep -Fqx "${pkgname}eb	1"
+	dpkg-query -W "${pkgname}ca" | grep -Fqx "${pkgname}ca	1"
+	dpkg-query -W "${pkgname}cb" | grep -Fqx "${pkgname}cb	1"
+	univention-upgrade --ignoressh --noninteractive --disable-app-updates --ignoreterm
+	checkapt --mirror "http://localhost\\(:80\\)\\?/${srcprefix}/" "${BDIR[@]}" "${CDIR[@]}"
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${CDIR[@]}"
+	dpkg-query -W "${pkgname}ua" | grep -Fqx "${pkgname}ua	2"
+	dpkg-query -W "${pkgname}ub" | grep -Fqx "${pkgname}ub	2"
+	dpkg-query -W "${pkgname}ea" | grep -Fqx "${pkgname}ea	2"
+	dpkg-query -W "${pkgname}eb" | grep -Fqx "${pkgname}eb	2"
+	dpkg-query -W "${pkgname}ca" | grep -Fqx "${pkgname}ca	2"
+	dpkg-query -W "${pkgname}cb" | grep -Fqx "${pkgname}cb	2"
+	test "${major}.${minor}" = "$(ucr get version/version)"
+	test 0 = "$(ucr get version/patchlevel)"
+	checkdeb "${pkgname}ua" 1 2
+	checkdeb "${pkgname}ub" 1 2
+	checkdeb "${pkgname}ea" 1 2
+	checkdeb "${pkgname}eb" 1 2
+	checkdeb "${pkgname}ca" 1 2
+	checkdeb "${pkgname}cb" 1 2
+# vim:set ft=sh:

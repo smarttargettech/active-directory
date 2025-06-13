@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Welcome to Univention Corporate Server</title>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/univention/js/dijit/themes/umc/umc.css" type="text/css"/>
+		<link rel="stylesheet" href="/univention/theme.css" type="text/css"/>
+		<script type="text/javascript">
+			var umcConfig = {
+				deps: ["initialsetup"],
+				callback: function(initialsetup) {
+					initialsetup.start();
+				}
+			};
+		</script>
+		<script type="text/javascript" src="/univention/js/config.js"></script>
+		<script type="text/javascript" src="/univention/js/dojo/dojo.js"></script>
+	</head>
+	<body class="umc">
+		<div id="umcHeader" class="umcHeader">
+			<div class="umcHeaderRight" id="umcHeaderRight">
+				<div class="univentionLogo"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="umcCard2 col-sm-12 col-md-11 col-lg-9" style="float: none; margin: var(--layout-height-header) auto;">
+				<h1 id="heading" style="margin-bottom: calc(3 * var(--layout-spacing-unit))">JavaScript required</h1>
+				<p id="content">
+					A browser with JavaScript enabled is required in order to use this service.
+					When using Internet Explorer, please check your security settings and add this address to your
+					trusted sites.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

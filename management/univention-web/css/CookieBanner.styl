@@ -1,0 +1,43 @@
+/* CookieBanner */
+
+@require "variables.styl"
+
+.umc .dijitDialog.umcCookieBanner
+	position: fixed !important
+	top: auto !important
+	bottom: 4px !important
+	left: 4px !important
+	right: 4px !important
+	max-width: 100%
+	max-height: 60%
+	display: flex
+	flex-direction: column
+
+	.umcText
+		font-size 13pt
+
+	.dijitDialogPaneContent
+		padding-left 20px
+		padding-right 20px
+		padding-top 10px
+		padding-bottom 10px
+		margin-bottom unset
+		overflow auto
+
+	.dijitDialogTitleBar
+		border-bottom thin solid var(--bgc-content-body)
+		padding-top 10px
+		padding-bottom 10px
+
+		.dijitDialogTitle
+			font-size 16pt
+
+	.umcDialogActionBar
+		overflow unset
+
+		.umcContainerWidget .umcButtonRow
+			vertical-align bottom
+			text-align right
+
+		//	.dijitButton
+		//		width 100%

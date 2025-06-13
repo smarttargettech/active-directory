@@ -1,0 +1,20 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check operatingSystem and operatingSystemVersion of ldap/hostdn
+## roles-not: [basesystem]
+## tags:
+##  - basic
+##  - apptest
+## exposure: safe
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+os="$(univention-ldapsearch -b "$ldap_hostdn" -s base -LLL univentionOperatingSystem | VAL univentionOperatingSystem)"
+[ "$os" = "Univention Corporate Server" ] ||
+	fail_test 110 "univentionOperatingSystem is set to $os"
+ovs="$(univention-ldapsearch -b "$ldap_hostdn" -s base -LLL univentionOperatingSystemVersion | VAL univentionOperatingSystemVersion)"
+[ "$ovs" = "$version_version-$version_patchlevel" ] ||
+	fail_test 110 "univentionOperatingSystemVersion is set to $ovs"
+
+exit "$RETVAL"

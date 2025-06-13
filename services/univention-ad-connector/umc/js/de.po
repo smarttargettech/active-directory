@@ -1,0 +1,443 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-adconnector\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2020-09-23 00:02+0200\n"
+"PO-Revision-Date: 2019-09-20 14:07+0200\n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: umc/js/adconnector.js:46
+msgid ""
+"<p><b>Caution!</b> The DNS service record for the UCS Primary was not found "
+"in the DNS server.</p>"
+msgstr ""
+"<p><b>Achtung!</b> Der DNS Service Record für den UCS Primary wurde nicht im "
+"DNS Server gefunden.</p>"
+
+#: umc/js/adconnector/SetupWizard.js:348
+msgid ""
+"<p>An encrypted connection to the Active Directory domain could still not be "
+"established.</p><p>Confirm if you want to proceed with an unsecure "
+"connection.</p>"
+msgstr ""
+"<p>Eine verschlüsselte Verbindung zu der Active Directory-Domäne konnte "
+"immer noch nicht aufgebaut werden.</p><p>Bestätigen Sie die Verwendung einer "
+"unsicheren Verbindung um fortzufahren.</p>"
+
+#: umc/js/adconnector.js:46
+msgid ""
+"<p>Details are explained in the <a href=\"http://sdb.univention."
+"de/1299\">Support Database</a>.</p>"
+msgstr ""
+"<p>Details sind in der <a href=\"https://sdb.univention.de/1299\">Support "
+"Database</a> erklärt.</p>"
+
+#: umc/js/adconnector/SetupWizard.js:86
+msgid ""
+"<p>This wizards guides the configuration of the connection with an existing "
+"Active Directory domain.</p><p>There are two exclusive options:</p>"
+msgstr ""
+"<p>Dieser Assistent führt durch die Konfiguration der Verbindung mit einer "
+"bestehenden Active Directory-Domäne.</p><p>Es gibt zwei grundsätzliche "
+"Möglichkeiten:</p>"
+
+#: umc/js/adconnector/SetupWizard.js:207
+#, javascript-format
+msgid ""
+"<p>To achieve a higher level of security, the Active Directory root "
+"certificate should be exported and uploaded here. The Active Directory "
+"certificate service creates that certificate. The necessary steps depend on "
+"the actual Microsoft Windows version and are described in the <a href="
+"\"https://docs.software-univention.de/manual-%s.html#ad-connector:ad-"
+"zertifikat\" target=\"_blank\">UCS manual</a>. Alternatively, you may "
+"proceed without this configuration.</p>"
+msgstr ""
+"<p>Um eine höhere Sicherheit zu erreichen, sollte auf dem Active Directory "
+"System das Root-Zertifikat exportiert und hier hochgeladen werden. Erzeugt "
+"wird das Zertifikat mit dem Zertifikatsdienst des Active Directory. Die "
+"notwendigen Schritte sind abhängig von der eingesetzten Microsoft Windows-"
+"Version und sind in der <a href=\"https://docs.software-univention.de/"
+"handbuch-%s.html#ad-connector:ad-zertifikat\" target=\"_blank\">UCS "
+"Dokumentation</a> beispielhaft beschrieben. Alternativ können Sie auch ohne "
+"diese Konfiguration fortfahren.</p>"
+
+#: umc/js/adconnector/SetupWizard.js:134
+msgid "AD Connection - An error occurred"
+msgstr "AD-Verbindung - Ein Fehler trat auf"
+
+#: umc/js/adconnector/ConfigPage.js:123
+msgid "Activate encrypted connection"
+msgstr "Verschlüsselte Verbindung aktivieren"
+
+#: umc/js/adconnector/SetupWizard.js:81
+msgid "Active Directory Connection"
+msgstr "Active Directory-Verbindung"
+
+#: umc/js/adconnector/SetupWizard.js:124 umc/js/adconnector/SetupWizard.js:175
+msgid "Active Directory account"
+msgstr "Active Directory-Konto"
+
+#: umc/js/adconnector/ConfigPage.js:142
+msgid "Active Directory connection SSL configuration"
+msgstr "Active Directory-Verbindung SSL-Konfiguration"
+
+#: umc/js/adconnector/ConfigPage.js:139
+msgid "Active Directory connection service"
+msgstr "Active Directory-Verbindungsdienst"
+
+#: umc/js/adconnector/ConfigPage.js:175
+msgid "Active Directory connection service is currently running."
+msgstr "Active Directory-Verbindungsdienst läuft aktuell."
+
+#: umc/js/adconnector/ConfigPage.js:179
+msgid "Active Directory connection service is not running."
+msgstr "Active Directory-Verbindungsdienst ist nicht gestartet."
+
+#: umc/js/adconnector/SetupWizard.js:108 umc/js/adconnector/SetupWizard.js:159
+msgid "Active Directory domain credentials"
+msgstr "Active Directory-Domänenzugangsdaten"
+
+#: umc/js/adconnector/SetupWizard.js:130 umc/js/adconnector/SetupWizard.js:181
+msgid "Active Directory password"
+msgstr "Active Directory-Passwort"
+
+#: umc/js/adconnector/SetupWizard.js:170
+msgid "Address of Active Directory domain controller"
+msgstr "Adresse des Active Directory-Domänencontrollers"
+
+#: umc/js/adconnector/SetupWizard.js:119
+msgid ""
+"Address of Active Directory domain controller or name of Active Directory "
+"domain"
+msgstr ""
+"Adresse des Active Directory-Domänencontrollers oder Name der Active "
+"Directory-Domäne"
+
+#: umc/js/adconnector/SetupWizard.js:195
+msgid ""
+"After the certification authority has been set up, press <i>Next</i> to "
+"proceed."
+msgstr ""
+"Klicken Sie <i>Weiter</i> sobald die Zertifizierungsstelle eingerichtet ist."
+
+#: umc/js/adconnector/SetupWizard.js:193
+msgid ""
+"An encrypted connection to the Active Directory domain could not be "
+"established. As a consequence authentication data is submitted in plaintext."
+msgstr ""
+"Es konnte keine verschlüsselte Verbindung zur Active Directory-Domäne "
+"hergestellt werden. Dies hat zur Folge, dass Authentifizierungsdaten im "
+"Klartext übertragen werden."
+
+#: umc/js/adconnector/SetupWizard.js:135
+msgid ""
+"An error occurred during the join process of UCS into the Active Directory "
+"domain. The following information will give you some more details on which "
+"problems occurred during the join process."
+msgstr ""
+"Ein Fehler trat während des Beitritts von UCS zur Active Directory-Domäne "
+"auf. Die folgenden Informationen enthalten weitere Details über das genauere "
+"Problem."
+
+#: umc/js/adconnector/SetupWizard.js:331
+msgid ""
+"An unexpected error occurred. More information about the cause of the error "
+"can be found in the log file /var/log/univention/management-console-module-"
+"adconnector.log. Please retry the join process after resolving any "
+"conflicting issues."
+msgstr ""
+"Ein unerwarteter Fehler trat auf. Weitere Informationen über die "
+"Fehlerursache können in der Log-Datei /var/log/univention/management-console-"
+"module-adconnector.log gefunden werden. Bitte führen Sie den Beitritt erneut "
+"durch, nachdem entsprechende Fehler behoben wurden."
+
+#: umc/js/adconnector/SetupWizard.js:254
+msgid "Bidirectional synchronisation of UCS and Active Directory."
+msgstr "Bidirektionale Synchronisation zwischen UCS und Active Directory."
+
+#: umc/js/adconnector/ConfigPage.js:108
+msgid ""
+"By default the Active Directory connection does not transfer encrypted "
+"password data into the UCS directory service. The system uses the Active "
+"Directory Kerberos infrastructure for authentication."
+msgstr ""
+"Standardmäßig überträgt die eingerichtete Active Directory-Verbindung keine "
+"verschlüsselten Passwortdaten in den UCS-Verzeichnisdienst. Das System nutzt "
+"die Active Directory-Kerberos-Infrastruktur zur Authentifizierung."
+
+#: umc/js/adconnector/SetupWizard.js:350
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: umc/js/adconnector/SetupWizard.js:146 umc/js/adconnector/SetupWizard.js:275
+msgid "Completion of Active Directory Connection"
+msgstr "Fertigstellung der Active Directory-Verbindung"
+
+#: umc/js/adconnector/SetupWizard.js:232
+msgid "Configuration of Active Directory domain synchronisation"
+msgstr "Konfiguration der Active Directory-Domänensynchronisation"
+
+#: umc/js/adconnector/ConfigPage.js:55
+msgid "Configuration of the Active Directory connection"
+msgstr "Konfiguration der Active Directory-Verbindung"
+
+#: umc/js/adconnector/SetupWizard.js:92
+msgid "Configure UCS as part of an Active Directory domain (recommended)."
+msgstr "UCS als Teil einer Active Directory-Domäne konfigurieren (empfohlen)."
+
+#: umc/js/adconnector/SetupWizard.js:354
+msgid "Continue without encryption"
+msgstr "Fortfahren ohne Verschlüsselung"
+
+#: umc/js/adconnector/ConfigPage.js:204
+msgid ""
+"Currently, a secured connection between UCS and the Active Directory domain "
+"is used."
+msgstr ""
+"Es wird eine gesicherte Verbindung zwischen der UCS und der Active Directory "
+"Domäne verwendet."
+
+#: umc/js/adconnector/ConfigPage.js:197
+msgid ""
+"Currently, an encrypted connection between UCS and the Active Directory "
+"domain is used."
+msgstr ""
+"Es wird aktuell eine verschlüsselte Verbindung zwischen der UCS und der "
+"Active Directory-Domäne verwendet."
+
+#: umc/js/adconnector/ConfigPage.js:191
+msgid ""
+"Currently, an unencrypted connection to the Active Directory domain is used."
+msgstr ""
+"Es wird aktuell keine verschlüsselte Verbindung zu der Active Directory "
+"Domäne verwendet."
+
+#: umc/js/adconnector.js:46
+msgid "DNS Check"
+msgstr "DNS-Check"
+
+#: umc/js/adconnector/SetupWizard.js:165
+msgid ""
+"Enter the Active Directory domain information to establish the connection."
+msgstr ""
+"Geben Sie die Active Directory-Domäneninformationen ein, um die Verbindung "
+"einzurichten."
+
+#: umc/js/adconnector/SetupWizard.js:114
+msgid "Enter the Active Directory domain information to join the domain."
+msgstr ""
+"Geben Sie die Active Directory-Domäneninformationen ein, um der Domäne "
+"beizutreten."
+
+#: umc/js/adconnector/SetupWizard.js:225 umc/js/adconnector/ConfigPage.js:100
+msgid "Failed to import the certificate"
+msgstr "Der Import des Zertifikats ist fehlgeschlagen"
+
+#: umc/js/adconnector/ConfigPage.js:109
+msgid ""
+"However, in some scenarios it may be reasonable to transfer encrypted "
+"password hashes. Please refer the UCS manual in order to activate the "
+"password synchronization."
+msgstr ""
+"In einigen Szenarien kann es dennoch sinnvoll sein, die verschlüsselten "
+"Passwortdaten zu übertragen. Die Aktivierung der Passwortsynchronisation ist "
+"im UCS Handbuch beschrieben."
+
+#: umc/js/adconnector/ConfigPage.js:205
+msgid ""
+"If there is a need for adjustment, you may upload a new root certificate of "
+"the Active Directory domain."
+msgstr ""
+"Bei Anpassungsbedarf können Sie hier ein neues Root-Zertifikat aus der "
+"Active Directory-Domäne hochladen."
+
+#: umc/js/adconnector/ConfigPage.js:86
+msgid ""
+"It is also possible to just activate the encrypted connection without "
+"certificate verification."
+msgstr ""
+"Es ist auch möglich, die verschlüsselte Verbindung ohne Zertifikatsprüfung "
+"zu aktivieren."
+
+#: umc/js/adconnector/SetupWizard.js:153
+msgid ""
+"It is necessary for already joined UCS systems to re-join the domain. This "
+"should be done via the UMC module <i>Domain join</i> separately on each "
+"system."
+msgstr ""
+"Für bereits gejointe UCS-Systeme ist es notwendig, der Domäne neu "
+"beizutreten. Dies sollte über das UMC-Module <i>Domänenbeitritt</i> separat "
+"auf jedem System durchgeführt werden."
+
+#: umc/js/adconnector/SetupWizard.js:291
+msgid "Join AD domain"
+msgstr "AD-Domäne beitreten"
+
+#: umc/js/adconnector/SetupWizard.js:362
+msgid "Joining UCS into Active Directory domain"
+msgstr "UCS der Active Directory-Domäne beitreten lassen"
+
+#: umc/js/adconnector/ConfigPage.js:147
+msgid "Password sync"
+msgstr "Passwort Sync"
+
+#: umc/js/adconnector/SetupWizard.js:542
+msgid "Please confirm to carry out a restart of the UMC server components."
+msgstr "Bitte bestätigen Sie den Neustart der UMC-Server-Komponenten."
+
+#: umc/js/adconnector/SetupWizard.js:293
+msgid "Retry to join"
+msgstr "Erneut beitreten"
+
+#: umc/js/adconnector/SetupWizard.js:186
+msgid "Security settings"
+msgstr "Sicherheitseinstellungen"
+
+#: umc/js/adconnector/SetupWizard.js:355
+msgid "Security warning"
+msgstr "Sicherheitshinweis"
+
+#: umc/js/adconnector/SetupWizard.js:242
+msgid ""
+"Select the synchronisation direction between the UCS domain and the given "
+"Active Directory domain."
+msgstr ""
+"Wählen Sie die Synchronisationsrichtung zwischen der UCS-Domäne und der "
+"angegebenen Active Directory-Domäne aus."
+
+#: umc/js/adconnector/ConfigPage.js:115
+msgid "Start Active Directory connection service"
+msgstr "Active Directory-Verbindungsdienst starten"
+
+#: umc/js/adconnector/ConfigPage.js:119
+msgid "Stop Active Directory connection service"
+msgstr "Active Directory-Verbindungsdienst stoppen"
+
+#: umc/js/adconnector/SetupWizard.js:95
+msgid ""
+"Synchronisation of account data between an Active Directory and this UCS "
+"domain."
+msgstr ""
+"Synchronisation von Kontendaten zwischen einer Active Directory- und dieser "
+"UCS-Domäne."
+
+#: umc/js/adconnector/ConfigPage.js:70
+msgid "The UCS domain exists in parallel to an Active Directory domain."
+msgstr "Die UCS-Domäne existiert parallel zu einer Active Directory-Domäne."
+
+#: umc/js/adconnector/SetupWizard.js:282
+msgid ""
+"The UCS server is now ready for usage, and domain account data is now "
+"available."
+msgstr ""
+"Das UCS-System kann nun eingesetzt werden und Domänen-Kontodaten sind "
+"verfügbar."
+
+#: umc/js/adconnector/SetupWizard.js:222 umc/js/adconnector/ConfigPage.js:98
+msgid "The certificate was imported successfully"
+msgstr "Das Zertifikat wurde erfolgreich importiert"
+
+#: umc/js/adconnector/SetupWizard.js:152
+msgid ""
+"The connection to the Active Directory domain has been configured "
+"successfully."
+msgstr ""
+"Die Verbindung zur Active Directory-Domäne wurde erfolgreich eingerichtet."
+
+#: umc/js/adconnector/ConfigPage.js:193 umc/js/adconnector/ConfigPage.js:199
+#, javascript-format
+msgid ""
+"The necessary steps depend on the actual Microsoft Windows version and are "
+"described in the <a href=\"https://docs.software-univention.de/manual-%s."
+"html#ad-connector:ad-zertifikat\" target=\"_blank\">UCS manual</a>."
+msgstr ""
+"Die notwendigen Schritte sind abhängig von der eingesetzten Windows-Version "
+"und sind in der <a href=\"https://docs.software-univention.de/handbuch-%s."
+"html#ad-connector:ad-zertifikat\" target=\"_blank\">UCS Dokumentation</a> "
+"beispielhaft beschrieben."
+
+#: umc/js/adconnector/SetupWizard.js:325
+msgid ""
+"The server <i>%(_hostname)s (%(DC_IP)s)</i> is used as Active Directory "
+"Domain Controller for the domain <i>%(Domain)s</i>."
+msgstr ""
+"Der Server <i>%(_hostname)s (%(DC_IP)s)</i> wird als Active Directory-"
+"Domänencontroller für die Domäne <i>%(Domain)s</i> genutzt."
+
+#: umc/js/adconnector/SetupWizard.js:281
+msgid ""
+"The synchronisation of Univention Corporate Server and Active Directory has "
+"been successfully initiated."
+msgstr ""
+"Die Synchronisation zwischen Univention Corporate Server und Active "
+"Directory wurde erfolgreich eingerichtet."
+
+#: umc/js/adconnector/ConfigPage.js:68
+msgid "The system is part of an Active Directory domain."
+msgstr "Das System ist Teil einer Active Directory-Domäne."
+
+#: umc/js/adconnector/ConfigPage.js:72
+msgid ""
+"This module configures the connection between the Univention Corporate "
+"Server and Active Directory."
+msgstr ""
+"Dieses Modul dient der Konfiguration der Verbindung zwischen Univention "
+"Corporate Server und dem Active Directory."
+
+#: umc/js/adconnector/ConfigPage.js:192 umc/js/adconnector/ConfigPage.js:198
+msgid ""
+"To achieve a higher level of security, the Active Directory root certificate "
+"should be exported and uploaded here. The Active Directory certificate "
+"service creates that certificate."
+msgstr ""
+"Um eine höhere Sicherheit zu erreichen, sollte auf dem Active Directory "
+"System das Root-Zertifikat exportiert und hier hochgeladen werden. Erzeugt "
+"wird das Zertifikat mit dem Zertifikatsdienst des Active Directory."
+
+#: umc/js/adconnector/SetupWizard.js:194
+#, javascript-format
+msgid ""
+"To enable an encrypted connection, a certification authority needs to be "
+"configured on the Active Directory server. All steps necessary are described "
+"in the <a href=\"https://docs.software-univention.de/manual-%s.html#ad-"
+"connector:ad-zertifikat\" target=\"_blank\">UCS manual</a>."
+msgstr ""
+"Auf dem Active Directory Server sollte eine Zertifizierungsstelle "
+"eingerichtet werden. Die notwendigen Schritte sind im <a href=\"https://docs."
+"software-univention.de/handbuch-%s.html#ad-connector:ad-zertifikat\" target="
+"\"_blank\">UCS Handbuch</a> beschrieben."
+
+#: umc/js/adconnector/SetupWizard.js:248
+msgid "Unidirectional synchronisation of Active Directory to UCS."
+msgstr "Unidirektionale Synchronisation von Active Directory nach UCS."
+
+#: umc/js/adconnector/SetupWizard.js:251
+msgid "Unidirectional synchronisation of UCS to Active Directory."
+msgstr "Unidirektionale Synchronisation von UCS nach Active Directory."
+
+#: umc/js/adconnector/SetupWizard.js:201
+msgid "Upload AD root certificate"
+msgstr "Hochladen des AD-Root-Zertifikats"
+
+#: umc/js/adconnector/SetupWizard.js:101
+msgid ""
+"Use the recommended first option if Active Directory will be the principal "
+"domain. Domain users can directly access applications that are installed on "
+"UCS."
+msgstr ""
+"Benutzen Sie die empfohlene erste Option, wenn Active Directory die "
+"Hauptdomäne sein soll. Domänenbenutzer können direkt auf Anwendungen "
+"zugreifen, die auf UCS installiert sind."
+
+#: umc/js/adconnector/SetupWizard.js:102
+msgid ""
+"Use the second option for more complex scenarios which necessitate that "
+"Active Directory and UCS domains exist in parallel."
+msgstr ""
+"Benutzen Sie die zweite Option für komplexere Szenarien, die den "
+"Parallelbetrieb der Active Directory- und UCS-Domäne voraussetzen."

@@ -1,0 +1,65 @@
+#!/usr/bin/python3
+#
+# Univention Monitoring Plugin
+#  check_univention_printerqueue: check status for printer queues
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2007-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import shlex
+
+from univention.config_registry import ucr
+from univention.monitoring import Alert
+
+
+class Printerqueue(Alert):
+
+    def write_metrics(self):
+        for printer in shlex.split(ucr.get('monitoring/printerqueue/printers', '')):
+            self.write_metric_for_printer(printer)
+
+    def write_metric_for_printer(self, printer):
+        rc, output = self.exec_command(['lpq', '-P', printer], env={'LANG': 'C'})
+        if rc != 0:
+            self.write_metric('univention_printerqueue_jobs', -1, printer=printer)
+            self.log.debug('error while executing lpq: %s' % (output,))
+            return
+
+        if 'is ready' not in output.splitlines()[0]:
+            self.write_metric('univention_printerqueue_jobs', -1, printer=printer)
+            self.log.debug('printer is not ready: %s' % (output.splitlines()[0],))
+            return
+
+        jobs = len(output.splitlines()[2:])
+        self.write_metric('univention_printerqueue_jobs', jobs, printer=printer)
+
+
+if __name__ == '__main__':
+    Printerqueue.main()

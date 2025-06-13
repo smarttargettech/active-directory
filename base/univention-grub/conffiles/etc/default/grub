@@ -1,0 +1,81 @@
+@%@UCRWARNING=# @%@
+
+# update-grub is automatically run through a Univention Configuration
+# Registry module upon modification
+export LANG=C
+
+@!@
+from shlex import quote
+default = configRegistry.get('grub/default', '0')
+print('GRUB_DEFAULT=%s' % (quote(default),))
+savedefault = configRegistry.is_true('grub/savedefault', False)
+print('GRUB_SAVEDEFAULT=%s' % ('true' if savedefault else 'false',))
+@!@
+GRUB_TIMEOUT=@%@grub/timeout@%@
+
+# Use full UCS title for boot entry
+GRUB_DISTRIBUTOR="Univention Corporate Server"
+
+@!@
+defoptions = ''
+if configRegistry.is_true('grub/quiet', False):
+    defoptions += ' quiet'
+if configRegistry.get('grub/loglevel', False):
+    defoptions += ' loglevel=%s' % configRegistry['grub/loglevel']
+
+rootdelay = configRegistry.get('grub/rootdelay', '5')
+defoptions += ' rootdelay=%s' % rootdelay
+
+defoptions += ' %s' % configRegistry.get('grub/bootsplash', 'splash')
+defoptions += ' apparmor=0'  # Disable apparmor, the debian profiles do not work out of the box with ucs.
+print('GRUB_CMDLINE_LINUX_DEFAULT="%s"' % defoptions)
+@!@
+
+GRUB_CMDLINE_LINUX="@%@grub/append@%@"
+
+# Uncomment to enable BadRAM filtering, modify to suit your needs
+# This works with Linux (no patch required) and with any kernel that obtains
+# the memory map information from GRUB (GNU Mach, kernel of FreeBSD ...)
+#GRUB_BADRAM="0x01234567,0xfefefefe,0x89abcdef,0xefefefef"
+
+# Configure UCR Variable "grub/terminal" to disable graphical terminal (grub-pc only)'
+@!@
+terminal = configRegistry.get('grub/terminal')
+if terminal:
+    print('GRUB_TERMINAL="%s"' % (terminal,))
+else:
+    print('#GRUB_TERMINAL="console"')
+@!@
+# Configure UCR Variable "grub/serialcommand" to adapt GRUB_SERIAL_COMMAND settings
+@!@
+serial = configRegistry.get('grub/serialcommand')
+if serial:
+    print('GRUB_SERIAL_COMMAND="%s"' % (serial,))
+else:
+    print('#GRUB_SERIAL_COMMAND="serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1"')
+@!@
+# The resolution used on graphical terminal
+# note that you can use only modes which your graphic card supports via VBE
+# you can see them in real GRUB with the command `vbeinfo'
+GRUB_GFXMODE=@%@grub/gfxmode@%@
+
+# Uncomment if you don't want GRUB to pass "root=UUID=xxx" parameter to Linux
+#GRUB_DISABLE_LINUX_UUID=true
+
+# Uncomment to disable generation of recovery mode menu entries
+#GRUB_DISABLE_RECOVERY="true"
+
+# This option passes the video configured in Grub (through grub/gfxmode) to
+# the Linux kernel
+GRUB_GFXPAYLOAD_LINUX=@%@grub/gfxpayload@%@
+
+# Background image
+@!@
+if configRegistry.get('grub/backgroundimage', ''):
+    print('GRUB_BACKGROUND="%s"' % configRegistry["grub/backgroundimage"])
+@!@
+
+# Uncomment to get a beep at grub start
+#GRUB_INIT_TUNE="480 440 1"
+
+GRUB_MEMTEST_DISABLE_SERIAL=true

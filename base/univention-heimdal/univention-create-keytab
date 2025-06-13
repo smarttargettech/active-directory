@@ -1,0 +1,81 @@
+#!/usr/bin/python3
+#
+# Univention Create Keytab Script
+#  Tool to create a keytab from a known password
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2011-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import binascii
+import os
+import tempfile
+from argparse import ArgumentParser
+from subprocess import call
+
+import heimdal
+
+
+parser = ArgumentParser()
+parser.add_argument("-k", "--keytab", help="write keytab to FILE", metavar="FILE")
+parser.add_argument("-p", "--principal", help="create keys for PRINCIPAL", metavar="PRINCIPAL")
+parser.add_argument("-a", "--alias", dest="service_principal_names", help="add alias", action="append")
+parser.add_argument("-V", "--kvno", help="key version number")
+parser.add_argument("-w", "--password", help="password")
+options = parser.parse_args()
+
+if not options.keytab:
+    parser.error("keytab argument missing")
+if not options.principal:
+    parser.error("principal argument missing")
+if not options.service_principal_names:
+    parser.error("alias argument missing")
+if not options.kvno:
+    parser.error("kvno argument missing")
+if not options.password:
+    parser.error("password argument missing")
+
+keytab_filename = options.keytab
+
+krb5_context = heimdal.context()
+permitted_enctypes = krb5_context.get_permitted_enctypes()
+permitted_enctypes.reverse()
+temp_keytab_filename = tempfile.mktemp()  # noqa: S306
+for krb5_enctype in permitted_enctypes:
+    enctype = str(krb5_enctype)
+    if enctype in ('des-cbc-md4', 'des3-cbc-md5', 'des3-cbc-sha1'):
+        continue
+    call(['ktutil', '-k', temp_keytab_filename, 'add', '-p', options.principal, '-V', str(options.kvno), '-e', enctype, '-w', options.password])
+
+keytab = heimdal.keytab(krb5_context, temp_keytab_filename)
+for (kvno, enctype, _principal, _timestamp, keyblock) in keytab.list():
+    keyblock_hex = binascii.b2a_hex(keyblock)
+    for spn in options.service_principal_names:
+        call(['ktutil', '-k', keytab_filename, 'add', '-p', spn, '-V', str(kvno), '-e', enctype, '-w', keyblock_hex, '--hex'])
+os.unlink(temp_keytab_filename)

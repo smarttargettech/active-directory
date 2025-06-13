@@ -1,0 +1,3 @@
+listener/univention-admin-diary-backend.py	usr/lib/univention-directory-listener/system/
+server_password_change/univention-admin-diary	usr/lib/univention-server/server_password_change.d/
+univention-admin-diary-entry-create	usr/sbin/

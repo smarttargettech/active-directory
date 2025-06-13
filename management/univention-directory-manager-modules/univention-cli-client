@@ -1,0 +1,197 @@
+#!/usr/bin/python3
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+"""Univention Directory Manager command line client program"""
+
+
+import array
+import json
+import os
+import socket
+import stat
+import sys
+import time
+from collections.abc import Sequence
+
+from univention.config_registry import ucr
+
+
+default_socket_path = '/tmp/admincli_%d/sock' % os.getuid()
+
+
+def get_logfile() -> str:
+    """Extract logfile from command line arguments."""
+    logfile = ''
+    for pos, arg in enumerate(sys.argv):
+        if arg.startswith('--logfile='):
+            logfile = arg[len('--logfile='):]
+        elif arg == '--logfile':
+            try:
+                logfile = sys.argv[pos + 1]
+            except IndexError:
+                sys.exit("E: Option --logfile requires an argument")
+    return logfile
+
+
+def fork_server(sock: socket.socket, socket_path: str) -> None:
+    """Fork UDM command line server."""
+    # start new server
+    pid = os.fork()
+    if pid == 0:  # child
+        argv = ['univention-cli-server']
+        logfile = get_logfile()
+        if logfile:
+            argv += ['-L', logfile]
+        if socket_path != default_socket_path:
+            argv += ['-s', socket_path]
+        os.execv('/usr/share/univention-directory-manager-tools/univention-cli-server', argv)  # noqa: S606
+    else:  # parent
+        os.waitpid(pid, os.WNOHANG)
+
+    socket_timeout = float(ucr.get('directory/manager/cmd/sockettimeout', 50))
+    stime = time.time() + socket_timeout
+    while not os.path.exists(socket_path):
+        time.sleep(0.1)
+        if time.time() > stime:
+            sys.exit('E: Can`t find running daemon after %s seconds. (No socketfile)' % socket_timeout)
+
+    # this takes a long time if getfqdn(host) is used in cli-server
+    connection_timeout = 30
+    stime = time.time() + connection_timeout
+    while True:
+        try:
+            sock.connect(socket_path)
+            break
+        except OSError:
+            time.sleep(0.1)
+            if time.time() > stime:
+                print('W: Can`t connect to daemon after %s seconds.' % connection_timeout, file=sys.stderr)
+                raise
+
+
+def get_password() -> str:
+    """Query for interactive password."""
+    while True:
+        pwd1 = input('New password ')
+        pwd2 = input('Re-enter new password ')
+        if pwd1 == pwd2:
+            return pwd1
+        print('password mismatch', file=sys.stderr)
+
+
+def receive_answer(sock: socket.socket) -> bytes:
+    """Receive complete answer from server."""
+    data = b''
+    while True:
+        buf = sock.recv(1024)
+        if len(buf) == 0:
+            sys.exit('E: Daemon died.')
+        elif buf[-1:] == b'\0':
+            buf = buf[0:-1]
+            data += buf
+            break
+        else:
+            data += buf
+    return data
+
+
+def process_output(output: Sequence[str], cmdfile: str) -> int:
+    """Print output and check for errors."""
+    result = 0
+    if cmdfile == 'univention-passwd':
+        for line in output:
+            if line == 'passwd error: password already used':
+                result = 1
+            elif line.startswith('passwd error: The password is too short'):
+                result = 2
+            print(line)
+    else:
+        if output and output[-1] == "OPERATION FAILED":
+            result = 3
+            output = output[:-1]
+        for line in output:
+            print(line)
+    return result
+
+
+def _create_socket(socket_path: str = default_socket_path) -> socket.socket:
+    sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    try:
+        if os.path.exists(socket_path) and os.stat(socket_path)[stat.ST_UID] != os.getuid():
+            raise OSError('Hacking attempt')
+        # connect to already running server
+        sock.connect(socket_path)
+    except OSError:
+        try:
+            fork_server(sock, socket_path)
+        except OSError:
+            sock.close()
+            raise
+    return sock
+
+
+def _re_create_socket() -> socket.socket:
+    try:
+        socket_path = '/tmp/admincli-%s-%s-%s/socket' % (os.getpid(), os.getuid(), sum(iter(os.urandom(12))))
+        return _create_socket(socket_path)
+    except OSError:
+        sys.exit('E: Can`t connect to daemon. Giving up.')
+
+
+def send_fds(sock: socket.socket, msg: bytes, fds: Sequence[int]) -> int:
+    return sock.sendmsg([msg], [(socket.SOL_SOCKET, socket.SCM_RIGHTS, array.array("i", fds))])
+
+
+def main() -> None:
+    """Forward request to udm-cli-server."""
+    try:
+        sock = _create_socket()
+    except OSError:
+        sock = _re_create_socket()
+
+    cmdfile = os.path.basename(sys.argv[0])
+    if cmdfile == 'univention-passwd':
+        password = get_password()
+        sys.argv += ['--pwd', password]
+
+    data = json.dumps(sys.argv, ensure_ascii=True).encode('ASCII')
+    send_fds(sock, data + b'\0', [sys.stdout.fileno(), sys.stderr.fileno()])
+    data = receive_answer(sock)
+    sock.close()
+
+    output = json.loads(data.decode('ASCII'))
+    result = process_output(output, cmdfile)
+    sys.exit(result)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,87 @@
+Source: univention-printserver
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-join-dev,
+ univention-management-console-dev (>= 12.0.2),
+Standards-Version: 3.8.2
+
+Package: univention-printserver
+Architecture: all
+Depends:
+ cups,
+ cups-browsed,
+ cups-bsd,
+ cups-client,
+ foomatic-db-compressed-ppds,
+ hp-ppd,
+ hpijs-ppds,
+ openprinting-ppds,
+ printer-driver-all,
+ python3-ldap,
+ python3-pexpect,
+ python3-univention-lib,
+ shell-univention-lib,
+ univention-config (>= 15),
+ univention-directory-listener,
+ univention-directory-manager-tools,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-management-console-module-printers (= ${source:Version}),
+ univention-printclient,
+ ${misc:Depends},
+ ${python3:Depends},
+Conflicts:
+ univention-management-console (<< 0.9.33-1),
+Recommends:
+ univention-monitoring-cups,
+ univention-nagios-cups,
+Description: UCS - print server
+ This packages provides the printer configuration. Printers
+ can be managed with UCS Directory Manager (UDM).
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-printserver-pdf
+Architecture: all
+Depends:
+ printer-driver-cups-pdf,
+ shell-univention-lib,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-printserver,
+ ${misc:Depends},
+ ${python3:Depends},
+Description: UCS - print server addons for pdf pseudo printer
+ This packages provides configs and settings for a PDF printer.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-module-printers
+Architecture: all
+Depends:
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-management-console-server (>= 11.0.4-37),
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Recommends:
+ univention-printserver (= ${source:Version}),
+Description: UMC module for printer administration
+ This package contains the UMC module for the administration
+ of configured printers.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

@@ -1,0 +1,30 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking memberOf attribute
+## roles:
+##  - domaincontroller_master
+##  - domaincontroller_backup
+##  - domaincontroller_slave
+## packages:
+##  - univention-ldap-overlay-memberof
+## exposure: safe
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+. /usr/share/univention-lib/ucr.sh || exit 137
+
+set -x
+
+member_of_available () {
+	while read -r dn; do
+		if ! univention-ldapsearch -LLL -s base -b "$dn" memberOf | grep "^memberOf:"; then
+			echo "memberOf missing on $dn"
+			return 1
+		fi
+	done < <(univention-ldapsearch -LLL objectClass=univentionGroup uniqueMember | VAL uniqueMember | grep ^uid= | sort -u)
+	return 0
+}
+# activated by default, memberOf should be available
+member_of_available || fail_fast 1 "memberOf not found"
+
+exit "$RETVAL"

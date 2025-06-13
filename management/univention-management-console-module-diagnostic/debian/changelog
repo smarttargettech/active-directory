@@ -1,0 +1,1485 @@
+univention-management-console-module-diagnostic (8.2.1) unstable; urgency=medium
+
+  * Bug #58318: Let Diagnostic module for univentionObjectIdentifier ignore objectClass=univentionLicense
+
+ -- Arvid Requate <requate@univention.de>  Tue, 03 Jun 2025 14:11:48 +0200
+
+univention-management-console-module-diagnostic (8.2.0) unstable; urgency=medium
+
+  * Bug #58318: Diagnostic module for univentionObjectIdentifier
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 May 2025 19:50:45 +0200
+
+univention-management-console-module-diagnostic (8.0.20) unstable; urgency=medium
+
+  * Bug #58047: Diagnostic plugin for LMDB fragmentation
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Apr 2025 17:20:30 +0200
+
+univention-management-console-module-diagnostic (8.0.19) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#2533: adjust file permissions diagnostic checks to
+    cases where the keycloak server fqdn equals primary fqdn or the sso cert
+    is not at /etc/univention/ssl
+
+ -- Marius Meschter <marius.meschter@univention.de>  Thu, 16 Dec 2024 14:17:13 +0100
+
+univention-management-console-module-diagnostic (8.0.18) unstable; urgency=medium
+
+  * Issue univention/components/keycloak-app#206: Change settings from keycloak/server/sso/fqdn to ucs/server/sso/uri
+
+ -- Julia Bremer <bremer@univention.de>  Sun, 08 Dec 2024 17:18:36 +0100
+
+univention-management-console-module-diagnostic (8.0.17) unstable; urgency=medium
+
+  * Bug #57746: Do not traceback in 04_saml_certificate_check if UMC is not
+
+ -- Marius Meschter <marius.meschter@univention.de>  Thu, 05 Dec 2024 13:59:47 +0100
+
+univention-management-console-module-diagnostic (8.0.16) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#2488: Do not traceback in 04_saml_certificate_check
+    if UMC is not configured against Keycloak (SAML).
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 11 Nov 2024 13:53:41 +0100
+
+univention-management-console-module-diagnostic (8.0.15) unstable; urgency=medium
+
+  * Bug #57453: Change diagnostic module to check that the connectors sqlite files
+    are only readable to root
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 19 Jul 2024 09:35:37 +0200
+
+univention-management-console-module-diagnostic (8.0.13) unstable; urgency=medium
+
+  * Bug #57279: Fix schema registration
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 11 Jun 2024 15:55:03 +0200
+
+univention-management-console-module-diagnostic (8.0.12) unstable; urgency=medium
+
+  * Bug #57217: Add diagnostic plugin to monitor state of app queues
+
+ -- Juan Carlos García García <garcia-garcia@univention.de>  Mon, 08 Apr 2024 14:05:00 +0100
+
+univention-management-console-module-diagnostic (8.0.10) unstable; urgency=medium
+
+  * Bug #57145: add deprecation warning for Samba tdb
+
+ -- Felix Botner <botner@univention.de>  Fri, 15 Mar 2024 15:46:08 +0100
+
+univention-management-console-module-diagnostic (8.0.9) unstable; urgency=medium
+
+  * Bug #56765: fix correct path of Keycloak certificates
+
+ -- Florian Best <best@univention.de>  Thu, 14 Mar 2024 10:38:36 +0100
+
+univention-management-console-module-diagnostic (8.0.8) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-management-console-module-diagnostic (8.0.7) unstable; urgency=medium
+
+  * Bug #55905: deprecate old fetchmail attributes
+
+ -- Juan Carlos García García <garcia-garcia@univention.de>  Fri, 08 Mar 2024 00:18:51 +0100
+
+univention-management-console-module-diagnostic (8.0.6) unstable; urgency=medium
+
+  * Bug #56793: Replace libnss-ldapd with SSSd
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Fri, 08 Mar 2024 00:18:48 +0100
+
+univention-management-console-module-diagnostic (8.0.5) unstable; urgency=medium
+
+  * Bug #56765: Switch new UMC default to Keycloak
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 08 Mar 2024 00:18:42 +0100
+
+univention-management-console-module-diagnostic (8.0.4) unstable; urgency=medium
+
+  * Bug #56540: adjust PostgreSQL version check
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:37 +0100
+
+univention-management-console-module-diagnostic (8.0.3) unstable; urgency=medium
+
+  * Bug #56546: adjust 62_check_slapschema to changed slapschema output
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:28 +0100
+
+univention-management-console-module-diagnostic (8.0.2) unstable; urgency=medium
+
+  * Bug #56661: migrate from NTP to NTPSEC
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 08 Mar 2024 00:18:27 +0100
+
+univention-management-console-module-diagnostic (8.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:20 +0100
+
+univention-management-console-module-diagnostic (7.0.7) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:22 +0100
+
+univention-management-console-module-diagnostic (7.0.6) unstable; urgency=medium
+
+  * Bug #56662: require memberof to be enabled
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:58 +0100
+
+univention-management-console-module-diagnostic (7.0.5) unstable; urgency=medium
+
+  * Bug #56528: remove configurability of country/state property
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:55 +0100
+
+univention-management-console-module-diagnostic (7.0.4) unstable; urgency=medium
+
+  * Bug #55995: replace libnss-ldap with nss-pam-ldapd
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:44 +0100
+
+univention-management-console-module-diagnostic (7.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:29 +0100
+
+univention-management-console-module-diagnostic (7.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:25 +0100
+
+univention-management-console-module-diagnostic (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:32 +0100
+
+univention-management-console-module-diagnostic (6.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:45 +0100
+
+univention-management-console-module-diagnostic (6.0.7-5) unstable; urgency=medium
+
+  * Bug #55976: support keycloak in diagnostic check 04_saml_certificate_check
+
+ -- Felix Botner <botner@univention.de>  Mon, 04 Mar 2024 13:53:35 +0100
+
+univention-management-console-module-diagnostic (6.0.7-4) unstable; urgency=medium
+
+  * Bug #55976: support keycloak in diagnostic check 04_saml_certificate_check
+
+ -- Felix Botner <botner@univention.de>  Thu, 29 Feb 2024 09:15:04 +0100
+
+univention-management-console-module-diagnostic (6.0.7-3) unstable; urgency=medium
+
+  * Bug #57038: Add check for permissions of slapd.conf
+
+ -- Felix Botner <botner@univention.de>  Tue, 06 Feb 2024 15:43:19 +0100
+
+univention-management-console-module-diagnostic (6.0.7-2) unstable; urgency=medium
+
+  * Bug #49006: extend 31_file_permissions for OIDC configuration
+    secrets
+
+ -- Florian Best <best@univention.de>  Wed, 24 Jan 2024 16:09:02 +0100
+
+univention-management-console-module-diagnostic (6.0.7-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+  * Bug #48548: Check UCRV ldap/master
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 11 Dec 2023 14:21:54 +0100
+
+univention-management-console-module-diagnostic (6.0.6-6) unstable; urgency=low
+
+  * Bug #56773: PostgreSQL diagnostic: do not check for running server
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 06 Dec 2023 10:34:21 +0100
+
+univention-management-console-module-diagnostic (6.0.6-5) unstable; urgency=medium
+
+  * Bug #56773: Fix PostgreSQL diagnostic module now it's show like a warning.
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Fri, 01 Dec 2023 12:24:30 +0100
+
+univention-management-console-module-diagnostic (6.0.6-4) unstable; urgency=medium
+
+  * Bug #56773: Add new diagnostic plugin to check if PostgreSQL was migrated
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Fri, 27 Oct 2023 13:50:43 +0200
+
+univention-management-console-module-diagnostic (6.0.6-3) unstable; urgency=medium
+
+  * Bug #56562: remove the "success" plugin before running a full diagnosis
+
+ -- Marius Meschter <marius.meschter@univention.de>  Tue, 19 Sep 2023 11:47:36 +0200
+
+univention-management-console-module-diagnostic (6.0.6-2) unstable; urgency=medium
+
+  * Bug #56109: ignore read-only loop devices and squashfs filesystems in disk
+    usage check
+
+ -- Marius Meschter <marius.meschter@univention.de>  Thu, 20 Jul 2023 15:58:26 +0200
+
+univention-management-console-module-diagnostic (6.0.6-1) unstable; urgency=medium
+
+  * Bug #43633: adjust file permissions for new UMC server UNIX sockets
+
+ -- Florian Best <best@univention.de>  Mon, 12 Jun 2023 07:47:30 +0200
+
+univention-management-console-module-diagnostic (6.0.5-3) unstable; urgency=medium
+
+  * Bug #55632: improved the Python 3.11 compatiblity
+
+ -- Mika Westphal <westphal@univention.de>  Wed, 12 Apr 2023 14:52:35 +0200
+
+univention-management-console-module-diagnostic (6.0.5-2) unstable; urgency=medium
+
+  * Bug #55874: Fix German translation in Diagnostic check
+
+ -- Nico Gulden <gulden@univention.de>  Tue, 14 Mar 2023 13:53:55 +0100
+
+univention-management-console-module-diagnostic (6.0.5-1) unstable; urgency=medium
+
+  * Bug #50073: UDM: conditionally remap `country` from `st` to `c`: fix
+    variable name in text
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 07 Feb 2023 12:00:00 +0100
+
+univention-management-console-module-diagnostic (6.0.4-1) unstable; urgency=medium
+
+  * Bug #50073: UDM: conditionally remap `country` from `st` to `c`
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 03 Feb 2023 12:00:00 +0100
+
+univention-management-console-module-diagnostic (6.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:40 +0100
+
+univention-management-console-module-diagnostic (6.0.2-11) unstable; urgency=medium
+
+  * Bug #54986: slap tools must also work in case
+    /etc/ldap/slapd.d/cn=config.ldif exists (even if invalid)
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Wed, 25 Jan 2023 18:03:46 +0100
+
+univention-management-console-module-diagnostic (6.0.2-10) unstable; urgency=medium
+
+  * Bug #55548: encode data in modlist in 56_univention_types.py to be Python 3 compatible.
+
+ -- Maximilian Janßen <janssen@univention.de>  Tue, 10 Jan 2023 10:30:35 +0200
+
+univention-management-console-module-diagnostic (6.0.2-9) unstable; urgency=medium
+
+  * Bug #55468: make it possible to deactivate diagnostic checks via UCR
+
+ -- Maximilian Janßen <janssen@univention.de>  Tue, 19 Dec 2022 15:14:30 +0200
+
+univention-management-console-module-diagnostic (6.0.2-8) unstable; urgency=medium
+
+  * Bug #55044: Simplify repository UCRVs - still use unmaintained
+
+ -- Peter Stoll <stoll.extern@univention.de>  Tue, 06 Dec 2022 13:03:05 +0200
+
+univention-management-console-module-diagnostic (6.0.2-7) unstable; urgency=medium
+
+  * Bug #55044: Simplify repository UCRVs - added diagnostic module to check
+    for deprecated variables
+
+ -- Peter Stoll <stoll.extern@univention.de>  Tue, 08 Nov 2022 20:03:05 +0200
+
+univention-management-console-module-diagnostic (6.0.2-6) unstable; urgency=low
+
+  * Bug #49417: Fix 04_saml_certificate_check.py checking SAML certificates
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 12 Oct 2022 19:24:27 +0200
+
+univention-management-console-module-diagnostic (6.0.2-5) unstable; urgency=low
+
+  * Bug #54495: Added type checking for all ucr defined types and values
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 30 Sep 2022 12:38:26 +0200
+
+univention-management-console-module-diagnostic (6.0.2-4) unstable; urgency=low
+
+  * Bug #54495: Added type checking for all ucr defined types and values
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 30 Sep 2022 12:03:28 +0200
+
+univention-management-console-module-diagnostic (6.0.2-3) unstable; urgency=medium
+
+  * Bug #54495: Added type checking for all ucr defined types and values
+
+ -- Peter Stoll <stoll.extern@univention.de>  Wed, 27 Jul 2022 09:30:42 +0200
+
+univention-management-console-module-diagnostic (6.0.2-2) unstable; urgency=medium
+
+  * Bug #54988: removed duplicate decode of string.
+
+ -- Maximilian Janßen <janssen@univention.de>  Tue, 26 Jul 2022 14:11:05 +0200
+
+univention-management-console-module-diagnostic (6.0.2-1) unstable; urgency=medium
+
+  * Bug #54681: added handling for unexpected messages in 62_check_slapschema
+
+ -- Maximilian Janßen <janssen@univention.de>  Tue, 21 Jun 2022 17:45:00 +0200
+
+univention-management-console-module-diagnostic (6.0.1-2) unstable; urgency=medium
+
+  * Bug #54515: allow running univention-run-diagnostic-checks as machine
+    account and use it as default.
+
+ -- Maximilian Janßen <janssen@univention.de>  Mon, 20 Jun 2022 09:08:10 +0200
+
+univention-management-console-module-diagnostic (6.0.1-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 3 package files
+
+ -- Florian Best <best@univention.de>  Mon, 13 Jun 2022 12:21:09 +0200
+
+univention-management-console-module-diagnostic (6.0.0-33) unstable; urgency=medium
+
+  * Bug #48652: fixed decode error in 63_proof_uniqueMembers
+
+ -- Maximilian Janßen <janssen@univention.de>  Wed, 25 May 2022 17:10:34 +0200
+
+univention-management-console-module-diagnostic (6.0.0-32) unstable; urgency=medium
+
+  * Bug #48652: let group membership attribute consistency only run on
+    primary instances.
+
+ -- Maximilian Janßen <janssen@univention.de>  Wed, 04 May 2022 13:00:44 +0200
+
+univention-management-console-module-diagnostic (6.0.0-31) unstable; urgency=medium
+
+  * Bug #48652: added check for group membership attribute consistency
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 25 Mar 2022 12:13:07 +0100
+
+univention-management-console-module-diagnostic (6.0.0-30) unstable; urgency=medium
+
+  * Bug #54675: fixed decode error in 52_mail_acl_sync when multiple folders exist
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 22 Apr 2022 14:30:02 +0200
+
+univention-management-console-module-diagnostic (6.0.0-29) unstable; urgency=medium
+
+  * Bug #53455: added code and readability improvements
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Tue, 22 Mar 2022 12:24:34 +0100
+
+univention-management-console-module-diagnostic (6.0.0-28) unstable; urgency=medium
+
+  * Bug #53455: added check for slapschema installed in the device
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Mon, 21 Mar 2022 13:42:46 +0100
+
+univention-management-console-module-diagnostic (6.0.0-27) unstable; urgency=medium
+
+  * Bug #53455: added copyright and code suggestions
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Tue, 15 Mar 2022 13:42:47 +0100
+
+univention-management-console-module-diagnostic (6.0.0-26) unstable; urgency=medium
+
+  * Bug #53455: added a diagnostic tool for missing LDAP schemas
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Tue, 15 Mar 2022 07:45:07 +0100
+
+univention-management-console-module-diagnostic (6.0.0-25) unstable; urgency=medium
+
+  * Bug #50756: display links in the description of failed tests in univention-run-diagnostic-check
+
+ -- Maximilian Janßen <janssen@univention.de>  Thu, 24 Feb 2022 15:00:18 +0100
+
+univention-management-console-module-diagnostic (6.0.0-24) unstable; urgency=medium
+
+  * Bug #49354: fix log level check for ldap/debug/level in 30_disk_usage.py
+
+ -- Christian Castens <castens@univention.de>  Mon, 07 Feb 2022 15:39:18 +0100
+
+univention-management-console-module-diagnostic (6.0.0-23) unstable; urgency=medium
+
+  * Bug #54264: Adjust title and translation of diagnostic module
+
+ -- Arvid <requate@univention.de>  Thu, 03 Feb 2022 23:10:52 +0100
+
+univention-management-console-module-diagnostic (6.0.0-22) unstable; urgency=medium
+
+  * Bug #53341; fix string formatting of error message in 41_samba_tool_showrepl.py
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 28 Jan 2022 17:30:37 +0100
+
+univention-management-console-module-diagnostic (6.0.0-21) unstable; urgency=medium
+
+  * Bug #49353: added condition to ignore mounted iso images in diagnostics check
+
+ -- Alexander Steffen <steffen@univention.de>  Fri, 28 Jan 2022 11:38:50 +0100
+
+univention-management-console-module-diagnostic (6.0.0-20) unstable; urgency=medium
+
+  * Bug #54336: skip 61_notifier_protocol_version test on memberserver
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 21 Jan 2022 18:23:07 +0100
+
+univention-management-console-module-diagnostic (6.0.0-19) unstable; urgency=medium
+
+  * Bug #53306: fix string representation of error message in 43_connectors4_rejects.py
+
+ -- Maximilian Janßen <janssen@univention.de>  Wed, 19 Jan 2022 15:33:39 +0100
+
+univention-management-console-module-diagnostic (6.0.0-18) unstable; urgency=medium
+
+  * Bug #53969: univention-run-diagnostic-checks fix check listing and
+    conflict between scheduled and skipped tests
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Thu, 13 Jan 2022 08:50:57 +0000
+
+univention-management-console-module-diagnostic (6.0.0-17) unstable; urgency=medium
+
+  * Bug #53306: fix python3 compatability of exception handling
+
+ -- Maximilian Janßen <janssen@univention.de>  Wed, 12 Jan 2022 16:58:50 +0100
+
+univention-management-console-module-diagnostic (6.0.0-16) unstable; urgency=medium
+
+  *  Bug #54264: Fixup suggestions for Diagnostic module for UCR notifier/protocol/version
+
+ -- Ivan Barbecho Delgado <delgado.extern@univention.de>  Mon, 03 Jan 2022 11:56:43 +0100
+
+univention-management-console-module-diagnostic (6.0.0-15) unstable; urgency=medium
+
+  * Bug #54264: Diagnostic module for UCR notifier/protocol/version
+
+ -- Ivan Barbecho Delgado <delgado.extern@univention.de>  Thu, 30 Dec 2021 11:54:46 +0100
+
+univention-management-console-module-diagnostic (6.0.0-14) unstable; urgency=medium
+
+  * Bug #53969: univention-run-diagnostic-checks offers to run a group of
+    tests and also to exclude some of the tests. Option `-t list` has been
+    replaced by `-l/--list`. Argument parsing is now more strict:
+    `parse_known_args` is replaced by `parse_args`.
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Wed, 10 Nov 2021 05:11:54 +0100
+
+univention-management-console-module-diagnostic (6.0.0-13) unstable; urgency=medium
+
+  * Bug #50620: eliminate false positives of system diagnostic check
+
+ -- Christian Castens <castens@univention.de>  Tue, 13 Jul 2021 16:39:18 +0200
+
+univention-management-console-module-diagnostic (6.0.0-12) unstable; urgency=medium
+
+  * Bug #53390: implement light theme
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Jun 2021 13:36:16 +0200
+
+univention-management-console-module-diagnostic (6.0.0-11) unstable; urgency=medium
+
+  * Bug #52941: added new icon design for system diagnostic
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 23 Apr 2021 14:08:14 +0200
+
+univention-management-console-module-diagnostic (6.0.0-10) unstable; urgency=medium
+
+  * Bug #52941: update module icon for portal
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 14 Apr 2021 10:02:11 +0200
+
+univention-management-console-module-diagnostic (6.0.0-9) unstable; urgency=medium
+
+  * Bug #52941: added module icon for portal
+
+ -- Jan Luttermann <jluttermann@linux.fritz.box>  Wed, 24 Mar 2021 11:15:04 +0100
+
+univention-management-console-module-diagnostic (6.0.0-8) unstable; urgency=medium
+
+  * Bug #52453: adjust font size
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 05 Mar 2021 07:42:47 +0100
+
+univention-management-console-module-diagnostic (6.0.0-7) unstable; urgency=medium
+
+  * Bug #52453: adjust design of diagnostic module
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 26 Jan 2021 09:29:39 +0100
+
+univention-management-console-module-diagnostic (6.0.0-6) unstable; urgency=medium
+
+  * Bug #52453: adjust diagnostic module styling
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Dec 2020 08:47:33 +0100
+
+univention-management-console-module-diagnostic (6.0.0-5) unstable; urgency=low
+
+  * Bug #51942: Improved usability of univention-run-diagnostic-checks
+
+ -- Max Christian Pohle <pohle@univention.de>  Wed, 11 Nov 2020 15:30:20 +0100
+
+univention-management-console-module-diagnostic (6.0.0-4) unstable; urgency=medium
+
+  * Bug #51332: Migrate to Python3
+
+ -- Arvid <requate@univention.de>  Thu, 29 Oct 2020 12:23:06 +0100
+
+univention-management-console-module-diagnostic (6.0.0-3) unstable; urgency=medium
+
+  * Bug #42374: Wording fixes
+
+ -- Arvid <requate@univention.de>  Mon, 05 Oct 2020 16:21:26 +0200
+
+univention-management-console-module-diagnostic (6.0.0-2) unstable; urgency=medium
+
+  * Bug #42374: Wording - Master -> Primary; Slave -> Replica
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 25 Sep 2020 01:31:29 +0200
+
+univention-management-console-module-diagnostic (6.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:21 +0200
+
+univention-management-console-module-diagnostic (5.0.1-49) unstable; urgency=medium
+
+  * Bug #50887: Check radius permissions via diagnostic module
+
+ -- Christian Castens <castens@univention.de>  Thu, 04 Jun 2020 15:56:37 +0200
+
+univention-management-console-module-diagnostic (5.0.1-48) unstable; urgency=medium
+
+  * Bug #50889: Finding a not yet registered file is a warning, not critical
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 05 Mar 2020 10:38:11 +0100
+
+univention-management-console-module-diagnostic (5.0.1-47) unstable; urgency=medium
+
+  * Bug #50889: Add 60_old_schema_registration
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 02 Mar 2020 15:18:39 +0100
+
+univention-management-console-module-diagnostic (5.0.1-46) unstable; urgency=medium
+
+  * Bug #50191: adjust text
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 27 Jan 2020 11:49:42 +0100
+
+univention-management-console-module-diagnostic (5.0.1-45) unstable; urgency=medium
+
+  * Bug #50191: fix typo
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 24 Jan 2020 12:01:32 +0100
+
+univention-management-console-module-diagnostic (5.0.1-43) unstable; urgency=medium
+
+  * Bug #50191: Adjust warning message and add link to sdb article
+
+ -- Julia Bremer <bremer@univention.de>  Wed, 22 Jan 2020 12:52:59 +0100
+
+univention-management-console-module-diagnostic (5.0.1-42) unstable; urgency=medium
+
+  * Bug #50191: Adjust warning message
+
+ -- root <bremer@univention.de>  Thu, 16 Jan 2020 01:21:14 +0100
+
+univention-management-console-module-diagnostic (5.0.1-35) unstable; urgency=medium
+
+  * Bug #50191: Adjust translation of 59_ldap_server_name.py
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 20 Jan 2020 08:41:10 +0100
+
+univention-management-console-module-diagnostic (5.0.1-34) unstable; urgency=medium
+
+  * Bug #50191: Adjust Warning message of 59_ldap_server_name.py
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 17 Jan 2020 18:52:52 +0100
+
+univention-management-console-module-diagnostic (5.0.1-33) unstable; urgency=medium
+
+  * Bug #50191: Remove fuzz
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 14 Jan 2020 19:10:38 +0100
+
+univention-management-console-module-diagnostic (5.0.1-31) unstable; urgency=medium
+
+  * Bug #50191: Adjust translation
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 14 Jan 2020 19:05:43 +0100
+
+univention-management-console-module-diagnostic (5.0.1-30) unstable; urgency=medium
+
+  * Bug #50191: Fix translation
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 14 Jan 2020 18:44:55 +0100
+
+univention-management-console-module-diagnostic (5.0.1-29) unstable; urgency=medium
+
+  * Bug #50191: Add UMC-Check which tests if there are any other DCs which could be set to ldap/server/name on member servers
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 14 Jan 2020 18:19:26 +0100
+
+univention-management-console-module-diagnostic (5.0.1-28) unstable; urgency=medium
+
+  * Bug #50599: 58_check_memberOf.py
+
+ -- Felix Botner <botner@univention.de>  Tue, 10 Dec 2019 17:30:25 +0100
+
+univention-management-console-module-diagnostic (5.0.1-27) unstable; urgency=medium
+
+  * Bug #50599: 58_check_memberOf.py
+
+ -- Felix Botner <botner@univention.de>  Mon, 09 Dec 2019 16:01:37 +0100
+
+univention-management-console-module-diagnostic (5.0.1-26) unstable; urgency=medium
+
+  * Bug #50599: 58_check_memberOf.py
+
+ -- Felix Botner <botner@univention.de>  Mon, 09 Dec 2019 15:39:04 +0100
+
+univention-management-console-module-diagnostic (5.0.1-25) unstable; urgency=medium
+
+  * Bug #50599: 58_check_memberOf.py
+
+ -- Felix Botner <botner@univention.de>  Thu, 05 Dec 2019 20:03:18 +0100
+
+univention-management-console-module-diagnostic (5.0.1-24) unstable; urgency=medium
+
+  * Bug #50599: 58_check_memberOf.py
+
+ -- Felix Botner <botner@univention.de>  Thu, 05 Dec 2019 10:38:15 +0100
+
+univention-management-console-module-diagnostic (5.0.1-23) unstable; urgency=medium
+
+  * Bug #49151: remove pysupport directory
+
+ -- Florian Best <best@univention.de>  Fri, 08 Nov 2019 14:58:03 +0100
+
+univention-management-console-module-diagnostic (5.0.1-22) unstable; urgency=medium
+
+  * Bug #50394: remove broken test for /var/lock/sysvol-sync-dir
+
+ -- Felix Botner <botner@univention.de>  Mon, 21 Oct 2019 11:34:10 +0200
+
+univention-management-console-module-diagnostic (5.0.1-21) unstable; urgency=medium
+
+  * Bug #49151: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Tue, 08 Oct 2019 18:40:08 +0200
+
+univention-management-console-module-diagnostic (5.0.1-20) unstable; urgency=medium
+
+  * Bug #49958: More qa feedback
+
+ -- Arvid Requate <requate@univention.de>  Tue, 03 Sep 2019 15:39:32 +0200
+
+univention-management-console-module-diagnostic (5.0.1-19) unstable; urgency=medium
+
+  * Bug #49958: Fixes in response to code review feedback
+
+ -- Arvid Requate <requate@univention.de>  Mon, 02 Sep 2019 21:50:02 +0200
+
+univention-management-console-module-diagnostic (5.0.1-18) unstable; urgency=medium
+
+  * Bug #49958: Fix typos
+
+ -- Arvid Requate <requate@univention.de>  Mon, 02 Sep 2019 18:54:09 +0200
+
+univention-management-console-module-diagnostic (5.0.1-17) unstable; urgency=medium
+
+  * Bug #49958: New plugin to check univentionServerRole for windows computers
+
+ -- Arvid Requate <requate@univention.de>  Mon, 02 Sep 2019 18:46:14 +0200
+
+univention-management-console-module-diagnostic (5.0.1-16) unstable; urgency=medium
+
+  * Bug #49799: Fix file permission test for /var/cache/univention-system-setup
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 19 Aug 2019 13:59:19 +0200
+
+univention-management-console-module-diagnostic (5.0.1-15) unstable; urgency=medium
+
+  * Bug #48698: Fix GUI visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 07:10:47 +0200
+
+univention-management-console-module-diagnostic (5.0.1-14) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:39 +0200
+
+univention-management-console-module-diagnostic (5.0.1-13) unstable; urgency=medium
+
+  * Bug #48002: abort progress bars on module closing
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jul 2019 16:51:45 +0200
+
+univention-management-console-module-diagnostic (5.0.1-12) unstable; urgency=medium
+
+  * Bug #48002: fix javascript memory leaks
+
+ -- Florian Best <best@univention.de>  Mon, 29 Jul 2019 15:02:16 +0200
+
+univention-management-console-module-diagnostic (5.0.1-11) unstable; urgency=medium
+
+  * Bug #48002: reduce progress bar interval
+
+ -- Florian Best <best@univention.de>  Mon, 29 Jul 2019 14:04:44 +0200
+
+univention-management-console-module-diagnostic (5.0.1-10) unstable; urgency=medium
+
+  * Bug #48002: execute plugins asynchronously
+
+ -- Florian Best <best@univention.de>  Tue, 16 Jul 2019 15:02:44 +0200
+
+univention-management-console-module-diagnostic (5.0.1-9) unstable; urgency=medium
+
+  * Bug #49335: Remove 42_samba_tool_sysvolcheck.py
+
+ -- Arvid Requate <requate@univention.de>  Tue, 07 May 2019 19:51:12 +0200
+
+univention-management-console-module-diagnostic (5.0.1-8) unstable; urgency=medium
+
+  * Bug #46643: Use new option --mask-msad-differences for ntacl sysvolcheck
+
+ -- Arvid Requate <requate@univention.de>  Fri, 22 Mar 2019 11:48:07 +0100
+
+univention-management-console-module-diagnostic (5.0.1-7) unstable; urgency=medium
+
+  * Bug #48642: Merge UDN protocol 3
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 Feb 2019 15:17:44 +0100
+
+univention-management-console-module-diagnostic (5.0.1-6) unstable; urgency=medium
+
+  * Bug #47650: Fix uncaught Exceptions in univention-run-diagnostic-checks
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 12 Feb 2019 11:47:26 +0100
+
+univention-management-console-module-diagnostic (5.0.1-5) unstable; urgency=medium
+
+  * Bug #48477: fixed 44_well_known_sid_check.py
+
+ -- Felix Botner <botner@univention.de>  Wed, 16 Jan 2019 10:04:40 +0100
+
+univention-management-console-module-diagnostic (5.0.1-4) unstable; urgency=medium
+
+  * Bug #47650: Added CLI-Tool which executes the diagnostic-checks
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 10 Jan 2019 12:34:16 +0100
+
+univention-management-console-module-diagnostic (5.0.1-3) unstable; urgency=medium
+
+  * Bug #48385: fixed typo in 46_kerberos_ddns_update.py
+
+ -- Arvid Requate <requate@univention.de>  Wed, 02 Jan 2019 18:33:06 +0100
+
+univention-management-console-module-diagnostic (5.0.1-2) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 11:53:39 +0100
+
+univention-management-console-module-diagnostic (5.0.1-1) unstable; urgency=medium
+
+  * Bug #48385: fixed 12_proxy.py
+
+ -- Felix Botner <botner@univention.de>  Thu, 20 Dec 2018 14:35:34 +0100
+
+univention-management-console-module-diagnostic (5.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:38 +0100
+
+univention-management-console-module-diagnostic (4.0.1-15) unstable; urgency=medium
+
+  * Bug #47649: Adjusted wording
+
+ -- Julia Bremer <bremer@knut.univention.de>  Thu, 29 Nov 2018 15:10:50 +0100
+
+univention-management-console-module-diagnostic (4.0.1-14) unstable; urgency=medium
+
+  * Bug #47649: Fixed inconsistencies and diagnostic checks are now executed in order
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 29 Nov 2018 10:48:06 +0100
+
+univention-management-console-module-diagnostic (4.0.1-13) unstable; urgency=medium
+
+  * Bug #47649: Code cleanup
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 23 Nov 2018 15:06:43 +0100
+
+univention-management-console-module-diagnostic (4.0.1-12) unstable; urgency=medium
+
+  * Bug #47649: Improved logging of the diagnostic modules, fixed typo
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 23 Nov 2018 12:54:35 +0100
+
+univention-management-console-module-diagnostic (4.0.1-11) unstable; urgency=medium
+
+  * Bug #47649: Improved logging of the diagnostic modules
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 23 Nov 2018 10:14:22 +0100
+
+univention-management-console-module-diagnostic (4.0.1-10) unstable; urgency=medium
+
+  * Bug #47583: Improved error message in 42_samba_tool_ntacl_sysvolcheck and translation
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 22 Nov 2018 14:09:44 +0100
+
+univention-management-console-module-diagnostic (4.0.1-9) unstable; urgency=medium
+
+  * Bug #47583: Fixed typo
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 19 Nov 2018 11:28:08 +0100
+
+univention-management-console-module-diagnostic (4.0.1-8) unstable; urgency=medium
+
+  * Bug #47649: Code Cleanup
+
+ -- Julia Bremer <jbremer@brankis.knut.univention.de>  Wed, 17 Oct 2018 18:04:36 +0200
+
+univention-management-console-module-diagnostic (4.0.1-7) unstable; urgency=medium
+
+  * Bug #47844: Ignore kerberos/kdcentry entries for now
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 10 Oct 2018 13:12:17 +0200
+
+univention-management-console-module-diagnostic (4.0.1-6) unstable; urgency=low
+
+  * Bug #47583: Improved misleading error message in diagnostic module 42_samba_sysvolcheck
+
+ -- Julia Bremer <bremer@brankis.knut.univention.de>  Tue, 09 Oct 2018 10:55:53 +0200
+
+univention-management-console-module-diagnostic (4.0.1-5) unstable; urgency=low
+
+  * Bug #47649: Fixed faulty error message in 22_kdc_service_check
+
+ -- Julia Bremer <bremer@brankis.knut.univention.de>  Tue, 09 Oct 2018 08:56:58 +0200
+
+univention-management-console-module-diagnostic (4.0.1-4) unstable; urgency=medium
+
+  * Bug #47649: Fixed tab whitespace mix
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 08 Oct 2018 12:17:58 +0200
+
+univention-management-console-module-diagnostic (4.0.1-3) unstable; urgency=medium
+
+  * Bug #47649: Fixed german translation
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 08 Oct 2018 11:58:51 +0200
+
+univention-management-console-module-diagnostic (4.0.1-2) unstable; urgency=medium
+
+  * Bug #47649: Improved logging of diagnostic plugin actions
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 08 Oct 2018 11:33:12 +0200
+
+univention-management-console-module-diagnostic (4.0.1-1) unstable; urgency=medium
+
+  * Bug #47844: Check for univentionObjectType and migrate objects without one
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 20 Sep 2018 16:29:13 +0200
+
+univention-management-console-module-diagnostic (4.0.0-30) unstable; urgency=medium
+
+  * Bug #46197: Only show samba-tool dbcheck errors as critical
+
+ -- Arvid Requate <requate@univention.de>  Tue, 24 Jul 2018 17:34:54 +0200
+
+univention-management-console-module-diagnostic (4.0.0-29) unstable; urgency=medium
+
+  * Bug #45515: A new diagnostic plugin has been added to check whether the
+    remote and the local version of the SAML identity and service certificates
+    match
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 21 May 2018 23:55:20 +0200
+
+univention-management-console-module-diagnostic (4.0.0-28) unstable; urgency=medium
+
+  * Bug #43403: adjust indentation
+
+ -- Jannik Ahlers <ahlers@univention.de>  Mon, 30 Apr 2018 10:27:42 +0200
+
+univention-management-console-module-diagnostic (4.0.0-27) unstable; urgency=medium
+
+  * Bug #43403: disable ssh test for computer objects without ip
+
+ -- Jannik Ahlers <ahlers@univention.de>  Thu, 19 Apr 2018 12:50:44 +0200
+
+univention-management-console-module-diagnostic (4.0.0-26) unstable; urgency=medium
+
+  * Bug #46166: fix broken links to univention support database
+
+ -- Jannik Ahlers <ahlers@univention.de>  Tue, 20 Mar 2018 11:30:58 +0100
+
+univention-management-console-module-diagnostic (4.0.0-25) unstable; urgency=medium
+
+  * Bug #46039: samba-tool-dbcheck --fix always returns != 0 when something
+    was fixed.
+
+ -- Arvid Requate <requate@univention.de>  Wed, 21 Mar 2018 12:43:19 +0100
+
+univention-management-console-module-diagnostic (4.0.0-24) unstable; urgency=medium
+
+  * Bug #45343: paramico supports a banner_timeout option
+
+ -- Arvid Requate <requate@univention.de>  Wed, 21 Mar 2018 12:34:47 +0100
+
+univention-management-console-module-diagnostic (4.0.0-23) unstable; urgency=medium
+
+  * Bug #45343: paramico doesn't support documented auth_timeout option
+
+ -- Arvid Requate <requate@univention.de>  Wed, 21 Mar 2018 11:44:29 +0100
+
+univention-management-console-module-diagnostic (4.0.0-22) unstable; urgency=medium
+
+  *  Bug #46708: Avoid paramico log messages winding up in connector-s4.log
+
+ -- Arvid Requate <requate@univention.de>  Wed, 21 Mar 2018 09:59:57 +0100
+
+univention-management-console-module-diagnostic (4.0.0-21) unstable; urgency=medium
+
+  * Bug #45370: Only use FQDNs for the SSH connection checks
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 20:07:44 +0100
+
+univention-management-console-module-diagnostic (4.0.0-20) unstable; urgency=medium
+
+  * Bug #46039: Log output of actions
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 19:41:31 +0100
+
+univention-management-console-module-diagnostic (4.0.0-19) unstable; urgency=medium
+
+  * Bug #45584: Run nsupdate check only on Samba 4 DCs and ad/member servers
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 18:19:08 +0100
+
+univention-management-console-module-diagnostic (4.0.0-18) unstable; urgency=medium
+
+  * Bug #46034: Adjust wording
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 14:08:57 +0100
+
+univention-management-console-module-diagnostic (4.0.0-17) unstable; urgency=medium
+
+  * Bug #45343: Workaround for Python paramiko hangs
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 13:59:51 +0100
+
+univention-management-console-module-diagnostic (4.0.0-16) unstable; urgency=medium
+
+  * Bug #45904: Run nsupdate check only on Samba/Samba4 systems
+  * Bug #45584: Run nsupdate check against local server if it has Samba/AD DNS
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Mar 2018 13:57:11 +0100
+
+univention-management-console-module-diagnostic (4.0.0-15) unstable; urgency=medium
+
+  * Bug #45584: Update translation
+
+ -- Arvid Requate <requate@univention.de>  Mon, 19 Mar 2018 17:46:10 +0100
+
+univention-management-console-module-diagnostic (4.0.0-14) unstable; urgency=medium
+
+  * Bug #45584: Run nsupdate checks against the S4-Connector host
+
+ -- Arvid Requate <requate@univention.de>  Mon, 19 Mar 2018 17:32:42 +0100
+
+univention-management-console-module-diagnostic (4.0.0-13) unstable; urgency=low
+
+  * Bug #46677: check permissions of system mail
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 15 Mar 2018 15:44:50 +0100
+
+univention-management-console-module-diagnostic (4.0.0-12) unstable; urgency=low
+
+  * Bug #46363: add univention-ox cache directory to file permissions test
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 21 Feb 2018 14:21:23 +0100
+
+univention-management-console-module-diagnostic (4.0.0-11) unstable; urgency=low
+
+  * Bug #46102: remove support for Cyrus from ACL test
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 23 Jan 2018 14:26:16 +0100
+
+univention-management-console-module-diagnostic (4.0.0-10) unstable; urgency=medium
+
+  * Bug #46264: fix typo in 55_user_migration.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 09 Feb 2018 12:50:46 +0100
+
+univention-management-console-module-diagnostic (4.0.0-9) unstable; urgency=medium
+
+  * Bug #46231: fixed _strptime import for 02_certificate_check.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 09 Feb 2018 11:28:24 +0100
+
+univention-management-console-module-diagnostic (4.0.0-8) unstable; urgency=medium
+
+  * Bug #46231: fixed wrong syntax in 22_kdc_service.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 09 Feb 2018 10:52:01 +0100
+
+univention-management-console-module-diagnostic (4.0.0-7) unstable; urgency=medium
+
+  * Bug #46231: fixed 31_file_permissions.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 08 Feb 2018 16:53:04 +0100
+
+univention-management-console-module-diagnostic (4.0.0-6) unstable; urgency=medium
+
+  * Bug #45842: Translations for 55_user_migration.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 08 Feb 2018 15:00:36 +0100
+
+univention-management-console-module-diagnostic (4.0.0-5) unstable; urgency=medium
+
+  * Bug #46231: fixed 22_kdc_service.py
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 08 Feb 2018 14:12:22 +0100
+
+univention-management-console-module-diagnostic (4.0.0-4) unstable; urgency=medium
+
+  * Bug #45842: add diagnosis script for user options
+
+ -- Florian Best <best@univention.de>  Wed, 24 Jan 2018 17:12:20 +0100
+
+univention-management-console-module-diagnostic (4.0.0-3) unstable; urgency=medium
+
+  * Bug #46070: fixed 22_kdc_service.py
+
+ -- Felix Botner <botner@univention.de>  Thu, 18 Jan 2018 14:48:06 +0100
+
+univention-management-console-module-diagnostic (4.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:24 +0100
+
+univention-management-console-module-diagnostic (4.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:28 +0100
+
+univention-management-console-module-diagnostic (3.0.1-26) unstable; urgency=medium
+
+  * Bug #44876: diagnostic: add fix-button to 42_samba_tool_sysvolcheck.py
+  * Bug #44876: diagnostic: move `run_with_output()` into util.py
+
+ -- Lukas Oyen <oyen@univention.de>  Tue, 19 Sep 2017 15:48:14 +0200
+
+univention-management-console-module-diagnostic (3.0.1-25) unstable; urgency=medium
+
+  * Bug #44902: diagnostic/util: pass optional hostname to `is_service_active()`
+  * Bug #44902: diagnostic/46_kerberos_ddns_update: fix service recognition
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 14 Sep 2017 15:59:28 +0200
+
+univention-management-console-module-diagnostic (3.0.1-24) unstable; urgency=medium
+
+  * Bug #44902: diagnostic: fix 46_kerberos_ddns_update for AD member
+  * Bug #44902: diagnostic: fix 46_kerberos_ddns_update for S3
+  * Bug #44902: diagnostic: move `is_service_active()` to util.py
+
+ -- Lukas Oyen <oyen@univention.de>  Mon, 11 Sep 2017 17:57:06 +0200
+
+univention-management-console-module-diagnostic (3.0.1-23) unstable; urgency=medium
+
+  * Bug #38974: diagnostic: fixup translation
+  * Bug #44902: diagnostic: actually send the nsupdate check.
+  * Bug #36748: diagnostic: handle Timeouts in kdc_service
+  * Bug #35858: diagnostic: introduce plugin ordering
+  * Bug #35858: diagnostic: secondary sort by name in grid-sort
+  * Bug #35858: diagnostic: raise check_server_password to `Critical`
+  * Bug #38238: diagnostic: check for sid mismatch in well_known_sid_check as well
+
+ -- Lukas Oyen <oyen@univention.de>  Mon, 04 Sep 2017 15:40:45 +0200
+
+univention-management-console-module-diagnostic (3.0.1-22) unstable; urgency=medium
+
+  * Bug #40227: diagnostic update file_permissions check for certificates
+
+ -- Lukas Oyen <oyen@univention.de>  Tue, 22 Aug 2017 14:11:11 +0200
+
+univention-management-console-module-diagnostic (3.0.1-21) unstable; urgency=medium
+
+  * Bug #40227: diagnostic update file_permissions check for certificates
+
+ -- Lukas Oyen <oyen@univention.de>  Mon, 21 Aug 2017 13:05:38 +0200
+
+univention-management-console-module-diagnostic (3.0.1-20) unstable; urgency=medium
+
+  * Bug #40227: diagnostic update file_permissions check for certificates
+
+ -- Lukas Oyen <oyen@univention.de>  Mon, 14 Aug 2017 13:12:02 +0200
+
+univention-management-console-module-diagnostic (3.0.1-19) unstable; urgency=medium
+
+  * Bug #44881: diagnostic: improve error reporting in samba_tool_showrepl.
+
+ -- Lukas Oyen <oyen@univention.de>  Mon, 14 Aug 2017 11:33:25 +0200
+
+univention-management-console-module-diagnostic (3.0.1-18) unstable; urgency=medium
+
+  * Bug #38974: diagnostic: implement `ucr commit` button for sources_list_check.py
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 10 Aug 2017 14:26:42 +0200
+
+univention-management-console-module-diagnostic (3.0.1-17) unstable; urgency=medium
+
+  * Bug #40228: diagnostic: handle malformed certificates in check_certificates: fixup
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 10 Aug 2017 12:15:29 +0200
+
+univention-management-console-module-diagnostic (3.0.1-16) unstable; urgency=medium
+
+  * Bug #40228: diagnostic: handle malformed certificates in check_certificates
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 10 Aug 2017 11:51:55 +0200
+
+univention-management-console-module-diagnostic (3.0.1-15) unstable; urgency=medium
+
+  * Bug #45118: add rel="noopener noreferrer" to links
+
+ -- Florian Best <best@univention.de>  Thu, 10 Aug 2017 11:06:43 +0200
+
+univention-management-console-module-diagnostic (3.0.1-14) unstable; urgency=medium
+
+  * Bug #45118: open links in new tab
+
+ -- Florian Best <best@univention.de>  Wed, 09 Aug 2017 13:23:46 +0200
+
+univention-management-console-module-diagnostic (3.0.1-13) unstable; urgency=medium
+
+  * Bug #40228: diagnostic: also test against system CAs in certificate_check
+
+ -- Lukas Oyen <oyen@univention.de>  Wed, 09 Aug 2017 10:36:41 +0200
+
+univention-management-console-module-diagnostic (3.0.1-12) unstable; urgency=medium
+
+  * Bug #35859: diagnostic disk_usage: don't report on /var/lib/docker/overlay
+  * Bug #35859: diagnostic disk_usage: remove exchange hard drive tip
+  * Bug #40227: diagnostic: include sysvol-sync-dir in file_permissions
+
+ -- Lukas Oyen <oyen@univention.de>  Tue, 08 Aug 2017 14:38:33 +0200
+
+univention-management-console-module-diagnostic (3.0.1-11) unstable; urgency=medium
+
+  * Bug #40227: improve file_permission diagnostic check
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 03 Aug 2017 16:17:59 +0200
+
+univention-management-console-module-diagnostic (3.0.1-10) unstable; urgency=medium
+
+  * Bug #36748: fix logic error in kdc_service diagnostic check
+  * Bug #40227: check permissions of /var/tmp/univention-management-console-frontend in diagnostic module
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 03 Aug 2017 14:52:47 +0200
+
+univention-management-console-module-diagnostic (3.0.1-9) unstable; urgency=medium
+
+  * Bug #40605: fix encoding issue in diagnostic: samba_tool_dbcheck
+
+ -- Lukas Oyen <oyen@univention.de>  Wed, 02 Aug 2017 17:16:34 +0200
+
+univention-management-console-module-diagnostic (3.0.1-8) unstable; urgency=medium
+
+  * Bug #40227: use 0700 as default mode for /var/cache/univention-* in file_permissions
+  * Bug #40227: use only require some files on dc_master in file_permissions
+  * Bug #40227: require correct owner for ssl directory in file_permissions on memberserver
+  * Bug #40605: typo-fix in translation
+
+ -- Lukas Oyen <oyen@univention.de>  Wed, 02 Aug 2017 16:35:17 +0200
+
+univention-management-console-module-diagnostic (3.0.1-7) unstable; urgency=medium
+
+  * Bug #38974: fix typo in translation of sources_list_check
+  * Bug #40393: fix ValueError in check_nameservers
+  * Bug #40605: use --cross-ncs in samba-tool dbcheck diagnostic fix
+
+ -- Lukas Oyen <oyen@univention.de>  Wed, 02 Aug 2017 15:10:06 +0200
+
+univention-management-console-module-diagnostic (3.0.1-6) unstable; urgency=medium
+
+  * Bug #35858: umc-diagnostic: pass umc-instance into check plugins
+  * Bug #35858: umc-diagnostic: new check_server_password
+  * Bug #35859: ucm-diagnostic: new check disk_usage.py
+  * Bug #36748: umc-diagnostic: new check check_join_status
+  * Bug #35859: ucm-diagnostic: new check heimdal_on_samba4_dc
+  * Bug #35865: umc-diagnostic: new connector_s4_rejects
+  * Bug #36012: umc-diagnostic: new check hostame_check.py
+  * Bug #36748: umc-diagnostic: add python-pyasn1 as dependency
+  * Bug #36748: umc-diagnostic: new check kdc_service
+  * Bug #37628: umc-diagnostic: new check check_update_sites
+  * Bug #38238: umc-diagnostic: new check well_known_sid_check.py
+  * Bug #38974: umc-diagnostic: new check sources_list_check.py
+  * Bug #40227: umc-diagnostic: new check file_permissions.py
+  * Bug #40228: umc-diagnostic: new check certificate_check.py
+  * Bug #40393: umc-diagnostic: new check check_nameserver.py
+  * Bug #40465: umc-diagnostic: add python-pexpect
+  * Bug #40465: umc-diagnostic: new check mail_acl_sync.py
+  * Bug #40605: umc-diagnostic: new check samba_tool_dbcheck.py.
+  * Bug #44874: umc-diagnostic: new check check_ucr_templates.py.
+  * Bug #44875: umc-diagnostic: new check check_notifier_replication.py.
+  * Bug #44876: umc-diagnostic: new check samba_tool_sysvolcheck.py
+  * Bug #44881: umc-diagnostic: new check samba_tool_showrepl.py
+  * Bug #44902: umc-diagnostic: new check kerberos_ddns_update.py
+
+ -- Lukas Oyen <oyen@univention.de>  Tue, 01 Aug 2017 16:02:45 +0200
+
+univention-management-console-module-diagnostic (3.0.1-5) unstable; urgency=medium
+
+  * Bug #36750: fix set proxy server without port
+
+ -- Florian Best <best@univention.de>  Thu, 13 Jul 2017 15:41:10 +0200
+
+univention-management-console-module-diagnostic (3.0.1-4) unstable; urgency=medium
+
+  * Bug #42155: fix translation
+
+ -- Florian Best <best@univention.de>  Thu, 13 Jul 2017 15:27:55 +0200
+
+univention-management-console-module-diagnostic (3.0.1-3) unstable; urgency=medium
+
+  * Bug #42155: Applied patch from Florian Best - Catch gateway not set error
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 12 Jul 2017 16:39:39 +0200
+
+univention-management-console-module-diagnostic (3.0.1-2) unstable; urgency=medium
+
+  * Bug #36750: Applied patch from Florian Best - Change non-working proxy
+    server error from Conflict to Critical
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 12 Jul 2017 16:24:51 +0200
+
+univention-management-console-module-diagnostic (3.0.1-1) unstable; urgency=medium
+
+  * Bug #44038: fix rerunning checks; regression in grid causes the success
+  	element to be returned. ignoring it now.
+
+ -- Florian Best <best@univention.de>  Thu, 23 Mar 2017 14:24:58 +0100
+
+univention-management-console-module-diagnostic (3.0.0-3) unstable; urgency=medium
+
+  * Bug #43528: Use full width for module
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Mar 2017 17:40:52 +0100
+
+univention-management-console-module-diagnostic (3.0.0-2) unstable; urgency=low
+
+  * Bug #42161: Corrected some typos.
+
+ -- Richard Ulmer <ulmer@univention.de>  Thu, 01 Sep 2016 11:30:27 +0200
+
+univention-management-console-module-diagnostic (3.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:17 +0200
+
+univention-management-console-module-diagnostic (2.0.0-5) unstable; urgency=medium
+
+  * Bug #40563: exclude docker hosts in SSH connection check
+
+ -- Florian Best <best@univention.de>  Tue, 12 Apr 2016 08:33:09 +0200
+
+univention-management-console-module-diagnostic (2.0.0-4) unstable; urgency=medium
+
+  * Bug #40339: format string with multiple unnamed arguments
+
+ -- Florian Best <best@univention.de>  Thu, 14 Jan 2016 12:21:07 +0100
+
+univention-management-console-module-diagnostic (2.0.0-3) unstable; urgency=low
+
+  * Bug #38137: more error handling
+
+ -- Felix Botner <botner@univention.de>  Thu, 24 Sep 2015 09:53:05 +0200
+
+univention-management-console-module-diagnostic (2.0.0-2) unstable; urgency=low
+
+  * Bug #38137: added python-paramiko
+
+ -- Felix Botner <botner@univention.de>  Tue, 22 Sep 2015 15:02:18 +0200
+
+univention-management-console-module-diagnostic (2.0.0-1) unstable; urgency=low
+
+  * Bug #38137: added ssh_connection plugin
+
+ -- Felix Botner <botner@univention.de>  Tue, 22 Sep 2015 14:40:30 +0200
+
+univention-management-console-module-diagnostic (1.0.14-5) unstable; urgency=medium
+
+  * Bug #35861: fixes for the package status plugin
+
+ -- Florian Best <best@univention.de>  Tue, 03 Feb 2015 10:52:56 +0100
+
+univention-management-console-module-diagnostic (1.0.14-4) unstable; urgency=medium
+
+  * Bug #35861: add plugin which checks package status
+
+ -- Florian Best <best@univention.de>  Wed, 14 Jan 2015 09:49:15 +0100
+
+univention-management-console-module-diagnostic (1.0.14-3) unstable; urgency=medium
+
+  * Bug #37032: fix the ping timeout when trying to reach the gateway
+
+ -- Florian Best <best@univention.de>  Wed, 26 Nov 2014 11:31:33 +0100
+
+univention-management-console-module-diagnostic (1.0.14-2) unstable; urgency=low
+
+  * Bug #36454: fixed typo
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 05 Nov 2014 14:18:32 +0100
+
+univention-management-console-module-diagnostic (1.0.14-1) unstable; urgency=medium
+
+  * Bug #35866: fix typo
+
+ -- Florian Best <best@univention.de>  Mon, 03 Nov 2014 17:55:55 +0100
+
+univention-management-console-module-diagnostic (1.0.13-1) unstable; urgency=medium
+
+  * Bug #35866: reset default of max_open_files to 32808
+
+ -- Florian Best <best@univention.de>  Mon, 03 Nov 2014 13:33:31 +0100
+
+univention-management-console-module-diagnostic (1.0.12-1) unstable; urgency=medium
+
+  * Bug #35866: read logfiles line wise
+  * use samba/max_open_files instead of security/limits/user/*
+
+ -- Florian Best <best@univention.de>  Mon, 03 Nov 2014 11:26:28 +0100
+
+univention-management-console-module-diagnostic (1.0.11-1) unstable; urgency=medium
+
+  * Bug #35864: fix proxy authentication; remove 'disable proxy' button
+
+ -- Florian Best <best@univention.de>  Thu, 30 Oct 2014 13:50:59 +0100
+
+univention-management-console-module-diagnostic (1.0.10-1) unstable; urgency=medium
+
+  * Bug #34765: fix word wrapping on small screens
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 30 Oct 2014 11:04:20 +0100
+
+univention-management-console-module-diagnostic (1.0.9-1) unstable; urgency=medium
+
+  * Bug #34765: disable notifications
+
+ -- Florian Best <best@univention.de>  Wed, 29 Oct 2014 16:53:47 +0100
+
+univention-management-console-module-diagnostic (1.0.8-2) unstable; urgency=medium
+
+  * Bug #34765: add missing CSS file
+
+ -- Florian Best <best@univention.de>  Tue, 28 Oct 2014 20:39:41 +0100
+
+univention-management-console-module-diagnostic (1.0.8-1) unstable; urgency=medium
+
+  * Bug #34765: fix noDataMessage
+
+ -- Florian Best <best@univention.de>  Thu, 23 Oct 2014 11:53:35 +0200
+
+univention-management-console-module-diagnostic (1.0.7-2) unstable; urgency=medium
+
+  * Bug #35654: version bump
+
+ -- Florian Best <best@univention.de>  Thu, 23 Oct 2014 11:32:03 +0200
+
+univention-management-console-module-diagnostic (1.0.7-1) unstable; urgency=low
+
+  * Bug #35864: Add Plugin docstring, inherit from dgrid instead of
+  	GalleryPane, add some missing translations, outsource CSS into external
+  	file
+
+ -- Florian Best <best@univention.de>  Tue, 07 Oct 2014 11:42:15 +0200
+
+univention-management-console-module-diagnostic (1.0.6-1) unstable; urgency=low
+
+  * Bug #35864: fix typo
+
+ -- Florian Best <best@univention.de>  Mon, 06 Oct 2014 17:02:55 +0200
+
+univention-management-console-module-diagnostic (1.0.5-1) unstable; urgency=low
+
+  * Bug #35864: add translation, remove all plugins except network and
+  	security_limits
+
+ -- Florian Best <best@univention.de>  Mon, 06 Oct 2014 16:45:37 +0200
+
+univention-management-console-module-diagnostic (1.0.4-2) unstable; urgency=low
+
+  * Bug #35864: Add missing dependencies
+
+ -- Florian Best <best@univention.de>  Mon, 06 Oct 2014 10:16:54 +0200
+
+univention-management-console-module-diagnostic (1.0.4-1) unstable; urgency=low
+
+  * Bug #35864: adaptions to the network plugins
+  * Bug #35866: adaptions to the security limits plugin
+
+ -- Florian Best <best@univention.de>  Thu, 02 Oct 2014 17:41:50 +0200
+
+univention-management-console-module-diagnostic (1.0.3-2) unstable; urgency=low
+
+  * Bug #34765: fix some translations / fuzzies
+
+ -- Florian Best <best@univention.de>  Wed, 01 Oct 2014 12:50:09 +0200
+
+univention-management-console-module-diagnostic (1.0.3-1) unstable; urgency=low
+
+  * Bug #34765: rewrite
+  * Bug #35864: add a plugin for checking of  network settings (gateway, DNS,
+  	proxy)
+
+ -- Florian Best <best@univention.de>  Thu, 18 Sep 2014 12:39:53 +0200
+
+univention-management-console-module-diagnostic (1.0.2-1) unstable; urgency=low
+
+  * Bug #34765: rewrite
+  * add i18n support
+
+ -- Florian Best <best@univention.de>  Wed, 17 Sep 2014 18:09:10 +0200
+
+univention-management-console-module-diagnostic (1.0.1-1) unstable; urgency=low
+
+  * Bug #34765: code cleanup
+  * sed -i 's/supphealth/diagnostic/g' $(find ! -wholename '*svn*' -type f)
+  * for i in $(find ! -wholename '*svn*' -name '*supphealth*'); do svn mv "$i"
+  	"$(echo -en "$i" | sed s/supphealth/diagnostic/g)"; done
+
+ -- Florian Best <best@univention.de>  Wed, 17 Sep 2014 12:22:33 +0200
+
+univention-management-console-module-diagnostic (1.0.0-1) unstable; urgency=low
+
+  * Starting UCS 4.0-0 development (Bug #34765)
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 03 Sep 2014 16:09:00 +0200
+
+univention-management-console-module-diagnostic (0.1.0-1) unstable; urgency=low
+
+  * Initial release (Bug #34765)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 18 Mar 2014 13:05:54 +0100

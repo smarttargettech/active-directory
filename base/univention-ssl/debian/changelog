@@ -1,0 +1,1027 @@
+univention-ssl (16.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+univention-ssl (16.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:39 +0100
+
+univention-ssl (16.0.3) unstable; urgency=medium
+
+  * Issue #2296: Create new keys in pkcs1 format (like in UCS 5.0), not in
+    pkcs8
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 29 May 2024 18:52:21 +0200
+
+univention-ssl (16.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:28 +0100
+
+univention-ssl (15.0.3) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:19 +0100
+
+univention-ssl (15.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:38 +0100
+
+univention-ssl (15.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:39 +0100
+
+univention-ssl (14.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:52 +0100
+
+univention-ssl (14.0.5-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+  * Bug #51203: Add missing dependency on ca-certificates
+  * Bug #54834: Fix awk string comparison
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 09 Dec 2023 15:06:47 +0100
+
+univention-ssl (14.0.4-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:31 +0100
+
+univention-ssl (14.0.4-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:36 +0100
+
+univention-ssl (14.0.3-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Sep 2022 19:43:25 +0200
+
+univention-ssl (14.0.2-5) unstable; urgency=medium
+
+  * Bug #54932: Fix cron daily task execution
+
+ -- Eric Monne Mesalles <monne-mesalles.extern@univention.de>  Tue, 19 Jul 2022 11:39:29 +0200
+
+univention-ssl (14.0.2-4) unstable; urgency=medium
+
+  * Bug #54697: Order SAN names by length
+
+ -- Eric Monne Mesalles <monne-mesalles.extern@univention.de>  Wed, 01 Jun 2022 17:10:29 +0200
+
+univention-ssl (14.0.2-3) unstable; urgency=medium
+
+  * Bug #53288: Fix wildcard certificate creation
+
+ -- Eric Monne Mesalles <monne-mesalles.extern@univention.de>  Tue, 24 May 2022 15:26:13 +0200
+
+univention-ssl (14.0.2-2) unstable; urgency=low
+
+  * Bug #51776: Timeout SSL certificate download
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 22 Jul 2021 13:10:00 +0200
+
+univention-ssl (14.0.2-1) unstable; urgency=medium
+
+  * Bug #52281: Migrate univention-ssl to Python 3
+
+ -- Florian Best <best@univention.de>  Tue, 30 Mar 2021 14:49:12 +0200
+
+univention-ssl (14.0.1-2) unstable; urgency=medium
+
+  * Bug #43686: Convert init.d to systemctl commands for UDL
+
+ -- Sebastian Lobinger <lobinger@univention.de>  Thu, 22 Oct 2020 15:03:39 +0200
+
+univention-ssl (14.0.1-1) unstable; urgency=medium
+
+  * Bug #42374: Replace legacy Master/Slave wording by
+    Primary/Backup/Replica/Managed Node
+
+ -- Arvid <requate@univention.de>  Thu, 24 Sep 2020 13:48:37 +0200
+
+univention-ssl (14.0.0-2) unstable; urgency=low
+
+  * Bug #51234: Drop deprecated packages for UCS-5
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 05 Jun 2020 18:06:17 +0200
+
+univention-ssl (14.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:16 +0200
+
+univention-ssl (13.0.0-7) unstable; urgency=medium
+
+  * Bug #51022: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Thu, 26 Mar 2020 15:11:02 +0100
+
+univention-ssl (13.0.0-6) unstable; urgency=low
+
+  * Bug #49036: Fix file permission when creating new host certificates
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 10 Dec 2019 18:46:28 +1200
+
+univention-ssl (13.0.0-5) unstable; urgency=medium
+
+  * Bug #45115: move fetch-certificates to univention-ssl
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 31 Oct 2019 11:54:27 +0100
+
+univention-ssl (13.0.0-4) unstable; urgency=medium
+
+  * Bug #45115: based on dwiesent/bug45115, add support for
+    wildcard certificates
+
+ -- Felix Botner <botner@univention.de>  Mon, 28 Oct 2019 17:02:07 +0100
+
+univention-ssl (13.0.0-3) unstable; urgency=medium
+
+  * Bug #45115: based on dwiesent/bug45115, add support for
+    wildcard certificates
+
+ -- Felix Botner <botner@univention.de>  Mon, 28 Oct 2019 16:56:07 +0100
+
+univention-ssl (13.0.0-2) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:38 +0200
+
+univention-ssl (13.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:32 +0100
+
+univention-ssl (12.0.0-16) unstable; urgency=low
+
+  * Bug #47896: Show error output again
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 30 Oct 2018 11:42:17 +0100
+
+univention-ssl (12.0.0-15) unstable; urgency=medium
+
+  * Bug #44469: Use correct domain when looking up DNS CNAME aliases.
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 30 Oct 2018 11:02:19 +0100
+
+univention-ssl (12.0.0-14) unstable; urgency=medium
+
+  * Bug #44469: fix BASHism, cleanup
+
+ -- Jannik Ahlers <ahlers@univention.de>  Thu, 18 Oct 2018 13:16:47 +0200
+
+univention-ssl (12.0.0-13) unstable; urgency=medium
+
+  * Bug #44469: Include DNS aliases in certificate creation
+
+ -- Jannik Ahlers <ahlers@univention.de>  Mon, 01 Oct 2018 13:23:56 +0200
+
+univention-ssl (12.0.0-12) unstable; urgency=medium
+
+  * Bug #41013: univention-certificate renew now doesn't revoke the old cert
+  	anymore. certs can now be addressed by their serial number by using the -id
+  	flag.
+
+ -- Jannik Ahlers <ahlers@univention.de>  Mon, 24 Sep 2018 11:00:24 +0200
+
+univention-ssl (12.0.0-7) unstable; urgency=low
+
+  * Bug #45472: handle expired certificates
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 02 May 2018 16:57:50 +0200
+
+univention-ssl (12.0.0-6) unstable; urgency=medium
+
+  * Bug #46203: Fix stderr redirect
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 17 Apr 2018 16:01:34 +0200
+
+univention-ssl (12.0.0-5) unstable; urgency=medium
+
+  * Bug #45472: handle expired certificates
+
+ -- Felix Botner <botner@univention.de>  Wed, 11 Apr 2018 17:13:25 +0200
+
+univention-ssl (12.0.0-4) unstable; urgency=medium
+
+  * Bug #45472: handle expired certificates
+
+ -- Felix Botner <botner@univention.de>  Wed, 11 Apr 2018 17:07:30 +0200
+
+univention-ssl (12.0.0-3) unstable; urgency=medium
+
+  * Bug #45472: handle expired certificates
+
+ -- Felix Botner <botner@univention.de>  Wed, 11 Apr 2018 17:02:58 +0200
+
+univention-ssl (12.0.0-2) unstable; urgency=medium
+
+  * Bug #46203: Fix file permissions after certificate renewal
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 22 Mar 2018 12:17:10 +0100
+
+univention-ssl (12.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:48 +0100
+
+univention-ssl (11.0.1-1) unstable; urgency=medium
+
+  * Bug #43811: make sure SSL certificate cache is rewritte
+
+ -- Florian Best <best@univention.de>  Mon, 13 Mar 2017 15:28:46 +0100
+
+univention-ssl (11.0.0-3) unstable; urgency=low
+
+  * Bug #22085: Fix sign command
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 08 Feb 2017 15:34:25 +0100
+
+univention-ssl (11.0.0-2) unstable; urgency=low
+
+  * Bug #22085: added sign command
+
+ -- Felix Botner <botner@univention.de>  Tue, 31 Jan 2017 16:55:06 +0100
+
+univention-ssl (11.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:58:00 +0200
+
+univention-ssl (10.0.0-17) unstable; urgency=low
+
+  * Bug #41917: Fix dash local variable quoting
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 08 Aug 2016 11:30:34 +0200
+
+univention-ssl (10.0.0-16) unstable; urgency=low
+
+  * Bug #41917 SSL: Allow empty passwords
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 08 Aug 2016 08:43:48 +0200
+
+univention-ssl (10.0.0-15) unstable; urgency=low
+
+  * Bug #24094 SSL: Disable unit test
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Jun 2016 17:46:11 +0200
+
+univention-ssl (10.0.0-14) unstable; urgency=low
+
+  * Bug #31369: Check SSL expiration date
+  * Bug #41230: Handle moved computer LDAP entries
+  * Bug #38903: Make SSL host types configurable
+  * Bug #37621: Make cipher for root CA configurable
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Jun 2016 13:44:06 +0200
+
+univention-ssl (10.0.0-13) unstable; urgency=low
+
+  * Bug #25285: Switch to 2.debian.pool.ntp.org
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Jun 2016 08:44:49 +0200
+
+univention-ssl (10.0.0-12) unstable; urgency=low
+
+  * Bug #40498: Convert openssl.conf on upgrade
+  * Bug #25285: Use debian.pool.ntp.org
+  * Bug #35748: Re-generate CRL periodically
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 23 Jun 2016 09:40:33 +0200
+
+univention-ssl (10.0.0-11) unstable; urgency=low
+
+  * Bug #40498: Make hash-function and bit-count mode configurable
+  * Bug #24094: Allow univention-certificate only on DC Master
+  * Bug #35027: Prevent parallel univention-certificate runs
+  * Bug #39257: Allow univention-certificate new -days
+  * Bug #39045: Fix extensions-example.sh to work with POSIX shell
+  * Bug #31369: Fix certificate not expired
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 Jun 2016 12:06:37 +0200
+
+univention-ssl (10.0.0-10) unstable; urgency=medium
+
+  * Bug #39376: correctly escape config variables; The characters " and $
+  	causes an invalid config and must be escaped.
+
+ -- Florian Best <best@univention.de>  Wed, 09 Dec 2015 16:38:36 +0100
+
+univention-ssl (10.0.0-9) unstable; urgency=low
+
+  * recommend rdate (Bug #39410)
+
+ -- Felix Botner <botner@univention.de>  Thu, 08 Oct 2015 17:02:31 +0200
+
+univention-ssl (10.0.0-8) unstable; urgency=low
+
+  * Bug #38859: Fix error handling
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 05 Oct 2015 11:11:51 +0200
+
+univention-ssl (10.0.0-7) unstable; urgency=medium
+
+  * Fixed typo in univention-ssl postinst (Bug #38859)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 04 Oct 2015 20:29:26 +0200
+
+univention-ssl (10.0.0-6) unstable; urgency=low
+
+  * Bug #38859: Fix init()
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 02 Oct 2015 19:57:11 +0200
+
+univention-ssl (10.0.0-5) unstable; urgency=low
+
+  * fix list_cert_names and revoke_cert (Bug #38859)
+  * modify openssl.cnf when updating
+  * removed old update code in postinst
+  * add length limitation to UMC certificate page
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 02 Oct 2015 11:16:06 +0200
+
+univention-ssl (10.0.0-4) unstable; urgency=low
+
+  * fix potential root exploit (Bug #38859)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 15 Sep 2015 13:38:31 +0200
+
+univention-ssl (10.0.0-3) unstable; urgency=low
+
+  * When creating certificates, always write FQDN to Subject Alternative Name.
+  * When creating certificates with FQDN longer than 64 characters, use only
+    hostname for CN (Bug #38859).
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 11 Sep 2015 16:45:48 +0200
+
+univention-ssl (10.0.0-2) unstable; urgency=low
+
+  * Bug #33870: Fix removing deleted certificates
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 20 Aug 2015 07:42:09 +0200
+
+univention-ssl (10.0.0-1) unstable; urgency=low
+
+  * Bug #38859: Remove length check when generating a SSL certificate
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 08 Jul 2015 14:14:31 +0200
+
+univention-ssl (9.0.4-4) unstable; urgency=low
+
+  * Bug #38125: Make request non-interactive
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Apr 2015 09:22:45 +0200
+
+univention-ssl (9.0.4-3) unstable; urgency=low
+
+  * Bug #36934: Timeout rdate command after 15+5s
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 28 Nov 2014 12:12:13 +0100
+
+univention-ssl (9.0.4-2) unstable; urgency=low
+
+  * Bug #36934: Timeout rdate command after 15+5s
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 28 Nov 2014 11:35:46 +0100
+
+univention-ssl (9.0.4-1) unstable; urgency=low
+
+  * Bug #36934: Timeout ntpdate command after 15s
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 21 Nov 2014 15:20:42 +0100
+
+univention-ssl (9.0.3-2) unstable; urgency=low
+
+  * new default sha256 for ssl/default/hashfunction (Bug #30545)
+
+ -- Felix Botner <botner@univention.de>  Wed, 29 Oct 2014 14:23:26 +0100
+
+univention-ssl (9.0.3-1) unstable; urgency=low
+
+  * added default_md to req section and
+    switched back to sha1 (Bug #30545)
+
+ -- Felix Botner <botner@univention.de>  Wed, 29 Oct 2014 14:10:35 +0100
+
+univention-ssl (9.0.2-1) unstable; urgency=low
+
+  * removed unused openssl.conf (Bug #30545)
+
+ -- Felix Botner <botner@univention.de>  Wed, 29 Oct 2014 13:24:26 +0100
+
+univention-ssl (9.0.1-1) unstable; urgency=medium
+
+  * Set the default ssl hash function back to sha1
+    (Bug #35836 and Bug #36324)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 28 Oct 2014 21:06:20 +0100
+
+univention-ssl (9.0.0-5) unstable; urgency=low
+
+  * new defaults for ssl/default/hashfunction (sha384)
+    and ssl/default/bits (2048) Bug #35836 #30545
+
+ -- Felix Botner <botner@univention.de>  Wed, 15 Oct 2014 14:19:17 +0200
+
+univention-ssl (9.0.0-4) unstable; urgency=low
+
+  * re-added dependency to univention-directory-listener (Bug #35144)
+
+ -- Felix Botner <botner@univention.de>  Tue, 19 Aug 2014 11:26:20 +0200
+
+univention-ssl (9.0.0-3) unstable; urgency=low
+
+  * Bug #35144: disabled dependency to univention-directory-listener temporarily
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 21 Jul 2014 10:05:02 +0200
+
+univention-ssl (9.0.0-2) unstable; urgency=low
+
+  * Bug #35144: disabled dependency to univention-directory-listener temporarily
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 21 Jul 2014 09:55:02 +0200
+
+univention-ssl (9.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 09:18:49 +0200
+
+univention-ssl (8.0.0-4) unstable; urgency=low
+
+  * set correct permissions for "/etc/univention/ssl" on certificate renewal (Bug #31941)
+  * set correct permissions when using "univention-certificate new" (Bug #31941)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 07 Feb 2014 15:50:12 +0100
+
+univention-ssl (8.0.0-3) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 19 Sep 2013 10:11:44 +0200
+
+univention-ssl (8.0.0-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+  * Update copyright years for 2013
+  * Mark ssl/validity/root and ssl/validity/host and read-only variables (they are
+    set through a Cron job)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 29 Aug 2013 15:01:45 +0200
+
+univention-ssl (8.0.0-1) unstable; urgency=low
+
+  * replaced makepasswd with create_machine_password (Bug #31281)
+  * bump version for UCS 3.2
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 10:53:38 +0200
+
+univention-ssl (7.0.7-1) unstable; urgency=low
+
+  * reduced pseudo log messages in gencertificate.py (Bug #9819)
+
+ -- Felix Botner <botner@univention.de>  Tue, 05 Mar 2013 14:42:17 +0100
+
+univention-ssl (7.0.6-1) unstable; urgency=low
+
+  * Certificate revoke list now correctly syncs to domain backup (Bug #29468)
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 21 Dec 2012 16:39:19 +0100
+
+univention-ssl (7.0.5-3) unstable; urgency=low
+
+  * Fix errexit (Bug #26572)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 17 Oct 2012 10:40:13 +0200
+
+univention-ssl (7.0.5-2) unstable; urgency=low
+
+  * fixed ucr var description of ssl/validity/host and
+    ssl/validity/root (Bug #25788)
+
+ -- Felix Botner <botner@univention.de>  Wed, 17 Oct 2012 10:17:52 +0200
+
+univention-ssl (7.0.5-1) unstable; urgency=low
+
+  * fixed ucr var description of ssl/validity/host and
+    ssl/validity/root (Bug #25788)
+
+ -- Felix Botner <botner@univention.de>  Wed, 17 Oct 2012 09:25:26 +0200
+
+univention-ssl (7.0.4-2) unstable; urgency=low
+
+  * Support generating SSL certificates for UCC clients (Bug #28571)
+
+ -- Moritz Mühlenhoff <muehlenhoffunivention.de>  Thu, 27 Sep 2012 14:53:04 +0200
+
+univention-ssl (7.0.4-1) unstable; urgency=low
+
+  * remove ssl/validity/days and create
+    new  ssl/validity/... vars in postinst (Bug #27002)
+
+ -- Felix Botner <botner@univention.de>  Fri, 07 Sep 2012 09:49:54 +0200
+
+univention-ssl (7.0.3-1) unstable; urgency=low
+
+  * removed ssl/validity/days, instead
+    added ssl/validity/host (host cert) and
+    ssl/validity/root (root ca) (Bug #27002)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Sep 2012 17:25:15 +0200
+
+univention-ssl (7.0.2-1) unstable; urgency=low
+
+  * set ssl/validity/check?yes in postinst (Bug #19736)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Sep 2012 16:22:36 +0200
+
+univention-ssl (7.0.1-1) unstable; urgency=low
+
+  * fixed description of ssl/validity/days (Bug #25788)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Sep 2012 16:12:10 +0200
+
+univention-ssl (7.0.0-2) unstable; urgency=low
+
+  * Use library function to create logfile (Bug #22011)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 04 Aug 2012 01:56:02 +0200
+
+univention-ssl (7.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump
+  * Fix handling of "univention-certificate -path ..." handling (Bug #26572)
+  * Fix handling of missing arguments to options.
+  * Return useful exit values for scripting usage.
+  * Fix file permission for certificate: no +x needed.
+  * Print error messages to stderr to help parsing output.
+  * Quote variables (password!)
+  * Replace univention-baseconfig by univention-config-registry
+  * Use subprocess.call() instead of os.popen()
+  * Make variables function local
+  * Update copyright
+  * Remove trailing blanks on lines
+  * Remove semicolon on end of line
+  * Remove space before tabs
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 04 Aug 2012 01:02:26 +0200
+
+univention-ssl (6.0.14-1) unstable; urgency=low
+
+  * fixed logrotate template (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Fri, 18 Nov 2011 16:37:24 +0100
+
+univention-ssl (6.0.13-2) unstable; urgency=low
+
+  * fixed wrong country code that is set in postinst (Bug #24174)
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 26 Oct 2011 19:07:51 +0200
+
+univention-ssl (6.0.13-1) unstable; urgency=low
+
+  * replaced deprecated shell construct in make-certificates.sh
+    (Bug #24187)
+
+ -- Felix Botner <botner@univention.de>  Tue, 25 Oct 2011 16:36:00 +0200
+
+univention-ssl (6.0.12-1) unstable; urgency=low
+
+  * added host extension customization (Bug #24187)
+
+ -- Felix Botner <botner@univention.de>  Tue, 25 Oct 2011 14:55:57 +0200
+
+univention-ssl (6.0.11-1) unstable; urgency=low
+
+  * workaround for PEP 366 (Bug #23984)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Oct 2011 13:08:40 +0200
+
+univention-ssl (6.0.10-1) unstable; urgency=low
+
+  * immunised logrotate template against missing
+    univention.lib.ucrLogrotate (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Mon, 24 Oct 2011 14:31:57 +0200
+
+univention-ssl (6.0.9-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:15 +0200
+
+univention-ssl (6.0.9-1) unstable; urgency=low
+
+  * Merged from UCS 2.4-4:
+    * Be sure the new certificate gets correct permissions (Bug #23802)
+    * Handle the permissions for another case in gencertificate.py
+      (Bug #23802)
+    * Fixed debug messages in gencertificate.py (Bug #23802)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 20 Oct 2011 07:05:08 +0200
+
+univention-ssl (6.0.8-1) unstable; urgency=low
+
+  * added logrotate configuration (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 16:33:21 +0200
+
+univention-ssl (6.0.7-1) unstable; urgency=low
+
+  * make-certificates.ssl uses now ssl/common for certificate CN (Bug #22846)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 26 Sep 2011 12:10:59 +0200
+
+univention-ssl (6.0.6-1) unstable; urgency=low
+
+  * add random id to default SSL common name (Bug #22846)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 22 Sep 2011 15:09:23 +0200
+
+univention-ssl (6.0.5-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+
+   [ Janek Walkenhorst ]
+    * sync root certificate to /var/www (Bug #22909)
+
+   [ Moritz Muehlenhoff ]
+    * Modify gencertificate listener module so that the SSL certificates are
+      owned by the "DC Backup Hosts" group (Bug #22068)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 20:39:31 +0200
+
+univention-ssl (6.0.4-1) unstable; urgency=low
+
+  * Set execute permissions for /usr/share/univention-ssl/ssl-sync
+    (Bug #23061 and Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 25 Jul 2011 16:07:18 +0200
+
+univention-ssl (6.0.3-2) unstable; urgency=low
+
+  * fixed another bashism (Bug #23005)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 12 Jul 2011 18:31:17 +0200
+
+univention-ssl (6.0.3-1) unstable; urgency=low
+
+  * fixed bashism (Bug #22847)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 12 Jul 2011 15:01:40 +0200
+
+univention-ssl (6.0.2-1) unstable; urgency=low
+
+  * fixed country detection for ssl default values (Bug #22847)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 24 Jun 2011 14:39:25 +0200
+
+univention-ssl (6.0.1-1) unstable; urgency=low
+
+  * Add missing install file (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 24 May 2011 12:10:15 +0200
+
+univention-ssl (6.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+    * Bump version for UCS 3.0
+    * Replace univention-baseconfig with univention-config-registry
+    * Replace static UCR header in the UCR templates with '@%@UCRWARNING=#
+      @%@'
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+    * Add ucslint
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 16 May 2011 09:30:59 +0200
+
+univention-ssl (5.0.5-1) unstable; urgency=low
+
+  * extended default PATH to contain /usr/sbin and /sbin (Bug #12168)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 21 Mar 2011 15:35:07 +0100
+
+univention-ssl (5.0.4-1) unstable; urgency=low
+
+  * check also the root ca in univention-certificate-check-validity  Bug #20664
+
+ -- Felix Botner <botner@univention.de>  Tue, 08 Feb 2011 14:51:13 +0100
+
+univention-ssl (5.0.3-1) unstable; urgency=low
+
+  * use value from ssl/default/days for root ca's days Bug #21287
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Jan 2011 16:29:07 +0100
+
+univention-ssl (5.0.2-1) unstable; urgency=low
+
+  * fix error with unset ssl/default/hashfunction (Bug #19519)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 06 Sep 2010 15:30:00 +0200
+
+univention-ssl (5.0.1-1) unstable; urgency=low
+
+  * redirect stderr to stdout in /etc/cron.d/univention-ssl Bug #19538
+
+ -- Felix Botner <botner@univention.de>  Fri, 20 Aug 2010 10:48:34 +0200
+
+univention-ssl (5.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 15:33:23 +0200
+
+univention-ssl (4.0.3-1) unstable; urgency=low
+
+  * fixed link creation in move_cert (make-certificates.sh)
+  * removed renew for new case in univention-certificate to avoid
+    multiple certificate generation
+    Bug #13396
+
+ -- Felix Botner <botner@univention.de>  Tue, 13 Apr 2010 12:30:18 +0200
+
+univention-ssl (4.0.2-2) unstable; urgency=low
+
+  * upgraded DEFAULT_DAYS in make-certificates.sh to 1825 (Bug: #13686)
+
+ -- Felix Botner <botner@univention.de>  Tue, 13 Oct 2009 16:40:08 +0200
+
+univention-ssl (4.0.2-1) unstable; urgency=low
+
+  * always test ssl link (hostname -> fqdn) (Bug: #15214)
+
+ -- Felix Botner <botner@univention.de>  Tue, 29 Sep 2009 17:44:16 +0200
+
+univention-ssl (4.0.1-2) unstable; urgency=low
+
+  * ssl/default/days is now 1825 by default (Bug: #13686)
+
+ -- Felix Botner <botner@univention.de>  Fri, 25 Sep 2009 14:46:12 +0200
+
+univention-ssl (4.0.1-1) unstable; urgency=low
+
+  * provide new UCR category system-ssl (Bug #13505)
+
+ -- Andreas Büsching <buesching@univention.de>  Tue,  7 Jul 2009 15:34:50 +0200
+
+univention-ssl (4.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-ssl (3.0.4-3) unstable; urgency=low
+
+  * change default to sha1 since openssl-0.9.8c does not support sha256 (Bug #14231)
+
+ -- Arvid Requate <requate@univention.de>  Thu,  4 Jun 2009 09:49:24 +0200
+
+univention-ssl (3.0.4-2) unstable; urgency=low
+
+  * set UCR:ssl/default/hashfunction to md5 on update installations (Bug #14231)
+
+ -- Arvid Requate <requate@univention.de>  Wed,  3 Jun 2009 11:14:13 +0200
+
+univention-ssl (3.0.4-1) unstable; urgency=low
+
+  * change default message digest algorithm from md5 to sha256 (for Bug #14231)
+  * new UCR variable ssl/default/hashfunction allows fallback to sha1
+
+ -- Arvid Requate <requate@univention.de>  Wed,  3 Jun 2009 10:58:34 +0200
+
+univention-ssl (3.0.3-1) unstable; urgency=low
+
+  * create a link from /etc/univention/ssl/<hostname>.<domainname> to
+    /etc/univention/ssl/<hostname> like the listener module does. Bug #13598
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 12 Mar 2009 16:00:18 +0100
+
+univention-ssl (3.0.2-1) unstable; urgency=low
+
+  * use time.fu-berlin.de instead of pool.ntp.org because we are using
+    rdate. Bug #13549
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 27 Feb 2009 11:10:54 +0100
+
+univention-ssl (3.0.1-1) unstable; urgency=low
+
+  * updated the copyright. Bug #6875
+  * try to set the clock before generating the root CA, otherwise it is
+    possible that the certificate is not valid at the end of the
+    installation. Bug #13549
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 27 Feb 2009 09:55:21 +0100
+
+univention-ssl (2.0.2-2) unstable; urgency=low
+
+  * Depend on openssl-blacklist
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue,  8 Jul 2008 16:55:01 +0200
+
+univention-ssl (2.0.2-1) unstable; urgency=low
+
+  * no longer change the owner and group of all ssl certificates under
+    /etc/univention/ssl after revoke or renew a certificate with
+    univention-certificate
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 13 Nov 2007 21:27:52 +0100
+
+univention-ssl (2.0.1-9) unstable; urgency=low
+
+  * Fix Config Registry descriptions.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed, 31 Oct 2007 10:35:35 +0100
+
+univention-ssl (2.0.1-8) unstable; urgency=low
+
+  * fixed permissions of ssl-sync.log
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 26 Sep 2007 13:25:23 +0200
+
+univention-ssl (2.0.1-7) unstable; urgency=low
+
+  * renamed /etc/univention/ssl/udsCA to /etc/univention/ssl/ucsCA
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 23 Aug 2007 14:17:02 +0200
+
+univention-ssl (2.0.1-6) unstable; urgency=low
+
+  * added descriptions for config registry variables
+
+ -- Janis Meybohm <meybohm@univention.de>  Tue, 31 Jul 2007 15:02:10 +0200
+
+univention-ssl (2.0.1-5) unstable; urgency=low
+
+  * Adapt code to Univention Directory Listener.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 31 Jul 2007 14:31:54 +0200
+
+univention-ssl (2.0.1-4) unstable; urgency=low
+
+  * Depend on Univention Directory Listener
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 31 Jul 2007 14:21:14 +0200
+
+univention-ssl (2.0.1-3) unstable; urgency=low
+
+  * don't fail if the listener crestart wasn't successful
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 17:18:45 +0200
+
+univention-ssl (2.0.1-2) unstable; urgency=low
+
+  * call exit 0 at the end of the postinst scripts
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 14:13:00 +0200
+
+univention-ssl (2.0.1-1) unstable; urgency=low
+
+  * create host certificate
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 13:26:46 +0200
+
+univention-ssl (2.0.0-2) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:49 +0200
+
+univention-ssl (2.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 23 May 2007 16:02:11 +0200
+
+univention-ssl (1.10.4-1) unstable; urgency=low
+
+  * add shebang line to cron script
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Wed, 20 Dec 2006 08:48:33 +0100
+
+univention-ssl (1.10.3-2) unstable; urgency=low
+
+  * add a script that reads information about the validity of the SSL
+    certificate and stores it Univention Baseconfig (ssl/validity/*)
+  * add a daily cron that updates the validity information if
+    ssl/validity/check=yes
+  * add #DEBHELPER# to postinst
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Tue, 19 Dec 2006 18:01:23 +0100
+
+univention-ssl (1.10-7) unstable; urgency=low
+
+  * check if the domainname was really changed
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 13 Dec 2006 07:20:55 +0100
+
+univention-ssl (1.10-6) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  4 Dec 2006 11:36:51 +0100
+
+univention-ssl (1.10-5) unstable; urgency=low
+
+  * added baseconfig variable ssl/default/days for the default ssl certificate
+  lifetime
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  9 Oct 2006 17:16:46 +0200
+
+univention-ssl (1.10-3) unstable; urgency=low
+
+  * check for the associatedDomain attribute when creating the certificate
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue,  6 Jun 2006 06:53:16 +0200
+
+univention-ssl (1.10-1) unstable; urgency=low
+
+  * set owner of new certificates to host-account
+
+ -- Ingo Steuwer <steuwer@univention.de>  Wed, 29 Mar 2006 15:49:37 +0200
+
+univention-ssl (1.10-0) unstable; urgency=low
+
+  * check if FQDN is too long for creation of certificate
+
+ -- Ingo Steuwer <steuwer@univention.de>  Thu, 27 Oct 2005 12:52:15 +0200
+
+univention-ssl (1.9) unstable; urgency=low
+
+  * Add proper package description.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 29 Apr 2004 11:23:52 +0200
+
+univention-ssl (1.8) unstable; urgency=low
+
+  * create client & memberserver certificate
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 26 Apr 2004 15:37:38 +0200
+
+univention-ssl (1.7) unstable; urgency=low
+
+  * ssl config managed with baseconfig
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 17 Apr 2004 10:18:29 +0200
+
+univention-ssl (1.6) unstable; urgency=low
+
+  * create symlinx /etc/univention/ssl/$host.$domain /etc/univention/ssl/$host
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 14 Apr 2004 07:46:22 +0200
+
+univention-ssl (1.5) unstable; urgency=low
+
+  * set path to hostname.domainname
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  5 Apr 2004 15:14:14 +0200
+
+univention-ssl (1.4) unstable; urgency=low
+
+  * chgrp after create
+  * support for -days on create
+  * bugfix check for valid cert
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 30 Mar 2004 15:48:08 +0200
+
+univention-ssl (1.3) unstable; urgency=low
+
+  * generate root ca request
+  * added univention-certificate frontend
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 24 Feb 2004 08:19:38 +0100
+
+univention-ssl (1.2) unstable; urgency=low
+
+  * new versioning scheme
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 May 2003 13:48:02 +0200
+
+univention-ssl (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Mon,  8 Oct 2001 13:47:19 +0200

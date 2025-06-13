@@ -1,0 +1,175 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+exclude: "^packaging/ucslint/testframework/\
+          |^services/univention-ldb-modules/buildtools/\
+          |^services/univention-ldb-modules/third_party/
+         "
+repos:
+  - repo: https://git.knut.univention.de/univention/infrastructure/pre-commit-ucr
+    rev: '0.1.2'
+    hooks:
+      - id: ucr-flake8
+        additional_dependencies: ["flake8==7.2.0"]
+      - id: ucr-ruff
+        additional_dependencies: ["ruff==0.11.2"]
+      - id: ucr-autopep8
+        additional_dependencies: ["autopep8==2.3.2"]
+        stages: [ manual ]
+      - id: ucr-ruff-fix
+        additional_dependencies: ["ruff==0.11.2"]
+        stages: [ manual ]
+      - id: ucr-ruff-format-check
+        additional_dependencies: ["ruff==0.11.2"]
+        stages: [ manual ]
+      - id: ucr-ruff-format
+        additional_dependencies: ["ruff==0.11.2"]
+        stages: [ manual ]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    - id: check-added-large-files
+    - id: check-json
+      exclude: "/conffiles/.*[.]json$"
+    - id: check-xml
+      exclude: "/conffiles/.*[.]xml$\
+               "
+    - id: check-yaml
+      exclude: "/conffiles/.*[.]yaml$|[.]gitlab-ci/base-doc[.]yml$"
+    - id: check-merge-conflict
+    - id: pretty-format-json
+      exclude: "/conffiles/.*[.]json$\
+               "
+      args:
+        - --autofix
+        - --no-ensure-ascii
+    - id: trailing-whitespace
+      exclude: "^base/univention-config-registry/tests/unwrap/\
+                |^base/univention-lib/unittests/fstab$\
+                |^base/univention-system-setup/city-data/.*[.](txt|json)$\
+                |^doc/errata/staging/0.*template[.]yaml$\
+                |^services/univention-ldb-modules/buildtools/\
+                |^services/univention-ldb-modules/third_party/\
+                |[.]ai$\
+                |[.]csv$\
+                |[.]diff$\
+                |[.]patch$\
+                |[.]svg$\
+               "
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+    - id: python-check-blanket-noqa
+    - id: python-no-eval
+      exclude: "^management/univention-directory-manager-modules/modules/univention/admin/__init__.py\
+                |^services/univention-ldb-modules/buildtools/\
+                |^services/univention-ldb-modules/third_party/\
+                |^test/ucs-test/tests/10_ldap/52listener-filter.py\
+                |^packaging/univention-l10n/univention/l10n/umc.py"
+    - id: rst-backticks
+    - id: rst-directive-colons
+    - id: rst-inline-touching-normal
+  - repo: https://github.com/pycqa/flake8
+    rev: '7.2.0'
+    hooks:
+    - id: flake8
+      exclude: "^services/univention-ldb-modules/buildtools/\
+                |^services/univention-ldb-modules/third_party/\
+                |^packaging/ucslint/testframework/\
+               "
+  - repo: https://git.knut.univention.de/univention/infrastructure/pre-commit-debian.git
+    rev: v1.1.0
+    hooks:
+      - id: debian-control
+      - id: debian-changelog
+  - repo: https://git.knut.univention.de/univention/infrastructure/pre-commit-ucs.git
+    rev: v1.4.0
+    hooks:
+      - id: missing-executable-flag-for-python-file
+      - id: missing-executable-flag-for-shell-file
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.33.0
+    hooks:
+      - id: check-gitlab-ci
+      - id: check-jsonschema
+        alias: check-jsonschema-releases
+        name: "Check errata file"
+        files: ^doc/errata/staging/[^0].*[.]yaml$
+        args: ["--schemafile", "doc/errata/erratum.schema.json"]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.11.2'
+    hooks:
+      - id: ruff
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: ruff
+        alias: "ruff-fix"
+        stages: [ manual ]
+        args: ["--fix", "--unsafe-fixes"]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: ruff
+        alias: "ruff-statistics"
+        stages: [ manual ]
+        args: ["--statistics"]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: ruff
+        alias: "ruff-select"
+        stages: [ manual ]
+        args: ["--select", "CPY001"]
+        exclude: "^oidc/python-keycloak/\
+                  |^services/univention-ldb-modules/buildtools/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: ruff-format
+        alias: "ruff-format"
+        stages: [ manual ]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: ruff-format
+        alias: "ruff-format-check"
+        stages: [ manual ]
+        args: ["--check"]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^packaging/ucslint/testframework/\
+                 "
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        entry: isort -c
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                 "
+      - id: isort
+        alias: "isort-fix"
+        stages: [ manual ]
+        entry: isort
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                 "
+  - repo: https://github.com/hhatto/autopep8
+    rev: v2.3.2
+    hooks:
+    -   id: autopep8
+        args: ["-d"]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                  "
+    -   id: autopep8
+        alias: "autopep8-fix"
+        stages: [ manual ]
+        args: ["-i"]
+        exclude: "^services/univention-ldb-modules/buildtools/\
+                  |^services/univention-ldb-modules/third_party/\
+                  |^packaging/ucslint/testframework/\
+                  "

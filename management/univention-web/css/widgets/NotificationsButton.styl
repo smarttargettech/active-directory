@@ -1,0 +1,111 @@
+@require "../variables.styl"
+@require "../HTMLElements.styl"
+
+
+.ucsNotificationsButton
+	position: relative
+
+.ucsNotifications
+	overflow: auto
+	position: fixed
+	top: var(--layout-height-header)
+	bottom: 0
+	right: 0
+	width: 80%
+	max-width: 360px
+	border: 0px solid var(--bgc-content-body)
+	border-top-width: var(--layout-height-header-separator)
+	background-color: var(--bgc-content-container)
+	transition: transform cubic-bezier(0.4, 0, 0.6, 1) 0.15s
+	z-index: 33
+	transform: translate3d(110%, 0, 0)
+	padding: 0 spacing(2)
+	display: flex
+	flex-direction: column
+	box-shadow: var(--box-shadow)
+
+	&--open
+		transform: translate3d(0, 0, 0)
+
+.ucsNotifications__title
+	margin: spacing(2) 0
+.ucsNotifications--empty .ucsNotifications__title
+	flex: 1 0 auto
+	display: flex
+	align-items: center
+	justify-content: center
+	color: var(--font-color-contrast-middle)
+
+.ucsNotification
+	background: var(--bgc-inputfield-on-container)
+	border-radius: var(--border-radius-notification)
+	padding: spacing(2)
+	font-size: var(--font-size-4)
+	margin-bottom: spacing(2)
+
+	&--warning
+		background: var(--bgc-error)
+		.ucsNotification__closeButton
+			--button-icon-bgc-hover: rgba(0, 0, 0, 0.08)
+			--button-icon-bgc-active: rgba(0, 0, 0, 0.16)
+
+.ucsNotificationPreview .ucsNotification
+	background: var(--bgc-popup)
+	&--warning
+		background: var(--bgc-error)
+
+.ucsNotification__header
+	display: flex
+	align-items: center
+	margin-bottom: 8px
+
+.ucsNotification__title
+	flex: 1 1 auto
+
+.ucsNotification__closeButton
+	flex: 0 0 auto
+	--button-size: 1.6em
+	position: relative
+
+.ucsNotification__close-svg
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	pointer-events: none
+.ucsNotification__close-circle
+	display: block
+	fill: transparent
+	stroke: var(--font-color-contrast-high)
+	stroke-linecap: round
+	stroke-dasharray: 283
+	stroke-dashoffset: 0
+	stroke-width: 10px
+	transform-origin: 50% 50%
+	transform: scale(1, -1) rotate(90deg)
+.ucsNotificationPreview--draining .ucsNotification__close-circle
+	stroke-dashoffset: 283
+	transition: stroke-dashoffset linear 4s
+
+.ucsNotification__content
+	padding: 0 !important
+
+.ucsNotificationPreview
+	position: fixed
+	z-index: 32
+	top: calc(var(--layout-height-header) + 1rem)
+	right: var(--layout-spacing-unit)
+	width: 90vw
+	max-width: 300px
+	opacity: 0
+	transition: opacity 0ms
+	box-shadow: var(--box-shadow)
+	border-radius: var(--border-radius-notification)
+
+	.ucsNotification
+		position: relative
+		margin: 0
+
+	&--open
+		opacity: 1

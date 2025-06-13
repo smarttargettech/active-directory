@@ -1,0 +1,98 @@
+@require "variables.styl"
+
+$gridItemPadding = spacing(1)
+.umcGridTile .dgrid
+	clear: both
+	border: none
+	margin: 0 s('calc(-1 * (%s))', $gridItemPadding)
+
+.umcGridTile .dgrid-scroller
+	max-height: inherit
+
+.umcGridTile .dgrid-header
+	display: none
+
+.umcGridTile .dgrid-preload
+	clear: both
+
+.umcGridTile
+	.umcGridHeader
+		padding-bottom: 10px
+		float: left
+
+		.dijitIcon
+			display: none
+
+	.umcGridTileWrapperItem
+		padding: $gridItemPadding
+		&.dgrid-selected
+			background-color: transparent
+
+	.umcGridTileItem
+		--local-border-color: transparent
+		position: relative
+		outline: none
+		padding: calc(2 * var(--layout-spacing-unit))
+		background-color: var(--bgc-inputfield-on-body)
+		transition: background-color 0.25s, border 0.25s
+		box-shadow: var(--box-shadow)
+		border: 1px solid var(--local-border-color)
+		border-radius: var(--border-radius-container)
+		font-size: var(--font-size-4)
+		display: grid
+		grid-template-columns: auto 1fr
+		grid-template-rows: auto 1fr
+		grid-template-areas: "icon name" "icon description"
+		gap: var(--layout-spacing-unit) @padding
+		cursor: pointer
+		height: 8rem
+
+		&:hover
+			--local-border-color: var(--font-color-contrast-low)
+
+		.umcGridTileName
+			font-weight: 600
+			overflow-wrap: break-word
+			grid-area: name
+
+		.umcGridTileDescription
+			grid-area: description
+
+		.umcGridTileDescription > div,
+		.umcGridTileName
+			overflow: hidden
+			text-overflow: ellipsis
+			white-space: nowrap
+
+		.umcGridTileName,
+		.umcGridTileDescription
+			overflow: hidden
+
+		.umcGridTileIcon
+			align-self: center
+			grid-area: icon
+			height: 80px
+			width: 80px
+			border-radius: var(--border-radius-circles)
+			color: var(--font-color-contrast-high)
+			font-size: var(--font-size-1)
+			font-weight: var(--font-weight-bold)
+			background: var(--bgc-content-body)
+			background-size: cover
+			background-position: center center
+			background-repeat: no-repeat
+			display: flex
+			align-items: center
+			justify-content: center
+
+		.umcGridTileContextIcon
+			position: absolute
+			top: var(--layout-spacing-unit)
+			right: var(--layout-spacing-unit)
+
+
+// no left/right padding for full size item
+@media (max-width: $xxs-max)
+	.umcGridTile .umcGridTileWrapperItem
+		padding-left: 0
+		padding-right: 0

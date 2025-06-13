@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+case "$1" in
+	start)
+		PATH=/sbin:/bin:/usr/sbin:/usr/bin
+		debug_level="$(ucr get dns/debug/level)"
+		max_socks="$(ucr get dns/max-socks)"
+
+		exec /usr/sbin/named -c /etc/bind/named.conf -p 7777 -u bind -f -d ${debug_level:-0} ${max_socks:+-S "$max_socks"}
+		;;
+	reload)
+		/usr/sbin/rndc -p 55555 reload
+		;;
+	stop)
+		/usr/sbin/rndc -p 55555 stop
+		;;
+	wait-for-startup)
+		timeout="$(ucr get dns/timeout-start)"
+		/usr/bin/timeout "${timeout:-120}" /bin/sh -c \
+			"until rndc -p 55555 status | grep --quiet 'server is up and running'; do sleep 1; done"
+		;;
+esac

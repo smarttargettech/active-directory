@@ -1,0 +1,60 @@
+Source: univention-nagios
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.8.2
+
+Package: univention-nagios-client
+Architecture: any
+Depends:
+ bind9-dnsutils,
+ cron,
+ dpt-i2o-raidutils,
+ lmdb-utils,
+ monitoring-plugins,
+ nagios-nrpe-server,
+ shell-univention-lib,
+ univention-base-files,
+ univention-config,
+ univention-directory-listener,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-monitoring-client,
+ univention-nagios-common (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
+Conflicts:
+ nagios2 (<< 3.0),
+Breaks:
+ nagios2 (<< 3.0),
+Description: UCS: nagios client support
+ This package installs the required packages to allow clients
+ to be monitored by nagios.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-nagios-common
+Architecture: any
+Depends:
+ shell-univention-lib,
+ univention-config,
+ univention-directory-listener,
+ univention-directory-manager-tools (>> 7.0.147),
+ ${misc:Depends},
+Conflicts:
+ nagios2 (<< 3.0),
+Breaks:
+ nagios2 (<< 3.0),
+Description: UCS: nagios client support
+ This package installs the required packages to allow clients
+ to be monitored by nagios.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

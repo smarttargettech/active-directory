@@ -1,0 +1,114 @@
+univention-nagios-s4-connector (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:49 +0200
+
+univention-nagios-s4-connector (7.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:35 +0100
+
+univention-nagios-s4-connector (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:15 +0100
+
+univention-nagios-s4-connector (6.0.4) unstable; urgency=medium
+
+  * Bug #56367: remove UDM integration for Nagios server
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:01 +0100
+
+univention-nagios-s4-connector (6.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:40 +0100
+
+univention-nagios-s4-connector (6.0.2) unstable; urgency=medium
+
+  * Bug #56530: check only for Python 3 services
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:24 +0100
+
+univention-nagios-s4-connector (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:28 +0100
+
+univention-nagios-s4-connector (5.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:44 +0100
+
+univention-nagios-s4-connector (5.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:37 +0100
+
+univention-nagios-s4-connector (5.0.1-1) unstable; urgency=medium
+
+  * Bug #54748: add dependencies to monitoring packages
+
+ -- Florian Best <best@univention.de>  Thu, 23 Jun 2022 18:46:36 +0200
+
+univention-nagios-s4-connector (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:25 +0200
+
+univention-nagios-s4-connector (4.0.1-2) unstable; urgency=medium
+
+  * Bug #49176: detect running univention-s4-connector service more
+    graceful and strict
+
+ -- Florian Best <best@univention.de>  Tue, 21 May 2019 21:18:45 +0200
+
+univention-nagios-s4-connector (4.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Thu, 20 Dec 2018 17:29:19 +0100
+
+univention-nagios-s4-connector (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:40 +0100
+
+univention-nagios-s4-connector (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:40 +0100
+
+univention-nagios-s4-connector (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:55 +0200
+
+univention-nagios-s4-connector (1.0.0-3) unstable; urgency=low
+
+  * use nrpe (Bug #37006)
+
+ -- Felix Botner <botner@univention.de>  Wed, 09 Dec 2015 09:00:45 +0100
+
+univention-nagios-s4-connector (1.0.0-2) unstable; urgency=low
+
+  * return OK if connector/s4/autostart is not true (Bug #37006)
+
+ -- Felix Botner <botner@univention.de>  Thu, 26 Nov 2015 12:07:42 +0100
+
+univention-nagios-s4-connector (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Bug #37006)
+
+ -- Felix Botner <botner@univention.de>  Thu, 26 Nov 2015 10:14:19 +0100

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e -u
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"
+
+init

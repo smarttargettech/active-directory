@@ -1,0 +1,31 @@
+# Build
+
+In order to build the UMC application, call 'make build'. This will start the
+Dojo build process and will create a compressed JavaScript file that contains
+all main modules used in the code (build/dojo/dojo.js). All other modules still
+exist as separate module files which are also compressed. The build process
+will create a new subdirectory 'build' to which all necessary files are store.
+
+
+# Development
+
+The Dojo build process takes some time. In order to develop, call "make
+build-dev" to shorten the build process. The directory tmp is then created and
+updated. Herein, JavaScript and stylus files are symbolic links to their
+sources. The tmp directory can be hooked into /var/www via a symbolic link.
+Since all of the files are simply symbolic links to the original source files,
+they can be modified directly in order to perform 'live' development.
+
+Stylus files need to compiled to CSS files, nevertheless. Simply run "make
+build-dev" to recompile only CSS files.
+
+
+# Debugging
+
+Debugging in JavaScript can be somewhat cumbersome since modules are loaded
+dynamically by Dojo. Error messages thus do not have useful tracebacks (they
+point to the position where the file was dynamically loaded). Working with a
+release build, one may change the included file '.../dojo/dojo.js' to
+'.../dojo/dojo.js.uncompressed.js'. This will load the uncompressed version
+of the build file (which contains all main modules). Tracebacks within modules
+contained in this file can be correctly traced back.

@@ -1,0 +1,87 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test Univention Config Registry set
+## bugs: [11655,31795]
+## tags:
+##  - basic
+##  - apptest
+## exposure: careful
+
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+Assert () { # Assert $1 = $2, optional error message $3
+	if [ "$1" != "$2" ]; then
+		echo "Test failed. ${3:-Got \"$1\" Expected \"$2\"}"
+		exit 110
+	fi
+}
+
+##### Beginning #####
+out="$(mktemp)"
+trap 'rm -f "$out" ; ucr_restore >/dev/null' EXIT
+ucr unset nameserver3 foo bar >/dev/null 2>&1
+
+##### Test nameserver3 #####
+debug Create nameserver3
+ucr set nameserver3=192.168.0.3 >"$out"
+Assert "$(VAL File <"$out")" "/etc/resolv.conf"
+Assert "$(awk  'NR==1 {print $1}' "$out")" "Create"
+Assert "$(grep -Ev '^(File|Module|Script):|^Create' "$out")" ""
+
+debug Get nameserver3
+ucr get nameserver3 > "$out"
+Assert "$(cat "$out")" "192.168.0.3"
+
+debug Set nameserver3
+ucr set nameserver3="192.168.0.3" >"$out"
+ucr get nameserver3 >"$out"
+Assert "$(cat "$out")" "192.168.0.3"
+
+##### Test foo and bar #####
+debug Create foo
+ucr set foo=foo >"$out"
+Assert "$(awk 'NR==1 {print $1}' "$out")" "Create"
+Assert "$(grep -Ev '^(File|Module|Script):|^Create' "$out")" ""
+
+debug Change foo
+ucr set foo=bar >"$out"
+Assert "$(awk 'NR==1 {print $1}' "$out")" "Setting"
+Assert "$(grep -Ev '^(File|Module|Script):|^Setting' "$out")" ""
+
+debug Set foo foo
+ucr set foo=bar foo=bar >"$out"
+Assert "$(awk '$0 !~ /^(Module|Script):/ {print $1}' "$out")" $'Setting\nSetting'
+
+debug Unset foo
+ucr unset foo >"$out"
+Assert "$(awk 'NR==1 {print $1}' "$out")" "Unsetting"
+Assert "$(grep -Ev '^(File|Module|Script):|^Unsetting' "$out")" ""
+
+debug Set foo bar
+ucr set foo=bar bar=foo >"$out"
+Assert "$(awk '$0 !~ /^(Module|Script):/ {print $1}' "$out")" $'Create\nCreate'
+
+debug Get foo bar
+ucr get foo >"$out"
+Assert "$(cat "$out")" "bar"
+
+ucr get bar >"$out"
+Assert "$(cat "$out")" "foo"
+
+debug Unset foo bar
+ucr unset foo bar >"$out"
+Assert "$(awk '$0 !~ /^(Module|Script):/ {print $1}' "$out")" $'Unsetting\nUnsetting'
+Assert "$(grep -Ev '^(File|Module|Script):|^Unsetting' "$out")" ""
+
+debug Get foo bar
+ucr get foo >"$out"
+Assert "$(cat "$out")" ""
+
+ucr get bar > "$out"
+Assert "$(cat "$out")" ""
+
+##### End #####
+exit 0

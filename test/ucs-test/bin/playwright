@@ -1,0 +1,2 @@
+#!/bin/sh
+exec pytest -l -vvv --tb=native -s -p univention.testing.pytest_univention_playwright.fixtures -p repeat "$@"

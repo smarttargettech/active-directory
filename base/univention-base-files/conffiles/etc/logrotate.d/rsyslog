@@ -1,0 +1,55 @@
+@%@UCRWARNING=# @%@
+
+@!@
+# flake8: noqa
+from univention.lib.ucrLogrotate import getLogrotateConfig
+from re import findall
+
+LOGS = """
+/var/log/syslog
+/var/log/mail.info
+/var/log/mail.warn
+/var/log/mail.err
+/var/log/mail.log
+/var/log/news.crit
+/var/log/news.err
+/var/log/news.notice
+/var/log/daemon.log
+/var/log/kern.log
+/var/log/auth.log
+/var/log/user.log
+/var/log/lpr.log
+/var/log/cron.log
+/var/log/debug
+/var/log/messages
+"""
+FILES = {}
+for (path, cat) in findall(r'(/var/log/(\w+)(?:[.]\w+)?)', LOGS):
+    FILES.setdefault(cat, (set(), {}))[0].add(path)
+
+other_logfiles = set()
+other_settings = getLogrotateConfig('syslog-other', configRegistry)
+for (cat, (paths, settings)) in list(FILES.items()):
+    custom = getLogrotateConfig(cat, configRegistry)
+    if custom == other_settings:
+        other_logfiles |= paths
+        del FILES[cat]
+    else:
+        settings.update(custom)
+
+FILES[None] = (other_logfiles, other_settings)
+
+for (_cat, (paths, settings)) in sorted(FILES.items(), key=lambda x: str(x[0])):
+    for path in sorted(paths):
+        print(path)
+    print('{')
+    for setting in sorted(settings.values()):
+        print('\t%s' % (setting, ))
+    print("""\
+	delaycompress
+	sharedscripts
+	postrotate
+		/usr/lib/rsyslog/rsyslog-rotate
+	endscript
+}""")  # noqa: E101
+@!@

@@ -1,0 +1,80 @@
+#!/usr/bin/python3
+#
+# Univention update uniqueMember
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2008-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+
+from sys import exit, stderr
+
+from ldap import MOD_REPLACE
+
+import univention.config_registry
+import univention.uldap
+
+
+def main():  # type: () -> int
+    ucr = univention.config_registry.ConfigRegistry()
+    ucr.load()
+
+    if ucr.get("server/role", "dummy") not in {"domaincontroller_master", "domaincontroller_backup", "domaincontroller_slave"}:
+        return 0
+
+    # ldap connection
+    try:
+        lo = univention.uldap.getRootDnConnection()
+    except Exception as ex:
+        print("failed to get ldap connection: %s" % (ex,), file=stderr)
+        return 1
+
+    # search groups and del/add uniqueMember
+    filterstr = "(&(objectClass=posixGroup)(uniqueMember=*))"
+    results = lo.search(attr=['uniqueMember'], filter=filterstr)
+    for dn, attrs in results:
+        uniqueMember = attrs.get('uniqueMember', [])
+        if uniqueMember:
+            try:
+                # update groups
+                ml = [
+                    (MOD_REPLACE, 'uniqueMember', uniqueMember),
+                ]
+                print(f'modify {dn}')
+                lo.modify_s(dn, ml)
+            except Exception as e:
+                print("E: modifying %s failed error with %s" % (dn, e), file=stderr)
+                print("   please check the membership of this group", file=stderr)
+                return 1
+
+    return 0
+
+
+if __name__ == '__main__':
+    exit(main())

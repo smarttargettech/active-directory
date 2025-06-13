@@ -1,0 +1,67 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Univention Directory Manager JSON-HTTP interface</title>
+    <link rel="stylesheet" type="text/css" href="../swaggerui/swagger-ui.css" />
+    <link rel="icon" type="image/png" href="../swaggerui/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../swaggerui/favicon-16x16.png" sizes="16x16" />
+    <style>
+      html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body
+      {
+        margin:0;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="swagger-ui"></div>
+
+    <script src="../swaggerui/swagger-ui-bundle.js" charset="UTF-8"> </script>
+    <script src="../swaggerui/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+    <script>
+
+    const objectType = new URLSearchParams(window.location.search).get('module');
+    let openapi = "../openapi.json";
+    if (/^[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+$/.test(objectType)) {
+        openapi = `../${encodeURIComponent(objectType.split('/')[0])}/${encodeURIComponent(objectType.split('/')[1])}/openapi.json`;
+    }
+
+    window.onload = function() {
+      // Begin Swagger UI call region
+      const ui = SwaggerUIBundle({
+        url: openapi,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset.slice(1) // No Topbar
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      });
+      // End Swagger UI call region
+
+      window.ui = ui;
+    };
+  </script>
+  </body>
+</html>

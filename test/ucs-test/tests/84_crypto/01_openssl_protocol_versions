@@ -1,0 +1,47 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check ssl_client support
+## tags:
+##  - basic
+##  - skip_admember
+## exposure: safe
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+set -x
+
+RETVAL=100
+
+openssl s_server \
+    -accept 10443 \
+    -www \
+    -cert /etc/univention/ssl/$(hostname -f)/cert.pem \
+    -key /etc/univention/ssl/$(hostname -f)/private.key &
+SERVER_PID=$!
+
+sleep 3
+
+finish () {
+    kill $SERVER_PID
+}
+trap finish EXIT
+
+for PROTO in ssl2 ssl3 tls1_2
+do
+    LANG=C openssl s_client "-$PROTO" 2>&1 | grep 'unknown option' && continue
+    echo "Testing $PROTO ..."
+    out="$(echo 'GET /index.html' | openssl s_client \
+        -connect "$(hostname -f):10443" \
+        -CAfile /etc/univention/ssl/ucsCA/CAcert.pem \
+        -verify_return_error \
+        -quiet \
+        "-${PROTO}" 2>&1)"
+    res=$?
+    case "$PROTO" in
+    ssl*) [ $res -ne 0 ] || fail_test 110 "$PROTO supported, but should not: (res=$res): $out" ;;
+    tls*) [ $res -eq 0 ] || fail_test 110 "$PROTO not supported, but should: (res=$res): $out" ;;
+    esac
+done
+
+exit $RETVAL

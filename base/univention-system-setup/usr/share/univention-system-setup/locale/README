@@ -1,0 +1,9 @@
+   * languagelist - Liste der unterstützen Sprachen (aus dem Debian Installer
+     Paket localechooser)
+
+   * timezone - alle Zeitzonen
+
+   * short-list/*.short - enthält für jede Sprache, die in mehrere Ländern
+     gesprochen wird eine Liste der Länder (short-list/de.short -> Belgium,
+     Germany, Liechtenstein, Luxembourg, Austria, Switzerland)
+     Aus dem Debian Installer

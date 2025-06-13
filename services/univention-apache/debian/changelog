@@ -1,0 +1,1905 @@
+univention-apache (14.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:51 +0200
+
+univention-apache (14.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:29 +0100
+
+univention-apache (14.0.5) unstable; urgency=medium
+
+  * Bug #57378 switch product logos
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Jun 2024 16:00:57 +0200
+
+univention-apache (14.0.4) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-apache (14.0.3) unstable; urgency=medium
+
+  * Bug #46120: Removed module check from apache2 ssl and proxy config
+
+ -- Mika Westphal <westphal@univention.de>  Fri, 08 Mar 2024 00:18:30 +0100
+
+univention-apache (14.0.2) unstable; urgency=medium
+
+  * Bug #56003: bind9 service was renamed to named
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:25 +0100
+
+univention-apache (14.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:22 +0100
+
+univention-apache (13.0.4) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:18 +0100
+
+univention-apache (13.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:36 +0100
+
+univention-apache (13.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:22 +0100
+
+univention-apache (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:35 +0100
+
+univention-apache (12.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:55 +0100
+
+univention-apache (12.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:33 +0100
+
+univention-apache (12.0.3-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:34 +0100
+
+univention-apache (12.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:44 +0100
+
+univention-apache (12.0.2-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Sep 2022 19:53:45 +0200
+
+univention-apache (12.0.1-1) unstable; urgency=medium
+
+  * Bug #54306: make it possible to allow only TLS 1.3
+
+ -- Florian Best <best@univention.de>  Fri, 04 Mar 2022 15:58:10 +0100
+
+univention-apache (12.0.0-3) unstable; urgency=medium
+
+  * Bug #53359: Migrated univention-add-vhost to Python 3
+
+ -- Eduardo Ruiz Moreno <emoreno@univention.de>  Thu, 21 Oct 2021 16:26:10 +0100
+
+univention-apache (12.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 06 Nov 2020 14:26:10 +0100
+
+univention-apache (11.0.1-21) unstable; urgency=medium
+
+  * Bug #52320: add configuration for StartThreads and Max/MinSpareServers
+
+ -- Florian Best <best@univention.de>  Fri, 06 Nov 2020 14:26:09 +0100
+
+univention-apache (11.0.1-20) unstable; urgency=medium
+
+  * Bug #51294: add more apache settings configurable via UCR
+
+ -- Florian Best <best@univention.de>  Mon, 02 Nov 2020 12:20:44 +0100
+
+univention-apache (11.0.1-19) unstable; urgency=medium
+
+  * Bug #51077: make UCR templates python3-compatible
+  * Bug #44766: ucs-sites.conf template was missing @%@UCRWARNING
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 15 Apr 2020 13:03:31 +0200
+
+univention-apache (11.0.1-18) unstable; urgency=medium
+
+  * Bug #51077: make UCR templates python3-compatible
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 08 Apr 2020 15:57:38 +0200
+
+univention-apache (11.0.1-17) unstable; urgency=medium
+
+  * Bug #50936: increased timeout in univention-add-vhost
+
+ -- Felix Botner <botner@univention.de>  Thu, 12 Mar 2020 10:53:18 +0100
+
+univention-apache (11.0.1-16) unstable; urgency=medium
+
+  * Bug #50901: Break circular dependency
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 09 Mar 2020 10:55:10 +0100
+
+univention-apache (11.0.1-15) unstable; urgency=medium
+
+  * Bug #50901: Make univention-apache-vhost a dependency rather than a
+    recommendation to install it by default
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 06 Mar 2020 15:25:33 +0100
+
+univention-apache (11.0.1-14) unstable; urgency=medium
+
+  * Bug #45115: Wording
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Nov 2019 16:32:36 +0100
+
+univention-apache (11.0.1-13) unstable; urgency=medium
+
+  * Bug #45115: Reload services (and check; with timeout)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 25 Nov 2019 15:45:59 +0100
+
+univention-apache (11.0.1-12) unstable; urgency=medium
+
+  * Bug #45115: Remove aliases, create settings/service object
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 15 Nov 2019 10:10:02 +0100
+
+univention-apache (11.0.1-11) unstable; urgency=medium
+
+  * Bug #45115: Allow '*' as hostname, meaning no explicit ServerName
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 14 Nov 2019 10:46:28 +0100
+
+univention-apache (11.0.1-10) unstable; urgency=medium
+
+  * Bug #45115: Fix empty IncludeOptional
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 07 Nov 2019 08:52:15 +0100
+
+univention-apache (11.0.1-9) unstable; urgency=medium
+
+  * Bug #45115: Better exception handling, removing lines in join script
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 06 Nov 2019 12:36:47 +0100
+
+univention-apache (11.0.1-8) unstable; urgency=medium
+
+  * Bug #45115: Rename UCR template
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 01 Nov 2019 14:07:59 +0100
+
+univention-apache (11.0.1-7) unstable; urgency=medium
+
+  * Bug #45115: Make univention-apache-vhost installed
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 31 Oct 2019 12:17:02 +0100
+
+univention-apache (11.0.1-6) unstable; urgency=medium
+
+  * Bug #45115: Fix template; new options in add-vhost
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 31 Oct 2019 11:51:55 +0100
+
+univention-apache (11.0.1-5) unstable; urgency=medium
+
+  * Bug #45115: fixed template
+
+ -- Felix Botner <botner@univention.de>  Tue, 29 Oct 2019 17:46:50 +0100
+
+univention-apache (11.0.1-4) unstable; urgency=medium
+
+  * Bug #45115: fixed template
+
+ -- Felix Botner <botner@univention.de>  Tue, 29 Oct 2019 17:11:03 +0100
+
+univention-apache (11.0.1-3) unstable; urgency=medium
+
+  * Bug #45115: merged from branch
+      UCRV doc by Dirk Wiesenthal <wiesenthal@univention.de>
+      new feature custom vhosts by Jannik Ahlers <ahlers@univention.de>
+
+ -- Felix Botner <botner@univention.de>  Tue, 29 Oct 2019 15:58:45 +0100
+
+univention-apache (11.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 10:40:51 +0100
+
+univention-apache (11.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:42 +0100
+
+univention-apache (10.0.2-2) unstable; urgency=medium
+
+  * Bug #44921: Use X-Forwarded-Proto
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 02 May 2018 18:34:04 +0200
+
+univention-apache (10.0.2-1) unstable; urgency=medium
+
+  * Restart apache2 in postinst only if configtest is successful
+    (Bug #46467)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 06 Mar 2018 06:44:56 +0100
+
+univention-apache (10.0.2-0) unstable; urgency=medium
+
+  * Bug #45857: disable mpm_event
+
+ -- Felix Botner <botner@univention.de>  Wed, 31 Jan 2018 13:20:29 +0100
+
+univention-apache (10.0.1-0) unstable; urgency=medium
+
+  * Bug #46121: remove template
+
+ -- Felix Botner <botner@univention.de>  Tue, 30 Jan 2018 10:55:49 +0100
+
+univention-apache (10.0.0-7) unstable; urgency=medium
+
+  * Bug #46121: remove template
+
+ -- Felix Botner <botner@univention.de>  Tue, 30 Jan 2018 10:17:57 +0100
+
+univention-apache (10.0.0-6) unstable; urgency=medium
+
+  * Bug #46121: remove php from univention-apache
+
+ -- Felix Botner <botner@univention.de>  Tue, 23 Jan 2018 17:15:56 +0100
+
+univention-apache (10.0.0-5) unstable; urgency=low
+
+  * Bug #46065: Update UCR template for Apache-2.4
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 17 Jan 2018 15:43:17 +0100
+
+univention-apache (10.0.0-4) unstable; urgency=medium
+
+  * Bug #45922: remove UCR variable "apache2/ssl/v3".
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:24:08 +0100
+
+univention-apache (10.0.0-3) unstable; urgency=medium
+
+  * Bug #45893: add explicit dependency on apache2
+
+ -- Florian Best <best@univention.de>  Tue, 19 Dec 2017 11:03:13 +0100
+
+univention-apache (10.0.0-2) unstable; urgency=medium
+
+  * Bug #45857: remove apache2-mpm-prefork dependency
+
+ -- Felix Botner <botner@univention.de>  Tue, 12 Dec 2017 11:45:57 +0100
+
+univention-apache (10.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:33 +0100
+
+univention-apache (9.0.5-13) unstable; urgency=medium
+
+  * Bug #45449: use regex patterns for force https exclusion rules
+
+ -- Florian Best <best@univention.de>  Mon, 25 Sep 2017 12:12:42 +0200
+
+univention-apache (9.0.5-12) unstable; urgency=medium
+
+  * Bug #44894: allow UMC to be removed on a basesystem
+
+ -- Florian Best <best@univention.de>  Tue, 22 Aug 2017 18:13:20 +0200
+
+univention-apache (9.0.5-11) unstable; urgency=medium
+
+  * Bug #44628: fix syntax error
+
+ -- Florian Best <best@univention.de>  Mon, 22 May 2017 14:45:00 +0200
+
+univention-apache (9.0.5-10) unstable; urgency=medium
+
+  * Bug #44628: make excludes for force_https configurable
+
+ -- Florian Best <best@univention.de>  Fri, 19 May 2017 11:22:06 +0200
+
+univention-apache (9.0.5-9) unstable; urgency=medium
+
+  * Bug #44146: move to updater postup
+
+ -- Florian Best <best@univention.de>  Fri, 31 Mar 2017 13:21:23 +0200
+
+univention-apache (9.0.5-8) unstable; urgency=medium
+
+  * Bug #44146: only move non-conffiles
+
+ -- Florian Best <best@univention.de>  Fri, 31 Mar 2017 13:12:11 +0200
+
+univention-apache (9.0.5-7) unstable; urgency=medium
+
+  * Bug #44146: Correct path of moved conffiles in 000-default.d
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 31 Mar 2017 09:24:51 +0200
+
+univention-apache (9.0.5-6) unstable; urgency=medium
+
+  * Bug #44146: remove dead symlinks on upgrade to UCS 4.2
+
+ -- Florian Best <best@univention.de>  Thu, 30 Mar 2017 18:29:17 +0200
+
+univention-apache (9.0.5-5) unstable; urgency=medium
+
+  * Bug #44146: remove dead symlinks on upgrade to UCS 4.2
+
+ -- Florian Best <best@univention.de>  Thu, 30 Mar 2017 18:21:53 +0200
+
+univention-apache (9.0.5-4) unstable; urgency=medium
+
+  * Bug #44124: add .conf suffix to files in /etc/apache2/ucs-sites.conf.d/
+
+ -- Florian Best <best@univention.de>  Wed, 29 Mar 2017 12:36:27 +0200
+
+univention-apache (9.0.5-3) unstable; urgency=medium
+
+  * Bug #32521: backup robots.txt only on upgrade to 4.2
+
+ -- Eduard Mai <mai@univention.de>  Fri, 24 Mar 2017 18:14:09 +0100
+
+univention-apache (9.0.5-2) unstable; urgency=medium
+
+  * Bug #42296: require the new apache 2.4 .conf suffix for includes
+
+ -- Florian Best <best@univention.de>  Fri, 24 Mar 2017 18:28:08 +0100
+
+univention-apache (9.0.5-1) unstable; urgency=medium
+
+  * Bug #32521: fix type Useragent/User-agent
+
+ -- Eduard Mai <mai@univention.de>  Fri, 24 Mar 2017 17:13:50 +0100
+
+univention-apache (9.0.5-0) unstable; urgency=medium
+
+  * Bug #32521: add UCR template for robots.txt
+
+ -- Eduard Mai <mai@univention.de>  Fri, 24 Mar 2017 15:57:47 +0100
+
+univention-apache (9.0.4-2) unstable; urgency=medium
+
+  * Bug #43695: remove unneeded ucr variables
+
+ -- Florian Best <best@univention.de>  Mon, 20 Mar 2017 14:17:48 +0100
+
+univention-apache (9.0.4-1) unstable; urgency=low
+
+  * Bug #43470: Handle UCRV */autostart through systemd
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Mar 2017 08:52:56 +0100
+
+univention-apache (9.0.3-3) unstable; urgency=medium
+
+  * Bug #43695: Fixing previously unescaped bash-test.
+
+ -- Richard Ulmer <ulmer@univention.de>  Wed, 15 Mar 2017 14:58:20 +0100
+
+univention-apache (9.0.3-2) unstable; urgency=medium
+
+  *  Bug #43695: Unsetting old ucr variables in univention-apache.postinst
+
+ -- Richard Ulmer <ulmer@univention.de>  Mon, 13 Mar 2017 09:43:30 +0100
+
+univention-apache (9.0.3-1) unstable; urgency=medium
+
+  * The SSL proxy check peer cn and peer name need to be disabled since
+    the docker container web interfaces are available via 127.0.0.1 and
+    not via FQDN (Bug #43813)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 11 Mar 2017 13:33:14 +0100
+
+univention-apache (9.0.2-4) unstable; urgency=medium
+
+  * Bug #42231: No need for certificate variables
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 02 Mar 2017 19:48:29 +0100
+
+univention-apache (9.0.2-3) unstable; urgency=medium
+
+  * Bug #42231: No relative links allowed
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 01 Mar 2017 02:19:36 +0100
+
+univention-apache (9.0.2-2) unstable; urgency=medium
+
+  * Bug #42228: move entries.json to univention-wen meta.json
+
+ -- Florian Best <best@univention.de>  Wed, 08 Feb 2017 11:47:55 +0100
+
+univention-apache (9.0.2-1) unstable; urgency=medium
+
+  * Bug #42228: remove ucs-overview
+
+ -- Florian Best <best@univention.de>  Thu, 02 Feb 2017 20:49:51 +0100
+
+univention-apache (9.0.1-1) unstable; urgency=low
+
+  * Bug #42196: Fix default configuration
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Sep 2016 10:10:19 +0200
+
+univention-apache (9.0.0-4) unstable; urgency=low
+
+  * Bug #42196: apache config upgrade
+
+ -- Felix Botner <botner@univention.de>  Tue, 06 Sep 2016 18:09:56 +0200
+
+univention-apache (9.0.0-3) unstable; urgency=low
+
+  * Bug #42196: apache config upgrade
+
+ -- Felix Botner <botner@univention.de>  Tue, 06 Sep 2016 17:25:18 +0200
+
+univention-apache (9.0.0-2) unstable; urgency=low
+
+  * Bug #42196: apache config upgrade
+
+ -- Felix Botner <botner@univention.de>  Tue, 06 Sep 2016 17:09:41 +0200
+
+univention-apache (9.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:58:37 +0200
+
+univention-apache (8.0.1-7) unstable; urgency=medium
+
+  * Bug #41175: changed a few links in the ucs overview footer
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 09 Jun 2016 14:38:45 +0200
+
+univention-apache (8.0.1-6) unstable; urgency=low
+
+  * Bug #40304: Show Welcome to <appname> instead of UCS
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 14 Jan 2016 08:35:02 +0100
+
+univention-apache (8.0.1-5) unstable; urgency=medium
+
+  * Bug #40121: fix syntax error
+
+ -- Florian Best <best@univention.de>  Tue, 12 Jan 2016 12:21:03 +0100
+
+univention-apache (8.0.1-4) unstable; urgency=medium
+
+  * Bug #40070: don't rewrite port on ucs-overview if accessed via non default
+  	port
+
+ -- Florian Best <best@univention.de>  Fri, 08 Jan 2016 13:34:38 +0100
+
+univention-apache (8.0.1-3) unstable; urgency=medium
+
+  * Bug #40121: fix HTTP status when redirecting to HTTPS
+  * Bug #40173: don't redirect to HTTP for /server-status
+
+ -- Florian Best <best@univention.de>  Mon, 04 Jan 2016 11:23:31 +0100
+
+univention-apache (8.0.1-2) unstable; urgency=medium
+
+  * Bug #39361: Add warning about unencrypted HTTP connection to the UCS
+  	overview page
+
+ -- Florian Best <best@univention.de>  Fri, 20 Nov 2015 16:40:23 +0100
+
+univention-apache (8.0.1-1) unstable; urgency=medium
+
+  Bug #39656:
+  * Give SVG images a special treat and scale them up
+  * Remove unneeded dojox packages to reduce debian package size
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 05 Nov 2015 17:07:08 +0100
+
+univention-apache (8.0.0-7) unstable; urgency=medium
+
+  * Bug #38807: Put some of the global config into ucs sites
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 27 Oct 2015 16:59:41 +0100
+
+univention-apache (8.0.0-6) unstable; urgency=medium
+
+  * Bug #37637: Support HTTP Strict-Transport-Security (HSTS)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Oct 2015 11:23:53 +0200
+
+univention-apache (8.0.0-5) unstable; urgency=medium
+
+  * Bug #38807: Enable default-ssl without checking for certificate;
+    make ucs-sites.conf a directory; put options that are better defined
+    globally in a global file
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 06 Oct 2015 17:56:55 +0200
+
+univention-apache (8.0.0-4) unstable; urgency=medium
+
+  * Bug #38807: Rename ssl -> default-ssl; do not define default directives
+    globally, rather Include them
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 05 Oct 2015 01:05:26 +0200
+
+univention-apache (8.0.0-3) unstable; urgency=medium
+
+  * Bug #38807: Fix merge (2)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 14 Aug 2015 14:08:08 +0200
+
+univention-apache (8.0.0-2) unstable; urgency=medium
+
+  * Bug #38807: Fix merge
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 14 Aug 2015 13:43:00 +0200
+
+univention-apache (8.0.0-1) unstable; urgency=medium
+
+  * Bug #38807: Add multifiles for VHosts :80 and :443
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 14 Aug 2015 13:11:05 +0200
+
+univention-apache (7.0.16-15) unstable; urgency=low
+
+  * Bug #38391: Fix IP address by DHCP
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 01 Jul 2015 19:10:53 +0200
+
+univention-apache (7.0.16-14) unstable; urgency=low
+
+  * Bug #38016: Enable redirect to <https://>.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 30 Jun 2015 17:41:42 +0200
+
+univention-apache (7.0.16-13) unstable; urgency=low
+
+  * Bug #38391: Show real address in welcome message.
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 11 Jun 2015 12:02:20 +0200
+
+univention-apache (7.0.16-12) unstable; urgency=low
+
+  * Bug #38016: Cleanup old stuff
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 11 Jun 2015 10:21:52 +0200
+
+univention-apache (7.0.16-11) unstable; urgency=low
+
+  * Bug #38016: Fix overview page.
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 10 Jun 2015 19:21:16 +0200
+
+univention-apache (7.0.16-10) unstable; urgency=low
+
+  * Bug #38391: Show real address in welcome message.
+  * Bug #38016: Enable redirect to <https://>.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 02 Jun 2015 08:20:17 +0200
+
+univention-apache (7.0.16-9) unstable; urgency=low
+
+  * Bug #35456: Support ucs/web/overview/entries/admin/*/port_http[s]
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 10 Mar 2015 13:31:46 +0100
+
+univention-apache (7.0.16-8) unstable; urgency=low
+
+  * Bug #37566:
+  - Fix description of UCR variables (Bug #37566)
+  - Set the default value of apache2/ssl/ciphersuite to HIGH:MEDIUM:!aNULL:!MD5:!RC4
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 05 Mar 2015 09:17:58 +0100
+
+univention-apache (7.0.16-7) unstable; urgency=low
+
+  * Bug #35456: Support ucs/web/overview/entries/admin/*/port
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 04 Mar 2015 03:04:52 +0100
+
+univention-apache (7.0.16-6) unstable; urgency=low
+
+  * Add new UCR variables to allow fine-grained configuration of the mod_ssl
+    settings: (Bug #37566)
+    - apache2/ssl/tlsv11: If activated, only allow TLS 1.1 and TLS 1.2
+    - apache2/ssl/tlsv12: If activated, only allow TLS 1.2
+    - apache2/ssl/compression: Enable TLS compression (discouraged for security
+	                       reasons)
+    - apache2/ssl/ciphersuite: Select a specific set of ciphers
+    - apache2/ssl/honorcipherorder: Select server choice of ciphers instead of
+	                            client preference
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 25 Feb 2015 11:42:03 +0100
+
+univention-apache (7.0.16-5) unstable; urgency=low
+
+  * Bug #37780: Adjusted styling for the module items
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 18 Feb 2015 20:05:44 +0100
+
+univention-apache (7.0.16-4) unstable; urgency=low
+
+  * Bug #37780: Adjusted styling for the module items
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 17 Feb 2015 16:39:43 +0100
+
+univention-apache (7.0.16-3) unstable; urgency=medium
+
+  * Bug #37780: The UCS overview background image has been adjusted.
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 11 Feb 2015 19:34:05 +0100
+
+univention-apache (7.0.16-2) unstable; urgency=low
+
+  * Disable SSLv2 and SSLv3. These are legacy protocols with known security
+    problems. Support can be re-enabled by setting the UCR variable
+    apache2/ssl/v3 to "true" (Bug #36232).
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Mon, 12 Jan 2015 11:41:45 +0100
+
+univention-apache (7.0.16-1) unstable; urgency=medium
+
+  * Bug #36549: cleanup svg graphics that caused problems in IE
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 17 Nov 2014 17:55:49 +0100
+
+univention-apache (7.0.15-1) unstable; urgency=medium
+
+  Bug #36587:
+  * adjust resize handling for entries on the hidden page
+  * set windows title to the content of the h1 element
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 14 Nov 2014 17:48:09 +0100
+
+univention-apache (7.0.14-3) unstable; urgency=low
+
+  Bug #36316:
+  * removal of icon ucr variables now more generic / not role
+    specific anymore
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 05 Nov 2014 14:00:41 +0100
+
+univention-apache (7.0.14-2) unstable; urgency=low
+
+  Bug #36095:
+  * build_profile: changed "layerOptimize" to "closure" to save space
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 05 Nov 2014 12:40:44 +0100
+
+univention-apache (7.0.14-1) unstable; urgency=low
+
+  Bug #35890:
+  * reduced font size for the login error message
+  * adjusted box-shadow slightly
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 04 Nov 2014 12:30:55 +0100
+
+univention-apache (7.0.13-2) unstable; urgency=low
+
+  Bug #36095:
+  * reactivated disabled variables declarations in
+    css/variables.styl so variables can
+    be resolved again
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 04 Nov 2014 10:30:00 +0100
+
+univention-apache (7.0.13-1) unstable; urgency=low
+
+  Bug #35890:
+  * added css class for saml-app login authentication
+  * replaced old login-image with saml-login.svg
+  * adjusted line-height for the loginDialog
+  Bug #36095:
+  * replaced "IF IE" check from index.html
+  	(now shows it generally)
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 03 Nov 2014 17:18:45 +0100
+
+univention-apache (7.0.12-3) unstable; urgency=low
+
+  Bug #36095:
+  * removed margin-right for element .umcGalleryName
+    in css/gallerypane.styl
+
+ -- Drees Dormann <dormann@univention.de>  Mon, 03 Nov 2014 16:30:01 +0100
+
+univention-apache (7.0.12-2) unstable; urgency=low
+
+  Bug #36095:
+  * fixed text not displayed correctly in admin-tab tiles
+
+ -- Drees Dormann <dormann@univention.de>  Mon, 03 Nov 2014 12:18:36 +0100
+
+univention-apache (7.0.12-1) unstable; urgency=low
+
+  Bug #36337:
+  * added clearsans-1.00.zip
+  * added font.styl for clear sans
+  Bug #36095:
+  * renamed css class for samlapp
+  * stickyfooter hidden on load via dijitHidden
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 31 Oct 2014 13:16:11 +0100
+
+univention-apache (7.0.11-3) unstable; urgency=low
+
+  * removed unset of ucr icon entries to in joinscript
+    since they are now removed in postinst script
+    (Bug #36316)
+
+ -- Drees Dormann <dormann@univention.de>  Fri, 31 Oct 2014 11:06:03 +0100
+
+univention-apache (7.0.11-2) unstable; urgency=medium
+
+  * Bug #36095: fix reference error
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 31 Oct 2014 01:02:08 +0100
+
+univention-apache (7.0.11-1) unstable; urgency=low
+
+  * Bug #36095: added css classes for login elements
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 30 Oct 2014 19:54:32 +0100
+
+univention-apache (7.0.10-3) unstable; urgency=low
+
+  Bug #36095:
+    * Fixed typo
+
+ -- Drees Dormann <dormann@univention.de>  Thu, 30 Oct 2014 15:23:00 +0100
+
+univention-apache (7.0.10-2) unstable; urgency=low
+
+  Bug #36095:
+    * no-services warning is now hidden via dijitHidden
+  Bug #36316
+    * added removal of ucr icon entries to postinst script
+
+ -- Drees Dormann <dormann@univention.de>  Thu, 30 Oct 2014 15:08:44 +0100
+
+univention-apache (7.0.10-1) unstable; urgency=medium
+
+  * Bug #36316: fix font styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 29 Oct 2014 17:52:31 +0100
+
+univention-apache (7.0.9-3) unstable; urgency=low
+
+  Bug #36316:
+    * fixed no-webservices warning always displayed in service-tab
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 29 Oct 2014 16:31:50 +0100
+
+univention-apache (7.0.9-2) unstable; urgency=low
+
+  Bug #36316:
+    * fixed typo
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 29 Oct 2014 11:25:11 +0100
+
+univention-apache (7.0.9-1) unstable; urgency=low
+
+  Bug #36095: minor css adaptations for warning messages
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 29 Oct 2014 12:12:46 +0100
+
+univention-apache (7.0.8-2) unstable; urgency=low
+
+  Bug #36316:
+    * removed ucr entries for icons / added unset of icons
+    * removed icons
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 29 Oct 2014 10:35:41 +0100
+
+univention-apache (7.0.8-1) unstable; urgency=medium
+
+  * Bug #36095: adjust handling of translation resources
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Oct 2014 16:53:15 +0100
+
+univention-apache (7.0.7-1) unstable; urgency=low
+
+  Bug #36095:
+  * cleaned up and rearranged startsite.js
+  * added check if DOM nodes exist in startsite.js
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 28 Oct 2014 16:20:31 +0100
+
+univention-apache (7.0.6-2) unstable; urgency=low
+
+  Bug #36095:
+  * added automatic resize of entry button captions
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 28 Oct 2014 14:45:04 +0100
+
+univention-apache (7.0.6-1) unstable; urgency=low
+
+  Bug #36095:
+  * adjusted styling of noscript tag
+  * cleaned up html ids
+  * added new javascript module for initial query string parsing
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 28 Oct 2014 13:45:49 +0100
+
+univention-apache (7.0.5-6) unstable; urgency=low
+
+  Bug #36095:
+    * renewed links and adapted translation of links
+    * fixed typo in startsite.js which prevented selection of language
+    * removed legacy translation strings
+    * adapted translation of links
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 28 Oct 2014 10:57:40 +0100
+
+univention-apache (7.0.5-5) unstable; urgency=medium
+
+  * Bug #36095: added unzip, sed to build dependencies
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Oct 2014 10:38:37 +0100
+
+univention-apache (7.0.5-4) unstable; urgency=low
+
+  Bug #36095:
+  * renewed links and adapted translation of links
+  * fixed typo in startsite.js which prevented selection of language
+  * removed legacy translation strings
+  * adapted translation of links
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 28 Oct 2014 10:56:46 +0100
+
+univention-apache (7.0.5-3) unstable; urgency=low
+
+  Bug #36095:
+  * added shadow to language select
+  * added missing language select icon
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 28 Oct 2014 09:40:51 +0100
+
+univention-apache (7.0.5-2) unstable; urgency=low
+
+  Bug #36095:
+  * replaced tags with actual english text in index.html
+
+ -- Drees Dormann <dormann@univention.de>  Tue, 28 Oct 2014 08:38:36 +0100
+
+univention-apache (7.0.5-1) unstable; urgency=medium
+
+  Bug #36095:
+  * adjust build dependencies
+  * overload dojo/text plugin to avoid template inclusion during build time
+  * add ucslint overwrites file
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Oct 2014 17:54:09 +0100
+
+univention-apache (7.0.4-1) unstable; urgency=low
+
+  Bug #36095:
+  * adjusted sticky footer
+  * adjusted background styling
+  * adjusted media queries for entries
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 27 Oct 2014 17:38:58 +0100
+
+univention-apache (7.0.3-3) unstable; urgency=low
+
+  * [WIP] adaption of ucs-overview : changed style of dropdown menu
+    (Bug #36095)
+
+ -- Drees Dormann <dormann@univention.de>  Mon, 27 Oct 2014 16:01:11 +0100
+
+univention-apache (7.0.3-2) unstable; urgency=low
+
+  * [WIP] adaption of ucs-overview : adapted language selection box
+    (Bug #36095)
+
+ -- Drees Dormann <dormann@univention.de>  Mon, 27 Oct 2014 15:46:48 +0100
+
+univention-apache (7.0.3-1) unstable; urgency=low
+
+  * [WIP] css adaptations on ucs startsite (Bug #36095)
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 24 Oct 2014 18:48:54 +0200
+
+univention-apache (7.0.2-2) unstable; urgency=low
+
+  * [WIP] continued working on redesign of ucs-overview (Bug #36095)
+
+ -- Drees Dormann <dormann@univention.de>  Fri, 17 Oct 2014 15:01:08 +0200
+
+univention-apache (7.0.2-1) unstable; urgency=medium
+
+  * [WIP] Bug #36095: add background image with translucent pattern
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 15 Oct 2014 18:38:56 +0200
+
+univention-apache (7.0.1-1) unstable; urgency=medium
+
+  * [WIP] Bug #36095: fix footer and include rules for category buttons
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 15 Oct 2014 18:36:47 +0200
+
+univention-apache (7.0.0-2) unstable; urgency=low
+
+  * [WIP] adaption of design (Bug #36095)
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 15 Oct 2014 17:37:50 +0200
+
+univention-apache (7.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35147)
+
+ -- Felix Botner <botner@univention.de>  Fri, 20 Jun 2014 16:18:54 +0200
+
+univention-apache (6.0.16-7) unstable; urgency=low
+
+  * place ucs overview entries without priority at the end
+  (Bug #33750)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 18 Jun 2014 15:52:12 +0100
+
+univention-apache (6.0.16-6) unstable; urgency=low
+
+  * actualised links to the Univention App Center in the overview page
+  (Bug #34864)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 17 Jun 2014 18:29:32 +0100
+
+univention-apache (6.0.16-5) unstable; urgency=low
+
+  * This update corrects the generation of ucs-overview links. The links
+  are now generated in the domain-joinscript. This ensures that
+  host- and domain-identifiers match the current settings in case of
+  a domain-rejoin and after completing the appliance setup. (Bug #33447)
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 10 Dec 2013 12:43:02 +0100
+
+univention-apache (6.0.16-3) unstable; urgency=low
+
+  * Bug #33130: prevent to cache entries.json and languages.json in IE < 10
+
+ -- Florian Best <best@univention.de>  Tue, 19 Nov 2013 16:00:48 +0100
+
+univention-apache (6.0.16-1) unstable; urgency=low
+
+  * use join script to add link to DC master on non DC master system, not
+    package postinst
+  * increased join script version in order to have the new link being added on
+    updated systems, too
+  (Bug #32647)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 06 Nov 2013 12:36:42 +0100
+
+univention-apache (6.0.15-1) unstable; urgency=low
+
+  * Bug #33026: adjusted icon for DC master
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 30 Oct 2013 17:36:37 +0100
+
+univention-apache (6.0.14-1) unstable; urgency=low
+
+  * Bug #32613: localize link to wiki.univention.de
+
+ -- Florian Best <best@univention.de>  Wed, 30 Oct 2013 12:03:18 +0100
+
+univention-apache (6.0.13-4) unstable; urgency=low
+
+  * fixed typo (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 29 Oct 2013 17:25:54 +0100
+
+univention-apache (6.0.13-3) unstable; urgency=low
+
+  * ignore empty values when migrating umc/server/languages UCRVs, quoting
+    improved (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 29 Oct 2013 16:01:30 +0100
+
+univention-apache (6.0.13-2) unstable; urgency=low
+
+  * do not call xargs with "-0" in postinst (leads to some UCRVs with invalid
+    values)
+  * use json module in languages.json template instead of joining a list to a
+    string
+  (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 29 Oct 2013 11:50:33 +0100
+
+univention-apache (6.0.13-1) unstable; urgency=low
+
+  * Bug #32613: adjust links in footer of ucs overview
+
+ -- Florian Best <best@univention.de>  Tue, 29 Oct 2013 10:00:30 +0100
+
+univention-apache (6.0.12-8) unstable; urgency=low
+
+  * adapted univention-apache.postinst to not fail when unsetting legacy UCRVs
+    which contain quotes in there values (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Thu, 24 Oct 2013 13:34:07 +0200
+
+univention-apache (6.0.12-7) unstable; urgency=low
+
+  * when updating umc/server/languages UCRVs, set/unset all at once
+  (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Thu, 24 Oct 2013 10:48:59 +0200
+
+univention-apache (6.0.12-6) unstable; urgency=low
+
+  * localised LDAP master link in ucs-overview (Bug #32647)
+  * corrected legacy UCRV unset behavior of postinst (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 23 Oct 2013 15:20:59 +0200
+
+univention-apache (6.0.12-5) unstable; urgency=low
+
+  * Improve startsite.js javascript code (Bug #32932)
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 23 Oct 2013 11:25:43 +0200
+
+univention-apache (6.0.12-4) unstable; urgency=low
+
+  * also create new languages UCRVs when updating (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 23 Oct 2013 11:14:19 +0200
+
+univention-apache (6.0.12-3) unstable; urgency=low
+
+  * prefer https link to ldap master (Bug #32647)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 22 Oct 2013 15:55:58 +0200
+
+univention-apache (6.0.12-2) unstable; urgency=low
+
+  * added trailing "/" to UCS overview ldap master link (Bug #32647)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 22 Oct 2013 15:15:36 +0200
+
+univention-apache (6.0.12-1) unstable; urgency=low
+
+  * Preserve additional query parameters when switching language (Bug #32932)
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 21 Oct 2013 16:23:00 +0200
+
+univention-apache (6.0.11-1) unstable; urgency=low
+
+  * Bug #32613: adjust links in footer of ucs overview
+
+ -- Florian Best <best@univention.de>  Thu, 17 Oct 2013 09:56:44 +0200
+
+univention-apache (6.0.10-2) unstable; urgency=low
+
+  * fixed univention-apache.postinst (Bug #32647)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 16 Oct 2013 16:07:09 +0200
+
+univention-apache (6.0.10-1) unstable; urgency=low
+
+  * Bug #32838: adapt ucs-overview for displaying a warning if javascript is
+  	disabled
+
+ -- Florian Best <best@univention.de>  Mon, 14 Oct 2013 11:00:46 +0200
+
+univention-apache (6.0.9-1) unstable; urgency=low
+
+  * added UCS domaincontroller master link to UCS overview on non DC master
+    systems
+  * adapted UCS overview to only show certificate related entries on non DC
+    master/backup systems
+  (Bug #32647)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 09 Oct 2013 17:06:56 +0200
+
+univention-apache (6.0.8-1) unstable; urgency=low
+
+  * Bug #32784: don't underline active links on ucs-overview
+
+ -- Florian Best <best@univention.de>  Wed, 09 Oct 2013 09:03:48 +0200
+
+univention-apache (6.0.7-3) unstable; urgency=low
+
+  * removed locale field from entries.json UCR template
+  * adapted startsite.js to read available locales from languages.json
+  * adopt old umc/server/languages/.* UCRVs to ucs/server/languages/.*
+    during postinst when updating from a version <= 6.0.7-2
+  (Bug #32678)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 08 Oct 2013 14:27:15 +0200
+
+univention-apache (6.0.7-2) unstable; urgency=low
+
+  * Bug #32609: Fix ucs overview description
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 01 Oct 2013 14:01:24 +0200
+
+univention-apache (6.0.7-1) unstable; urgency=low
+
+  * New file /var/www/ucs-overview/languages.json, which contains
+    available server languages. This information is also available in
+    entries.json, from which it will be removed in a future change
+    (Bug #32677)
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 24 Sep 2013 14:19:06 +0200
+
+univention-apache (6.0.6-3) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30948)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 24 Sep 2013 12:23:50 +0200
+
+univention-apache (6.0.6-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30948)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 24 Sep 2013 11:23:47 +0200
+
+univention-apache (6.0.6-1) unstable; urgency=low
+
+  * Bug #31700: fixed problems with Android tablets, fixed problems with
+    rounded borders on IE9, direct links to #admin or #service are now
+    possible
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 19 Sep 2013 16:13:29 +0200
+
+univention-apache (6.0.5-1) unstable; urgency=low
+
+  * Bug #31700: removed link from univention logo, make whole buttons
+    clickable
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 19 Sep 2013 13:02:37 +0200
+
+univention-apache (6.0.4-1) unstable; urgency=low
+
+  * Bug #31700: adjusted apache redirect rule for old overview files
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 18 Sep 2013 11:17:50 +0200
+
+univention-apache (6.0.3-1) unstable; urgency=low
+
+  * Bug #31700: fixed favicon and margins for mobile devices
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 17 Sep 2013 12:59:05 +0200
+
+univention-apache (6.0.2-1) unstable; urgency=low
+
+  * Bug #31700: focus admin tab when no service entries available
+  * Bug #31805: fixed typos for link entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 17 Sep 2013 12:41:55 +0200
+
+univention-apache (6.0.1-2) unstable; urgency=low
+
+  * Bug #31805: added descriptions to link entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 17 Sep 2013 02:27:26 +0200
+
+univention-apache (6.0.1-1) unstable; urgency=low
+
+  * Bug #31700: revised UCS start site, replaced
+  * Bug #31805: replace links via template files with UCR variables
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 17 Sep 2013 02:18:34 +0200
+
+univention-apache (6.0.0-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30948)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 12 Jul 2013 14:50:55 +0200
+
+univention-apache (6.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 3.2, update copyright years for 2013
+  * Update/review UCR variable descriptions (Bug #30948)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 12 Jul 2013 11:00:31 +0200
+
+univention-apache (5.0.14-1) unstable; urgency=low
+
+  * univention-apache now uses the current joinscript-lib (Bug #28993)
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 03 Jan 2013 17:33:37 +0100
+
+univention-apache (5.0.13-1) unstable; urgency=low
+
+  * Change to overview on non dc master: link to domain master is now
+    above doc-links (Bug #26858)
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 27 Dec 2012 11:04:55 +0100
+
+univention-apache (5.0.12-1) unstable; urgency=low
+
+  * Added new ucr variable for apache2 SSLCACertificateFile (apache2/ssl/ca)
+    (Bug #26171)
+  * Added new ucr variable for apache2 SSLCertificateChainFile
+    (apache2/ssl/certificatechainfile) (Bug #29374)
+
+ -- Erik Damrose <edamrose@univention.de>  Fri, 21 Dec 2012 13:15:49 +0100
+
+univention-apache (5.0.11-1) unstable; urgency=low
+
+  * Changed link to documentation to docs.univention.de (Bug #29779)
+  * Fixed syntax error in debian/control file
+
+ -- Erik Damrose <edamrose@univention.de>  Tue, 18 Dec 2012 14:59:30 +0100
+
+univention-apache (5.0.10-1) unstable; urgency=low
+
+  * Add UCR variable descriptions (Bug #28134)
+  * Remove interfaces/* from UCR variable triggers (Bug #26058)
+  * Replace hard coded eth* by ipv4_interfaces.
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 11:46:24 +0200
+
+univention-apache (5.0.9-2) unstable; urgency=low
+
+  * version bump (Bug #17659)
+
+ -- Florian Best <best@univention.de>  Fri, 15 Jun 2012 12:56:35 +0200
+
+univention-apache (5.0.9-1) unstable; urgency=low
+
+  * update apache2/startsite also on update (Bug #17659)
+
+ -- Florian Best <best@univention.de>  Thu, 14 Jun 2012 12:44:10 +0200
+
+univention-apache (5.0.8-3) unstable; urgency=low
+
+  * CVE-2012-0216: Remove "Alias /doc /usr/share/doc" from the default virtual
+    hosts' config files.
+    If scripting modules like mod_php or mod_rivet are enabled on systems
+    where either 1) some frontend server forwards connections to an apache2
+    backend server on the localhost address, or 2) the machine running
+    apache2 is also used for web browsing, this could allow a remote
+    attacker to execute example scripts stored under /usr/share/doc.
+    Depending on the installed packages, this could lead to issues like cross
+    site scripting, code execution, or leakage of sensitive data.
+    (Bug #25471)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 05 Jun 2012 12:41:16 +0200
+
+univention-apache (5.0.8-2) unstable; urgency=low
+
+  * added UCR variables apache2/ssl/certificate and apache2/ssl/key
+    (Bug #21574).
+
+ -- Florian Best <best@univention.de>  Fri, 01 Jun 2012 08:12:44 +0200
+
+univention-apache (5.0.8-1) unstable; urgency=low
+
+  * overviewpage forwards to localespecific overview-document (Bug #17659)
+
+ -- Florian Best <best@univention.de>  Mon, 02 Apr 2012 13:16:11 +0200
+
+univention-apache (5.0.7-3) unstable; urgency=low
+
+  * change dependency from apache2 to mpm-prefork version of apache; Bug #25255
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 07 Dec 2011 11:05:21 +0100
+
+univention-apache (5.0.7-2) unstable; urgency=low
+
+  * update overview design for UMC design (Bug #23188)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 18 Nov 2011 11:24:21 +0100
+
+univention-apache (5.0.6-1) unstable; urgency=low
+
+  * activate SSL for all IP addresses (Bug #24258)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 31 Oct 2011 14:39:24 +0100
+
+univention-apache (5.0.5-1) unstable; urgency=low
+
+  * added AllowOverride FileInfo for /var/www/ (Bug #22513)
+
+ -- Felix Botner <botner@univention.de>  Thu, 27 Oct 2011 10:18:04 +0200
+
+univention-apache (5.0.4-3) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:23 +0200
+
+univention-apache (5.0.4-2) unstable; urgency=low
+
+  * updated postinst (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 19 Oct 2011 17:56:58 +0200
+
+univention-apache (5.0.4-1) unstable; urgency=low
+
+  * added firewall settings (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 18 Oct 2011 15:22:52 +0200
+
+univention-apache (5.0.3-2) unstable; urgency=low
+
+  * adjusted version number in changelog, version bump (Bug #17128)
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 12 Oct 2011 14:51:35 +0200
+
+univention-apache (5.0.3-1) unstable; urgency=low
+
+  * adapted mods-available/ssl.conf to allow https connections to localhost
+    (Bug #17128)
+
+ -- Lukas Walter <lwalter@mammut.knut.univention.de>  Wed, 12 Oct 2011 11:26:39 +0200
+
+univention-apache (5.0.2-3) unstable; urgency=low
+
+  * adapted install destinations (Bug #22669)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 08 Aug 2011 15:38:16 +0200
+
+univention-apache (5.0.2-2) unstable; urgency=low
+
+  * changed test with '==' to '=' in postinst file (Bug #22669)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 08 Aug 2011 15:24:26 +0200
+
+univention-apache (5.0.2-1) unstable; urgency=low
+
+  * adapted style of ucs-overview (Bug #22669)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 08 Aug 2011 15:16:32 +0200
+
+univention-apache (5.0.1-2) unstable; urgency=low
+
+  * move ucs-overview to univention-apache (Bug #22669)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 15 Jun 2011 14:36:01 +0200
+
+univention-apache (5.0.0-1) unstable; urgency=low
+
+  * fixed dependencies; Bug #22525
+
+ -- Andreas Büsching <buesching@univention.de>  Sat, 28 May 2011 19:42:15 +0200
+
+univention-apache (5.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 3.0
+  * update to UCS 3.0 policies (Bug #22525)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 18 May 2011 10:50:52 +0200
+
+univention-apache (4.0.1-1) unstable; urgency=low
+
+  * add UCRV apache2/maxclients (Bug #18115)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 28 Feb 2011 16:31:36 +0100
+
+univention-apache (4.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 16:01:50 +0200
+
+univention-apache (3.0.5-1) unstable; urgency=low
+
+  * replaced pam_heimdal.so with pam_krb5.so, Bug #17901
+
+ -- Tim Petersen <petersen@univention.de>  Thu, 18 Mar 2010 11:28:49 +0200
+
+univention-apache (3.0.4-1) unstable; urgency=low
+
+  * add ucr-variable apache2/documentroot (Bug: #11789)
+
+ -- Daniel Hofmann <dhofmann@univention.de>  Fri, 14 Aug 2009 13:12:49 +0200
+
+univention-apache (3.0.3-1) unstable; urgency=low
+
+  * enable ssl in postinst only if certificate is available (Bug: #10205)
+
+ -- Daniel Hofmann <dhofmann@univention.de>  Fri, 14 Aug 2009 10:39:19 +0200
+
+univention-apache (3.0.2-1) unstable; urgency=low
+
+  * added a config template for etc/apache/ports.conf (Bug: #15025)
+
+ -- Felix Botner <botner@univention.de>  Fri, 10 Jul 2009 13:39:34 +0200
+
+univention-apache (3.0.1-1) unstable; urgency=low
+
+  * provide new UCR category service-apache (Bug #13505)
+
+ -- Andreas Büsching <buesching@univention.de>  Wed,  8 Jul 2009 10:18:24 +0200
+
+univention-apache (3.0.0-1) unstable; urgency=low
+
+  * switched to python2.4 (Bug: #14709)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 11 Jun 2009 12:14:11 +0200
+
+univention-apache (3.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-apache (2.0.20-1) unstable; urgency=low
+
+  * fixed some php UCR settings. Bug #12454
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 24 Apr 2009 08:40:42 +0200
+
+univention-apache (2.0.19-1) unstable; urgency=low
+
+  * updated the copyright. Bug #6875
+  * added more UCR variables for the apache php ini file:
+     php/memory/executiontime for max_execution_time
+     php/limit/inputtime for max_input_time
+     php/limit/sockettimeout for default_socket_timeout
+    Part of Bug #12454
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 21 Apr 2009 15:52:16 +0200
+
+univention-apache (2.0.18-2) unstable; urgency=low
+
+  * Added UCR Warning.
+
+ -- Andre Fenske <fenske@univention.de>  Wed,  3 Dec 2008 16:03:52 +0100
+
+univention-apache (2.0.18-1) unstable; urgency=low
+
+  * post_max_size and upload_max_filesize in php5.ini can now be set by UCR
+
+ -- Felix Botner <fbotner@visdalen.knut.univention.de>  Tue,  2 Dec 2008 12:06:16 +0100
+
+univention-apache (2.0.17-2) unstable; urgency=low
+
+  * fixed UCR variable registration (Bug #12372)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 14 Oct 2008 17:47:11 +0200
+
+univention-apache (2.0.16-1) unstable; urgency=low
+
+  * made SSLCertificateFile and SSLCertificateKeyFile customizable by UCR
+    variables (Bug #12372)
+
+ -- Soenke Schwardt <schwardt@univention.de>  Tue, 14 Oct 2008 17:33:27 +0200
+
+univention-apache (2.0.15-10) unstable; urgency=low
+
+  * no longer check the default apache2 file, the autostart setting will
+    be checked in the original apache2 init script. Bug #9553
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 25 Nov 2008 14:37:13 +0100
+
+univention-apache (2.0.15-9) unstable; urgency=low
+
+  * inherit RewriteOptions in SSL-VirtualHost (used to be inherited by default-VirtualHost)
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Wed,  4 Jun 2008 13:52:01 +0200
+
+univention-apache (2.0.15-8) unstable; urgency=low
+
+  * sleep for three seconds between the start and stop of the apache
+    daemon. Otherwise the apache won't start.
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  2 Jun 2008 06:48:08 +0200
+
+univention-apache (2.0.15-7) unstable; urgency=low
+
+  * move settings in catchall-virtualhost into main serverconfig to apply them
+    to all virtual hosts
+  * remove unnamed catchall-virtualhost on port 80
+
+ -- Arvid Requate <arequate@ivar.knut.univention.de>  Wed, 21 May 2008 14:58:23 +0200
+
+univention-apache (2.0.15-6) unstable; urgency=low
+
+  * add logging directives to ssl config
+
+ -- Arvid Requate <arequate@ivar.knut.univention.de>  Tue, 20 May 2008 15:59:17 +0200
+
+univention-apache (2.0.15-5) unstable; urgency=low
+
+  * fixed typo
+
+ -- Arvid Requate <requate@univention.de>  Mon, 14 Jan 2008 19:18:14 +0100
+
+univention-apache (2.0.15-4) unstable; urgency=low
+
+  * inverted order of proxy access rule: default to "Allow from all"
+  * new UCR variables 'apache2/proxy/access/order' and 'apache2/proxy/access/deny'
+    to change default
+
+ -- Arvid Requate <requate@univention.de>  Mon, 14 Jan 2008 18:54:42 +0100
+
+univention-apache (2.0.15-3) unstable; urgency=low
+
+  * replace postinst apache2 restart by stop&start to generate httpd.conf on upgrade
+
+ -- Arvid Requate <requate@univention.de>  Mon, 14 Jan 2008 14:47:41 +0100
+
+univention-apache (2.0.15-2) unstable; urgency=low
+
+  * svn add conffiles/etc/apache2/mods-available/proxy.conf
+
+ -- Arvid Requate <requate@univention.de>  Wed,  2 Jan 2008 13:45:47 +0100
+
+univention-apache (2.0.15-1) unstable; urgency=low
+
+  * tell proxy module to allow requests from domain specified by config-registry variable
+    'apache2/proxy/allow'
+
+ -- Arvid Requate <requate@univention.de>  Wed,  2 Jan 2008 13:22:49 +0100
+
+univention-apache (2.0.14-1) unstable; urgency=low
+
+  * add rewrite inherit in the ssl virtual host configuration
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 10 Dec 2007 10:05:53 +0100
+
+univention-apache (2.0.13-1) unstable; urgency=low
+
+  * inherit rewrite by default
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 10 Dec 2007 09:31:20 +0100
+
+univention-apache (2.0.12-1) unstable; urgency=low
+
+  * be sure the ssl module is full operational
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  3 Dec 2007 20:00:29 +0100
+
+univention-apache (2.0.11-6) unstable; urgency=low
+
+  * replace calls to univention-config-registry with
+    univention-baseconfig
+
+ -- Andreas Büsching <buesching@univention.de>  Mon,  3 Dec 2007 17:34:50 +0100
+
+univention-apache (2.0.11-5) unstable; urgency=low
+
+  * fixed encoding of variable description
+
+ -- Andreas Büsching <buesching@univention.de>  Thu,  8 Nov 2007 17:24:29 +0100
+
+univention-apache (2.0.11-4) unstable; urgency=low
+
+  * Register apache2/autostart and apache2/allowoverride in Config Registry
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  8 Nov 2007 13:08:15 +0100
+
+univention-apache (2.0.11-3) unstable; urgency=low
+
+  * Fix Config Registry description
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Mon,  5 Nov 2007 13:49:48 +0100
+
+univention-apache (2.0.11-2) unstable; urgency=low
+
+  * enable the ssl module during the UCS 2.0 upgrade
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 24 Oct 2007 11:59:53 +0200
+
+univention-apache (2.0.11-1) unstable; urgency=low
+
+  * if started by UMC do not force the reload of apache
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 19 Sep 2007 16:09:08 +0200
+
+univention-apache (2.0.10-4) unstable; urgency=low
+
+  * renamed apache/loglevel to apache2/loglevel and updated postinst
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 16 Aug 2007 12:05:35 +0200
+
+univention-apache (2.0.10-3) unstable; urgency=low
+
+  * fixed apache2/allowoverride
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 16 Aug 2007 11:23:34 +0200
+
+univention-apache (2.0.10-2) unstable; urgency=low
+
+  * added config registry header to /etc/apache2/sites-available/default
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 16 Aug 2007 11:19:55 +0200
+
+univention-apache (2.0.10-1) unstable; urgency=low
+
+  * added apache2/allowoverride and renamed apache/startsite to apache2/startsite
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 16 Aug 2007 11:07:56 +0200
+
+univention-apache (2.0.9-2) unstable; urgency=low
+
+  * more wording change univention-config-registry and univention-
+    baseconfig
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri,  3 Aug 2007 09:45:38 +0200
+
+univention-apache (2.0.9-1) unstable; urgency=low
+
+  * add version number to join script
+
+ -- Andreas Büsching <buesching@univention.de>  Thu,  2 Aug 2007 09:33:41 +0200
+
+univention-apache (2.0.8-2) unstable; urgency=low
+
+  * define redirection out of virtual host block
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 20 Jul 2007 12:01:44 +0200
+
+univention-apache (2.0.7-1) unstable; urgency=low
+
+  * add config registry variable apache2/autostart to determine start type
+    (manual or auto start)
+  * use univention-config-registry instead of univention-baseconfig
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 18 Jul 2007 13:44:48 +0200
+
+univention-apache (2.0.6-5) unstable; urgency=low
+
+  * convert to utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 18 Jul 2007 11:31:49 +0200
+
+univention-apache (2.0.6-4) unstable; urgency=low
+
+  * added descriptions for config registry variables
+
+ -- Janis Meybohm <meybohm@univention.de>  Mon, 16 Jul 2007 11:02:41 +0200
+
+univention-apache (2.0.6-3) unstable; urgency=low
+
+  * removed ucs-overview, added dependency on univention-webui-style-base
+
+ -- Tobias Scherer <scherer@univention.de>  Tue, 26 Jun 2007 10:34:05 +0200
+
+univention-apache (2.0.6-2) unstable; urgency=low
+
+  * remove index.html file
+  * added baseconfig variable apache/startsite and set it to
+    ucs-overview.html
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 20 Jun 2007 11:55:20 +0200
+
+univention-apache (2.0.5-1) unstable; urgency=low
+
+  * restart apache after enabling the ssl module
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 19 Jun 2007 07:19:02 +0200
+
+univention-apache (2.0.4-3) unstable; urgency=low
+
+  * added subfile description for ucs-overview.html
+
+ -- Tobias Scherer <scherer@univention.de>  Mon, 18 Jun 2007 15:18:19 +0200
+
+univention-apache (2.0.4-2) unstable; urgency=low
+
+  * added new ucs-overview.html german and english version created by
+    templates only links to master on non-master-roles
+
+ -- Tobias Scherer <scherer@univention.de>  Mon, 18 Jun 2007 15:07:14 +0200
+
+univention-apache (2.0.4-1) unstable; urgency=low
+
+  * add service information file
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 18 Jun 2007 14:26:31 +0200
+
+univention-apache (2.0.3-5) unstable; urgency=low
+
+  * call exit 0 at the end of the postinst script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 12:58:54 +0200
+
+univention-apache (2.0.3-4) unstable; urgency=low
+
+  * enable ssl module in the join script otherwise the certificate isn't
+    available
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 10:50:45 +0200
+
+univention-apache (2.0.3-3) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 16:09:48 +0200
+
+univention-apache (2.0.3-2) unstable; urgency=low
+
+  * added a conflict to apache 1
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 13 Jun 2007 14:26:21 +0200
+
+univention-apache (2.0.3-1) unstable; urgency=low
+
+  * update etc/default/apache2
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 12 Jun 2007 08:48:46 +0200
+
+univention-apache (2.0.2-1) unstable; urgency=low
+
+  * added baseconfig variable for starting apache during the boot
+    (apache2/autostart)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  6 Jun 2007 13:59:20 +0200
+
+univention-apache (2.0.1-1) unstable; urgency=low
+
+  * fix the virtual host ssl configuration
+  * re-added index.html
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 08:04:58 +0200
+
+univention-apache (2.0.0-2) unstable; urgency=low
+
+  * remove apache dependency
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 07:51:29 +0200
+
+univention-apache (2.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 07:46:40 +0200
+
+univention-apache (1.9.1-1) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Thu, 23 Nov 2006 17:39:43 +0100
+
+univention-apache (1.9-12) unstable; urgency=low
+
+  * catch io exceptions when opening php.ini
+
+ -- Janis Meybohm <meybohm@univention.de>  Fri, 27 Oct 2006 16:56:57 +0200
+
+univention-apache (1.9-11) unstable; urgency=low
+
+  * fixed generation of memory limit option in php.ini
+
+ -- Janis Meybohm <meybohm@univention.de>  Tue, 24 Oct 2006 16:32:45 +0200
+
+univention-apache (1.9-10) unstable; urgency=low
+
+  * added Template-Header in index.html
+
+ -- Tobias Scherer <scherer@univention.de>  Mon, 16 Oct 2006 14:12:12 +0200
+
+univention-apache (1.9-9) unstable; urgency=low
+
+  * fixed wrong condition for baseconfig key in extension.py
+
+ -- Bastian Neumann <neumann@univention.de>  Mon,  2 Oct 2006 11:19:28 +0200
+
+univention-apache (1.9-8) unstable; urgency=low
+
+  *removed php.ini from univention-apache
+  *fixed search for key word in extension.py
+
+ -- Bastian Neumann <neumann@univention.de>  Wed, 13 Sep 2006 16:57:49 +0200
+
+univention-apache (1.9-7) unstable; urgency=low
+
+  *added extension.py Script to conffiles
+
+ -- Bastian Neumann <neumann@univention.de>  Wed, 13 Sep 2006 14:58:11 +0200
+
+univention-apache (1.9-6) unstable; urgency=low
+
+  * added baseconfig header to php.ini
+
+ -- Bastian Neumann <bastian@anton.knut.univention.de>  Tue,  8 Aug 2006 11:19:05 +0200
+
+univention-apache (1.9-5) unstable; urgency=low
+
+  * added dependency for php
+  * added etc/php4/apache/php.ini
+  * added baseconfig variable for php/memory/limit
+
+ -- Bastian Neumann <bastian@anton.knut.univention.de>  Tue,  8 Aug 2006 10:54:58 +0200
+
+univention-apache (1.9-4) unstable; urgency=low
+
+  * use debhelper for postrm script
+
+ -- Martin Kuehl <kuehl@univention.de>  Thu,  2 Mar 2006 11:46:52 +0100
+
+univention-apache (1.9-2) unstable; urgency=low
+
+  * set DocumentRoot using univention-baseconfig
+
+ -- Ingo Steuwer <steuwer@univention.de>  Thu, 19 Jan 2006 08:09:45 +0100
+
+univention-apache (1.9-1) unstable; urgency=low
+
+  * set userDir and accessfilename using univention baseconfig
+
+ -- Ingo Steuwer <steuwer@univention.de>  Tue, 17 Jan 2006 18:42:31 +0100
+
+univention-apache (1.9-0) unstable; urgency=low
+
+  * integrated httpd-pam-configuration
+
+ -- Ingo Steuwer <steuwer@univention.de>  Fri, 30 Sep 2005 13:32:41 +0200
+
+univention-apache (1.8) unstable; urgency=low
+
+  * Switched to python 2.4
+
+ -- Alexander Reelsen <reelsen@univention.de>  Tue, 20 Sep 2005 12:01:41 +0200
+
+univention-apache (1.7) unstable; urgency=low
+
+  * remove univention-apache modules register script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 12 Jul 2004 09:13:02 +0200
+
+univention-apache (1.6) unstable; urgency=low
+
+  * Add proper package description.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 29 Apr 2004 11:40:23 +0200
+
+univention-apache (1.5) unstable; urgency=low
+
+  * added SSLCARevocationFile
+  * removed SSLCARevocationFile
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  5 Apr 2004 16:21:08 +0200
+
+univention-apache (1.4) unstable; urgency=low
+
+  * default startpage added
+
+ -- Arne Brix <arne@ds-work.office.univention.de>  Tue, 23 Mar 2004 15:27:32 +0100
+
+univention-apache (1.3) unstable; urgency=low
+
+  * Change Depends: python2.1 to Depends: python (>= 2.1) since no version
+    specific features are used.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Mon, 23 Feb 2004 09:45:41 +0100
+
+univention-apache (1.2) unstable; urgency=low
+
+  * new versioning scheme
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 May 2003 13:49:37 +0200
+
+univention-apache (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Mon,  8 Oct 2001 13:47:19 +0200
+
+

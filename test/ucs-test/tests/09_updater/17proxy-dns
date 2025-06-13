@@ -1,0 +1,37 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository via proxy resolving DNS
+##  1. Use minimal proxy implemented in Python
+## bugs: [15550]
+## roles-not: [basesystem]
+## tags: [basic, proxy]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+ERRVAL=121 # Bug vorhanden, wie vermutet
+
+FIXED_12571=false
+
+hostname="host${RANDOM}"
+
+setup_apache "${repoprefix}"
+
+# shellcheck disable=SC2046
+mkpdir $(allpatchlevels "${_version_version}-${_version_patchlevel:?}") maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+config_proxy -t "${hostname}"
+config_repo "${hostname}" proxy/http="http://localhost:${proxy_port:?}"
+
+	set -e
+	"${FIXED_12571}" || ucr commit /etc/apt/sources.list.d/15_ucs-online-version.list >&3
+	checkapt "http://${hostname}\\(:80\\)\\?/${repoprefix}/" "${DIR}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

@@ -1,0 +1,36 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost component from port 81
+##  1. setup local repository for component from custom port
+##  2. check if the package is installable
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+compname="test${RANDOM}"
+port=81
+
+setup_apache --port "${port}" "${repoprefix}"
+
+# NOTE: ${comp}/version must specified because no release exists for autodetection
+
+mkpdir "${_version_version}--component/${compname}" all "${ARCH}"  # 0 1 2 3
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+
+comp="repository/online/component/${compname}"
+config_repo \
+	:${port} "${comp}=yes" "${comp}/port=${port}" "${comp}/version=${_version_version}"
+
+	set -e
+	checkapt "http://localhost:${port}/${repoprefix}/" "${DIRS[@]}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

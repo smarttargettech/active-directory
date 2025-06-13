@@ -1,0 +1,393 @@
+#! /bin/sh
+#
+# Univention LDAP Server
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=6
+. /usr/share/univention-join/joinscripthelper.lib
+joinscript_init
+
+. /usr/share/univention-lib/all.sh
+
+eval "$(univention-config-registry shell)"
+
+IP="$(get_default_ip_address)"
+NETMASK="$(get_default_netmask)"
+NETWORK="$(get_default_network)"
+
+users_default_administrator=$(custom_username "Administrator")
+groups_default_domainadmins=$(custom_groupname "Domain Admins")
+groups_default_domainusers=$(custom_groupname "Domain Users")
+
+reverse=$(univention-ipcalc6 --netmask "$NETMASK" --ip "$IP" --output reverse --calcdns)
+
+wait_named () {
+	sleep ${1:-5}
+	if [ "$server_role" != "domaincontroller_master" ]
+	then
+		while true
+		do
+			echo "wait for named ?"
+			if ! host -W 1 "$ldap_master" 2>&1 | grep -q "timed out"
+			then
+				break
+			fi
+		done
+	fi
+}
+
+parse_credentials () {
+	unset binddn bindpwd bindpwdfile
+	while [ $# -ge 1 ]
+	do
+		case "$1" in
+		--binddn)
+			binddn="$2"
+			shift 2 || die "Missing argument to --binddn"
+			;;
+		--bindpwd)
+			bindpwd="$2"
+			shift 2 || die "Missing argument to --bindpwd"
+			;;
+		--bindpwdfile)
+			bindpwdfile="$2"
+			shift 2 || die "Missing argument to --bindpwdfile"
+			[ -f "$bindpwdfile" ] || die "Missing bindpwdfile $bindpwdfile"
+			;;
+		*)
+			echo "Unknown argument: $1" >&2
+			shift
+			;;
+		esac
+	done
+}
+
+get_credentials () {
+	parse_credentials "$@"
+	[ -n "$binddn" ] && [ -n "$bindpwdfile" ] && return 0
+	[ -n "$binddn" ] && [ -n "$bindpwd" ] && return 0
+	case "$server_role" in
+	domaincontroller_master|domaincontroller_backup)
+		binddn="cn=admin,$ldap_base"
+		bindpwdfile="/etc/ldap.secret"
+		;;
+	*)
+		die "Missing LDAP credentials"
+		;;
+	esac
+}
+
+get_credentials "$@"
+
+if [ -x /etc/init.d/slapd ] &&
+	[ -x /usr/share/univention-ldap/ldap_setup_index ] &&
+	[ -e /var/univention-join/joined ] &&
+	! ucr get ldap/index/eq | tr , '\n' | grep -Fxq univentionUDMPropertyCopyable &&
+	univention-ldapsearch -D "$binddn" -y "$bindpwdfile" -LLL -o ldif-wrap=no -b cn=Subschema -s base attributeTypes | grep -Fq "NAME 'univentionUDMPropertyCopyable'"
+then
+	if pidof slapd >/dev/null 2>/dev/null
+	then
+		service slapd stop
+		/usr/share/univention-ldap/ldap_setup_index --add-eq univentionUDMPropertyCopyable
+		service slapd start
+	else
+		/usr/share/univention-ldap/ldap_setup_index --add-eq univentionUDMPropertyCopyable
+	fi
+fi
+
+if ! is_ucr_false dns/register/srv_records/ldap; then
+	S4_DCS="$(univention-ldapsearch -D "$binddn" -y "$bindpwdfile" -LLL "(&(objectclass=univentionDomainController)(univentionService=Samba 4))" cn | sed -n 's/^cn: \(.*\)/\1/p')"
+	if [ -z "$S4_DCS" ]; then
+		wait_named
+		/usr/share/univention-admin-tools/univention-dnsedit "$@" --ignore-exists \
+			"$domainname" add srv ldap tcp 0 100 7389 "$hostname.$domainname." || die
+	else
+		echo "SRV record _ldap._tcp for port 7389 not created because Samba4 DCs are present: $(printf "$S4_DCS" | tr -s "$(printf '\n\r')" ',')"
+		wait_named
+		/usr/share/univention-directory-manager-tools/univention-dnsedit "$@" --ignore-exists \
+			"$domainname" remove srv ldap tcp 0 100 7389 "$hostname.$domainname." || die
+	fi
+fi
+
+wait_named
+/usr/share/univention-admin-tools/univention-dnsedit "$@" --ignore-exists \
+	--reverse "$reverse" add zone "root@$domainname." 1 28800 10800 604800 108001 "$hostname.$domainname." || die
+wait_named
+
+if [ "$server_role" = "domaincontroller_master" ]; then
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+
+		forwardZone=$(univention-directory-manager dns/forward_zone list "$@" --filter zone="$domainname" | sed -ne 's/DN: //p;T;q')
+		reverseZone=$(univention-directory-manager dns/reverse_zone list "$@" --filter subnet="$reverse" | sed -ne 's/DN: //p;T;q')
+
+		if [ -z "$forwardZone" ]; then echo "DNS forward zone not found"; exit 1; fi
+		if [ -z "$reverseZone" ]; then echo "DNS reverse zone not found"; exit 1; fi
+
+		computerPassword=$(create_machine_password)
+
+		searchResult=$(univention-directory-manager computers/domaincontroller_master list "$@" | grep "name: $hostname")
+		if [ -z "$searchResult" -a $server_role = "domaincontroller_master" ]; then
+			univention-directory-manager computers/domaincontroller_master create "$@" \
+				--tls 0 --position "cn=dc,cn=computers,$ldap_base" \
+				--set name="$hostname" \
+				--set domain="$domainname" \
+				--set ip="$IP" \
+				--set dnsEntryZoneForward="$forwardZone" \
+				--set dnsEntryZoneReverse="$reverseZone" \
+				--set password="$computerPassword" \
+				--set unixhome=/dev/null \
+				--set shell=/bin/sh \
+				--set primaryGroup="cn=DC Backup Hosts,cn=groups,$ldap_base" || die
+			#if [ $? != 0 ]; then exit 1; fi
+
+			univention-config-registry set ldap/hostdn="cn=$hostname,cn=dc,cn=computers,$ldap_base"
+
+			if [ -e /etc/machine.secret ]; then
+				cat /etc/machine.secret >>/etc/machine.secret.SAVE
+			fi
+
+			touch /etc/machine.secret
+			chmod 600 /etc/machine.secret
+
+			echo -n "$computerPassword" >>/etc/machine.secret
+		fi
+		wait_named
+		/usr/share/univention-admin-tools/univention-dnsedit "$@" --ignore-exists \
+			"$domainname" add srv domaincontroller_master tcp 0 0 0 "$hostname.$domainname." || die
+		wait_named
+
+		univention-directory-manager settings/packages create "$@" --ignore_exists \
+			--superordinate "cn=packages,cn=univention,$ldap_base" \
+			--set name=Univention \
+			--append packageList=univention-printserver  \
+			--append packageList=univention-printquota  \
+			--append packageList=univention-mail-postfix  \
+			--append packageList=univention-spamassassin  \
+			--append packageList=univention-squid  \
+			--append packageList=univention-x-core  \
+			--append packageList=univention-kde  \
+			--append packageList=univention-bind  \
+			--append packageList=univention-samba  \
+			--append packageList=univention-nagios-server \
+			--append packageList=univention-mail-dovecot || die
+
+		univention-directory-manager settings/packages create "$@" --ignore_exists \
+			--superordinate "cn=packages,cn=univention,$ldap_base" \
+			--set name=Fernwartung \
+			--append packageList=openssh-client  \
+			--append packageList=openssh-server  \
+			--append packageList=tightvncserver  \
+			--append packageList=rdesktop || die
+
+		univention-directory-manager settings/packages create "$@" --ignore_exists \
+			--superordinate "cn=packages,cn=univention,$ldap_base" \
+			--set name=Tools \
+			--append packageList=mutt  \
+			--append packageList=mc  \
+			--append packageList=w3m  \
+			--append packageList=nmap  \
+			--append packageList=aspell  \
+			--append packageList=wamerican  \
+			--append packageList=memtester  \
+			--append packageList=sudo || die
+
+		univention-directory-manager settings/packages create "$@" --ignore_exists \
+			--superordinate "cn=packages,cn=univention,$ldap_base" \
+			--set name=Multimedia \
+			--append packageList=dragonplayer  \
+			--append packageList=sox  \
+			--append packageList=vlc-nox  \
+			--append packageList=juk  \
+			--append packageList=amarok  \
+			--append packageList=imagemagick  \
+			--append packageList=gwenview  \
+			--append packageList=alsa-utils || die
+
+		univention-directory-manager settings/packages create "$@" --ignore_exists \
+			--superordinate "cn=packages,cn=univention,$ldap_base" \
+			--set name=Entwicklung \
+			--append packageList=debhelper  \
+			--append packageList=build-essential  \
+			--append packageList=make  \
+			--append packageList=manpages-dev  \
+			--append packageList=patchutils  \
+			--append packageList=diffutils  \
+			--append packageList=gdb  \
+			--append packageList=strace  \
+			--append packageList=dpatch || die
+	fi	## if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]
+
+	if [ $JS_LAST_EXECUTED_VERSION = 0 ]; then
+		# do it only once
+
+		if [ -f /var/lib/univention-ldap/root.secret ] ; then
+			# mailPrimaryAddress is required on ox systems
+			if [ -n "$ox_primary_maildomain" ] ; then
+				univention-directory-manager users/user create "$@" --position="cn=users,$ldap_base" --set mailPrimaryAddress="administrator@$ox_primary_maildomain" --set firstname="Admin" --set username="$users_default_administrator" --set sambaRID=500 --set unixhome="/home/$users_default_administrator" --set lastname="$users_default_administrator" --set password="$(cat /var/lib/univention-ldap/root.secret)" --set primaryGroup="cn=$groups_default_domainadmins,cn=groups,$ldap_base" || die
+			else
+				univention-directory-manager users/user create "$@" --position="cn=users,$ldap_base" --set username="$users_default_administrator" --set sambaRID=500 --set unixhome="/home/$users_default_administrator" --set lastname="$users_default_administrator" --set password="$(cat /var/lib/univention-ldap/root.secret)" --set primaryGroup="cn=$groups_default_domainadmins,cn=groups,$ldap_base" || die
+			fi
+		fi
+		univention-directory-manager groups/group modify "$@" --dn "cn=DC Backup Hosts,cn=groups,$ldap_base" --append users="uid=$users_default_administrator,cn=users,$ldap_base" || die
+		univention-directory-manager groups/group modify "$@" --dn "cn=$groups_default_domainusers,cn=groups,$ldap_base" --append users="uid=$users_default_administrator,cn=users,$ldap_base" || die
+
+		#create default network
+		forwardZone=$(univention-directory-manager dns/forward_zone list "$@" --filter zone="$domainname" | sed -ne 's/DN: //p;T;q')
+		reverseZone=$(univention-directory-manager dns/reverse_zone list "$@" --filter subnet="$reverse" | sed -ne 's/DN: //p;T;q')
+		dhcpService=$(univention-directory-manager dhcp/service list "$@" | sed -ne 's/DN: //p;T;q')
+
+		univention-directory-manager networks/network create "$@" --ignore_exists --position "cn=networks,$ldap_base" --set name=default --set netmask="$NETMASK" --set network="$NETWORK" --set dnsEntryZoneForward="$forwardZone" --set dnsEntryZoneReverse="$reverseZone" --set dhcpEntryZone="$dhcpService" || die
+	fi
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 4 ]; then
+		univention-directory-manager container/cn create "$@" --ignore_exists \
+			--position "cn=univention,$ldap_base" \
+			--set name=ldapschema || die
+
+		univention-directory-manager container/cn create "$@" --ignore_exists \
+			--position "cn=univention,$ldap_base" \
+			--set name=ldapacl || die
+	fi
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 5 ]; then
+		univention-directory-manager container/cn create "$@" --ignore_exists \
+			--position "cn=univention,$ldap_base" \
+			--set name=ppolicy || die
+
+		ldapadd -D "cn=admin,$ldap_base" -y /etc/ldap.secret <<-%EOR
+			dn: cn=default,cn=ppolicy,cn=univention,$ldap_base
+			objectClass: top
+			objectClass: device
+			objectClass: pwdPolicy
+			cn: default
+			pwdAttribute: 2.5.4.35
+			pwdAllowUserChange: TRUE
+			pwdLockout: TRUE
+			pwdMaxFailure: 5
+			pwdFailureCountInterval: 900
+			%EOR
+	fi
+	if [ $JS_LAST_EXECUTED_VERSION -lt 6 ]; then
+		ldapmodify -D "cn=admin,$ldap_base" -y /etc/ldap.secret <<-%EOR
+			dn: cn=default,cn=ppolicy,cn=univention,$ldap_base
+			changetype: modify
+			replace: pwdAllowUserChange
+			pwdAllowUserChange: TRUE
+			%EOR
+	fi
+fi
+
+# Create kerberos principal for ldap/hostname.domainname
+udm kerberos/kdcentry create "$@" --ignore_exists --position "cn=kerberos,$ldap_base" --set name="ldap/${hostname}.${domainname}" --set generateRandomPassword=1 || die
+
+if [ "$server_role" = "domaincontroller_master" -o "$server_role" = "domaincontroller_backup" ] && ! is_ucr_false "ldap/create-ldap-server-policy"; then
+	# Create a LDAP server policy so Managed Node server use the LDAP servers of
+	# Primary Directory Node and all Backup Directory Nodes.
+	if ! univention-directory-manager policies/ldapserver list "$@" --filter cn=default-settings | egrep -q '^DN'; then
+		univention-directory-manager policies/ldapserver create "$@" \
+			--position="cn=ldap,cn=policies,$ldap_base" \
+			--ignore_exists \
+			--set name=default-settings \
+			--append requiredObjectClasses=univentionHost \
+			--set "ldapFilter=(univentionObjectType=computers/memberserver)"
+
+		univention-directory-manager container/cn modify "$@" \
+			--dn "cn=computers,$ldap_base" \
+			--policy-reference "cn=default-settings,cn=ldap,cn=policies,$ldap_base"
+	fi
+
+	# empty policy of old entries
+	OLD_ENTRIES="$(univention-directory-manager policies/ldapserver list "$@" --filter name=default-settings | grep ldapServer | cut -f 2 -d ':')"
+	RMSTR=""
+	for ENTRY in $OLD_ENTRIES; do
+		RMSTR="$RMSTR --remove ldapServer=$ENTRY";
+	done
+	univention-directory-manager policies/ldapserver modify "$@" --dn="cn=default-settings,cn=ldap,cn=policies,$ldap_base" $RMSTR
+
+	# add all DC master and backup
+	MASTERS="$(univention-directory-manager computers/domaincontroller_master list "$@" | grep 'fqdn:' | cut -f2 -d':' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+	BACKUPS="$(univention-directory-manager computers/domaincontroller_backup list "$@" | grep 'fqdn:' | cut -f2 -d':' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+	ADDSTR=""
+	for MASTER in $MASTERS; do
+		if [ "$MASTER" != "None" ]; then
+			ADDSTR="$ADDSTR --append ldapServer=$MASTER";
+		fi
+	done
+	for BACKUP in $BACKUPS; do
+		if [ "$BACKUP" != "None" ]; then
+			ADDSTR="$ADDSTR --append ldapServer=$BACKUP";
+		fi
+	done
+	univention-directory-manager policies/ldapserver modify "$@" \
+		--dn="cn=default-settings,cn=ldap,cn=policies,$ldap_base" \
+		$ADDSTR
+fi
+
+if [ "$server_role" = "domaincontroller_master" -o "$server_role" = "domaincontroller_backup" ]; then
+	# Replica Directory Nodes currently do not support LDAP server policies, let's create a
+	# UCR policy from the LDAP server policy.
+	# Do no use it automatically, UCS admins can use it if they wish to.
+	univention-directory-manager policies/registry create "$@" \
+		--position="cn=config-registry,cn=policies,$ldap_base" \
+		--ignore_exists \
+		--set name=default-ldap-servers \
+		--append requiredObjectClasses=univentionDomainController \
+		--set ldapFilter="(univentionServerRole=slave)"
+	ldapservers=""
+	for i in $(univention-directory-manager policies/ldapserver list "$@" --filter name=default-settings | grep ldapServer | cut -f 2 -d ':'); do
+		ldapservers="$ldapservers $i";
+	done
+	if [ -n "$ldapservers" ]; then
+		univention-directory-manager policies/registry modify "$@" \
+			--dn="cn=default-ldap-servers,cn=config-registry,cn=policies,$ldap_base" \
+			--set registry="ldap/server/addition \"$ldapservers\""
+	else
+		univention-directory-manager policies/registry remove "$@" \
+			--dn="cn=default-ldap-servers,cn=config-registry,cn=policies,$ldap_base"
+	fi
+fi
+
+ucs_addServiceToLocalhost 'LDAP' "$@" || die
+
+# syncrepl for cn=internal
+if [ "$server_role" = "domaincontroller_master" ]; then
+	ucr set ldap/database/internal/syncprov=true && service slapd start
+elif [ "$server_role" = "domaincontroller_backup" ]; then
+	ucr set ldap/database/internal/syncrepl=true && service slapd start
+fi
+
+joinscript_save_current_version
+exit 0

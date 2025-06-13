@@ -1,0 +1,291 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-join\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2020-09-25 01:15+0200\n"
+"PO-Revision-Date: 2012-04-23 16:17+0200\n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: umc/js/join/Grid.js:172
+#, javascript-format
+msgid "%d scripts are pending to be run."
+msgstr "Insgesamt können %d Skripte ausgeführt werden."
+
+#: umc/js/join/Grid.js:164
+#, javascript-format
+msgid "%d scripts selected"
+msgstr "%d Skripte ausgewählt"
+
+#: umc/js/join.js:156
+msgid "... loading log ..."
+msgstr "... Protokoll wird geladen ..."
+
+#: umc/js/join/Grid.js:164
+msgid "1 script selected"
+msgstr "1 Skript ausgewählt"
+
+#: umc/js/join.js:440
+msgid ""
+"<p>Please enter credentials of a user account with administrator rights to "
+"run the selected join scripts.</p>"
+msgstr ""
+"<p>Bitte Zugangsdaten eines Benutzerkontos mit Administratorrechten "
+"eingeben, um die ausgewählten Join-Skripte auszuführen.</p>"
+
+#. i18n: %s is the "XXX module".
+#: umc/js/join.js:308
+#, javascript-format
+msgid "A Primary Directory Node should be joined by the %s."
+msgstr "Ein Primary Directory Node sollte über das %s der Domäne beitreten."
+
+#: umc/js/join.js:303
+msgid "A join process is already running..."
+msgstr "Ein Join-Vorgang läuft bereits..."
+
+#: umc/js/join.js:403
+msgid "A reboot of the server is recommended after joining the system."
+msgstr "Ein Neustart des Servers ist nach einem Domänenbeitritt empfohlen."
+
+#: umc/js/join.js:405
+msgid ""
+"A restart of the UMC server components may be necessary for changes to take "
+"effect."
+msgstr ""
+"Ein Neustart der UMC-Server-Komponenten kann notwendig sein, damit "
+"Änderungen wirksam werden."
+
+#: umc/js/join.js:61
+msgid ""
+"As %(root)s you do not have access to the App Center. For this you need to "
+"log in as %(administrator)s."
+msgstr ""
+"Als %(root)s haben Sie keinen Zugriff auf das App Center. Dafür müssen Sie "
+"sich als %(administrator)s anmelden."
+
+#: umc/js/join.js:63
+msgid ""
+"As %(root)s you have neither access to the domain administration nor to the "
+"App Center. For this you need to log in as %(administrator)s."
+msgstr ""
+"Als %(root)s haben Sie weder Zugriff auf die Domänenadministration noch auf "
+"das App Center. Dafür müssen Sie sich als %(administrator)s anmelden."
+
+#. i18n: %s is the "XXX module".
+#: umc/js/join.js:308
+msgid "Basic settings module"
+msgstr "Basis-Einstellungen Modul"
+
+#: umc/js/join.js:268
+msgid ""
+"Currently, software is being installed or uninstalled. Join scripts should "
+"not be run right now."
+msgstr ""
+"Momentan wird Software installiert oder deinstalliert. Join-Skripte sollten "
+"jetzt nicht ausgeführt werden."
+
+#: umc/js/join/Grid.js:52
+msgid "Execute"
+msgstr "Ausführen"
+
+#: umc/js/join/Grid.js:80
+msgid "Execute all pending join scripts"
+msgstr "Alle ausstehenden Join-Skripte ausführen"
+
+#: umc/js/join/Grid.js:81
+msgid "Executes join scripts which are not properly configured."
+msgstr "Führt join-Skripte aus, die nicht richtig konfiguriert wurden."
+
+#: umc/js/join/Grid.js:53
+msgid "Executes this join script"
+msgstr "Führt dieses Join-Skript aus"
+
+#: umc/js/join/Grid.js:70
+msgid "Force execute"
+msgstr "Ausführen erzwingen"
+
+#: umc/js/join/Grid.js:71
+msgid "Forces execution of selected join scripts"
+msgstr "Erzwingt Ausführung der ausgewählten join-Skripte."
+
+#: umc/js/join/Form.js:65
+msgid "Hostname of Primary Directory Node"
+msgstr "Rechnername des Primary Directory Node"
+
+#: umc/js/join.js:368 umc/js/join.js:371
+msgid "Join error"
+msgstr "Join-Fehler"
+
+#: umc/js/join.js:137
+msgid "Join log"
+msgstr "Join-Protokoll"
+
+#: umc/js/join/Grid.js:169
+msgid "Join status ok, nothing to do."
+msgstr "Join-Status OK, es gibt nichts zu tun."
+
+#: umc/js/join/Form.js:46
+msgid "Join system"
+msgstr "Domänenbeitritt"
+
+#. i18n: %s is the "Domain join module".
+#: umc/js/join.js:88
+#, javascript-format
+msgid ""
+"Not all installed components have been registered. Please visit the %s to "
+"register the remaining components."
+msgstr ""
+"Nicht alle installierten Komponenten wurden registriert. Bitte rufen Sie das "
+"%s auf um alle verbliebenen Komponenten zu registrieren."
+
+#: umc/js/join/Grid.js:172
+msgid "One script is pending to be run."
+msgstr "Ein Skript steht zur Ausführung an."
+
+#: umc/js/join/Grid.js:63
+msgid ""
+"Only join scripts which are not successfully configured can be executed. To "
+"execute the selected scripts anyway the force execution option have to be "
+"used."
+msgstr ""
+"Nur Join-Skripte, die nicht erfolgreich ausgeführt wurden können ausgeführt "
+"werden. Um die gewählten Skripte trotzdem auszuführen muss die Ausführung "
+"erzwingen Option benutzt werden."
+
+#: umc/js/join.js:454 umc/js/join/Form.js:59
+msgid "Password"
+msgstr "Passwort"
+
+#: umc/js/join.js:462
+msgid "Password invalid"
+msgstr "Passwort ungültig"
+
+#: umc/js/join/Form.js:60
+msgid "Password of the domain administrator"
+msgstr "Passwort des Domänen-Administrators"
+
+#: umc/js/join.js:107
+msgid ""
+"Please enter credentials of a user account with administrator rights to join "
+"the system."
+msgstr ""
+"Bitte Zugangsdaten eines Benutzerkontos mit Administratorrechten eingeben, "
+"um der Domäne beizutreten."
+
+#: umc/js/join/Grid.js:91
+msgid "Rejoin"
+msgstr "Erneut beitreten"
+
+#: umc/js/join.js:280
+msgid "Rejoin system"
+msgstr "Domäne erneut beitreten"
+
+#: umc/js/join/Grid.js:92
+msgid "Rejoins the system"
+msgstr "Tritt der Domäne neu bei"
+
+#: umc/js/join.js:458
+msgid "Run"
+msgstr "Ausführen"
+
+#: umc/js/join.js:254 umc/js/join.js:457
+msgid "Run join scripts"
+msgstr "Join-Skripte ausführen"
+
+#: umc/js/join/Grid.js:113
+msgid "Script (package)"
+msgstr "Skript (Paket)"
+
+#: umc/js/join/Grid.js:114
+msgid "Script name (the same as the package it belongs to)"
+msgstr "Skriptname (benannt nach dem Paket, zu dem er gehört)"
+
+#: umc/js/join.js:145
+msgid "Show Join status"
+msgstr "Join-Status zeigen"
+
+#: umc/js/join/Grid.js:98
+msgid "Shows the join log"
+msgstr "Zeigt das Join-Protokoll"
+
+#: umc/js/join.js:359
+msgid "Starting the join process..."
+msgstr "Join-Vorgang startet..."
+
+#: umc/js/join/Grid.js:119
+msgid "State"
+msgstr "Status"
+
+#: umc/js/join/Grid.js:120
+msgid "Status of this package"
+msgstr "Status dieses Paketes"
+
+#. i18n: %s is the "Network settings module".
+#: umc/js/join/Form.js:90
+#, javascript-format
+msgid "The DNS settings can be adjusted in the %s."
+msgstr "Die DNS-Einstellungen können im %s angepasst werden."
+
+#: umc/js/join.js:248
+msgid "The following join scripts will be executed: "
+msgstr "Die folgenden Join-Skripte werden ausgeführt: "
+
+#: umc/js/join/Form.js:66
+msgid "The hostname of the Primary Directory Node of the domain"
+msgstr "Der Computername des Primary Directory Node der Domäne"
+
+#: umc/js/join.js:376
+msgid "The join process was successful."
+msgstr "Der Join-Vorgang war erfolgreich."
+
+#: umc/js/join.js:303
+msgid "The join scripts have successfully been executed."
+msgstr "Die Join-Skripte wurden erfolgreich ausgeführt"
+
+#: umc/js/join.js:462
+msgid "The password may not be empty."
+msgstr "Es muss ein Passwort angegeben werden."
+
+#: umc/js/join.js:466
+msgid "The username may not be empty."
+msgstr "Es muss ein Benutzername angegeben werden."
+
+#: umc/js/join/Form.js:54
+msgid "The username of the domain administrator"
+msgstr "Benutzername des Domänen-Administrators"
+
+#: umc/js/join.js:121
+msgid ""
+"This page shows the status of all available join scripts on this system, "
+"along with all join-related actions."
+msgstr ""
+"Diese Seite zeigt den Status aller verfügbaren Join-Skripte auf diesem "
+"System, zusammen mit allen zugehörigen Aktionen."
+
+#: umc/js/join.js:449 umc/js/join/Form.js:53
+msgid "Username"
+msgstr "Benutzername"
+
+#: umc/js/join.js:466
+msgid "Username invalid"
+msgstr "Benutzername ungültig"
+
+#: umc/js/join/Grid.js:97
+msgid "View join log"
+msgstr "Join-Protokoll ansehen"
+
+#: umc/js/join/Form.js:88
+msgid "Warning: "
+msgstr "Warnung: "
+
+#: umc/js/join/Grid.js:123
+msgid "pending"
+msgstr "ausstehend"
+
+#: umc/js/join/Grid.js:123
+msgid "successful"
+msgstr "erfolgreich"

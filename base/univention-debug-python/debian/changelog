@@ -1,0 +1,165 @@
+univention-debug-python (14.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+univention-debug-python (14.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:39 +0100
+
+univention-debug-python (14.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:32 +0100
+
+univention-debug-python (14.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:25 +0100
+
+univention-debug-python (13.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:20 +0100
+
+univention-debug-python (13.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:51 +0100
+
+univention-debug-python (13.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:27 +0100
+
+univention-debug-python (13.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:22 +0100
+
+univention-debug-python (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:37 +0100
+
+univention-debug-python (12.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:49 +0100
+
+univention-debug-python (12.0.3-11) unstable; urgency=medium
+
+  * Bug #57101: always check univention-debug level for cases when something
+    externally directly sets the univention.debug level
+
+ -- Florian Best <best@univention.de>  Tue, 05 Mar 2024 16:24:44 +0100
+
+univention-debug-python (12.0.3-10) unstable; urgency=medium
+
+  * Bug #57101: set level to upstream handler
+
+ -- Florian Best <best@univention.de>  Tue, 05 Mar 2024 09:43:46 +0100
+
+univention-debug-python (12.0.3-9) unstable; urgency=medium
+
+  * Bug #57101: detect correct univention-debug log level if univention.debug
+    is initialized by ud instead of univention.logging
+
+ -- Florian Best <best@univention.de>  Fri, 01 Mar 2024 12:46:02 +0100
+
+univention-debug-python (12.0.3-8) unstable; urgency=medium
+
+  * Bug #57026: don't set the loglevel initially to `logging.NOTSET`
+
+ -- Florian Best <best@univention.de>  Tue, 13 Feb 2024 11:15:47 +0100
+
+univention-debug-python (12.0.3-7) unstable; urgency=medium
+
+  * Bug #57026: use `ud2` instead of root logger as parents of category
+    loggers
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 09 Feb 2024 10:51:06 +0100
+
+univention-debug-python (12.0.3-5) unstable; urgency=medium
+
+  * Bug #55324: enhance log level mapping
+
+ -- Florian Best <best@univention.de>  Fri, 19 Jan 2024 18:34:03 +0100
+
+univention-debug-python (12.0.3-4) unstable; urgency=medium
+
+  * Bug #55324: fix univention.debug2 not sharing same handlers with
+    univention.logging
+
+ -- Florian Best <best@univention.de>  Thu, 11 Jan 2024 13:52:20 +0100
+
+univention-debug-python (12.0.3-3) unstable; urgency=medium
+
+  * Bug #55324: use logger.propagate = False instead of NullHandler
+
+ -- Florian Best <best@univention.de>  Thu, 11 Jan 2024 12:34:28 +0100
+
+univention-debug-python (12.0.3-2) unstable; urgency=medium
+
+  * Bug #55324: fix log formatter for unknown debug levels
+
+ -- Florian Best <best@univention.de>  Thu, 11 Jan 2024 11:02:51 +0100
+
+univention-debug-python (12.0.3-1) unstable; urgency=medium
+
+  [ Philipp Hahn ]
+  * Bug #56832: UCS 5.0-6 version bump
+
+  [ Florian Best ]
+  * Bug #55324: add univention.logging
+
+ -- Florian Best <best@univention.de>  Tue, 09 Jan 2024 17:40:38 +0100
+
+univention-debug-python (12.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:33 +0100
+
+univention-debug-python (12.0.1-1) unstable; urgency=medium
+
+  * Bug #49130: allow /dev/{stdin,stderr}
+
+ -- Florian Best <best@univention.de>  Fri, 09 Oct 2020 14:44:53 +0200
+
+univention-debug-python (12.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:11 +0200
+
+univention-debug-python (11.0.0-3) unstable; urgency=low
+
+  * Bug #49130: Fix PyFile_FromFd() with Python3
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 May 2019 10:20:19 +0200
+
+univention-debug-python (11.0.0-2) unstable; urgency=low
+
+  * Bug #49130: Split Python binding into separate package
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 21 May 2019 07:15:05 +0200
+
+univention-debug-python (1.0.0-1) unstable; urgency=low
+
+  * Bug #49130: Split Python binding into separate package
+  * Bug #46100: Add missing log targets to debug2.py
+  * Bug #43422: Add decorator for function logging
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 13 May 2019 14:44:46 +0200

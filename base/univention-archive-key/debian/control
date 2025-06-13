@@ -1,0 +1,36 @@
+Source: univention-archive-key
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+Standards-Version: 3.8.2
+
+Package: univention-archive-key
+Architecture: all
+Description: UCS - Archive signature key
+ This package contains the archive signing key for Univention
+ Corporate Server 3.x, 4.x and 5.x.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-archive-key-udeb
+Architecture: all
+Section: debian-installer
+XB-Subarchitecture: ${subarch}
+Package-Type: udeb
+Depends:
+ ${misc:Depends},
+Recommends:
+ gpgv-udeb,
+Description: UCS - Archive signature key
+ This package contains the archive signing key for Univention
+ Corporate Server 5.x, in a minimal form for use in the installer.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

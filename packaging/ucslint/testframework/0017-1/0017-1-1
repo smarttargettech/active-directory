@@ -1,0 +1,47 @@
+#!/bin/sh
+
+eval `ucr shell`
+eval `ucr shell foobar`
+
+eval `univention-config-registry shell`
+eval `univention-config-registry shell foobar`
+
+
+eval ` ucr shell `
+eval ` ucr shell foobar `
+
+eval ` univention-config-registry shell `
+eval ` univention-config-registry shell foobar `
+
+
+
+eval $(ucr shell)
+eval $(ucr shell foobar)
+
+eval "$(ucr shell)"
+eval "$(ucr shell foobar)"
+
+eval "$(univention-config-registry shell)"
+eval "$(univention-config-registry shell foobar)"
+
+
+eval "$( ucr shell )"
+eval "$( ucr shell foobar )"
+
+eval "$( univention-config-registry shell )"
+eval "$( univention-config-registry shell foobar )"
+
+
+
+eval $(ucr shell)
+eval $(ucr shell foobar)
+
+eval $(univention-config-registry shell)
+eval $(univention-config-registry shell foobar)
+
+
+eval $( ucr shell )
+eval $( ucr shell foobar )
+
+eval $( univention-config-registry shell )
+eval $( univention-config-registry shell foobar )

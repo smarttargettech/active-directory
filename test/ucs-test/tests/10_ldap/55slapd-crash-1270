@@ -1,0 +1,86 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking for slapd crash
+## bugs: [9738]
+## roles:
+##  - domaincontroller_master
+##  - domaincontroller_backup
+##  - domaincontroller_slave
+## tags:
+##  - skip_admember
+## packages:
+##  - univention-config
+##  - univention-directory-manager-tools
+##  - ldap-utils
+##  - univention-ldap-server
+## exposure: dangerous
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/group.sh
+. "$TESTLIBPATH/group.sh" || exit 137
+# shellcheck source=../../lib/printer.sh
+. "$TESTLIBPATH/printer.sh" || exit 137
+# shellcheck source=../../lib/maildomain.sh
+. "$TESTLIBPATH/maildomain.sh" || exit 137
+# shellcheck source=../../lib/undo.sh
+. "$TESTLIBPATH/undo.sh" || exit 137
+
+if [ -z "$(pidof slapd)" ]; then
+	echo "There is actually no slapd-process"
+	exit 120
+fi
+
+undo wait_for_replication # wait at end
+
+create_mail_domain "$domainname" && undo delete_mail_domain "$domainname"
+
+echo -e "\n\n***Create a test user with UDM CLI"
+PRINTERNAME="$(getprintername)"
+create_localprinter "$PRINTERNAME" &&
+	undo remove_printer "$PRINTERNAME" ||
+	fail_test 1
+
+USERNAME=$(user_randomname)
+user_create "$USERNAME" &&
+	undo user_remove "$USERNAME" ||
+	fail_test 1
+
+echo -e "\n\n***Create a test group with UDM CLI and add the specified user"
+GROUPNAME="$(group_randomname)"
+group_create "$GROUPNAME" &&
+	undo group_remove "$GROUPNAME" ||
+	fail_test 1
+
+echo "$USERNAME" "$GROUPNAME"
+echo "$PRINTERNAME"
+
+wait_for_replication
+
+group_adduser "$USERNAME" "$GROUPNAME" || fail_test 1
+
+wait_for_replication
+
+echo -e "\n\n***Adding the new group to \"Domain Admins\""
+group_addgroup "$GROUPNAME" "Domain Admins" &&
+	undo group_removegroup "$GROUPNAME" "Domain Admins" ||
+	fail_test 1
+
+wait_for_replication
+
+echo -e "\n\n***Displaying the created printer, using the account of the created user:"
+if ! ldapsearch -x -D "uid=$USERNAME,cn=users,$ldap_base" -w univention "cn=$PRINTERNAME"
+then
+	if [ -z "$(pidof slapd)" ] ; then
+		/etc/init.d/slapd start
+		fail_test 1 "The slapd crashed. See Bug #9738."
+	else
+		fail_test 1 "Failed to search!"
+	fi
+else
+	echo "Everything was fine. The slapd did not crash."
+fi
+
+exit "$RETVAL"

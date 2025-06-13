@@ -1,0 +1,67 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check release file signatures (check if apt-get update still works 5 years into the future)
+## bugs: [53528]
+## tags:
+##  - basic
+##  - apptest
+## packages:
+##  - libfaketime
+## exposure: safe
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137  # INSTALL
+
+detect_lib () {
+	local arch
+	for arch in "$(gcc -print-multiarch)" x86_64-linux-gnu i386-linux-gnu
+	do
+		libfaketime="/usr/lib/${arch}/faketime/libfaketime.so.1"
+		[ -f "$libfaketime" ] &&
+			return 0
+	done
+	fail_fast 137 "libfaketime not found"  # INSTALL
+}
+detect_lib
+
+# check only http to avoid certificate issues like
+#   Err:10 https://updates.software-univention.de ucs500 Release
+#   Certificate verification failed: The certificate is NOT trusted.
+#   The certificate chain uses expired certificate.
+#   Could not handshake: Error in the certificate verification. [IP: 176.9.114.147 443]
+# here we are only interested in the apt key expiry
+apt_update () {
+	local faketime="${1:?}"
+	shift
+	LC_ALL=C \
+	LD_PRELOAD="$libfaketime" \
+	FAKETIME="$faketime" \
+		apt-get \
+		-o 'Acquire::https::Verify-Peer=false' \
+		-o 'Acquire::https::Verify-Host=false' \
+		-q update 2>&1 |
+	grep "$@" '^[WE]:'
+}
+
+# skip if test appcenter is used
+case "$(ucr get repository/app_center/server)" in
+*appcenter-test*) exit 77  # SKIP
+esac
+
+# skip if branch test repo is used
+[ -n "$SCOPE" ] && [ -e /etc/apt/sources.list.d/99_extra_scope.list ] && exit 77  # SKIP
+
+# check if apt-get update in now+2y works
+if apt_update '+2y'
+then
+	apt-key list
+	fail_fast 110 "warnings/error during apt-get update"  # FAIL
+fi
+
+# check if apt-get update in now+50y fails (just to test the test)
+if ! apt_update '+50y' -q
+then
+	fail_fast 110 "did not fail 50 years into the future, key should have expired by then"  # FAIL
+fi
+
+exit 0  # OKAY

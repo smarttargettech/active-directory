@@ -1,0 +1,85 @@
+@require "../variables.styl"
+
+.umc .umcOverviewContainer
+	padding: 4rem 0 0
+
+/* Category tabs */
+.umc .umcCategoryBar
+	margin-bottom: spacing(3)
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+
+.umcCategoryButton
+	--button-size: auto
+	box-shadow: none
+	min-width: 95px
+	@media (max-width: 400px)
+		min-width: 70px
+	max-width: 160px
+	margin-bottom: 0.7rem
+
+	.dijitButtonContents
+		flex-direction: column
+
+	.umcCategoryButtonCircleWrapper
+		transition: transform 0.3s, opacity 0.3s
+		opacity: 0.75
+		transform: scale(0.8, 0.8)
+		.circle
+			height: 70px
+			width: 70px
+			border-radius: 50%
+			display: inline-block
+	&.dijitButtonSelected .umcCategoryButtonCircleWrapper
+		opacity: 1
+		transform: scale(1, 1)
+
+	.dijitIcon
+		position: absolute
+		top: 0
+		transition: transform 0.3s 0.0s
+		transform: scale(0.8, 0.8)
+	&.dijitButtonSelected .dijitIcon
+		transform: scale(1, 1)
+
+	.dijitButtonText
+		margin-top: 1em
+		white-space: pre-line
+
+
+.nojs__warningWrapper
+	position: absolute
+	width: 100%
+	height: 66%
+	top: 0
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	background: var(--bgc-content-body) // set background again to cover standby anims (e.g. in /var/www/univention/setup)
+.nojs__warning__header
+	margin-bottom: spacing(3)
+.nojs__warning
+	max-width: 500px
+	box-shadow: var(--box-shadow)
+	display: flex
+	align-items: center
+.nojs__warning__icon
+	width: 80px
+	flex: 0 0 auto
+	margin-right: spacing(2)
+	fill: currentColor
+.nojs__warning__title
+	margin-bottom: spacing(2)
+
+/*favorites category fade in/out*/
+.umcCategoryBar .umcCategory-_favorites_
+		opacity: 1
+		transition: opacity 0.7s 0.3s, max-width 0.7s, min-width 0.7s
+
+		&.favoritesHidden
+			opacity: 0
+			max-width: 0 !important
+			min-width: 0
+			transition: opacity 0.5s, max-width 0.7s 0.2s, min-width 0.7s 0.2s

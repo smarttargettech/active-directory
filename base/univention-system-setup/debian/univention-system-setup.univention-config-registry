@@ -1,0 +1,11 @@
+Type: file
+File: etc/logrotate.d/univention-system-setup
+Variables: logrotate/.*
+
+Type: file
+File: usr/share/univention-management-console/modules/setup-certificate.xml
+Variables: server/role
+
+Type: file
+File: etc/apache2/conf-available/univention-system-setup.conf
+Variables: system/setup/boot/start

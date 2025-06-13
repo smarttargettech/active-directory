@@ -1,0 +1,10 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking for filesystem permissions on /etc/backup-join.secret
+## roles: [domaincontroller_master]
+## exposure: safe
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+check_perm -f /etc/backup-join.secret 0640 root "Backup Join"
+# vim:set ft=sh:

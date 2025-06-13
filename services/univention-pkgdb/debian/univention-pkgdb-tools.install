@@ -1,0 +1,2 @@
+pkgdb-watch.py	usr/lib/univention-directory-listener/system/
+univention-pkgdb-scan	usr/sbin/

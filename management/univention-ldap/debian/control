@@ -1,0 +1,129 @@
+Source: univention-ldap
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.5
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-ldap-server
+Architecture: all
+Pre-Depends:
+ slapd (>= 2.4.47+dfsg-3+deb10u7A~5.0.7.202405171616),
+ univention-ldap-client,
+Depends:
+ bind9-host,
+ db5.3-util,
+ libsasl2-modules-oauthbearer,
+ makepasswd,
+ python3-univention-lib (>= 8.0.1-29),
+ shell-univention-lib (>= 6.0.9-8),
+ univention-base-files,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-ipcalc,
+ univention-join,
+ univention-ldap-config (= ${binary:Version}),
+ univention-ldap-overlay-memberof,
+ univention-newsid,
+ univention-ssl,
+ whois,
+ ${misc:Depends},
+Conflicts:
+ univention-5250 (<< 0.5),
+Description: UCS - LDAP server configuration
+ This package contains the configuration for the OpenLDAP
+ server.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-ldap-client
+Architecture: all
+Recommends:
+ univention-join,
+ univention-pam,
+Depends:
+ ldap-utils,
+ libldap-2.5-0,
+ python3-univention-lib (>= 3.0.3-1),
+ univention-config,
+ ${misc:Depends},
+Description: UCS - LDAP client configuration
+ This package contains the configuration for the OpenLDAP
+ client tools.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-ldap-config-master
+Architecture: all
+Depends:
+ shell-univention-lib (>= 2.0.17-1),
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-join (>= 5.0.20-1),
+ ${misc:Depends},
+Description: UCS - LDAP configuration for Primary and Backup Directory Nodes
+ This package contains configurations related to the OpenLDAP server
+ for Primary and Backup Directory Nodes.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-ldap-config
+Architecture: all
+Pre-Depends:
+ slapd,
+Depends:
+ ${misc:Depends},
+Conflicts:
+ univention-5250 (<< 0.5.23),
+ univention-5250-powerterm (<< 1.4.11),
+Description: UCS - common LDAP configuration
+ This package contains the general configuration for the
+ OpenLDAP server such as the base LDIF file and the
+ schema.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-ldap-acl-master
+Architecture: all
+Pre-Depends:
+ slapd,
+Depends:
+ univention-ldap-server (= ${binary:Version}),
+ ${misc:Depends},
+Conflicts:
+ univention-ldap-acl-slave,
+Description: UCS - LDAP server ACLs for Primary and Backup Directory Nodes
+ This package contains the OpenLDAP server ACLs for Primary
+ and Backup Directory Nodes.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-ldap-acl-slave
+Architecture: all
+Depends:
+ univention-ldap-server (= ${binary:Version}),
+ ${misc:Depends},
+Conflicts:
+ univention-ldap-acl-master,
+Description: UCS - LDAP server ACLs for Replica Directory Nodes.
+ This package contains the OpenLDAP server ACLs for Replica Directory Nodes.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

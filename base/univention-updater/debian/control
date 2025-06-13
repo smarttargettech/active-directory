@@ -1,0 +1,88 @@
+Source: univention-updater
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ bash-completion,
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ python3-lazy-object-proxy,
+ python3-pytest,
+ python3-pytest-cov,
+ python3-pytest-mock,
+ python3-pytest-timeout,
+ python3-setuptools,
+ python3-univention-admin-diary,
+ python3-univention-debug,
+ python3-univention-lib,
+ univention-config-dev (>= 15.0.3),
+ univention-management-console-dev (>= 12.0.2),
+
+Package: univention-updater
+Architecture: all
+Depends:
+ at,
+ ca-certificates,
+ netcat-traditional,
+ python3-apt,
+ python3-packaging,
+ python3-univention-config-registry,
+ python3-univention-directory-manager,
+ python3-univention-lib (>= 8.0.1-33),
+ python3-univention-updater (= ${source:Version}),
+ shell-univention-lib,
+ univention-config,
+ univention-directory-policy,
+ univention-errata-level,
+ univention-policy-tools,
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ screen,
+Suggests:
+ apt-mirror,
+Description: UCS - system upgrading tool
+ UCS Updater can upgrade your version of UCS.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: python3-univention-updater
+Architecture: all
+Depends:
+ python3-univention-admin-diary,
+ python3-univention-config-registry,
+ ${misc:Depends},
+ ${python3:Depends},
+Description: UCS Updater Python 3 modules
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-module-updater
+Architecture: all
+Depends:
+ python3-apt,
+ python3-psutil,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-maintenance-mode,
+ univention-management-console-module-lib,
+ univention-management-console-server (>= 12.0.20-1),
+ univention-updater (= ${source:Version}),
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UMC module for UCS updater
+ This package contains the UMC module for the UCS updater.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

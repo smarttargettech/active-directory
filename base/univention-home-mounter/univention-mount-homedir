@@ -1,0 +1,183 @@
+#!/usr/bin/python3
+#
+# Univention Home Mounter
+#  mount the homedir
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import argparse
+import os
+import pwd
+import shlex
+import socket
+import stat
+import subprocess
+import sys
+import syslog
+import time
+import traceback
+
+import ldap.filter
+
+import univention.uldap
+
+
+MOUNTS_FILE = '/var/lib/univention-home-mounter/mounts'
+
+NEW_HOME_DIR_MODE = stat.S_IRWXU | stat.S_IXGRP | stat.S_IXOTH
+
+DEBUG = True
+
+
+def hostname_short():
+    """return first part of hostname (like "hostname -s")"""
+    return socket.gethostname().split('.', 1)[0]
+
+
+def hostname_fqdn():
+    """return full hostname (like "hostname -f")"""
+    return socket.getfqdn()
+
+
+def get_homeattr(username):
+    """return automountInformation of <username>, if any"""
+    debug("connecting to ldap server...")
+    try:
+        connection = univention.uldap.getMachineConnection(ldap_master=False, reconnect=False)
+    except (OSError, ldap.LDAPError):
+        debug(traceback.format_exc())
+        return
+    debug("searching automount info...")
+    search_filter = ldap.filter.filter_format(
+        "(&(objectClass=posixAccount)(objectClass=automount)(uid=%s))",
+        (username, ),
+    )
+    for _, attributes in connection.search(filter=search_filter, attr=['automountInformation'], sizelimit=1):
+        for info in attributes.get('automountInformation', []):
+            return info.decode("UTF-8")
+    return None
+
+
+def get_userinfo(username):
+    """return passwd information of the user to be used"""
+    try:
+        return pwd.getpwnam(username)
+    except KeyError:
+        return None
+
+
+def userinfo_is_usable(user):
+    """test for empty/unusable passwd information"""
+    return user is not None and user.pw_name and user.pw_dir
+
+
+def is_system(user):
+    """check UID to see if <user> is a domain user or local/system user"""
+    return user.pw_uid < 1000
+
+
+def create_home(owner):
+    """create home directory for <owner> if not exists"""
+    if not os.path.exists(owner.pw_dir):
+        syslog.syslog("Creating home directory %r" % (owner.pw_dir, ))
+        debug("Creating home directory %r" % (owner.pw_dir, ))
+        os.makedirs(owner.pw_dir)
+        os.chown(owner.pw_dir, owner.pw_uid, owner.pw_gid)
+        os.chmod(owner.pw_dir, NEW_HOME_DIR_MODE)
+
+
+def parse_automount(information):
+    """parse automountInformation string into (flags, host, path)"""
+    if information.startswith('-'):
+        flags, unc = information.split(None, 1)
+    else:
+        flags = ""
+        unc = information
+    if ':' in unc:
+        host, path = unc.split(':', 1)
+        return (flags, host, path)
+    return (None, None, None)
+
+
+def mount_nfs_home(host, path, mount_point):
+    """mount NFS home share <path> from <host> on <mount_point>"""
+    command = ('mount', '-t', 'nfs', '%s:%s' % (host, path), mount_point)
+    debug("executing %s" % " ".join(shlex.quote(_arg) for _arg in command))
+    if subprocess.call(command) == 0:
+        with open(MOUNTS_FILE, 'a') as mounts:
+            mounts.write('%s %d\n' % (mount_point, time.time()))
+        return True
+    return False
+
+
+def debug(message):
+    if DEBUG:
+        print(message, file=sys.stderr)
+
+
+def main():
+    global DEBUG
+    """main method"""
+    syslog.openlog('univention-mount-homedir')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('username', nargs='?', default=os.environ.get('USER'))
+    parser.add_argument('-v', '--verbose', action='store_true')
+    args = parser.parse_args()
+
+    DEBUG = args.verbose
+    user = get_userinfo(args.username)
+    debug(user)
+    if not userinfo_is_usable(user):
+        debug("no userinfo is available for %s" % (args.username,))
+        sys.exit(1)
+    if is_system(user) or os.path.ismount(user.pw_dir):
+        debug("Invalid user %s or %s is already mounted" % (args.username, user.pw_dir))
+        sys.exit(0)
+    home_attr = get_homeattr(user.pw_name)
+    debug("automount info %s" % (home_attr,))
+    if not home_attr:
+        sys.exit(0)
+    else:
+        (_, host, path) = parse_automount(home_attr)
+        if not host or not path:
+            syslog.syslog("Bad information in LDAP. Not mounting home directory.")
+            sys.exit(1)
+        if host in (hostname_fqdn(), hostname_short()) and os.path.realpath(path) == os.path.realpath(user.pw_dir):
+            syslog.syslog("Home directory is local.")
+            sys.exit(0)
+        create_home(user)
+        if not mount_nfs_home(host, path, user.pw_dir):
+            syslog.syslog("Failed to mount home directory: %r" % (user.pw_dir, ))
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

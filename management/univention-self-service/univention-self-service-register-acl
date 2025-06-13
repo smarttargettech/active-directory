@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# Univention Self Service
+# register an ACL file
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2019-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+ACTION="$1"
+ACL_FILENAME="$2"
+ACL_VERSION="$3"
+
+if [ "$#" -ne 3 ]; then
+	echo "usage: univention-self-service-register-acl register|unregister ACL_FILENAME ACL_VERSION"
+	exit 1
+fi
+
+if ! [ "$ACTION" = "register" -o "$ACTION" = "unregister" ]; then
+	echo "first parameter must be 'register' or 'unregister'"
+	exit 1
+fi
+
+. /usr/share/univention-lib/ldap.sh
+
+if [ "$ACTION" = "register" ]; then
+	ucs_registerLDAPExtension \
+	--packagename univention-self-service \
+	--packageversion "$ACL_VERSION" \
+	--ucsversionstart "5.0-7" --ucsversionend "5.99-0" \
+	--acl "$ACL_FILENAME" 2>&1
+else
+	ACL_BASENAME="$(basename $ACL_FILENAME)"
+	ACL_NAME=${ACL_BASENAME%".acl"}
+	ucs_unregisterLDAPExtension --acl "$ACL_NAME" 2>&1
+fi

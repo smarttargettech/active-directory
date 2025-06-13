@@ -1,0 +1,194 @@
+#!/bin/bash
+#
+# Univention System Setup
+#  start X server with browser
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2011-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+from_init () {
+	# call self in xinit as nobody
+	echo -e "\n\n\n"
+	echo "$0 has been started at $(date)"
+
+	echo "Started in '$mode' mode"
+	echo
+
+	# set random password for system setup user
+	USSPASSWD="$(tr -c -d '[:alnum:]' < /dev/urandom | head -c 30)"
+	echo "__systemsetup__:$USSPASSWD" | chpasswd
+
+	default_locale=en_US
+	eval "$(/usr/sbin/univention-config-registry shell locale/default)"
+	if [ -n "${locale_default:-}" ]; then
+		default_locale=${locale_default%%.*}
+	fi
+	USSURL="http://localhost/univention/setup/?username=__systemsetup__&password=${USSPASSWD}&lang=$default_locale"
+	BROWSERPIDFILE="/var/cache/univention-system-setup/browser.pid"
+
+	# Disable CD image in sources.list
+	if [ -e "/etc/apt/sources.list" ]
+	then
+		printf "# This file is not maintained via Univention Configuration Registry\n# and can be used to add further package repositories manually\n" >/etc/apt/sources.list
+	fi
+
+	# stop plymouth - otherwise it is burning CPU power in background
+	plymouth quit
+	if [ "$mode" = "installer" ] ; then
+		# make sure en_US is set as available locale to avoid problems
+		# with locale fallbacks to en_US (Bug #42853)
+		available_locales="$(/usr/sbin/univention-config-registry get locale)"
+		case "$available_locales" in
+			*en_US*) ;;
+			*) /usr/sbin/univention-config-registry set locale="$available_locales en_US.UTF-8:UTF-8";;
+		esac
+
+		# hide some system setup fields Bug #35685
+		/usr/sbin/univention-config-registry set \
+			system/setup/boot/fields/blacklist='password locale' \
+			system/setup/boot/pages/blacklist='locale welcome network'
+
+		deb-systemd-invoke restart univention-management-console-server apache2
+	fi
+
+	if "$use_xserver"
+	then
+		export DISPLAY=:0
+		if xwininfo -root -stats > /dev/null 2>/dev/null ; then
+			/bin/su -s /bin/sh nobody -m --login -c "'$0' '$USSURL'" -- 3> "$BROWSERPIDFILE"
+		else
+			# start X11 and browser ; script returns pid of browser on fd3
+			[ -x /usr/bin/xinit ] && /usr/bin/xinit /bin/su -s /bin/sh nobody -c "'$0' '$USSURL'" -- 3> "$BROWSERPIDFILE"
+		fi
+	fi
+
+	# start welcome screen
+	if [ -x /sbin/plymouthd ] && [ -x /usr/bin/univention-welcome-screen ]; then
+		systemctl start univention-welcome-screen
+	fi
+
+	# remove pidfile
+	rm -f "$BROWSERPIDFILE"
+
+	# set new random password for system setup user
+	USSPASSWD="$(tr -c -d '[:alnum:]' < /dev/urandom | head -c 30)"
+	echo "__systemsetup__:$USSPASSWD" | chpasswd
+
+	if [ "$mode" = "installer" ]
+	then
+		/usr/sbin/univention-config-registry unset system/setup/boot/fields/blacklist system/setup/boot/pages/blacklist system/setup/boot/installer
+	fi
+
+	exit
+}
+
+run_inner_uss () {
+### this is executed by xinit->su as nobody inside the running X server ###
+URL="$1"
+
+# Do not blank screen during system setup
+xset s off -dpms
+
+# create and export a temporary home directory
+HOME=$(mktemp -d)
+export HOME
+profilePath=$(mktemp -d -p "$HOME")
+  {
+# do not show the "know your rights" popup
+    echo 'user_pref("browser.rights.3.shown", true);'
+# do not ask for performance reporting
+    echo 'user_pref("toolkit.telemetry.prompted", 2);'
+    echo 'user_pref("browser.tabs.remote.autostart.2", false);'
+    echo 'user_pref("browser.tabs.remote.autostart", false);'
+    echo 'user_pref("toolkit.telemetry.rejected", true);'
+    echo 'user_pref("toolkit.telemetry.enabled", false);'
+    echo 'user_pref("datareporting.policy.dataSubmissionPolicyAccepted", true);'
+    echo 'user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 1);'
+    echo 'user_pref("datareporting.policy.dataSubmissionPolicyNotifiedTime", "1365509001307");'
+    echo 'user_pref("datareporting.policy.dataSubmissionPolicyResponseTime", "1365517336671");'
+    echo 'user_pref("datareporting.policy.dataSubmissionPolicyResponseType", "accepted-info-bar-dismissed");'
+# do not store passwords
+    echo 'user_pref("signon.rememberSignons", false);'
+# deactivate firefox autoupdate
+    echo 'user_pref("app.update.enabled", false);'
+    echo 'user_pref("app.update.auto", false);'
+# deactivate default browser check
+    echo 'user_pref("browser.shell.checkDefaultBrowser", false);'
+# allow JavaScript to close a windoe
+    echo 'user_pref("dom.allow_scripts_to_close_windows", true);'
+# hide nav bar and menu bar
+    echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);'
+  } >> "$profilePath"/prefs.js
+mkdir "$profilePath"/chrome
+userChrome="$(cat << EOF
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+#TabsToolbar[inFullscreen="true"], #nav-bar[inFullscreen="true"] {
+  visibility: collapse !important;
+}
+EOF
+)"
+echo "$userChrome" > "$profilePath"/chrome/userChrome.css
+
+# start window manager so that firefox' menus work correctly
+openbox --config-file /etc/xdg/openbox/rc_no_shortcuts.xml &
+windowManager=$!
+
+# start browser
+firefox -kiosk -profile "$profilePath" "$URL" &
+
+# send pid of browser to root instance of this script
+echo "$!" >&3
+# wait for browser
+wait %%
+kill "$windowManager"
+wait
+rm -rf "$HOME"
+}
+
+mode="installer"
+use_xserver=true
+case "${1:-}" in
+  "")  # no parameter --> called from init script
+    [ "$(/usr/sbin/univention-config-registry get system/setup/boot/installer)" == true ] || mode="init"
+    from_init
+    ;;
+  --installer)
+    shift
+    from_init
+    ;;
+  --installertext)
+    shift
+    use_xserver=false
+    from_init
+    ;;
+  *)
+    run_inner_uss "$1"
+    ;;
+esac

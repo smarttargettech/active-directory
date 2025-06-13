@@ -1,0 +1,47 @@
+crudesaml (1.9.0-2) unstable; urgency=medium
+
+  * Bug #51489: remove 20_fix-private-signature.patch, fixed in bug #51479.
+
+ -- Jürn Brodersen <brodersen@univention.de>  Sun, 14 Jun 2020 00:42:36 +0200
+
+crudesaml (1.9.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 26 May 2020 12:43:33 +0200
+
+crudesaml (1.8.0-3) unstable; urgency=medium
+
+  * Bug #39355: Only patch what fixed the segfault
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 04 Aug 2017 11:41:11 +0200
+
+crudesaml (1.8.0-2) unstable; urgency=medium
+
+  * Bug #39355: Fix SEGV if no idp config was found
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 31 Jul 2017 13:07:41 +0200
+
+crudesaml (1.8.0-1) unstable; urgency=medium
+
+  * Bug #45042: upgrade to crudesaml 1.8
+
+ -- Florian Best <best@univention.de>  Fri, 28 Jul 2017 10:54:09 +0200
+
+crudesaml (1.5.0-6) unstable; urgency=low
+
+  * Bug #44164: Re-add missing .so link
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 31 Mar 2017 15:53:49 +0200
+
+crudesaml (1.5.0-5) unstable; urgency=high
+
+  * Bug #44164: Fix SEGV on i386
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 31 Mar 2017 14:01:53 +0200
+
+crudesaml (1.5.0-4) unstable; urgency=medium
+
+  * Initial Release
+
+ -- Florian Best <best@univention.de>  Wed, 29 Jul 2015 11:59:21 +0200

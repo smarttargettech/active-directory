@@ -1,0 +1,3 @@
+etc/dhcp
+etc/network
+univention-register-network-address	usr/sbin/

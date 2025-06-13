@@ -1,0 +1,8 @@
+E:0009-2: src/irgendwas.py:1: file does not specify Python version in hashbang
+E:0009-3: src/mitWhitespace.py:1: file specifies wrong Python version in hashbang
+E:0009-3: src/nur24.py:1: file specifies wrong Python version in hashbang
+E:0009-3: src/nur25.py:1: file specifies wrong Python version in hashbang
+E:0009-3: src/py35.py:1: file specifies wrong Python version in hashbang
+E:0009-3: src/py37.py:1: file specifies wrong Python version in hashbang
+E:0009-9: src/extra.py:1: hashbang contains more than one option
+W:0009-4: src/mitWhitespace.py:1: file contains whitespace after Python command

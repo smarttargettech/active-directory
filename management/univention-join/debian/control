@@ -1,0 +1,53 @@
+Source: univention-join
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.2
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-join
+Architecture: all
+Depends:
+ iputils-ping,
+ ldap-utils,
+ python3-univention-lib (>= 1.0.25-1),
+ shell-univention-lib (>= 3.0.26-28),
+ tofrodos,
+ univention-config,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-ipcalc,
+ univention-ssh (>= 3.0.1-2),
+ univention-ssl (>= 13.0.0-5),
+ ${misc:Depends},
+Breaks:
+ univention-ldap-server (<< 14.0.2-35),
+Recommends:
+ univention-admin-diary-client (>= 1.0.0-44),
+Description: UCS domain join
+ This packages allows UCS computers to join a
+ UCS domain.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-join-dev
+Architecture: all
+Depends:
+ python3-univention-debhelper (>= 2.0.0-3),
+ ${misc:Depends},
+ ${perl:Depends},
+ ${python3:Depends},
+Description: UCS - domain join development files
+ This package contains the files needed to develop packages
+ that use univention-join.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

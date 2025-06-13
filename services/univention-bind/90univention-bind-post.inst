@@ -1,0 +1,124 @@
+#! /bin/sh
+#
+# Univention Bind
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=1
+. /usr/share/univention-join/joinscripthelper.lib
+joinscript_init
+
+. /usr/share/univention-lib/all.sh
+
+eval "$(univention-config-registry shell)"
+
+if test -z "$ldap_server_ip" -a -z "$ldap_server_name"; then
+	exit 1
+fi
+
+wait_for_dns () {
+	echo -n "Wait for named: "
+	count=0
+	while [ $count -le 600 ]; do
+		if LC_ALL=C host -W 1 "$ldap_master" 127.0.0.1 2>&1 | grep -q 'has \(IPv6 \)\?address '
+		then
+			echo " done"
+			break
+		else
+			echo -n "."
+			# restart bind every 200 seconds
+			expr $count % 200 >/dev/null || service named restart
+			sleep 1
+		fi
+		count=$((count+1))
+	done
+
+	if ! is_ucr_false dns/register/srv_records/ldap; then
+		count=0
+		while [ $count -le 600 ]; do
+			if LC_ALL=C host -t SRV -W 1 "_ldap._tcp.$domainname" 127.0.0.1 2>&1 | grep -q "has SRV record"
+			then
+				echo " done"
+				break
+			else
+				echo -n "."
+				# restart bind every 200 seconds
+				expr $count % 200 >/dev/null || service named restart
+				sleep 1
+			fi;
+			count=$((count+1))
+		done
+	fi
+
+	nscd -i hosts
+}
+
+univention-config-registry set dns/backend?ldap
+
+if [ $JS_LAST_EXECUTED_VERSION = 0 ]; then
+	# these might be hangovers from the installation
+	pkill -f /usr/sbin/named
+	sleep 3
+	pkill -9 -f /usr/sbin/named
+fi
+
+# Restart the named daemon and wait for a few seconds if the local nameserver should be used
+sleep 5  # Make sure the named.service is linked.
+service named restart
+if [ -z "$nameserver_external" ] || ! is_ucr_true nameserver/external; then
+	wait_for_dns
+fi
+
+[ -x /usr/share/univention-server/univention-fix-ucr-dns ] &&
+	/usr/share/univention-server/univention-fix-ucr-dns --force-self ||
+	: # better safe than sorry
+
+old=`univention-directory-manager policies/dhcp_dns list "$@" --filter cn=default-settings | sed -ne 's|.*domain_name_servers: ||p'`
+if [ -z "$old" -o "$old" = "None" ]; then
+	IP="$(get_default_ip_address)"
+	if ! echo "$IP" | grep -q ":" # Don't register IPv6?
+	then
+		univention-directory-manager policies/dhcp_dns modify "$@" --ignore_exists \
+			--dn "cn=default-settings,cn=dns,cn=dhcp,cn=policies,$ldap_base" \
+			--set name=default-settings \
+			--set domain_name="$domainname" \
+			--set domain_name_servers="$IP"
+	fi
+fi
+
+ucs_addServiceToLocalhost 'DNS' "$@" || die
+
+joinscript_save_current_version
+
+exit 0

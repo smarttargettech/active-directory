@@ -1,0 +1,40 @@
+Source: univention-l10n
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ python3-setuptools,
+Standards-Version: 3.8.2
+
+Package: univention-l10n-dev
+Architecture: all
+Depends:
+ python3-debian,
+ python3-lxml,
+ python3-magic,
+ python3-polib,
+ python3-univention-config-registry,
+ ${misc:Depends},
+ ${perl:Depends},
+ ${python3:Depends},
+Recommends:
+ univention-management-console-dev,
+Conflicts:
+ univention-l10n-tools (<< 7.0.0-4),
+ univention-ucs-translation-template (<< 7.0.0-4),
+Replaces:
+ univention-l10n-tools (<< 7.0.0-4),
+ univention-ucs-translation-template (<< 7.0.0-4),
+Breaks:
+ univention-l10n-tools (<< 7.0.0-4),
+ univention-ucs-translation-template (<< 7.0.0-4),
+Description: Development tools for localization of UCS
+ This package contains tools to build localization data.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

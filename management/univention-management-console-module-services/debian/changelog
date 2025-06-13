@@ -1,0 +1,369 @@
+univention-management-console-module-services (11.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:47 +0200
+
+univention-management-console-module-services (11.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:31 +0100
+
+univention-management-console-module-services (11.0.3) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-management-console-module-services (11.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:35 +0100
+
+univention-management-console-module-services (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:18 +0100
+
+univention-management-console-module-services (10.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:35 +0100
+
+univention-management-console-module-services (10.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:25 +0100
+
+univention-management-console-module-services (10.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:31 +0100
+
+univention-management-console-module-services (9.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:47 +0100
+
+univention-management-console-module-services (9.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:28 +0100
+
+univention-management-console-module-services (9.0.3-1) unstable; urgency=medium
+
+  * Bug #43633: remove obsolete references to univention-management-
+    console-web-server systemd service
+
+ -- Florian Best <best@univention.de>  Mon, 12 Jun 2023 08:03:33 +0200
+
+univention-management-console-module-services (9.0.2-1) unstable; urgency=medium
+
+  * Bug #43633: replace direct use of notifier.threads with UMC
+    @threaded decorator
+
+ -- Florian Best <best@univention.de>  Sun, 11 Jun 2023 10:12:44 +0200
+
+univention-management-console-module-services (9.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:41 +0100
+
+univention-management-console-module-services (9.0.0-7) unstable; urgency=medium
+
+  * Bug #53665: rename css class
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Sep 2021 10:06:41 +0200
+
+univention-management-console-module-services (9.0.0-6) unstable; urgency=medium
+
+  * Bug #52941: added new icon design for system services
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 23 Apr 2021 14:07:37 +0200
+
+univention-management-console-module-services (9.0.0-5) unstable; urgency=medium
+
+  * Bug #52941: update module icon for portal
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 14 Apr 2021 10:01:58 +0200
+
+univention-management-console-module-services (9.0.0-4) unstable; urgency=medium
+
+  * Bug #52941: added module icon for portal
+
+ -- Jan Luttermann <jluttermann@linux.fritz.box>  Wed, 24 Mar 2021 11:15:36 +0100
+
+univention-management-console-module-services (9.0.0-3) unstable; urgency=medium
+
+  * Bug #52453: adjust design of services module
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 26 Jan 2021 09:29:10 +0100
+
+univention-management-console-module-services (9.0.0-2) unstable; urgency=medium
+
+  * Bug #51333: Python3 Migration. Dropped python 2 specific functionality
+
+ -- Jan Luttermann <luttermann@univention.de>  Tue, 05 Jan 2021 19:06:31 +0100
+
+univention-management-console-module-services (9.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:22 +0200
+
+univention-management-console-module-services (8.0.1-5) unstable; urgency=medium
+
+  * Bug #49157: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Tue, 08 Oct 2019 18:23:50 +0200
+
+univention-management-console-module-services (8.0.1-4) unstable; urgency=medium
+
+  * Bug #42241: move start/stop/restart logic into service_info.py
+
+ -- Florian Best <best@univention.de>  Fri, 02 Aug 2019 15:30:44 +0200
+
+univention-management-console-module-services (8.0.1-3) unstable; urgency=medium
+
+  * Bug #42241: enhancement: service $foo.service does not work, only
+  	systemctl restart $foo.service works. Strip .service therefore.
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jul 2019 15:29:51 +0200
+
+univention-management-console-module-services (8.0.1-2) unstable; urgency=medium
+
+  * Bug #42241: fix start/restart/stop of services with different systemd name
+  	than the service definition name
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jul 2019 13:26:12 +0200
+
+univention-management-console-module-services (8.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 11:50:53 +0100
+
+univention-management-console-module-services (8.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:39 +0100
+
+univention-management-console-module-services (7.0.0-3) unstable; urgency=medium
+
+  * Bug #26477: warn when stopping module breaks UMC
+
+ -- Jannik Ahlers <ahlers@univention.de>  Mon, 08 Jan 2018 11:08:36 +0100
+
+univention-management-console-module-services (7.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:26 +0100
+
+univention-management-console-module-services (7.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:26 +0100
+
+univention-management-console-module-services (6.0.0-6) unstable; urgency=medium
+
+  * Bug #43999: Adjust styling of dialogs
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 13 Sep 2017 18:39:12 +0200
+
+univention-management-console-module-services (6.0.0-5) unstable; urgency=medium
+
+  * Bug #36563: fix fuzzy, add translation
+
+ -- Florian Best <best@univention.de>  Mon, 03 Jul 2017 14:16:06 +0200
+
+univention-management-console-module-services (6.0.0-4) unstable; urgency=medium
+
+  * Bug #36563: prevent starting of already started processes
+  * Bug #36562: improve error handling
+
+ -- Florian Best <best@univention.de>  Mon, 03 Jul 2017 13:58:08 +0200
+
+univention-management-console-module-services (6.0.0-3) unstable; urgency=medium
+
+  * Bug #43528: Use full width for grids by default
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Mar 2017 17:18:30 +0100
+
+univention-management-console-module-services (6.0.0-2) unstable; urgency=medium
+
+  * Bug #43528: Use SearchBox and hide extra search button
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 08 Mar 2017 13:39:10 +0100
+
+univention-management-console-module-services (6.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:12 +0200
+
+univention-management-console-module-services (5.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:16:42 +0100
+
+univention-management-console-module-services (4.1.0-5) unstable; urgency=medium
+
+  * Bug #36569: use icons for grid actions
+
+ -- Florian Best <best@univention.de>  Mon, 02 Mar 2015 13:13:08 +0100
+
+univention-management-console-module-services (4.1.0-4) unstable; urgency=medium
+
+  * Bug #36564: fix german spelling of services title
+  * Bug #36569: fix design issues
+
+ -- Florian Best <best@univention.de>  Wed, 25 Feb 2015 11:43:38 +0100
+
+univention-management-console-module-services (4.1.0-3) unstable; urgency=low
+
+  * Bug #35654: UMC design adaptions
+
+ -- Florian Best <best@univention.de>  Tue, 14 Oct 2014 18:29:57 +0200
+
+univention-management-console-module-services (4.1.0-2) unstable; urgency=low
+
+  * Bug #35654: UMC design adaptions
+
+ -- Florian Best <best@univention.de>  Thu, 25 Sep 2014 12:43:52 +0200
+
+univention-management-console-module-services (4.0.0-2) unstable; urgency=low
+
+  * Bug #35145: update copyrights
+
+ -- Florian Best <best@univention.de>  Fri, 29 Aug 2014 11:17:28 +0200
+
+univention-management-console-module-services (4.0.0-1) unstable; urgency=low
+
+  * Bug #35145: Start UCS 4.0 development
+
+ -- Florian Best <best@univention.de>  Thu, 10 Jul 2014 17:46:01 +0200
+
+univention-management-console-module-services (3.0.3-1) unstable; urgency=low
+
+  * fixed typo (Bug #32022)
+
+ -- Lukas Walter <walter@univention.de>  Thu, 31 Oct 2013 12:13:34 +0100
+
+univention-management-console-module-services (3.0.2-1) unstable; urgency=low
+
+  * revised UMC module description (Bug #32022)
+
+ -- Lukas Walter <walter@univention.de>  Fri, 18 Oct 2013 18:04:03 +0200
+
+univention-management-console-module-services (3.0.1-1) unstable; urgency=low
+
+  * Bug #26418: adapt grid actions
+  * version bump (UCS 3.2)
+
+ -- Florian Best <best@univention.de>  Tue, 08 Oct 2013 11:19:18 +0200
+
+univention-management-console-module-services (2.0.5-1) unstable; urgency=low
+
+  * Bug #32048: Add keywords to UMC module definition
+
+ -- Florian Best <best@univention.de>  Mon, 09 Sep 2013 13:30:32 +0200
+
+univention-management-console-module-services (2.0.4-1) unstable; urgency=low
+
+  * Add priority (Bug #26961)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 06 Nov 2012 18:30:41 +0100
+
+univention-management-console-module-services (2.0.3-1) unstable; urgency=low
+
+  * Remove old syntax definitions (Bug #27720)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 16 Oct 2012 12:14:26 +0200
+
+univention-management-console-module-services (2.0.2-1) unstable; urgency=low
+
+  * Added PatternSanitizer (Bug #24341)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 25 Sep 2012 13:14:37 +0200
+
+univention-management-console-module-services (2.0.1-2) unstable; urgency=low
+
+  * Build only for Python 2.6 (Bug #26852)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 05 Sep 2012 09:27:37 +0200
+
+univention-management-console-module-services (2.0.1-1) unstable; urgency=low
+
+  * ported module to Dojo 1.8; Bug #26857
+
+ -- Florian Best <best@univention.de>  Wed, 05 Sep 2012 07:53:06 +0200
+
+univention-management-console-module-services (2.0.0-1) unstable; urgency=low
+
+  * Fix not using localised descriptions (Bug #27742)
+  * Fix search (Bug #28132)
+  * Use fancy new decorators (Bug #27716)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 01 Aug 2012 13:47:22 +0200
+
+univention-management-console-module-services (1.0.5-2) unstable; urgency=low
+
+  * Adapted caption and translation (Bug #24724)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 18 Nov 2011 23:17:50 +0100
+
+univention-management-console-module-services (1.0.5-1) unstable; urgency=low
+
+  * fixed typo in join script (Bug #22900)
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 17 Nov 2011 22:19:08 +0100
+
+univention-management-console-module-services (1.0.4-1) unstable; urgency=low
+
+  * add copyright headers to JavaScript files (Bug #23210)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 17 Nov 2011 13:03:09 +0100
+
+univention-management-console-module-services (1.0.3-1) unstable; urgency=low
+
+  * Fix missing translations
+  * Add ucslint
+  (Bug #22900)
+
+ -- Jascha Geerds <geerds@univention.de>  Tue, 08 Nov 2011 14:42:34 +0100
+
+univention-management-console-module-services (1.0.2-1) unstable; urgency=low
+
+  * Fix start type function (Bug #22900)
+
+ -- Jascha Geerds <geerds@univention.de>  Tue, 08 Nov 2011 14:13:19 +0100
+
+univention-management-console-module-services (1.0.1-1) unstable; urgency=low
+
+  * fixed invoke-rc.d path
+  * removed action icons
+  * added translation
+  * fixed error messages
+  (Bug #22900)
+
+ -- Jascha Geerds <geerds@univention.de>  Mon, 31 Oct 2011 11:39:47 +0100
+
+univention-management-console-module-services (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Bug #22900)
+
+ -- Jascha Geerds <geerds@univention.de>  Fri, 28 Oct 2011 19:24:39 +0200

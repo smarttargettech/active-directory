@@ -1,0 +1,567 @@
+univention-demo-configuration (10.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:57 +0200
+
+univention-demo-configuration (10.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-demo-configuration (10.0.3) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:34 +0100
+
+univention-demo-configuration (10.0.2) unstable; urgency=medium
+
+  * Bug #56003: bind9 service was renamed to named
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:25 +0100
+
+univention-demo-configuration (10.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:21 +0100
+
+univention-demo-configuration (9.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:18 +0100
+
+univention-demo-configuration (9.0.4) unstable; urgency=medium
+
+  * Bug #56367: remove UDM integration for Nagios server
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:02 +0100
+
+univention-demo-configuration (9.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:40 +0100
+
+univention-demo-configuration (9.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:26 +0100
+
+univention-demo-configuration (9.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:33 +0100
+
+univention-demo-configuration (8.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:56 +0100
+
+univention-demo-configuration (8.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:20 +0100
+
+univention-demo-configuration (8.0.1-4) unstable; urgency=medium
+
+  * Bug #56714: enable UDM REST API HTML view
+
+ -- Florian Best <best@univention.de>  Wed, 25 Oct 2023 11:55:02 +0200
+
+univention-demo-configuration (8.0.1-3) unstable; urgency=medium
+
+  * Bug #56712: Remove trailing ':' from ldap base
+
+ -- Marius Meschter <marius.meschter@univention.de>  Mon, 09 Oct 2023 16:09:01 +0200
+
+univention-demo-configuration (8.0.1-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:35 +0100
+
+univention-demo-configuration (8.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:47 +0100
+
+univention-demo-configuration (8.0.0-11) unstable; urgency=low
+
+  * Bug #49060: Convert to Python 3
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 May 2022 17:00:05 +0200
+
+univention-demo-configuration (8.0.0-10) unstable; urgency=medium
+
+  * Bug #54029: updated french translation
+
+ -- Johannes Lohmer <lohmer@univention.de>  Fri, 28 Jan 2022 19:20:53 +0100
+
+univention-demo-configuration (8.0.0-9) unstable; urgency=medium
+
+  * Bug #53251: Typo
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 24 Jun 2021 12:29:37 +0200
+
+univention-demo-configuration (8.0.0-8) unstable; urgency=medium
+
+  * Bug #53251: Adjustments to new theming style; better cookie message
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 23 Jun 2021 21:45:50 +0200
+
+univention-demo-configuration (8.0.0-7) unstable; urgency=medium
+
+  * Bug #53251: Update background image; add portal logo
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 20 May 2021 00:25:11 +0200
+
+univention-demo-configuration (8.0.0-6) unstable; urgency=medium
+
+  * Bug #53251: Update logos; enable cookie banner
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 19 May 2021 10:50:48 +0200
+
+univention-demo-configuration (8.0.0-5) unstable; urgency=medium
+
+  * Bug #53251: Make UCS 5 adjustments
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 12 May 2021 23:29:36 +0200
+
+univention-demo-configuration (8.0.0-4) unstable; urgency=medium
+
+  * Bug #52869: Portal entries have to be created differently now
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sat, 20 Mar 2021 01:55:11 +0100
+
+univention-demo-configuration (8.0.0-3) unstable; urgency=medium
+
+  * Bug #43686: replace init.d with systemctl calls for UDL
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 13 Nov 2020 14:06:37 +0100
+
+univention-demo-configuration (8.0.0-2) unstable; urgency=medium
+
+  * Bug #51419: Remove nagios from univention-demo-configuration
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 15 Jun 2020 22:41:37 +0200
+
+univention-demo-configuration (8.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:33 +0200
+
+univention-demo-configuration (7.0.0-2) unstable; urgency=medium
+
+  * Bug #51213: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Mon, 04 May 2020 13:30:12 +0200
+
+univention-demo-configuration (7.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:48 +0100
+
+univention-demo-configuration (6.0.0-4) unstable; urgency=medium
+
+  * Bug #46426: Allow nagios stylesheets and add users/contact module
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 14 Mar 2018 13:17:03 +0100
+
+univention-demo-configuration (6.0.0-3) unstable; urgency=medium
+
+  * Bug #45706: Remove download UCS button after test is finished
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 10 Jan 2018 15:54:16 +0100
+
+univention-demo-configuration (6.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:26 +0100
+
+univention-demo-configuration (6.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:53 +0100
+
+univention-demo-configuration (5.0.2-22) unstable; urgency=medium
+
+  * Bug #45706: Adjust download UCS button
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 05 Dec 2017 15:32:10 +0100
+
+univention-demo-configuration (5.0.2-21) unstable; urgency=medium
+
+  * Bug #45793: Use separate tracking id for piwik
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 29 Nov 2017 10:56:07 +0100
+
+univention-demo-configuration (5.0.2-20) unstable; urgency=medium
+
+  * Bug #45706: enhance download UCS button
+
+ -- Florian Best <best@univention.de>  Tue, 28 Nov 2017 12:02:38 +0100
+
+univention-demo-configuration (5.0.2-15) unstable; urgency=medium
+
+  * Bug #45706: Add 'download ucs now' link to umc on demo system
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 13 Nov 2017 13:00:52 +0100
+
+univention-demo-configuration (5.0.2-14) unstable; urgency=medium
+
+  * Bug #44397: Enabled HTML encoding to fix cross site scripting issue
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 08 Nov 2017 15:34:00 +0200
+
+univention-demo-configuration (5.0.2-13) unstable; urgency=medium
+
+  * Bug #45480: Let the help overlay be closable by clicking anywhere
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 05 Oct 2017 18:34:12 +0200
+
+univention-demo-configuration (5.0.2-12) unstable; urgency=medium
+
+  * Bug #45441: activate piwik on /apps
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 22 Sep 2017 16:24:58 +0200
+
+univention-demo-configuration (5.0.2-11) unstable; urgency=medium
+
+  * Bug #45385: fix address to Univention SDB
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 18 Sep 2017 11:51:20 +0200
+
+univention-demo-configuration (5.0.2-10) unstable; urgency=medium
+
+  * Bug #45385: fix handling of portal entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Sat, 16 Sep 2017 08:48:56 +0200
+
+univention-demo-configuration (5.0.2-9) unstable; urgency=medium
+
+  * Bug #45385: add pseudo portal entries + help overlay
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 14 Sep 2017 11:45:06 +0200
+
+univention-demo-configuration (5.0.2-8) unstable; urgency=medium
+
+  * Bug #45070: Ensure no update process is running when starting the update
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 26 Jul 2017 17:03:28 +0200
+
+univention-demo-configuration (5.0.2-7) unstable; urgency=medium
+
+  * Bug #44232: Ensure that listener is disabled after update
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 04 Apr 2017 02:03:40 +0200
+
+univention-demo-configuration (5.0.2-6) unstable; urgency=medium
+
+  * Bug #43601: move branding.json to new location
+
+ -- Florian Best <best@univention.de>  Tue, 28 Mar 2017 14:19:19 +0200
+
+univention-demo-configuration (5.0.2-5) unstable; urgency=medium
+
+  * Bug #43601: more typos if package is not upgraded but freshly installed
+
+ -- Florian Best <best@univention.de>  Tue, 28 Mar 2017 13:10:06 +0200
+
+univention-demo-configuration (5.0.2-4) unstable; urgency=medium
+
+  * Bug #43601: fix typo in preinst
+
+ -- Florian Best <best@univention.de>  Tue, 28 Mar 2017 13:00:18 +0200
+
+univention-demo-configuration (5.0.2-3) unstable; urgency=medium
+
+  * Bug #43601: fix deb-systemd-invoke
+
+ -- Florian Best <best@univention.de>  Tue, 21 Mar 2017 17:43:15 +0100
+
+univention-demo-configuration (5.0.2-2) unstable; urgency=medium
+
+  * Bug #43601: prevent exception
+
+ -- Florian Best <best@univention.de>  Mon, 20 Mar 2017 16:21:05 +0100
+
+univention-demo-configuration (5.0.1-1) unstable; urgency=medium
+
+  * Bug #43601: update to UCS 4.2
+
+ -- Florian Best <best@univention.de>  Mon, 20 Mar 2017 15:52:37 +0100
+
+univention-demo-configuration (5.0.0-3) unstable; urgency=low
+
+  * Bug #38438: Make init-script LSB compliant
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 09 Sep 2016 14:58:11 +0200
+
+univention-demo-configuration (5.0.0-2) unstable; urgency=medium
+
+  * Bug #42129: allow call of command appcenter/track
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 25 Aug 2016 16:45:12 +0200
+
+univention-demo-configuration (5.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:58:12 +0200
+
+univention-demo-configuration (4.0.3-2) unstable; urgency=medium
+
+  * Bug #40118: Remove diversion of index.html on upgrade
+
+ -- Eduard Mai <mai@univention.de>  Wed, 06 Apr 2016 12:15:53 +0200
+
+univention-demo-configuration (4.0.3-1) unstable; urgency=medium
+
+  * Bug #40118: Overwrite _resetForm() from umc/dialog/LoginDialog to
+    fill in the login credentials
+
+ -- Eduard Mai <mai@univention.de>  Thu, 31 Mar 2016 18:04:50 +0200
+
+univention-demo-configuration (4.0.2-2) unstable; urgency=medium
+
+  * Bug #39738: update again index.html
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 16 Nov 2015 14:30:52 +0100
+
+univention-demo-configuration (4.0.2-1) unstable; urgency=medium
+
+  * Bug #39738: update files for UCS 4.1
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 16 Nov 2015 14:10:51 +0100
+
+univention-demo-configuration (4.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:29:44 +0100
+
+univention-demo-configuration (3.0.1-6) unstable; urgency=medium
+
+  * Bug #38170: adjust UCR template paths
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Apr 2015 15:53:00 +0200
+
+univention-demo-configuration (3.0.1-5) unstable; urgency=medium
+
+  * Bug #38170: adjust ACLs for access to DC LDAP entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Apr 2015 11:06:47 +0200
+
+univention-demo-configuration (3.0.1-4) unstable; urgency=medium
+
+  * Bug #38170: disallow writing access to DC LDAP entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 31 Mar 2015 16:47:42 +0200
+
+univention-demo-configuration (3.0.1-3) unstable; urgency=medium
+
+  * Bug #38170: update index.html to latest version
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 31 Mar 2015 13:05:48 +0200
+
+univention-demo-configuration (3.0.1-2) unstable; urgency=medium
+
+  * Bug #36156: rewrite /etc/apt/sorces.list.d/* before update
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 18 Nov 2014 22:06:15 +0100
+
+univention-demo-configuration (3.0.1-1) unstable; urgency=medium
+
+  * Bug #36156: adjusted package for changes in UCS 4.0
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 18 Nov 2014 20:39:51 +0100
+
+univention-demo-configuration (3.0.0-2) unstable; urgency=low
+
+  * removed ucr entry for umc-overview icon / added unset of ucr entry
+   (Bug #36316)
+
+ -- Drees Dormann <dormann@univention.de>  Wed, 29 Oct 2014 11:13:15 +0100
+
+univention-demo-configuration (3.0.0-1) unstable; urgency=low
+
+  * Migrated univention-demo-configuration to UCS-4.0-0 (Bug #35664)
+
+ -- Drees Dormann <dormann@univention.de>  Fri, 22 Aug 2014 11:30:37 +0200
+
+univention-demo-configuration (2.0.2-10) unstable; urgency=low
+
+  * Bug #33443: Allow usage of new Updater module methods
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 10 Jan 2014 11:26:24 +0100
+
+univention-demo-configuration (2.0.2-9) unstable; urgency=low
+
+  * Bug #33793: Allow usage of new Join module methods
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 07 Jan 2014 13:22:59 +0100
+
+univention-demo-configuration (2.0.2-8) unstable; urgency=low
+
+  * Bug #33845: Allow usage of new App Center methods
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 06 Jan 2014 10:22:52 +0100
+
+univention-demo-configuration (2.0.2-7) unstable; urgency=low
+
+  * Bug #30803: added test data including user photos
+  * Bug #33083: added test data, added dependency to nagios
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 21 Nov 2013 12:53:42 +0100
+
+univention-demo-configuration (2.0.2-6) unstable; urgency=low
+
+  * Bug #33083: do not allow renaming of Administrator
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 21 Nov 2013 11:17:28 +0100
+
+univention-demo-configuration (2.0.2-5) unstable; urgency=low
+
+  * Bug #33083: added updater related variables
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 20 Nov 2013 17:47:22 +0100
+
+univention-demo-configuration (2.0.2-4) unstable; urgency=low
+
+  * Bug #33083: fixed path typo in preinst script
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 20 Nov 2013 17:20:16 +0100
+
+univention-demo-configuration (2.0.2-3) unstable; urgency=low
+
+  * Bug #33083: fixed problems in maintainer scripts, do not allow renaming of
+    Administrator, enable sysinfo UMC module, added branding.json files
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 20 Nov 2013 17:14:08 +0100
+
+univention-demo-configuration (2.0.2-2) unstable; urgency=low
+
+  * Bug #33083: fixed typo in if clause
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 19 Nov 2013 18:03:47 +0100
+
+univention-demo-configuration (2.0.2-1) unstable; urgency=low
+
+  * Bug #33083: removed /etc/nagios3/apache2.conf, added more XML module
+    files to disallow cretain UMC commands, cleaned up maintainer scripts
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 19 Nov 2013 17:29:31 +0100
+
+univention-demo-configuration (2.0.1-1) unstable; urgency=low
+
+  * Bug #33083: adapted package to changes in UCS 3.2, hide Administrator
+    account in UMC
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 18 Nov 2013 10:42:47 +0100
+
+univention-demo-configuration (2.0.0-3) unstable; urgency=low
+
+  * new ucs overview (Bug #32611)
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2013 14:46:35 +0200
+
+univention-demo-configuration (2.0.0-2) unstable; urgency=low
+
+  * new ucs overview (Bug #32611)
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2013 14:41:46 +0200
+
+univention-demo-configuration (2.0.0-1) unstable; urgency=low
+
+  * new ucs overview (Bug #32611)
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2013 14:32:08 +0200
+
+univention-demo-configuration (1.0.6-1) unstable; urgency=low
+
+  * Update module .xml-files in order to allow two new UMCP commands
+    (Bug #31567)
+
+ -- Jascha Geerds <geerds@univention.de>  Thu, 30 May 2013 10:16:41 +0200
+
+univention-demo-configuration (1.0.5-1) unstable; urgency=low
+
+  * Bug #31091: adapted login.html for 3.1-1, allow UMC command join/master
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 18 Apr 2013 12:30:01 +0200
+
+univention-demo-configuration (1.0.4-2) unstable; urgency=low
+
+  * fixed update issues; Bug #29595
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 12 Dec 2012 14:16:39 +0100
+
+univention-demo-configuration (1.0.4-1) unstable; urgency=low
+
+  * added diversion for nagios3/apache2.conf; Bug #29595
+  * refactored maintainer scripts; Bug #29595
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 12 Dec 2012 14:01:47 +0100
+
+univention-demo-configuration (1.0.3-1) unstable; urgency=low
+
+  * updated module .xml files for UCS 3.1; Bug #29595
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 11 Dec 2012 14:36:23 +0100
+
+univention-demo-configuration (1.0.2-1) unstable; urgency=low
+
+  * Remove old syntax definitions (Bug #27720)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 16 Oct 2012 15:21:25 +0200
+
+univention-demo-configuration (1.0.1-1) unstable; urgency=low
+
+  * version bump for UCS 3.1 (Bug #27978)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 24 Jul 2012 13:16:31 +0200
+
+univention-demo-configuration (0.0.4-2) unstable; urgency=low
+
+  * added ucslint.overrides file (Bug #27978)
+
+ -- Lukas Walter <walter@univention.de>  Mon, 23 Jul 2012 17:50:41 +0200
+
+univention-demo-configuration (0.0.4-1) unstable; urgency=low
+
+  * updated setup.xml to fit current umc (Bug #27978)
+
+ -- Lukas Walter <walter@univention.de>  Mon, 23 Jul 2012 14:56:37 +0200
+
+univention-demo-configuration (0.0.3-1) unstable; urgency=low
+
+  * run update in init not via cron (Bug #26023)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 01 Mar 2012 10:48:00 +0100
+
+univention-demo-configuration (0.0.2-1) unstable; urgency=low
+
+  * update to current UMC (fixes login) (Bug #26023)
+  * fix debian/control
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 28 Feb 2012 17:07:18 +0100
+
+univention-demo-configuration (0.0.1-1) unstable; urgency=low
+
+  * Initial release. (Bug #26023)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 15 Feb 2012 11:40:24 +0100

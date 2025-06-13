@@ -1,0 +1,35 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: World-readable Univention-specific logfiles
+## bugs: [11431, 38837]
+## exposure: safe
+## tags:
+##  - basic
+## versions:
+##  2.4-0: fixed
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+tmpfile=$(mktemp)
+
+find /var/log/univention \
+	-perm /o+r \
+	! -type l ! -type d \
+	! -name test_\*.log \
+	! -name directory-reports-cleanup.log \
+	! -name ucs-windows-tools.log \
+	! -name welcome-screen.log $(: Bug 38837)\
+	-print0 >"$tmpfile"
+
+if [ -s "$tmpfile" ]
+then
+	RETVAL=1
+	echo "Some potentially sensitive log files are world-readable:"
+	xargs -0 ls -lad <"$tmpfile"
+fi
+
+rm -f "$tmpfile"
+exit $RETVAL
+
+# vim:set ft=sh:

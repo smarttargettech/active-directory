@@ -1,0 +1,119 @@
+#!/usr/bin/python3
+#
+# Univention Management Console
+#  handles UMC requests for a specified UMC module
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2006-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import locale
+import logging
+import os
+import os.path
+import sys
+from argparse import ArgumentParser
+
+# don't import univention.management.console.modules here as the locale is not yet set!
+import univention.debug as ud
+from univention.lib.i18n import Locale, Translation
+from univention.management.console.config import MODULE_DEBUG_LEVEL, MODULE_INACTIVITY_TIMER, ucr
+from univention.management.console.log import MODULE, log_init
+
+
+if __name__ == '__main__':
+    if os.getuid() != 0:
+        sys.stderr.write('%s must be started as root\n' % os.path.basename(sys.argv[0]))
+        sys.exit(1)
+
+    parser = ArgumentParser()
+    parser.add_argument('-s', '--socket', help='defines the socket to bind to')
+    parser.add_argument('-l', '--language', default='C', help='defines the language to use')
+    parser.add_argument('-m', '--module', help='set the UMC daemon module to load')
+
+    parser.add_argument('-d', '--debug', type=int, default=MODULE_DEBUG_LEVEL, help='if given then debugging is activated and set to the specified level [default: %(default)s]')
+    parser.add_argument('-L', '--log-file', dest='logfile', default='management-console-module-%(module)s', help='specifies an alternative log file [default: %(default)s.log]')
+    parser.add_argument('-f', '--foreground', action='store_true', default=False, help='start in foreground, do not daemonize the process')
+
+    options = parser.parse_args()
+
+    os.umask(0o077)
+    os.chdir("/")
+    if not options.foreground:
+        os.closerange(0, max(int(fd) for fd in os.listdir("/proc/self/fd")))
+        for fd in range(3):
+            null = os.open(os.path.devnull, os.O_WRONLY if fd else os.O_RDONLY)
+            if fd != null:
+                os.dup2(null, fd)
+                os.close(null)
+            os.set_inheritable(fd, True)
+
+    # init logging
+    import tornado.log
+    logfile = options.logfile % {'module': options.module}
+    log_init(logfile, options.debug)
+    if logfile in {'stdout', 'stderr', '/dev/stdout', '/dev/stderr'}:
+        channel = logging.StreamHandler(sys.stdout if logfile in {'stdout', '/dev/stdout'} else sys.stderr)
+    else:
+        if not os.path.isabs(logfile):
+            logfile = '/var/log/univention/%s.log' % (logfile,)
+        channel = logging.FileHandler(logfile, 'a+')
+    channel.setFormatter(tornado.log.LogFormatter(fmt='%(color)s%(asctime)s  %(levelname)10s      (%(process)9d) :%(end_color)s %(message)s', datefmt='%d.%m.%y %H:%M:%S'))
+    for logname in ('tornado.access', 'tornado.application', 'tornado.general'):
+        logger = logging.getLogger(logname)
+        logger.setLevel({ud.INFO: logging.INFO, ud.WARN: logging.WARNING, ud.ERROR: logging.ERROR, ud.ALL: logging.DEBUG, ud.PROCESS: logging.INFO}.get(ucr.get_int('umc/module/tornado-debug/level', 0), logging.ERROR))
+        logger.addHandler(channel)
+
+    try:
+        locale_obj = Locale(options.language)
+        locale.setlocale(locale.LC_MESSAGES, str(locale_obj))
+        translation = Translation('univention-management-console')
+        translation.set_language(options.language)
+    except Exception:
+        MODULE.error('The specified locale %r is not available' % (options.language,))
+
+    # this import must be done after the locale is set!
+    from univention.management.console.modserver import ModuleServer
+
+    if not options.socket:
+        raise SystemError('socket name is missing')
+
+    # make sure the directory where to place socket files exists
+    if not os.path.exists('/run/univention-management-console'):
+        os.mkdir('/run/univention-management-console')
+
+    try:
+        with ModuleServer(options.socket, options.module, logfile, timeout=MODULE_INACTIVITY_TIMER // 1000) as server:
+            server.loop()
+    except (SystemExit, KeyboardInterrupt):
+        raise
+    except BaseException:
+        import traceback
+        MODULE.error(traceback.format_exc())
+        raise

@@ -1,0 +1,2316 @@
+univention-directory-listener (16.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:48 +0200
+
+univention-directory-listener (16.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:32 +0100
+
+univention-directory-listener (16.0.5) unstable; urgency=medium
+
+  * Bug #56858: replace transitional packages
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Jun 2024 16:00:00 +0200
+
+univention-directory-listener (16.0.4) unstable; urgency=medium
+
+  * Bug #56604: use __future__ annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 11:16:21 +0100
+
+univention-directory-listener (16.0.3) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-directory-listener (16.0.2) unstable; urgency=medium
+
+  * Bug #56793: Replace libnss-ldapd with SSSd
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Fri, 08 Mar 2024 00:18:48 +0100
+
+univention-directory-listener (16.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:17 +0100
+
+univention-directory-listener (15.0.6) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:08 +0100
+
+univention-directory-listener (15.0.5) unstable; urgency=medium
+
+  * Bug #55997: replace obsolete ldap client utility options (-h/-p)
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:46 +0100
+
+univention-directory-listener (15.0.4) unstable; urgency=medium
+
+  * Bug #56533: Migrate univention-directory-listener to Python 3.9
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:41 +0100
+
+univention-directory-listener (15.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:29 +0100
+
+univention-directory-listener (15.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:22 +0100
+
+univention-directory-listener (15.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:30 +0100
+
+univention-directory-listener (14.0.10-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:45 +0100
+
+univention-directory-listener (14.0.9-2) unstable; urgency=medium
+
+  * Bug #57024: retry in case notifier doesn't answer.
+    New UCR variable listener/notifier/retries with default 10.
+
+ -- Arvid <requate@univention.de>  Mon, 05 Feb 2024 14:28:31 +0100
+
+univention-directory-listener (14.0.9-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:28 +0100
+
+univention-directory-listener (14.0.8-7) unstable; urgency=medium
+
+  * Bug #56354: do not leak password in process list in univention-
+    directory-listener-verify
+
+ -- Florian Best <best@univention.de>  Wed, 25 Oct 2023 11:17:21 +0200
+
+univention-directory-listener (14.0.8-6) unstable; urgency=medium
+
+  * Bug #55610: make ucr template for /etc/logrotate.d/listener_module python2 compatible
+
+ -- Mika Westphal <westphal@univention.de>  Mon, 28 Aug 2023 08:31:27 +0200
+
+univention-directory-listener (14.0.8-5) unstable; urgency=medium
+
+  * Bug #55610: added fix for failing permission test and added default
+    logrotate configuration
+
+ -- Mika Westphal <westphal@univention.de>  Tue, 22 Aug 2023 12:18:42 +0200
+
+univention-directory-listener (14.0.8-4) unstable; urgency=medium
+
+  * Bug #55610: add logrotate configuration for the listener module and a UCR variable to modify it
+
+ -- Mika Westphal <westphal@univention.de>  Mon, 14 Aug 2023 14:40:48 +0200
+
+univention-directory-listener (14.0.8-3) unstable; urgency=medium
+
+  * Bug #55632: improved the Python 3.11 compatiblity
+
+ -- Mika Westphal <westphal@univention.de>  Fri, 28 Apr 2023 11:45:22 +0200
+
+univention-directory-listener (14.0.8-2) unstable; urgency=medium
+
+  * Bug #55957: Fix start-stop-daemon option handling
+
+ -- Arvid <requate@univention.de>  Wed, 12 Apr 2023 13:04:54 +0200
+
+univention-directory-listener (14.0.8-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:39 +0100
+
+univention-directory-listener (14.0.7-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+  * Bug #53824: Make attribute `name` optional
+  * Bug #49817: Warn using `listener-ctrl resync …`
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Feb 2023 11:10:16 +0100
+
+univention-directory-listener (14.0.6-3) unstable; urgency=low
+
+  * Bug #54986: slap tools must also work in case
+    /etc/ldap/slapd.d/cn=config.ldif exists (even if invalid)
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Wed, 25 Jan 2023 18:03:46 +0100
+
+univention-directory-listener (14.0.6-2) unstable; urgency=low
+
+  * Bug #54501: cleanup listener module library
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 21 Jun 2022 16:58:10 +0200
+
+univention-directory-listener (14.0.6-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 2 package files
+
+ -- Florian Best <best@univention.de>  Wed, 04 May 2022 08:56:20 +0200
+
+univention-directory-listener (14.0.5-7) unstable; urgency=low
+
+  * Bug #54696: fix TypeError when deactivating listener module
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 27 Apr 2022 14:43:08 +0200
+
+univention-directory-listener (14.0.5-6) unstable; urgency=low
+
+  * Bug #26089: Move hard coded module ordering for `replication.py`
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 30 Nov 2021 13:46:28 +0100
+
+univention-directory-listener (14.0.5-5) unstable; urgency=low
+
+  * Bug #26089: Add priority for module execution order to UDL API
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 18 Nov 2021 11:27:20 +0100
+
+univention-directory-listener (14.0.5-4) unstable; urgency=low
+
+  * Bug #26089: Add priority for module execution order
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 11 Nov 2021 13:31:25 +0100
+
+univention-directory-listener (14.0.5-3) unstable; urgency=low
+
+  * Bug #53071: Make StdIO unbuffered
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 08 Jun 2021 12:01:34 +0200
+
+univention-directory-listener (14.0.5-2) unstable; urgency=medium
+
+  * Bug #52956: fix dependency on python-univention
+
+ -- Florian Best <best@univention.de>  Fri, 19 Mar 2021 11:53:19 +0100
+
+univention-directory-listener (14.0.5-1) unstable; urgency=low
+
+  * Bug #43686: Convert UDL from runit to systemd
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 01 Feb 2021 17:37:48 +0100
+
+univention-directory-listener (14.0.4-1) unstable; urgency=medium
+
+  * Bug #45888: fix dictionary iteration
+
+ -- Florian Best <best@univention.de>  Mon, 11 Jan 2021 10:38:14 +0100
+
+univention-directory-listener (14.0.3-1) unstable; urgency=medium
+
+  * Bug #45888: migrate to Python 3
+
+ -- Florian Best <best@univention.de>  Tue, 15 Dec 2020 17:09:37 +0100
+
+univention-directory-listener (14.0.2-3) unstable; urgency=low
+
+  * Bug #52448: Remove univention-runit
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 01 Dec 2020 11:28:10 +0100
+
+univention-directory-listener (14.0.2-2) unstable; urgency=low
+
+  * Bug #52448: Remove univention-runit
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 01 Dec 2020 11:04:27 +0100
+
+univention-directory-listener (14.0.2-1) unstable; urgency=medium
+
+  * Bug #39167: Setting the default mdb maxsize to 4GB
+
+ -- Jan Luttermann <luttermann@univention.de>  Wed, 18 Nov 2020 19:15:03 +0100
+
+univention-directory-listener (14.0.1-1) unstable; urgency=medium
+
+  * Bug #43686: Convert UDL from runit to systemd
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 20 Oct 2020 16:41:29 +0200
+
+univention-directory-listener (14.0.0-4) unstable; urgency=medium
+
+  * Bug #42374: Wording fixes
+
+ -- Arvid <requate@univention.de>  Mon, 05 Oct 2020 16:20:06 +0200
+
+univention-directory-listener (14.0.0-3) unstable; urgency=medium
+
+  * Bug #42374: Wording - Master -> Primary; Slave -> Replica
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 25 Sep 2020 01:33:09 +0200
+
+univention-directory-listener (14.0.0-2) unstable; urgency=low
+
+  * Bug #42334: Remove replog code fragments
+
+ -- Philipp Hahn <hahn@univention.de>  Sun, 05 Jul 2020 19:12:16 +0200
+
+univention-directory-listener (14.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:19 +0200
+
+univention-directory-listener (13.0.3-1) unstable; urgency=medium
+
+  * Bug #51087: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 10:33:46 +0200
+
+univention-directory-listener (13.0.2-12) unstable; urgency=low
+
+  * Bug #47587: Close LMDB cursor on success
+  * Bug #49146: Migrate to dh_python
+  * Bug #50407: Remove DB3 code
+  * Bug #50110: Add missing UCR header to run script
+  * Bug #48139: Remove unused memcached_univention-directory-listener.conf
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 23 Oct 2019 14:52:45 +0200
+
+univention-directory-listener (13.0.2-11) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:38 +0200
+
+univention-directory-listener (13.0.2-10) unstable; urgency=medium
+
+  * Bug #49832: reverted the changes in this package and moved them to the
+    univention-management-console-module-appcenter package
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 24 Jul 2019 10:56:07 +0200
+
+univention-directory-listener (13.0.2-9) unstable; urgency=medium
+
+  * Bug #49832: fix typo
+
+ -- Jannik Ahlers <ahlers@univention.de>  Tue, 23 Jul 2019 17:24:08 +0200
+
+univention-directory-listener (13.0.2-8) unstable; urgency=medium
+
+  * Bug #49832: Made changes according to QA Feedback
+
+ -- Jannik Ahlers <ahlers@univention.de>  Tue, 23 Jul 2019 16:40:48 +0200
+
+univention-directory-listener (13.0.2-7) unstable; urgency=medium
+
+  * Bug #49832: added python-support to build deps
+
+ -- Felix Botner <botner@univention.de>  Mon, 22 Jul 2019 13:47:44 +0200
+
+univention-directory-listener (13.0.2-6) unstable; urgency=medium
+
+  * Bug #49832: resync the listener in postinst so the app tab gets shown
+    again
+
+ -- Jannik Ahlers <ahlers@univention.de>  Thu, 18 Jul 2019 15:42:16 +0200
+
+univention-directory-listener (13.0.2-5) unstable; urgency=medium
+
+  * Bug #49228: only update object if attributes differ
+
+ -- Jürn Brodersen <brodersen@univention.de>  Sun, 28 Apr 2019 21:51:54 +0200
+
+univention-directory-listener (13.0.2-4) unstable; urgency=medium
+
+  * Bug #49228: exit resync-objects.py early on master servers
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 26 Apr 2019 14:37:10 +0200
+
+univention-directory-listener (13.0.2-3) unstable; urgency=medium
+
+  * Bug #49228: Fix resync-objects script
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 24 Apr 2019 17:45:01 +0200
+
+univention-directory-listener (13.0.2-2) unstable; urgency=medium
+
+  * Bug #48642: Merge UDN protocol 3
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 Feb 2019 15:17:43 +0100
+
+univention-directory-listener (13.0.2-1) unstable; urgency=low
+
+  * Bug #25935: resync-objects.py: allow update of existing objects
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 24 Jan 2019 21:53:11 +0100
+
+univention-directory-listener (13.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 12:02:46 +0100
+
+univention-directory-listener (13.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:36 +0100
+
+univention-directory-listener (12.0.0-33) unstable; urgency=low
+
+  * Bug #48030: Never chose LDAP server different from UDN.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Nov 2018 09:40:47 +0100
+
+univention-directory-listener (12.0.0-32) unstable; urgency=low
+
+  * Bug #48030: Never chose LDAP server different from UDN.
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 05 Nov 2018 15:20:50 +0100
+
+univention-directory-listener (12.0.0-31) unstable; urgency=low
+
+  * Bug #47871: fix TypeError
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 27 Sep 2018 11:54:04 +0200
+
+univention-directory-listener (12.0.0-30) unstable; urgency=low
+
+  * Bug #47870: Fix terminal detection code in listener-ctrl
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 27 Sep 2018 11:07:43 +0200
+
+univention-directory-listener (12.0.0-29) unstable; urgency=low
+
+  * Bug #47871: log listener module deactivation
+  * don't run system code at import time
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 27 Sep 2018 09:41:08 +0200
+
+univention-directory-listener (12.0.0-28) unstable; urgency=low
+
+  * Bug #47837: Fix copy-paste-error in error message
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 21 Sep 2018 09:52:11 +0200
+
+univention-directory-listener (12.0.0-27) unstable; urgency=low
+
+  * Bug #47837: Fix wrong debug level
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 20 Sep 2018 22:15:47 +0200
+
+univention-directory-listener (12.0.0-26) unstable; urgency=low
+
+  * Bug #47783: Add log message for fake handler initialization
+  * Bug #47837: Fix another segmetation fault when UCRVs is unset
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 20 Sep 2018 16:58:20 +0200
+
+univention-directory-listener (12.0.0-25) unstable; urgency=low
+
+  * Bug #47783: Fix compilation error
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 19 Sep 2018 17:20:31 +0200
+
+univention-directory-listener (12.0.0-24) unstable; urgency=low
+
+  * Bug #47783: Make fake helper optional
+  * Bug #47837: Fix segmetation fault when UCRV server/role is unset
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 19 Sep 2018 16:15:13 +0200
+
+univention-directory-listener (12.0.0-23) unstable; urgency=low
+
+  * Bug #47783: Always initialize UDL even on Master
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 17 Sep 2018 10:09:15 +0200
+
+univention-directory-listener (12.0.0-22) unstable; urgency=low
+
+  * Bug #47783: Add fake initialization mode
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Sep 2018 13:43:37 +0200
+
+univention-directory-listener (12.0.0-21) unstable; urgency=low
+
+  * Bug #47783: Add fake initialization mode
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Sep 2018 13:10:36 +0200
+
+univention-directory-listener (12.0.0-20) unstable; urgency=low
+
+  * Bug #47783: Add fake initialization mode
+  * Bug #47783: Always call delete handler for selected modules
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 13 Sep 2018 14:15:39 +0200
+
+univention-directory-listener (12.0.0-19) unstable; urgency=low
+
+  * Bug #44786: reactivate new listener module api
+  * remove async listener module api
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 02 Mar 2018 12:15:56 +0100
+
+univention-directory-listener (12.0.0-18) unstable; urgency=low
+
+  * Bug #44786: temporarily remove new listener module API from binary package
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 28 Feb 2018 10:29:09 +0100
+
+univention-directory-listener (12.0.0-17) unstable; urgency=medium
+
+  * Bug #46313: increase runsv timeout to 30 seconds
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 21 Feb 2018 15:03:04 +0100
+
+univention-directory-listener (12.0.0-16) unstable; urgency=medium
+
+  * Bug #46276: stop listener before starting
+
+ -- Felix Botner <botner@univention.de>  Mon, 12 Feb 2018 16:35:11 +0100
+
+univention-directory-listener (12.0.0-15) unstable; urgency=low
+
+  * Bug #44786: fix mypy hints file
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 22 Jan 2018 15:47:48 +0100
+
+univention-directory-listener (12.0.0-14) unstable; urgency=low
+
+  * Bug #44786: exception hierarchy, clear LDAP credentials for server
+    updates, remove UDM code
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 22 Jan 2018 15:39:29 +0100
+
+univention-directory-listener (12.0.0-13) unstable; urgency=low
+
+  * Bug #44786: use indexed attribute
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 12 Jan 2018 08:03:54 +0100
+
+univention-directory-listener (12.0.0-12) unstable; urgency=low
+
+  * Bug #44786: fix typo
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 09 Jan 2018 09:58:15 +0100
+
+univention-directory-listener (12.0.0-11) unstable; urgency=low
+
+  * Bug #44786: check type of arguments
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 09 Jan 2018 09:37:02 +0100
+
+univention-directory-listener (12.0.0-10) unstable; urgency=low
+
+  * Bug #44786: simplify configuration
+  * hide adapter usage by using a meta class
+  * move logger to handler class
+  * make logger class better mypy parsable
+  * create PEP 484 (type hints) stub files
+  * make celery config update safer
+  * Bug #44786: update README, fix examples
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 09 Jan 2018 08:39:00 +0100
+
+univention-directory-listener (12.0.0-9) unstable; urgency=low
+
+  * Bug #45955: Fix test suite
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 05 Jan 2018 14:52:58 +0100
+
+univention-directory-listener (12.0.0-8) unstable; urgency=medium
+
+  * Bug #45955: Add INIT_ONLY variable to tests/test__change__same_rdn.c
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 04 Jan 2018 17:01:07 +0100
+
+univention-directory-listener (12.0.0-7) unstable; urgency=medium
+
+  * Bug #43336: version bump
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 16:23:51 +0100
+
+univention-directory-listener (12.0.0-6) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:24 +0100
+
+univention-directory-listener (12.0.0-5) unstable; urgency=medium
+
+  * Bug #45841: Add python symbols for tests
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 12 Dec 2017 15:28:37 +0100
+
+univention-directory-listener (12.0.0-4) unstable; urgency=medium
+
+  * Bug #45841: Add handlers symbols for tests
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 12 Dec 2017 15:02:36 +0100
+
+univention-directory-listener (12.0.0-3) unstable; urgency=medium
+
+  * Bug #45841: Add cache symbols for tests
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 12 Dec 2017 14:55:55 +0100
+
+univention-directory-listener (12.0.0-2) unstable; urgency=medium
+
+  * Bug #45841: Add util symbols for tests
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 12 Dec 2017 14:39:32 +0100
+
+univention-directory-listener (12.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:25 +0100
+
+univention-directory-listener (11.0.1-39) unstable; urgency=low
+
+  * Bug #44786: add support for creating asynchronous listener modules
+    using the same simple API
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 20 Nov 2017 05:33:55 +0100
+
+univention-directory-listener (11.0.1-38) unstable; urgency=low
+
+  * Bug #44786: handle notifier restarts, pep8, extract exceptions
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 20 Nov 2017 04:51:19 +0100
+
+univention-directory-listener (11.0.1-37) unstable; urgency=low
+
+  * Bug #44786: initiate LDAP connection later
+  * fix name in logging to udebug
+  * improve mypy static type annotations
+  * improve doc strings
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 16 Nov 2017 03:58:57 +0100
+
+univention-directory-listener (11.0.1-36) unstable; urgency=low
+
+  * Bug #44786: improve logging output
+
+ -- Daniel Troeder <troeder@univention.de>  Sun, 05 Nov 2017 06:39:27 +0100
+
+univention-directory-listener (11.0.1-35) unstable; urgency=low
+
+  * Bug #44786: improve mypy static type annotations
+  * change attribute name
+
+ -- Daniel Troeder <troeder@univention.de>  Sat, 04 Nov 2017 21:49:49 +0100
+
+univention-directory-listener (11.0.1-34) unstable; urgency=low
+
+  * Bug #44786: complete metadata attribute list, fix old-new comparison
+
+ -- Daniel Troeder <troeder@univention.de>  Sun, 29 Oct 2017 04:10:47 +0100
+
+univention-directory-listener (11.0.1-33) unstable; urgency=low
+
+  * Bug #44786: add uldap position object to handler class
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 27 Oct 2017 10:19:42 +0200
+
+univention-directory-listener (11.0.1-32) unstable; urgency=low
+
+  * Bug #44786: fix typo
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 25 Oct 2017 22:39:21 +0200
+
+univention-directory-listener (11.0.1-31) unstable; urgency=low
+
+  * Bug #44786: style fixes
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 25 Oct 2017 17:04:30 +0200
+
+univention-directory-listener (11.0.1-30) unstable; urgency=low
+
+  * Bug #44786: fix typo
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 25 Oct 2017 16:29:09 +0200
+
+univention-directory-listener (11.0.1-29) unstable; urgency=low
+
+  * Bug #44786: user 'listener' unknown before installation of package
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 25 Oct 2017 15:59:57 +0200
+
+univention-directory-listener (11.0.1-28) unstable; urgency=low
+
+  * Bug #44786: add new listener module API
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 14 Jun 2017 16:48:28 +0200
+
+univention-directory-listener (11.0.1-27) unstable; urgency=medium
+
+  * Bug #44466: Fix cache migration
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Apr 2017 14:44:48 +0200
+
+univention-directory-listener (11.0.1-26) unstable; urgency=medium
+
+  * Bug #44166: Copy cache_master_entry data from BDB to LMDB
+
+ -- Arvid Requate <requate@univention.de>  Thu, 30 Mar 2017 16:41:30 +0200
+
+univention-directory-listener (11.0.1-25) unstable; urgency=low
+
+  * Bug #43470: Handle UCRV */autostart through systemd
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Mar 2017 08:52:56 +0100
+
+univention-directory-listener (11.0.1-24) unstable; urgency=medium
+
+  * Bug #23367: Remove additional log message, duplicating dntree_add_id
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 21:41:27 +0100
+
+univention-directory-listener (11.0.1-23) unstable; urgency=medium
+
+  * Bug #23367: dereference pointer
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 21:28:56 +0100
+
+univention-directory-listener (11.0.1-22) unstable; urgency=medium
+
+  * Bug #23367: copy&paste fix
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 21:17:13 +0100
+
+univention-directory-listener (11.0.1-21) unstable; urgency=medium
+
+  * Bug #23367: Add info level log messages for dntree add and delete
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 21:12:28 +0100
+
+univention-directory-listener (11.0.1-20) unstable; urgency=medium
+
+  * Bug #23367 Fix postinst error handling
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 16:41:54 +0100
+
+univention-directory-listener (11.0.1-19) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA: Abort when critical lmdb operations fail
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 15:47:18 +0100
+
+univention-directory-listener (11.0.1-18) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA: Fix wrong log messages
+  * Use ERROR_MDB and LOG macros to avoid this in the future
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 14:33:38 +0100
+
+univention-directory-listener (11.0.1-17) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA: Fix memory leak
+
+ -- Arvid Requate <requate@univention.de>  Mon, 06 Mar 2017 14:22:14 +0100
+
+univention-directory-listener (11.0.1-16) unstable; urgency=medium
+
+  * Bug #23367: Fix ownership of bdb cache.lock before conversion
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Feb 2017 15:06:14 +0100
+
+univention-directory-listener (11.0.1-15) unstable; urgency=medium
+
+  * Bug #23367: Fix /var/backups path and add diagnostics in case of
+    conversion error in postinst
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Feb 2017 13:55:12 +0100
+
+univention-directory-listener (11.0.1-14) unstable; urgency=medium
+
+  * Bug #23367: Fix path
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Feb 2017 12:56:16 +0100
+
+univention-directory-listener (11.0.1-13) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA:
+  * clang-format src/* tests/* according to coding style policy
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 21:08:53 +0100
+
+univention-directory-listener (11.0.1-12) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA: Remove old transition code from postinst
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 20:34:10 +0100
+
+univention-directory-listener (11.0.1-11) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA:
+  * Remove db42 specific code from cache.c
+  * Remove transaction pointer from cache_update_master_entry ABI (cache.h)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 20:08:39 +0100
+
+univention-directory-listener (11.0.1-10) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA:
+  * Add manual page for convert
+  * Update documentation and convert to markdown
+  * Fix "MDB" to "LMDB" in comments
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 19:56:38 +0100
+
+univention-directory-listener (11.0.1-9) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA: Explain choice of MASTER_KEY
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 19:01:45 +0100
+
+univention-directory-listener (11.0.1-8) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA:
+  * Drop unused functions dntree_del_ldapdn and dntree_del_dn
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 18:54:39 +0100
+
+univention-directory-listener (11.0.1-7) unstable; urgency=medium
+
+  * Bug #23367 Feedback from QA:
+  * Fix FTBFS inline declarations
+  * Declare file scope functions and variables static
+  * Error handling for conversion
+  * Fix comments still referencing BDB
+  * Fix case in error messages
+  * Drop unused struct mdb_ctx
+  * Do not malloc fixed struct
+  * Use calloc instead of malloc+memset
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Feb 2017 18:48:42 +0100
+
+univention-directory-listener (11.0.1-6) unstable; urgency=medium
+
+  * Bug #23367: Fix whitespace and Copyright year
+
+ -- Arvid Requate <requate@univention.de>  Fri, 10 Feb 2017 14:22:59 +0100
+
+univention-directory-listener (11.0.1-5) unstable; urgency=medium
+
+  * Bug #23367: Restrict access to the mdb cache directory during postinst
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Feb 2017 19:01:00 +0100
+
+univention-directory-listener (11.0.1-4) unstable; urgency=medium
+
+  * Bug #23367: Use strdup instead of error prone malloc & strcpy
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Feb 2017 18:15:03 +0100
+
+univention-directory-listener (11.0.1-3) unstable; urgency=medium
+
+  * Bug #23367: Add lost cosmetic patch hunk
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Feb 2017 16:16:08 +0100
+
+univention-directory-listener (11.0.1-2) unstable; urgency=medium
+
+  * Bug #23367: Update version number condition for conversion
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Feb 2017 15:46:58 +0100
+
+univention-directory-listener (11.0.1-1) unstable; urgency=medium
+
+  * Bug #23367: Use LMDB for listener cache
+  * Run univention-directory-listener-convert in postinst
+  * New UCR variable listener/cache/mdb/maxsize
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Feb 2017 15:13:42 +0100
+
+univention-directory-listener (11.0.0-7) unstable; urgency=low
+
+  * Bug #42725: Fix integer overflow
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 21 Oct 2016 10:59:18 +0200
+
+univention-directory-listener (11.0.0-6) unstable; urgency=low
+
+  * Bug #42573: Initialize UCRV 'listener/freespace'=10 MiB
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 20 Oct 2016 10:02:21 +0200
+
+univention-directory-listener (11.0.0-5) unstable; urgency=low
+
+  * Bug #41842: Write module state after init
+  * Bug #42573: Check disk space
+  * Bug #41960: Log DN of every processed LDAP entry with level PROCESS
+  * Bug #42328: Fix broken shell quoting
+  * Bug #42678: Remove Kerberos support
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 13 Oct 2016 14:34:44 +0200
+
+univention-directory-listener (11.0.0-4) unstable; urgency=low
+
+  * Bug #32685: Fix move with selective replication
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 29 Sep 2016 13:55:57 +0200
+
+univention-directory-listener (11.0.0-3) unstable; urgency=low
+
+  * Bug #38438: Fix message printing in init-script
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Sep 2016 10:58:02 +0200
+
+univention-directory-listener (11.0.0-2) unstable; urgency=low
+
+  * Bug #38438: Fix message printing in init-script
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Sep 2016 09:58:17 +0200
+
+univention-directory-listener (11.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #42029: Fix deletion of ACLed entries
+  * Bug #38438: Make init-script LSB compliant
+  * Bug #26039: Fix linking errors; keep Debian defaults
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:16 +0200
+
+univention-directory-listener (10.0.0-14) unstable; urgency=low
+
+  * Bug #3490: Silence udl-ctrl
+  * Bug #34324: Drop privileges after calling handler functions
+  * Bug #41261: Add additional debug output for notifier ID
+  * Bug #40600: Check for failed.ldif
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 Jul 2016 12:30:34 +0200
+
+univention-directory-listener (10.0.0-13) unstable; urgency=low
+
+  * Bug #41261: Fix notifier ID not incrementing
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 09 Jun 2016 08:14:26 +0200
+
+univention-directory-listener (10.0.0-12) unstable; urgency=low
+
+  * Bug #41261: Use only one master cache entry
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 08 Jun 2016 12:34:47 +0200
+
+univention-directory-listener (10.0.0-11) unstable; urgency=low
+
+  * Bug #40600: Fix ucslint
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 07 Jun 2016 17:17:29 +0200
+
+univention-directory-listener (10.0.0-10) unstable; urgency=low
+
+  * Bug #39509: Add IPv6 support for get_notifier_id.py
+  * Bug #3490: Improve listener-ctrl
+  * Bug #30227: Fix string prefix comparison
+  * Bug #34324: Drop privileges after calling handler functions
+  * Bug #38696: Fix comparison of signed values
+  * Bug #34507: Remove 'security-copy'
+  * Bug #34738: Remove empty lines from debug output
+  * Bug #22383: Prevent starting multiple listeners
+  * Bug #40600: Stop writing listener transaction log
+  * Bug #41261: Write notifier ID atomically
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Jun 2016 13:50:36 +0200
+
+univention-directory-listener (10.0.0-9) unstable; urgency=low
+
+  * Bug #40460: Retry LDAP queries on LDAP_SERVER_DOWN
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 10 Feb 2016 20:48:24 +0100
+
+univention-directory-listener (10.0.0-8) unstable; urgency=low
+
+  * Bug #40460: Retry LDAP queries on LDAP_SERVER_DOWN
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 10 Feb 2016 20:38:57 +0100
+
+univention-directory-listener (10.0.0-7) unstable; urgency=low
+
+  * Bug #40460: Retry LDAP queries on LDAP_SERVER_DOWN
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 10 Feb 2016 17:23:05 +0100
+
+univention-directory-listener (10.0.0-6) unstable; urgency=low
+
+  * Bug #40460: Retry LDAP queries on LDAP_SERVER_DOWN
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 05 Feb 2016 10:09:45 +0100
+
+univention-directory-listener (10.0.0-5) unstable; urgency=low
+
+  * Bug #40373: Improve UCR variable description
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 02 Feb 2016 07:06:06 +0100
+
+univention-directory-listener (10.0.0-4) unstable; urgency=low
+
+  * Bug #40373: Fix long search timeout
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Jan 2016 09:57:04 +0100
+
+univention-directory-listener (10.0.0-3) unstable; urgency=low
+
+  * Bug #39957: Disable DB sync while initializing module
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 17 Nov 2015 14:23:14 +0100
+
+univention-directory-listener (10.0.0-2) unstable; urgency=low
+
+  * Bug #38823: Improved cache filter mechanism
+  * Bug #34763: Fix LDAP timeout
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 23 Sep 2015 13:42:13 +0200
+
+univention-directory-listener (10.0.0-1) unstable; urgency=low
+
+  * UCS-4.1 version bump
+  * Bug #38823: Add cache filter mechanism
+  * Bug #34763: Add LDAP timeout
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 03 Sep 2015 07:41:48 +0200
+
+univention-directory-listener (9.0.2-5) unstable; urgency=low
+
+  * Bug #36532: Speed up network re-config
+  * Bug #35334: Fix case normalization
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 22 Jan 2015 11:23:42 +0100
+
+univention-directory-listener (9.0.2-4) unstable; urgency=low
+
+  * Bug #32819: Remove confusing error message
+  * Bug #35334: Fix case normalization
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 10 Jun 2015 13:09:38 +0200
+
+univention-directory-listener (9.0.2-1) unstable; urgency=medium
+
+  * Do atomic locking on the cache (Bug #34013)
+  * Avoid double-freeing the cache database cursor
+  * Let the exit_handler flag and skip if he is running already
+
+ -- Arvid Requate <requate@univention.de>  Mon, 08 Sep 2014 17:52:11 +0200
+
+univention-directory-listener (9.0.1-1) unstable; urgency=medium
+
+  * Use python support (Bug #35144)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 20 Aug 2014 13:54:50 +0200
+
+univention-directory-listener (9.0.0-2) unstable; urgency=low
+
+  * changed debian/compat level (Bug #35144)
+
+ -- Felix Botner <botner@univention.de>  Tue, 19 Aug 2014 10:02:34 +0200
+
+univention-directory-listener (9.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35144)
+
+ -- Felix Botner <botner@univention.de>  Mon, 18 Aug 2014 17:40:09 +0200
+
+univention-directory-listener (8.0.3-1) unstable; urgency=low
+
+  * Retry update after delete by UUID (Bug #35261)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 04 Jul 2014 14:11:12 +0200
+
+univention-directory-listener (8.0.2-2) unstable; urgency=low
+
+  * Handle move to intermediate containers (Bug #34833)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 27 May 2014 16:56:50 +0200
+
+univention-directory-listener (8.0.1-5) unstable; urgency=low
+
+  * Change collision message to level INFO (Bug #34835)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 26 May 2014 15:38:51 +0200
+
+univention-directory-listener (8.0.1-4) unstable; urgency=low
+
+  * Fix force delold on MOD-RDN (Bug #34802)
+  * Ignore case when comparing DNs for moves (Bug #34835)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 23 May 2014 14:34:11 +0200
+
+univention-directory-listener (8.0.1-3) unstable; urgency=low
+
+  * Fix inverted same_dn() (Bug #34835)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 22 May 2014 15:47:47 +0200
+
+univention-directory-listener (8.0.1-2) unstable; urgency=low
+
+  * Ignore case in DN (Bug #34835)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 22 May 2014 14:14:46 +0200
+
+univention-directory-listener (8.0.0-10) unstable; urgency=low
+
+  * Fix handling of binary attributes (Bug #34355)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 06 May 2014 09:23:21 +0200
+
+univention-directory-listener (8.0.0-9) unstable; urgency=low
+
+  * Remove old values on RDN change (Bug #34355)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 05 May 2014 15:00:57 +0200
+
+univention-directory-listener (8.0.0-8) unstable; urgency=low
+
+  * Fix memory leak (Bug #34355)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 02 May 2014 23:18:26 +0200
+
+univention-directory-listener (8.0.0-7) unstable; urgency=low
+
+  * Update copyright (Bug #34355)
+  * Drop NotifierId from cache_get() (Bug #34355)
+  * Use entryUUID to handle move after modify (Bug #34355)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 03 Apr 2014 16:26:42 +0200
+
+univention-directory-listener (8.0.0-6) unstable; urgency=medium
+
+  * Adjust listener resync shutdown message (Bug #32605)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 08 Apr 2014 18:16:42 +0200
+
+univention-directory-listener (8.0.0-5) unstable; urgency=medium
+
+  * Always run replication handler, fixing boolean logic twist in patch
+    for Bug #29475 (Bug #33732)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 19 Dec 2013 13:00:20 +0100
+
+univention-directory-listener (8.0.0-4) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 24 Sep 2013 09:08:46 +0200
+
+univention-directory-listener (8.0.0-3) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 20 Sep 2013 11:55:48 +0200
+
+univention-directory-listener (8.0.0-2) unstable; urgency=low
+
+  * Update copyright years for 2013
+  * Update/review UCR variable descriptions (Bug #30946)
+    Remove univention-directory-listener.univention-config-registry-categories,
+      already covered in univention-base-files
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 11 Sep 2013 12:04:26 +0200
+
+univention-directory-listener (8.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS-3.2.
+  * Hide password in debug message (Bug #31053)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 25 Jun 2013 07:28:58 +0200
+
+univention-directory-listener (7.0.8-1) unstable; urgency=low
+
+  * respect listener/debug/level in join script (Bug #30154)
+
+ -- Felix Botner <botner@univention.de>  Fri, 01 Mar 2013 15:00:19 +0100
+
+univention-directory-listener (7.0.7-2) unstable; urgency=low
+
+  * fix missing parenthesis (Bug #29475)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 18 Feb 2013 13:26:54 +0100
+
+univention-directory-listener (7.0.7-1) unstable; urgency=low
+
+  * Always run replication handler (Bug #29475)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 18 Feb 2013 13:20:29 +0100
+
+univention-directory-listener (7.0.6-6) unstable; urgency=low
+
+  * fix permissions for the script (Bug #30408)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Feb 2013 12:05:54 +0100
+
+univention-directory-listener (7.0.6-5) unstable; urgency=low
+
+  * rename etc/network/if-post-down.d/appliance-listener (Bug #30408)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Feb 2013 11:59:27 +0100
+
+univention-directory-listener (7.0.6-4) unstable; urgency=low
+
+  * rename etc/network/if-post-down.d/appliance-listener (Bug #30408)
+  * fix permissions for the script
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Feb 2013 11:43:40 +0100
+
+univention-directory-listener (7.0.6-3) unstable; urgency=low
+
+  * Add etc/network/if-post-down.d/appliance-listener (Bug #30408)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Feb 2013 11:17:57 +0100
+
+univention-directory-listener (7.0.6-2) unstable; urgency=low
+
+  * Lower debug level for some INFO messages (Bug #30521)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Feb 2013 11:10:06 +0100
+
+univention-directory-listener (7.0.6-1) unstable; urgency=low
+
+  * Fix retrival of binary attribute values from listener cache
+    (Bug #30165)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 07 Feb 2013 13:47:08 +0100
+
+univention-directory-listener (7.0.5-1) unstable; urgency=low
+
+  * univention-directory-listener now uses the current joinscript-lib (Bug #28993)
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 04 Jan 2013 09:04:10 +0100
+
+univention-directory-listener (7.0.4-2) unstable; urgency=low
+
+  * fix double free (Bug #20605)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 17 Oct 2012 17:54:33 +0200
+
+univention-directory-listener (7.0.4-1) unstable; urgency=low
+
+  * patch for Bug #26069 improved to run handlers in delete mode during
+    the first 'r' phase of an modrdn, instead of (not) updating up-to-date
+    handlers (Bug #20605)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 17 Oct 2012 17:01:11 +0200
+
+univention-directory-listener (7.0.3-8) unstable; urgency=low
+
+  * Add linking exception for OpenSSL (Bug #26440)
+
+ -- Moritz Mühlenhoff <muehlenhoffunivention.de>  Tue, 02 Oct 2012 13:54:03 +0200
+
+univention-directory-listener (7.0.3-7) unstable; urgency=low
+
+  * Call exit_handler() on regular exit (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 18 Sep 2012 17:14:36 +0200
+
+univention-directory-listener (7.0.3-6) unstable; urgency=low
+
+  * Fix allocation error in server_select (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 13 Sep 2012 14:27:39 +0200
+
+univention-directory-listener (7.0.3-5) unstable; urgency=low
+
+  * Fix double free bug (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 12 Sep 2012 13:19:03 +0200
+
+univention-directory-listener (7.0.3-4) unstable; urgency=low
+
+  * Fix double free bug (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 12 Sep 2012 13:08:29 +0200
+
+univention-directory-listener (7.0.3-3) unstable; urgency=low
+
+  * Fix size_z format string (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 12 Sep 2012 08:00:56 +0200
+
+univention-directory-listener (7.0.3-2) unstable; urgency=low
+
+  * Remove support for multiple filters (Bug #27329)
+  * Fix double free bug (Bug #27330)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 11 Sep 2012 11:40:18 +0200
+
+univention-directory-listener (7.0.3-1) unstable; urgency=low
+
+  * Fix atomic locking (Bug #28417)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 05 Sep 2012 13:15:52 +0200
+
+univention-directory-listener (7.0.2-1) unstable; urgency=low
+
+  * Set the default for listener/uniquemember/skip and
+    listener/memberuid/skip to no (Bug #19491)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 05 Sep 2012 12:11:10 +0200
+
+univention-directory-listener (7.0.1-1) unstable; urgency=low
+
+  * Handle cache_dir consistently (Bug #27314)
+  * Make several functions static (Bug #27315)
+  * Free memory allocated by UCR (Bug #27330)
+  * Fix atomic locking (Bug #27330)
+  * Fix cache_entry_ldap_filter_match() (Bug #27329)
+  * Fix error reporting (Bug #27376)
+  * Fix out-of-memory conditions (Bug #27330)
+  * Deprecate univention-ldap-listener (Bug #28313)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 05 Sep 2012 07:10:28 +0200
+
+univention-directory-listener (7.0.0-2) unstable; urgency=low
+
+  * Fix file descriptor leak (Bug #27729)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 04 Aug 2012 01:29:23 +0200
+
+univention-directory-listener (7.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump.
+  * Add UCR variable descriptions (Bug #28134)
+  * Fix file descriptor leak (Bug #27729)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 12:08:00 +0200
+
+univention-directory-listener (6.0.25-1) unstable; urgency=low
+
+  * Fix memory double free bug (Bug #27313)
+  * Fix SEGV during shutdown (Bug #15019)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 27 Jun 2012 14:52:45 +0200
+
+univention-directory-listener (6.0.24-1) unstable; urgency=low
+
+  * Removed unused debug line with a hard-coded DN (Bug #26547)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 26 Jun 2012 07:23:07 +0200
+
+univention-directory-listener (6.0.23-2) unstable; urgency=low
+
+  * FTBFS: Fix format string (Bug #27312)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 05 Jun 2012 15:38:50 +0200
+
+univention-directory-listener (6.0.23-1) unstable; urgency=low
+
+  * Fix SEGV in debug level 4 output (Bug #26548)
+  * Add package with debug symbols for getting useful tracebacks.
+  * Update copyright years
+  * Fix errors in shell quoting.
+  * Add manual pages (Bug #25663)
+  * Fix handling of -f option.
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 16 Mar 2012 21:43:45 +0100
+
+univention-directory-listener (6.0.22-1) unstable; urgency=low
+
+  * If the object has been renamed with modrdn, the old object will be
+    removed from the listener cache (Bug #26069)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 20 Feb 2012 12:06:45 +0100
+
+univention-directory-listener (6.0.21-1) unstable; urgency=low
+
+  * perform listener/memberuid/skip and listener/uniquemember/skip tests
+    only if activated by the UCR variables (Bug #25958)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 07 Feb 2012 12:30:29 +0100
+
+univention-directory-listener (6.0.20-1) unstable; urgency=low
+
+  * specify length of attribute values while passing them to Python,
+    important for binary attribute values (Bug #25858)
+  * fix base64 printing of binary attribute values for
+    univention-directory-listener-dump
+  * fix off by one glitch in copy_cache_entry
+
+ -- Arvid Requate <requate@univention.de>  Wed, 18 Jan 2012 19:20:51 +0100
+
+univention-directory-listener (6.0.19-1) unstable; urgency=low
+
+  * Don't use -p port in run file because the listener himself will
+    determine the correct port in select_server (Bug #23094)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 18 Nov 2011 12:25:25 +0100
+
+univention-directory-listener (6.0.18-1) unstable; urgency=low
+
+  * Fixed double free on amd64 (Bug #24273)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 10 Nov 2011 10:22:14 +0100
+
+univention-directory-listener (6.0.17-1) unstable; urgency=low
+
+  * Initialize dn with NULL (Bug #24273)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 03 Nov 2011 10:39:13 +0100
+
+univention-directory-listener (6.0.16-1) unstable; urgency=low
+
+  * Fixed memory leaks (Bug #24273)
+    * Use Py_XDECREF instead of Py_DECREF
+    * Create argtuple in handler_exec for every handler
+    * Use ber_free to free a BerElement
+  * Code cleanup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 02 Nov 2011 15:47:38 +0100
+
+univention-directory-listener (6.0.15-2) unstable; urgency=low
+
+  * added UCR variable listener/network/protocol={all,ipv4,ipv6} (Bug #24284)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 02 Nov 2011 09:56:39 +0100
+
+univention-directory-listener (6.0.15-1) unstable; urgency=low
+
+  * added IPv6 support (Bug #24284)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 01 Nov 2011 18:38:29 +0100
+
+univention-directory-listener (6.0.14-1) unstable; urgency=low
+
+  * workaround for PEP 366 (Bug #23984)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Oct 2011 13:12:41 +0200
+
+univention-directory-listener (6.0.13-2) unstable; urgency=low
+
+  * fix initialisation of backup CacheEntry (Bug #23548)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Oct 2011 09:45:51 +0200
+
+univention-directory-listener (6.0.13-1) unstable; urgency=low
+
+  * Copy the new entry first before giving the entry to the handler,
+    register handlers with the copied object and write it to the cache.
+    This approach fixes a collateral damage of the workaround implemented
+    for Bug #21914 and #23802, which caused updated handler registrations
+    not being committed the database. (Bug #23548)
+  * add compare_cache_entries code possibly useful for future debugging
+
+ -- Arvid Requate <requate@univention.de>  Mon, 24 Oct 2011 20:18:49 +0200
+
+univention-directory-listener (6.0.12-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:19 +0200
+
+univention-directory-listener (6.0.12-1) unstable; urgency=low
+
+  * Merged from UCS 2.4-4:
+    * Write the new object into the cache before giving the entry to the
+      handlers. This is similar to Bug #21914. (Bug #23802)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 20 Oct 2011 07:09:06 +0200
+
+univention-directory-listener (6.0.11-2) unstable; urgency=low
+
+  * fixed logrotate configuration (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 17:18:12 +0200
+
+univention-directory-listener (6.0.11-1) unstable; urgency=low
+
+  * added logrotate configuration (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 17:12:22 +0200
+
+univention-directory-listener (6.0.10-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+   [ Stefan Gohmann ]
+     * Fixed double free (Bug #22579)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 17:38:04 +0200
+
+univention-directory-listener (6.0.9-1) unstable; urgency=low
+
+  * Stop the replication on a DC slave as well if a failed.ldif exists
+    (Bug #22867)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 18 Sep 2011 10:25:18 +0200
+
+univention-directory-listener (6.0.8-2) unstable; urgency=low
+
+  * fix copyright (Bug #23160)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 24 Aug 2011 10:39:13 +0200
+
+univention-directory-listener (6.0.8-1) unstable; urgency=low
+
+  * Move the old listener cache from UCS 3.0 MS1 users to a backup
+    directory (Bug #23160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 19 Aug 2011 07:02:26 +0200
+
+univention-directory-listener (6.0.7-1) unstable; urgency=low
+
+  * Build again against db3 because of some bugs with the db4.8
+    adjustements. See also Bug #23367 (Bug #23160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 19 Aug 2011 06:37:33 +0200
+
+univention-directory-listener (6.0.6-1) unstable; urgency=low
+
+  * Some more db 4.8 adjustements (Bug #22431)
+  * Merge from UCS 2.4
+    * Write the new entry first into the cache before giving the entry to
+      the handler. Otherwise the entry might be modified and the cache
+      gets corrupted and the listener can't read the entry from the cache
+      anymore (Bug #21914).
+    * With UCS 3.0 and Samba 4 the default ldap port 389 will be used by
+      Samba 4. Added a check to prevent a replication from a Samba 4 LDAP
+      server (Bug #22579)
+    * Consider port configuration via UCR for ldap/master/port,
+      ldap/backup/port and notifier/server/port (Bug #23095)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 05 Aug 2011 06:55:48 +0200
+
+univention-directory-listener (6.0.5-1) unstable; urgency=low
+
+  * fixed bashisms (Bug #23005)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 12 Jul 2011 18:38:15 +0200
+
+univention-directory-listener (6.0.4-1) unstable; urgency=low
+
+  * Added dependency to shell-univention-lib > 1.0.6 (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 07 Jun 2011 09:56:33 +0200
+
+univention-directory-listener (6.0.3-1) unstable; urgency=low
+
+  * Consider ldap/server/port (Bug #20026)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 07 Jun 2011 07:24:46 +0200
+
+univention-directory-listener (6.0.2-1) unstable; urgency=low
+
+  * More db48 issues and removed old DB3 code (Bug #22431)
+  * More baseconfig / ucr changes because univention_baseconfig is not
+    available at the moment
+  * Switch to new univention debug
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 18 May 2011 07:56:08 +0200
+
+univention-directory-listener (6.0.1-1) unstable; urgency=low
+
+  * Added copyright block to conffiles/etc/runit/univention-directory-
+    listener/run (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 17 May 2011 19:45:59 +0200
+
+univention-directory-listener (6.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+    * Bump version for UCS 3.0
+    * Replace univention-baseconfig with univention-config-registry
+    * Replace static UCR header in the UCR templates with '@%@UCRWARNING=#
+      @%@'
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Removed transition package univention-ldap-listener
+    * Switch from python2.4 to python2.6
+  * Build against db 4.8
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 06 May 2011 15:26:32 +0200
+
+univention-directory-listener (5.0.8-4) unstable; urgency=low
+
+  * lower debug level for normal check_parent_dn operations
+  * reduce timeout for local LDAP search (Bug #20295)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 07 Oct 2010 20:33:10 +0200
+
+univention-directory-listener (5.0.8-3) unstable; urgency=low
+
+  * fix parentheses (broken in 4.1.7-2) (Bug #20295)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 07 Oct 2010 17:43:34 +0200
+
+univention-directory-listener (5.0.8-2) unstable; urgency=low
+
+  * remove cache-check workaround from check_parent_dn (Bug #20295)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 07 Oct 2010 17:24:56 +0200
+
+univention-directory-listener (5.0.8-1) unstable; urgency=low
+
+  * continue replication if check_parent_dn fails (Bug #20295)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Sep 2010 18:41:18 +0200
+
+univention-directory-listener (5.0.7-1) unstable; urgency=low
+
+  * Skip parent dn check if the DN is the ldap base (Bug #17063)
+
+ -- Stefan Gohmann <stefan@omar.knut.univention.de>  Sun, 22 Aug 2010 11:36:59 +0200
+
+univention-directory-listener (5.0.6-1) unstable; urgency=low
+
+  * apply check_parent_dn only on replicating systems (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 02 Aug 2010 10:58:37 +0200
+
+univention-directory-listener (5.0.5-1) unstable; urgency=low
+
+  * start the listener after the join script was successful. The samba
+    join script needs a running replication. Bug #19128
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 31 Jul 2010 15:05:16 +0200
+
+univention-directory-listener (5.0.4-8) unstable; urgency=low
+
+  * unbind from local LDAP too on DELAY_LDAP_CLOSE timeout (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 28 Jul 2010 20:32:15 +0200
+
+univention-directory-listener (5.0.4-7) unstable; urgency=low
+
+  * remember closing dbp->cursor before dbp->close (Bug #15355)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 28 Jul 2010 19:38:41 +0200
+
+univention-directory-listener (5.0.4-6) unstable; urgency=low
+
+  * free UCR value memory after use (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 28 Jul 2010 18:27:58 +0200
+
+univention-directory-listener (5.0.4-5) unstable; urgency=low
+
+  * fixed machine.secret problem in local bind by checking cache,
+    re-adding code from 5.0.1-1 to/including 5.0.4-2 (Bug #17063)
+  * this adds accidentally reverted changes for Bug #18692 again
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 Jul 2010 23:44:11 +0200
+
+univention-directory-listener (5.0.4-4) unstable; urgency=low
+
+  * revert one more checkin for Bug #17063
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 Jul 2010 15:26:42 +0200
+
+univention-directory-listener (5.0.4-3) unstable; urgency=low
+
+  * revert changes for Bug #17063, machine.secret change in univention-join
+    breaks local bind.
+
+ -- Arvid Requate <requate@univention.de>  Fri, 23 Jul 2010 18:44:30 +0200
+
+univention-directory-listener (5.0.4-2) unstable; urgency=low
+
+  * fix initialization of lp_local and free ldap search res a bit later
+    (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Fri, 23 Jul 2010 18:44:30 +0200
+
+univention-directory-listener (5.0.4-1) unstable; urgency=low
+
+  * use simple bind for local LDAP connection (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Fri, 23 Jul 2010 16:53:41 +0200
+
+univention-directory-listener (5.0.3-1) unstable; urgency=low
+
+  * fixed typo in last commit. Bug #18692
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Jul 2010 08:06:52 +0200
+
+univention-directory-listener (5.0.2-1) unstable; urgency=low
+
+  * skip duplicated uniqueMember entries if the UCR variable
+    listener/uniquemember/skip is set to yes. Bug #18692
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Jul 2010 08:00:22 +0200
+
+univention-directory-listener (5.0.1-1) unstable; urgency=low
+
+  * check local LDAP for parent container objects (Bug #17063)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 21 Jul 2010 18:59:04 +0200
+
+univention-directory-listener (5.0.0-3) unstable; urgency=low
+
+  * add signal handlers for USR1 and USR2 to in-/decrease loglevel at
+    runtime (Bug #18944)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Jul 2010 18:00:28 +0200
+
+univention-directory-listener (5.0.0-2) unstable; urgency=low
+
+  * fix typo (Bug #18677)
+  * added log message on exit of change_init_module (Bug #9318)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 20 Jul 2010 17:03:53 +0200
+
+univention-directory-listener (5.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 13:42:37 +0200
+
+univention-directory-listener (4.0.9-1) unstable; urgency=low
+
+  * if we found a duplicate memberUid entry we skip this memberUid
+    entry if the UCR variable listener/memberuid/skip is set to yes.
+    This should help for Bug #17998
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Apr 2010 09:58:32 +0200
+
+univention-directory-listener (4.0.8-2) unstable; urgency=low
+
+  * fix casualties in verify.c (Bug #18011)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 06 Apr 2010 20:51:09 +0200
+
+univention-directory-listener (4.0.8-1) unstable; urgency=low
+
+  * replace deprecated libldap api calls (Bug #18011)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 06 Apr 2010 19:47:28 +0200
+
+univention-directory-listener (4.0.7-2) unstable; urgency=low
+
+  * return with rv!=0 if bv_val is NULL, single-values might cause trouble otherwise
+    (Bug #15517)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 06 Apr 2010 15:42:11 +0200
+
+univention-directory-listener (4.0.7-1) unstable; urgency=low
+
+  * add some checks to cache_new_entry_from_ldap for NULL in malloc and bv_val (Bug #15517)
+  * skip over value if bv_val is NULL, issuing a log message with dn and attribute to check
+
+ -- Arvid Requate <requate@univention.de>  Tue, 06 Apr 2010 15:11:46 +0200
+
+univention-directory-listener (4.0.6-1) unstable; urgency=low
+
+  * check and fix file ownership beneath standard listener directories
+    in runit run script (Bug #3196 and  Bug #11224)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 10 Mar 2010 18:48:45 +0100
+
+univention-directory-listener (4.0.5-1) unstable; urgency=low
+
+  * remove obsolete preinst (Bug #17837)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 08 Mar 2010 14:59:33 +0100
+
+univention-directory-listener (4.0.4-1) unstable; urgency=low
+
+  * fixed wrong path in join-script (Bug #17527)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 08 Mar 2010 14:34:50 +0100
+
+univention-directory-listener (4.0.3-3) unstable; urgency=low
+
+  * remove mixedcase as well in cache_delete_entry_lower_upper (Bug #16098)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 02 Feb 2010 17:55:11 +0100
+
+univention-directory-listener (4.0.3-2) unstable; urgency=low
+
+  * updated copyright (Bug #16098)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 11 Jan 2010 16:05:06 +0100
+
+univention-directory-listener (4.0.3-1) unstable; urgency=low
+
+  * keep case-preserving cache_update_entry for sequential db walk in resync
+  * rename new version to cache_update_entry_lower
+  * try lowercase dn first in cache_get_entry_lower_upper (Bug #16098)
+  * try lowercase dn first in cache_delete_entry_lower_upper (Bug #16618)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 29 Oct 2009 15:56:24 +0100
+
+univention-directory-listener (4.0.2-1) unstable; urgency=low
+
+  * fixed traceback in listener module ldap_server.py during join process
+    if domain contains no backup system (Bug #16539)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 24 Nov 2009 16:34:43 +0100
+
+univention-directory-listener (4.0.1-1) unstable; urgency=low
+
+  * If a user was changed in AD from uppercase to lowercase and then moved to
+    a different container the listener didn't recognized the change because the
+    local cache entry was saved with an uppercase key. As from now the
+    listener saves the key in the local cache lowercase. Bug #15003.
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  6 Jul 2009 09:38:59 +0200
+
+univention-directory-listener (4.0.0-1) unstable; urgency=low
+
+  * Make init script LSB-compliant (Bug #14421)
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue,  2 Jun 2009 16:55:55 +0200
+
+univention-directory-listener (3.0.3-1) unstable; urgency=low
+
+  * Now listener loads only files ending with ".py" instead of files
+    containing ".py" (Bug: #13003)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Fri, 17 Apr 2009 14:06:26 +0200
+
+univention-directory-listener (3.0.2-2) unstable; urgency=low
+
+  * updated the copyright. Bug #6875
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 19 Feb 2009 08:34:50 +0100
+
+univention-directory-listener (3.0.2-1) unstable; urgency=low
+
+  * pass ldap connection info to handler modules
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 25 Jun 2008 16:25:01 +0200
+
+univention-directory-listener (3.0.1-1) unstable; urgency=low
+
+  * Now listener.run gives the return code of the command back to the
+    listener module. This is needed for Bug #9991
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 13 Feb 2009 08:18:53 +0100
+
+univention-directory-listener (2.2.8-4) unstable; urgency=low
+
+  * don't check the autostart setting in the runit file otherwise the
+    process will be automatically started after the getty process is
+    available, Bug #9553
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 25 Nov 2008 14:48:10 +0100
+
+univention-directory-listener (2.2.8-3) unstable; urgency=low
+
+  * new autostart test in init script
+
+ -- Felix Botner <fbotner@visdalen.knut.univention.de>  Tue, 28 Oct 2008 14:10:44 +0100
+
+univention-directory-listener (2.2.8-2) unstable; urgency=low
+
+  * Stop manipulating the reference count of the Python MM in the
+    code to import listener modules.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 27 Nov 2007 09:04:49 +0100
+
+univention-directory-listener (2.2.8-1) unstable; urgency=low
+
+  * create the runit link in the preinst script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 15 Nov 2007 10:04:59 +0100
+
+univention-directory-listener (2.2.7-1) unstable; urgency=low
+
+  * don't execute the univention-directory-listener join script if the
+    univention-ldap-listener join script was successful
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 14 Nov 2007 13:41:03 +0100
+
+univention-directory-listener (2.2.6-3) unstable; urgency=low
+
+  * link /var/lib/univention-ldap-listener to /var/lib/univention-
+    directory-listener
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 13 Nov 2007 21:20:22 +0100
+
+univention-directory-listener (2.2.6-2) unstable; urgency=low
+
+  * maybe the ldap-listener is during the preinst of the directory-
+    listener no longer configured by runsv, so we have to kill the
+    listener process manually
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri,  9 Nov 2007 06:56:36 +0100
+
+univention-directory-listener (2.2.6-1) unstable; urgency=low
+
+  * stop the listener if /etc/runit/univention/univention-ldap-listener
+    exists
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  8 Nov 2007 13:53:09 +0100
+
+univention-directory-listener (2.2.5-2) unstable; urgency=low
+
+  * Move /usr/lib/univention-ldap-listener as well
+
+ -- Moritz Mühlenhoff <jmm@ivar.knut.univention.de>  Thu,  8 Nov 2007 10:41:14 +0100
+
+univention-directory-listener (2.2.5-1) unstable; urgency=low
+
+  * stop the listener in the preinst only during the upgrade from UCS
+    1.3-2
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  7 Nov 2007 09:27:22 +0100
+
+univention-directory-listener (2.2.4-1) unstable; urgency=low
+
+  * be sure the listener has stopped before starting the upgrade
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  5 Nov 2007 21:36:48 +0100
+
+univention-directory-listener (2.2.3-3) unstable; urgency=low
+
+  * added a conflict to the old univention-ldap-listner package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 24 Oct 2007 11:41:32 +0200
+
+univention-directory-listener (2.2.3-2) unstable; urgency=low
+
+  * remove old ldap-listener init script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 11 Oct 2007 08:00:16 +0200
+
+univention-directory-listener (2.2.3-1) unstable; urgency=low
+
+  * fixed logfile permissions
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 27 Sep 2007 14:06:40 +0200
+
+univention-directory-listener (2.2.2-2) unstable; urgency=low
+
+  * added univention-ldap-listener transition package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Sep 2007 11:56:48 +0200
+
+univention-directory-listener (2.2.2-1) unstable; urgency=low
+
+  * more wording stuff
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 31 Aug 2007 07:58:44 +0200
+
+univention-directory-listener (2.2.1-1) unstable; urgency=low
+
+  * more wording stuff
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 28 Aug 2007 14:39:23 +0200
+
+univention-directory-listener (2.1.1-15) unstable; urgency=low
+
+  * Test twice for the dangling symlink caused by the new wording scheme
+    for Univention Directory Listener.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 21 Aug 2007 12:41:06 +0200
+
+univention-directory-listener (2.1.1-14) unstable; urgency=low
+
+  * Start the wording transition code earlier
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu, 16 Aug 2007 13:36:50 +0200
+
+univention-directory-listener (2.1.1-13) unstable; urgency=low
+
+  * Fix postinst
+
+ -- Moritz Mühlenhoff <jmm@anton.knut.univention.de>  Thu,  9 Aug 2007 11:50:27 +0200
+
+univention-directory-listener (2.1.1-12) unstable; urgency=low
+
+  * Adapt to Univention Directory Replication
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 14:45:47 +0200
+
+univention-directory-listener (2.1.1-11) unstable; urgency=low
+
+  * Fix Univention Directory Listener PID
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 14:16:32 +0200
+
+univention-directory-listener (2.1.1-10) unstable; urgency=low
+
+  * Fix runit service link
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 11:07:52 +0200
+
+univention-directory-listener (2.1.1-9) unstable; urgency=low
+
+  * Add new transition preinst to cope with the wording changes.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 09:46:53 +0200
+
+univention-directory-listener (2.1.1-8) unstable; urgency=low
+
+  * Fix runit symlink in postinst
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue,  7 Aug 2007 09:16:18 +0200
+
+univention-directory-listener (2.1.1-7) unstable; urgency=low
+
+  * More wording changes
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 15:34:42 +0200
+
+univention-directory-listener (2.1.1-6) unstable; urgency=low
+
+  * More wording changes.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 14:47:47 +0200
+
+univention-directory-listener (2.1.1-5) unstable; urgency=low
+
+  * Fix name of join script
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 14:16:39 +0200
+
+univention-directory-listener (2.1.1-4) unstable; urgency=low
+
+  * Fix link generation, dh_links can't handle symlinks on directories
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 13:58:41 +0200
+
+univention-directory-listener (2.1.1-3) unstable; urgency=low
+
+  * Add compatibility symlinks for univention-ldap-listener
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 13:40:53 +0200
+
+univention-directory-listener (2.1.1-2) unstable; urgency=low
+
+  * Rename join script
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 12:49:24 +0200
+
+univention-directory-listener (2.1.1-1) unstable; urgency=low
+
+  * add version number to join script
+
+ -- Andreas Büsching <buesching@univention.de>  Thu,  2 Aug 2007 09:23:15 +0200
+
+univention-directory-listener (2.1.0-3) unstable; urgency=low
+
+  * Add missing Replaces: on univention-ldap-listener
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 31 Jul 2007 11:25:47 +0200
+
+univention-directory-listener (2.1.0-2) unstable; urgency=low
+
+  * Fix build failure
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 31 Jul 2007 10:28:11 +0200
+
+univention-directory-listener (2.1.0-1) unstable; urgency=low
+
+  * Wording changes: univention-ldap-listener has been renamed to
+    univention-directory-listener.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Mon, 30 Jul 2007 17:07:50 +0200
+
+univention-ldap-listener (2.0.5-3) unstable; urgency=low
+
+  * add service description
+  * add Configuration Registry variable listener/autostart to set start type
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 25 Jul 2007 11:14:11 +0200
+
+univention-ldap-listener (2.0.5-2) unstable; urgency=low
+
+  * create runit link during the join
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 19:45:15 +0200
+
+univention-ldap-listener (2.0.4-1) unstable; urgency=low
+
+  * only try to start the daemon if the runsv link exists
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 16:17:39 +0200
+
+univention-ldap-listener (2.0.3-2) unstable; urgency=low
+
+  * call exit 0 at the end of the postinst scripts
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 14:12:42 +0200
+
+univention-ldap-listener (2.0.3-1) unstable; urgency=low
+
+  * switch from runsvctrl to sv
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 13:16:51 +0200
+
+univention-ldap-listener (2.0.2-3) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 15:29:33 +0200
+
+univention-ldap-listener (2.0.2-2) unstable; urgency=low
+
+  * switch from runsvctrl to sv
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 13 Jun 2007 13:40:52 +0200
+
+univention-ldap-listener (2.0.1-1) unstable; urgency=low
+
+  * switch from runsvctrl to sv
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 13 Jun 2007 13:12:18 +0200
+
+univention-ldap-listener (2.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 14 May 2007 11:55:58 +0200
+
+univention-ldap-listener (1.31) unstable; urgency=low
+
+  * added helper script get_notifier_id.py for reading the notifier id from
+    the master
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 21 Dec 2006 18:11:21 +0100
+
+univention-ldap-listener (1.30) unstable; urgency=low
+
+  * cleanup code
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 19 Dec 2006 17:21:33 +0100
+
+univention-ldap-listener (1.28) unstable; urgency=low
+
+  * use univention_baseconfig.handler_set for saving baseconfig variables in
+    the listener module
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 19 Dec 2006 11:24:21 +0100
+
+univention-ldap-listener (1.26) unstable; urgency=low
+
+  * using domain parameter for remove_ldap function
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 15 Dec 2006 08:37:49 +0100
+
+univention-ldap-listener (1.25) unstable; urgency=low
+
+  * add GPL headers
+  * code cleanup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 27 Nov 2006 14:07:04 +0100
+
+univention-ldap-listener (1.22) unstable; urgency=low
+
+  * cleanup debug messages
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 17 Oct 2006 15:14:10 +0200
+
+univention-ldap-listener (1.21) unstable; urgency=low
+
+  * allow different dc master domainname
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue,  6 Jun 2006 08:58:17 +0200
+
+univention-ldap-listener (1.19) unstable; urgency=low
+
+  * check for \0 in ldap values, for example in userCertificate;binary
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  9 Feb 2006 12:56:13 +0100
+
+univention-ldap-listener (1.12) unstable; urgency=low
+
+  * Switched to python 2.4 (support for older versions has been dropped)
+
+ -- Alexander Reelsen <reelsen@univention.de>  Mon, 19 Sep 2005 13:39:54 +0200
+
+univention-ldap-listener (1.9) unstable; urgency=low
+
+  * support for ldapmodrdn
+  * don't start listener as long as /etc/nologin exists (modules may fail)
+
+ -- Ingo Steuwer <steuwer@univention.de>  Wed,  7 Sep 2005 13:25:42 +0200
+
+univention-ldap-listener (1.8) unstable; urgency=low
+
+  * sort dn's before initialize modules
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Apr 2005 15:33:20 +0200
+
+univention-ldap-listener (1.7) unstable; urgency=low
+
+  * fix schema id bug
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Dec 2004 07:45:23 +0100
+
+univention-ldap-listener (1.6) unstable; urgency=low
+
+  * Support for spaces in ldap base
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 14 Dec 2004 18:44:54 +0100
+
+univention-ldap-listener (1.5) unstable; urgency=low
+
+  * new parameter -B: only using ldap/backup baseconfig variable
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 13 Dec 2004 07:47:06 +0100
+
+univention-ldap-listener (1.4) unstable; urgency=low
+
+  * using select_server on reconnect
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  4 Nov 2004 11:32:06 +0100
+
+univention-ldap-listener (1.3) unstable; urgency=low
+
+  * Call univention_debug_exit() when exiting. Depend on
+    libunivention-debug-dev (>= 0.8) for that.
+  * Adjusted a couple of debug levels.
+  * Write pidfile more securely (with O_EXCL).
+  * Move lowlevel functions to convert Listener entries to binary
+    blocks to own file, cache_lowlevel.c; move function to write
+    the Notifier's transaction log to transfile.c.
+  * If using database cursor, don't print error message when the end
+    of the database is reached.
+  * Run postrun handlers on exit.
+  * Wrap BDB calls in signals_block() and signals_unblock(). BDB is
+    not reentrent.
+  * Fix a couple of memory leaks.
+  * Add univention-ldap-listener-verify tool that compares the cache
+    with the local LDAP DIT.
+  * Don't skip all DNs if an object is deleted on the LDAP server
+    while doing initialization.
+  * ldap_server.py: Use old to receive server role if object is
+    deleted.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Mon, 26 Jul 2004 11:12:36 +0200
+
+univention-ldap-listener (1.2) unstable; urgency=low
+
+  * Run postrun handlers when initializing database only.
+  * Fixed insufficient memory allocation when writing attributes to
+    database.
+  * Clear old references to module before resyncing cache.
+  * Add support for libdb4.2 with transactions and checksums (do not
+    build with it yet).
+  * Hexdump database entries when encountering errors.
+  * Adjust logging levels.
+  * Properly free old structures when reloading handlers. Fix a couple
+    of other memory leaks, too. SIGHUP should reload the modules as
+    excepted now.
+  * Write transaction file for notifier only after handlers have been
+    run.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 Jul 2004 11:40:47 +0200
+
+univention-ldap-listener (1.1) unstable; urgency=low
+
+  * Change Start/Stop-Script from 80 to 50
+
+ -- Thomas Kaminski <kaminski@univention.de>  Tue,  4 May 2004 16:20:38 +0200
+
+univention-ldap-listener (1.0) unstable; urgency=low
+
+  * Implemented protocol 2 to support schema replication.
+  * Conflict with univention-ldap-replication (<< 0.5)
+  * Add proper package description.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 22 Apr 2004 14:46:58 +0200
+
+univention-ldap-listener (0.13) unstable; urgency=low
+
+  * merged with ucs1_1
+  * block signals during import
+  * added new error code E_NOTIFIER_INCOMPLETE, or incomplete data packages
+  * lock the database file cache.db
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 25 Mar 2004 11:59:22 +0100
+
+univention-ldap-listener (0.12) unstable; urgency=low
+
+  * Add dump command.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Mon, 15 Mar 2004 16:11:41 +0100
+
+univention-ldap-listener (0.11) unstable; urgency=low
+
+  * Import every module under a distinct "name". This prevents the global
+    variables from different modules to get overwritten.
+  * added new error code E_NOTIFIER_INCOMPLETE, or incomplete data packages
+  * lock the database file cache.db
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Fri, 20 Feb 2004 15:36:24 +0100
+
+univention-ldap-listener (0.10) unstable; urgency=low
+
+  * Use Python 2.3.
+  * Import every module under a distinct "name". This prevents the global
+    variables from different modules to get overwritten.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 17 Feb 2004 16:52:09 +0100
+
+univention-ldap-listener (0.9) unstable; urgency=low
+
+  * cleanup broken log messages
+  * added more debug output
+  * bugfix write transaction
+  * don't connect to notifier from dc backup on domaincontroller_backup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 19 Feb 2004 08:40:07 +0100
+
+univention-ldap-listener (0.8) unstable; urgency=low
+
+  * added init.d start script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 14 Feb 2004 14:08:17 +0100
+
+univention-ldap-listener (0.7) unstable; urgency=low
+
+  * Do not change sys.path when importing handler modules. Instead,
+    open and import them directly.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Wed,  4 Feb 2004 10:03:38 +0100
+
+univention-ldap-listener (0.6) unstable; urgency=low
+
+  * use tls (-ZZ)
+  * remove database before join
+  * change debug parameter
+    -d 0 : error messages
+    -d 1 : info messages
+    -d 2 : all messages
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 30 Jan 2004 15:08:45 +0100
+
+univention-ldap-listener (0.5) unstable; urgency=low
+
+  * Support for multiple filters per module.
+  * Handle exceptions from Python handlers properly.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 30 Dec 2003 10:27:50 +0100
+
+univention-ldap-listener (0.4) unstable; urgency=low
+
+  * Support for prerun and postrun handlers.
+  * Use runit for process supervision.
+  * Added join script [gohmann].
+  * Include listener.py module for common functions (such as
+    gaining or dropping privileges).
+  * Block signals while running handlers.
+  * Try reconnecting to listener when initial connection fails.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Fri,  7 Nov 2003 09:30:57 +0100
+
+univention-ldap-listener (0.3) unstable; urgency=low
+
+  * Added univention-ldap-listener-ctrl command.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Wed, 29 Oct 2003 15:13:06 +0100
+
+univention-ldap-listener (0.2) unstable; urgency=low
+
+  * Support for Univention Notifier.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 25 Sep 2003 16:45:30 +0200
+
+univention-ldap-listener (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 11 Sep 2003 16:31:24 +0200
+
+

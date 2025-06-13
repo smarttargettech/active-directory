@@ -1,0 +1,313 @@
+#!/bin/bash
+#
+# Univention Run Join Scripts
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+. /usr/share/univention-join/joinscripthelper.lib
+. /usr/share/univention-lib/all.sh
+
+export PATH="$PATH:/sbin:/usr/sbin:/bin:/usr/bin"
+
+eval "$(univention-config-registry shell)"
+
+display_help() {
+	display_header
+	cat <<-EOL
+	Syntax:
+	  univention-run-join-scripts [options] [script, ...]
+
+	Options:
+	  -dcaccount <account>:    name of Primary Directory Node account
+	  -dcpwd <password file>:  file with Primary Directory Node password
+	  --ask-pass            :  ask for Primary Directory Node account and password
+	  --run-scripts         :  run only the scripts given as parameters
+	  --force               :  force execution of joinscripts which are already executed
+
+	  -h | --help | -?:        print this usage message and exit program
+	  --version:               print version information and exit program
+
+	Description:
+	  univention-run-join-scripts runs all join scripts existing on local computer.
+
+	EOL
+}
+
+display_header() {
+	echo "univention-run-join-scripts: runs all join scripts existing on local computer."
+	echo "copyright (c) 2001-@%@copyright_lastyear@%@ Univention GmbH, Germany"
+	echo ""
+}
+
+display_version() {
+	echo "univention-run-join-scripts @%@package_version@%@"
+}
+
+failed_message () {
+	echo ""
+	echo ""
+	echo "**************************************************************************"
+	echo "* Running join scripts failed!                                           *"
+	echo "**************************************************************************"
+	echo "* Message:  $@"
+	echo "**************************************************************************"
+	exit 1
+}
+
+while [ $# -gt 0 ]
+do
+	case "$1" in
+		"-dcaccount")
+			DCACCOUNT="${2:?missing account name for bind}"
+			shift 2 || exit 2
+			;;
+		"-dcpwd")
+			DCPWD="${2:?missing password file for bind}"
+			shift 2 || exit 2
+			;;
+		"--ask-pass")
+			ASK_PASS=1
+			shift
+			;;
+		"--force")
+			export JOIN_FORCE=1
+			shift
+			;;
+		"--run-scripts")
+			RUN_SCRIPTS=1
+			SCRIPTS_TO_RUN=()
+			shift
+			;;
+		"--version")
+			display_version
+			exit 0
+			;;
+		"--help"|"-h"|"-?")
+			display_help
+			exit 0
+			;;
+		-*)
+			echo "Unknown argument: $1"
+			display_help
+			exit 1
+			;;
+		*)
+			if [ "$RUN_SCRIPTS" != "1" ]; then
+				echo "Unknown argument: $1"
+				display_help
+				exit 1
+			fi
+			SCRIPTS_TO_RUN+=("$1")
+			shift
+			;;
+	esac
+done
+
+# display header only if username and password are not provided #29432
+if [ -z "$DCACCOUNT" ] && [ -z "$DCPWD" ] ; then
+	display_header
+fi
+
+if [ ! -e /var/univention-join/joined ]; then
+	echo "The system hasn't been joined yet. univention-run-join-scripts can only be"
+	echo "used after an initial, successful join. You should run univention-join instead."
+	exit 1
+fi
+
+# don't ask for join credentials until UMC supports this for Primary Nodes
+#if [ "$samba_role" = "memberserver" ]; then
+#	if [ -z "$DCACCOUNT" ] || [ -z "$DCPWD" ]; then
+#		ASK_PASS=1
+#	fi
+#fi
+
+if [ ! "$server_role" = "domaincontroller_master" ] || [ -n "$ASK_PASS" ] ; then
+	if [ -z "$DCACCOUNT" ]; then
+		echo -n "Enter Primary Directory Node Account : "
+		read DCACCOUNT
+	fi
+	if [ -z "$DCPWD" ]; then
+		echo -n "Enter Primary Directory Node Password: "
+		read -s password
+		DCPWD=$(mktemp)
+		trap "rm -f '$DCPWD' /var/run/univention-join/binddn /var/run/univention-join/bindpwd /var/run/univention-join/samba-authentication-file" EXIT
+		echo -n "$password" >>"$DCPWD"
+		echo ""
+		echo ""
+	fi
+
+	echo -n "Search LDAP binddn: "
+
+	# First use udm to search the user DN
+	OLDIFS="$IFS" IFS="
+"
+	binddn=($(univention-ssh --no-split "$DCPWD" "$DCACCOUNT"@"$ldap_master" \
+		/usr/sbin/udm users/user list --filter "'uid=$DCACCOUNT'" --logfile /dev/null |
+		sed -n '2s/^DN: //p'))
+	if [ -z "$binddn" ]; then
+		# Next check is the local ldapi interface
+		binddn=($(univention-ssh --no-split "$DCPWD" "$DCACCOUNT"@"$ldap_master" \
+			ldapsearch -x -LLL -H ldapi:/// "'(&(uid=$DCACCOUNT)(objectClass=person))'" dn |
+			ldapsearch-wrapper |
+			ldapsearch-decode64 |
+			sed -ne 's|^dn: ||p'))
+	fi
+	if [ -z "$binddn" ]; then
+		# Check with anonymous bind
+		binddn=($(univention-ssh --no-split "$DCPWD" "$DCACCOUNT"@"$ldap_master" \
+			ldapsearch -x -LLL "'(&(uid=$DCACCOUNT)(objectClass=person))'" dn |
+			ldapsearch-wrapper |
+			ldapsearch-decode64 |
+			sed -ne 's|^dn: ||p'))
+	fi
+	[ ${#binddn[@]} -gt 1 ] &&
+			failed_message "binddn for user $DCACCOUNT not unique: ${binddn[*]}"
+	IFS="$OLDIFS"
+
+	if [ -z "$binddn" ]; then
+		failed_message "binddn for user $DCACCOUNT not found"
+	else
+		if ! ldapsearch -x -LLL -b "$ldap_base" -D "$binddn" -y "$DCPWD" -LLL -s base >/dev/null 2>&1
+		then
+			failed_message "Invalid credentials"
+		else
+			echo -e "\033[60Gdone"
+		fi
+	fi
+fi
+
+EXITCODE=0
+
+# get list of join scripts to be executed
+# fallback to all existing join scripts
+LC_COLLATE="C"
+SCRIPTS=(/usr/lib/univention-install/*.{inst,uinst})
+if [ -n "$RUN_SCRIPTS" ]; then
+	# evaluate specified join scripts
+	SCRIPTS=()
+	if [ -z $SCRIPTS_TO_RUN ]; then
+		display_help
+		failed_message "The option --run-scripts was used, but no scripts were provided"
+		EXITCODE=1
+	fi
+	for iscript in "${SCRIPTS_TO_RUN[@]}"
+	do
+		# guess full path of join script
+		iscript="/usr/lib/univention-install/$iscript"
+		if [ ! -e "$iscript" ]; then
+			# expand .inst or .uinst suffix if not specified
+			test -e "$iscript.uinst" && iscript=$iscript.uinst
+			test -e "$iscript.inst" && iscript=$iscript.inst
+		fi
+		if [ ! -e "$iscript" ]; then
+			# error ... join script does not exist
+			failed_message "The given joinscript '$iscript' does not exists"
+			EXITCODE=1
+		fi
+		SCRIPTS+=("$iscript")
+	done
+fi
+
+if [ "$EXITCODE" != "0" ]; then
+	exit "$EXITCODE"
+fi
+
+# Save STDOUT to fd3, redirect to logfile
+exec 3>&1 >>/var/log/univention/join.log 2>&1
+
+umask 0022  # prevent join from failing if umask is modified (Bug #56634)
+
+joinscript_create_credentialfiles "$binddn" "$DCPWD" "$DCACCOUNT"
+
+echo
+echo "univention-run-join-scripts started"
+date
+echo
+EXITCODE=0
+joinscript_check_status_file >&3
+if [ -e "/usr/lib/univention-install/" ]
+then
+	echo -n "Running pre-joinscripts hook(s): " >&3
+	run_join_hook join/pre-joinscripts
+	echo -e "\033[60Gdone" >&3
+	for i in "${SCRIPTS[@]}"
+	do
+		[ "$(basename "$i")" = "*.uinst" -o "$(basename "$iscript")" = "*.inst" ] && continue
+		echo -n "Running $(basename "$i")" >&3
+		echo "RUNNING $(basename "$i")"
+
+		if ! joinscript_extern_init "$i"; then
+			echo -e "\033[60Gskipped (invalid joinscript)" >&3
+			echo "EXITCODE=invalid_joinscript"
+			continue
+		fi
+		if joinscript_check_already_executed && [ -z "$JOIN_FORCE" ]; then
+			echo -e "\033[60Gskipped (already executed)" >&3
+			echo "EXITCODE=already_executed"
+			continue
+		fi
+
+		if [ ! "$server_role" = "domaincontroller_master" ] || [ -n "$ASK_PASS" ] ; then
+			args=()
+			if joinscript_check_api_nocredentials "$i"; then
+				args=()
+			else
+				args=(--binddn "$binddn" --bindpwdfile "$DCPWD")
+			fi
+			"$i" "${args[@]}" 3>&-
+		else
+			"$i" 3>&-
+		fi
+		RET=$?
+		echo "EXITCODE=$RET"
+		if [ $RET != 0 ]; then
+			[ -x /usr/sbin/univention-admin-diary-entry-create ] &&
+			/usr/sbin/univention-admin-diary-entry-create --event JOIN_SCRIPT_FAILED --arg "joinscript=$(basename "$i")"
+			EXITCODE=1
+			echo -e "\033[60Gfailed (exitcode: $RET)" >&3
+		else
+			echo -e "\033[60Gdone" >&3
+			delete_unjoinscript "$(basename "$i")"
+		fi
+	done
+	echo -n "Running post-joinscripts hook(s): " >&3
+	run_join_hook join/post-joinscripts
+	echo -e "\033[60Gdone" >&3
+fi
+
+joinscript_remove_credentialfiles
+
+echo
+date
+echo "univention-run-join-scripts finished"
+echo
+
+exit $EXITCODE

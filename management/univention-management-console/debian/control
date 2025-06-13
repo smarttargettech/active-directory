@@ -1,0 +1,211 @@
+Source: univention-management-console
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3,
+ python3-all,
+ python3-polib,
+ python3-sdnotify,
+ python3-setuptools,
+ python3-univention-lib,
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+Standards-Version: 3.7.2
+
+Package: univention-management-console
+Architecture: all
+Depends:
+ python3-univention-management-console (= ${source:Version}),
+ univention-management-console-module-appcenter,
+ univention-management-console-module-apps,
+ univention-management-console-module-diagnostic,
+ univention-management-console-module-join,
+ univention-management-console-module-lib,
+ univention-management-console-module-passwordchange,
+ univention-management-console-module-reboot,
+ univention-management-console-module-services,
+ univention-management-console-module-setup,
+ univention-management-console-module-sysinfo,
+ univention-management-console-module-top,
+ univention-management-console-module-ucr,
+ univention-management-console-module-updater,
+ univention-management-console-server (= ${source:Version}),
+ univention-management-console-web-server (>= 5.0.5),
+ ${misc:Depends},
+Recommends:
+ univention-management-console-module-quota,
+Conflicts:
+ univention-management-console-module-mrtg,
+Description: UCS Management Console - Web based computer administration tool
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the web-frontend, which
+ can be installed to provide access to one or several daemons.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-server
+Architecture: all
+Depends:
+ cy2-saml,
+ libpam-oauthbearer,
+ libsasl2-modules-oauthbearer,
+ pam-saml,
+ python3-univention-lib,
+ python3-univention-management-console (= ${source:Version}),
+ shell-univention-lib (>= 9.0.18-2),
+ univention-base-files,
+ univention-directory-manager-tools (>> 7.0.147),
+ ${misc:Depends},
+Pre-Depends:
+ univention-management-console-web-server-fix,
+Description: UCS Management Console - server
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the backend-daemon, which
+ can be installed on any UCS-system to provide functionalities
+ for univention-management-console
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: python3-univention-management-console
+Architecture: all
+Depends:
+ python3-cryptography,
+ python3-jwt,
+ python3-openssl,
+ python3-pam,
+ python3-polib,
+ python3-psycopg2,
+ python3-pycurl,
+ python3-pysaml2,
+ python3-sdnotify,
+ python3-setproctitle,
+ python3-sqlalchemy,
+ python3-tornado,
+ python3-univention,
+ python3-univention-config-registry,
+ python3-univention-debug (>= 12.0.3-1),
+ python3-univention-directory-manager (>= 15.0.25-3),
+ python3-univention-lib,
+ univention-join,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UCS Management Console - Python 3 Modules
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the backend-daemon, which
+ can be installed on any UCS-system to provide functionalities
+ for univention-management-console
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-dev
+Architecture: all
+Depends:
+ devscripts,
+ gettext,
+ imagemagick,
+ inkscape,
+ librsvg2-bin,
+ python3-polib,
+ python3-univention-config-registry,
+ univention-join-dev,
+ univention-l10n-dev (>= 7.0.1),
+ ${misc:Depends},
+Description: UCS Management Console - development files
+ UCS Management Console is a web based program to manage computers. It has
+ an extensible architecture, using modules to implement its
+ features. This package contains development files helping to implement
+ and package own UMC module
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-frontend
+Architecture: all
+Depends:
+ univention-apache,
+ univention-management-console-login,
+ univention-web-js,
+ univention-web-style,
+ ${misc:Depends},
+Breaks:
+ univention-management-console-module-sysinfo (<< 7),
+Description: UCS Management Console - Web based computer administration tool
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the AJAX web-frontend
+ application. It is written using the Dojo Toolkit and allows to
+ access the univention management console web-services through
+ the web browser.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-web-server
+Architecture: all
+Depends:
+ curl,
+ libapache2-mod-wsgi-py3,
+ openssl,
+ python3-defusedxml,
+ python3-pysaml2,
+ python3-univention-management-console (= ${source:Version}),
+ shell-univention-lib,
+ univention-base-files,
+ univention-keycloak-client (>= 1.0.10-4),
+ univention-management-console-frontend,
+ univention-management-console-server,
+ ${misc:Depends},
+Pre-Depends:
+ univention-management-console-web-server-fix,
+Description: UCS Management Console - Web server
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the web server providing
+ HTTP access to the UMC server.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-web-server-fix
+Architecture: all
+Description: UCS Management Console - Web server fix
+
+Package: univention-management-console-login
+Architecture: all
+Depends:
+ univention-apache,
+ univention-web-js,
+ univention-web-style,
+ ${misc:Depends},
+Description: UCS Management Console - Login page
+ UCS Management Console is a web based program to manage computers.
+ It has an extensible architecture, using modules to implement
+ its features. This package contains the generic login page.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

@@ -1,0 +1,48 @@
+#!/bin/bash
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2019-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+db_backend="$(ucr get admin/diary/dbms)"
+PASSWORD="$(cat /etc/admin-diary.secret)"
+
+if [ "$db_backend" = "postgresql" ]; then
+	su postgres -c "createuser -DRS --login admindiary"
+	su postgres -c "createdb -O admindiary -T template0 -E UTF8 admindiary"
+	su postgres -c "psql postgres -c \"ALTER ROLE \\\"admindiary\\\" WITH ENCRYPTED PASSWORD '$PASSWORD'\""
+elif [ "$db_backend" = "mysql" ]; then
+	echo "CREATE DATABASE IF NOT EXISTS admindiary CHARACTER SET utf8mb4 COLLATE utf8mb4_bin" | mysql -p$(cat /etc/mysql.secret)
+	echo "GRANT ALL ON admindiary.* TO 'admindiary'@'localhost' IDENTIFIED BY '$PASSWORD'" | mysql -p$(cat /etc/mysql.secret)
+else
+	echo "Error: Please set admin/diary/dbms to postgresql or mysql in UCR" 2>&1
+	exit 1
+fi
+
+/usr/share/univention-admin-diary/create-tables

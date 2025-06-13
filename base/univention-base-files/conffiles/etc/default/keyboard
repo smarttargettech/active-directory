@@ -1,0 +1,11 @@
+@%@UCRWARNING=# @%@
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="@%@xorg/keyboard/options/XkbModel@%@"
+XKBLAYOUT="@%@xorg/keyboard/options/XkbLayout@%@"
+XKBVARIANT="@%@xorg/keyboard/options/XkbVariant@%@"
+XKBOPTIONS="@%@xorg/keyboard/options/XkbOptions@%@"
+
+BACKSPACE="guess"

@@ -1,0 +1,90 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking function of ldap group to file
+## tags:
+##  - basic
+##  - apptest
+## roles-not: [basesystem]
+## packages:
+##  - univention-ldap-server
+## exposure: dangerous
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/group.sh
+. "$TESTLIBPATH/group.sh" || exit 137
+# shellcheck source=../../lib/maildomain.sh
+. "$TESTLIBPATH/maildomain.sh" || exit 137
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+# shellcheck source=../../lib/undo.sh
+. "$TESTLIBPATH/undo.sh" || exit 137
+
+TIME_TO_WAIT=600 # time to waitf for NSS update script
+
+USERNAME=$(user_randomname)
+if [ "$USERNAME" == "Administrator" ]; then
+	fail_fast 1 "Can not be an Administrator as user."
+fi
+GROUPNAME="$(group_randomname)"
+
+ucr set nss/group/cachefile="yes"
+undo systemctl try-restart univention-directory-listener # reversed order
+undo ucr_restore
+systemctl restart univention-directory-listener
+
+# create domain part in configured mail domains list
+undo wait_for_replication_and_postrun # Reversed order
+create_mail_domain "$domainname" && undo delete_mail_domain "$domainname"
+user_create "$USERNAME" &&
+	undo user_remove "$USERNAME" ||
+	fail_test 1
+group_create "$GROUPNAME" &&
+	undo group_remove "$GROUPNAME" ||
+	fail_test 1
+group_adduser "$USERNAME" "$GROUPNAME" ||
+	fail_test 1
+wait_for_replication_and_postrun
+
+#group_removeuser $USERNAME $GROUPNAME || fail_test 1
+
+echo "Waiting for NSS update script"
+i=0
+while sleep 1s
+do
+	if [ $i -lt "$TIME_TO_WAIT" ]; then
+		if getent group "$GROUPNAME" | grep -q "$USERNAME"; then
+			echo "NSS update script seems to work"
+			break
+		fi
+	else
+		echo "NSS update script doesn't seem to work. Waited longer than $TIME_TO_WAIT seconds."
+		fail_test 1
+		break
+	fi
+	i=`expr $i + 1`
+done
+
+group_removeuser "$USERNAME" "$GROUPNAME" || fail_test 1
+wait_for_replication_and_postrun
+
+echo "Waiting for NSS update script..."
+i=0
+while sleep 1s
+do
+	if [ $i -lt "$TIME_TO_WAIT" ]; then
+		if ! getent group "$GROUPNAME" | grep -q "$USERNAME"; then
+			echo "NSS update script seems to work"
+			break
+		fi
+	else
+		echo "NSS update script doesn't seem to work. Waited longer than $TIME_TO_WAIT seconds."
+		fail_test 1
+		break
+	fi
+	i=`expr $i + 1`
+done
+
+exit "$RETVAL"

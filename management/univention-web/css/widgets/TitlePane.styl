@@ -1,0 +1,109 @@
+/* TitlePane and Fieldset
+ *
+ * Styling TitlePane means styling the TitlePane title and its content container  (dijitTitlePane)
+ *
+ * TitlePane title:
+ * 1. TitlePane title (default styling):
+ * 		.dijitTitlePaneTitle - TitlePane's title div style: background-color, border
+ *
+ * 2. hovered TitlePane title (ie, mouse hover on a title bar)
+ * 		.dijitTitlePaneTitleHover - styles when mouse hover on the title div
+ *
+ * 3. active TitlePane title (ie, mouse down on a title bar)
+ * 		.dijitTitlePaneTitleActive - styles when mouse down on the title div
+ *
+ *
+ * TitlePane Content Container:
+ * 1. outer/inner container:
+ * 		.dijitTitlePaneContentOuter / dijitTitlePaneContentInner - styles for the content outer div
+ */
+
+ @require "../variables.styl"
+ @require "../HTMLElements.styl"
+
+
+.dijitTitlePane
+	flex: 0 0 auto // needed for udm flex layout
+	background-color: var(--bgc-content-container)
+	border-radius: var(--border-radius-container)
+
+.dijitTitlePane:not(:last-child)
+	margin-bottom: spacing(4)
+
+
+// TitlePane title
+.dijitTitlePaneTitle
+	padding: spacing(1)
+	transition: background-color 250ms
+
+	&Hover
+		background-color: var(--bgc-titlepane-hover)
+
+.dijitTitlePaneTitleFocus
+	padding: spacing(1)
+	display: flex
+	align-items: center
+
+	.dijitArrowNode
+		display: none
+
+.dijitTitlePaneTextNode
+	@extends h2
+	flex: 1 1 auto
+	margin-right: spacing(1)
+
+.umcTitlePaneTitleFocus__arrowIcon
+	flex: 0 0 auto
+	transition: transform 250ms
+	font-size: var(--font-size-3)
+.dijitTitlePaneTitleOpen
+	.umcTitlePaneTitleFocus__arrowIcon
+		transform: rotate(180deg)
+.dijitTitlePaneTitleFixedOpen,
+.dijitTitlePaneTitleFixedClosed
+	.umcTitlePaneTitleFocus__arrowIcon
+		display: none
+// TitlePane title (end)
+
+
+// TitlePane content
+.dijitTitlePaneContentInner
+	padding: spacing(1) spacing(2) spacing(2) // add padding to inner element so the wipeIn/wipeOut does not jump
+// TitlePane content (end)
+
+
+
+// nested TitlePanes (?)
+.dijitTitlePane .dijitTitlePane
+	margin-bottom: 0
+// nested TitlePanes (?) (end)
+
+
+.umcTitlePaneOnContainer
+	background-color: var(--bgc-inputfield-on-container)
+	> *
+		--bgc-inputfield-on-container: var(--bgc-inputfield-on-body)
+
+
+/* alternate styling used in  traceback dialogs and appcenter package changes (in install dialog) */
+.umcTitlePane--alternate
+	background-color: transparent
+	border-radius: var(--border-radius-interactable)
+
+	.dijitTitlePaneTitle
+		padding: 0
+
+	.dijitTitlePaneTitleFocus
+		outline: none
+		padding: 0
+
+	.dijitTitlePaneTextNode
+		font-size: var(--font-size-4)
+		text-decoration: underline
+		margin: 0
+
+	.umcTitlePaneTitleFocus__arrowIcon
+		display: none
+
+	.dijitTitlePaneContentInner
+		padding: var(--layout-spacing-unit) 0 0 0

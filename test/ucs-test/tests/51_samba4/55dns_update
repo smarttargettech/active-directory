@@ -1,0 +1,129 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Checks dnsupdate operations with dns-$hostname"
+## exposure: safe
+## bugs:
+## - 34868
+## packages:
+##  - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## tags:
+##  - basic
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+RETVAL=100
+
+eval "$(ucr shell)"
+
+kinit -t /var/lib/samba/private/dns.keytab  dns-$hostname
+
+test_nqdn=$(random_hostname)
+test_fqdn="$test_nqdn.$domainname"
+
+ipv6addr1a="2011:6f8:13dc:2:19b7:d592:9dd:1041"
+ipv6addr2a="fd11:6f8:13dc:2:19b7:d592:9dd:1041"
+ipv4addr1a="10.199.92.161"
+
+ipv6addr1b="2011:6f8:13dc:2:19b7:d592:9dd:1042"
+ipv6addr2b="fd11:6f8:13dc:2:19b7:d592:9dd:1042"
+ipv4addr1b="10.199.92.162"
+
+cleanup() {
+	cat <<-%EOF | nsupdate -v -g
+	server $hostname.$domainname
+	zone $domainname.
+	; debug yes
+	update delete $test_fqdn.
+	; show
+	send
+	quit
+	%EOF
+}
+
+trap cleanup EXIT
+
+cat << %EOF | nsupdate -v -g
+server $hostname.$domainname
+zone $domainname.
+; debug yes
+prereq nxrrset $test_fqdn. CNAME
+update delete $test_fqdn. AAAA
+update delete $test_fqdn. A
+update add $test_fqdn. 1200 AAAA $ipv6addr1a
+update add $test_fqdn. 1200 AAAA $ipv6addr2a
+update add $test_fqdn. 1200 A $ipv4addr1a
+; show
+send
+quit
+%EOF
+
+
+test_output=$(dig +noall +answer @localhost "$test_fqdn" ANY)
+
+tab=$'\t'
+for ipv4addr in "$ipv4addr1a"; do
+	if ! egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+A[ $tab]+${ipv4addr//\./\\.}" <<<"$test_output"; then
+		fail_fast 110 "new IPv4 address not registered: $ipv4addr"
+	fi
+done
+
+for ipv6addr in "$ipv6addr1a" "$ipv6addr2a"; do
+	if ! egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+AAAA[ $tab]+$ipv6addr" <<<"$test_output"; then
+		fail_fast 110 "new IPv6 address not registered: $ipv6addr"
+	fi
+done
+
+cat << %EOF | nsupdate -v -g
+server $hostname.$domainname
+zone $domainname.
+; debug yes
+prereq nxrrset $test_fqdn. CNAME
+update delete $test_fqdn. AAAA
+update delete $test_fqdn. A
+update add $test_fqdn. 1200 AAAA $ipv6addr1b
+update add $test_fqdn. 1200 AAAA $ipv6addr2b
+update add $test_fqdn. 1200 A $ipv4addr1b
+; show
+send
+quit
+%EOF
+
+test_output=$(dig +noall +answer @localhost "$test_fqdn" ANY)
+
+for ipv4addr in "$ipv4addr1b"; do
+	if ! egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+A[ $tab]+${ipv4addr//\./\\.}" <<<"$test_output"; then
+		fail_fast 110 "new IPv4 address not registered: $ipv4addr"
+	fi
+done
+
+for ipv6addr in "$ipv6addr1b" "$ipv6addr2b"; do
+	if ! egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+AAAA[ $tab]+$ipv6addr" <<<"$test_output"; then
+		fail_fast 110 "new IPv6 address not registered: $ipv6addr"
+	fi
+done
+
+for ipv4addr in "$ipv4addr1a"; do
+	if egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+A[ $tab]+${ipv4addr//\./\\.}" <<<"$test_output"; then
+		fail_fast 110 "old IPv4 address still present: $ipv4addr"
+	fi
+done
+
+for ipv6addr in "$ipv6addr1a" "$ipv6addr2a"; do
+	if egrep -q "^${test_fqdn//\./\\.}\.[ $tab]+[0-9]+[ $tab]+IN[ $tab]+AAAA[ $tab]+$ipv6addr" <<<"$test_output"; then
+		fail_fast 110 "old IPv6 address still present: $ipv6addr"
+	fi
+done
+
+cleanup && trap - EXIT
+
+test_output=$(dig +short @localhost "$test_fqdn" ANY)
+if [ -n "$test_output" ]; then
+	fail_fast 110 "Record has not been deleted: $test_output"
+fi

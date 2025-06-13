@@ -1,0 +1,53 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Creates accounts via create_spn_account and test if the password complexity tests are passed"
+## exposure: dangerous
+## bugs:
+## - 31649
+## packages:
+##  - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+eval "$(ucr shell)"
+
+RETVAL=100
+MAX_COUNT=40
+
+prefix="$(random_chars 4)"
+
+old_password_complexity=$(samba-tool domain passwordsettings show | VAL 'Password complexity')
+if [ "$old_password_complexity" != "on" ]; then
+	samba-tool domain passwordsettings set --complexity=on
+	reset_password_complexity=1
+fi
+echo "$old_password_complexity"
+
+for ((i=0;i<MAX_COUNT;i++)); do
+	/usr/share/univention-samba4/scripts/create_spn_account.sh \
+		--samaccountname "$prefix-${hostname:-}-$i" \
+		--serviceprincipalname "$prefix-$i/$hostname.$domainname" \
+		--bindpwdfile "$tests_domainadmin_pwdfile" \
+		--binddn "$tests_domainadmin_account" \
+		--privatekeytab dns.keytab || fail_test 110
+done
+
+wait_for_replication_and_postrun
+
+for ((i=0;i<MAX_COUNT;i++)); do
+	samba-tool user delete "$prefix-$hostname-$i" || fail_test 110
+done
+
+wait_for_replication_and_postrun
+
+[ -n "$reset_password_complexity" ] &&
+	samba-tool domain passwordsettings set --complexity="$old_password_complexity"
+
+exit $RETVAL

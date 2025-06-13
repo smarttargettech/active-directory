@@ -1,0 +1,229 @@
+@!@
+import json
+import socket
+import fcntl
+import struct
+import re
+
+import logging
+from univention.config_registry.interfaces import Interfaces
+
+from urllib.request import urlopen
+from urllib.error import URLError
+
+logging.basicConfig(
+    filename='/var/log/univention/ec2.log',
+    filemode='a',
+    format='%(asctime)s.%(msecs)03d %(levelname)s [UCR template:meta.json:%(funcName)s]: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    level=logging.DEBUG,
+)
+
+
+def query_ec2(key):  # type: (str) -> Optional[str]
+    url = 'http://169.254.169.254/latest/meta-data/' + key
+    try:
+        result = urlopen(url, timeout=2)  # noqa: S310
+        value = result.read().decode('UTF-8').strip()
+        return value
+    except (URLError, OSError) as ex:
+        logging.error('Could not query EC2 info via %s: %s', url, ex)
+        return None
+
+
+def get_ip_address(ifname):  # type: (str) -> Optional[str]
+    SIOCGIFADDR = 0x8915
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        addr = socket.inet_ntoa(
+            fcntl.ioctl(
+                sock.fileno(),
+                SIOCGIFADDR,
+                struct.pack('256s', ifname.encode('ASCII')[:15]),
+            )[20:24],
+        )
+    except OSError as ex:
+        logging.error('Could not get IP addresse for interface %s: %s [%s]', ifname, ex, ex.errno)
+        addr = None
+    finally:
+        sock.close()
+    return addr
+
+
+def get_ec2_address():
+    # EC2 meta data
+    if configRegistry.is_true('server/amazon'):
+        for key in ('public-hostname', 'public-ipv4', 'local-ipv4'):
+            addr = query_ec2(key)
+            if addr:
+                return addr
+
+    # UCR
+    DHCP = {'dhcp', 'dynamic'}
+    interfaces = Interfaces(configRegistry)
+    for ifname, iface in interfaces.all_interfaces:
+        # IPv4
+        if iface.type in DHCP:
+            addr = get_ip_address(ifname)
+            if addr:
+                return '%s' % (addr,)
+        else:
+            addr = iface.ipv4_address()
+            if addr:
+                return '%s' % (addr.ip,)
+        # IPv6
+        addr = iface.ipv6_address()
+        if addr:
+            return '[%s]' % (addr.ip,)
+
+    # runtime data
+    for ifname, _iface in interfaces.all_interfaces:
+        addr = get_ip_address(ifname)
+        if addr:
+            return '%s' % (addr,)
+
+    # fallback
+    return socket.getfqdn()
+
+
+def has_free_license():
+    return configRegistry.get('license/base') in ('UCS Core Edition', 'Free for personal use edition')
+
+
+def has_system_uuid():
+    fake_uuid = '00000000-0000-0000-0000-000000000000'
+    return configRegistry.get('uuid/system', fake_uuid) != fake_uuid
+
+
+def is_piwik_disabled():
+    piwik_ucr_is_set = configRegistry.is_true('umc/web/piwik') or configRegistry.is_false('umc/web/piwik')
+    piwik_allowed = has_system_uuid() and configRegistry.is_true('umc/web/piwik') or (not piwik_ucr_is_set and has_free_license())
+    return not piwik_allowed
+
+
+def get_session_timeout():
+    try:
+        return int(configRegistry.get('umc/http/session/timeout', '300'))
+    except ValueError:
+        return 300
+
+
+def get_fqdn():
+    try:
+        return '{hostname}.{domainname}'.format(**configRegistry)
+    except KeyError as err:
+        logging.error('%s', err)
+    return 'unknown'
+
+
+def has_certificates():
+    return configRegistry.get('server/role') in ('domaincontroller_master', 'domaincontroller_backup')
+
+
+def get_login_links():
+    base = 'umc/login/links/'
+    return {k[len(base):]: v for k, v in configRegistry.items() if k.startswith(base)}
+
+
+def get_login_texts():
+    base = 'umc/login/texts/'
+    return {k[len(base):]: v for k, v in configRegistry.items() if k.startswith(base)}
+
+
+def get_cookie_banner():
+    base = 'umc/cookie-banner/'
+    banner = {
+        'text': {
+            'en': 'We use cookies and other technologies on this website '
+                  'to ensure that the site works reliably, securely, and '
+                  'optimally for visitors. For this to work, we measure '
+                  'how often our website is visited and how it is used. By '
+                  'clicking the "Accept" button, you consent to their use. '
+                  'Further information can be found in our '
+                  '<a href="https://www.univention.com/privacy-statement/" '
+                  'target="_blank">Data Privacy Policy</a>.',
+            'de': 'Wir verwenden auf dieser Webseite Cookies und andere '
+                  'Technologien, um sicherzustellen, dass die Seite '
+                  'zuverlässig, sicher und für Besucher optimal läuft. Damit '
+                  'das funktioniert, messen wir, wie häufig unsere Seite '
+                  'besucht und wie sie genutzt wird. Mit dem Button '
+                  '"Akzeptieren" stimmen Sie der Verwendung zu. Weitere '
+                  'Informationen erhalten Sie in unserer '
+                  '<a href="https://www.univention.de/datenschutzerklaerung/" '
+                  'target="_blank">Datenschutzerklärung</a>.',
+        },
+        'title': {
+            'en': 'Cookie Settings',
+            'de': 'Cookie-Einstellungen',
+        },
+    }
+    for name in ('text', 'title'):
+        prefix = '%s%s/' % (base, name)
+        items = {k[len(prefix):]: v for k, v in configRegistry.items() if k.startswith(prefix) and v}
+        for lang in list(items.keys()):
+            banner[name][lang] = items[lang]
+
+    banner['show'] = configRegistry.is_true('%sshow' % (base,))
+    banner['cookie'] = configRegistry.get('%scookie' % (base,))
+    banner['domains'] = [domain.strip() for domain in re.split(', *', configRegistry.get('%sdomains' % (base,), '')) if domain.strip()]
+    return banner
+
+
+data = {
+    "piwikDisabled": is_piwik_disabled(),
+    "sessionTimeout": get_session_timeout(),
+    "has_certificates": has_certificates(),
+    "login_links": get_login_links(),
+    "login_texts": get_login_texts(),
+    "cookieBanner": get_cookie_banner(),
+}
+
+if configRegistry.is_true('system/setup/boot/start'):
+    data['serveraddress'] = get_ec2_address()
+
+if configRegistry.is_false('umc/web/meta/hide-sensitive-data'):
+    data['fqdn'] = get_fqdn()
+
+
+def get_ucr_entry(ucrKey, key=None, defaultValue=None):
+    if key is None:
+        key = ucrKey
+    if '*' not in ucrKey:
+        yield (key, configRegistry.get(ucrKey, defaultValue))
+    else:
+        key_regex = re.compile(ucrKey)
+        for key, value in configRegistry.items():
+            if key_regex.match(key):
+                yield key, value
+
+
+# list of all UCR variables + mappings
+ucr_vars = [
+    ('domainname', ),
+    ('system/setup/showloginmessage', ),
+    ('umc/web/feedback/description', 'feedbackSubject', '[UMC-Feedback] Traceback'),
+    ('umc/web/feedback/mail', 'feedbackAddress', 'feedback@univention.de'),
+    ('umc/web/title', 'title'),
+    ('umc/web/favicon', 'favicon'),
+    ('umc/server/upload/max', ),
+    ('umc/web/sso/enabled', ),
+    ('umc/web/oidc/enabled', ),
+    ('umc/self-service/.*/title/.*', ),
+    ('umc/self-service/profiledata/enabled', ),
+    ('umc/self-service/account-registration/frontend/enabled', None, False),
+    ('umc/self-service/account-verification/frontend/enabled', None, False),
+    ('umc/self-service/passwordchange/frontend/enabled', None, True),
+    ('umc/self-service/passwordreset/frontend/enabled', None, True),
+    ('umc/self-service/protect-account/frontend/enabled', None, True),
+    ('umc/self-service/account-deregistration/enabled', None, False),
+    ('umc/self-service/allow-authenticated-use', None, False),
+    ('portal/show-outdated-browser-warning', None, False),
+    ('portal/reload-tabs-on-logout', None, True),
+]
+
+for i in ucr_vars:
+    for key, value in get_ucr_entry(*i):
+        data[key] = value  # noqa: PERF403
+
+print(json.dumps(data, indent=2, sort_keys=True))
+@!@

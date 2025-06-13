@@ -1,0 +1,7 @@
+etc/xdg/openbox/rc_no_shortcuts.xml
+systemd/*.service	lib/systemd/system/
+usr/sbin
+usr/share/pam-configs
+usr/share/univention-system-setup-boot
+usr/share/univention-system-setup/download-packages
+usr/share/univention-system-setup/startxwithfirefox

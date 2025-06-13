@@ -1,0 +1,52 @@
+{
+  "releases": [
+    {
+      "major": 3,
+      "minors": [
+        {
+          "minor": 1,
+          "patchlevels": [
+            {
+              "patchlevel": 1,
+              "status": "maintained",
+              "tba_patch_key": "tba_patch_value"
+            }
+          ],
+          "tba_minor_key": "tba_minor_value"
+        }
+      ],
+      "tba_major_key": "tba_major_value"
+    },
+    {
+      "major": 4,
+      "minors": [
+        {
+          "minor": 0,
+          "patchlevels": [
+            {
+              "patchlevel": 0,
+              "status": "unmaintained",
+              "tba_patch_key": "tba_patch_value"
+            },
+            {
+              "patchlevel": 1,
+              "status": "maintained",
+              "tba_patch_key": "tba_patch_value"
+            }
+          ]
+        },
+        {
+          "minor": 1,
+          "patchlevels": [
+            {
+              "patchlevel": 0,
+              "status": "unmaintained",
+              "tba_patch_key": "tba_patch_value"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tba_key": "tba_value"
+}

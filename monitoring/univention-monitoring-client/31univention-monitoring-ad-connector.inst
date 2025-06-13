@@ -1,0 +1,114 @@
+#!/bin/bash
+#
+# Univention Monitoring Client
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2022-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=2
+
+. /usr/share/univention-join/joinscripthelper.lib
+. /usr/share/univention-lib/all.sh
+joinscript_init
+
+eval "$(univention-config-registry shell)"
+
+univention-directory-manager monitoring/alert create "$@" --ignore_exists \
+	--position "cn=monitoring,$ldap_base" \
+	--set name="UNIVENTION_ADCONNECTOR" \
+	--set description="Too few or no AD connector instances are running" \
+	--set summary="check if AD connector is functional" \
+	--set for="5m" \
+	--append labels='"severity" "critical"' \
+	--set query="univention_ad_connector_ad_reachable{%instance%} != 1 or univention_ad_connector_running{%instance%} == 2" || die "UNIVENTION_ADCONNECTOR"
+
+univention-directory-manager monitoring/alert create "$@" --ignore_exists \
+	--position "cn=monitoring,$ldap_base" \
+	--set name="UNIVENTION_ADCONNECTOR_WARNING" \
+	--set alertGroup="UNIVENTION_ADCONNECTOR" \
+	--set description="There are rejects in the AD connector or too many AD connector instances are running" \
+	--set summary="check for AD connector rejects" \
+	--set for="5m" \
+	--append labels='"severity" "warning"' \
+	--set query="univention_ad_connector_running{%instance%} == 1 or univention_ad_connector_rejects{%instance%} > 0" || die "UNIVENTION_ADCONNECTOR_WARNING"
+
+univention-directory-manager monitoring/alert create "$@" --ignore_exists \
+	--position "cn=monitoring,$ldap_base" \
+	--set name="UNIVENTION_ADCONNECTOR_METRIC_MISSING" \
+	--set description="metrics regarding ad-connector are missing" \
+	--set summary="check if metrics regarding ad-connector are missing" \
+	--set for="5m" \
+	--append labels='"severity" "critical"' \
+	--set query="absent(univention_ad_connector_ad_reachable{%instance%}) == 1 or absent(univention_ad_connector_running{%instance%}) == 1 or absent(univention_ad_connector_rejects{%instance%}) == 1" || die "UNIVENTION_ADCONNECTOR_METRIC_MISSING"
+
+if [ $JS_LAST_EXECUTED_VERSION -eq 1 ]; then
+	univention-directory-manager monitoring/alert modify "$@" \
+		--dn "cn=UNIVENTION_ADCONNECTOR,cn=monitoring,$ldap_base" \
+		--set description="Too few or no AD connector instances are running" \
+		--set summary="check if AD connector is functional" \
+		--set query="univention_ad_connector_ad_reachable{%instance%} != 1 or univention_ad_connector_running{%instance%} == 2"
+
+	univention-directory-manager monitoring/alert modify "$@" \
+		--dn "cn=UNIVENTION_ADCONNECTOR_WARNING,cn=monitoring,$ldap_base" \
+		--set alertGroup="UNIVENTION_ADCONNECTOR" \
+		--set description="There are rejects in the AD connector or too many AD connector instances are running" \
+		--set summary="check for AD connector rejects" \
+		--set query="univention_ad_connector_running{%instance%} == 1 or univention_ad_connector_rejects{%instance%} > 0"
+
+	univention-directory-manager monitoring/alert modify "$@" \
+		--dn "cn=UNIVENTION_ADCONNECTOR_METRIC_MISSING,cn=monitoring,$ldap_base" \
+		--set description="metrics regarding ad-connector are missing" \
+		--set summary="check if metrics regarding ad-connector are missing" \
+		--set query="absent(univention_ad_connector_ad_reachable{%instance%}) == 1 or absent(univention_ad_connector_running{%instance%}) == 1 or absent(univention_ad_connector_rejects{%instance%}) == 1"
+fi
+
+CHECKS=(
+	"UNIVENTION_ADCONNECTOR"
+	"UNIVENTION_ADCONNECTOR_WARNING"
+	"UNIVENTION_ADCONNECTOR_METRIC_MISSING"
+)
+
+if [ $JS_LAST_EXECUTED_VERSION -le 0 ] && is_ucr_true monitoring/client/nagios-automigration; then
+	/usr/share/univention-monitoring-client/migrate-nagios-services-to-alerts "$@" || die "Could not migrate nagios service to alerts"
+elif ! is_ucr_false monitoring/client/autoregister; then
+	# univention-directory-manager "computers/${server_role}" modify "$@" --dn "$ldap_hostdn" --append-option="monitoring" || die
+	for name in "${CHECKS[@]}"; do
+		univention-directory-manager monitoring/alert modify "$@" \
+			--dn "cn=$name,cn=monitoring,$ldap_base" \
+			--append assignedHosts="${ldap_hostdn}" || die
+	done
+fi
+
+joinscript_save_current_version
+
+exit 0

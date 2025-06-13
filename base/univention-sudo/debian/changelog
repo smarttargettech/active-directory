@@ -1,0 +1,102 @@
+univention-sudo (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+univention-sudo (7.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:40 +0100
+
+univention-sudo (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:25 +0100
+
+univention-sudo (6.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:41 +0100
+
+univention-sudo (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:37 +0100
+
+univention-sudo (5.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:50 +0100
+
+univention-sudo (5.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:24 +0100
+
+univention-sudo (5.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:36 +0100
+
+univention-sudo (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:16 +0200
+
+univention-sudo (4.0.0-2) unstable; urgency=medium
+
+  * Bug #51023: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Thu, 26 Mar 2020 15:15:55 +0100
+
+univention-sudo (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:33 +0100
+
+univention-sudo (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:43 +0100
+
+univention-sudo (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:08 +0200
+
+univention-sudo (1.0.0-3) unstable; urgency=low
+
+  * Bug #37995: Only enable for new installs
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 08 Dec 2015 10:43:36 +0100
+
+univention-sudo (1.0.0-2) unstable; urgency=low
+
+  * move file permission from postinst to ucr conf, escape all forbidden
+    characters (Bug #37995)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 07 Dec 2015 09:54:26 +0100
+
+univention-sudo (1.0.0-1) unstable; urgency=low
+
+  * fix package description field (Bug #37995)
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 04 Dec 2015 09:34:22 +0100
+
+univention-sudo (1.0.0) unstable; urgency=low
+
+  * Initial release. (Bug #37995)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 24 Nov 2015 15:20:49 +0100

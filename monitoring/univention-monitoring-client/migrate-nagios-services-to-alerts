@@ -1,0 +1,120 @@
+#!/usr/bin/python3
+#
+# Univention Monitoring Client
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2022-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+"""Migrate Nagios services which are assigned to this host to corresponding monitoring alerts."""
+
+import argparse
+
+from ldap.filter import filter_format
+
+from univention.config_registry import ucr
+from univention.udm import UDM
+from univention.udm.exceptions import NoObject
+
+
+CHECKS: dict[str, tuple[str, ...]] = {
+    "UNIVENTION_DISK_ROOT": ("UNIVENTION_DISK_ROOT", "UNIVENTION_DISK_ROOT_WARNING", "UNIVENTION_DISK_ROOT_METRIC_MISSING"),
+    "UNIVENTION_DNS": ("UNIVENTION_DNS", "UNIVENTION_DNS_METRIC_MISSING"),
+    "UNIVENTION_SWAP": ("UNIVENTION_SWAP", "UNIVENTION_SWAP_WARNING", "UNIVENTION_SWAP_METRIC_MISSING"),
+    "UNIVENTION_LDAP_AUTH": ("UNIVENTION_LDAP_AUTH", "UNIVENTION_LDAP_AUTH_METRIC_MISSING"),
+    "UNIVENTION_NTP": ("UNIVENTION_NTP", "UNIVENTION_NTP_WARNING", "UNIVENTION_NTP_METRIC_MISSING"),
+    "UNIVENTION_SMTP2": ("UNIVENTION_SMTP", "UNIVENTION_SMTP_METRIC_MISSING"),
+    "UNIVENTION_SSL": ("UNIVENTION_SSL", "UNIVENTION_SSL_WARNING", "UNIVENTION_SSL_METRIC_MISSING"),
+    "UNIVENTION_LOAD": ("UNIVENTION_LOAD", "UNIVENTION_LOAD_WARNING", "UNIVENTION_LOAD_METRIC_MISSING"),
+    "UNIVENTION_REPLICATION": ("UNIVENTION_REPLICATION", "UNIVENTION_REPLICATION_WARNING", "UNIVENTION_REPLICATION_METRIC_MISSING"),
+    "UNIVENTION_NSCD": ("UNIVENTION_NSCD", "UNIVENTION_NSCD_METRIC_MISSING"),
+    "UNIVENTION_NSCD2": ("UNIVENTION_NSCD2", "UNIVENTION_NSCD2_METRIC_MISSING"),
+    "UNIVENTION_KPASSWDD": ("UNIVENTION_KPASSWDD", "UNIVENTION_KPASSWDD_METRIC_MISSING"),
+    "UNIVENTION_WINBIND": ("UNIVENTION_WINBIND", "UNIVENTION_WINBIND_METRIC_MISSING"),
+    "UNIVENTION_SMBD": ("UNIVENTION_SMBD", "UNIVENTION_SMBD_METRIC_MISSING"),
+    "UNIVENTION_NMBD": ("UNIVENTION_NMBD", "UNIVENTION_NMBD_METRIC_MISSING"),
+    "UNIVENTION_JOINSTATUS": ("UNIVENTION_JOINSTATUS", "UNIVENTION_JOINSTATUS_WARNING", "UNIVENTION_JOINSTATUS_METRIC_MISSING"),
+    "UNIVENTION_PACKAGE_STATUS": ("UNIVENTION_PACKAGE_STATUS", "UNIVENTION_PACKAGE_STATUS_METRIC_MISSING"),
+    "UNIVENTION_SLAPD_MDB_MAXSIZE": ("UNIVENTION_SLAPD_MDB_MAXSIZE", "UNIVENTION_SLAPD_MDB_MAXSIZE_WARNING", "UNIVENTION_SLAPD_MDB_MAXSIZE_METRIC_MISSING"),
+    "UNIVENTION_LISTENER_MDB_MAXSIZE": ("UNIVENTION_LISTENER_MDB_MAXSIZE", "UNIVENTION_LISTENER_MDB_MAXSIZE_WARNING", "UNIVENTION_LISTENER_MDB_MAXSIZE_METRIC_MISSING"),
+    "UNIVENTION_ADCONNECTOR": ("UNIVENTION_ADCONNECTOR", "UNIVENTION_ADCONNECTOR_WARNING", "UNIVENTION_ADCONNECTOR_METRIC_MISSING"),
+    "UNIVENTION_CUPS": ("UNIVENTION_CUPS", "UNIVENTION_CUPS_MISSING"),
+    "UNIVENTION_OPSI": ("UNIVENTION_OPSI", "UNIVENTION_OPSI_MISSING"),
+    "UNIVENTION_RAID": ("UNIVENTION_RAID", "UNIVENTION_RAID_WARNING", "UNIVENTION_RAID_MISSING"),
+    "UNIVENTION_S4CONNECTOR": ("UNIVENTION_S4CONNECTOR", "UNIVENTION_S4CONNECTOR_WARNING", "UNIVENTION_S4CONNECTOR_MISSING"),
+    "UNIVENTION_SAMBA_REPLICATION": ("UNIVENTION_SAMBA_REPLICATION", "UNIVENTION_SAMBA_REPLICATION_MISSING"),
+    "UNIVENTION_SMART_SDA": ("UNIVENTION_SMART_SDA_HEALTHY", "UNIVENTION_SMART_SDA_PENDINGSECTOR_WARNING", "UNIVENTION_SMART_SDA_HEALTHY_METRIC_MISSING"),
+    "UNIVENTION_SMART_SDB": ("UNIVENTION_SMART_SDB_HEALTHY", "UNIVENTION_SMART_SDB_PENDINGSECTOR_WARNING", "UNIVENTION_SMART_SDB_HEALTHY_METRIC_MISSING"),
+    "UNIVENTION_SMART_SDC": ("UNIVENTION_SMART_SDC_HEALTHY", "UNIVENTION_SMART_SDC_PENDINGSECTOR_WARNING", "UNIVENTION_SMART_SDC_HEALTHY_METRIC_MISSING"),
+    "UNIVENTION_SMART_SDD": ("UNIVENTION_SMART_SDD_HEALTHY", "UNIVENTION_SMART_SDD_PENDINGSECTOR_WARNING", "UNIVENTION_SMART_SDD_HEALTHY_METRIC_MISSING"),
+    "UNIVENTION_SQUID": ("UNIVENTION_SQUID", "UNIVENTION_SQUID_METRIC_MISSING"),
+}
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--binddn', metavar="DN", help="LDAP simple BIND DN")
+    parser.add_argument('--bindpwdfile', metavar="PWFILE", type=argparse.FileType('r'), help="LDAP simple BIND password file")
+    args = parser.parse_args()
+
+    if args.binddn and args.bindpwdfile:
+        udm = UDM.credentials(args.binddn, args.bindpwdfile.read().strip(), server=ucr['ldap/master'], port=ucr.get_int('ldap/master/port', 7389)).version(2)
+    elif ucr['server/role'] == 'domaincontroller_master':
+        udm = UDM.admin().version(2)
+    else:
+        udm = UDM.machine().version(2)
+    udm_nagios = udm.get('nagios/service')
+    udm_alert = udm.get('monitoring/alert')
+
+    fqhn = "%(hostname)s.%(domainname)s" % ucr
+    basedn = ucr['ldap/base']
+    hostdn = ucr["ldap/hostdn"]
+
+    for nagios, names in CHECKS.items():
+        if not any(udm_nagios.search(filter_format("(&(name=%s)(univentionNagiosHostname=%s))", [nagios, fqhn]))):
+            print(f"Skipped Nagios service {nagios}.")
+            continue
+
+        for service in names or (nagios,):
+            try:
+                obj = udm_alert.get(f"cn={service},cn=monitoring,{basedn}")
+            except NoObject:
+                print(f"Skipping alerting rule {service}.")
+                continue
+
+            if hostdn in obj.props.assignedHosts:
+                print(f"Already in alerting rule {service}.")
+                continue
+
+            obj.props.assignedHosts.append(hostdn)
+            obj.save()
+            print(f"Added to alerting rule {service}.")
+
+
+if __name__ == "__main__":
+    main()

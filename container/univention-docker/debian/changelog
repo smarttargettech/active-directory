@@ -1,0 +1,436 @@
+univention-docker (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:57 +0200
+
+univention-docker (7.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-docker (7.0.5) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#2542: remove docker/daemon/default/map
+
+ -- Felix Botner <botner@univention.de>  Thu, 12 Dec 2024 15:51:22 +0100
+
+univention-docker (7.0.4) unstable; urgency=medium
+
+  * Bug #56130: Docker logging driver options compatible with all logging drivers
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 06 Aug 2024 17:02:44 +0200
+
+univention-docker (7.0.3) unstable; urgency=medium
+
+  * Bug #55807: Revert disabling ip(6)tables in docker config
+
+ -- Arvid <requate@univention.de>  Thu, 30 May 2024 22:23:22 +0200
+
+univention-docker (7.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:36 +0100
+
+univention-docker (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-docker (6.0.4) unstable; urgency=medium
+
+  * Bug #55807: Disable ip(6)tables in docker config
+
+ -- Marius Meschter <marius.meschter@univention.de>  Thu, 07 Mar 2024 23:54:52 +0100
+
+univention-docker (6.0.3) unstable; urgency=medium
+
+  * Bug #56001: adjust docker configuration template to changed CLI
+    arguments
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:47 +0100
+
+univention-docker (6.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:33 +0100
+
+univention-docker (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-docker (5.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:56 +0100
+
+univention-docker (5.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:27 +0100
+
+univention-docker (5.0.4-2) unstable; urgency=medium
+
+  *  Bug #55360: Add clone3 and libseccomp2 to the seccomp rules
+     that are set to single container apps by the appcenter
+
+ -- Julia Bremer <bremer@univention.de>  Wed, 29 Mar 2023 17:43:50 +0200
+
+univention-docker (5.0.4-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:36 +0100
+
+univention-docker (5.0.3-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Sep 2022 19:49:36 +0200
+
+univention-docker (5.0.2-2) unstable; urgency=medium
+
+  * Bug #51033: added docker daemon restart module on proxy changes
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Wed, 27 Apr 2022 12:19:12 +0200
+
+univention-docker (5.0.2-1) unstable; urgency=medium
+
+  * Bug #52539: removed deprecated script:
+    migrate_container_MountPoints_to_v2_config
+
+ -- Johannes Lohmer <lohmer@univention.de>  Mon, 04 Apr 2022 14:39:43 +0200
+
+univention-docker (5.0.2-0) unstable; urgency=medium
+
+  * Bug #52344: Add two UCR variables for docker/daemon.json customisation
+
+ -- Christian Castens <castens@univention.de>  Tue, 26 Jan 2021 20:11:48 +0100
+
+univention-docker (5.0.1-0) unstable; urgency=medium
+
+  * Bug #52478: Add statx system call to seccomp profile
+
+ -- Ole Schwiegert <schwiegert@univention.de>  Tue, 26 Jan 2021 18:28:27 +0100
+
+univention-docker (5.0.0-2) unstable; urgency=medium
+
+  * Bug #51598: univention-appcenter should be used as Python3
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 20 Jan 2021 12:15:37 +0100
+
+univention-docker (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:17 +0200
+
+univention-docker (4.0.1-8) unstable; urgency=medium
+
+  * Bug #51031: ucr var proxy/no_proxy now modifies env var of docker.
+
+ -- Christian Castens <castens@univention.de>  Mon, 04 May 2020 11:26:27 +0200
+
+univention-docker (4.0.1-6) unstable; urgency=medium
+
+  * Bug #51132: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 21 Apr 2020 14:11:19 +0200
+
+univention-docker (4.0.1-5) unstable; urgency=medium
+
+  * Bug #50295: restart containers with univention-app (multi container apps
+    too)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 02 Oct 2019 15:34:53 +0200
+
+univention-docker (4.0.1-4) unstable; urgency=medium
+
+  * Bug #50295: restart containers with univention-app
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 02 Oct 2019 10:14:26 +0200
+
+univention-docker (4.0.1-3) unstable; urgency=medium
+
+  * Bug #50295: dont always restart
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 01 Oct 2019 13:20:00 +0200
+
+univention-docker (4.0.1-2) unstable; urgency=medium
+
+  * Bug #50295: restart docker container after restarting with new config
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 01 Oct 2019 11:05:57 +0200
+
+univention-docker (4.0.1-1) unstable; urgency=medium
+
+  * Bug #50295: no explicit storage driver. leave as is
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 01 Oct 2019 09:55:40 +0200
+
+univention-docker (4.0.0-7) unstable; urgency=medium
+
+  * Bug #50295: no comments
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2019 17:00:56 +0200
+
+univention-docker (4.0.0-6) unstable; urgency=medium
+
+  * Bug #50295: and restart
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2019 16:52:02 +0200
+
+univention-docker (4.0.0-5) unstable; urgency=medium
+
+  * Bug #50295: added daemon.json
+
+ -- Felix Botner <botner@univention.de>  Mon, 30 Sep 2019 16:39:44 +0200
+
+univention-docker (4.0.0-4) unstable; urgency=medium
+
+  * Bug #47416: fixed postinst
+
+ -- Felix Botner <botner@univention.de>  Tue, 30 Apr 2019 17:30:33 +0200
+
+univention-docker (4.0.0-3) unstable; urgency=medium
+
+  * Bug #47416: restart docker daemon
+
+ -- Felix Botner <botner@univention.de>  Tue, 30 Apr 2019 17:10:26 +0200
+
+univention-docker (4.0.0-2) unstable; urgency=medium
+
+  * Bug #47416: added logging configuration (maxfile, maxsize)
+
+ -- Felix Botner <botner@univention.de>  Tue, 30 Apr 2019 16:48:32 +0200
+
+univention-docker (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:33 +0100
+
+univention-docker (3.0.0-2) unstable; urgency=medium
+
+  * Bug #46013: enable docker.service in postinst
+
+ -- Felix Botner <botner@univention.de>  Wed, 17 Jan 2018 14:44:56 +0100
+
+univention-docker (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:54 +0100
+
+univention-docker (2.0.1-7) unstable; urgency=medium
+
+  * Bug #44986: reread service file before dockerd restart in postinist
+
+ -- Eduard Mai <mai@univention.de>  Thu, 10 Aug 2017 17:21:36 +0200
+
+univention-docker (2.0.1-6) unstable; urgency=medium
+
+  * Bug #44986: restart dockerd on new installation to make sure the custom
+    configuration file is read and overlayfs is chossen as an storage backend
+
+ -- Eduard Mai <mai@univention.de>  Thu, 10 Aug 2017 16:53:38 +0200
+
+univention-docker (2.0.1-5) unstable; urgency=low
+
+  * Bug #44536: more info
+
+ -- Felix Botner <botner@univention.de>  Wed, 24 May 2017 18:10:03 +0200
+
+univention-docker (2.0.1-4) unstable; urgency=low
+
+  * Bug #44536: added docker.service.d/http-proxy.conf
+
+ -- Felix Botner <botner@univention.de>  Wed, 24 May 2017 18:05:54 +0200
+
+univention-docker (2.0.1-3) unstable; urgency=medium
+
+  * Bug #44006: upgrade code moved to postup
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Mar 2017 16:02:36 +0100
+
+univention-docker (2.0.1-2) unstable; urgency=medium
+
+  * Fixed docker opts UCR description from last commit (Bug #44033)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Mar 2017 15:03:40 +0100
+
+univention-docker (2.0.1-1) unstable; urgency=medium
+
+  * Remove UCR template for /etc/init.d/docker. The systemd service will
+    be used (Bug #44033)
+  * Added a new UCR variable docker/daemon/default/parameter/.* to add
+    additional parameter for the Docker daemon (Bug #44033)
+  * Activate live-restore by default (Bug #44033)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Mar 2017 12:32:53 +0100
+
+univention-docker (2.0.0-9) unstable; urgency=medium
+
+  * Bug #44006: Depend on cgroupfs-mount (>= 1.1)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Mar 2017 11:47:06 +0100
+
+univention-docker (2.0.0-8) unstable; urgency=medium
+
+  * Bug #44006: Depend on docker.io >= 1.12 and check if config.v2.json
+    have been created. Set return code accordingly. Be idempotent.
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Mar 2017 19:24:37 +0100
+
+univention-docker (2.0.0-7) unstable; urgency=medium
+
+  * Bug #44006: Start docker daemon manually w/o init system to make
+    it create the config.v2.json files
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Mar 2017 18:43:32 +0100
+
+univention-docker (2.0.0-6) unstable; urgency=medium
+
+  * Bug #44006: migrate container volume config to config.v2.json
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Mar 2017 17:55:09 +0100
+
+univention-docker (2.0.0-5) unstable; urgency=low
+
+  * Bug #43470: Handle UCRV */autostart through systemd
+  * Bug #43874: help systemd track pidfile
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Mar 2017 08:52:56 +0100
+
+univention-docker (2.0.0-4) unstable; urgency=medium
+
+  * Bug #43455: seccomp-systemd.yaml
+
+ -- Arvid Requate <requate@univention.de>  Mon, 13 Mar 2017 13:34:57 +0100
+
+univention-docker (2.0.0-3) unstable; urgency=low
+
+  * restart univention-firewall (Bug #42698)
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Oct 2016 17:35:38 +0200
+
+univention-docker (2.0.0-2) unstable; urgency=low
+
+  * restart univention-firewall (Bug #42698)
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Oct 2016 15:53:47 +0200
+
+univention-docker (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:02 +0200
+
+univention-docker (1.0.1-5) unstable; urgency=low
+
+  * remove ...update41/disabled during this update
+    and restore default for appcenter/docker and
+    docker/autostart (Bug #40515)
+
+ -- Felix Botner <botner@univention.de>  Mon, 20 Jun 2016 13:31:53 +0200
+
+univention-docker (1.0.1-4) unstable; urgency=low
+
+  * ignore missing docker_bridge_network_conflict (Bug #40515)
+
+ -- Felix Botner <botner@univention.de>  Mon, 20 Jun 2016 11:41:24 +0200
+
+univention-docker (1.0.1-3) unstable; urgency=low
+
+  * make docker daemon opts configurable (Bug #40515)
+  * set defaults
+    docker/daemon/default/opts/bip?"172.17.42.1/16"
+    docker/daemon/default/opts/storage-driver?"overlay"
+  * disable docker daemon start if docker_bridge_network_conflict
+
+ -- Felix Botner <botner@univention.de>  Thu, 16 Jun 2016 15:16:46 +0200
+
+univention-docker (1.0.1-2) unstable; urgency=low
+
+  * docker now uses UCRV proxy/http if configured in the host (Bug #40030)
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 26 Nov 2015 11:38:23 +0100
+
+univention-docker (1.0.1-1) unstable; urgency=medium
+
+  * Fixed typo in last commit (Bug #39429)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 29 Oct 2015 14:31:47 +0100
+
+univention-docker (1.0-0-1) unstable; urgency=medium
+
+  * Cleanup previous container list after starting the previous
+    containers (Bug #39429)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 29 Oct 2015 14:23:53 +0100
+
+univention-docker (0.1.0-9) unstable; urgency=medium
+
+  * Bug #39474: Add wait_for_containers_inner_shutdown
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 Oct 2015 17:38:01 +0100
+
+univention-docker (0.1.0-8) unstable; urgency=low
+
+  * exit with 0 if docker is already stopped or started (Bug #39273)
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 22 Oct 2015 17:40:54 +0200
+
+univention-docker (0.1.0-7) unstable; urgency=low
+
+  * Docker logfile not world readable anymore (Bug #39494).
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 20 Oct 2015 12:31:06 +0200
+
+univention-docker (0.1.0-6) unstable; urgency=medium
+
+  * Some cosmetic changes (Bug #39429)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 07 Oct 2015 18:55:29 +0200
+
+univention-docker (0.1.0-5) unstable; urgency=low
+
+  * change docker.io init script start/stop order (Bug #39429)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 06 Oct 2015 13:36:15 +0200
+
+univention-docker (0.1.0-4) unstable; urgency=low
+
+  * add variable quoting, exec wait, kernel version check (Bug #39474)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 06 Oct 2015 10:04:32 +0200
+
+univention-docker (0.1.0-3) unstable; urgency=low
+
+  * add docker.io init script
+  * start and stop modified to properly shutdown and start running containers
+    (Bug #39474)
+  * add UCRV to disable starting Docker engine (docker/autostart)
+  * add timeout to "start-stop-daemon --stop" to fix restart (Bug #39447)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 05 Oct 2015 15:57:01 +0200
+
+univention-docker (0.1.0-2) unstable; urgency=medium
+
+  * Bug #39418: whitespace in univention-docker.univention-config-registry
+
+ -- Arvid Requate <requate@univention.de>  Tue, 29 Sep 2015 13:09:59 +0200
+
+univention-docker (0.1.0-1) unstable; urgency=medium
+
+  * Bug #39418: Initial release
+
+ -- Arvid Requate <requate@univention.de>  Tue, 29 Sep 2015 12:43:45 +0200

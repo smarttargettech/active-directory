@@ -1,0 +1,225 @@
+#!/bin/bash
+#
+# Univention SSL
+#  openssl wrapper
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+set -o errexit
+
+usage () {
+	if [ -n "$1" ]; then
+		echo "${0##*/}: $1"
+		echo ""
+	fi
+
+	echo "Usage: ${0##*/} command [options] "
+	echo ""
+	echo "Commands:"
+	echo "        new"
+	echo "        revoke"
+	echo "        renew"
+	echo "        check"
+	echo "        dump"
+	echo "        list"
+	echo "        list-all (list all, including revoked and expired)"
+	echo "        sign"
+	echo "        update-expired (updates db for expired certificates)"
+	echo ""
+	echo "Options:"
+	echo "        -name <name>"
+	echo "        -id <serial number>"
+	echo "        -days <days>"
+	echo "        -request <req.pem>"
+
+	[ -n "$1" ] && exit 2 || exit 0
+}
+die () {
+	echo "${0##/*}: $*" >&2
+	exit 1
+}
+run_only () {
+	local role="$1" mode="$2"
+	case "$role/$(ucr get server/role)" in
+	master/domaincontroller_master) ;;
+	backup/domaincontroller_master) ;;
+	backup/domaincontroller_backup) ;;
+	master/basesystem) ;;
+	backup/basesystem) ;;
+	master/) ;;
+	backup/) ;;
+	*) die "Works only on the DC $1" ;;
+	esac
+	[ 0 -eq "$(id -u)" ] ||
+		die "Only user 'root' can use this"
+	exec 3<"$SSLBASE"
+	flock -n --"$mode" 3 ||
+		die "Failed to get $mode lock"
+}
+
+command=
+name=
+days=
+while [ $# -ge 1 ]
+do
+	case "$1" in
+	new) command="$1" ;;
+	revoke) command="$1" ;;
+	renew) command="$1" ;;
+	check) command="$1" ;;
+	list) command="$1" ;;
+	list-all) command="list_all" ;;
+	update-expired) command="update_expired" ;;
+	dump) command="$1" ;;
+	sign) command="$1" ;;
+	-name|--name) name="${2:?Missing argument to -name}" ; shift ;;
+	-id|--id) id="${2:?Missing argument to -id}" ; shift ;;
+	-days|--days) days="${2:?Missing argument to -days}" ; shift ;;
+	-request|--request) request="$(readlink -f "${2:?Missing argument to -request}")" ; shift ;;
+	-h|--help|--usage|-\?) usage ;;
+	-*) usage "Unknown option: '$1'" >&2 ;;
+	*) usage "Unknown command: '$1'" >&2 ;;
+	esac
+	shift
+done
+
+# shellcheck source=make-certificates.sh
+. "${MAKE_CERTIFICATES_SH_INCLUDE:=/usr/share/univention-ssl/make-certificates.sh}"
+
+case "$command" in
+new|renew) : "${name:?Missing argument '-name'}" ;;
+revoke|check|dump)  : "${name:="$(get_cert_name_from_id "$id")"}"
+					: "${name:?Missing argument '-name' or '-id'}" ;;
+sign) : "${request:?Missing argument '-request'}" ;;
+list|list_all|update_expired) ;;
+*) usage "Unknown command: '$1'" >&2 ;;
+esac
+
+cd "$SSLBASE"
+
+new () {
+		run_only master exclusive
+		echo "Creating certificate: $name"
+		gencert "$SSLBASE/$name" "$name" "$days"
+		if getent group "DC Backup Hosts" >/dev/null 2>&1
+		then
+			chgrp -R "DC Backup Hosts" "$SSLBASE/$name"
+			chmod -R g+rX "$SSLBASE/$name"
+		fi
+}
+
+revoke () {
+		run_only master exclusive
+		echo "Revoke certificates: $name"
+		if [ -n "$id" ] ; then
+			revoke_cert_id "$id"
+		else
+			revoke_cert "$name"
+		fi
+}
+
+renew () {
+		run_only master exclusive
+		: "${days:?Missing argument -days}"
+		echo "Renew certificate: $name"
+		renew_cert "$name" "$days"
+		if getent group "DC Backup Hosts" >/dev/null 2>&1
+		then
+			chgrp -R "DC Backup Hosts" "$SSLBASE/$name"
+			chmod -R g+rX "$SSLBASE/$name"
+		fi
+}
+
+check () {
+		: "${id:="$(has_cert "$name")"}"
+		local exitcode=1
+		run_only backup shared
+		while read -r line
+		do
+			local rv=0
+			echo -n "Certificate \"$name\" with serial number $line is "
+			is_valid "$line" || rv=$?
+			case "$rv" in
+			0) echo "valid"
+				exitcode=0;;
+			1) echo "invalid (not found)" ;;
+			2) echo "invalid (revoked)" ;;
+			3) echo "invalid (expired)" ;;
+			*) echo "invalid" ;;
+			esac
+		done <<< "$id"
+		exit "$exitcode"
+}
+
+list () {
+		run_only backup shared
+		echo "List all certificates"
+		list_cert_names
+}
+
+list_all () {
+		run_only backup shared
+		echo "List all certificates (including revoked and expired certificates)"
+		list_cert_names_all
+}
+
+update_expired () {
+		run_only master exclusive
+		echo "Updating db for expired certificates"
+		update_db
+}
+
+dump () {
+		: "${id:="$(has_cert "$name")"}"
+		while read -r line
+		do
+			local filename="$SSLBASE/$CA/certs/$line.pem"
+			[ -r "$filename" ] ||
+				die "Can not read file '$filename'"
+			echo "Dump certificate: $name"
+			openssl x509 -in "$filename" -noout -text
+		done <<< "$id"
+}
+
+sign () {
+	run_only master exclusive
+	[ -r "$request" ] || die "Can not read request file '$request'"
+	name="$(getcnreq "$request")"
+	[ -n "$name" ] || die "Can not find CN in request '$request'"
+	echo "Signing request: $name"
+	EXTERNAL_REQUEST_FILE=$request gencert "$SSLBASE/$name" "$name" "$days"
+	if getent group "DC Backup Hosts" >/dev/null 2>&1
+	then
+		chgrp -R "DC Backup Hosts" "$SSLBASE/$name"
+		chmod -R g+rX "$SSLBASE/$name"
+	fi
+}
+
+"$command"

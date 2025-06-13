@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e -u
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"
+
+init
+FAIL gencert "X${R64}" "X${R64}"
+:

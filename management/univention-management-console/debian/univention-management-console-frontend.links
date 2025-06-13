@@ -1,0 +1,3 @@
+usr/share/univention-management-console-frontend var/www/univention/management
+usr/share/univention-management-console-frontend/js/umc/modules usr/share/univention-management-console-frontend/modules
+var/www/univention/management var/www/univention-management-console

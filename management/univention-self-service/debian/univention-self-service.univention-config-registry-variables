@@ -1,0 +1,27 @@
+[self-service/backend-server]
+Description[de]=Primary oder Backup Directory Node, auf dem das UMC-Backend läuft (es muss dort das Paket 'univention-management-console-module-passwordreset' installert sein. Standard ist der Primary Directory Node.
+Description[en]=Primary or Backup Directory Node on which the UMC backend is running (package 'univention-management-console-module-passwordreset' must be installed there). Defaults to the domains Primary Directory Node.
+Type=str
+Categories=self-service
+
+[self-service/udm_attributes]
+Description[de]=Eine durch Komma getrennte Liste von UDM Attributen, die ein Benutzer bei der Nutzung des Self-Service Moduls zur Bearbeitung im Frontend angezeigt bekommt.
+Description[en]=A comma separated list of UDM attributes that a user is shown and able to modify in the frontend.
+Type=list
+Separator=,
+Elementtype=str
+Categories=self-service
+
+[self-service/udm_attributes/read-only]
+Description[en]=A comma-separated list of UDM attributes that sets UDM attributes specified in the UCR variable "self-service/udm-attributes" to "read-only".
+Description[de]=Eine kommaseparierte Liste von UDM-Attributen, welche die in der UCR-Variable "self-service/udm-attributes" spezifizierten UDM-Attribute auf "schreibgeschützt" setzt.
+Type=list
+Separator=,
+Elementtype=str
+Categories=self-service
+
+[umc/self-service/allow-authenticated-use]
+Description[de]=Aktiviert, dass keine erneute Passworteingabe notwendig ist, um das Self-Service "Profil" Modul benutzen zu können (Standardwert: true).
+Description[en]=Activates that no new password submission is required, to use the self service "Your profile" module (default value: true).
+Type=bool
+Categories=self-service

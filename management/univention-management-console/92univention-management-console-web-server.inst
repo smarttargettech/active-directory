@@ -1,0 +1,192 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+#
+# Univention Management Console Web Server
+#  Joinscript
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2006-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+# shellcheck disable=SC2034
+VERSION=7
+
+# shellcheck source=/dev/null
+. /usr/share/univention-join/joinscripthelper.lib
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+
+joinscript_init
+
+eval "$(ucr shell)"
+
+ucr unset \
+	ucs/web/overview/entries/admin/umc/icon \
+	ucs/web/overview/entries/admin/umc/link \
+	ucs/web/overview/entries/admin/umc/link/de \
+	ucs/web/overview/entries/admin/umc/priority
+
+# shellcheck disable=SC2154
+if [ "$server_role" = "domaincontroller_master" ] || [ "$server_role" = "domaincontroller_backup" ]; then
+	ucr unset \
+		ucs/web/overview/entries/admin/umc/label \
+		ucs/web/overview/entries/admin/umc/label/de \
+		ucs/web/overview/entries/admin/umc/description \
+		ucs/web/overview/entries/admin/umc/description/de
+
+else
+	ucr unset \
+		ucs/web/overview/entries/admin/umc/label \
+		ucs/web/overview/entries/admin/umc/label/de \
+		ucs/web/overview/entries/admin/umc/description \
+		ucs/web/overview/entries/admin/umc/description/de
+
+fi
+
+configure_umc_keycloak () {
+	if ! is_ucr_false 'umc/web/sso/enabled'; then
+		rm /usr/share/univention-management-console/saml/idp/*.xml
+		ucr --debug set umc/saml/idp-server?"$(univention-keycloak get-keycloak-base-url)/realms/ucs/protocol/saml/descriptor" || return 1
+		# Execute UCR module to download metadata if umc/saml/idp-server has been set via LDAP layer (e.g. for keycloak)
+		python3 /etc/univention/templates/modules/setup_saml_sp.py
+		[ "$(ls -A /usr/share/univention-management-console/saml/idp/*.xml)" ] || return 1
+
+	fi
+}
+
+# get SAML client FQDN
+if [ -n "$umc_saml_sp_server" ]; then
+	fqdn="$umc_saml_sp_server"
+else
+	# shellcheck disable=SC2154
+	fqdn="$hostname.$domainname"
+fi
+
+# make a apache restart for the next call:
+systemctl restart apache2
+
+_setup_oidc () {
+
+	# some customers have their own keycloak and want no auto-configuration whatsoever
+	if is_ucr_false "umc/oidc/autoconfiguration"; then
+		echo "UMC OIDC auto configuration disabled by umc/oidc/autoconfiguration"
+		return 0
+	fi
+
+	_cleanup_oidc_die () {
+		ucr unset umc/oidc/issuer; exit 3
+	}
+	rm /usr/share/univention-management-console/oidc/*.jwks
+	oidc_issuer="$(univention-keycloak get-keycloak-base-url)/realms/ucs" || _cleanup_oidc_die
+	ucr --debug set umc/oidc/issuer="${oidc_issuer,,}" || _cleanup_oidc_die
+	[ "$(ls -A /usr/share/univention-management-console/oidc/*.jwks)" ] || _cleanup_oidc_die
+
+	ucr set \
+		"ldap/server/sasl/oauthbearer/trusted-audience/$domainname?ldaps://$domainname/" \
+		"ldap/server/sasl/oauthbearer/trusted-audience/$hostname.$domainname?ldaps://$hostname.$domainname/" \
+		"ldap/server/sasl/oauthbearer/trusted-issuer/$hostname.$domainname=$(ucr get umc/oidc/issuer)"
+		#ldap/server/sasl/oauthbearer/required-scopes/
+
+	for jwk in /usr/share/univention-management-console/oidc/*.jwks; do
+		[ -e "$jwk" ] && ucr set "ldap/server/sasl/oauthbearer/trusted-jwks/$hostname.$domainname"="$jwk"
+	done
+
+	if [ ! -e /etc/umc-oidc.secret ]; then
+		touch /etc/umc-oidc.secret
+		chmod 0600 /etc/umc-oidc.secret
+		create_machine_password > /etc/umc-oidc.secret
+
+		ucr commit /usr/share/univention-management-console/oidc/oidc.json
+		univention-directory-listener-ctrl resync umc-service-providers
+	fi
+
+	if [ -n "$umc_oidc_rp_server" ]; then
+		fqdn_oidc="$umc_oidc_rp_server"
+		ucr set "ldap/server/sasl/oauthbearer/trusted-authorized-party/$fqdn"="https://$fqdn/univention/oidc/"
+	else
+	        fqdn_oidc="$hostname.$domainname"
+	fi
+
+	univention-keycloak "$@" oidc/rp create \
+		--app-url "https://$fqdn_oidc/univention/oidc/" \
+		--host-fqdn "$fqdn_oidc" \
+		--client-secret "$(cat /etc/umc-oidc.secret)" \
+		--name="UMC on $fqdn_oidc" \
+		--description="Univention Management Console on $fqdn_oidc" \
+		--direct-access-grants \
+		--access-token-lifespan="${umc_oidc_access_token_lifespan:-300}" \
+		--access-token-audience="ldaps://$domainname/" \
+		--id-token-audience="https://${fqdn_oidc,,}/univention/oidc/" \
+		--redirect-uri="https://${fqdn_oidc,,}/univention/oidc/*" \
+		--redirect-uri="http://${fqdn_oidc,,}/univention/oidc/*" \
+		--redirect-uri="https://$(get_default_ip_address)/univention/oidc/*" \
+		--redirect-uri="http://$(get_default_ip_address)/univention/oidc/*" \
+		--post-logout-redirect-uris="http://${fqdn_oidc,,}/univention/oidc/*" \
+		--post-logout-redirect-uris="https://${fqdn_oidc,,}/univention/oidc/*" \
+		--post-logout-redirect-uris="http://$(get_default_ip_address)/univention/oidc/*" \
+		--post-logout-redirect-uris="https://$(get_default_ip_address)/univention/oidc/*" \
+		--no-frontchannel-logout \
+		--frontchannel-logout-url="https://${fqdn_oidc,,}/univention/oidc/frontchannel-logout" \
+		--backchannel-logout-url="https://${fqdn_oidc,,}/univention/oidc/backchannel-logout" \
+		--always-display-in-console \
+		--logo-url="https://$fqdn_oidc/favicon.ico" \
+		--pkce-code-challenge-method="S256" \
+		--default-scopes="openid" \
+		--web-origins="+" \
+		"https://$fqdn_oidc/univention/oidc/" || die
+}
+
+if ucs_needsKeycloakSetup; then
+	univention-keycloak get-keycloak-base-url || die
+	/usr/share/univention-management-console/saml/update_metadata "$@" || die
+	univention-keycloak "$@" saml/sp create \
+		--metadata-url="https://$fqdn/univention/saml/metadata" \
+		--metadata-file="/usr/share/univention-management-console/saml/sp/metadata.xml" || die "Could not create SAML service provider"
+	# shellcheck disable=SC2154
+	univention-keycloak "$@" saml/sp update "https://$fqdn/univention/saml/metadata" \
+		'{"attributes": {"saml.assertion.lifespan": "'"$umc_saml_assertion_lifetime"'"}}'
+	configure_umc_keycloak || {
+		ucr unset umc/saml/idp-server
+		exit 3
+	}
+	is_ucr_true 'umc/web/oidc/enabled' && _setup_oidc "$@"
+else
+	echo "Warning: No keycloak setup for this host"
+fi
+
+systemctl restart univention-management-console-server
+/etc/init.d/slapd crestart
+
+ucs_addServiceToLocalhost 'Univention Management Console' "$@" || die
+
+joinscript_save_current_version
+
+exit 0

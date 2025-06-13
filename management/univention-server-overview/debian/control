@@ -1,0 +1,33 @@
+Source: univention-server-overview
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ node-stylus,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-join-dev,
+ univention-l10n-dev (>= 7.0.1),
+ univention-management-console-dev (>= 12.0.2),
+Standards-Version: 3.9.5
+
+Package: univention-server-overview
+Architecture: all
+Depends:
+ python3-univention-directory-manager,
+ univention-join,
+ univention-management-console-server (>= 11.0.4-37),
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: Univention Server Overview - Web interface for overview over all server in a UCS domain
+ Univention Server Overview is a web based interface which gives a
+ fine overview over all servers in a UCS domain.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

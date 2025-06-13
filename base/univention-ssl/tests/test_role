@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e -u
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"
+
+init
+
+# unjoined
+univention-certificate list
+univention-certificate list-all
+univention-certificate update-expired
+
+printf '\nserver/role: memberserver' >>"$UNIVENTION_BASECONF"
+FAIL bash -x univention-certificate new -name "$R64" -days 10
+FAIL univention-certificate renew -name "$R64" -days 10
+FAIL univention-certificate revoke -name "$R64"
+FAIL univention-certificate list
+FAIL univention-certificate check -name "$R64"
+FAIL univention-certificate list-all
+FAIL univention-certificate update-expired
+
+printf '\nserver/role: domaincontroller_slave' >>"$UNIVENTION_BASECONF"
+FAIL bash -x univention-certificate new -name "$R64" -days 10
+FAIL univention-certificate renew -name "$R64" -days 10
+FAIL univention-certificate revoke -name "$R64"
+FAIL univention-certificate list
+FAIL univention-certificate check -name "$R64"
+FAIL univention-certificate list-all
+FAIL univention-certificate update-expired
+
+printf '\nserver/role: domaincontroller_backup' >>"$UNIVENTION_BASECONF"
+FAIL univention-certificate new -name "$R64" -days 10
+FAIL univention-certificate renew -name "$R64" -days 10
+FAIL univention-certificate revoke -name "$R64"
+FAIL univention-certificate update-expired
+univention-certificate list
+univention-certificate list-all
+
+printf '\nserver/role: domaincontroller_master' >>"$UNIVENTION_BASECONF"
+univention-certificate new -name "$R64" -days 10
+univention-certificate list
+univention-certificate check -name "$R64"
+univention-certificate renew -name "$R64" -days 10
+univention-certificate revoke -name "$R64"
+univention-certificate list-all
+univention-certificate update-expired
+
+:

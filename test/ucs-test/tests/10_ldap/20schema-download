@@ -1,0 +1,30 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking ldap schema download
+## tags: [basic]
+## roles:
+##  - domaincontroller_master
+## packages:
+##  - univention-config
+##  - univention-directory-manager-tools
+## exposure: careful
+
+oldval=$(mktemp)
+univention-config-registry get ldap/schema/export >"$oldval"
+cleanup () {
+	if [ -s "$oldval" ]
+	then
+		ucr set ldap/schema/export="$(<$oldval)"
+	else
+		ucr unset ldap/schema/export
+	fi
+	rm -f "$oldval"
+}
+trap cleanup EXIT
+
+# activate ldap schema download
+univention-config-registry set ldap/schema/export=yes
+/etc/init.d/slapd restart
+
+# try to download schema file
+wget -c "$(hostname)/ldap-schema.txt" -O /dev/null

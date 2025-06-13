@@ -1,0 +1,82 @@
+#!/bin/bash
+#
+# Univention System Setup Boot
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2016-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/ucr.sh
+
+SITE_EC2='univention/initialsetup/'  # EC2
+SITE_USS='univention/setup/?username=root'
+
+action_help () {
+	echo
+	echo "When started, all UCR variables and configurations will be set to prepare the"
+	echo "VM for appliance mode: At next boot the configuration wizard will be started."
+	echo
+	echo "usage: ${0##*/} [start|stop]"
+	echo
+	exit 0
+}
+
+action_start () {
+	univention-config-registry set --schedule \
+		apache2/startsite="$(is_ucr_true server/amazon && echo "$SITE_EC2" || echo "$SITE_USS")" \
+		system/setup/boot/start='true' \
+		system/setup/boot/select/role='true' \
+		nssldap/timelimit='10'
+
+	univention-config-registry commit /var/www/univention/meta.json >/dev/null 2>&1
+	systemctl reload apache2.service
+}
+
+action_stop () {
+	univention-config-registry set system/setup/boot/start=false
+	univention-config-registry unset --schedule \
+		apache2/startsite \
+		system/setup/boot/start \
+		system/setup/boot/select/role \
+		nssldap/timelimit
+
+	systemctl reload apache2.service
+}
+
+case "${1:-}" in
+""|"--help"|"-h") action_help ;;
+start) action_start ;;
+stop) action_stop ;;
+*)
+	echo
+	echo "ERROR: Unknown action '$1' given"
+	echo
+	exit 1
+esac

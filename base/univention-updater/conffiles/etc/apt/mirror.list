@@ -1,0 +1,53 @@
+@%@UCRWARNING=#@%@
+
+set base_path         @%@repository/mirror/basepath@%@
+# set mirror_path       $base_path/mirror
+# set skel_path         $base_path/skel
+# set var_path          $base_path/var
+# set postmirror_script $var_path/postmirror.sh
+set defaultarch       amd64
+# set run_postmirror    0
+set nthreads          @%@repository/mirror/threads@%@
+# set limit_rate        100m
+set _contents         0
+# set _tilde            0
+# Use --unlink with wget (for use with hardlinked directories)
+# set unlink            1
+# set use_proxy         off
+# set http_proxy        127.0.0.1:3128
+# set proxy_user        user
+# set proxy_password    password
+
+@!@
+import traceback
+from univention.updater.mirror import UniventionMirror
+from univention.updater.tools import UCSRepoPool5
+
+
+try:
+    mirror = UniventionMirror()
+    if not mirror.online_repository:
+        print('# The mirror mode is disabled and can be enabled with:')
+        print('#   univention-config-registry set repository/mirror=true')
+        print('')
+    else:
+        for rel, _data in mirror.get_releases(mirror.version_start, mirror.version_end):
+            pool = UCSRepoPool5(rel)
+            for pool.errata in (False, True):
+                for typ in ["deb"] + ["deb-src"][:mirror.sources]:
+                    print(pool.deb(mirror.server, typ, mirror=True))
+
+        print("clean %s" % (mirror.server.baseurl.public(),))
+
+        print(mirror.print_component_repositories(clean=True, start=mirror.version_start, end=mirror.version_end, for_mirror_list=True))
+except Exception:
+    print('# An error occurred during the repository check. The error message:')
+    for line in traceback.format_exc().splitlines():
+        print('#   %s' % line)
+    print('#')
+    print('')
+    print('# After fixing this issue, you should rewrite this file with the following command:')
+    print('#   univention-config-registry commit /etc/apt/mirror.list')
+    print('#')
+    print('')
+@!@

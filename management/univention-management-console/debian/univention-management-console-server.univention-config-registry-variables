@@ -1,0 +1,210 @@
+[umc/server/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des UMC-Servers. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the UMC server. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=management-umc
+
+[umc/server/debug/level]
+Description[de]=Diese Variable konfiguriert den Detailgrad der Logmeldungen in /var/log/univention/management-console-server.log. Mögliche Werte: 0-4/99 (0: nur Fehlermeldungen bis 4: alle Debugausgaben, mit 99 werden auch sensible Daten wie Klartext-Passwörter protokolliert).
+Description[en]=This variable configures the verbosity of log messages in /var/log/univention/management-console-server.log. Possible values: 0-4/99 (0: only error messages to 4: all debug statements, with = 99 sensitive data like cleartext passwords is logged as well).
+Type=int
+Min=0
+Max=99
+Categories=management-umc
+
+[umc/server/upload/max]
+Description[de]=Diese Variable konfiguriert die maximale Größe von hochladbaren Dateien in Kilobyte.
+Description[en]=This variable configures the maximum size of file uploads in kilobyte.
+Type=uint
+Categories=management-umc
+Default=64
+
+[umc/module/debug/level]
+Description[de]=Der Detailgrad der Logmeldungen in /var/log/univention/management-console-module-*. Mögliche Werte: 0-4/99 (0: nur Fehlermeldungen bis 4: alle Debugausgaben, mit 99 werden auch sensible Daten wie Klartext-Passwörter protokolliert).
+Description[en]=The verbosity of log messages in /var/log/univention/management-console-module-*. Possible values: 0-4/99 (0: only error messages to 4: all debug statements, with = 99 sensitive data like cleartext passwords is logged as well).
+Type=int
+Min=0
+Max=99
+Categories=management-umc
+
+[umc/module/timeout]
+Description[de]=Die Univention Management Console öffnet verschiedene Prozesse für die einzelnen Module (z.B. für die Benutzerverwaltung). Wird ein Modul für den hier konfigurierten Zeitraum in Sekunden nicht benutzt, wird der Prozess beendet und bei einem erneuten Zugriff auf das Modul automatisch wieder gestartet.
+Description[en]=The Univention Management Console opens various processes for its modules (e.g. for user management). If a module isn't used for the time period configured here, the process is terminated and automatically restarted if the module is opened again.
+Type=uint
+Categories=management-umc
+
+[umc/module/.*/.*/disabled]
+Description[de]=Ist eine Option der Form 'umc/module/.*/.*/disabled' aktiviert, wird ein Modul in der UMC nicht mehr angezeigt, z.B. 'umc/module/users/user/disabled=true'.
+Description[en]=If an option in the format 'umc/module/.*/.*/disabled' is activated, the module isn't shown in the UMC, e.g. 'umc/module/users/user/disabled=true'.
+Type=bool
+Categories=management-umc
+
+[umc/saml/trusted/sp/.*]
+Description[de]=Diese Variable speichert die gültigen Service Provider. Dieser Wert wird automatisch generiert und sollte nicht geändert werden.
+Description[en]=This variable stores the valid service provider. This value is generated automatically and should not be modified.
+Type=str
+Categories=management-umc
+
+[umc/saml/schemes]
+Description[de]=Definiert die gültigen URI-Schemata (https, http), die in den SAML Service-Provider Metadaten als gültige URIs verwendet werden.
+Description[en]=Defines the active URI schemes (https, http), which are used in the SAML service provider metadata as valid URIs.
+Type=str
+Categories=management-umc
+Default=https, http
+
+[auth/umc/addon/.*]
+Description[de]=Diese Variable aktiviert in der PAM Konfiguration weitere Authentifizierungsmethoden.
+Description[en]=This variable activates additional auth methods in the PAM configuration.
+Type=str
+Categories=management-umc
+
+[umc/server/disable-security-restrictions]
+Description[de]=Die Variable deaktiviert die Sicherheitsspezifischen Restriktionen gegen XSRF-Attacken im UMC-Server. Dies ist notwendig, damit UCS 4.1 Systeme der Domäne mit UCS 4.2 Systemen kommunizieren können.
+Description[en]=This variable deactivates the security related restrictions against XSRF attacks in the UMC-Server. This is necessary for UCS 4.1 systems in the domain to communicate with UCS 4.2 systems.
+Type=bool
+Categories=management-umc
+
+[umc/server/ssl/ciphers]
+Description[de]=Diese Variable spezifiziert die SSL Cipher Liste, die für SSL Verbindungen akzeptiert und genutzt wird.
+Description[en]=This variable specifies the SSL cipher list which is accepted and used for ssl connections.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/enabled]
+Description[de]=Ist eine Variable der Form 'umc/login/links/.*/enabled' deaktiviert, wird der gegebene Link nicht mehr auf der Login-Seite angezeigt. Z.B. 'umc/login/links/how_do_i_login/enabled=false'.
+Description[en]=If a variable in the format 'umc/login/links/.*/enabled' is deactivated, then the given link is no longer shown on the login page. E.g. 'umc/login/links/how_do_i_login/enabled=false'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/text]
+Description[de]=Gibt den Standardtext für den gegebenen Link an, der benutzt wird, falls kein lokalisierter Text zutrifft. Um diese Variable zu ignorieren, muss sie entfernt werden, anstatt sie auf einen leeren String zu setzen. Z.B. 'umc/login/links/how_do_i_login/text="Wie melde ich mich an?"'.
+Description[en]=Specifies the default text for the given link, which is used if no localized text applies. To ignore this variable, it must be removed instead of setting it to an empty string.  E.g. 'umc/login/links/how_do_i_login/text="How do I login?"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/text/.*]
+Description[de]=Gibt einen lokalisierten Text für den gegebenen Link an. Z.B. 'umc/login/links/how_do_i_login/text/de="Wie melde ich mich an?"'.
+Description[en]=Specifies a localized text for the given link. E.g. 'umc/login/links/how_do_i_login/text/en="How do I login?"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/href]
+Description[de]=Gibt die Standard-URL für den gegebenen Link an, die benutzt wird, falls keine lokalisierte URL zutrifft. Um diese Variable zu ignorieren, muss sie entfernt werden, anstatt sie auf einen leeren String zu setzen. Z.B. 'umc/login/links/how_do_i_login/href="/doc/how_do_i_login"'.
+Description[en]=Specifies the default URL for the given link, which is used if no localized URL applies. To ignore this variable, it must be removed instead of setting it to an empty string. E.g. 'umc/login/links/how_do_i_login/href="/doc/how_do_i_login"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/href/.*]
+Description[de]=Gibt eine lokalisierte URL für den gegebenen Link an. Z.B. 'umc/login/links/how_do_i_login/href/de="/doc/how_do_i_login/de"'.
+Description[en]=Specifies a localized URL for the given link. E.g. 'umc/login/links/how_do_i_login/href/en="/doc/how_do_i_login/en"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/tooltip]
+Description[de]=Gibt den Standard-Tooltip für den gegebenen Link an, der benutzt wird, falls kein lokalisierter Tooltip zutrifft. Der Tooltip wird beim hovern über dem Link angezeigt. Um diese Variable zu ignorieren, muss sie entfernt werden, anstatt sie auf einen leeren String zu setzen. Z.B. 'umc/login/links/how_do_i_login/tooltip="Dies ist in der Tat ein Tooltip"'.
+Description[en]=Specifies the default tooltip for the given link, which is used if no localized tooltip applies. The tooltip is displayed when hovering over the link. To ignore this variable, it must be removed instead of setting it to an empty string. E.g. 'umc/login/links/how_do_i_login/tooltip="This is indeed a tooltip"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/tooltip/.*]
+Description[de]=Gibt einen lokalisierten Tooltip für den gegebenen Link an. Z.B. 'umc/login/links/how_do_i_login/tooltip/de="Die Übersetzung für diesen Tooltip"'.
+Description[en]=Specifies a localized tooltip for the given link. E.g. 'umc/login/links/how_do_i_login/tooltip/en="The translation for this tooltip"'.
+Type=str
+Categories=management-umc
+
+[umc/login/links/.*/target]
+Description[de]=Mit dieser Variable kann das 'target' Attribut des gegebenen Links gesetzt werden. Z.B. 'umc/login/links/how_do_i_login/target="_blank"'
+Description[en]=With this variable the 'target' attribute of the given link can be set. E.g. 'umc/login/links/how_do_i_login/target="_blank"'.
+Type=str
+Categories=management-umc
+
+[umc/login/texts/title]
+Description[de]=Gibt den Standardtext für den Titel der Anmeldeseite an, der benutzt wird, falls kein lokalisierter Text vorhanden ist. Z.B. 'umc/login/texts/title="Dies ist die Anmeldeseite"'.
+Description[en]=Specifies the default text for the title of the login page, which is used if no localized text exists. E.g. 'umc/login/texts/title="This is the login page"'.
+Type=str
+Categories=management-umc
+
+[umc/login/texts/title/.*]
+Description[de]=Gibt einen lokalisierten Text für den Titel der Anmeldeseite an. Z.B. 'umc/login/texts/title/de="Dies ist die Anmeldeseite"'.
+Description[en]=Specifies a localized text for the title of the login page. E.g. 'umc/login/texts/title/en="This is the login page"'.
+Type=str
+Categories=management-umc
+
+[umc/login/password-complexity-message/.*]
+Description[de]=Gibt einen lokalisierten Text für Passwort-Komplexitätshinweise beim Passwortwechsel an (z.B: umc/login/password-complexity-message/de='Das Passwort muss mindestens 3 Sonderzeichen enthalten, 20 Zeichen lang sein und aus 5 unterschiedlichen Zeichen bestehen.')
+Description[en]=Specifies a localized text for password complexity notes used on changing the password (e.g: umc/login/password-complexity-message/en='The password must contain at least 3 special chars, at least 20 characters long and consists of at least 5 different characters.')
+Type=str
+Categories=management-umc
+
+[umc/cookie-banner/show]
+Description[de]=Definiert, ob ein Cookie-Banner im Portal und während des Logins angezeigt wird.
+Description[en]=Defines, whether a cookie banner is shown in the Portal and during the login.
+Type=bool
+Categories=management-umc
+
+[umc/cookie-banner/cookie]
+Description[de]=Definiert den Cookie Namen der im Cookie-Banner beim Aktivieren von Cookies gesetzt wird.
+Description[en]=Defines the cookie name which is set by the cookie banner when accepting cookies.
+Type=str
+Categories=management-umc
+
+[umc/cookie-banner/domains]
+Description[de]=Eine durch Komma getrennte Liste an Domänennamen, auf denen der Cookie-Banner angezeigt wird. Eine leere Liste zeigt den Banner immer im Portal und während des Logins an. Die Domäne wird durch "Endsuche" gefunden und dann auch so für den Cookie genutzt. Beispiel: "domain.de" funktioniert dann für "portal.domain.de" und "sso.domain.de" - und beide Seiten teilen sich dann sogar das Cookie, sodass es nur einmal akzeptiert werden muss.
+Description[en]=A comma separated list of domain names where the cookie banner should be shown. An empty list will show it always on portal and login. The domain name is sought via "end string search" and then used for the cookie. Example: "domain.com" matches "portal.domain.com" and "sso.domain.com" - and both sites will share that cookie so that a user only needs to confirm once.
+Type=list
+Categories=management-umc
+
+[umc/cookie-banner/.*/.*]
+Description[de]=Definiert den lokalisierten Text für die Cookie-Banner Texte. Platzhalter sind "text" und "title" (z.B.: umc/cookie-banner/text/de).
+Description[en]=Defines the localized text for the cookie banner texts. Placeholders are "text" and "title" (e.g.: umc/cookie-banner/text/en).
+Type=str
+Categories=management-umc
+
+[umc/oidc/default-op]
+Description[de]=Definiert den standard OpenID Provider UCR identifier. Experimentell: Diese Funktion wird derzeit nicht unterstützt.
+Description[en]=Defines the standard OpenID Provider UCR identifier. Experimental: This feature is currently not supported.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/.*/issuer]
+Description[de]=Definiert den OpenID Provider Issuer dieses Relying Party Eintrags.
+Description[en]=Defines the OpenID provider issuer of this relying party entry.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/.*/client-id]
+Description[de]=Definiert die Client ID dieses Relying Party Eintrags.
+Description[en]=Defines the Client ID of this relying party entry.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/.*/client-secret-file]
+Description[de]=Definiert den Dateipfad zum Client-Secret dieses Relying Party Eintrags.
+Description[en]=Defines the file path to the client secret of this relying party entry.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/.*/openid-configuration]
+Description[de]=Definiert den Dateipfad zur OpenID Provider openid-configuration Definition dieses Relying Party Eintrags.
+Description[en]=Defines the file path to the OpenID Provider openid-configuration definition of this relying party entry.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/.*/openid-certs]
+Description[de]=Definiert den Dateipfad zu den OpenID Provider Zertifikaten im JWKS-Format dieses Relying Party Eintrags.
+Description[en]=Defines the file path to the OpenID Provider certificates in JWKS format of this relying party entry.
+Type=str
+Categories=management-umc,oidc
+
+[umc/oidc/rp/server]
+Description[de]=Definiert den FQDN des Relying Party Eintrags für die UMC. Wenn die Variable nicht gesetzt ist wird der Rechnername und alle IP Adressen verwendet.
+Description[en]=Defines the fqdn of the relying party for UMC. If the variable is unset, the fqdn of the UCS system and all IP addresses are used.
+Type=str
+Categories=management-umc,oidc
+
+[umc/web/meta/hide-sensitive-data]
+Description[en]=Removes sensitive data from the file meta.json. This option is disabled by default. The following entries will be removed when enabled: fqdn
+Description[de]=Entfernt sensible Daten aus der Datei meta.json. Diese Option ist standardmäßig deaktiviert. Die folgenden Einträge werden bei Aktivierung entfernt: fqdn
+Type=bool
+Categories=management-umc
+Default=false

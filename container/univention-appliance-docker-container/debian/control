@@ -1,0 +1,25 @@
+Source: univention-appliance-docker-container
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.5.2
+
+Package: univention-appliance-docker-container
+Architecture: all
+Depends:
+ apt,
+ apt-utils,
+ univention-docker-container-mode,
+ univention-system-setup-boot,
+ ${misc:Depends},
+Description: UCS appliance settings for Docker container
+ This package installs settings for running UCS appliance
+ setup inside a Docker container
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

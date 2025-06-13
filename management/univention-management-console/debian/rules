@@ -1,0 +1,62 @@
+#!/usr/bin/make -f
+#
+# Univention Common Python and Shell Library
+#  rules file for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2002-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#export DH_VERBOSE=1
+export PYBUILD_NAME=univention-management-console
+export PYBUILD_INSTALL_ARGS_python3=--install-scripts=/usr/sbin/
+export PYBUILD_DISABLE_PYTHON2_SCRIPTS=1
+
+override_dh_auto_build:
+	./dev/dh-umc-module-build --core
+	dh_auto_build
+
+override_dh_auto_install:
+	./dev/dh-umc-module-install --core
+	dh_auto_install
+
+override_dh_python3:
+	dh_python3
+	install -m0755 -d debian/univention-management-console-server/usr/sbin/
+	$(RM) -r debian/python3-${PYBUILD_NAME}/usr/lib/python3/dist-packages/univention/__init__.py debian/python3-${PYBUILD_NAME}/usr/share/locale/ debian/python3-${PYBUILD_NAME}/usr/share/univention-management-console/
+	mv debian/python3-${PYBUILD_NAME}/usr/sbin/ debian/${PYBUILD_NAME}-server/usr/
+
+override_dh_install:
+	dh_install -Xde.po
+
+override_dh_installsystemd:
+	dh_installsystemd --restart-after-upgrade
+
+%:
+	dh $@ --with python3,univention-l10n,ucr --buildsystem=pybuild

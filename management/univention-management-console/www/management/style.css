@@ -1,0 +1,54 @@
+.umc .umcAppDialog .dijitDialogPaneContent .umcButtonRow:last-child:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.umc .umcAppDialogPage .umcPageHeader {
+	display: none;
+}
+
+.umc .umcAppDialogPage .umcPageIcon {
+	height: 150px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-right: 1rem;
+	margin-top: 2rem;
+}
+
+.umc .umcAppDialogPage-feedback .umcPageIcon {
+	background-image: url(widgets/feedback.svg);
+}
+
+.umc .umcAppDialogPage-activation .umcPageIcon {
+	background-image: url(widgets/activation.svg);
+}
+
+.umc .umcAppDialogPage-licenseImport .umcPageIcon {
+	background-image: url(widgets/licenseMail.svg);
+}
+
+.umc .umcAppDialogPage-help .umcPageIcon {
+	background-image: url(widgets/help.svg);
+}
+
+.umc .umcAppDialogPage-about .umcPageIcon {
+	background-image: url(widgets/about.svg);
+}
+
+.umc .umcActivationDialog .umcActivationLeaveFieldFreeMessage {
+	display: none;
+}
+
+@media (max-width: 549px) {
+	.umc .umcAppDialogPage .umcPageIcon {
+		left: 50px;
+		width: 170px;
+		margin: 0 auto;
+	}
+
+	.umc .umcAppDialogPage-activation .umcPageIcon {
+		width: 200px;
+	}
+}

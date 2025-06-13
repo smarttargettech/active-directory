@@ -1,0 +1,68 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test slapd for a correct stop and start
+## tags:
+##  - basic
+##  - apptest
+## roles:
+##  - domaincontroller_master
+##  - domaincontroller_backup
+##  - domaincontroller_slave
+## packages:
+##  - slapd
+## exposure: dangerous
+
+#Config
+returnOK=0
+returnERROR=1
+returnCode=$returnOK
+
+echo "Check if services can be correctly stopped"
+role=$(/usr/sbin/univention-config-registry get server/role)
+while IFS='	' read spath sbinarys sroles
+do
+	name="$(basename "$spath")"
+	echo -ne "Check if we can test the service \"$name\" on server role \"$role\"\t"
+	found=false
+	for r in $sroles # IFS
+	do
+		if [ "$r" == "$role" ] ; then
+			found=true
+		fi
+	done
+	if "$found"
+	then
+		echo "Yes"
+		echo -ne "Trying to stop service $name\t"
+		"$spath" stop
+		echo "Done"
+
+		echo -ne "Has the service been stopped?\t"
+		if pgrep -f "$sbinarys" -P 1
+		then
+			echo "Error"
+			returnCode=$returnERROR
+		else
+			echo "Ok"
+		fi
+
+		echo -ne "Trying to start service \"$name\"\t"
+		"$spath" start
+		echo "Done"
+
+		echo -ne "Is this service running?\t"
+		if pgrep -f "$sbinarys" -P 1
+		then
+			echo "Ok"
+		else
+			echo "Error"
+			returnCode=$returnERROR
+		fi
+	else
+		echo "No - skipping test"
+	fi
+done <<EOF
+/etc/init.d/slapd	/usr/sbin/slapd	domaincontroller_master domaincontroller_backup domaincontroller_slave
+EOF
+
+exit $returnCode

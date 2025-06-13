@@ -1,0 +1,10 @@
+Tests: filter
+Depends:
+ ca-certificates,
+ procps,
+ slapd,
+ ssl-cert,
+ univention-directory-notifier,
+ univention-directory-replication,
+ @,
+Restrictions: isolation-container, allow-stderr, needs-root

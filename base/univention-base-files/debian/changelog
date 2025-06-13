@@ -1,0 +1,1624 @@
+univention-base-files (11.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:54 +0200
+
+univention-base-files (11.0.13) unstable; urgency=medium
+
+  * Bug #54717: Enable bash completion generally for interactive shells.
+
+ -- Arvid Requate <requate@univention.de>  Mon, 19 May 2025 10:45:35 +0200
+
+univention-base-files (11.0.12) unstable; urgency=medium
+
+  * Bug #58047: Wording
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 30 Apr 2025 12:30:42 +0200
+
+univention-base-files (11.0.11) unstable; urgency=medium
+
+  * Bug #58047: Minor typo in texts
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 30 Apr 2025 06:33:58 +0200
+
+univention-base-files (11.0.10) unstable; urgency=medium
+
+  * Bug #58047: New script univention-lmdb-fragmentation
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Apr 2025 17:10:29 +0200
+
+univention-base-files (11.0.9-1) unstable; urgency=low
+
+  * Bug #58061: add dependency to net-tools
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 21 Mar 2025 09:38:48 +0100
+
+univention-base-files (11.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:40 +0100
+
+univention-base-files (11.0.7) unstable; urgency=medium
+
+  * Bug #57712: Include ARP cache GC thresholds in UCR and raise defaults.
+
+ -- Johannes Königer <koeniger@univention.de>  Mon, 18 Nov 2024 09:27:05 +0100
+
+univention-base-files (11.0.6) unstable; urgency=medium
+
+  * Bug #56858: replace transitional packages
+
+ -- Christian Castens <castens@univention.de>  Thu, 30 May 2024 10:46:32 +0200
+
+univention-base-files (11.0.5) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:32 +0100
+
+univention-base-files (11.0.4) unstable; urgency=medium
+
+  * Bug #56147: Adapt to OpenSSH 9.2p1-2
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 08 Mar 2024 00:18:37 +0100
+
+univention-base-files (11.0.3) unstable; urgency=medium
+
+  * Bug #55981: enable strict type checking
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:29 +0100
+
+univention-base-files (11.0.2) unstable; urgency=medium
+
+  * Bug #56661: migrate from NTP to NTPSEC
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 08 Mar 2024 00:18:27 +0100
+
+univention-base-files (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:25 +0100
+
+univention-base-files (10.0.7) unstable; urgency=medium
+
+  * Bug #56665: /sbin/udevadm → /bin/udevadm
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:28 +0100
+
+univention-base-files (10.0.6) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:16 +0100
+
+univention-base-files (10.0.5) unstable; urgency=medium
+
+  * Bug #50343: remove decode_ignorelist
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:03 +0100
+
+univention-base-files (10.0.4) unstable; urgency=medium
+
+  * Bug #56547: replace pam_tally with pam_faillock
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:54 +0100
+
+univention-base-files (10.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:38 +0100
+
+univention-base-files (10.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:21 +0100
+
+univention-base-files (10.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:37 +0100
+
+univention-base-files (9.0.7-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:49 +0100
+
+univention-base-files (9.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:23 +0100
+
+univention-base-files (9.0.5-6) unstable; urgency=medium
+
+  * Bug #56005: disable SELinux by default
+
+ -- Felix Botner <botner@univention.de>  Wed, 01 Nov 2023 16:42:28 +0100
+
+univention-base-files (9.0.5-5) unstable; urgency=low
+
+  * Bug #56042: Fix wrong python format string for syslog/input/{udp,tcp,relp}
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 05 May 2023 14:17:27 +0200
+
+univention-base-files (9.0.5-4) unstable; urgency=low
+
+  * Bug #50193: Allow to mount NFS share from self
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 08 Mar 2023 15:15:44 +0100
+
+univention-base-files (9.0.5-3) unstable; urgency=low
+
+  * Bug #50193: Allow to mount NFS share from self
+  * Remove unused univention-keyboardmapping
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 23 Feb 2023 09:37:16 +0100
+
+univention-base-files (9.0.5-2) unstable; urgency=low
+
+  * Bug #50193: Allow to mount NFS share from self
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 Feb 2023 07:53:29 +0100
+
+univention-base-files (9.0.5-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:33 +0100
+
+univention-base-files (9.0.4-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Feb 2023 11:41:10 +0100
+
+univention-base-files (9.0.3-9) unstable; urgency=medium
+
+  * Bug #54495: Corrected UCR type definition for sshd/config/.* from bool to str
+
+ -- Peter Stoll <stoll.extern@univention.de>  Mon, 11 Jul 2022 15:52:40 +0200
+
+univention-base-files (9.0.3-8) unstable; urgency=medium
+
+  * Bug #54558: Fix /etc/hosts.d/20-static UCR template so that it is idempotent
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Mon, 16 May 2022 07:45:17 +0200
+
+univention-base-files (9.0.3-7) unstable; urgency=medium
+
+  * Bug #54691: fix UCR logrotate/rotate/count description
+
+ -- Johannes Königer <koeniger@univention.de>  Mon, 02 May 2022 10:32:37 +0200
+
+univention-base-files (9.0.3-6) unstable; urgency=medium
+
+  * Bug #54184: Confusing text in /etc/motd
+
+ -- Ivan Barbecho Delgado <delgado.extern@univention.de  >  Mon, 06 Dec 2021 13:29:51 +0100
+
+univention-base-files (9.0.3-5) unstable; urgency=medium
+
+  * Bug #53343: Replace of subprocess.Popen with subprocess.call in nfsmounts.py
+
+ -- Esteban Martinena <martinena@univention.de>  Tue, 02 Nov 2021 14:47:35 +0100
+
+univention-base-files (9.0.3-4) unstable; urgency=medium
+
+  * Bug #53343: Code updated from python 2 to python 3.
+
+ -- Esteban Martinena <martinena@univention.de>  Mon, 04 Oct 2021 07:31:46 +0200
+
+univention-base-files (9.0.3-3) unstable; urgency=medium
+
+  * Bug #51579: Remove dpkg-statoverride for /var/log/lastlog,
+    it's 664 by default in the Debian package base-files and
+    systemd-tmpfiles also enforces that.
+
+ -- Arvid <requate@univention.de>  Fri, 05 Mar 2021 12:32:17 +0100
+
+univention-base-files (9.0.3-2) unstable; urgency=medium
+
+  * Bug #51579: Deny world read access to /var/log/lastlog
+
+ -- Arvid <requate@univention.de>  Wed, 03 Mar 2021 11:49:45 +0100
+
+univention-base-files (9.0.3-1) unstable; urgency=low
+
+  * Bug #32509: Remove /etc/kernel-img.conf
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 16 Feb 2021 14:44:43 +0100
+
+univention-base-files (9.0.2-2) unstable; urgency=low
+
+  * Bug #51493: Temporary work-around for time skew.
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 26 Nov 2020 13:20:34 +0100
+
+univention-base-files (9.0.2-1) unstable; urgency=medium
+
+  * Bug #42374: Replace legacy Master/Slave wording by
+    Primary/Backup/Replica/Managed Node
+
+ -- Arvid <requate@univention.de>  Thu, 24 Sep 2020 13:48:36 +0200
+
+univention-base-files (9.0.1-1) unstable; urgency=medium
+
+  * Bug #52017: ipaddr → ipaddress
+
+ -- Florian Best <best@univention.de>  Tue, 15 Sep 2020 16:50:13 +0200
+
+univention-base-files (9.0.0-8) unstable; urgency=low
+
+  * Bug #33743: Document UCRV interfaces/.*/hosts
+  * Bug #32847: Remove ifplugd support
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 04 Jul 2020 08:02:16 +0200
+
+univention-base-files (9.0.0-7) unstable; urgency=low
+
+  * Bug #51505,Bug #32509,Bug 46120: Update template for Debian 10 Buster
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 17 Jun 2020 06:56:58 +0200
+
+univention-base-files (9.0.0-5) unstable; urgency=medium
+
+  * Bug #51505: remove wtmp and btmp from logrotate.conf
+
+ -- Florian Best <best@univention.de>  Tue, 16 Jun 2020 16:49:29 +0200
+
+univention-base-files (9.0.0-4) unstable; urgency=medium
+
+  * Bug #51465: Remove etc/python2.6/sitecustomize.py* on system
+    during package update.
+
+ -- Arvid <requate@univention.de>  Thu, 11 Jun 2020 13:05:12 +0200
+
+univention-base-files (9.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:10 +0200
+
+univention-base-files (8.0.1-1) unstable; urgency=medium
+
+  * Bug #51994: Version bump for 4.4-6
+
+ -- Arvid <requate@univention.de>  Fri, 18 Sep 2020 12:23:54 +0200
+
+univention-base-files (8.0.0-10) unstable; urgency=medium
+
+  * Bug #51994: Fix UCR variable description wording and typos
+
+ -- Arvid <requate@univention.de>  Thu, 17 Sep 2020 12:34:39 +0200
+
+univention-base-files (8.0.0-9) unstable; urgency=medium
+
+  * Bug #51994: UCR variable description for password/quality/length/min
+
+ -- Arvid <requate@univention.de>  Wed, 16 Sep 2020 15:14:14 +0200
+
+univention-base-files (8.0.0-8) unstable; urgency=medium
+
+  * Bug #51006: Fixed python3 compatiblity and formatting
+
+ -- Max Christian Pohle <pohle@univention.de>  Mon, 22 May 2020 19:19:00 +0200
+
+univention-base-files (8.0.0-7) unstable; urgency=low
+
+  * Bug #51006: Fixed rsyslog conf formatting: braces instead newline
+
+ -- Max Christian Pohle <pohle@univention.de>  Mon, 04 May 2020 10:23:42 +0200
+
+univention-base-files (8.0.0-6) unstable; urgency=medium
+
+  * Bug #51006: Migrated templates to python3
+  * Bug #51006: Added dependency to six
+
+ -- Max Christian Pohle <pohle@univention.de>  Mon, 23 Mar 2020 17:44:46 +0200
+
+univention-base-files (8.0.0-5) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:37 +0200
+
+univention-base-files (8.0.0-4) unstable; urgency=medium
+
+  * Bug #48508: allow multiple syslog remotes
+
+ -- Arvid Requate <requate@univention.de>  Tue, 02 Apr 2019 12:00:42 +0200
+
+univention-base-files (8.0.0-3) unstable; urgency=medium
+
+  * Bug #35208: added ldap server option to univention-policy-update-config-registry.py
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 13 Mar 2019 10:27:36 +0100
+
+univention-base-files (8.0.0-2) unstable; urgency=medium
+
+  * Bug #48508: allow multiple syslog remotes
+
+ -- Arvid Requate <requate@univention.de>  Wed, 13 Mar 2019 20:30:57 +0100
+
+univention-base-files (8.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:27 +0100
+
+univention-base-files (7.0.0-20) unstable; urgency=medium
+
+  * Bug #30397: ipv4 and ipv6 primary interfaces
+
+ -- Felix Botner <botner@univention.de>  Thu, 22 Nov 2018 18:30:02 +0100
+
+univention-base-files (7.0.0-19) unstable; urgency=medium
+
+  * Bug #30397: ensure that interfaces/primary is first entry
+    /etc/hosts
+
+ -- Felix Botner <botner@univention.de>  Thu, 22 Nov 2018 15:31:24 +0100
+
+univention-base-files (7.0.0-18) unstable; urgency=medium
+
+  * Bug #47336: Ensure that /var/univention-backup exists in
+    univention-config-registry-backup
+
+ -- Arvid Requate <requate@univention.de>  Tue, 09 Oct 2018 21:28:15 +0200
+
+univention-base-files (7.0.0-17) unstable; urgency=medium
+
+  * Bug #47035: fixed mod path in /etc/rsyslog.conf
+
+ -- Felix Botner <botner@univention.de>  Tue, 17 Jul 2018 16:46:19 +0200
+
+univention-base-files (7.0.0-16) unstable; urgency=medium
+
+  * Bug #39704: Improve some wording
+
+ -- Richard Ulmer <ulmer@univention.de>  Fri, 15 Jun 2018 15:02:44 +0200
+
+univention-base-files (7.0.0-15) unstable; urgency=medium
+
+  * Bug #46300: Do not ignore ucr layers in ucr autostart module
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 13 Jun 2018 16:35:12 +0200
+
+univention-base-files (7.0.0-14) unstable; urgency=medium
+
+  * Bug #39704: Add more UCR variables for sshd_config
+
+ -- Richard Ulmer <ulmer@univention.de>  Tue, 05 Jun 2018 15:20:55 +0200
+
+univention-base-files (7.0.0-13) unstable; urgency=medium
+
+  * Bug #39704: Add more UCR variables for sshd_config
+
+ -- Richard Ulmer <ulmer@univention.de>  Thu, 17 May 2018 11:00:35 +0200
+
+univention-base-files (7.0.0-12) unstable; urgency=medium
+
+  * Bug #45950: Update broken template for UCRV update/secure_apt
+
+ -- Richard Ulmer <ulmer@univention.de>  Mon, 09 Apr 2018 11:40:47 +0200
+
+univention-base-files (7.0.0-11) unstable; urgency=medium
+
+  * Bug #46279: allow to set journald SplitMode by UCRV
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 27 Mar 2018 13:34:13 +0200
+
+univention-base-files (7.0.0-10) unstable; urgency=medium
+
+  * Bug #45950: Update broken template for UCRV update/secure_apt
+
+ -- Richard Ulmer <ulmer@univention.de>  Fri, 23 Mar 2018 13:52:05 +0100
+
+univention-base-files (7.0.0-9) unstable; urgency=low
+
+  * Bug #46120: Fix naming of .maintscript[-s-]
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Feb 2018 23:09:09 +0100
+
+univention-base-files (7.0.0-8) unstable; urgency=medium
+
+  * Bug #46224: Add man-db to recommended packages
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 15 Feb 2018 10:09:43 +0100
+
+univention-base-files (7.0.0-7) unstable; urgency=medium
+
+  * Bug #46071: Remove ucslint override for ntp init script
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 08 Feb 2018 17:00:34 +0100
+
+univention-base-files (7.0.0-6) unstable; urgency=medium
+
+  * Bug #46071: Remove custom ntp init script
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 06 Feb 2018 13:15:23 +0100
+
+univention-base-files (7.0.0-5) unstable; urgency=low
+
+  * Bug #46033: Update sshd_config
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 15 Jan 2018 13:09:46 +0100
+
+univention-base-files (7.0.0-4) unstable; urgency=medium
+
+  * Bug #45936: use UCRWARNING_ASCII in lsb-release
+
+ -- Felix Botner <botner@univention.de>  Thu, 21 Dec 2017 14:39:51 +0100
+
+univention-base-files (7.0.0-3) unstable; urgency=medium
+
+  * Bug #45936: use UCRWARNINGASCII in lsb-release
+
+ -- Felix Botner <botner@univention.de>  Thu, 21 Dec 2017 14:31:59 +0100
+
+univention-base-files (7.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:23 +0100
+
+univention-base-files (7.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:46 +0100
+
+univention-base-files (6.0.0-16) unstable; urgency=medium
+
+  * Bug #38554: u-base-files: fix shell-univention-lib dependency
+
+ -- Lukas Oyen <oyen@univention.de>  Thu, 03 Aug 2017 15:41:02 +0200
+
+univention-base-files (6.0.0-15) unstable; urgency=medium
+
+  * Bug #38554: u-base-files: call clean_old_backups in ucr-backup
+
+ -- Lukas Oyen <oyen@univention.de>  Wed, 02 Aug 2017 18:06:21 +0200
+
+univention-base-files (6.0.0-14) unstable; urgency=medium
+
+  * Bug #40371: nscd init script: move cache invalidation after restart
+
+ -- Lukas Oyen <oyen@univention.de>  Tue, 01 Aug 2017 17:12:27 +0200
+
+univention-base-files (6.0.0-13) unstable; urgency=medium
+
+  * Bug #44234: Configure systemd-journald.service for time limited log retention
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 28 Jun 2017 18:49:39 +0200
+
+univention-base-files (6.0.0-11) unstable; urgency=low
+
+  * Bug #43874: Re-add System V init scripts not converted to systemd unit file
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 16 Mar 2017 08:14:52 +0100
+
+univention-base-files (6.0.0-10) unstable; urgency=low
+
+  * Bug #43470: Handle UCRV */autostart through systemd
+  * Bug #43874: Remove System V init scripts shadows by systemd unit file
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Mar 2017 08:52:56 +0100
+
+univention-base-files (6.0.0-9) unstable; urgency=medium
+
+  * Bug #42109: During updates:
+    unset security/packetfilter/package/univention-base-files/tcp/37/all
+    if it is still set to the default value of ACCEPT.
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Mar 2017 15:53:45 +0100
+
+univention-base-files (6.0.0-8) unstable; urgency=medium
+
+  * Bug #42109: Remove firewall accept rule for time service (37 tcp)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Mar 2017 15:36:56 +0100
+
+univention-base-files (6.0.0-7) unstable; urgency=low
+
+  * Bug #43310: Adapt to firewall locking
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 03 Mar 2017 17:20:22 +0100
+
+univention-base-files (6.0.0-6) unstable; urgency=low
+
+  * Bug #15728: Enable remote syslog logging
+  * Bug #41815: More fine-grained logging configuration
+  * Bug #41816: More fine-grained logrotate configuration for syslog
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 30 Nov 2016 16:40:19 +0100
+
+univention-base-files (6.0.0-5) unstable; urgency=low
+
+  * Bug #38438,Bug #36571: Make init scripts executable
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 15 Sep 2016 09:49:11 +0200
+
+univention-base-files (6.0.0-4) unstable; urgency=low
+
+  * Bug #38438: Fix dependency based boot
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 09 Sep 2016 11:13:34 +0200
+
+univention-base-files (6.0.0-3) unstable; urgency=low
+
+  * Bug #36571: Fix renamed package portmap to rpcbind
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 31 Aug 2016 07:08:57 +0200
+
+univention-base-files (6.0.0-2) unstable; urgency=low
+
+  * Bug #35814: Add UCRV 'interfaces/*/mtu' to configure MTU
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 25 Aug 2016 08:39:03 +0200
+
+univention-base-files (6.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #41961: Remove deprecated dependency on console-common
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:19 +0200
+
+univention-base-files (5.0.1-2) unstable; urgency=low
+
+  * Bug #41143: Fix docker/PXE detection
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 28 Apr 2016 14:51:13 +0200
+
+univention-base-files (5.0.1-1) unstable; urgency=medium
+
+  * etc/profile: fixed indentation error (Bug #39922)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 13 Nov 2015 06:12:41 +0100
+
+univention-base-files (5.0.0-9) unstable; urgency=low
+
+  * Bug #39922: set apt's proxy settings for HTTPS connections
+  * Bug #39922: set https_proxy in /etc/profile if proxy/https is defined
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 12 Nov 2015 22:28:43 +0100
+
+univention-base-files (5.0.0-8) unstable; urgency=low
+
+  * recommend rdate and ntpdate (Bug #39410)
+
+ -- Felix Botner <botner@univention.de>  Thu, 08 Oct 2015 17:04:37 +0200
+
+univention-base-files (5.0.0-7) unstable; urgency=low
+
+  * Bug #38861: Fix error messages while setting up a docker image without
+    proper interfaces: /etc/issue and /etc/welcome.msg showed an insignificant
+    but annoying traceback
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 08 Jul 2015 15:18:27 +0200
+
+univention-base-files (5.0.0-6) unstable; urgency=low
+
+  * Bug #39299: depened on lockfile-progs to make sure ntpd and ntpdate
+    don't collide
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 16 Sep 2015 15:21:49 +0200
+
+univention-base-files (5.0.0-5) unstable; urgency=low
+
+  * Bug #39166: Fix sshd/banner handling
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 28 Aug 2015 17:01:17 +0200
+
+univention-base-files (5.0.0-4) unstable; urgency=low
+
+  * Bug #38609: Make ssh algorithms configurable
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 28 Aug 2015 16:23:03 +0200
+
+univention-base-files (5.0.0-3) unstable; urgency=low
+
+  * Bug #38609: Make ssh algorithms configurable
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 28 Aug 2015 15:28:34 +0200
+
+univention-base-files (5.0.0-2) unstable; urgency=low
+
+  * Bug #38763: no keyboard or console font setup required inside a docker
+    container
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 28 Aug 2015 12:12:26 +0200
+
+univention-base-files (5.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 4.1
+  * Bug #38609: Make ssh algorithms configurable
+  * Bug #38709: Make ssh keys configurable
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 27 Aug 2015 07:45:41 +0200
+
+univention-base-files (4.0.8-7) unstable; urgency=low
+
+  * Kill only children of nscd pid on stop (Bug #38135)
+  * Fix insignificant error message in /etc/init.d/nscd (Bug #38135)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 26 Aug 2015 14:29:53 +0200
+
+univention-base-files (4.0.8-6) unstable; urgency=low
+
+  * make /etc/lsb-release conform to README.Debian (Bug #37725)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 12 Aug 2015 19:05:07 +0200
+
+univention-base-files (4.0.8-5) unstable; urgency=low
+
+  * fix lsb_release information (Bug #37725)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 11 Aug 2015 17:30:50 +0200
+
+univention-base-files (4.0.8-4) unstable; urgency=medium
+
+  * Depend on newer univention-config-registry (Bug #35694)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 02 Jun 2015 15:04:05 +0200
+
+univention-base-files (4.0.8-2) unstable; urgency=low
+
+  * Bug #38094: Document ldap/server/addition better
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 13 May 2015 17:35:25 +0200
+
+univention-base-files (4.0.8-1) unstable; urgency=medium
+
+  * support zone index for ipv6/gateway (Bug #35694)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 12 May 2015 19:03:00 +0200
+
+univention-base-files (4.0.7-1) unstable; urgency=medium
+
+  * support multiple IPv6 addresses in the same subnet (Bug #33986)
+  * write prefix to ip commands for handling subnets correctly (Bug #33986)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 12 May 2015 18:03:18 +0200
+
+univention-base-files (4.0.6-2) unstable; urgency=medium
+
+  * Bug #13811: register mysql/autostart UCR variable
+
+ -- Florian Best <best@univention.de>  Fri, 23 Jan 2015 15:27:27 +0100
+
+univention-base-files (4.0.6-1) unstable; urgency=low
+
+  * Bug #36233: ignore clock skew between install and reboot after join
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Jan 2015 17:05:56 +0100
+
+univention-base-files (4.0.5-2) unstable; urgency=low
+
+  * Bug #13811: Added MySQL to univention-service
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 15 Dec 2014 12:46:37 +0100
+
+univention-base-files (4.0.5-1) unstable; urgency=low
+
+  * Remove deprecated keyboard layout handling (Bug #35709)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 31 Jul 2014 14:49:40 +0200
+
+univention-base-files (4.0.4-4) unstable; urgency=low
+
+  * removed last commit (Bug #36224)
+
+ -- Felix Botner <botner@univention.de>  Fri, 17 Oct 2014 15:01:07 +0200
+
+univention-base-files (4.0.4-3) unstable; urgency=low
+
+  * add conflict to console-tools (Bug #36224)
+
+ -- Felix Botner <botner@univention.de>  Fri, 17 Oct 2014 13:23:56 +0200
+
+univention-base-files (4.0.4-2) unstable; urgency=low
+
+  * added kbd to base packages (Bug #36224)
+
+ -- Felix Botner <botner@univention.de>  Fri, 17 Oct 2014 12:10:53 +0200
+
+univention-base-files (4.0.4-1) unstable; urgency=low
+
+  * removed scalix path from default profile (Bug #32628)
+
+ -- Felix Botner <botner@univention.de>  Mon, 29 Sep 2014 10:04:23 +0200
+
+univention-base-files (4.0.3-1) unstable; urgency=low
+
+  * Bug #35637: install univention-archive-key by default
+  * Bug #35708: Enable secure APT by default
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Sep 2014 16:20:15 +0200
+
+univention-base-files (4.0.2-1) unstable; urgency=low
+
+  * Update to UCR templates to new upstream versions (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 26 Aug 2014 17:05:59 +0200
+
+univention-base-files (4.0.1-1) unstable; urgency=low
+
+  * Remove Univention Thin Client from /etc/issue* (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 26 Aug 2014 06:55:34 +0200
+
+univention-base-files (4.0.0-6) unstable; urgency=low
+
+  * Remove old codenames (Bug #35635)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 19 Aug 2014 11:04:22 +0200
+
+univention-base-files (4.0.0-5) unstable; urgency=low
+
+  * Install lsb-release (Bug #35386)
+  * Install for python2.7 too.
+  * Remove obsolete upgrade handling code.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 19 Aug 2014 09:35:32 +0200
+
+univention-base-files (4.0.0-4) unstable; urgency=low
+
+  * Update templates for /etc/init.d/ files (Bug #35522)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 30 Jul 2014 15:45:04 +0200
+
+univention-base-files (4.0.0-3) unstable; urgency=low
+
+  * Removed console-tools from dependency list otherwise the initial
+    debootstrap fails (Bug #35138)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 04 Jul 2014 15:30:59 +0200
+
+univention-base-files (4.0.0-2) unstable; urgency=low
+
+  * Set package priority to important (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 10:16:51 +0200
+
+univention-base-files (4.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 18 Jun 2014 16:42:53 +0200
+
+univention-base-files (3.0.4-7) unstable; urgency=low
+
+  * Adjust description for ldap/client/retry/count
+    (Bug #34292 and Bug #34293)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Mar 2014 07:06:34 +0100
+
+univention-base-files (3.0.4-6) unstable; urgency=low
+
+  * Set the default for ldap/client/retry/count to 10
+    (Bug #34292 and Bug #34293)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 13 Mar 2014 16:11:09 +0100
+
+univention-base-files (3.0.4-5) unstable; urgency=low
+
+  * Added UCR variable descrption for ldap/client/retry/count to
+    univention-base-files, even if it used in python-univention and
+    univention-config. Anything else would result in a dependency chaos
+    (Bug #34292 and Bug #34293)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 13 Mar 2014 10:40:03 +0100
+
+univention-base-files (3.0.4-4) unstable; urgency=low
+
+  * Show the note in /etc/issue and /etc/welcome.msg where to find the
+    UCS management system only on master, backup, slave and member
+    (Bug #34330)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 13 Mar 2014 07:15:04 +0100
+
+univention-base-files (3.0.4-3) unstable; urgency=medium
+
+  * Add ntp/noquery (Bug #33834)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 10 Jan 2014 11:16:39 +0100
+
+univention-base-files (3.0.4-1) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 30 Oct 2013 17:45:11 +0100
+
+univention-base-files (3.0.3-7) unstable; urgency=low
+
+  * Provide a modprobe configuration file for vmwgfx (the DRM driver for vmware) to
+    enable fbdev support. Otherwise we have startup freezes in bootsplash and on
+    the command line (Bug #32536)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 16 Oct 2013 11:01:26 +0200
+
+univention-base-files (3.0.3-6) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 24 Sep 2013 08:57:43 +0200
+
+univention-base-files (3.0.3-5) unstable; urgency=low
+
+  * Fix missing type fir UCRV (Bug #30943)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 Sep 2013 14:01:01 +0200
+
+univention-base-files (3.0.3-4) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 19 Sep 2013 10:26:59 +0200
+
+univention-base-files (3.0.3-3) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30943)
+      Remove UCR variable description for domain/domainname for now, see #32506
+      Remove UCR variable description for interfaces/.*/hosts, unused
+      Remove UCR variable description for kernel/clobber_modules, kernel/do_bootfloppy,
+        kernel/do_initrd, kernel/ramdisk and kernel/silent_loader; no longer used,
+        see Bug 32509
+      Revamp category settings
+      Remove UCR variable descriptions for lilo/*, removed in UCS 3.0
+      Remove UCR variable description for ldap/binaryattributes, causes more
+        confusion than being useful.
+      Remove UCR variable descriptions for proxy/password and proxy/username,
+        see Bug #18397
+      Mark server/role as ReadOnly
+      Remove UCR variable description for version/security-patchlevel, no longer
+        used since UCS 3.0
+      Mark version/version, version/patchlevel, version/releasename and version/erratalevel
+      as ReadOnly, they are set automatically during the updates
+      Remove UCR variable descriptions for installer/device/.*/fs, installer/device/.*/mp,
+      and installer/device/.*/name; only used during installation, see #32527
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 06 Sep 2013 11:02:54 +0200
+
+univention-base-files (3.0.3-2) unstable; urgency=low
+
+  * Move motd startup for welcome message from /etc/pam.d/common-session to
+    /etc/pam.d/sshd   (Bug #32432)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 04 Sep 2013 10:19:00 +0200
+
+univention-base-files (3.0.3-1) unstable; urgency=low
+
+  * Kernel inotify parameters are now configurable by UCR variables (Bug #32327)
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 27 Aug 2013 11:19:59 +0200
+
+univention-base-files (3.0.2-2) unstable; urgency=low
+
+  * Prevent update from restarting network (Bug #31844)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 26 Aug 2013 13:12:01 +0200
+
+univention-base-files (3.0.2-1) unstable; urgency=low
+
+  * Comment out 'loopback' interface from moved template (Bug #32297)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 23 Aug 2013 17:43:17 +0200
+
+univention-base-files (3.0.1-5) unstable; urgency=low
+
+  * Add the UCR variable kernel/blacklist to blacklist kernel modules (Bug #19892)
+    and set it to "nouveau" by default (the KMS module is incompatible with the Xorg
+    in UCS 3.2)
+  * Update copyright years
+  * Remove obsolete transition code in postinst
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 03 Jul 2013 15:47:31 +0200
+
+univention-base-files (3.0.1-4) unstable; urgency=low
+
+  * Set UCS 3.2 codename to Borgfeld (Bug #31686)
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 18 Jun 2013 14:34:39 +0200
+
+univention-base-files (3.0.1-3) unstable; urgency=low
+
+  * Don't set sshd/banner by default. It might break programs parsing the SSH
+    output through expect.
+  * Configure the motd through a UCR subfile. This can be disabled by setting
+    sshd/motd to false (Bug #31096)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 18 Jun 2013 10:06:46 +0200
+
+univention-base-files (3.0.1-2) unstable; urgency=low
+
+  * fixed description for machine/password/complexity (Bug #31281)
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 13:41:59 +0200
+
+univention-base-files (3.0.1-1) unstable; urgency=low
+
+  * added description for machine/password/length and
+    machine/password/complexity (Bug #31281)
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 09:54:31 +0200
+
+univention-base-files (3.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 3.2
+  * Add a note to /etc/issue and /etc/issue where to find the UCS management
+    system (Bug #31094)
+  * Use univention.config_registry.interfaces to determine the IP address of
+    the primary interface
+  * Reload SSHD after setting the variables to ensure that the settings
+    are put into effect rightaway (Bug #31096)
+  * Make the sshd banner configurable through the UCR variable sshd/banner
+    and set in postinst, That way the content of /etc/issue is shown during
+    login. (Bug #31096)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 06 Jun 2013 12:28:38 +0200
+
+univention-base-files (2.0.14-1) unstable; urgency=low
+
+  * added UCR variable ntp/tinker/panic, which can be used to configure the
+    maximum allowed time difference (in seconds) to the ntp server until the
+    ntpd stops synchronising. It is set to 0 in postinst in order to allow
+    any time difference per default (Bug #25752)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 06 Mar 2013 15:50:12 +0100
+
+univention-base-files (2.0.13-3) precise; urgency=low
+
+  * Adjust strata of ntp servers as a workaround for Windows 7 w32tm
+    treating stata > 9 as "unspecified" (Bug #30198):
+    - lower local stratum of master from 10 to usual default value of 5
+    - lower local stratum of other roles from 15 to 9
+
+ -- Arvid Requate <requate@univention.de>  Tue, 26 Feb 2013 16:47:41 +0100
+
+univention-base-files (2.0.13-2) precise; urgency=low
+
+  * Revert last change, pool.ntp.org must not be shipped as default
+    by software vendors (Bug #30198)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 26 Feb 2013 16:42:08 +0100
+
+univention-base-files (2.0.13-1) precise; urgency=low
+
+  * Provide default timeserver suitable for the timezone (Bug #30198)
+
+ -- Arvid Requate <requate@univention.de>  Sat, 23 Feb 2013 19:15:32 +0100
+
+univention-base-files (2.0.12-1) precise; urgency=low
+
+  * Fix ntpsigndsocket (Bug #29688)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 19 Dec 2012 13:14:23 +0100
+
+univention-base-files (2.0.11-1) precise; urgency=low
+
+  * Activate ntp/signed by default (Bug #26223)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 31 Oct 2012 09:28:33 +0100
+
+univention-base-files (2.0.10-5) unstable; urgency=low
+
+  * univention-base-files.postinst:
+    change logfile permissions from 750 to 640 (Bug #11431)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 17 Oct 2012 11:20:49 +0200
+
+univention-base-files (2.0.10-4) unstable; urgency=low
+
+  * univention-base-files.postinst: added dpkg-statoverrides
+    for certain logfiles to confine their accessibility
+    (Bug #11431)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 17 Oct 2012 10:58:45 +0200
+
+univention-base-files (2.0.10-3) unstable; urgency=low
+
+  * revert changes for Bug #11431
+
+ -- Lukas Walter <walter@univention.de>  Wed, 10 Oct 2012 12:19:06 +0200
+
+univention-base-files (2.0.10-2) unstable; urgency=low
+
+  * immediately adopt statoverrides on /var/log and
+    /var/log/univention (Bug #11431)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 09 Oct 2012 14:14:33 +0200
+
+univention-base-files (2.0.10-1) unstable; urgency=low
+
+  * try/except ldapsearch in nfsmounts (Bug #28194)
+
+ -- Felix Botner <botner@univention.de>  Thu, 04 Oct 2012 14:13:30 +0200
+
+univention-base-files (2.0.9-2) unstable; urgency=low
+
+  * Restart interfaces on all changes (Bug #26058)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 18 Sep 2012 12:25:09 +0200
+
+univention-base-files (2.0.9-1) unstable; urgency=low
+
+  * Fix epilog parameter (Bug #26058)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 13 Sep 2012 12:24:01 +0200
+
+univention-base-files (2.0.8-1) unstable; urgency=low
+
+  * removed ucr description for logrotate/size Bug #27722
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Sep 2012 14:45:05 +0200
+
+univention-base-files (2.0.7-1) unstable; urgency=low
+
+  * removed logrotate/size  (logrotate/rotate=weekly or
+    logrotate/rotate="size 100M" is possible) Bug #27722
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Sep 2012 13:52:24 +0200
+
+univention-base-files (2.0.6-2) unstable; urgency=low
+
+  * Build only for Python 2.6 (Bug #26852)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 05 Sep 2012 09:27:35 +0200
+
+univention-base-files (2.0.6-1) unstable; urgency=low
+
+  * make etc/logrotate.d/rsyslog an UCR template (Bug #28292)
+  * set logrotate/syslog/rotate/count to 7 times logorate/rotate/count (Bug #28292)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 31 Aug 2012 12:25:48 +0200
+
+univention-base-files (2.0.5-1) unstable; urgency=low
+
+  * Added univention-network-common to the recommends of univention-
+    base-packages (Bug #27931)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 30 Aug 2012 10:11:53 +0200
+
+univention-base-files (2.0.4-1) unstable; urgency=low
+
+  * set logrotate size default (Bug #27722)
+
+ -- Felix Botner <botner@univention.de>  Wed, 29 Aug 2012 10:08:15 +0200
+
+univention-base-files (2.0.3-1) unstable; urgency=low
+
+  * Set UCS 3.1 codename to Findorff (Bug #27966)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 27 Aug 2012 07:29:12 +0200
+
+univention-base-files (2.0.2-1) unstable; urgency=low
+
+  * Convert /etc/univention/interfaces to a multifile template (Bug #26058)
+  * Add support for VLAN, bridges, bonding (Bug #26058)
+    - Rewrite template to handle interfaces other than eth*.
+    - Introduce UCR variable interfaces/primary to specify primary interface.
+    - Introduce interfaces/*/order to configure ordering.
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Aug 2012 16:20:32 +0200
+
+univention-base-files (2.0.1-1) unstable; urgency=low
+
+  * Add UCR variable descriptions (Bug #28134)
+  * Drop setting deprecated UCR variable:
+    - browser-cache
+  * Fix host route un-escaping (Bug #27198)
+  * Order /etc/hosts by interface names (Bug #19440)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 11:33:27 +0200
+
+univention-base-files (2.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump.
+  * Add UCR variable descriptions (Bug #28134)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 08:46:51 +0200
+
+univention-base-files (1.0.51-1) unstable; urgency=low
+
+  * Divert /etc/motd.tail instead of /var/run/motd because /var/run/motd
+    will be created by /etc/init.d/bootlogs (Bug #27759)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 11 Jul 2012 19:51:03 +0200
+
+univention-base-files (1.0.50-1) unstable; urgency=low
+
+  * let ntpdate use an unprivileged port 54321 to stop it colliding with ntpd
+    (Bug #22793)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 10 Jul 2012 17:08:33 +0200
+
+univention-base-files (1.0.49-1) unstable; urgency=low
+
+  * Divert /var/run/motd to avoid the Debian WARRANTY (Bug #27759)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 10 Jul 2012 16:32:35 +0200
+
+univention-base-files (1.0.48-4) unstable; urgency=low
+
+  * conffiles/etc/locale.gen:
+    Handle an unset ucr locale/default correctly (Bug #26322)
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Thu, 21 Jun 2012 08:51:59 +0200
+
+univention-base-files (1.0.48-3) unstable; urgency=low
+
+  * univention-directory-policy/nfsmounts.py:
+    Copied the one line from Philip's outdated script that solves
+    the problem mentioned by Philip (Bug #23639)
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Thu, 07 Jun 2012 15:24:30 +0200
+
+univention-base-files (1.0.48-2) unstable; urgency=low
+
+  * conffiles/etc/locale.gen: Always generate locale/default first (Bug #26322)
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Mon, 04 Jun 2012 09:15:42 +0200
+
+univention-base-files (1.0.48-1) unstable; urgency=low
+
+  * Update locales after setting UCR variable 'locale' (Bug #26412)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 18 Apr 2012 17:23:55 +0200
+
+univention-base-files (1.0.47-1) unstable; urgency=low
+
+  * Removed network fallback warning from issue (Bug #26416)
+  * Added an UCR variable interfaces/restart/auto. If this variable is
+    set to false, the automatic network restart will be skipped while
+    changing network UCR variables (Bug #26416)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Mar 2012 16:10:19 +0100
+
+univention-base-files (1.0.46-1) unstable; urgency=low
+
+  * Don't re-call dhclient if the resolv.conf was written (Bug #25769)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 09 Mar 2012 08:34:15 +0100
+
+univention-base-files (1.0.45-1) unstable; urgency=low
+
+  * option to configure Signed NTP via UCRV ntp/signed (Bug #24953)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 07 Feb 2012 11:28:30 +0100
+
+univention-base-files (1.0.44-1) unstable; urgency=low
+
+  * check size before copying the temporary fstab to /etc/fstab in nfsmount (Bug #23513)
+
+ -- Felix Botner <botner@univention.de>  Fri, 06 Jan 2012 16:19:19 +0100
+
+univention-base-files (1.0.43-4) unstable; urgency=low
+
+  * Restart ntp with new ntp.conf (Bug #25715)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 05 Jan 2012 17:31:28 +0100
+
+univention-base-files (1.0.43-3) unstable; urgency=low
+
+  * Restart ntp with new ntp.conf (Bug #25715)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 04 Jan 2012 18:19:09 +0100
+
+univention-base-files (1.0.43-2) unstable; urgency=low
+
+  * Restart ntp with new ntp.conf (Bug #25715)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 04 Jan 2012 18:05:34 +0100
+
+univention-base-files (1.0.43-1) unstable; urgency=low
+
+  * etc/ntp.conf: Remove server_s_ (Bug #25715)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 04 Jan 2012 17:10:15 +0100
+
+univention-base-files (1.0.42-1) unstable; urgency=low
+
+  * etc/ntp.conf: Add missing ucr.get(...) (Bug #22160)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 01 Dec 2011 10:21:50 +0100
+
+univention-base-files (1.0.41-1) unstable; urgency=low
+
+  * fixed quoting in conffiles/etc/lsb-release template (Bug #24628)
+
+ -- Felix Botner <botner@univention.de>  Fri, 25 Nov 2011 09:23:06 +0100
+
+univention-base-files (1.0.40-1) unstable; urgency=low
+
+  * fixed logrotate template (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Fri, 18 Nov 2011 16:15:05 +0100
+
+univention-base-files (1.0.39-1) unstable; urgency=low
+
+  * added template for /etc/lsb-release (Bug #24628)
+
+ -- Felix Botner <botner@univention.de>  Wed, 16 Nov 2011 10:29:34 +0100
+
+univention-base-files (1.0.38-1) unstable; urgency=low
+
+  * nfsmounts: Use univention.uldap and machine credentials for ldap
+    queries (Bug #24508)
+  * Set execute permissions to univention-directory-policy scripts and
+    make them run-parts compatible (Bug #24563)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 12 Nov 2011 22:03:28 +0100
+
+univention-base-files (1.0.37-2) unstable; urgency=low
+
+  * fixed UCR template (Bug #3515)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 09 Nov 2011 10:08:23 +0100
+
+univention-base-files (1.0.37-1) unstable; urgency=low
+
+  * updated logrotate entry for UCR replication log (Bug #3515)
+  * avoid noisy output of univention-config-registry-backup
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 08 Nov 2011 15:51:37 +0100
+
+univention-base-files (1.0.36-2) unstable; urgency=low
+
+  * open port in firewall for ntp (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 04 Nov 2011 11:04:46 +0100
+
+univention-base-files (1.0.36-1) unstable; urgency=low
+
+  * updated /etc/hosts templates (Bug #24194)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 02 Nov 2011 18:32:24 +0100
+
+univention-base-files (1.0.35-1) unstable; urgency=low
+
+  * added UCR variable to disable UCR cron jobs (Bug #23118)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 28 Oct 2011 13:33:05 +0200
+
+univention-base-files (1.0.34-1) unstable; urgency=low
+
+  * detect duplicate IPv6 addresses (Bug #15438)
+  * fix IPv6 address validation
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 27 Oct 2011 11:07:06 +0200
+
+univention-base-files (1.0.33-3) unstable; urgency=low
+
+  * add IPv6 entries in /etc/hosts (Bug #24194)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 25 Oct 2011 18:18:05 +0200
+
+univention-base-files (1.0.33-2) unstable; urgency=low
+
+  * enable UCR replication log by default (Bug #3515)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 25 Oct 2011 16:47:11 +0200
+
+univention-base-files (1.0.33-1) unstable; urgency=low
+
+  * special handling for IPv6 "default" address (Bug #22871)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 25 Oct 2011 16:16:39 +0200
+
+univention-base-files (1.0.32-1) unstable; urgency=low
+
+  * added UCR variable descriptions for ucr/backup/enabled and
+    ucr/replog/enabled (Bug 3515)
+  * added cron job
+  * added logrotate config
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 24 Oct 2011 16:22:51 +0200
+
+univention-base-files (1.0.31-3) unstable; urgency=low
+
+  * moved default INPUT firewall policy to univention-firewall (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Sun, 23 Oct 2011 18:10:08 +0200
+
+univention-base-files (1.0.31-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:10 +0200
+
+univention-base-files (1.0.31-1) unstable; urgency=low
+
+  * Split meta package for dependencies from base-files (Bug #22586)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 19 Oct 2011 11:36:52 +0200
+
+univention-base-files (1.0.30-2) unstable; urgency=low
+
+  * updated postinst (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 19 Oct 2011 17:57:52 +0200
+
+univention-base-files (1.0.30-1) unstable; urgency=low
+
+  * added firewall settings (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 18 Oct 2011 15:11:23 +0200
+
+univention-base-files (1.0.29-2) unstable; urgency=low
+
+  * added logrotate/notifempty (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Wed, 12 Oct 2011 12:45:09 +0200
+
+univention-base-files (1.0.29-1) unstable; urgency=low
+
+  * new logrotate ucr variables (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 15:20:01 +0200
+
+univention-base-files (1.0.28-1) unstable; urgency=low
+
+  * added ucr module to trigger udev on changes in /etc/default/layout (Bug #23961)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Oct 2011 15:21:52 +0200
+
+univention-base-files (1.0.27-1) unstable; urgency=low
+
+  * add xorg/keyboard ucr variables (Bug #23961)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Oct 2011 15:04:52 +0200
+
+univention-base-files (1.0.26-2) unstable; urgency=low
+
+  * Remove /srv. It is properly created by base-files, but the cleanup script of
+    univention-installer used to remove it. (Bug #23965)
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu, 06 Oct 2011 13:36:41 +0200
+
+univention-base-files (1.0.26-1) unstable; urgency=low
+
+  * removed kbd, added console-tools (Bug #23858)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Oct 2011 10:49:20 +0200
+
+univention-base-files (1.0.25-2) unstable; urgency=low
+
+  * remove removal of old sysklogd startup links (Bug #23143)
+    (moved to updater postup.sh)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 27 Sep 2011 17:02:39 +0200
+
+univention-base-files (1.0.25-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+
+   [ Philipp Hahn ]
+    * Fix unsafe quoting in u-d-policy (Bug #22644)
+
+   [ Sönke Schwardt-Krummrich ]
+    * set some mission critical UCR variables to readonly
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 21:06:50 +0200
+
+univention-base-files (1.0.24-1) unstable; urgency=low
+
+  * change netmask to prefix for IPv6 (Bug #22871)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 19 Sep 2011 12:57:43 +0200
+
+univention-base-files (1.0.23-1) unstable; urgency=low
+
+  * added template etc/default/keyboard
+    (load /etc/console/boottime.kmap.gz in setupcon) (Bug #23647)
+
+ -- Felix Botner <botner@univention.de>  Mon, 19 Sep 2011 11:28:58 +0200
+
+univention-base-files (1.0.22-1) unstable; urgency=low
+
+  * Rename ucr module locale.py to set_locale.py (Bug #23328)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 17 Sep 2011 17:10:48 +0200
+
+univention-base-files (1.0.21-1) unstable; urgency=low
+
+  * Reduce software selection for the UCS installer (Bug #23594)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 16 Sep 2011 20:33:21 +0200
+
+univention-base-files (1.0.20-1) unstable; urgency=low
+
+  *  conflicts console-tools (Bug #23434)
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Sep 2011 13:02:03 +0200
+
+univention-base-files (1.0.19-1) unstable; urgency=low
+
+  * depends on bash-completion locales, ... (Bug #23434)
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Sep 2011 12:38:33 +0200
+
+univention-base-files (1.0.18-1) unstable; urgency=low
+
+  * recommend bash-completion, locales, ntpdate, rdate, acl, xfsprogs,
+    lsof, console-data, kbd, console-common, bzip2, psmisc and
+    lsb-base (Bug #23434)
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Sep 2011 11:26:26 +0200
+
+univention-base-files (1.0.17-1) unstable; urgency=low
+
+  * avoid checking bind/bindpw, simply use machine.secret (Bug #23178)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 01 Sep 2011 14:55:08 +0200
+
+univention-base-files (1.0.16-1) unstable; urgency=low
+
+  * remove old sysklogd startup links (Bug #23143)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 19 Aug 2011 15:29:27 +0200
+
+univention-base-files (1.0.15-1) unstable; urgency=low
+
+  * replaced ucr var auth/user/methods with auth/methods in
+    ssh_config (Bug #20138)
+
+ -- Felix Botner <botner@univention.de>  Mon, 15 Aug 2011 09:29:36 +0200
+
+univention-base-files (1.0.14-1) unstable; urgency=low
+
+  * set IPv6 gateway on UCRV change (Bug #22871)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 10 Aug 2011 16:37:57 +0200
+
+univention-base-files (1.0.13-1) unstable; urgency=low
+
+  * use ldap/hostdn and bind/bindpw for univention_policy_result
+    (Bug #23178)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 08 Aug 2011 16:33:08 +0200
+
+univention-base-files (1.0.12-2) unstable; urgency=low
+
+  * change to rsyslog (Bug #23143)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 08 Aug 2011 09:52:45 +0200
+
+univention-base-files (1.0.11-1) unstable; urgency=low
+
+  * Set codename for UCS 3.0 to Horn-Lehe (Bug #21474)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 05 Aug 2011 11:57:56 +0200
+
+univention-base-files (1.0.10-2) unstable; urgency=low
+
+  * debian/control: Recommends: bash-completion (Bug #22586)
+  * etc/default/ntpdate: Add missing ucr.get(...)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 02 Aug 2011 14:42:45 +0200
+
+univention-base-files (1.0.10-1) unstable; urgency=low
+
+  * Re-synchronize init.d/networking from Debian-Squeeze (Bug #22160)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 01 Aug 2011 16:37:33 +0200
+
+univention-base-files (1.0.9-1) unstable; urgency=low
+
+  * Set sshd/challengeresponse?yes, sshd/passwordauthentication?no (Bug #22586)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 01 Aug 2011 15:15:45 +0200
+
+univention-base-files (1.0.8-2) unstable; urgency=low
+
+  * No longer print version/security-patchlevel in /etc/issue
+    (Bug #18693)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 30 Jul 2011 14:28:44 +0200
+
+univention-base-files (1.0.8-1) unstable; urgency=low
+
+  * Fixed bashisms in init-autostart.lib (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 29 Jul 2011 12:13:49 +0200
+
+univention-base-files (1.0.7-1) unstable; urgency=low
+
+  * Change shebang of networking init script to /bin/bash (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 29 Jul 2011 09:44:58 +0200
+
+univention-base-files (1.0.6-1) unstable; urgency=low
+
+  * Move UCRWARNING into python code block in /etc/issue* templates
+    (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 29 Jul 2011 07:42:28 +0200
+
+univention-base-files (1.0.5-2) unstable; urgency=low
+
+  * make IPv6 configurable (Bug #22871)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 21 Jul 2011 13:17:05 +0200
+
+univention-base-files (1.0.4-2) unstable; urgency=low
+
+  * reverted last commit Bug #22117
+
+ -- Felix Botner <botner@univention.de>  Thu, 21 Jul 2011 12:01:32 +0200
+
+univention-base-files (1.0.4-1) unstable; urgency=low
+
+  * add console-setup to package dependencies
+    (sets up keymap on startup) Bug #22117
+
+ -- Felix Botner <botner@univention.de>  Thu, 21 Jul 2011 11:42:05 +0200
+
+univention-base-files (1.0.3-2) unstable; urgency=low
+
+  * Must not use UCRWARNING_ASCII to generate sitecustomize.py (Bug #22160)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 27 May 2011 18:50:58 +0200
+
+univention-base-files (1.0.3-1) unstable; urgency=low
+
+  * Move sitecustomize.py to univention-base-files (Bug #22160)
+  * Use UCRWARNING.
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 27 May 2011 18:18:57 +0200
+
+univention-base-files (1.0.2-2) unstable; urgency=low
+
+  * Copy joinDotted() from univention.lib (Bug #22521)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 26 May 2011 13:37:51 +0200
+
+univention-base-files (1.0.2-1) unstable; urgency=low
+
+  * Move account and group creation from u-c-r (Bug #22586)
+  * debian/control: Remove Python Build-Deps.
+  * Fallback for univention.lib (Bug #22521)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 26 May 2011 12:24:50 +0200
+
+univention-base-files (1.0.1-3) unstable; urgency=low
+
+  * Create a /srv directory. In UCS 2.x it used to be created only
+    when installing the univention-lsb package, but in Squeeze packages
+    start to depend on it's existence (e.g. when installing atftpd).
+    As such make it available on all installations. (Bug #22576)
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed, 25 May 2011 15:26:23 +0200
+
+univention-base-files (1.0.1-2) unstable; urgency=low
+
+  * Fix univention-keyboard{,mapping} naming (Bug #22586)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 May 2011 20:11:53 +0200
+
+univention-base-files (1.0.1-1) unstable; urgency=low
+
+  * Move scripts from univention-config-registry (Bug #22586)
+  * Add manual pages for univention-set-logfile-permissions and
+  	univention-keyboardmapping.
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 May 2011 19:53:50 +0200
+
+univention-base-files (1.0.0-2) unstable; urgency=low
+
+  * Revert accidentally committed cleanup from svn24387 (Bug #22586)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 May 2011 18:44:04 +0200
+
+univention-base-files (1.0.0-1) unstable; urgency=low
+
+  * Split from univention-config-registry (Bug #22586)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 May 2011 12:29:44 +0200

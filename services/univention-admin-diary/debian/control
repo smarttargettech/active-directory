@@ -1,0 +1,95 @@
+Source: univention-admin-diary
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ node-stylus,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-join-dev,
+ univention-management-console-dev (>= 12.0.2),
+Standards-Version: 3.7.2
+
+Package: univention-admin-diary-backend
+Architecture: all
+Depends:
+ python3-pyparsing,
+ python3-univention-admin-diary-backend (= ${binary:Version}),
+ rsyslog-relp,
+ ${misc:Depends},
+Recommends:
+ univention-postgresql | univention-mariadb,
+Suggests:
+ univention-management-console-module-admindiary,
+Description: Univention Admin Diary backend
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: python3-univention-admin-diary-backend
+Architecture: all
+Depends:
+ python3-mysqldb,
+ python3-psycopg2,
+ python3-sqlalchemy,
+ python3-univention-admin-diary (= ${binary:Version}),
+ ${misc:Depends},
+ ${python3:Depends},
+Description: Univention Admin Diary backend library
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-module-admindiary
+Architecture: all
+Depends:
+ python3-univention-admin-diary-backend (= ${binary:Version}),
+ univention-management-console-server (>= 11.0.4-37),
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Suggests:
+ univention-admin-diary-backend,
+Description: UMC module for the Admin Diary
+ This package contains the UMC module for the Admin Diary
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-admin-diary-client
+Architecture: all
+Depends:
+ python3-univention-admin-diary (= ${binary:Version}),
+ rsyslog-relp,
+ ${misc:Depends},
+Description: Univention Admin Diary client
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: python3-univention-admin-diary
+Architecture: all
+Depends:
+ shell-univention-lib,
+ ${misc:Depends},
+ ${python3:Depends},
+Breaks:
+ univention-admin-diary-client (<< 2.0.3),
+Replaces:
+ univention-admin-diary-client (<< 2.0.3),
+Description: Univention Admin Diary lib
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

@@ -1,0 +1,86 @@
+#!/bin/sh
+
+@%@UCRWARNING=# @%@
+
+# Univention Spamassassin
+#  learn script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+SA_LEARN="/usr/bin/sa-learn"
+
+if [ ! -f /var/lib/amavis/.spamassassin/bayes_toks ]; then
+	touch /var/lib/amavis/.spamassassin/bayes_toks
+	chown amavis:amavis /var/lib/amavis/.spamassassin/bayes_toks
+	chmod 600 /var/lib/amavis/.spamassassin/bayes_toks
+fi
+
+@!@
+# flake8: noqa
+spamFolder = configRegistry.get("mail/dovecot/folder/spam") or "Spam"
+hamFolder = configRegistry.get("mail/dovecot/folder/ham") or "Ham"
+
+if spamFolder.lower() == "none":
+    print("# learning from spam folder disabled via mail/dovecot/folder/spam")
+else:
+    print("# learing from spam folder %s" % spamFolder)
+    spamFolder = spamFolder.strip("/").replace("/", ".")
+
+if hamFolder.lower() == "none":
+    print("# learing from ham folder disabled via mail/dovecot/folder/ham")
+else:
+    print("# learing from ham folder %s" % hamFolder)
+    hamFolder = hamFolder.strip("/").replace("/", ".")
+
+base_folder = "/var/spool/dovecot/private/"
+user_folder = "\\*/\\*/Maildir/."
+# find RFC 6154 flagged \Junk folders, add them if they are not there anyway
+junk = "" if spamFolder.lower() == "none" else "-wholename %s%s" % (user_folder, spamFolder)
+for key, value in configRegistry.items():
+    if key.startswith("mail/dovecot/mailboxes/special/") and value == "\\Junk":
+        _folder = key.split("/")[-1]
+        if _folder and _folder != spamFolder:
+            _folder = _folder.strip("/").replace("/", ".")
+            if junk:
+                junk += " -o "
+            junk += "-wholename \\*/\\*/Maildir/.%s" % _folder
+
+if junk:
+    print('''
+find %(base)s \\( %(junk)s \\) \\
+	-exec $SA_LEARN --dbpath /var/lib/amavis/.spamassassin --spam {} \\;
+''' % {"base": base_folder, "junk": junk})
+
+if hamFolder.lower() != "none":
+    print('''find %(base)s -wholename %(user)s%(hamFolder)s \\
+	-exec $SA_LEARN --dbpath /var/lib/amavis/.spamassassin --ham {} \\;
+''' % {"base": base_folder, "user": user_folder, "hamFolder": hamFolder})
+@!@

@@ -1,0 +1,261 @@
+univention-directory-manager-module-example (11.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:46 +0200
+
+univention-directory-manager-module-example (11.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:29 +0100
+
+univention-directory-manager-module-example (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-directory-manager-module-example (10.0.4) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:19 +0100
+
+univention-directory-manager-module-example (10.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:39 +0100
+
+univention-directory-manager-module-example (10.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:22 +0100
+
+univention-directory-manager-module-example (10.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-directory-manager-module-example (9.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:53 +0100
+
+univention-directory-manager-module-example (9.0.2-2) unstable; urgency=medium
+
+  * Bug #57098: make StartTLS configurable in univention.uldap
+
+ -- Maximilian Janßen <janssen@univention.de>  Tue, 05 Mar 2024 11:30:35 +0100
+
+univention-directory-manager-module-example (9.0.2-1) unstable; urgency=medium
+
+  [ Philipp Hahn ]
+  * Bug #56832: UCS 5.0-6 version bump
+
+  [ Florian Best ]
+  * Bug #55324: use univention.logging
+
+ -- Florian Best <best@univention.de>  Tue, 09 Jan 2024 17:45:35 +0100
+
+univention-directory-manager-module-example (9.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:43 +0100
+
+univention-directory-manager-module-example (9.0.0-2) unstable; urgency=medium
+
+  * Bug #53360: migrate univention-directory-manager-module-example to
+    Python 3
+
+ -- Florian Best <best@univention.de>  Mon, 31 May 2021 12:44:06 +0200
+
+univention-directory-manager-module-example (9.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:26 +0200
+
+univention-directory-manager-module-example (8.0.0-2) unstable; urgency=medium
+
+  * Bug #51216: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Mon, 04 May 2020 13:30:54 +0200
+
+univention-directory-manager-module-example (8.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:41 +0100
+
+univention-directory-manager-module-example (7.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:29 +0100
+
+univention-directory-manager-module-example (7.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:42 +0100
+
+univention-directory-manager-module-example (6.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:58 +0200
+
+univention-directory-manager-module-example (5.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:21:19 +0100
+
+univention-directory-manager-module-example (4.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #36115)
+
+ -- Felix Botner <botner@univention.de>  Wed, 22 Oct 2014 13:05:31 +0200
+
+univention-directory-manager-module-example (3.0.1-2) unstable; urgency=low
+
+  * Modify refresh-i18n to use bash, fixes build since ucslint detects a
+    bashism (Fixed as part of Bug #23844)
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed, 05 Oct 2011 12:30:00 +0200
+
+univention-directory-manager-module-example (3.0.1-1) unstable; urgency=low
+
+  * debian/rules: Fix ucslint invocation (Bug #22431)
+  * debian/control: Fix dependency on debhelper and python-all.
+  * debian/control: all-all-Package-dependencies should use source:Version.
+  * debian/control: all-Package needs no python-dev.
+  * debian/source/format: Switch to 3.0 (native)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 10 May 2011 16:06:02 +0200
+
+univention-directory-manager-module-example (3.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+    * Bump version for UCS 3.0
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 10 May 2011 06:26:04 +0200
+
+univention-directory-manager-module-example (2.0.9-1) unstable; urgency=low
+
+  * Initialize locale (Bug #17915)
+  * Update german translation.
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 18 Feb 2011 11:30:56 +0100
+
+univention-directory-manager-module-example (2.0.8-1) unstable; urgency=low
+
+  * Fix installation path of translation catalog (Bug #17915)
+  * Fix creating entry with immediate --redirect.
+  * Handle errors in ip-phone-tool.
+  * Parameter errors should exit with 2.
+  * debian/rules: Fix clean target.
+  * Fix quoting.
+  * Add simple script to test implementation.
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 17 Feb 2011 07:08:03 +0100
+
+univention-directory-manager-module-example (2.0.7-1) unstable; urgency=low
+
+  * fix default value for TrueFalseUp syntax (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Feb 2011 15:56:32 +0100
+
+univention-directory-manager-module-example (2.0.6-3) unstable; urgency=low
+
+  * fix globbing in debian/rules (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Feb 2011 13:43:19 +0100
+
+univention-directory-manager-module-example (2.0.6-2) unstable; urgency=low
+
+  * mode directory structure changes and ucslint (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Feb 2011 10:53:14 +0100
+
+univention-directory-manager-module-example (2.0.6-1) unstable; urgency=low
+
+  * Add translation file and script (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 16 Feb 2011 10:28:12 +0100
+
+univention-directory-manager-module-example (2.0.5-1) unstable; urgency=low
+
+  * Prepare for translation (Bug #17915)
+  * Restart slapd only on domaincontroller_master.
+  * Fix unicode strings.
+  * Add missing DocString to exists() and _remove_attr().
+  * Document advanced=True.
+  * Use True and False instead of 1 and 0.
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 16 Feb 2011 07:59:08 +0100
+
+univention-directory-manager-module-example (2.0.4-1) unstable; urgency=low
+
+  * suggestions from QA feedback (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 15 Feb 2011 18:22:24 +0100
+
+univention-directory-manager-module-example (2.0.3-2) unstable; urgency=low
+
+  * adjust debian package filenames (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 10 Feb 2011 16:20:05 +0100
+
+univention-directory-manager-module-example (2.0.3-1) unstable; urgency=low
+
+  * suggestions from QA feedback (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 10 Feb 2011 15:07:56 +0100
+
+univention-directory-manager-module-example (2.0.2-1) unstable; urgency=low
+
+  * add missing schema.postinst file to restart slapd
+  * kill udm-cli processes in postinst
+  * let pycentral figure out the current python version
+  * register the ucr templates (Bug #17915)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 07 Feb 2011 09:35:55 +0100
+
+univention-directory-manager-module-example (2.0.1-1) unstable; urgency=low
+
+  * first update of the example module (Bug #17915)
+  * the UDM module shows the usage of advanced taps and options
+  * ip-phone-tool shows how to use the UDM python API
+
+ -- Arvid Requate <requate@univention.de>  Thu, 03 Feb 2011 17:03:17 +0100
+
+univention-directory-manager-module-example (2.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 13:26:41 +0200
+
+univention-directory-manager-module-example (1.0-2) unstable; urgency=low
+
+  * debian/*.univention-config-registry must not include Multifile-entry
+    again. (Bug #16644)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 18 Mar 2010 12:21:53 +0100
+
+univention-directory-manager-module-example (1.0-1) unstable; urgency=low
+
+  * Initial Release, based on previous univention-admin-module-example
+    package
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu, 11 Mar 2010 16:33:49 +0100

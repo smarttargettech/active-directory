@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# Generate files needed for the next UCS release
+#
+set -e -u
+
+parse () {
+	case "${1:?major}" in
+	[1-9]*.[0-9]*-[0-9]*)
+		local IFS='.-'
+		# shellcheck disable=SC2068
+		parse $@ # IFS
+		return $?
+		;;
+	[1-9])
+		major="${1:?major}"
+		minor="${2:?minor}"
+		patch="${3:?patch}"
+		if [ "$patch" -ge 1 ]
+		then
+			prev="$((patch - 1))"
+			papt="ucs_${major}.${minor}-0-ucs${major}.${minor}-${prev}"
+			plong="${major}.${minor}-${prev}"
+			pshort="ucs${major}${minor}${prev}"
+		elif [ "$minor" -ge 1 ]
+		then
+			prev="${4:?old-minor}"
+			papt="ucs_${major}.${minor}-0"
+			plong="${major}.$((minor - 1))-${prev}"
+			pshort="ucs${major}$((minor - 1))${prev}"
+		else
+			die "min=$minor patch=$patch. Now what?"
+		fi
+		;;
+	*) usage ;;
+	esac
+
+	apt="ucs_${major}.${minor}-0-ucs${major}.${minor}-${patch}"
+	long="${major}.${minor}-${patch}"
+	short="ucs${major}${minor}${patch}"
+}
+
+copy () {
+	cp -lrP "data/$pshort" "data/$short"
+	cp -lrP "tasks/$pshort" "tasks/$short"
+	mv "tasks/$short/task-$pshort" "tasks/$short/task-$short"
+	ln "tools/$pshort" "tools/$short"
+	cp -lrP "tools/boot/$pshort" "tools/boot/$short"
+	sed -e "s/$papt/$apt/g" -e "s/$pshort/$short/g" -e "s/$plong/$long/" <"$pshort.conf" >"$short.conf"
+}
+
+usage () {
+	echo "${0##*/} major minor patch"
+	echo "${0##*/} major minor 0 old-minor"
+	exit 0
+}
+
+die () {
+	echo "${0##*/}: $*" >&2
+	exit 1
+}
+
+parse "$@"
+copy

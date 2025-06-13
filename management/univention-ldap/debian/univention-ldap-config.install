@@ -1,0 +1,4 @@
+./*.ldif	usr/share/univention-ldap/
+schema/*.schema	usr/share/univention-ldap/schema/
+schema/oid.registry	usr/share/univention-ldap/schema/
+scripts/convert_to_sharesSambaWriteable.py	usr/share/univention-ldap/

@@ -1,0 +1,58 @@
+Source: univention-samba
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.5.2
+
+Package: univention-samba
+Architecture: all
+Pre-Depends:
+ univention-config,
+Depends:
+ expect,
+ python3-tdb,
+ python3-univention-lib,
+ rsync,
+ samba-common-bin,
+ shell-univention-lib (>= 4.0.3-5),
+ smbclient,
+ univention-base-files,
+ univention-config (>= 8.0.2),
+ univention-directory-listener (>= 14.0.5),
+ univention-directory-manager-tools,
+ univention-ldap-client (>= 1.4),
+ univention-samba-local-config,
+ univention-ssh,
+ winbind,
+ ${misc:Depends},
+Conflicts:
+ samba (<<2:4.7.3+dfsg-1),
+ samba-ad-dc,
+Description: UCS - Samba Member Server
+ This package contains the configuration for a Samba member server.
+ It provides authentication, file and print services for Windows computers.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-samba-local-config
+Architecture: all
+Depends:
+ samba (>= 3.0.20) | samba-ad-dc,
+ ${misc:Depends},
+Breaks:
+ univention-samba4 (<< 1.0.118-2),
+Description: UCS - UCR Extensions for configuration of local shares
+ This package contains some scripts and templates to configure
+ samba shares via UCR.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

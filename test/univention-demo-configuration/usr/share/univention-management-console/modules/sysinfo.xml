@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="sysinfo" icon="hardware-information" priority="50" version="1.0">
+		<name>Hardware information</name>
+		<description>Overview of local systems hardware information</description>
+		<keywords>system,information</keywords>
+		<categories>
+			<category name="system"/>
+		</categories>
+		<requiredCommands>
+			<requiredCommand name="sysinfo/general"/>
+		</requiredCommands>
+		<command name="sysinfo/traceback" function="upload_traceback" allow_anonymous="true"/>
+	</module>
+</umc>

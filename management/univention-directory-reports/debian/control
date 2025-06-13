@@ -1,0 +1,51 @@
+Source: univention-directory-reports
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.8.2
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+
+Package: univention-directory-reports
+Architecture: all
+Depends:
+ python3-univention-directory-reports,
+ python3-univention-lib (>= 1.0.25-1),
+ shell-univention-lib,
+ ${misc:Depends},
+Description: Creates reports for UCS Directory Manager objects
+ UCS Report Generator creates reports in PDF format using
+ template files that contain a special template syntax to
+ describe LDAP attributes and objects that should replace the patterns.
+
+Package: python3-univention-directory-reports
+Architecture: all
+Depends:
+ python3-trml2pdf,
+ python3-univention-directory-manager,
+ univention-config,
+ ${misc:Depends},
+ ${python3:Depends},
+Description: Creates reports for UCS Directory manager objects
+ UCS Report Generator creates reports in PDF format using
+ RML template files that contain a special template syntax to
+ describe LDAP attributes and objects that should replace the patterns.
+
+Package: univention-directory-reports-latex
+Architecture: all
+Depends:
+ texlive,
+ texlive-lang-german,
+ texlive-latex-extra,
+ texlive-latex-recommended,
+ univention-config,
+ univention-directory-reports,
+ ${misc:Depends},
+Description: Creates reports for UCS Directory manager objects
+ UCS Report Generator creates reports in PDF format using
+ LaTeX template files that contain a special template syntax to
+ describe LDAP attributes and objects that should replace the patterns.

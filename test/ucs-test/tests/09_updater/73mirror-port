@@ -1,0 +1,38 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Mirror localhost repository on port 81
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+##  - apt-mirror
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+port=81
+
+setup_apache --port "${port}" "${repoprefix}"
+
+mkpdir "${_version_version}-0" maintained "${ARCH}"
+# 0:dists/ucs500/main/binary-amd64/
+# 1:dists/errata500/main/binary-amd64/
+mkdeb "${pkgname}ua" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+mkdeb "${pkgname}ea" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+mksh "${DIR}" preup postup
+
+config_mirror :${port}
+
+	set -e
+	checkapt --mirror "http://localhost:${port}/${repoprefix}/" "${DIRS[@]}"
+	wait_for_updater_lock
+	univention-repository-update net
+	# shellcheck disable=SC2119
+	checkmirror
+# vim:set ft=sh:

@@ -1,0 +1,85 @@
+#!/bin/sh
+# -*- coding: utf-8 -*-
+#
+# Univention Server Overview
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2017-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=12
+
+. /usr/share/univention-join/joinscripthelper.lib
+. /usr/share/univention-lib/umc.sh
+
+joinscript_init
+
+umc_init
+
+umc_operation_create "server-overview-all" "UCS server overview" "" "serveroverview/*" || die
+
+umc_policy_append "default-umc-all" "server-overview-all" || die
+
+role="$(ucr get server/role)"
+if [ "$role" != "domaincontroller_master" ]; then
+	# make sure that entry for server overview does not exist on a single server domain
+	# (i.e., which only contains a Primary Directory Node instance)
+	univention-directory-manager portals/entry create "$@" --ignore_exists \
+		--position "cn=entry,cn=portals,cn=univention,$ldap_base" \
+		--set name=server-overview \
+		--append displayName='"en_US" "Server overview"' \
+		--append displayName='"de_DE" "Serverübersicht"' \
+		--append displayName='"fr_FR" "Vue d'"'"'ensemble de serveurs"' \
+		--append description='"en_US" "Provide an overview of all UCS server in the domain"' \
+		--append description='"de_DE" "Zeigt eine Übersicht aller UCS Server in der Domäne"' \
+		--append description='"fr_FR" "Vue d'"'"'ensemble de tous les serveurs UCS du domaine"' \
+		--append link='"en_US" "/univention/server-overview/?header=try-hide"' \
+		--set linkTarget=newwindow \
+		--set icon="$(base64 /usr/share/univention-management-console-frontend/js/dijit/themes/umc/icons/scalable/serveroverview.svg)" || die
+	univention-directory-manager portals/category modify "$@" \
+		--dn "cn=domain-admin,cn=category,cn=portals,cn=univention,$ldap_base" \
+		--append entries="cn=server-overview,cn=entry,cn=portals,cn=univention,$ldap_base" || die
+fi
+
+if [ $JS_LAST_EXECUTED_VERSION -lt 12 ]; then
+	# update from 4.4? then linkTarget was useportaldefault
+	univention-directory-manager portals/entry modify "$@" --ignore_not_exists \
+		--dn "cn=server-overview,cn=entry,cn=portals,cn=univention,$ldap_base" \
+		--remove link='"en_US" "/univention/server-overview/"' \
+		--append link='"en_US" "/univention/server-overview/?header=try-hide"' \
+		--set linkTarget=newwindow || die
+fi
+
+
+joinscript_save_current_version
+
+exit 0

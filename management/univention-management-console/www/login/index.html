@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Univention Login</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/icon"/>
+		<link rel="stylesheet" href="/univention/js/dijit/themes/umc/umc.css" type="text/css"/>
+		<link rel="stylesheet" href="/univention/theme.css" type="text/css"/>
+		<link rel="stylesheet" href="/univention/js/dijit/themes/umc/login.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<script type="text/javascript" src="/univention/login/config.js"></script>
+		<script type="text/javascript" src="/univention/js/config.js"></script>
+		<script type="text/javascript" async src="/univention/js/dojo/dojo.js"></script>
+	</head>
+	<body class="umc umcLoginLoading">
+		<div class="umcHeader">
+			<div class="umcHeaderLeft">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="/univention/js/dijit/themes/umc/images/univention_u.svg#id"/></svg>
+				<h2>UCS</h2>
+			</div>
+			<div class="umcHeaderRight">
+				<div data-dojo-type="umc/menu/Button" data-dojo-props="showLoginHeader: false"></div>
+			</div>
+		</div>
+		<div id="umcLoginContent">
+			<div id="umcLoginWrapper">
+				<h2 id="umcLoginTitle">&nbsp;</h2>
+				<div id="umcLoginDialog">
+					<div id="umcLoginLogoWrapper">
+						<img id="umcLoginLogo" src="/univention/js/dijit/themes/umc/images/login_logo.svg" />
+					</div>
+					<div id="umcLoginFormWrapperWrapper">
+						<div id="umcLoginStandbyWrapper">
+							<!-- copy pasted from umc/widgets/StandbyCircle.js -->
+							<div class="umcStandbySvgWrapper">
+								<svg class="umcStandbySvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+									<circle class="umcStandbySvg__circle" cx="50" cy="50" r="45"></circle>
+								</svg>
+							</div>
+						</div>
+						<div id="umcLoginFormWrapper">
+							<div id="umcLoginNotices" class="dijitDisplayNone"></div>
+							<form id="umcLoginForm" name="umcLoginForm" action="blank.html" method="post" class="umcLoginForm" autocomplete="on">
+								<div class="umcLoginFormInput">
+									<input id="umcLoginUsername" name="username" type="text" autocomplete="username" required="required" placeholder=" " />
+									<label id="umcLoginUsernameLabel" for="umcLoginUsername"></label>
+								</div>
+								<div class="umcLoginFormInput">
+									<input id="umcLoginPassword" name="password" type="password" autocomplete="current-password" required="required" placeholder=" " />
+									<label id ="umcLoginPasswordLabel" for="umcLoginPassword"></label>
+								</div>
+								<button class="umcLoginFormButton" type="submit" name="submit">
+									<svg class="featherIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+										<use xlink:href="/univention/js/dijit/themes/umc/images/feather-sprite.svg#log-in" />
+									</svg>
+									<span class="umcLoginFormButton__label">Login</span>
+								</button>
+							</form>
+							<form id="umcNewPasswordForm" name="umcNewPasswordForm" action="blank.html" method="post" class="umcLoginForm" style="display: none;" autocomplete="off">
+								<div class="umcLoginFormInput">
+									<input id="umcLoginNewPassword" name="new_password" type="password" autocomplete="new-password" placeholder=" " />
+									<label id="umcLoginNewPasswordLabel" for="umcLoginNewPassword"></label>
+								</div>
+								<div class="umcLoginFormInput">
+									<input id="umcLoginNewPasswordRetype" type="password" autocomplete="new-password" placeholder=" " />
+									<label id="umcLoginNewPasswordRetypeLabel" for="umcLoginNewPasswordRetype"></label>
+								</div>
+								<button class="umcLoginFormButton" type="submit" name="submit">
+									<span id="umcNewPasswordSubmitLabel" class="umcLoginFormButton__label"></span>
+								</button>
+							</form>
+							<form id="umcCustomPromptForm" name="umcCustomPromptForm" action="blank.html" method="post" class="umcLoginForm" style="display: none;" autocomplete="off">
+								<div class="umcLoginFormInput">
+									<input id="umcLoginCustomPrompt" type="password" autocomplete="current-password" placeholder=" " />
+									<label id="umcLoginCustomPromptLabel" for="umcLoginCustomPrompt"></label>
+								</div>
+								<button class="umcLoginFormButton" type="submit" name="submit">
+									<span class="umcLoginFormButton__label"></span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="umcLoginLinks"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,4 @@
+dn: cn=demo,cn=portal,cn=portals,cn=univention,@%@ldap/base@%@
+changetype: modify
+replace: univentionNewPortalBackground
+univentionNewPortalBackground:< file:///usr/share/univention-demo-configuration/portal/background.jpg.b64

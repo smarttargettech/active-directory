@@ -1,0 +1,13 @@
+#!/bin/bash
+## desc: Modify filtered object
+main () {
+	udm settings/packages create --position "cn=restricted,$BASE" --set name=test
+
+	udm settings/packages modify --dn "cn=test,cn=restricted,$BASE" --set packageList="test$RANDOM"
+	wait_listener
+	neg fgrep "cn=restricted,$BASE " "$LOG"
+
+	udm settings/packages remove --dn "cn=test,cn=restricted,$BASE"
+}
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"

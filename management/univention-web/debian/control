@@ -1,0 +1,54 @@
+Source: univention-web
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ debhelper-compat (=13),
+ imagemagick,
+ librsvg2-bin,
+ node-stylus,
+ nodejs,
+ sed,
+ univention-config-dev (>= 15.0.3),
+ univention-dojo,
+ univention-dojo-dev,
+ univention-management-console-dev (>= 12.0.2),
+ unzip,
+
+Package: univention-web-js
+Architecture: all
+Depends:
+ univention-apache,
+ ${misc:Depends},
+Description: Univention Javascript Library
+ This package contains the uncompressed UMC Javascript source files
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-web-style
+Architecture: all
+Depends:
+ ${misc:Depends},
+Description: Univention Style Library
+ This package contains CSS and graphic theme data
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-web-src
+Architecture: all
+Depends:
+ ${misc:Depends},
+Description: Univention Javascript Library - Source
+ This package contains the uncompressed UMC Javascript source files
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

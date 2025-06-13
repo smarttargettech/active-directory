@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e -u
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"
+
+name="${R64}"
+init
+gencert "${name}" "${name}"
+list_cert_names | grep -F -e "${R64}"
+[ 01 = "$(has_valid_cert "${R64}")" ]
+
+renew_cert "${name}"
+list_cert_names | grep -F -e "${R64}"
+[ 02 = "$(has_valid_cert "${R64}")" ]
+
+revoke_cert "${name}"
+FAIL has_valid_cert "${R64}"
+list_cert_names | FAIL grep -F -e "${R64}"
+
+:

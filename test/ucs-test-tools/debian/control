@@ -1,0 +1,24 @@
+Source: ucs-test-tools
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.5
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+
+Package: ucs-test-tools
+Architecture: all
+Depends:
+ shell-univention-lib,
+ univention-directory-manager-tools,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: Tool collection for UCS development
+ This package contains tools to test UCS installations.
+ .
+ This package is only relevant for development and testing.

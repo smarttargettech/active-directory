@@ -1,0 +1,26 @@
+[monitoring/nmbd/query-wins-hosts]
+Description[de]=Die Variable konfiguriert, welche Rechnernamen im NMBD Monitoring berücksichtigt werden soll. Die Variable muss eine kommaseparierte Liste enthalten. Jeder Eintrag muss aus zwei Rechnernamen bestehen, die mit " " separiert werden. An den ersten Rechner des jeweiligen Eintrags wird eine unicast query gesendet, um den zweiten übergebenen Rechnernamen zu einer IP-Adresse aufzulösen.
+Description[en]=The variable configures which hostnames should be included in the NMBD monitoring. The variable must contain a comma-separated list. Each entry must consist of two hostnames separated by " ". A unicast query is sent to the first hostname of each entry to resolve the second hostname passed to an IP address.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-monitoring
+
+[monitoring/printerqueue/printers]
+Description[de]=Diese Variable konfiguriert die Drucker dessen Warteschlange überwacht werden sollen.
+Description[en]=This variable configures the printers which printing queue is monitored.
+Type=str
+Categories=service-monitoring
+
+[monitoring/nfs/allnfs]
+Description[de]=Die Variable konfiguriert, ob alle NFS mounts im NFS status check berücksichtigt werden sollen oder nur alle automatisch gemounteten.
+Description[en]=The variable configures whether all NFS mounts should be included in the NFS status check or only all automatically mounted mounts.
+Type=bool
+Categories=service-monitoring
+
+[monitoring/dns/lookup-domain]
+Description[de]=Die Variable konfiguriert, welche Domain für den Test der DNS-Verfügbarkeit verwendet wird.
+Description[en]=The variable configures which domain is used for the DNS resolving test.
+Type=str
+Default=www.univention.de
+Categories=service-monitoring

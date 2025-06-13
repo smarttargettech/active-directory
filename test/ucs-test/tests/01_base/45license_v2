@@ -1,0 +1,99 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Check license v2 count for clients and servers"
+## exposure: dangerous
+## packages:
+## - univention-directory-manager-tools
+## roles:
+##  - domaincontroller_master
+## tags:
+##  - basic
+##  - apptest
+## versions:
+##  3.1-1: skip
+##  3.2-0: fixed
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+eval "$(ucr shell)"
+
+licenseVersion="$(univention-ldapsearch '(&(cn=admin)(objectClass=univentionLicense))' -LLL univentionLicenseVersion | VAL1 univentionLicenseVersion)"
+[ "$licenseVersion" = 2 ] ||
+	exit 137
+
+declare -A MAP=(
+	[computers/linux]=ManagedClients
+	[computers/macos]=ManagedClients
+	[computers/ubuntu]=ManagedClients
+	[computers/windows]=ManagedClients
+	[computers/windows_domaincontroller]=ManagedClients
+	[computers/ipmanagedclient]=''  # not counted
+	[computers/memberserver]=Servers
+	[computers/domaincontroller_slave]=Servers
+	[computers/domaincontroller_backup]=Servers
+	[computers/domaincontroller_master]=Servers
+)
+
+createObject () {
+	local module="${1:?module}" name="${2:?name}"
+	echo "Create UDM object of type $module"
+	udm-test "$module" create --set name="$name" --position "cn=computers,$ldap_base" ||
+		fail_test 110 "Failed to create $module: name: $name"
+}
+removeObject () {
+	local module="${1:?module}" name="${2:?name}"
+	udm-test "$module" remove --dn "cn=$name,cn=computers,$ldap_base" ||
+		fail_test 110 "Failed to remove $module: cn=$name,cn=computers,$ldap_base"
+}
+
+test_run () {
+	local m="$1" name key value
+	declare -A old new
+	info "Testing module $m"
+
+	while read -r value key
+	do
+		old["${key// }"]="$value"
+	done < <(univention-license-check | sed -rne 's/^([ A-Za-z]+):\s*([0-9]+) of +(unlimited|[0-9]+)[.]+ ([A-Z]+)$/\2\t\1/p')
+	debug "old: ${old[*]}"
+
+	name="$(random_chars)"
+	createObject "$m" "$name"
+
+	while read -r value key
+	do
+		new["${key// }"]="$value"
+	done < <(univention-license-check | sed -rne 's/^([ A-Za-z]+):\s*([0-9]+) of +(unlimited|[0-9]+)[.]+ ([A-Z]+)$/\2\t\1/p')
+	debug "new: ${new[*]}"
+
+	declare -i expected current
+	for key in Users Servers 'ManagedClients' 'CorporateClients'
+	do
+		expected="${old[$key]}" current="${new[$key]}"
+		[ "$key" = "${MAP[$m]}" ] && expected+=1
+		[ "$current" = "$expected" ]
+		fail_bool 0 110 "mod=$m key=$key expected=$expected current=$current"
+	done
+
+	removeObject "$m" "$name"
+}
+
+# Ignore connector side effects
+[ -x /etc/init.d/univention-s4-connector ] && /etc/init.d/univention-s4-connector stop
+
+ucr set --force ldap/master="${ldap_master:?}"
+for m in "${!MAP[@]}"
+do
+	test_run "$m"
+done
+
+# Ignore connector side effects
+[ -x /etc/init.d/univention-s4-connector ] && /etc/init.d/univention-s4-connector start
+
+ucr unset --force ldap/master
+ucr set ldap/master="$ldap_master"
+
+exit "$RETVAL"

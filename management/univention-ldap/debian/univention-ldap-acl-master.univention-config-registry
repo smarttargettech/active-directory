@@ -1,0 +1,40 @@
+Type: multifile
+Multifile: etc/ldap/slapd.conf
+Variables: ldap/server/type
+Variables: ldap/master
+Variables: ldap/base
+Variables: ldap/hostdn
+Variables: slapd/port
+Variables: ldap/debug/level
+Variables: ldap/acl/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+Variables: kerberos/realm
+
+Type: subfile
+Multifile: etc/ldap/slapd.conf
+Subfile: etc/ldap/slapd.conf.d/60univention-ldap-server_acl-master
+Variables: ldap/server/type
+Variables: ldap/master
+Variables: ldap/hostdn
+Variables: slapd/port
+
+Type: subfile
+Multifile: etc/ldap/slapd.conf
+Subfile: etc/ldap/slapd.conf.d/63univention-ldap-server_acl-master-password
+Variables: ldap/server/type
+Variables: ldap/master
+Variables: ldap/acl/user/password/change
+
+Type: subfile
+Multifile: etc/ldap/slapd.conf
+Subfile: etc/ldap/slapd.conf.d/62univention-ldap-server_acl-portal
+Variables: ldap/base
+
+Type: subfile
+Multifile: etc/ldap/slapd.conf
+Subfile: etc/ldap/slapd.conf.d/70univention-ldap-server_acl-master-end
+Variables: ldap/server/type
+Variables: ldap/master
+Variables: ldap/acl/.*
+Variables: kerberos/realm

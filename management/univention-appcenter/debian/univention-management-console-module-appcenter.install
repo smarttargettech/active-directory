@@ -1,0 +1,12 @@
+listener/app_attributes.py	usr/lib/univention-directory-listener/system/
+udm/handlers/appcenter/*.py	usr/lib/python3/dist-packages/univention/admin/handlers/appcenter/
+umc/js/appcenter.css	usr/share/univention-management-console-frontend/js/umc/modules/
+umc/js/appcenter/app-vignette.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/badges/*	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/badges/
+umc/js/appcenter/carouselArrowRight.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/icons/*	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/icons/
+umc/js/appcenter/maximize.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/minimize.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/statusIcons.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/thumbnailError.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/
+umc/js/appcenter/videoPlayButton.svg	usr/share/univention-management-console-frontend/js/umc/modules/appcenter/

@@ -1,0 +1,180 @@
+// Special style for sites where the page itself should not scroll
+// but only the components of the site e.g. Tree widgets.
+
+@require "variables"
+
+#umcTopContainer
+	position: absolute
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+
+.umcHeader
+	position: relative
+	top: 0
+	left: 0
+	right: 0
+
+.umcMainTabContainer
+	position: absolute
+	top: var(--layout-height-header)
+	bottom: 0
+	left: 0
+	right: 0
+	overflow-y: auto
+	transition: top 250ms
+
+.umcHeader--hidden ~ .umcMainTabContainer
+	top: 0
+
+// general style. fixed module header
+@media (min-height: 750px)
+	.umcModuleWrapperWrapper
+		overflow-y: auto
+		overflow-x: hidden
+
+	.umcMainTabContainer > .dijitStackContainerChildWrapper
+		height: 100%
+
+	.umcModule
+		height: 100%
+		display: flex
+		flex-direction: column
+
+	.umcModuleWrapperWrapper
+		min-height: 0
+		height: 100%
+		padding-bottom: spacing(2)
+
+// umcGrid/umcGridTile/umcTree styling. the default is a max-height of $max-grid-height.
+// can be overwritten to have flexible height with flex-grid-height()
+$max-grid-height = 30em
+.umcGrid,
+.umcGridTile,
+.umcGridTree
+	.dgrid
+		height: auto
+		max-height: $max-grid-height
+		display: flex
+		flex-direction: column
+		.dgrid-scroller
+			position: relative
+			overflow-y: auto
+			overflow-x: hidden
+
+flex-grid-height()
+	.umcGrid,
+	.umcGridTile,
+	.umcGridTree
+		min-height: 0% // firefox bug with flex items that are bigger than the flex container
+		display: flex
+		flex-direction: column
+		margin: 0 !important
+
+		.dgrid
+			max-height: none
+
+fix-grid-height()
+	.umcGrid,
+	.umcGridTile,
+	.umcGridTree
+		.dgrid
+			max-height: $max-grid-height
+
+flex-page()
+	.umcModuleWrapper,
+	.umcModuleContent,
+	.umcModuleContentChildWrapper,
+	.umcPage
+		height: 100%
+
+	.umcPage
+		display: flex
+		&.umcPage--fullWidth
+			flex-direction: column
+
+		.umcPageNav
+			flex: 0 0 auto
+
+		.umcPageNavContent
+			min-height: 0%
+			max-height: 100%
+			display: flex
+			flex-direction: column
+
+		.umcPageMain
+			display: flex
+			flex-direction: column
+
+		.umcPageMainContent
+			min-height: 0%
+			max-height: 100%
+			display: flex
+			flex-direction: column
+
+		.umcPageFooter
+			display: none
+
+unflex-page()
+	.umcModuleWrapper,
+	.umcModuleContent,
+	.umcModuleContentChildWrapper,
+	.umcPage
+		height: auto
+
+	.umcPage
+		flex-direction: column
+
+// specific style. basic page with a search form and a umcGrid (+ optional umcGridTree)
+// does not have content in umcPageFooter (region: 'bottom')
+generic-layout-searchpage-grid()
+	@media (min-height: 750px) and (min-width: $xs-min)
+		flex-grid-height()
+		flex-page()
+
+// searchpages with umcGridTree trees have the tree abover the grid on narrow screens.
+// have grids with fixed height for these cases
+generic-layout-searchpage-grid-and-tree()
+	generic-layout-searchpage-grid()
+	@media (min-height: 750px) and (max-width: $sm-max)
+		fix-grid-height()
+		unflex-page()
+
+generic-layout-udm-detailpage()
+	@media (min-height: 750px) and (min-width: $md-min)
+		flex-page()
+		.umcUDMDetailPage,
+		.umcUDMDetailForm,
+		.umcUDMDetailForm > div,
+		.umcUDMDetailForm > div > div,
+		.umcUDMDetailForm > div > div > div
+			height: 100%
+
+generic-layout-udm-detailpage-like(nLayersFrom__umcModuleContentChildWrapper__till__umcPage)
+	@media (min-height: 750px) and (min-width: $md-min)
+		flex-page()
+		$s = ''
+		for _ in 1..nLayersFrom__umcModuleContentChildWrapper__till__umcPage
+			$s += ' > *'
+			.umcModuleContentChildWrapper {$s}
+				height: 100%
+
+.umcTopContainer--layout-top,
+.umcTopContainer--layout-services,
+.umcTopContainer--layout-ucr,
+.umcTopContainer--layout-appcenter-packages
+	generic-layout-searchpage-grid()
+
+.umcTopContainer--layout-appcenter-selfservice-apppage
+	generic-layout-udm-detailpage-like(5)
+
+
+.umcTopContainer--generic-layout-searchpage-grid
+	generic-layout-searchpage-grid()
+
+.umcTopContainer--generic-layout-searchpage-grid-and-tree
+	generic-layout-searchpage-grid-and-tree()
+
+.umcTopContainer--generic-layout-udm-detailpage
+	generic-layout-udm-detailpage()

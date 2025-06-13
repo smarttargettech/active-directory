@@ -1,0 +1,193 @@
+.mobileMenu
+	overflow: hidden
+	position: fixed
+	top: var(--layout-height-header)
+	bottom: 0
+	right: 0
+	width: 80%
+	max-width: 360px
+	border: 0px solid var(--bgc-content-body)
+	border-top-width: var(--layout-height-header-separator)
+	background-color: var(--bgc-content-header)
+	transition: transform cubic-bezier(0.4, 0.0, 0.6, 1) 0.15s
+	z-index: 31
+	transform: translate3d(110%, 0, 0)
+	display: flex
+	flex-direction: column
+	box-shadow: var(--box-shadow)
+
+	.fullWidthTile
+		position: relative
+		display: flex
+		align-items: center
+		padding: 1em 0
+
+	.menuLoginHeader
+		padding: 8px 0
+		border-bottom: var(--layout-spacing-unit-small) solid var(--bgc-content-body)
+
+		&--loggedout
+			height: 100%
+			display: flex
+			align-items: center
+			justify-content: center
+
+		&--loggedin
+			padding: 8px 0
+			height: 100%
+			display: flex
+			align-items: center
+
+			.menuLoginHeader__logo
+				width: 60px
+				height: 60px
+				background: var(--bgc-content-body)
+				border-radius: 100%
+				margin-left: 20px
+				margin-right: 20px
+				background-image: url(/univention/portal/icons/avatar_white.svg)
+				background-size: 30px
+				background-repeat: no-repeat
+				background-position: center
+				display: none
+
+			.menuLoginHeader__username
+				margin-left: 20px
+				font-weight: bold
+
+			.menuLoginHeader__logoutButton
+				margin-left: 20px
+				font-size: var(--font-size-4)
+
+	.menuSlideHeader
+		cursor: default
+		padding-left: 15px
+		margin-bottom: 8px
+		font-weight: 500
+		text-transform: uppercase
+
+		&.subMenu
+			cursor: pointer
+
+		.featherIcon
+			margin-right: 0.5rem
+	.menuSlideHeader
+	.menuSlideItemsContainer .menuItem
+		cursor: pointer
+		padding-left: 20px
+		transition: background 250ms
+
+		&:hover
+			background-color: var(--bgc-user-menu-item-hover)
+		&:active
+			background-color: var(--bgc-user-menu-item-active)
+		&.menuItemActive
+			background-color: var(--bgc-user-menu-item-active)
+
+		&.menuItemActiveTransition
+			$transitionDur = 0.3s
+			transition: background-color $transitionDur
+
+	.menuSlides,
+	.menuSlide
+		position: absolute
+		z-index: 0
+		background: inherit
+
+	.menuSlides
+		position: relative
+		flex: 1 0 auto
+		overflow: hidden
+
+		.menuSlide
+			top: 0
+			bottom: 0
+			left: 0
+			right: 0
+
+			overflow: auto
+
+			transition: transform cubic-bezier(0.4, 0.0, 0.6, 1) 0.15s
+
+			&.mainSlide
+				.menuSlideHeader
+					display: none
+
+			.menuSlideItemsContainer
+				.menuItem
+					cursor: pointer
+					padding-left: 20px
+
+				.popupMenuItem
+					.childItemsCounter
+						position: absolute
+						right: 0
+						margin-right: 40px
+						display: inline
+
+					.popupMenuItemArrow
+						content: ''
+						position: absolute
+						right: 0
+						margin-right: 12px
+						display: inline
+
+				.separator
+					padding: 0
+					height: var(--layout-spacing-unit-small)
+					cursor: default
+					background-color: var(--bgc-content-body)
+
+		&.popupSlideNormalTransition .menuSlide
+			transform: translate3d(100%, 0, 0)
+
+		&.overlappedSlidePushTransition .menuSlide.overlappedSlide
+			transform: translate3d(-30%, 0, 0)
+			-webkit-transform: translate3d(-30%, 0, 0)
+
+		.hiddenSlide
+			display: none !important
+
+		.topLevelSlide
+			z-index: 1
+
+		.menuSlide.visibleSlide
+			transform: translate3d(0, 0, 0) scale(1, 1)
+			transition: transform cubic-bezier(0.0, 0.0, 0.2, 1) 0.15s
+
+.mobileMenuActive
+	&.hasScrollbar
+		overflow-y: hidden
+	.mobileMenu
+		transform: translate3d(0, 0, 0) !important
+		transition: transform cubic-bezier(0.0, 0.0, 0.2, 1) 0.15s
+
+
+.ucsMenuButton
+	width: 100%
+	border-radius: 0
+	--bgc: transparent
+	--button-size: auto
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--bgc-user-menu-item-hover)
+
+	.dijitButtonNode
+		height: auto
+		padding: 1em 0 1em 20px
+		justify-content: left
+	.dijitButtonContents
+		outline: 0
+		display: flex
+		flex-direction: row-reverse
+		align-items: center
+		width: 100%
+	.dijitButtonText
+		flex: 1 0 auto
+		text-align: left
+	.dijitIcon
+		margin-right: 12px
+		font-size: var(--font-size-button-icon, inherit)
+		height: 1em
+		width: @height

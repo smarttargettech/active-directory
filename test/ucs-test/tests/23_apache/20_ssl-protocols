@@ -1,0 +1,46 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test Apache2 SSL/TLS protocols
+## bugs: [38632]
+## packages:
+##  - openssl
+## exposure: dangerous
+set -e -u
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+
+cleanup () {
+	ucr_restore || :
+	apachectl graceful || :
+	exit ${RETVAL:-0}
+}
+trap cleanup EXIT
+
+CMD=(
+	openssl s_client
+	-CAfile /etc/univention/ssl/ucsCA/CAcert.pem
+	-connect localhost:443
+	-quiet -no_ign_eof
+)
+
+check () {
+	local check protocol result
+	apachectl configtest
+	apachectl graceful
+	for check in "$@"
+	do
+		protocol=${check%=*} result=${check#*=}
+		info "$check"
+		"check${result}" "${CMD[@]}" "-${protocol}" </dev/null ;
+	done
+}
+check1 () { "$@" 2>&1 | grep -q -F -x "DONE" || fail_test 1 "$*"; }
+check2 () { "$@" 2>&1 | grep -q -F "SSL alert number 80" || fail_test 1 "$*"; }
+
+ucr unset apache2/ssl/tlsv11 apache2/ssl/tlsv12 apache2/ssl/tlsv13
+check tls1=2 tls1_1=2 tls1_2=1 tls1_3=1
+
+# vim: set ft=sh :

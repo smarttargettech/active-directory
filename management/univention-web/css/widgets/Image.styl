@@ -1,0 +1,37 @@
+.umcImage
+	width: 100%
+	border-radius: 2px
+	background: var(--bgc-checkerboard)
+	&Empty
+		background: var(--bgc-inputfield-on-container)
+
+	img,
+	.umcImageEmpty__message
+		max-width: 100%
+		max-height: 250px
+		pointer-events: none
+		box-sizing: content-box
+
+	.umcImageEmpty__message
+		display: flex
+		align-items: center
+
+	.umcImage__styleWrapper
+		min-height: 250px
+		display: flex
+		align-items: center
+		justify-content: center
+		position: relative
+
+	&--2to1Aspect
+		img,
+		.umcImageEmpty__message
+			max-height: 100%
+			position: absolute
+			padding-bottom: 50%
+
+		.umcImageEmpty__message
+			min-height: auto
+
+		.umcImage__styleWrapper
+			padding-top: 50%

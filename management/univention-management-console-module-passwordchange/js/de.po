@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-passwordchange\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2014-10-27 14:17+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: umc/js/passwordchange.js:51 umc/js/passwordchange.js:65
+#: js/passwordchange.js:74 js/passwordchange.js:75 js/passwordchange.js:82
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: umc/js/passwordchange.js:61
+#, python-format
+msgid "Change the password of user \"%s\""
+msgstr "Passwort des Benutzers \"%s\" ändern"
+
+#: umc/js/passwordchange.js:80 js/passwordchange.js:72
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: umc/js/passwordchange.js:76 js/passwordchange.js:67
+msgid "Old password"
+msgstr "Altes Passwort"
+
+#: js/passwordchange.js:48
+msgid "The password has been changed successfully."
+msgstr "Das Passwort wurde erfolgreich geändert."
+
+#: js/passwordchange.js:52
+msgid "OK"
+msgstr "OK"
+
+#: js/passwordchange.js:54
+msgid "Error changing password"
+msgstr "Fehler bei Passwortänderung"
+
+#: js/passwordchange.js:63
+#, javascript-format
+msgid "Change the password of user \"%s\":"
+msgstr "Passwort ändern für Benutzer \"%s\":"

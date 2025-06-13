@@ -1,0 +1,79 @@
+#!/bin/sh
+#
+# Univention Admin
+#  postinst file for the admin debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+univention-config-registry set 'nagios/client/checkraid?no' \
+						  'nagios/client/autostart?yes'
+
+#DEBHELPER#
+
+eval "$(univention-config-registry shell)"
+
+# create missing device file for dpt-i2o-raidutils
+if [ ! -e /dev/dpti0 ] ; then
+  mknod /dev/dpti0 c 151 0
+fi
+
+touch /var/lib/univention-nagios/check_univention_replication.cache
+chmod 644 /var/lib/univention-nagios/check_univention_replication.cache
+chown nagios:nagios /var/lib/univention-nagios/check_univention_replication.cache
+
+if [ "$1" = "configure" ]; then
+    cd /usr/share/nagios-plugins/templates-univention
+    for f in *cfg; do
+        ucf $f /etc/nagios-plugins/config/$f
+    done
+fi
+
+# configure firewall
+ucr set security/packetfilter/package/univention-nagios-client/tcp/5666/all="ACCEPT" \
+		security/packetfilter/package/univention-nagios-client/tcp/5666/all/en="Nagios NRPE"
+[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+
+if [ "$1" = "configure" ]; then
+	systemctl try-restart univention-directory-listener
+fi
+
+/etc/init.d/nagios-nrpe-server restart
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/base.sh
+call_joinscript 30univention-nagios-client.inst
+
+# rewrite broken configuration files
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl 13.0.2-6; then
+	univention-directory-listener-ctrl resync nagios-client
+fi
+
+exit 0

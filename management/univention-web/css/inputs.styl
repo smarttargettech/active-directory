@@ -1,0 +1,134 @@
+//// textbox
+
+// colors
+.dijitTextBox,
+.dijitSelect
+	--color: var(--font-color-contrast-high)
+	--border-color: transparent
+	--local-icon-color: var(--color)
+	--bgc: var(--bgc-inputfield-on-container)
+	position: relative
+	height: var(--inputfield-size)
+	width: 100%
+	color: var(--color)
+	font-size: var(--font-size-3)
+	background-color: var(--bgc)
+	border: 1px solid var(--border-color)
+	border-radius: var(--border-radius-interactable)
+	transition: background-color, color, border
+	transition-duration: 250ms
+	outline: none
+
+	&Hover,
+	&Focused
+		--border-color: var(--font-color-contrast-low)
+	&Disabled
+		--color: var(--font-color-contrast-middle)
+		--bgc: transparent
+		border-color: var(--font-color-contrast-low)
+		border-style: dashed
+	&Error
+		--border-color: var(--font-color-error)
+		--local-icon-color: var(--border-color)
+
+.umcTextBox__validationIcon,
+.umcTextBox__downArrowButton,
+.dijitSpinnerButtonContainer
+	color: var(--local-icon-color)
+
+.umcStandbySvgWrapper.udmComboBox__standbyCircle
+	width: 1.6em
+	height: 1.6em
+	.umcStandbySvg
+		width: 1em
+		height: 1em
+.dijitTextBox,
+.dijitSelect
+	> .ucsIconButton
+		--button-size: 2em
+
+.umcStandbySvgWrapper.udmComboBox__standbyCircle
+	margin-right: spacing(1)
+.umcTextBox__downArrowButton
+	margin-right: spacing(1)
+
+	.dijitButtonContents
+		outline: none
+
+.dijitTextBoxDisabled .umcTextBox__downArrowButton,
+.dijitSelectDisabled .umcTextBox__downArrowButton,
+.umcTextBox__validationIcon
+	pointer-events: none
+
+.umcTextBoxOnBody,
+.umcTextBoxOnBody > .dijitDateTextBox,
+.umcLiveSearchDark .umcSearchBox
+	--bgc: var(--bgc-inputfield-on-body)
+
+
+// layout
+.dijitTextBox
+	display: flex
+	flex-direction: row-reverse // put warning and dropdown icon to the right
+	align-items: center // center warning and dropdown icon
+
+	> *
+		flex: 0 0 auto
+
+	.dijitInputContainer
+		flex: 1 1 auto
+		height: 100%
+
+		.dijitInputInner,
+		.umcInlineLabel,
+		.dijitPlaceHolder
+			height: 100%
+			text-overflow: ellipsis
+			padding: 0 spacing(3, true) !important
+
+		.umcInlineLabel,
+		.dijitPlaceHolder
+			display: flex
+			align-items: center
+			position: absolute
+			top: 0
+			left: 0
+			height: 100%
+			width: 100%
+			white-space: nowrap
+			overflow: hidden
+			pointer-events: none // we want the cursor for the inputfield not these placeholder elements
+			color: var(--font-color-contrast-low)
+			font-style: inherit
+
+
+		.umcInlineLabel
+			visibility: hidden
+			&.umcEmptyValue
+				visibility: visible
+//// textbox end
+
+
+//// textarea
+.dijitTextArea
+	padding: spacing(1)
+	height: 110px
+//// textarea end
+
+
+//// validation icon
+.dijitTextBox:not(.dijitTextBoxError) .umcTextBox__validationIcon
+		display: none
+
+.dijitTextBox
+	.umcTextBox__validationIcon
+		margin-right: spacing(2)
+
+.dijitComboBox
+	.umcTextBox__validationIcon
+		margin-right: spacing(1)
+//// validation icon end
+
+.dj_safari .dijitTextBoxDisabled .dijitInputInner,
+.dj_safari .dijitTextArea.dijitTextBoxDisabled
+	-webkit-text-fill-color: var(--font-color-contrast-middle)

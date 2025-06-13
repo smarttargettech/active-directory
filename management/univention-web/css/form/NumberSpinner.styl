@@ -1,0 +1,37 @@
+/* NumberSpinner - namespace "dijitSpinner"
+ *
+ * Styling NumberSpinner mainly includes:
+ *
+ * 1. Arrows
+ * 		Outer containers: .dijitSpinnerButtonContainer|.dijitSpinnerButtonInner  - for border, padding and position
+ * 		Arrows: .dijitArrowButton|.dijitUpArrowButton.|dijitDownArrowButton
+ * 		Inner container: .dijitArrowButtonInner - for border, padding, width|height and background image
+ *
+ * 2. Hover state
+ * 		.dijitUpArrowButtonHover|.dijitDownArrowButtonHover .*  - for background color|image
+ *
+ * 3. Active state
+ * 		.dijitUpArrowButtonActive|.dijitDownArrowButtonActive .*  - for border, padding, margin and background color|image
+ *
+ * 4. Focused state
+ * 		.dijitSpinnerFocused .* - for background color|image
+ *
+ * 5. Disabled state
+ * 		.dijitSpinnerDisabled .* - for background color|image
+ */
+
+.dijitSpinner
+	.dijitSpinnerButtonContainer
+		height: 100%
+		width: 1.5rem
+
+	.dijitUpArrowButton,
+	.dijitDownArrowButton
+		--bgc: transparent
+		background: var(--bgc)
+		transition: var(--button-bgc-transition)
+		&Hover,
+		&Focused
+			--bgc: var(--button-bgc-hover)
+		&Active
+			--bgc: var(--button-bgc-active)

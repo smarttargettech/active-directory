@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Build UCS package containing translations for a new language."""
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2013-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import os
+from argparse import ArgumentParser, Namespace  # noqa: F401
+
+import univention.l10n as tlh
+import univention.l10n.umc as dh_umc
+
+
+NO_SC_WARNING = '''WARNING: The given directory doesn't seem to be the checkout
+of a Univention source repository or the provided checkout is to old. This tool
+works for source trees of UCS 4.1-3, UCS@school 4.1r2 and later releases.
+The translation will be incomplete.'''
+
+
+def parse_args() -> Namespace:
+    epilog = '''Example: %(prog) -s /path/to/ucs-repository/ -c de -l de_DE.UTF-8:UTF-8 -n Deutsch'''
+    parser = ArgumentParser(epilog=epilog, description=__doc__)
+    parser.add_argument('-s', '--source', dest='source_dir', required=True, help='UCS source dir from which translation files are gathered, e.g. an UCS git base dir')
+    parser.add_argument('-c', '--languagecode', dest='target_language', required=True, help='Target language code (e.g. de)')
+    parser.add_argument('-l', '--locale', dest='target_locale', required=True, help='Target locale (e.g. de_DE.UTF-8:UTF-8)')
+    parser.add_argument('-n', '--language-name', dest='target_name', required=True, help='Language name that is shown in the UMC (e.g. Deutsch)')
+    parser.add_argument('-o', '--package-name', dest='src_pkg_name', help='Determines the name of the generated source package. Default: univention-l10n-{language code}')
+
+    options = parser.parse_args()
+
+    if not options.src_pkg_name:
+        options.src_pkg_name = f"univention-l10n-{options.target_language}"
+
+    options.source_dir = os.path.abspath(options.source_dir)
+
+    return options
+
+
+def main() -> None:
+    options = parse_args()
+
+    # find all module files and move them to a language specific directory
+    base_translation_modules = tlh.find_base_translation_modules(options.source_dir)
+    dh_umc.LANGUAGES = (options.target_language, )
+    all_modules: list[tlh.UMCModuleTranslation] = []
+    output_dir = os.path.join(os.getcwd(), options.target_language)
+    for module_attrs in base_translation_modules:
+        module = tlh.UMCModuleTranslation.from_source_package(module_attrs, options.target_language)
+        all_modules.append(module)
+        tlh.update_package_translation_files(module, output_dir)
+
+    special_cases: list[tlh.SpecialCase] = []
+    try:
+        special_cases = tlh.get_special_cases_from_checkout(options.source_dir, options.target_language)
+    except tlh.NoSpecialCaseDefintionsFound:
+        print(NO_SC_WARNING)
+
+    for s_case in special_cases:
+        tlh.translate_special_case(s_case, options.source_dir, output_dir)
+
+    # create new package
+    tlh.create_new_package(options.src_pkg_name, options.target_language, options.target_locale, options.target_name, '.')
+    tlh.write_makefile(all_modules, special_cases, options.src_pkg_name, options.target_language)
+
+
+if __name__ == '__main__':
+    main()

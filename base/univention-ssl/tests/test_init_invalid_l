@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e -u
+# shellcheck source=common.sh
+. "${0%/*}/common.sh"
+
+ucr set ssl/locality="X${R128}"
+FAIL init
+:

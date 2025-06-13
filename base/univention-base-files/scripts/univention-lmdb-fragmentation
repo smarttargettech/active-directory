@@ -1,0 +1,100 @@
+#!/usr/bin/python3
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2023-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import argparse
+import os
+import re
+import subprocess
+import sys
+from shutil import which
+
+
+DB_DIRS = (
+    "/var/lib/univention-ldap/ldap",
+    "/var/lib/univention-ldap/translog",
+    "/var/lib/univention-directory-listener/cache",
+)
+
+REQUIRED_FIELDS = ("Number of pages used", "Free pages")
+# Observation: "Number of pages used" after defragmenting == ("Number of pages used" - "Free pages" - "Branch pages" - "Leaf pages") before defragmenting
+# REQUIRED_FIELDS = ("Max pages", "Number of pages used", "Branch pages", "Leaf pages", "Overflow pages", "Free pages")
+RE_MDB_STAT_PAGES = re.compile(r"^ *(%s): ([0-9]+)$" % "|".join(REQUIRED_FIELDS), re.MULTILINE)
+
+
+def parse_mdb_stat(mdb_stat_output: str) -> tuple[int, int]:
+    mdb_stat_data = {}
+
+    required_fields = list(REQUIRED_FIELDS)
+    for m in RE_MDB_STAT_PAGES.finditer(mdb_stat_output):
+        key = m.group(1)
+        try:  # Note: "Overflow pages" appears twice in the output. We only want the first value (from the section "Freelist Status").
+            required_fields.pop(required_fields.index(key))
+        except ValueError:
+            continue
+        mdb_stat_data[key] = int(m.group(2))
+
+    return (mdb_stat_data["Free pages"], mdb_stat_data["Number of pages used"])
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Check fragmentation of LMDB databases')
+    parser.add_argument('-d', '--db', default=DB_DIRS, nargs='*', dest='db_dirs', help=f'List of database directories to check. Default is: {" ".join(DB_DIRS)}')
+    parser.add_argument('-m', '--min', type=int, default=100000, dest='used_but_free_pages_min', help='Threshold of allocated but free pages up to which the result is always treated as okay. Default is: %(default)d')
+    parser.add_argument('-M', '--max', type=int, default=1000000, dest='used_but_free_pages_max', help='Threshold of allocated but free pages from which on the result is always treated as too much. Default is: %(default)d')
+    parser.add_argument('-p', '--percent', type=int, default=70, dest='fragmentation_threshold', help='Threshold of fragmentation percentage from which on the result is treated as too much (if the absolute number of allocated but free pages is between --min and --max). Default is: %(default)d')
+    args = parser.parse_args()
+
+    rc = 0
+    if not which("mdb_stat"):
+        print("ERROR: mdb_stat is not installed", file=sys.stderr)
+        sys.exit(2)
+
+    for db_dir in args.db_dirs:
+        if not os.path.exists(db_dir):
+            continue
+        output = subprocess.check_output(["mdb_stat", "-ef", db_dir]).decode("utf-8")
+        free_pages, used_pages = parse_mdb_stat(output)
+        if free_pages < args.used_but_free_pages_min:
+            continue
+        if free_pages >= args.used_but_free_pages_max:
+            print(f"WARNING: High number of allocated but free pages on {db_dir} ({free_pages})")
+            rc = 1
+            continue
+        fragmentation_percent = 100 * free_pages / used_pages
+        if fragmentation_percent >= args.fragmentation_threshold:
+            print(f"WARNING: High fragementation on {db_dir} ({fragmentation_percent:.1f}%)")
+            rc = 1
+    sys.exit(rc)
+
+
+if __name__ == "__main__":
+    main()

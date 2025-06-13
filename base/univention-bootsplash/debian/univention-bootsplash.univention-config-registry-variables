@@ -1,0 +1,5 @@
+[bootsplash/theme]
+Description[de]=Der Name des zu verwendenden Designs für die Plymouth-Startanimation. Eine Liste der verfügbaren Designs kann mit dem Befehl 'plymouth-set-default-theme -l' abgerufen werden.
+Description[en]=The name of the theme for the Plymouth bootsplash animation. A list of the available designs can be retrieved with the command 'plymouth-set-default-theme -l'.
+Type=str
+Categories=system-base

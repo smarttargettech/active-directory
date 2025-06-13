@@ -1,0 +1,126 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Mirror local repository and clean obsolete files
+##  1. Create repository with deprecated and current files
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+##  - apt-mirror
+## exposure: dangerous
+
+CHECK_INSTALL=false
+
+. pool.sh || exit 137
+FIXED_18225=false
+FIXED_39582=false
+
+# Change repoprefix, because both repositories are hosted on the same server
+srcprefix="source-repository-$$-${RANDOM}"
+repoprefix="mirrored-repository-$$-${RANDOM}"
+
+alias="Alias /${repoprefix} ${BASEDIR}/mirror/mirror" \
+setup_apache "" # setup server to / for ${repoprefix} and ${srcprefix}
+
+REPODIR="${REPODIR}/${srcprefix}"
+mkdir -p "${REPODIR}"
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 0:dists/ucs500/main/binary-amd64/
+# 1:dists/errata500/main/binary-amd64/
+BDIR+=("${DIR}")
+mkdeb "${pkgname}ua" 2 all "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 1 "${ARCH}" "${DIR_POOL}"
+DEBS+=("${DIR#${REPODIR}}${DEB#${BASEDIR}}")
+mksh "${DIR}" preup postup
+
+mkdeb "${pkgname}y" 2 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+mkdeb "${pkgname}y" 1 "${ARCH}" "${DIR_POOL}"
+DEBS+=("${DIR#${REPODIR}}${DEB#${BASEDIR}}")
+
+minor+=1
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 2:dists/ucs510/main/binary-amd64/
+# 3:dists/errata510/main/binary-amd64/
+CDIR+=("${DIR}")
+mkdeb "${pkgname}l" 4 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+mkdeb "${pkgname}l" 3 "${ARCH}" "${DIR_POOL}"
+DEBS+=("${DIR#${REPODIR}}${DEB#${BASEDIR}}")
+mksh "${DIR}" preup postup
+
+mkdeb "${pkgname}y" 4 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+mkdeb "${pkgname}y" 3 "${ARCH}" "${DIR_POOL}"
+DEBS+=("${DIR#${REPODIR}}${DEB#${BASEDIR}}")
+
+config_mirror "/${srcprefix}" \
+	repository/online=yes \
+	repository/online/server="http://localhost:80/${repoprefix#/}" \
+	online/repository/clean=yes \
+	repository/mirror/version/end="${major}.${minor}-0"
+if ! "${FIXED_18225}"
+then
+	mkdir -p "${BASEDIR}/mirror/mirror"
+	ln -s . "${BASEDIR}/mirror/mirror/${repoprefix}"
+	ln -s . "${BASEDIR}/mirror/mirror/${srcprefix}"
+fi
+
+REPO="pool/main"
+CLEAN="${BASEDIR}/mirror/var/clean.sh"
+
+	set -e
+	checkapt --mirror "http://localhost\\(:80\\)\\?/${srcprefix}/" "${BDIR[@]}"
+	grep -q "^clean http://localhost\\(:80\\)\\?/${srcprefix}/" /etc/apt/mirror.list
+	univention-repository-update net
+	ucr commit /etc/apt/sources.list.d/*.list
+	if "${CHECK_INSTALL}"
+	then
+		apt-get -qq update
+		apt-get -qq install "${pkgname}l" "${pkgname}y"
+		dpkg-query -W "${pkgname}l" | grep -Fqx "${pkgname}l	2"
+		dpkg-query -W "${pkgname}y" | grep -Fqx "${pkgname}y	2"
+	fi
+	mkdir -p "${BASEDIR}/mirror/mirror/${REPO}/o"
+	touch "${BASEDIR}/mirror/mirror/${REPO}/o/obsolete_1.0-all.deb"
+	touch "${BASEDIR}/mirror/mirror/${REPO}/obsolete.txt"
+
+	# apt-mirror doesn't follow symlinks for cleaning
+	rm "${BASEDIR}/mirror/mirror/${srcprefix}"
+	mkdir "${BASEDIR}/mirror/mirror/${srcprefix}"
+	cp -r "${BASEDIR}/mirror/mirror/pool" "${BASEDIR}/mirror/mirror/${srcprefix}/"
+	cp -r "${BASEDIR}/mirror/mirror/dists" "${BASEDIR}/mirror/mirror/${srcprefix}/"
+	cp -r "${BASEDIR}/mirror/mirror/ucs-releases.json" "${BASEDIR}/mirror/mirror/${srcprefix}/"
+	# Since UCS-3.0 the local repo is no longer updater automatically
+	univention-repository-update net
+	/usr/share/univention-updater/univention-updater local
+	checkapt --mirror "http://localhost\\(:80\\)\\?/${srcprefix}/" "${BDIR[@]}" "${CDIR[@]}"
+	grep -q "^clean http://localhost\\(:80\\)\\?/${srcprefix}/" /etc/apt/mirror.list
+
+	# preup and postup scripts must not be cleaned
+	grep -Eq "/(pre|post)up.sh['\"]" "${CLEAN}" && false
+	"$FIXED_39582" &&
+		grep -Eq "/(pre|post)up.sh\\.gpg['\"]" "${CLEAN}" && false
+	# other unreferenced files should be cleaned
+	grep -Fq "${REPO}/o/obsolete_1.0-all.deb" "${CLEAN}" || false
+	grep -Fq "${REPO}/obsolete.txt" "${CLEAN}" || false
+	# unreferenced packages must not be mirrored
+	for deb in "${DEBS[@]}"
+	do
+		ls -1 "${BASEDIR}/mirror/mirror/${deb}" 2>&3 && false
+	done
+
+	if "${CHECK_INSTALL}"
+	then
+		dpkg-query -W "${pkgname}l" | grep -Fqx "${pkgname}l	4"
+		dpkg-query -W "${pkgname}y" | grep -Fqx "${pkgname}y	4"
+		test "${major}.${minor}" = "$(ucr get version/version)"
+		test 0 = "$(ucr get version/patchlevel)"
+		checkdeb "${pkgname}l" 2 4
+		checkdeb "${pkgname}y" 2 4
+	fi
+# vim:set ft=sh:

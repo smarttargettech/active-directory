@@ -1,0 +1,195 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check quota support
+## exposure: dangerous
+## packages:
+##  - univention-samba | univention-samba4
+##  - univention-quota
+## roles:
+##  - domaincontroller_master
+##  - domaincontroller_backup
+##  - domaincontroller_slave
+##  - memberserver
+## tags:
+##  - skip_admember
+## exposure: dangerous
+
+eval "$(ucr shell)"
+
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+account="$(echo ${tests_domainadmin_account} | sed -e 's|uid=||;s|,.*||')"
+
+SOFTLIMIT=10485760
+HARDLIMIT=15728640
+
+for FS in xfs ext2 ext3 ext4; do
+
+	echo "* $FS quota tests *"
+
+	share="$(random_chars)"
+	user="$(random_chars)"
+	mountpoint="/mnt/${share}"
+	image="${mountpoint}.img"
+
+	if [ -e "$image" ]; then
+		echo "$image already exists"
+		exit 110
+	fi
+
+	if [ -e "$mountpoint" ]; then
+		echo "$mountpoint already exists"
+		exit 110
+	fi
+
+	count="1"
+	test ${FS} = "xfs" && count="301"
+
+	if ! dd if=/dev/zero of="${image}"  bs="1M" count="$count" seek=100; then
+		fail_test
+		exit 110
+	fi
+	test ${FS} != "xfs" && fsparam="-F"
+	if ! eval mkfs.${FS} $fsparam "${image}"; then
+		fail_test
+		exit 110
+	fi
+
+	mkdir -p "${mountpoint}"
+	if ! mount -o loop,usrquota "${image}" "${mountpoint}"; then
+		fail_test
+		exit 110
+	fi
+
+	udm-test policies/share_userquota create \
+	 --position "cn=userquota,cn=shares,cn=policies,$ldap_base" \
+	 --set name="$share" \
+	 --set softLimitSpace=$SOFTLIMIT \
+	 --set hardLimitSpace=$HARDLIMIT || fail_test 110
+
+	udm-test shares/share create \
+	 --position "cn=shares,$ldap_base" \
+	 --set name="$share" \
+	 --set host="$hostname.$domainname" \
+	 --set path="$mountpoint" \
+	 --set directorymode=0775 \
+	 --set group=5001 \
+	 --policy-reference "cn=$share,cn=userquota,cn=shares,cn=policies,$ldap_base" || fail_test 110
+
+	udm-test users/user create \
+	 --position "cn=users,$ldap_base" \
+	 --set username="$user" \
+	 --set lastname="$user" \
+	 --set firstname="$user" \
+	 --set password=univention || fail_test 110
+
+	wait_for_replication_and_postrun
+
+	# wait for the quota cache
+	max_attempts=60
+	for((i=1;i<=max_attempts;i++)); do
+		share_quota_cache="/var/cache/univention-quota/cn=$share,cn=shares,$ldap_base"
+		if [ -e "$share_quota_cache" ]; then
+			break
+		fi
+		if [ "$i" -lt "$max_attempts" ]; then
+			echo "Waiting for share cache ..."
+			sleep 1
+		else
+			echo "Error: share cache not created: $share_quota_cache"
+			echo "/var/cache/univention-quota/:"
+			ls /var/cache/univention-quota/
+			echo "/var/cache/univention-quota/todo/:"
+			ls /var/cache/univention-quota/todo/
+			fail_fast 110
+		fi
+	done
+
+
+	# wait until the share is ready
+	max_attempts=60
+	for((i=1;i<=max_attempts;i++)); do
+		if smbclient -U "${account}%${tests_domainadmin_pwd}" "//$hostname/$share" -c quit; then
+			break
+		fi
+		if [ "$i" -lt "$max_attempts" ]; then
+			echo "Waiting smbd to expose UMC path //$hostname/$share"
+			sleep 1
+		else
+			echo "Error: smbd did not expose share"
+			fail_fast 110
+		fi
+	done
+
+	if [ "${FS}" != "xfs" ]; then
+		/usr/share/quota/quotaoff.sh || fail_test 110
+		quotacheck -uc "$mountpoint" || fail_test 110
+		/usr/share/quota/quotaon.sh || fail_test 110
+	fi
+
+	su - "$user" -c /bin/true || fail_test 110
+
+	# TODO: check metadata size
+	metadata=0
+	test ${FS} = "ext2" -o ${FS} = "ext3" && metadata=5120
+
+	max_files=15
+	for((i=0;i<max_files;i++)); do
+		dd if=/dev/zero of="${mountpoint}/file$i"  bs=1M count=1 seek=0
+		chown $user "$mountpoint/file$i"
+		sync
+
+		echo "Running: smbcquotas -u $user -U ${account}%${tests_domainadmin_pwd} //$hostname/$share"
+		result=$(smbcquotas -u "$user" -U "${account}%${tests_domainadmin_pwd}" "//$hostname/$share")
+		echo "result: $result"
+		res_smbcquota=$(echo "$result" | awk '{print $3 $4 $5}')
+		echo "smbcquotas result: $res_smbcquota"
+		if [ -z "$res_smbcquota" ]; then
+			echo "Warning: The login failed for some reason. Wait 10 seconds and try once again."
+			sleep 10
+			result=$(smbcquotas -u "$user" -U "${account}%${tests_domainadmin_pwd}" "//$hostname/$share")
+			res_smbcquota=$(echo "$result" | awk '{print $3 $4 $5}')
+		fi
+
+		res_repquota=$(repquota -Cv $mountpoint | grep "$user" | awk '{print $3*1024"/"$4*1024"/"$5*1024}')
+		echo "Result smbcquotas: $res_smbcquota"
+		echo "Result repquota  : $res_repquota"
+		if [ "$res_smbcquota" != "$res_repquota" ]; then
+			fail_test 110
+			echo "Error: Maybe the output of this command helps debugging: univention-user-quota \"$user\""
+			printf '=%.0s' {1..80}
+			univention-user-quota "$user"
+			printf '=%.0s' {1..80}
+			break
+		fi
+
+		used=$(echo "$res_smbcquota" | awk -F '/' '{print $1}')
+		used=$((used-(metadata*(i+1))))
+		softlimit=$(echo "$res_smbcquota" | awk -F '/' '{print $2}')
+		hardlimit=$(echo "$res_smbcquota" | awk -F '/' '{print $3}')
+
+		echo "Quota info: used: $used, expected: $(((i+1)*1024*1024))"
+		test $used != $(((i+1)*1024*1024)) && fail_test 110
+
+		echo "Quota info: softlimit: $softlimit, expected: $SOFTLIMIT"
+		test "$softlimit" != "$SOFTLIMIT" && fail_test 110
+
+		echo "Quota info: hadlimit: $hardlimit, expected: $HARDLIMIT"
+		test "$hardlimit" != "$HARDLIMIT" && fail_test 110
+	done
+
+
+	# do cleanup
+	udm-test users/user remove --dn "uid=$user,cn=users,$ldap_base"
+	udm-test shares/share remove --dn "cn=$share,cn=shares,$ldap_base"
+	udm-test policies/share_userquota remove --dn "cn=$share,cn=userquota,cn=shares,cn=policies,$ldap_base"
+	umount "$mountpoint"
+	rm "$image"
+done
+
+wait_for_replication_and_postrun
+
+exit $RETVAL

@@ -1,0 +1,50 @@
+[portal/admin-groups]
+Description[de]=Gruppen, die als Portal-Admins gelten sollen. Schaltet für diese Benutzer den Edit-Modus frei (falls verfügbar). Mehrere Gruppen werden mit Komma getrennt. Ein leerer Wert schaltet die Funktion ab. Default: "Domain Admins"
+Description[en]=Groups that are regarded as portal admins. Enables the edit mode for these users (if available). Separate multiple groups by comma. An empty value disables the edit mode. Default: "Domain Admins"
+Type=list
+Separator=,
+Elementtype=str
+Categories=portal
+
+[portal/port]
+Description[de]=Der Port, auf der der Univention Portal Server läuft.
+Description[en]=The port used by the Univention Portal server.
+Default=8095
+Type=portnumber
+Categories=portal
+
+[portal/paths]
+Description[de]=Pfade, unter denen das Portal erreichbar sein soll. Getrennt durch Kommata. Erfordert möglicherweise weitere Konfigurationen für Apache.
+Description[en]=Paths, which shall be served by the portal. Comma separated. May require additional configuration of Apache.
+Default=/univention/portal/, /univention/umc/
+Type=list
+Separator=,
+Elementtype=str
+Categories=portal
+
+[portal/auth-mode]
+Description[de]=Bestimmt den Mechanismus, mit dem Benutzer im Portal durch Klick auf den Login-Button in der Portal-Sidebar authentifiziert werden sollen. Mögliche Werte sind "saml", "oidc" und "ucs". Für "saml" und "oidc" müssen die Clients den Namen des SSO-Systems auflösen können und ein vertrauenswürdiges Zertifikat bekommen.
+Description[en]=Specifies the mechanism by which users should be authenticated in the Portal when clicking the login button in the Portal's sidebar. Possible values are "saml", "oidc" and "ucs". For "saml" and "oidc", the clients have to resolve the name of the SSO server and get a trustworthy certificate.
+Default=ucs
+Type=str
+Categories=portal
+
+[portal/default-dn]
+Description[de]=LDAP-DN des Portal-Objektes, das die Daten für das Portal beinhaltet. Führen Sie nach der Änderung der Variable den Befehl `univention-portal update` aus.
+Description[en]=LDAP DN of the portal object holding the data for the portal. After changing the variable, run the command `univention-portal update`.
+Default=cn=domain,cn=portal,cn=portals,cn=univention,@%@ldap/base@%@
+Type=str
+Categories=portal
+
+[portal/show-outdated-browser-warning]
+Description[de]=Wenn aktiviert, wird eine Warnung angezeigt, falls die verwendete Browserversion zu alt ist.
+Description[en]=If activated, a warning is displayed if the browser version used is too old.
+Type=str
+Categories=portal
+
+[portal/reload-tabs-on-logout]
+Description[de]=Wenn aktiviert, wird eine persistente Verbindung zwischen der Univention Management Console und dem Browser aufgebaut, die jeden Portal-Browser-Tab über einen Logout benachrichtigt und diesen dann neu lädt.
+Description[en]=If activated, a persistent connection between the users browser and the Univention Management Console will be set-up, which will notify all Univention Portal browser tabs of a logout and causes them to reload.
+Type=bool
+Default=false
+Categories=portal

@@ -1,0 +1,114 @@
+univention-nagios-samba (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:50 +0200
+
+univention-nagios-samba (7.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-nagios-samba (7.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:36 +0100
+
+univention-nagios-samba (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:15 +0100
+
+univention-nagios-samba (6.0.3) unstable; urgency=medium
+
+  * Bug #56367: remove UDM integration for Nagios server
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:02 +0100
+
+univention-nagios-samba (6.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:33 +0100
+
+univention-nagios-samba (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:28 +0100
+
+univention-nagios-samba (5.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:44 +0100
+
+univention-nagios-samba (5.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:37 +0100
+
+univention-nagios-samba (5.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:42 +0100
+
+univention-nagios-samba (5.0.1-1) unstable; urgency=medium
+
+  * Bug #54748: add dependencies to monitoring packages
+
+ -- Florian Best <best@univention.de>  Thu, 23 Jun 2022 18:46:36 +0200
+
+univention-nagios-samba (5.0.0-2) unstable; urgency=medium
+
+  * Bug #49898: Migrate to Python3
+
+ -- Arvid <requate@univention.de>  Thu, 29 Oct 2020 13:38:47 +0100
+
+univention-nagios-samba (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:25 +0200
+
+univention-nagios-samba (4.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Thu, 20 Dec 2018 17:19:53 +0100
+
+univention-nagios-samba (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:41 +0100
+
+univention-nagios-samba (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:40 +0100
+
+univention-nagios-samba (2.0.0-2) unstable; urgency=low
+
+  * Bug #29463: renamed UNIVENTION_SAMBA_DRS_FAILURES to
+    UNIVENTION_SAMBA_REPLICATION
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Sep 2016 08:54:42 +0200
+
+univention-nagios-samba (2.0.0-1) unstable; urgency=low
+
+  * Bug #29463: 4.2 version bump
+
+ -- Felix Botner <botner@univention.de>  Thu, 25 Aug 2016 17:16:10 +0200
+
+univention-nagios-samba (1.0.0-1) unstable; urgency=low
+
+  * Bug #29463: initial release
+
+ -- Felix Botner <botner@univention.de>  Thu, 26 Nov 2015 10:14:19 +0100

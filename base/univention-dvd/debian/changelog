@@ -1,0 +1,992 @@
+univention-dvd (7.2.0) unstable; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+  * Bug #58351: UCS-5.2-2 ISO
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:56 +0200
+
+univention-dvd (7.0.5-1) unstable; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+  * Bug #58022: UCS-5.2-1 ISO
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:37 +0100
+
+univention-dvd (7.0.4) unstable; urgency=medium
+
+  * Bug #56858: replace transitional packages
+
+ -- Christian Castens <castens@univention.de>  Thu, 30 May 2024 10:48:32 +0200
+
+univention-dvd (7.0.3) unstable; urgency=medium
+
+  * Bug #56765: Remove univention-saml
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 08 Mar 2024 00:18:41 +0100
+
+univention-dvd (7.0.2) unstable; urgency=medium
+
+  * Bug #55714: UCS 5.2-0 DVD
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:21 +0100
+
+univention-dvd (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:26 +0100
+
+univention-dvd (6.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:32 +0100
+
+univention-dvd (6.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:21 +0100
+
+univention-dvd (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:38 +0100
+
+univention-dvd (5.0.4-1) unstable; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+  * Bug #57125: UCS-5.0-7 ISO
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 16:10:45 +0100
+
+univention-dvd (5.0.3-3) unstable; urgency=low
+
+  * Bug #57078: Re-add univention-samba to ISO image
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 01 Mar 2024 15:16:49 +0100
+
+univention-dvd (5.0.3-2) unstable; urgency=low
+
+  * Bug #57078: Re-add univention-ad-connector to ISO image
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 22 Feb 2024 15:48:02 +0100
+
+univention-dvd (5.0.3-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+  * Bug #54263: Install recommended packages by default
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 12 Dec 2023 12:21:18 +0100
+
+univention-dvd (5.0.2-2) unstable; urgency=low
+
+  * Bug #56839: UCS 5.0-6 ISO
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 29 Nov 2023 09:45:00 +0100
+
+univention-dvd (5.0.2-1) unstable; urgency=low
+
+  * Bug #56444: UCS-5.0-5 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 16 Aug 2023 12:52:45 +0200
+
+univention-dvd (5.0.1-8) unstable; urgency=low
+
+  * Bug #55701: UCS-5.0-4 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 26 Apr 2023 17:46:00 +0200
+
+univention-dvd (5.0.1-7) unstable; urgency=low
+
+  * Bug #55701: UCS-5.0-4 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 23 Mar 2023 12:36:12 +0100
+
+univention-dvd (5.0.1-6) unstable; urgency=medium
+
+  * Bug #55646: UCS-5.0-3 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 01 Feb 2023 19:38:53 +0100
+
+univention-dvd (5.0.1-5) unstable; urgency=medium
+
+  * Bug #54867: UCS-5.0-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 16 Jun 2022 08:25:10 +0200
+
+univention-dvd (5.0.1-4) unstable; urgency=medium
+
+  * Bug #54219: UCS-5.0-1 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 08 Dec 2021 18:43:41 +0100
+
+univention-dvd (5.0.1-3) unstable; urgency=low
+
+  * Bug #52124: Update DVD task list
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 03 Jun 2021 14:05:22 +0200
+
+univention-dvd (5.0.1-2) unstable; urgency=low
+
+  * Bug #52122: Re-add Nagios checks to DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 26 Mar 2021 15:52:55 +0100
+
+univention-dvd (5.0.1-1) unstable; urgency=low
+
+  * Bug #51316: Remove `.univention_install` file
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Jan 2021 16:53:59 +0100
+
+univention-dvd (5.0.1-0) unstable; urgency=low
+
+  * Bug #39259: Recommends: cifs-utils
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 16 Sep 2020 18:27:57 +0200
+
+univention-dvd (5.0.0-1) unstable; urgency=low
+
+  * Bug #51234: UCS-5.0-0 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 16 Sep 2020 18:27:56 +0200
+
+univention-dvd (4.0.0-7) unstable; urgency=medium
+
+  * Bug #52027: UCS-4.4-6 DVD
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 16 Sep 2020 18:27:55 +0200
+
+univention-dvd (4.0.0-6) unstable; urgency=medium
+
+  * Bug #51555: UCS-4.4-5 DVD
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 08 Jul 2020 16:48:00 +0200
+
+univention-dvd (4.0.0-5) unstable; urgency=medium
+
+  * Bug #50960: UCS-4.4-4 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 Mar 2020 17:23:29 +0100
+
+univention-dvd (4.0.0-4) unstable; urgency=medium
+
+  * Bug #50560: UCS-4.4-3 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 28 Nov 2019 00:20:39 +0100
+
+univention-dvd (4.0.0-3) unstable; urgency=medium
+
+  * Bug #50212: UCS-4.4-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 Sep 2019 17:39:01 +0200
+
+univention-dvd (4.0.0-2) unstable; urgency=medium
+
+  * Bug #49810: UCS 4.4-1 DVD
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 11 Jul 2019 12:39:31 +0200
+
+univention-dvd (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:29 +0100
+
+univention-dvd (3.0.0-13) unstable; urgency=medium
+
+  * Bug #48279: UCS-4.3-3 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 06 Dec 2018 14:31:29 +0100
+
+univention-dvd (3.0.0-12) unstable; urgency=low
+
+  * Bug #48015: Add netcat-openbsd
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 18 Oct 2018 10:49:15 +0200
+
+univention-dvd (3.0.0-11) unstable; urgency=medium
+
+  * Bug #47660: UCS-4.3-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 29 Aug 2018 16:46:33 +0200
+
+univention-dvd (3.0.0-10) unstable; urgency=low
+
+  * Bug #47127: UCS-4.3-1 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 05 Jun 2018 17:22:40 +0200
+
+univention-dvd (3.0.0-9) unstable; urgency=low
+
+  * Bug #45868: Fix Debian-Stretch symbolic links
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 21 Feb 2018 12:35:17 +0100
+
+univention-dvd (3.0.0-8) unstable; urgency=medium
+
+  * Bug #46224: add man-db to dvd
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 19 Feb 2018 18:09:58 +0100
+
+univention-dvd (3.0.0-7) unstable; urgency=low
+
+  * Bug #45868: Fix i386 DVD build
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 16 Jan 2018 20:09:26 +0100
+
+univention-dvd (3.0.0-6) unstable; urgency=low
+
+  * Bug #45868: Fix isolinux.cfg parsing
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 15 Dec 2017 14:38:37 +0100
+
+univention-dvd (3.0.0-5) unstable; urgency=low
+
+  * Bug #45868: Merge changes into debian-cd
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 14 Dec 2017 14:34:32 +0100
+
+univention-dvd (3.0.0-4) unstable; urgency=low
+
+  * Bug #45868: Base UCS-4.3 on Debian-Stretch
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 14 Dec 2017 10:10:43 +0100
+
+univention-dvd (3.0.0-3) unstable; urgency=medium
+
+  * Bug #45868: UCS-4.3-0 DVD (missing files)
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 13 Dec 2017 18:58:58 +0100
+
+univention-dvd (3.0.0-2) unstable; urgency=medium
+
+  * Bug #45868: UCS-4.3-0 DVD
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 13 Dec 2017 18:07:04 +0100
+
+univention-dvd (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:47 +0100
+
+univention-dvd (2.0.0-14) unstable; urgency=medium
+
+  * Bug #45743: UCS-4.2-3 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 20 Nov 2017 13:24:12 +0100
+
+univention-dvd (2.0.0-13) unstable; urgency=medium
+
+  * Bug #45272: UCS-4.2-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 01 Sep 2017 16:07:43 +0200
+
+univention-dvd (2.0.0-12) unstable; urgency=low
+
+  * Bug #44796: UCS-4.2-1 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 16 Jun 2017 17:14:54 +0200
+
+univention-dvd (2.0.0-11) unstable; urgency=medium
+
+  * Bug #43899: Add new package univention-self-service-master to DVD
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 30 Mar 2017 09:27:46 +0200
+
+univention-dvd (2.0.0-10) unstable; urgency=medium
+
+  * Bug #44030: Add missing packages recommended by "univention-role-common"
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 22 Mar 2017 16:37:56 +0100
+
+univention-dvd (2.0.0-9) unstable; urgency=low
+
+  * Bug #38877: Add "univention-kvm-compat"
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 Mar 2017 10:14:07 +0100
+
+univention-dvd (2.0.0-8) unstable; urgency=medium
+
+  * Bug #43595: added univention-server-overview to task list
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 01 Mar 2017 04:42:20 +0100
+
+univention-dvd (2.0.0-7) unstable; urgency=medium
+
+  * Bug #43495: added univention-portal to task list
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Feb 2017 15:20:00 +0100
+
+univention-dvd (2.0.0-6) unstable; urgency=low
+
+  * Bug #42322: switch to firefox-esr
+
+ -- Felix Botner <botner@univention.de>  Thu, 23 Feb 2017 15:14:40 +0100
+
+univention-dvd (2.0.0-5) unstable; urgency=medium
+
+  * Bug #43588: Add univention-printquota
+  * Bug #42853: Add univention-l10n-fr
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 22 Feb 2017 16:02:56 +0100
+
+univention-dvd (2.0.0-4) unstable; urgency=low
+
+  * Bug #41305: Put USS onto DVD, not into InitRamFS
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 16 Nov 2016 15:13:11 +0100
+
+univention-dvd (2.0.0-3) unstable; urgency=low
+
+  * Bug #29463: added univention-nagios-samba
+
+ -- Felix Botner <botner@univention.de>  Fri, 26 Aug 2016 09:29:51 +0200
+
+univention-dvd (2.0.0-2) unstable; urgency=low
+
+  * Bug #41961: Use UCS-4 GPG key for package verification
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 15 Aug 2016 10:43:57 +0200
+
+univention-dvd (2.0.0-1) unstable; urgency=low
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #41961: UCS-4.2-0 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 12:49:42 +0200
+
+univention-dvd (1.0.1-3) unstable; urgency=low
+
+  * Bug #41892: UCS-4.1-3 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Aug 2016 09:50:52 +0200
+
+univention-dvd (1.0.1-2) unstable; urgency=medium
+
+  * Bug #41154: UCS-4.1-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 03 May 2016 14:20:30 +0200
+
+univention-dvd (1.0.1-1) unstable; urgency=low
+
+  * Bug #40623: UCS-4.1-1 DVD
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 12 Feb 2016 13:29:23 +0100
+
+univention-dvd (1.0.0-20) unstable; urgency=low
+
+  * Bug #37995: Add univention-sudo
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 08 Dec 2015 10:43:11 +0100
+
+univention-dvd (1.0.0-19) unstable; urgency=low
+
+  * Bug #37006 : add univention-nagios-s4-connector
+
+ -- Felix Botner <botner@univention.de>  Thu, 26 Nov 2015 12:10:29 +0100
+
+univention-dvd (1.0.0-18) unstable; urgency=low
+
+  * revert 1.0.0-17, because wngerman is already a dependency of
+    univention-pam, and will be pulled automatically onto the DVD (Bug #24840)
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 26 Nov 2015 09:24:19 +0100
+
+univention-dvd (1.0.0-17) unstable; urgency=low
+
+  * Bug #24840: add german wordlist for cracklib
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 24 Nov 2015 10:51:42 +0100
+
+univention-dvd (1.0.0-16) unstable; urgency=medium
+
+  * Bug #38281: Remove iceweasel from tasks/ucs410/task-ucs410
+
+ -- Arvid Requate <requate@univention.de>  Wed, 04 Nov 2015 16:19:38 +0100
+
+univention-dvd (1.0.0-15) unstable; urgency=low
+
+  * Bug #37890: add univention-self-service
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 04 Nov 2015 14:47:57 +0100
+
+univention-dvd (1.0.0-14) unstable; urgency=low
+
+  * Bug #39697: Add screen
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 02 Nov 2015 09:14:04 +0100
+
+univention-dvd (1.0.0-13) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages for docker.io
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Oct 2015 13:50:50 +0200
+
+univention-dvd (1.0.0-12) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 12 Oct 2015 11:38:44 +0200
+
+univention-dvd (1.0.0-11) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 12 Oct 2015 10:56:04 +0200
+
+univention-dvd (1.0.0-10) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 12 Oct 2015 10:14:17 +0200
+
+univention-dvd (1.0.0-9) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 09 Oct 2015 17:59:14 +0200
+
+univention-dvd (1.0.0-8) unstable; urgency=low
+
+  * Bug #38913: Add recommended packages
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 09 Oct 2015 16:22:10 +0200
+
+univention-dvd (1.0.0-7) unstable; urgency=low
+
+  * Bug #38913: Shrink DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 09 Oct 2015 15:38:26 +0200
+
+univention-dvd (1.0.0-6) unstable; urgency=low
+
+  * added ntpdate and rdate (Bug #39410)
+
+ -- Felix Botner <botner@univention.de>  Thu, 08 Oct 2015 17:12:14 +0200
+
+univention-dvd (1.0.0-5) unstable; urgency=medium
+
+  * Add cgroupfs-mount to the DVD (Bug #39258)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 23 Sep 2015 15:03:11 +0200
+
+univention-dvd (1.0.0-4) unstable; urgency=medium
+
+  * Added univention-saml and univention-appcenter-docker to the DVD
+    (Bug #39313)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 11 Sep 2015 13:36:59 +0200
+
+univention-dvd (1.0.0-3) unstable; urgency=medium
+
+  * Added univention-container-role-common to the DVD (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 10 Sep 2015 10:43:09 +0200
+
+univention-dvd (1.0.0-2) unstable; urgency=low
+
+  * Bug #38898: UCS-4.1-0 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 12 Aug 2015 14:25:19 +0200
+
+univention-dvd (0.2.29-14) unstable; urgency=low
+
+  * added nodejs and npm to tasklist (Bug #37972)
+
+ -- Felix Botner <botner@univention.de>  Thu, 06 Aug 2015 11:56:02 +0200
+
+univention-dvd (0.2.29-13) unstable; urgency=medium
+
+  * More UCS 4.0-3 updates (Bug #38960)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Aug 2015 09:03:34 +0200
+
+univention-dvd (0.2.29-12) unstable; urgency=medium
+
+  * Re-added cyrus packages to DVD otherwise it will be moved to
+    unmaintained (Bug #38904)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Aug 2015 08:49:16 +0200
+
+univention-dvd (0.2.29-10) unstable; urgency=medium
+
+  * More UCS 4.0-3 updates (Bug #38960)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Aug 2015 08:31:55 +0200
+
+univention-dvd (0.2.29-9) unstable; urgency=medium
+
+  * Update ucs403.conf to UCS 4.0-3 (Bug #38960)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Aug 2015 08:01:43 +0200
+
+univention-dvd (0.2.29-8) unstable; urgency=medium
+
+  * Added ucs403.conf (Bug #38960)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Aug 2015 07:57:42 +0200
+
+univention-dvd (0.2.29-7) unstable; urgency=low
+
+  * Added dovecot to maintained (Bug #38888)
+  * Removed dovecot from DVD (Bug #38888)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 10 Jul 2015 13:51:44 +0200
+
+univention-dvd (0.2.29-6) unstable; urgency=medium
+
+  * Add univention-system-activation and univention-welcome-screen to
+    maintained (Bug #38547 and Bug #37537)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 03 Jul 2015 07:01:08 +0200
+
+univention-dvd (0.2.29-5) unstable; urgency=medium
+
+  * Added docker.io to maintained (Bug #37642)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 08 May 2015 06:08:16 +0200
+
+univention-dvd (0.2.29-4) unstable; urgency=low
+
+  * Bug #38422: UCS-4.0-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 May 2015 12:40:41 +0200
+
+univention-dvd (0.2.29-3) unstable; urgency=low
+
+  * Bug #38422: UCS-4.0-2 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 May 2015 12:27:37 +0200
+
+univention-dvd (0.2.29-2) unstable; urgency=low
+
+  * Bug #38152: Fix symblic links in firmware/ directory
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 30 Mar 2015 11:08:14 +0200
+
+univention-dvd (0.2.29-1) unstable; urgency=low
+
+  * added several packages to maintained
+    Bug #36583, Bug #36609, Bug #36735, Bug #37669
+
+ -- Felix Botner <botner@univention.de>  Wed, 04 Feb 2015 15:23:40 +0100
+
+univention-dvd (0.2.28-2) unstable; urgency=low
+
+  * Bug #37613: Fix net installer hook script
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 26 Jan 2015 16:14:52 +0100
+
+univention-dvd (0.2.28-1) unstable; urgency=low
+
+  * Bug #37613: UCS 4.0-1 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 26 Jan 2015 13:58:38 +0100
+
+univention-dvd (0.2.27-9) unstable; urgency=low
+
+  * Bug #37164: Re-add netcat and bozohttpd for errata4.0-0 DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 05 Dec 2014 13:26:03 +0100
+
+univention-dvd (0.2.27-8) unstable; urgency=low
+
+  * Bug #36467: Added several packages to maintained
+
+ -- Felix Botner <botner@univention.de>  Thu, 04 Dec 2014 16:43:55 +0100
+
+univention-dvd (0.2.27-7) unstable; urgency=low
+
+  * Bug #37008: Fix relative paths
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Dec 2014 15:59:09 +0100
+
+univention-dvd (0.2.27-6) unstable; urgency=low
+
+  * Bug #37008: Fix relative paths
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Dec 2014 14:45:20 +0100
+
+univention-dvd (0.2.27-5) unstable; urgency=low
+
+  * Bug #37164: Disable Debian-task rebuilding
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Dec 2014 13:58:19 +0100
+
+univention-dvd (0.2.27-4) unstable; urgency=low
+
+  * Bug #37164: Disable Debian-task rebuilding
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 04 Dec 2014 13:40:14 +0100
+
+univention-dvd (0.2.27-3) unstable; urgency=low
+
+  * Bug #37008: Fix relative paths
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 27 Nov 2014 16:25:08 +0100
+
+univention-dvd (0.2.27-2) unstable; urgency=low
+
+  * Bug #37008: Use copy as fallback for hard-linking
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 26 Nov 2014 14:21:42 +0100
+
+univention-dvd (0.2.27-1) unstable; urgency=low
+
+  * Bug #36793: added squidguard to maintained
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 18 Nov 2014 10:53:28 +0100
+
+univention-dvd (0.2.26-1) unstable; urgency=low
+
+  * Bug #36709: Add python-qt4 to maintained
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 14 Nov 2014 15:24:26 +0100
+
+univention-dvd (0.2.25-1) unstable; urgency=medium
+
+  * Added libreoffice to maintained (Bug #36686)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Nov 2014 11:39:30 +0100
+
+univention-dvd (0.2.24-1) unstable; urgency=low
+
+  * Bug #36619: Add deborphan to maintained
+
+ -- Felix Botner <botner@univention.de>  Thu, 13 Nov 2014 11:36:40 +0100
+
+univention-dvd (0.2.23-1) unstable; urgency=low
+
+  * Bug #36092: Add univention-cloud-init to maintained
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 07 Nov 2014 12:29:16 +0100
+
+univention-dvd (0.2.22-1) unstable; urgency=low
+
+  * Bug #36467 #36466: Added several packages to maintained
+
+ -- Felix Botner <botner@univention.de>  Fri, 07 Nov 2014 12:05:53 +0100
+
+univention-dvd (0.2.21-1) unstable; urgency=low
+
+  * Bug #35974: Strip down menu titles
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 06 Nov 2014 11:22:51 +0100
+
+univention-dvd (0.2.20-1) unstable; urgency=medium
+
+  * Bug #36455: Add gcc-4.4 to maintained
+
+ -- Arvid Requate <requate@univention.de>  Wed, 05 Nov 2014 17:23:45 +0100
+
+univention-dvd (0.2.19-2) unstable; urgency=low
+
+  * Added libxml-perl, libxml-regexp-perl and libxml-dom-perl
+    (zarafa) to maintained (Bug #35750)
+
+ -- Felix Botner <botner@univention.de>  Wed, 05 Nov 2014 15:26:30 +0100
+
+univention-dvd (0.2.19-1) unstable; urgency=low
+
+  * Added gnome-session gnome-panel gnome-control-center
+    to maintained (Bug #36050)
+
+ -- Felix Botner <botner@univention.de>  Wed, 05 Nov 2014 10:23:35 +0100
+
+univention-dvd (0.2.18-1) unstable; urgency=medium
+
+  * Removed gnome-session and gnome-panel from maintained list
+    (Bug #36050)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 04 Nov 2014 20:46:23 +0100
+
+univention-dvd (0.2.17-1) unstable; urgency=low
+
+  * Bug #35890: Added php5-mcrypt to maintained
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 04 Nov 2014 16:56:29 +0100
+
+univention-dvd (0.2.16-1) unstable; urgency=low
+
+  * Added packages for pulse App (Bug #36426)
+
+ -- Felix Botner <botner@univention.de>  Tue, 04 Nov 2014 16:27:40 +0100
+
+univention-dvd (0.2.15-1) unstable; urgency=medium
+
+  * Added gnome-session and gnome-panel to maintained (Bug #36050)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 04 Nov 2014 15:13:55 +0100
+
+univention-dvd (0.2.14-1) unstable; urgency=low
+
+  * Bug #35974: Strip down menu titles
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 04 Nov 2014 09:10:18 +0100
+
+univention-dvd (0.2.13-2) unstable; urgency=low
+
+  * Bug #36365: Added amarok to maintained
+
+ -- Felix Botner <botner@univention.de>  Tue, 04 Nov 2014 10:08:03 +0100
+
+univention-dvd (0.2.13-1) unstable; urgency=low
+
+  * Bug #36365: Added vlc-nox to maintained
+
+ -- Felix Botner <botner@univention.de>  Mon, 03 Nov 2014 16:30:34 +0100
+
+univention-dvd (0.2.12-1) unstable; urgency=low
+
+  * Bug #35918: added shim-signed and grub-efi-amd64-signed to DVD
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 03 Nov 2014 11:35:49 +0100
+
+univention-dvd (0.2.11-3) unstable; urgency=low
+
+  * Bug #36365: Added phonon-backend-vlc to maintained
+
+ -- Felix Botner <botner@univention.de>  Mon, 03 Nov 2014 10:59:40 +0100
+
+univention-dvd (0.2.11-2) unstable; urgency=low
+
+  * Bug #35891: Added xorriso to maintained
+
+ -- Erik Damrose <damrose@univention.de>  Sun, 02 Nov 2014 19:02:23 +0100
+
+univention-dvd (0.2.11-1) unstable; urgency=low
+
+  * Bug #35885: Added pulseaudio to maintained
+
+ -- Felix Botner <botner@univention.de>  Thu, 30 Oct 2014 09:41:38 +0100
+
+univention-dvd (0.2.10-4) unstable; urgency=low
+
+  * Bug #35537: Fix hook script directory
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Oct 2014 17:35:55 +0100
+
+univention-dvd (0.2.10-3) unstable; urgency=low
+
+  * Bug #35537: Fix hook script directory
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Oct 2014 17:20:48 +0100
+
+univention-dvd (0.2.10-2) unstable; urgency=low
+
+  * Bug #36268: Fix broken symlinks
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Oct 2014 16:41:15 +0100
+
+univention-dvd (0.2.10-1) unstable; urgency=low
+
+  * Bug #36268: Remove Debian specific files
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Oct 2014 14:33:06 +0100
+
+univention-dvd (0.2.9-1) unstable; urgency=low
+
+  * Bug #35537: net netboot installer to DVD
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 27 Oct 2014 14:30:58 +0100
+
+univention-dvd (0.2.8-7) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 17:16:44 +0200
+
+univention-dvd (0.2.8-6) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 16:43:04 +0200
+
+univention-dvd (0.2.8-5) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 16:10:47 +0200
+
+univention-dvd (0.2.8-4) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 13:11:56 +0200
+
+univention-dvd (0.2.8-3) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 12:43:35 +0200
+
+univention-dvd (0.2.8-2) unstable; urgency=low
+
+  * Bug #35974: Change GRUB colors
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Oct 2014 09:34:44 +0200
+
+univention-dvd (0.2.8-1) unstable; urgency=low
+
+  * Bug #35927: Add .univention_install file
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 Oct 2014 17:47:55 +0200
+
+univention-dvd (0.2.7-2) unstable; urgency=low
+
+  * Added several packages for zarafa/z-push App (Bug #36204)
+
+ -- Felix Botner <botner@univention.de>  Tue, 21 Oct 2014 18:02:54 +0200
+
+univention-dvd (0.2.7-1) unstable; urgency=low
+
+  * Added phonon-backend-xine to maintained (Bug #36224)
+
+ -- Felix Botner <botner@univention.de>  Tue, 21 Oct 2014 12:22:04 +0200
+
+univention-dvd (0.2.6-1) unstable; urgency=medium
+
+  * Added some more tools to the UCS 4.0 DVD (Bug #36050)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 21 Oct 2014 08:22:37 +0200
+
+univention-dvd (0.2.5-2) unstable; urgency=low
+
+  * Added several packages for horde App (Bug #36237)
+
+ -- Felix Botner <botner@univention.de>  Mon, 20 Oct 2014 17:18:55 +0200
+
+univention-dvd (0.2.5-1) unstable; urgency=low
+
+  * Added several packages for horde App (Bug #36237)
+
+ -- Felix Botner <botner@univention.de>  Mon, 20 Oct 2014 17:14:27 +0200
+
+univention-dvd (0.2.4-1) unstable; urgency=low
+
+  * Bug #36238: Depends on univention-archive-key
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 20 Oct 2014 14:41:07 +0200
+
+univention-dvd (0.2.3-1) unstable; urgency=medium
+
+  * Added mingetty and parted to maintained (Bug #36231)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 20 Oct 2014 06:59:58 +0200
+
+univention-dvd (0.2.2-1) unstable; urgency=medium
+
+  * The package console-tools is needed for the update (Bug #36206)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 16 Oct 2014 08:47:14 +0200
+
+univention-dvd (0.2.1-1) unstable; urgency=medium
+
+  * Added several packages to maintained for a smooth update from UCS 3
+    to UCS 4 (Bug #36206)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 16 Oct 2014 06:38:05 +0200
+
+univention-dvd (0.2.0-15) unstable; urgency=low
+
+  * Bug #35406: Include (non-)free firmware files on DVD
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Sep 2014 14:39:53 +0200
+
+univention-dvd (0.2.0-14) unstable; urgency=low
+
+  * Bug #35659: Include xterm as default x-terminal-emulator
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 27 Aug 2014 12:33:44 +0200
+
+univention-dvd (0.2.0-13) unstable; urgency=low
+
+  * Bug #35659: Install recommended packages
+  * Bug #35371: Change ISO volume ID to use UCS
+  * Bug #35670: Update UCS kernel build
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 26 Aug 2014 07:28:20 +0200
+
+univention-dvd (0.2.0-12) unstable; urgency=low
+
+  * Bug #35659: Merge UCS-3.2-3 trigger list
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 25 Aug 2014 16:57:41 +0200
+
+univention-dvd (0.2.0-11) unstable; urgency=low
+
+  * Bug #35670: Switch to 3.16 Linux kernel
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 21 Aug 2014 15:26:03 +0200
+
+univention-dvd (0.2.0-10) unstable; urgency=low
+
+  * Bug #35659: Merge UCS-3.2-3 trigger list
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Aug 2014 18:05:57 +0200
+
+univention-dvd (0.2.0-9) unstable; urgency=low
+
+  * Revert Bug #30547: Install recommends by default
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Aug 2014 13:50:48 +0200
+
+univention-dvd (0.2.0-8) unstable; urgency=low
+
+  * Bug #30547: Install recommends by default
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Aug 2014 10:40:12 +0200
+
+univention-dvd (0.2.0-6) unstable; urgency=low
+
+  * Bug #35378: removed live-installer from installer
+  * Bug #35378: updated tasks file
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 24 Jul 2014 15:06:53 +0200
+
+univention-dvd (0.2.0-5) unstable; urgency=low
+
+  * Bug #35378: added univention-system-setup to task file
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 24 Jul 2014 13:40:32 +0200
+
+univention-dvd (0.2.0-4) unstable; urgency=low
+
+  * Re-enable user-setup-udeb to setup root password (Bug #35375)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 21 Jul 2014 15:57:28 +0200
+
+univention-dvd (0.2.0-3) unstable; urgency=low
+
+  * Bug #35384,35385,35372,35375: Fix path
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 18 Jul 2014 14:50:12 +0200
+
+univention-dvd (0.2.0-2) unstable; urgency=low
+
+  * Bug #35384,35385,35372,35375 d-i: disable modules
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 17 Jul 2014 14:36:52 +0200
+
+univention-dvd (0.2.0-1) unstable; urgency=low
+
+  * Bug #30547: added linux kernel to task file
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 15 Jul 2014 16:24:17 +0200
+
+univention-dvd (0.1.0-1) unstable; urgency=low
+
+  * Bug #30547: added patched version of make_disc_trees.pl which
+    replaces the original version of debian-cd
+  * Bug #30547: added dependencies to debian-cd, mtools and dosfstools
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 14 Jul 2014 20:46:21 +0200
+
+univention-dvd (0.0.1-1) unstable; urgency=low
+
+  * Bug #30547: initial version
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 14 Jul 2014 17:33:47 +0200

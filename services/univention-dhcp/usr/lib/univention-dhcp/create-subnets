@@ -1,0 +1,128 @@
+#!/usr/bin/python3
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+"""Create DHCP subnet."""
+
+
+from argparse import ArgumentParser, FileType, Namespace
+from collections.abc import Iterator
+from sys import exit, stderr
+
+from ldap.filter import filter_format
+
+import univention.admin.modules as umod
+from univention.admin import uldap
+from univention.config_registry.interfaces import ConfigRegistry, Interfaces
+
+
+def main() -> None:
+    opt = parse_args()
+
+    ucr = ConfigRegistry()
+    ucr.load()
+
+    umod.update()
+    mod = umod.get("dhcp/subnet")
+
+    lo = access(opt, ucr, mod)
+
+    ifaces = Interfaces(ucr)
+    for _name, iface in ifaces.ipv4_interfaces:
+        create(opt, ucr, iface, lo, mod)
+
+
+def parse_args() -> Namespace:
+    parser = ArgumentParser(description=__doc__)
+    parser.add_argument("--binddn", metavar="DN", help="LDAP simple BIND DN")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--bindpwd", metavar="PW", help="LDAP simple BIND password")
+    group.add_argument("--bindpwdfile", metavar="PWFILE", type=FileType("r"), help="LDAP simple BIND password file")
+    parser.add_argument("--service", metavar="SERVICE-DN", required=True, help="LDAP service base DN")
+    parser.add_argument("--policy-reference", metavar="POLICY-DN", action="append", default=[], help="UMC policy references")
+
+    opt = parser.parse_args()
+
+    if opt.bindpwdfile:
+        opt.bindpwd = opt.bindpwdfile.read()
+
+    return opt
+
+
+def cred(opt: Namespace, ucr: ConfigRegistry) -> Iterator[tuple[str, str]]:
+    yield opt.binddn, opt.bindpwd
+    yield "cn=admin,%(ldap/base)s" % ucr, open("/etc/ldap.secret").read()
+    yield ucr["ldap/hostdn"], open("/etc/machine.secret").read()
+
+
+def access(opt: Namespace, ucr: ConfigRegistry, mod) -> uldap.access:
+    po = uldap.position(ucr["ldap/base"])
+    for binddn, bindpwd in cred(opt, ucr):
+        try:
+            lo = uldap.access(
+                host=ucr["ldap/master"],
+                port=ucr.get("ldap/master/port", "7389").split(",")[0],
+                base=ucr["ldap/base"],
+                binddn=binddn,
+                bindpw=bindpwd,
+            )
+            umod.init(lo, po, mod)
+            print("Using BINDDN %s" % (binddn,))
+            return lo
+        except Exception as ex:
+            print(ex, file=stderr)
+    exit(1)
+
+
+def create(opt: Namespace, ucr: ConfigRegistry, iface, lo: uldap.access, mod) -> None:
+    co = None
+
+    addr = iface.ipv4_address()
+    net = addr.network
+    network = str(iface.network or net.network_address)
+    if mod.lookup(co, lo, filter_s=filter_format("cn=%s", [network]), base=ucr["ldap/base"]):
+        print("DHCP subnet %s already exists" % (network,))
+        return
+
+    obj = mod.object(co, lo, uldap.position(opt.service))
+    obj["subnet"] = network
+    obj["broadcastaddress"] = str(iface.broadcast or net.broadcast_address)
+    obj["subnetmask"] = str(addr.netmask)
+    obj.policies = opt.policy_reference
+    try:
+        obj.create()
+        print("DHCP subnet %s created" % (obj.dn,))
+    except Exception as ex:
+        print(ex, file=stderr)
+
+
+if __name__ == "__main__":
+    main()

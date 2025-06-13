@@ -1,0 +1,65 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check registry access - Anonymous pull shall succeed, push not
+## tags: [docker]
+## exposure: dangerous
+## packages:
+##   - docker.io
+
+set -u
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+IMG="alpine:3.10"
+
+main () {
+	local test upload
+	for upload in "" "-upload"
+	do
+		for test in "" "-test"
+		do
+			test_hub "docker${test}${upload}.software-univention.de"
+		done
+	done
+	return "$RETVAL"
+}
+test_hub () {
+	local hub="$1" image="$1/$IMG"
+	section "$image"
+	test_anonymous
+	test_authenticated
+}
+test_anonymous () {
+	log_and_execute docker logout "$hub"
+	test_pull_push
+}
+test_authenticated () {
+	if [ -n "$upload" ]
+	then
+		log_and_execute docker login -u ucs -p readonly "$hub" && { fail_test "Login failed"; return 1; }
+	else
+		log_and_execute docker login -u ucs -p readonly "$hub" || { fail_test "Login failed"; return 1; }
+	fi
+	test_pull_push
+}
+test_pull_push () {
+	test_pull
+	test_push
+}
+test_pull () {
+	if [ -n "$upload" ]
+	then
+		log_and_execute docker pull "$image" && fail_test "Pull should not succeed for '$image'"
+	else
+		log_and_execute docker pull "$image" || fail_test "Pull should succeed"
+	fi
+	docker rmi "$image"
+}
+test_push () {
+	docker import - "$image" </dev/null
+	log_and_execute docker push "$image" && fail_test "Push should never succeed"
+	docker rmi "$image"
+}
+
+main

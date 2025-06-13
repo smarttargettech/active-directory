@@ -1,0 +1,45 @@
+Source: crudesaml
+Section: libs
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-autoreconf,
+ liblasso3-dev,
+ libpam0g-dev,
+ libsasl2-dev,
+ quilt,
+ tar,
+Standards-Version: 3.7.2
+
+Package: pam-saml
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: PAM module for SAML authentication
+ This package contains a PAM module that performs a crude
+ check on a SAML authentication assertion. The assertion signature and date
+ are verified, and access is granted on behalf to the user taken for a
+ configurable attribute.
+ .
+ The only protection against replay attacks is the assertion validity dates
+ checks, this authentication is therefore secure only if the SAML
+ authentication assertion remains secret. The assertion has the same role
+ as a web cookie used for authentication.
+
+Package: cy2-saml
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: SASL plugin for SAML authentication
+ This package contains a SASL plugin that performs a crude
+ check on a SAML authentication assertion. The assertion signature and date
+ are verified, and access is granted on behalf to the user taken for a
+ configurable attribute.
+ .
+ The only protection against replay attacks is the assertion validity dates
+ checks, this authentication is therefore secure only if the SAML
+ authentication assertion remains secret. The assertion has the same role
+ as a web cookie used for authentication.

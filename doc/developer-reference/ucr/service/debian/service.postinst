@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$1" in
+configure)
+	ucr set atd/autostart?yes
+	;;
+esac
+
+#DEBHELPER#
+
+exit 0

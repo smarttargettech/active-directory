@@ -1,0 +1,14 @@
+@%@UCRWARNING=# @%@
+
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+@!@
+FMT = '{disabled}{when}   root   [ -x /usr/share/univention-updater/univention-updater-check ] && /usr/sbin/jitter {jitter} /usr/share/univention-updater/univention-updater-check {debug}'
+for (name, jitter, when) in (
+    ("cron", 600, configRegistry.get('update/check/cron/entry', '5 * * * *')),
+    ("boot", 30, "@reboot"),
+):
+    disabled = '' if configRegistry.is_true('update/check/%s/enabled' % name) else '# '
+    debug = '' if configRegistry.is_true('update/check/%s/debug' % name) else '2>/dev/null >/dev/null'
+    print(FMT.format(**locals()))
+@!@

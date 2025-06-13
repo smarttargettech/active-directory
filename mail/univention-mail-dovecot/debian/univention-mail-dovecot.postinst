@@ -1,0 +1,201 @@
+#!/bin/sh
+#
+# Univention mail Dovecot
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2015-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+/usr/sbin/adduser --system \
+	--shell /bin/false \
+	--home /var/spool/dovecot \
+	--no-create-home \
+	--group \
+	--disabled-password \
+	--disabled-login \
+	dovemail
+
+#DEBHELPER#
+
+. /usr/share/univention-lib/ucr.sh
+. /usr/share/univention-lib/base.sh
+
+DH_PARAMS_FILE=/var/lib/dovecot/dh.pem
+DH_PARAMS_SIZE_SMALL=2048
+DH_PARAMS_SIZE_LARGE=4096
+OLD_SSL_PARAMS_FILE=/var/lib/dovecot/ssl-parameters.dat
+DEPRECATED_UCRV_DH=mail/dovecot/ssl/dh_parameters_length
+DEPRECATED_UCRV_REGEN=mail/dovecot/ssl/parameters_regenerate
+
+eval "$(univention-config-registry shell)"
+
+generate_small_dh_params_in_the_foreground () {
+	echo "Generating small DH parameters ($DH_PARAMS_SIZE_SMALL bit) for a quick start right now:"
+  openssl dhparam $DH_PARAMS_SIZE_SMALL > "$DH_PARAMS_FILE"
+}
+
+generate_large_dh_params_in_the_background () {
+  echo "Generating large DH parameters ($DH_PARAMS_SIZE_LARGE bit) in the background (this takes a lot of time)..."
+  nohup sh -c "openssl dhparam $DH_PARAMS_SIZE_LARGE > /var/lib/dovecot/.dh.pem && \
+    mv /var/lib/dovecot/.dh.pem '$DH_PARAMS_FILE' && \
+    echo 'Generated new DH params ($DH_PARAMS_SIZE_LARGE bit).' && \
+    systemctl restart dovecot.service" | logger --priority mail.info &
+}
+
+cleanup_old_ucrs () {
+  for UCRV in "$DEPRECATED_UCRV_DH" "$DEPRECATED_UCRV_REGEN"; do
+    if [ -n "$(ucr get "$UCRV")" ]; then
+      echo "Deleting now unused UCR variable '$UCRV'. Old value: '$(ucr get "$UCRV")'."
+      ucr unset "$UCRV"
+    fi
+  done
+}
+
+univention-config-registry set \
+	dovecot/autostart?yes \
+	mail/dovecot=yes \
+	mail/dovecot/imap?yes \
+	mail/dovecot/pop3?yes \
+	mail/postfix/dovecot_sasl=yes \
+	mail/postfix/virtual/transport=lmtp:unix:private/dovecot-lmtp \
+	mail/dovecot/logging/log_path?syslog \
+	mail/dovecot/logging/syslog_facility?local5 \
+	mail/dovecot/mailboxes/special/Drafts?'\Drafts' \
+	mail/dovecot/mailboxes/special/Junk?'\Junk' \
+	mail/dovecot/mailboxes/special/Spam?'\Junk' \
+	mail/dovecot/mailboxes/special/Trash?'\Trash' \
+	mail/dovecot/mailboxes/special/Sent?'\Sent' \
+	'mail/dovecot/mailboxes/special/Sent Messages'?'\Sent' \
+	mail/dovecot/sieve/port?4190 \
+	mail/dovecot/quota/warning/text/80?'Your mailbox is filled to over $PERCENT%.' \
+	mail/dovecot/quota/warning/text/95?'Attention: Your mailbox is already filled to over $PERCENT%. Please delete some messages or contact your administrator.' \
+	mail/dovecot/quota/warning/subject?'Quota-Warning' \
+	mail/dovecot/folder/ham?Ham \
+	mail/dovecot/folder/spam?Spam \
+	security/packetfilter/package/univention-mail-dovecot/tcp/110/all?"ACCEPT" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/110/all/en?"POP3" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/143/all?"ACCEPT" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/143/all/en?"IMAP" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/993/all?"ACCEPT" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/993/all/en?"IMAPS" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/995/all?"ACCEPT" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/995/all/en?"POP3S" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/4190/all?"ACCEPT" \
+	security/packetfilter/package/univention-mail-dovecot/tcp/4190/all/en?"Sieve"
+
+# fresh installation
+if [ "$1" = "configure" -a -z "$2" ] ; then
+	chown -R dovemail:dovemail /var/lib/dovecot /var/spool/dovecot
+	univention-config-registry set mail/dovecot/pop3/client_workarounds?"outlook-no-nuls oe-ns-eoh"
+fi
+
+# Bug #53987: fix DH params in UCS 5.0
+if ! [ -e "$DH_PARAMS_FILE" ]; then
+	generate_small_dh_params_in_the_foreground
+	generate_large_dh_params_in_the_background
+fi
+
+# update from 4.4, try to convert exising DH params file:
+if [ -e "$OLD_SSL_PARAMS_FILE" ]; then
+	echo "Converting old DH params file ($OLD_SSL_PARAMS_FILE) to new format ($DH_PARAMS_FILE)..."
+	# The conversion can fail, no problem, we'll handle that.
+	dd if="$OLD_SSL_PARAMS_FILE" bs=1 skip=88 | openssl dhparam -inform DER > "$DH_PARAMS_FILE" || true
+	rm -fv "$OLD_SSL_PARAMS_FILE"
+
+	if ! [ -e "$DH_PARAMS_FILE" ]; then
+		echo "Conversion failed, creating new DH parameters file..."
+		generate_small_dh_params_in_the_foreground
+		generate_large_dh_params_in_the_background
+	fi
+fi
+
+cleanup_old_ucrs
+
+# add quota check for Postfix as last (potentially expensive)
+# smtpd/submission_recipient_restrictions, but before a "permit"
+QUOTASTATUSIP=$(ucr get mail/dovecot/quota-status/ip)
+if [ -z $QUOTASTATUSIP ]; then
+	QUOTASTATUSIP="127.0.0.1"
+fi
+QUOTASTATUSPORT=$(ucr get mail/dovecot/quota-status/port)
+if [ -z $QUOTASTATUSPORT ]; then
+	QUOTASTATUSPORT="12340"
+fi
+UCRVPATTERN=": check_policy_service inet:$QUOTASTATUSIP:$QUOTASTATUSPORT$"
+if [ -z "$(ucr search --brief '^mail/postfix/smtpd/restrictions/recipient/' | egrep "$UCRVPATTERN")" ]; then
+	LASTNUM="$(ucr dump | sed -nre 's,^mail/postfix/smtpd/restrictions/recipient/([0-9]+): .*,\1,p' | sort -n | tail -n 1)"
+	LASTVAL="$(ucr get mail/postfix/smtpd/restrictions/recipient/$LASTNUM)"
+	if [ "$LASTVAL" = "permit" ]; then
+		ADD=-5
+	else
+		ADD=10
+	fi
+	RESULT=$(($LASTNUM + $ADD))
+	univention-config-registry set "mail/postfix/smtpd/restrictions/recipient/$RESULT=check_policy_service inet:127.0.0.1:12340"
+fi
+
+if [ ! -f /etc/dovecot/master-users ]; then
+	touch /etc/dovecot/master-users
+	chmod 640 /etc/dovecot/master-users
+	chown root:dovecot /etc/dovecot/master-users
+	echo "dovecotadmin:{PLAIN}$(create_machine_password)::::::" > /etc/dovecot/master-users
+fi
+
+if [ -x "/etc/init.d/univention-firewall" ]; then
+	deb-systemd-invoke restart univention-firewall
+fi
+
+if [ "$(ucr get mail/dovecot/logging/log_path)" = "syslog" -a -x /etc/init.d/rsyslog ]; then
+	deb-systemd-invoke force-reload rsyslog
+fi
+
+deb-systemd-invoke restart dovecot
+deb-systemd-invoke restart postfix
+
+chown listener:root /var/spool/univention-mail-dovecot
+
+systemctl try-reload-or-restart univention-directory-listener
+
+if [ "$1" = "configure" ]
+then
+	uinst=/usr/lib/univention-install/18univention-mail-dovecot-uninstall.uinst
+	[ -e "$uinst" ] && rm "$uinst"
+fi
+
+call_joinscript 82univention-mail-dovecot.inst
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl "6.0.3-6"; then
+	udm settings/extended_attribute modify --dn "cn=UniventionDovecotUserQuota,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Quota de courrier (Mo)"' \
+		--append translationLongDescription='"fr_FR" "Quota de courrier pour l’utilisateur ou utilisatrice, en mégaoctets (0 = pas de quota)"' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Réglages avancés"'
+fi
+
+exit 0

@@ -1,0 +1,30 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test Apache2 SSL ciphers
+## bugs: [38632, 44751]
+## packages:
+##  - openssl
+## exposure: safe
+set -e -u
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+# EXPORT and LOW(RC4) were removed from DEFAULT as of openssl-1.0.2g
+# aNULL and MD5 were removed as of 1.1.0f
+for cipher in LOW EXPORT RC4
+do
+	info "$cipher"
+	ciphers="$(openssl ciphers "$cipher")" ||
+		continue
+	openssl s_client \
+		-CAfile /etc/univention/ssl/ucsCA/CAcert.pem \
+		-connect localhost:443 \
+		-cipher "$ciphers" \
+		-quiet -no_ign_eof </dev/null 2>&1 |
+	grep -q -F 'handshake failure' ||
+		fail_test 1 "$cipher"
+done
+
+exit ${RETVAL:-0}
+# vim: set ft=sh :

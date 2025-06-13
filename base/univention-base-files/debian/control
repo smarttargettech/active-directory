@@ -1,0 +1,70 @@
+Source: univention-base-files
+Section: univention
+Priority: standard
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.5.2
+
+Package: univention-base-packages
+Architecture: all
+Depends:
+ acl,
+ bash-completion,
+ bzip2,
+ console-data,
+ locales,
+ lockfile-progs,
+ lsb-release,
+ lsof,
+ net-tools,
+ psmisc,
+ rsyslog,
+ sysvinit-utils,
+ univention-archive-key,
+ univention-base-files (= ${source:Version}),
+ xfsprogs,
+ ${misc:Depends},
+Recommends:
+ eject,
+ elinks,
+ less,
+ locate,
+ man-db,
+ nmap,
+ ntpsec-ntpdate,
+ rdate,
+ rsyslog-relp,
+ univention-network-common,
+ unzip,
+ vim,
+ wget,
+ zip,
+Description: UCS - base packages
+ This metapackage depends on all packages and recommends several other
+ packages which should be installed on a default UCS installation.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-base-files
+Architecture: all
+Depends:
+ python3-univention-lib (>= 9.0.11-8),
+ shell-univention-lib (>= 6.0.9-8),
+ udev,
+ univention-config (>= 15),
+ univention-policy-tools (>= 11.0.1-2),
+ ${misc:Depends},
+Provides:
+ univention-config-registry,
+Description: UCS - base configuration files
+ This package contains the base configuration for UCS.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

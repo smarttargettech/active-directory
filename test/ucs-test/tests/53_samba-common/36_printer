@@ -1,0 +1,124 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Creating a shared printer and printing from smbclient"
+## exposure: dangerous
+## packages:
+##  - univention-samba | univention-samba4
+##  - univention-printserver
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## - memberserver
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+#create user
+echo "----Create user"
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+username="$(user_randomname)"
+printername="$(random_chars 12)"
+password=univention
+
+eval "$(ucr shell)"
+
+printsharebasedn="cn=shares,$ldap_base"
+
+if ! [ -x /bin/nc.openbsd ]; then
+	apt-get install -y netcat-openbsd
+fi
+
+trap '
+user_remove "$username"
+rm -rf "/tmp/$printername"
+udm-test shares/printer remove --dn="cn=$printername,$printsharebasedn"
+wait_for_replication_and_postrun
+if [ -n "$nc_pid" ] && [ "$nc_pid" = "$(pgrep -x nc)" ]; then
+	kill "$nc_pid" >/dev/null 2>&1
+	if [ "$nc_pid" = "$(pgrep -x nc)" ]; then
+		echo "netcat PID $nc_pid did not terminate, sending KILL"
+		kill -9 "$nc_pid" >/dev/null 2>&1
+	fi
+fi
+' INT TERM EXIT
+
+user_create "$username" || fail_fast 1 "Could not create user $username."
+
+#create printer
+echo "----create printer"
+udm-test shares/printer create \
+	--position "$printsharebasedn" \
+	--set "name=$printername" \
+	--set "spoolHost=$hostname.$domainname" \
+	--set "uri=socket:// 127.0.0.1:12345" \
+	--set "model=None"
+
+wait_for_replication_and_postrun
+
+## look for printer and user
+echo "----Testing whether printer share '$printername' and user '$username' have been created"
+i=0
+while ! output="$(smbclient //localhost/$printername -U "$username%$password" -c "exit" 2>&1)"
+do
+	echo '.'
+	let i=$i+1
+	if [ $i = 30 ]; then
+		if echo "$output" | egrep -q "(NT_STATUS_ACCESS_DENIED|NT_STATUS_LOGON_FAILURE)"; then
+			fail_fast 1 "User was not provided 30 seconds after creation"
+		else
+			fail_fast 1 "Samba did not provide the printer share 30 seconds after creation"
+		fi
+	fi
+	sleep 1
+done
+
+#create input file
+echo "----Creating input file"
+
+tmp_filename="$(mktemp)"
+echo "$(uname -a)" > "$tmp_filename"
+
+#create output socket
+nc -l 12345 > "/tmp/$printername" &
+nc_pid=$!
+
+## initiate print
+echo "initiate print"
+i=0
+while ! smbclient -U"$username%$password" "//$hostname.$domainname/$printername" -c "print \"$tmp_filename\""
+do
+	let i=$i+1
+	if [ $i = 20 ]; then
+		fail_fast 1 "Initiate printing has not been successful."
+	fi
+	sleep 1
+done
+rm "$tmp_filename"
+
+## check output
+echo "check output"
+i=0
+while ! grep -q "$(uname -a)" "/tmp/$printername"
+do
+	let i=$i+1
+	if [ $i = 20 ]; then
+		fail_fast 1 "Nothing has been printed to the output file."
+	fi
+	sleep 1
+done
+
+kill "$nc_pid" >/dev/null 2>&1
+if [ "$nc_pid" = "$(pgrep -x nc)" ]; then
+	echo "netcat PID $nc_pid didn't terminate, sending KILL"
+	kill -9 "$nc_pid" >/dev/null 2>&1
+fi
+
+
+exit $RETVAL

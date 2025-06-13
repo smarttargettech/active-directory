@@ -1,0 +1,305 @@
+Type: file
+File: etc/nscd.conf
+Variables: nscd/group/size
+Variables: nscd/hosts/size
+Variables: nscd/restart
+Variables: nscd/restart/interval
+Variables: nscd/group/positive_time_to_live
+Variables: nscd/hosts/positive_time_to_live
+Variables: nscd/group/negative_time_to_live
+Variables: nscd/hosts/negative_time_to_live
+Variables: nscd/group/maxdbsize
+Variables: nscd/hosts/maxdbsize
+Variables: nscd/group/persistent
+Variables: nscd/hosts/persistent
+Variables: nscd/debug/level
+Variables: nscd/logfile
+Variables: nscd/threads
+Variables: nscd/group/enabled
+Variables: nscd/hosts/enabled
+
+Type: file
+File: etc/nsswitch.conf
+Variables: auth/methods
+Variables: nsswitch/ldap
+Variables: nss/group/cachefile
+
+Type: file
+File: etc/sssd/sssd.conf
+Variables: domainname
+Variables: ldap/base
+Variables: ldap/hostdn
+Variables: ldap/server/name
+Variables: ldap/server/addition
+Variables: ldap/server/port
+Variables: ldap/tls/ciphersuite
+Variables: nss/group/cachefile
+Mode: 0600
+
+Type: file
+File: etc/security/limits.conf
+Variables: security/limits(/[^/]+){4}
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: multifile
+Multifile: etc/pam.d/common-session
+Variables: homedir/create
+Variables: homedir/mount
+Variables: homedir/mount/required
+Variables: quota/userdefault
+Variables: auth/methods
+Variables: auth/faillog
+Variables: auth/faillog/limit
+Variables: auth/faillog/root
+
+Type: subfile
+Multifile: etc/pam.d/common-session
+Subfile: etc/pam.d/common-session.d/10univention-pam_common
+Variables: homedir/create
+Variables: homedir/mount
+Variables: homedir/mount/required
+Variables: auth/methods
+Variables: pam/krb5/minimum_uid
+Variables: pam/session/systemd
+
+Type: file
+File: etc/pam.d/common-session-noninteractive
+
+Type: file
+File: etc/pam.d/common-account
+Variables: auth/methods
+Variables: auth/faillog
+Variables: pam/krb5/minimum_uid
+
+Type: multifile
+Multifile: etc/pam.d/common-auth
+Variables: auth/methods
+Variables: auth/faillog
+Variables: auth/faillog/root
+Variables: auth/faillog/unlock_time
+Variables: auth/faillog/limit
+Variables: auth/faillog/lock_global
+
+Type: subfile
+Multifile: etc/pam.d/common-auth
+Subfile: etc/pam.d/common-auth.d/10univention-pam_header
+
+Type: subfile
+Multifile: etc/pam.d/common-auth
+Subfile: etc/pam.d/common-auth.d/30univention-pam_local
+Variables: auth/faillog
+Variables: auth/faillog/root
+Variables: auth/faillog/unlock_time
+Variables: auth/faillog/limit
+
+Type: subfile
+Multifile: etc/pam.d/common-auth
+Subfile: etc/pam.d/common-auth.d/50univention-pam_general
+Variables: auth/methods
+Variables: pam/krb5/minimum_uid
+
+Type: subfile
+Multifile: etc/pam.d/common-auth
+Subfile: etc/pam.d/common-auth.d/70univention-pam_env
+
+Type: file
+File: etc/pam.d/common-auth-nowrite
+Variables: auth/methods
+Variables: auth/faillog
+Variables: auth/faillog/root
+Variables: auth/faillog/unlock_time
+Variables: auth/faillog/limit
+Variables: auth/faillog/lock_global
+Variables: pam/krb5/minimum_uid
+
+Type: file
+File: etc/pam.d/common-password
+Variables: auth/methods
+Variables: pam/krb5/minimum_uid
+Variables: pam/krb5/ticket_after_pwchange
+
+Type: file
+File: etc/pam.d/chfn
+Variables: auth/chfn/accessfile
+Variables: auth/chfn/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-chfn.conf
+Variables: auth/chfn/group/.*
+Variables: auth/chfn/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/chsh
+Variables: auth/chsh/accessfile
+Variables: auth/chsh/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-chsh.conf
+Variables: auth/chsh/group/.*
+Variables: auth/chsh/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/cron
+Variables: auth/cron/accessfile
+Variables: auth/cron/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-cron.conf
+Variables: auth/cron/group/.*
+Variables: auth/cron/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/login
+Variables: auth/login/accessfile
+Variables: auth/login/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-login.conf
+Variables: auth/login/group/.*
+Variables: auth/login/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/other
+Variables: auth/other/accessfile
+Variables: auth/other/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-other.conf
+Variables: auth/other/group/.*
+Variables: auth/other/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/passwd
+Variables: auth/passwd/accessfile
+Variables: auth/passwd/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-passwd.conf
+Variables: auth/passwd/group/.*
+Variables: auth/passwd/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/ppp
+Variables: auth/ppp/accessfile
+Variables: auth/ppp/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-ppp.conf
+Variables: auth/ppp/group/.*
+Variables: auth/ppp/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/rlogin
+Variables: auth/rlogin/accessfile
+Variables: auth/rlogin/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-rlogin.conf
+Variables: auth/rlogin/group/.*
+Variables: auth/rlogin/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/rsh
+Variables: auth/rsh/accessfile
+Variables: auth/rsh/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-rsh.conf
+Variables: auth/rsh/group/.*
+Variables: auth/rsh/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/screen
+Variables: auth/screen/accessfile
+Variables: auth/screen/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-screen.conf
+Variables: auth/screen/group/.*
+Variables: auth/screen/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/sshd
+Variables: auth/sshd/accessfile
+Variables: auth/sshd/restrict
+Variables: pamaccess/maxent
+Variables: system/setup/showloginmessage
+Variables: sshd/motd
+
+Type: file
+File: etc/security/access-sshd.conf
+Variables: auth/sshd/group/.*
+Variables: auth/sshd/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/su
+Variables: auth/su/accessfile
+Variables: auth/su/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-su.conf
+Variables: auth/su/group/.*
+Variables: auth/su/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/pam.d/sudo
+Variables: auth/sudo/accessfile
+Variables: auth/sudo/restrict
+Variables: pamaccess/maxent
+
+Type: file
+File: etc/security/access-sudo.conf
+Variables: auth/sudo/group/.*
+Variables: auth/sudo/user/.*
+Variables: users/default/.*
+Variables: groups/default/.*
+
+Type: file
+File: etc/cron.d/univention-pam
+Variables: nss/group/cachefile
+Variables: nss/group/cachefile/invalidate_interval
+Variables: nss/group/cachefile/check_member
+
+Type: file
+File: etc/security/faillock.conf
+Variables: auth/faillog/.*
+
+Type: file
+File: etc/logrotate.d/sssd-common
+Variables: logrotate/.*

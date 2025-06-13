@@ -1,0 +1,59 @@
+.dijitPopup
+	box-shadow: var(--box-shadow)
+	border: var(--popup-border) !important // !important because dijit/popup.js set border none directly on the element
+	border-radius: 8px
+	overflow: hidden
+
+.dijitMenu,
+.dijitTimePicker
+	border: none
+	background: var(--bgc-popup)
+	font-size: var(--font-size-4)
+
+// cell spacing
+.dijitMenuItem td,
+.dijitComboBoxMenu .dijitMenuItem,
+.dijitTimePickerItem
+	padding: 0.3em 0.5em
+
+.dijitMenuItem td
+	&.dijitMenuItemIconCell
+		padding-left: 0.8em
+		padding-right: 0
+	&.dijitMenuArrowCell
+		padding-right: 0.8em
+		padding-left: 0
+
+.dijitTimePickerItem
+	cursor: pointer
+
+
+// state
+.dijitMenuItem,
+.dijitTimePickerItem
+	background-color: transparent
+	transition: background-color 150ms
+.dijitMenuItemHover,
+.dijitTimePickerItemHover
+	background-color: var(--bgc-popup-item-hover)
+	color: inherit
+.dijitMenuItemActive
+	background-color: var(--bgc-popup-item-active)
+.dijitMenuItemSelected,
+.dijitTimePickerItemSelected
+	background-color: var(--bgc-popup-item-selected)
+
+
+// icons
+.dijitMenuItem .featherIcon
+	display: block
+
+//// Select
+/* Dropdown menu style for select */
+.umc .dijitSelectMenu td.dijitMenuItemIconCell,
+.umc .dijitSelectMenu td.dijitMenuArrowCell
+	/* so that arrow and icon cells from MenuItem are not displayed */
+	display: none
+
+.umc .dijitSelectMenu .dijitMenuSeparatorTop
+	border-bottom:1px solid $focused-border-color

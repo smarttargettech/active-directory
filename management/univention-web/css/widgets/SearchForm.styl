@@ -1,0 +1,12 @@
+@require "../variables.styl"
+
+.umc .umcSearchForm
+	.umcLabelPane.umcSearchFormElementBeforeSubmitButton
+		$layoutrow--make-space-for-buttons(1)
+
+.umc .umcUDMSearchForm .umcLabelPane.umcSearchFormElementBeforeSubmitButton
+	$layoutrow--make-space-for-buttons(2, 2)
+.umc .umcUDMSearchForm.umcUDMSearchFormSimpleTextBox .umcLabelPane.umcSearchFormElementBeforeSubmitButton
+	$layoutrow--make-space-for-buttons(2, 1)
+.umc .umcUDMSearchForm.umcUDMSearchFormSimpleTextBox .umcLabelPane.umcSearchFormElementBeforeSubmitButton .dijitInputContainer
+	margin-right: var(--button-size)

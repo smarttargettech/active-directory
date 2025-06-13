@@ -1,0 +1,193 @@
+@require "HTMLElements.styl"
+
+//// overarching button styling
+.ucsButton
+	--bgc: transparent
+	margin: 0
+	font-size: var(--button-font-size)
+	border-radius: var(--button-border-radius)
+	background: var(--bgc)
+	transition: opacity 250ms, var(--button-bgc-transition)
+	color: var(--font-color-contrast-high)
+
+.dijitButtonNode
+	border: none
+	border-radius: inherit
+	display: flex
+	align-items: center // mainly for umc/widgets/NumberSpinner arrows
+	justify-content: center
+
+.dijitButtonContents
+	height: var(--button-size)
+	width: 100%
+	display: flex
+	align-items: center
+	justify-content: center
+
+.dijitButtonText
+	color: var(--button-text-color, inherit)
+	transition: color 250ms
+	font-weight: 600
+	text-transform: uppercase
+
+
+//// specific button styling
+// umc/widgets/DropDownButton
+.dijitDropDownButton .dijitArrowButtonInner
+	display: none
+
+//// button types
+.ucsNormalButton
+	--bgc: var(--button-bgc)
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-bgc-hover)
+		&Active
+			--bgc: var(--button-bgc-active)
+		&Disabled
+			--bgc: var(--button-bgc-disabled)
+			opacity: 0.4
+
+.ucsFillButton
+	--bgc: var(--button-bgc)
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-bgc-hover)
+		&Active
+			--bgc: var(--button-bgc-active)
+		&Disabled
+			--bgc: var(--button-bgc-disabled)
+			opacity: 0.4
+
+	&,
+	.dijitButtonNode
+		width: 100%
+		height: 100%
+
+.ucsTextButton
+	--bgc: var(--button-text-bgc)
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-text-bgc-hover)
+		&Active
+			--bgc: var(--button-text-bgc-active)
+		&Disabled
+			--bgc: var(--button-text-bgc-disabled)
+			opacity: 0.4
+
+	.dijitButtonContents
+		padding: 0 0.5rem
+
+.ucsPrimaryButton
+	--bgc: var(--button-primary-bgc)
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-primary-bgc-hover)
+		&Active
+			--bgc: var(--button-primary-bgc-active)
+		&Disabled
+			--bgc: var(--button-primary-bgc-disabled)
+			opacity: 0.4
+
+.ucsPrimaryButton,
+.ucsNormalButton
+	box-shadow: var(--box-shadow)
+
+.ucsPrimaryButton,
+.ucsNormalButton,
+.ucsTextButton
+	.featherIcon
+		margin-right: 0.4rem
+
+.ucsPrimaryButton,
+.ucsNormalButton,
+.ucsTextButton,
+.ucsIconButton,
+.ucsSimpleIconButton,
+.ucsFillButton
+	.featherIcon
+		width: var(--button-icon-size)
+		height: @width
+
+.ucsPrimaryButton,
+.ucsNormalButton
+	.dijitButtonContents
+		padding: 0 1rem
+
+.ucsSimpleIconButton
+	--bgc: transparent
+	width: var(--button-size)
+	height: var(--button-size)
+	cursor: pointer
+	display: flex
+	align-items: center
+	justify-content: center
+	background: var(--bgc)
+	border-radius: var(--button-icon-border-radius)
+	transition: var(--button-bgc-transition)
+
+	&:hover,
+	&:focus
+		--bgc: var(--button-icon-bgc-hover)
+	&:active
+		--bgc: var(--button-icon-bgc-active)
+
+.ucsIconButton
+	--bgc: transparent
+	box-shadow: none
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-icon-bgc-hover)
+		&Active
+			--bgc: var(--button-icon-bgc-active)
+		&Disabled
+			--bgc: var(--button-icon-bgc-disabled)
+			opacity: 0.4
+
+	border-radius: var(--button-icon-border-radius)
+
+	.dijitButtonContents
+		width: var(--button-size)
+	&ToFontSize
+		--button-size: 1em
+
+.ucsIconButtonHighlighted
+	@extends .ucsIconButton
+	--bgc: var(--button-icon-highlighted-bgc)
+	&.dijit
+		&Hover,
+		&Focused
+			--bgc: var(--button-icon-highlighted-bgc-hover)
+		&Active
+			--bgc: var(--button-icon-highlighted-bgc-active)
+		&Disabled
+			--bgc: var(--button-icon-highlighted-bgc-disabled)
+			opacity: 0.4
+
+.ucsLinkButton
+	--button-size: auto
+
+	.dijitButtonText
+		text-transform: none
+		@extends a
+
+.dijitToggleButtonChecked
+	.dijitButtonNode
+		box-shadow: 0 0 0 2px var(--color-accent)
+
+.ucsButton--textfieldAligned
+	position: relative
+	bottom: s('calc((var(--inputfield-size) - var(--button-size)) / 2)')
+
+//// misc
+.dijitUploader input
+	cursor: pointer
+
+
+.ucsButton:not(.ucsNormalButton):not(.ucsTextButton):not(.ucsPrimaryButton):not(.ucsIconButton):not(.ucsIconButtonHighlighted):not(.ucsLinkButton):not(.ucsMenuButton):not(.umcCategoryButton):not(.ucsFillButton)
+	@extends .ucsNormalButton

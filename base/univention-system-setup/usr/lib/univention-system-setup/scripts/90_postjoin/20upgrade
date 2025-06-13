@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# Univention Setup
+#  install all updates
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2014-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=../setup_utils.sh
+. /usr/lib/univention-system-setup/scripts/setup_utils.sh
+
+info_header "$0" "$(gettext "Upgrading the system")"
+
+# Activate the online repository
+/usr/sbin/ucr set repository/online=yes
+
+is_profile_var_true "update/system/after/setup" ||
+	exit 0
+
+progress_msg "$(gettext "This might take a while depending on the number of pending updates.")"
+
+eval "$(ucr shell version/version server/role ldap/master hostname)"
+
+case "${server_role:-}" in
+domaincontroller_master)
+	# Update to latest patchlevel
+	version="${version_version:?}-99"
+	;;
+*)
+	[ -e /var/univention-join/joined ] &&
+		version=$(echo "@%@version/version@%@-@%@version/patchlevel@%@" | /usr/sbin/univention-ssh --no-split /etc/machine.secret "${hostname:?}\$@${ldap_master:?}" '/usr/sbin/ucr filter' 2>>/var/log/univention/setup.log)
+	: "${version:=${version_version:?}-0}"
+	;;
+esac
+
+echo "Running upgrade: univention-upgrade --noninteractive --updateto $version"
+exec /usr/sbin/univention-upgrade --noninteractive --updateto "$version"

@@ -1,0 +1,174 @@
+univention-unittests (4.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:46 +0200
+
+univention-unittests (4.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:29 +0100
+
+univention-unittests (4.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:32 +0100
+
+univention-unittests (4.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-unittests (3.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:21 +0100
+
+univention-unittests (3.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:50 +0100
+
+univention-unittests (3.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:30 +0100
+
+univention-unittests (3.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:18 +0100
+
+univention-unittests (3.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-unittests (2.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:53 +0100
+
+univention-unittests (2.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:39 +0100
+
+univention-unittests (2.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:43 +0100
+
+univention-unittests (2.0.2-1) unstable; urgency=medium
+
+  * Bug #54555: version bump
+
+ -- Florian Best <best@univention.de>  Thu, 16 Jun 2022 10:43:34 +0200
+
+univention-unittests (2.0.1-7) unstable; urgency=medium
+
+  * Bug #54555: Rename the fixture ucr2 to mock_ucr
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 28 Mar 2022 09:13:47 +0200
+
+univention-unittests (2.0.1-6) unstable; urgency=medium
+
+  * Bug #54555: Version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 13:45:50 +0100
+
+univention-unittests (2.0.1-4) unstable; urgency=medium
+
+  * Bug #54555: Add get_int to UCR mock
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 13:01:41 +0100
+
+univention-unittests (2.0.1-3) unstable; urgency=medium
+
+  * Bug #51327: added code for self-service unittests
+
+ -- Johannes Lohmer <lohmer@univention.de>  Thu, 17 Feb 2022 12:45:30 +0100
+
+univention-unittests (2.0.1-2) unstable; urgency=medium
+
+  * Bug #53552: split package into separate python packages
+
+ -- Florian Best <best@univention.de>  Wed, 07 Jul 2021 11:09:04 +0200
+
+univention-unittests (2.0.1-1) unstable; urgency=medium
+
+  * Bug #51566: Do not compile during dpkg-buildpackage
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 11 Mar 2021 16:20:16 +0100
+
+univention-unittests (2.0.1-0) unstable; urgency=medium
+
+  * Bug #51566: Improve UCR and UDM mock objects, getting them closer to
+    the actual objects
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 18 Sep 2020 22:29:18 +0200
+
+univention-unittests (2.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 31 Jul 2020 15:34:06 +0200
+
+univention-unittests (1.0.0-8) unstable; urgency=medium
+
+  * Bug #51262: Enable mocked LDAP modifications
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 17 Jul 2020 10:12:53 +0200
+
+univention-unittests (1.0.0-7) unstable; urgency=medium
+
+  * Bug #51566: Cherry-picked from 5.0
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 14 Jul 2020 15:00:58 +0200
+
+univention-unittests (1.0.0-6) unstable; urgency=medium
+
+  * Bug #51259: add functions to ucr fixture
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 29 Jun 2020 17:28:37 +0200
+
+univention-unittests (1.0.0-5) unstable; urgency=medium
+
+  * Bug #51566: Fixed dependency
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 29 Jun 2020 15:05:01 +0200
+
+univention-unittests (1.0.0-4) unstable; urgency=medium
+
+  * Bug #51566: Added missing copyright text blocks
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 25 Jun 2020 22:36:30 +0200
+
+univention-unittests (1.0.0-3) unstable; urgency=medium
+
+  * Bug #51566: Fixed build dependency?
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 25 Jun 2020 21:57:15 +0200
+
+univention-unittests (1.0.0-2) unstable; urgency=medium
+
+  * Bug #51566: Fixed build dependency
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 25 Jun 2020 20:04:39 +0200
+
+univention-unittests (1.0.0-1) unstable; urgency=medium
+
+  * Initial release (Bug #51566)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 25 May 2020 15:47:07 +0200

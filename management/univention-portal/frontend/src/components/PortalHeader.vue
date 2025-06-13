@@ -1,0 +1,343 @@
+<!--
+Copyright 2021-2025 Univention GmbH
+
+https://www.univention.de/
+
+All rights reserved.
+
+The source code of this program is made available
+under the terms of the GNU Affero General Public License version 3
+(GNU AGPL V3) as published by the Free Software Foundation.
+
+Binary versions of this program provided by Univention to you as
+well as other copyrighted, protected or trademarked materials like
+Logos, graphics, fonts, specific documentations and configurations,
+cryptographic keys etc. are subject to a license agreement between
+you and Univention and not subject to the GNU AGPL V3.
+
+In the case you use this program under the terms of the GNU AGPL V3,
+the program is provided in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public
+License with the Debian GNU/Linux or Univention distribution in file
+/usr/share/common-licenses/AGPL-3; if not, see
+<https://www.gnu.org/licenses/>.
+-->
+<template>
+  <region
+    id="portal-header"
+    role="banner"
+    :class="{
+      'portal-header--tabs-overflow': tabsOverflow,
+      'portal-header--edit-mode': editMode,
+    }"
+    class="portal-header"
+  >
+    <portal-title />
+
+    <div
+      ref="tabs"
+      class="portal-header__tabs"
+      data-test="header-tabs"
+    >
+      <header-tab
+        v-for="tab in tabs"
+        :key="tab.id"
+        :tab-id="tab.id"
+        :tab-label="tab.tabLabel"
+        :is-active="activeTabId === tab.id"
+        :background-color="tab.backgroundColor"
+        :logo="tab.logo"
+        :hidden="tabsOverflow"
+      />
+    </div>
+
+    <div
+      v-if="editMode"
+      class="edit-mode-wrapper"
+    >
+      <div class="edit-mode-wrapper-divider"></div>
+      <tabindex-element
+        id="exit-edit-mode-button"
+        class="button--primary button--shadow"
+        :active-at="['portal']"
+        :aria-label="STOP_EDIT_PORTAL"
+        tag="button"
+        type="button"
+        @click="stopEditMode"
+      >
+        {{ EDIT_MODE }}
+      </tabindex-element>
+      <div class="edit-mode-wrapper-divider edit-mode-wrapper-divider-right"></div>
+    </div>
+    <div
+      v-if="editMode"
+      class="portal-header__right"
+    >
+      <header-button
+        data-test="bellbutton"
+        :aria-label-prop="NOTIFICATIONS"
+        icon="bell"
+        :counter="numNotifications"
+        @keydown.esc="closeNotificationsSidebar"
+        @keydown.right="closeNotificationsSidebar"
+        @keydown.left="closeNotificationsSidebar"
+      />
+      <header-button
+        data-test="settingsbutton"
+        :aria-label-prop="OPEN_EDIT_SIDEBAR"
+        icon="settings"
+      />
+    </div>
+    <div
+      v-else
+      class="portal-header__right"
+    >
+      <header-button
+        v-if="showTabButton"
+        ref="tabButton"
+        data-test="tabbutton"
+        :aria-label-prop="TABS"
+        icon="copy"
+        :counter="numTabs"
+        class="portal-header__tab-button"
+      />
+      <header-button
+        ref="searchButton"
+        data-test="searchbutton"
+        :aria-label-prop="SEARCH"
+        icon="search"
+      />
+      <header-button
+        data-test="bellbutton"
+        :aria-label-prop="NOTIFICATIONS"
+        icon="bell"
+        :counter="numNotifications"
+        @keydown.esc="closeNotificationsSidebar"
+        @keydown.right="closeNotificationsSidebar"
+        @keydown.left="closeNotificationsSidebar"
+      />
+      <header-button
+        :aria-label-prop="MENU"
+        data-test="navigationbutton"
+        icon="menu"
+      />
+    </div>
+
+    <template v-if="activeButton === 'search'">
+      <portal-search />
+    </template>
+  </region>
+  <choose-tabs v-if="activeButton === 'copy'" />
+  <div
+    v-if="activeTabId === 0 && !editMode"
+    id="announcement-container"
+  >
+    <announcement
+      v-for="announcement in portalAnnouncements"
+      :key="announcement.name"
+      :title="announcement.title"
+      :message="announcement.message"
+      :severity="announcement.severity"
+      :name="announcement.name"
+      :sticky="announcement.isSticky"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
+import _ from '@/jsHelper/translate';
+
+import Region from '@/components/activity/Region.vue';
+import HeaderButton from '@/components/navigation/HeaderButton.vue';
+import HeaderTab from '@/components/navigation/HeaderTab.vue';
+import PortalSearch from '@/components/search/PortalSearch.vue';
+import ChooseTabs from '@/components/ChooseTabs.vue';
+import PortalTitle from '@/components/header/PortalTitle.vue';
+import IconButton from '@/components/globals/IconButton.vue';
+
+import Announcement from '@/components/widgets/Announcement.vue';
+import TabindexElement from '@/components/activity/TabindexElement.vue';
+
+interface PortalHeaderData {
+  tabsOverflow: boolean,
+}
+
+export default defineComponent({
+  name: 'PortalHeader',
+  components: {
+    TabindexElement,
+    Announcement,
+    HeaderButton,
+    HeaderTab,
+    PortalSearch,
+    ChooseTabs,
+    Region,
+    PortalTitle,
+    IconButton,
+  },
+  data(): PortalHeaderData {
+    return {
+      tabsOverflow: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      activeTabId: 'tabs/activeTabId',
+      tabs: 'tabs/allTabs',
+      savedScrollPosition: 'tabs/savedScrollPosition',
+      numTabs: 'tabs/numTabs',
+      editMode: 'portalData/editMode',
+      activeButton: 'navigation/getActiveButton',
+      numNotifications: 'notifications/numNotifications',
+      portalAnnouncements: 'portalData/portalAnnouncements',
+    }),
+    showTabButton(): boolean {
+      return this.numTabs > 0 && this.tabsOverflow;
+    },
+    EDIT_MODE(): string {
+      return _('Exit edit mode');
+    },
+    OPEN_EDIT_SIDEBAR(): string {
+      return _('Open edit sidebar');
+    },
+    STOP_EDIT_PORTAL(): string {
+      return _('Stop edit portal');
+    },
+    TABS(): string {
+      return _('Tabs');
+    },
+    SEARCH(): string {
+      return _('search');
+    },
+    NOTIFICATIONS(): string {
+      return _('Notifications');
+    },
+    MENU(): string {
+      return _('Menu');
+    },
+  },
+  watch: {
+    numTabs(): void {
+      this.$nextTick(() => {
+        this.updateOverflow();
+      });
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.updateOverflow);
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateOverflow);
+  },
+  methods: {
+    updateOverflow() {
+      const tabs = this.$refs.tabs as HTMLElement;
+      if (tabs === null) {
+        return;
+      }
+      this.tabsOverflow = tabs.scrollWidth > tabs.clientWidth;
+    },
+    closeNotificationsSidebar(): void {
+      this.$store.dispatch('navigation/closeNotificationsSidebar');
+    },
+    chooseTab(): void {
+      this.$store.dispatch('modal/setAndShowModal', {
+        name: 'ChooseTabs',
+      });
+    },
+    stopEditMode(): void {
+      this.$store.dispatch('portalData/setEditMode', false);
+      this.$store.dispatch('navigation/setActiveButton', '');
+      window.requestAnimationFrame(() => { window.scrollTo(0, 0); });
+    },
+  },
+});
+</script>
+
+<style lang="stylus">
+.portal-header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: $zindex-3
+  background-color: var(--bgc-content-header)
+  color: var(--font-color-contrast-high)
+  height: var(--portal-header-height)
+  display: flex
+  padding: 0 calc(2 * var(--layout-spacing-unit))
+  width: 100%
+  box-sizing: border-box
+
+  &__tabs
+    display: flex;
+    flex: 1 1 auto;
+    margin-left: calc(5 * var(--layout-spacing-unit));
+    width: 100%;
+    overflow: hidden
+    align-items: center
+
+  &__right
+    margin-left: auto
+    display: flex;
+    align-items: center;
+
+.edit-mode-wrapper
+  position: fixed
+  left: 0
+  top: calc(var(--layout-height-header) + var(--layout-spacing-unit))
+  right: 0
+  pointer-events: none
+  display: flex
+  gap: var(--layout-spacing-unit)
+  flex: 1 0 auto
+  align-items: center
+  &-divider
+    flex: 1 1 0
+    &-right
+      min-width: 23rem
+  button
+    pointer-events: all
+@media $mqSmartphone
+  .edit-mode-wrapper
+    position: relative
+    top: 0
+    &-divider-right
+      min-width: auto
+
+#header-button-copy
+    display: none
+
+.portal-header
+  &--tabs-overflow
+    .portal-header__tabs
+      visibility: hidden
+    #header-button-copy
+      display: flex
+  &--edit-mode
+    .portal-header__tabs
+      display: none
+
+#announcement-container
+  display: flex
+  padding: var(--layout-spacing-unit)
+  flex-direction: column
+  gap: var(--layout-spacing-unit)
+  position: relative
+  &:empty
+    display: none
+
+#announcement-container:has(.announcement:not(.announcement--sticky)) .announcement--sticky
+  .announcement__closeWrapper
+    display: block
+  .announcement__closeButton
+    visibility: hidden
+</style>

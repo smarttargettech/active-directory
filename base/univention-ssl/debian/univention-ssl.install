@@ -1,0 +1,7 @@
+extensions-example.sh	usr/share/doc/univention-ssl/
+gencertificate.py	usr/lib/univention-directory-listener/system/
+make-certificates.sh	usr/share/univention-ssl/
+ssl-sync	usr/share/univention-ssl/
+univention-certificate	usr/sbin/
+univention-certificate-check-validity	usr/sbin/
+univention-fetch-certificate	usr/sbin/

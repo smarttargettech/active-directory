@@ -1,0 +1,1247 @@
+[proxy/http]
+Description[de]=Der zu verwendende HTTP-Proxyserver, z.B. <http://192.168.1.100:3128>. Wenn der Proxy eine Authenzifizierung erfordert, kann ein Benutzername und ein Passwort im Format <http://benutzername:passwort@192.168.1.100:3128> angegeben werden.
+Description[en]=The HTTP proxy server, e.g. <http://192.168.1.100:3128>. If the proxy requires authentication, the username and the password can be provided in the format <http://username:password@192.168.1.100:3128>.
+Type=url_proxy
+Categories=system-network
+
+[proxy/https]
+Description[de]=Der zu verwendende Proxyserver für HTTPS-Verbindungen, z.B. <http://192.168.1.100:3128>. Wenn der Proxy eine Authenzifizierung erfordert, kann ein Benutzername und ein Passwort im Format <http://benutzername:passwort@192.168.1.100:3128> angegeben werden.
+Description[en]=The proxy server for HTTPS connections, e.g. <http://192.168.1.100:3128>. If the proxy requires authentication, the username and the password can be provided in the format <http://username:password@192.168.1.100:3128>.
+Type=url_proxy
+Categories=system-network
+
+[proxy/no_proxy]
+Description[de]=Eine Komma-separierte Liste von Domänennamen, für die der Proxy nicht verwendet werden soll. Eine Ausnahme für eine Domäne wie univention.de wirkt sich auch auf eine Unterdomäne wie apt.univention.de aus.
+Description[en]=A comma-separated list of domain names for which the proxy should not be consulted. An exception for a domain like univention.de also applies to a subdomain like apt.univention.de.
+Type=list
+Separator=,
+Elementtype=str
+Categories=system-network
+
+[umask]
+Description[de]=Die umask legt fest, mit welchen Berechtigungen Dateien standardmässig angelegt werden (sofern keine abweichenden Rechte gesetzt wurden). Die Berechtigungen werden als oktale Bitmaske oder im symbolischen Formt übergeben (das Format der Bitmaske ist identisch zu dem vom chmod, siehe 'man chmod'). Änderungen an der umask sollten sorgfältig geprüft werden, eine zu laxe umask kann zu Sicherheitsproblemen führen.
+Description[en]=The umask configures the file permissions, with which files are created by default (unless other permissions are given). The permissions are configured as an octal bitmask or using the symbolic format (the format is identical to the chmod command documented in 'man chmod'). Changes to the umask should be tested carefully, since a too permissive umask may lead to security problems.
+Type=str
+Categories=system-base
+
+[sshd/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des SSH-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the SSH service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-ssh
+
+[sshd/port]
+Description[de]=Die Variable konfiguriert den Port, auf dem der SSH-Dienst auf eingehende Verbindungen wartet.
+Description[en]=This variable configures the port on which the SSH daemon is listening for incoming connections.
+Type=portnumber
+Categories=service-ssh
+
+[sshd/permitroot]
+Description[de]=Konfiguriert, ob der Benutzer 'root' sich per SSH anmelden kann: Der Wert 'yes' erlaubt die Anmeldung ohne Einschränkung, 'without-password' erlaubt nur die Public-Key-Authentizierung ohne Passwörter und 'no' unterbindet die root-Anmeldung komplett.
+Description[en]=Configures, whether the user root can login via SSH: The value 'yes' permits the login without limitations, 'without-password' only allows public key authentication without passwords and 'no' denies the root login altogether.
+Type=str
+Categories=service-ssh
+
+[sshd/xforwarding]
+Description[de]=Diese Einstellung ('yes'/'no') legt fest, ob eine auf dem entfernten Rechner gestartete X11-Verbindung weitergeleitet wird. Diese Einstellung muss aktiviert sein, um Benutzern einen grafischen SSH-Login auf dem Server zu ermöglichen.
+Description[en]=This setting ('yes'/'no') configures, whether a X11 connection on the remote host is forwarded. This setting needs to be activated to allow users a graphical login to the server.
+Type=str
+Categories=service-ssh
+
+[sshd/X11Forwarding]
+Description[de]=Diese Einstellung ('yes'/'no') legt fest, ob eine auf dem entfernten Rechner gestartete X11-Verbindung weitergeleitet wird. Diese Einstellung muss aktiviert sein, um Benutzern einen grafischen SSH-Login auf dem Server zu ermöglichen.
+Description[en]=This setting ('yes'/'no') configures, whether a X11 connection on the remote host is forwarded. This setting needs to be activated to allow users a graphical login to the server.
+Type=str
+Categories=service-ssh
+
+[sshd/xdisplayoffset]
+Description[de]=X11-Anzeigeoberflächen (Displays) sind beginnend mit 0 durchnumeriert. Diese Variable legt das erste Display fest, das im Rahmen der X11-Weiterleitung verwendet werden soll.
+Description[en]=X11 displays are numbered starting with 0. This variable specifies the first display to be used during X11 forwarding.
+Type=uint
+Categories=service-ssh
+
+[sshd/X11DisplayOffset]
+Description[de]=X11-Anzeigeoberflächen (Displays) sind beginnend mit 0 durchnumeriert. Diese Variable legt das erste Display fest, das im Rahmen der X11-Weiterleitung verwendet werden soll.
+Description[en]=X11 displays are numbered starting with 0. This variable specifies the first display to be used during X11 forwarding.
+Type=uint
+Categories=service-ssh
+
+[sshd/xuselocalhost]
+Description[de]=Diese Variable legt fest ('yes'/'no'), ob im Rahmen der X11-Weiterleitung die DISPLAY-Umgebungsvariable auf 'localhost' gesetzt wird. Dies verhindert, das der SSH-Client auf das X11-Display des weiterleitenden Servers zugreifen kann.
+Description[en]=This variable configures ('yes'/'no'), whether the DISPLAY variable is mapped to 'localhost' during X11 forwarding. This prevents the access of the SSH client to the X11 display of the forwarding server.
+Type=str
+Categories=service-ssh
+
+[sshd/X11UseLocalHost]
+Description[de]=Diese Variable legt fest ('yes'/'no'), ob im Rahmen der X11-Weiterleitung die DISPLAY-Umgebungsvariable auf 'localhost' gesetzt wird. Dies verhindert, das der SSH-Client auf das X11-Display des weiterleitenden Servers zugreifen kann.
+Description[en]=This variable configures ('yes'/'no'), whether the DISPLAY variable is mapped to 'localhost' during X11 forwarding. This prevents the access of the SSH client to the X11 display of the forwarding server.
+Type=str
+Categories=service-ssh
+
+[sshd/challengeresponse]
+Description[de]=Ist diese Variable auf 'yes' gesetzt, erlaubt der SSH-Server eine Authentifizierung über Challenge-Response-Authentifizierung, mit 'no' wird es deaktiviert.
+Description[en]=If variable is set to 'yes', the SSH server allows an authentication using challenge response authentication, 'no' disables this.
+Type=str
+Categories=service-ssh
+Default=@%@sshd/ChallengeResponseAuthentication@%@
+
+[sshd/banner]
+Description[de]=Die hier angegebene Datei wird bei Anmeldungen per SSH als Hinweis-Banner angezeigt. Wird die Variable auf einen leeren String gesetzt, wird keine Datei angezeigt.
+Description[en]=The file specified here is shown during SSH logins. If the variable is set to an empty string, no file is shown.
+Type=str
+Categories=service-ssh
+
+[sshd/Banner]
+Description[de]=Die hier angegebene Datei wird bei Anmeldungen per SSH als Hinweis-Banner angezeigt. Wird die Variable auf einen leeren String gesetzt, wird keine Datei angezeigt.
+Description[en]=The file specified here is shown during SSH logins. If the variable is set to an empty string, no file is shown.
+Type=str
+Categories=service-ssh
+
+[sshd/passwordauthentication]
+Description[de]=Ist diese Variable auf 'yes' gesetzt, erlaubt der SSH-Server eine passwortbasierte Authentifizierung, mit 'no' wird es deaktiviert.
+Description[en]=If variable is set to 'yes', the SSH server allows an password-based authentication, 'no' disables this.
+Type=str
+Categories=service-ssh
+
+[sshd/motd]
+Description[de]=Mit dieser Variable kann konfiguriert werden, ob beim SSH-Login ein Hinweis auf das UCS-Managementsystem angezeigt wird. Ist die Variable nicht gesetzt, wird der Hinweis angezeigt.
+Description[en]=This variable configures, whether a hint towards the UCS management system is displayed during SSH login. If the variable is not set, the hint is shown.
+Type=bool
+Categories=service-ssh
+
+[sshd/MACs]
+Description[de]=Komma-separierte Liste von verfügbaren MAC (message authentication code) Algorithmen. Siehe `man sshd_config` für Details.
+Description[en]=Comma separated list of available MAC (message authentication code) algorithms. See `man sshd_config for details.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ssh
+
+[sshd/Ciphers]
+Description[de]=Komma-separierte Liste von Verschlüsselungsverfahren für Protokoll Version 2. Siehe `man sshd_config` für Details.
+Description[en]=Comma separated list of ciphers allowed for protocol version 2. See `man sshd_config for details.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ssh
+
+[sshd/KexAlgorithms]
+Description[de]=Komma-separierte Liste von verfügbaren KEX (Key Exchange) Algorithmen. Siehe `man sshd_config` für Details.
+Description[en]=Comma separated list of available KEX (Key Exchange) algorithms. See `man sshd_config for details.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ssh
+
+[sshd/HostKey]
+Description[de]=Komma-separierte Liste von verfügbaren SSH Host Keys. Standard: 'rsa,ecdsa,ed25519'. Siehe `man sshd_config` für Details.
+Description[en]=Comma separated list of available SSH host keys. Default: 'rsa,ecdsa,ed25519'. See `man sshd_config for details.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ssh
+
+[sshd/TCPKeepAlive]
+Description[de]=Spezifiziert, ob TCP keepalive Nachrichten gesendet werden sollen. Standard: yes. Siehe `man sshd_config` für Details.
+Description[en]=Specifies whether to send TCP keepalive messages. Default: yes. See `man sshd_config for details.
+Type=bool
+Categories=service-ssh
+
+[sshd/AddressFamily]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AddressFamily' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AddressFamily': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/ListenAddress]
+Description[de]=Komma separierte Liste. Legt die OpenSSH Deamon Konfigurationsvariable 'ListenAddress' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Comma separated list. Specifies the OpenSSH deamon configuration value 'ListenAddress': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ssh
+
+[sshd/RekeyLimit]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'RekeyLimit' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'RekeyLimit': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/SyslogFacility]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'SyslogFacility' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'SyslogFacility': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/LogLevel]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'LogLevel' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'LogLevel': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/LoginGraceTime]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'LoginGraceTime' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'LoginGraceTime': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/StrictModes]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'StrictModes' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'StrictModes': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/MaxAuthTries]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'MaxAuthTries' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'MaxAuthTries': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/MaxSessions]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'MaxSessions' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'MaxSessions': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PubkeyAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PubkeyAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PubkeyAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AuthorizedKeysFile]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AuthorizedKeysFile' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AuthorizedKeysFile': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AuthorizedPrincipalsFile]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AuthorizedPrincipalsFile' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AuthorizedPrincipalsFile': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AuthorizedKeysCommand]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AuthorizedKeysCommand' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AuthorizedKeysCommand': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AuthorizedKeysCommandUser]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AuthorizedKeysCommandUser' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AuthorizedKeysCommandUser': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/HostbasedAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'HostbasedAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'HostbasedAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/IgnoreUserKnownHosts]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'IgnoreUserKnownHosts' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'IgnoreUserKnownHosts': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/IgnoreRhosts]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'IgnoreRhosts' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'IgnoreRhosts': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PermitEmptyPasswords]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PermitEmptyPasswords' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PermitEmptyPasswords': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/ChallengeResponseAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'ChallengeResponseAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'ChallengeResponseAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/KerberosAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'KerberosAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'KerberosAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/KerberosOrLocalPasswd]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'KerberosOrLocalPasswd' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'KerberosOrLocalPasswd': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/KerberosTicketCleanup]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'KerberosTicketCleanup' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'KerberosTicketCleanup': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/KerberosGetAFSToken]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'KerberosGetAFSToken' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'KerberosGetAFSToken': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/GSSAPIAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'GSSAPIAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'GSSAPIAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/GSSAPICleanupCredentials]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'GSSAPICleanupCredentials' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'GSSAPICleanupCredentials': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/GSSAPIStrictAcceptorCheck]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'GSSAPIStrictAcceptorCheck' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'GSSAPIStrictAcceptorCheck': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/GSSAPIKeyExchange]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'GSSAPIKeyExchange' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'GSSAPIKeyExchange': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/UsePAM]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'UsePAM' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'UsePAM': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AllowAgentForwarding]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AllowAgentForwarding' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AllowAgentForwarding': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AllowTcpForwarding]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AllowTcpForwarding' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AllowTcpForwarding': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/GatewayPorts]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'GatewayPorts' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'GatewayPorts': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PermitTTY]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PermitTTY' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PermitTTY': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PrintMotd]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PrintMotd' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PrintMotd': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PrintLastLog]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PrintLastLog' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PrintLastLog': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/UsePrivilegeSeparation]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'UsePrivilegeSeparation' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'UsePrivilegeSeparation': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PermitUserEnvironment]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PermitUserEnvironment' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PermitUserEnvironment': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/Compression]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'Compression' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'Compression': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/ClientAliveInterval]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'ClientAliveInterval' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'ClientAliveInterval': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/ClientAliveCountMax]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'ClientAliveCountMax' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'ClientAliveCountMax': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/UseDNS]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'UseDNS' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'UseDNS': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PidFile]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PidFile' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PidFile': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/MaxStartups]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'MaxStartups' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'MaxStartups': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/PermitTunnel]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'PermitTunnel' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'PermitTunnel': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/ChrootDirectory]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'ChrootDirectory' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'ChrootDirectory': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/VersionAddendum]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'VersionAddendum' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'VersionAddendum': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/AcceptEnv]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'AcceptEnv' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'AcceptEnv': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/Subsystem]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'Subsystem' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'Subsystem': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[sshd/KbdInteractiveAuthentication]
+Description[de]=Legt die OpenSSH Deamon Konfigurationsvariable 'KbdInteractiveAuthentication' fest. Wenn die Variable nicht gesetzt ist, so wird der OpenSSH Standard benutzt, siehe auch `man sshd_config.
+Description[en]=Specifies the OpenSSH deamon configuration value 'KbdInteractiveAuthentication': if the variable is unset, the OpenSSH default value is used, see `man sshd_config for details.
+Type=str
+Categories=service-ssh
+Default=@%@sshd/challengeresponse@%@
+
+[sshd/config/.*]
+Description[de]=Spezifiziert zusätzliche Konfigurationsoptionen für /etc/ssh/sshd_config. Siehe `man sshd_config` für Details.
+Description[en]=Specifies additional configuration options for /etc/ssh/sshd_config. See `man sshd_config for details.
+Type=str
+Categories=service-ssh
+
+[systemd/journald/SplitMode]
+Description[de]=Definiert, wie journald die Protokolldateien aufteilt. Standard: uid. Siehe `man journald.conf` für Details.
+Description[en]=Specifices how journald splits up journal files. Default: uid. See man `man journald.conf` for details.
+Type=str
+Categories=system-base
+
+[systemd/journald/Storage]
+Description[de]=Entweder "volatile", "persistent", "auto" oder "none". Standard ist "auto".
+Description[en]=One of "volatile", "persistent", "auto" and "none". Defaults to "auto".
+Type=str
+Categories=system-base
+
+[systemd/journald/SystemMaxUse]
+Description[de]=Wie viel Festplattenplatz das Journal höchstens belegen darf. Standard sind 10% der Größe des Dateisystems.
+Description[en]=How much disk space the journal may use up at maximum. Defaults to 10% of the size of the file system.
+Type=str
+Categories=system-base
+
+[systemd/journald/SystemKeepFree]
+Description[de]=Wie viel Festplattenplatz systemd-journald für andere Anwendungen frei lassen soll. Standard sind 15% der Größe des Dateisystems.
+Description[en]=How much disk space systemd-journald shall leave free for other uses. Defaults to 15% of the size of the file system.
+Type=str
+Categories=system-base
+
+[systemd/journald/SystemMaxFileSize]
+Description[de]=Wie groß einzelne Journal-Dateien höchtens werden dürfen. Standard ist ein achtel des Wertes der durch SystemMaxUse eingestellt ist.
+Description[en]=How large individual journal files may grow at maximum. Defaults to one eighth of the value configured with SystemMaxUse.
+Type=str
+Categories=system-base
+
+[systemd/journald/MaxRetentionSec]
+Description[de]=Die längste Zeit für die Journal-Einträge gespeichert werden sollen. Standard ist 0 (wodurch diese Funktion deaktiviert wird).
+Description[en]=The maximum time to store journal entries. Default of 0 (which turns off this feature).
+Type=str
+Categories=system-base
+
+[systemd/journald/MaxFileSec]
+Description[de]=Der größte Zeitraum der in einer einzelnen Journal-Datei gespeichert wird bevor eine neue erstellt wird. Standard ist ein Monat.
+Description[en]=The maximum time to store entries in a single journal file before rotating to the next one. Default of one month.
+Type=str
+Categories=system-base
+
+[domainname]
+Description[de]=Der Name der DNS-Domäne des Systems. Dieser Domänenname muss nicht mit dem externen DNS-Domänenname (etwa der Webpräsenz) übereinstimmen.
+Description[en]=The name of the system's DNS domain. This domain name does not need to match the externally used DNS domain name (e.g. of the web site).
+Type=str
+Categories=system-network
+ReadOnly=yes
+
+[domain/search]
+Description[de]=In der Grundeinstellung enthält die /etc/resolv.conf nur den lokalen Domänennamen. Mit dieser Variable kann in zusätzlichen Domänen gesucht werden.
+Description[en]=In the default setting /etc/resolv.conf only contains the local domainname. With this variable additional domains can be searched.
+Type=str
+Categories=system-network
+
+[windows/domain]
+Description[de]=Der NetBIOS-Domänenname (verwendet in Samba 3, in Samba 4 wird überwiegend der DNS/Kerberos-Domänenname verwendet).
+Description[en]=The NetBIOS domain name (used in Samba 3, Samba 4 predominantly uses the DNS/Kerberos domainname).
+Type=str
+Categories=service-samba
+ReadOnly=yes
+
+[gateway]
+Description[de]=Die IPv4-Adresse des Standard-Gateways.
+Description[en]=The IPv4 address of the standard gateway.
+Type=ipv4address
+Categories=system-network
+
+[ipv6/gateway]
+Description[de]=Die IPv6-Adresse des Standard-Gateways. Für IPv6 ist die Angabe eines Gateways bei statischer Konfiguration erforderlich; bei dynamischer Konfiguration ist diese optional, wird jedoch empfohlen. Ein hier konfiguriertes IPv6-Gateway hat Vorrang vor Router Advertisements, die ansonsten die Route ändern könnten. Ein zone index kann (mittels einem "%") angehängt werden, um die Schnittstelle anzugeben, von der die Adresse erreichbar ist.
+Description[en]=The IPv6 address of the standard gateway. For IPv6, a gateway must be entered in the static configuration; for the dynamic configuration, it is optional, but recommended. A gateway configured here has preference over router advertisements, which might otherwise be able to change the route. A zone index can be appended (with a "%") to specify the interface this address is reachable from.
+Type=ipv6address
+Categories=system-network
+
+[hostname]
+Description[de]=Der Name des Rechners. Der Rechnername kann nach dem Domänenbeitritt nicht mehr geändert werden.
+Description[en]=The name of the system / host name. The hostname cannot be changed after the domain join.
+Type=str
+Categories=system-network
+ReadOnly=yes
+
+[interfaces/.*/address]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/address konfiguriert die IPv4-Adresse der Netzwerkschnittstelle. Für eine dynamische Vergabe über DHCP siehe 'interfaces/.*/type', bei Verwendung von DHCP wird keine Adresse angegeben.
+Description[en]=A variable in the form interfaces/INTERFACE/address configures the IPv4 address of the network interface. For a dynamic assignment using DHCP, see 'interfaces/.*/type'. If DHCP is used, no address is specified.
+Type=ipv4address
+Categories=system-network
+
+[interfaces/.*/broadcast]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/broadcast konfiguriert die Broadcast-Adresse der Netzwerkschnittstelle. Die Broadcast-Adresse ist optional.
+Description[en]=A variable in the form interfaces/INTERFACE/broadcast configures the broadcast address of the network interface. The broadcast address is optional.
+Type=ipv4address
+Categories=system-network
+
+[interfaces/.*/mac]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/mac rekonfiguriert die MAC-Adresse der Netzwerkschnittstelle (sofern Treiber/Hardware dies unterstützen).
+Description[en]=A variable in the form interfaces/INTERFACE/address reconfigures the MAC address of the network interface (unless permitted by driver/hardware).
+Type=str
+Categories=system-network
+
+[interfaces/.*/netmask]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/netmask konfiguriert die Netzmaske der Netzwerkschnittstelle.
+Description[en]=A variable in the form interfaces/INTERFACE/netmask configures the netmask of the network interface.
+Type=str
+Categories=system-network
+
+[interfaces/.*/network]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/network konfiguriert die Netzwerk-Adresse der Netzwerkschnittstelle. Die Adresse ist optional.
+Description[en]=A variable in the form interfaces/INTERFACE/network configures the network address of the network interface. The address is optional.
+Type=ipv4address
+Categories=system-network
+
+[interfaces/.*/order]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/network konfiguriert die Reihenfolge der Einträge für Netzwerkschnittstellen. Pro Netzwerkschnittstelle kann eine Zahl konfiguriert werden, anhand derer die Schnittstellen dann aufsteigend sortiert werden.
+Description[en]=A variable in the form interfaces/INTERFACE/network configures the order of the network interfaces. A number can be configured per network interface. Based on that the interfaces are sorted in ascending order.
+Type=int
+Categories=system-network
+
+[interfaces/.*/start]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/network konfiguriert das automatische Starten der Netzwerkschnittstelle. Wird sie auf 'no' gesetzt, erfolgt kein automatischer Start. Ist sie auf 'yes' gesetzt oder nicht gesetzt, wird es automatisch gestartet.
+Description[en]=A variable in the form interfaces/INTERFACE/network configures the automatic start of the network interface. If set to 'no', no automatic start occurs. If set to 'yes' or if the variable is unset, it is started automatically.
+Type=str
+Categories=system-network
+
+[interfaces/.*/type]
+Description[de]=Legt die Art der IP-Zuweisung fest: 'static' legt die Netzkonfiguration anhand weiterer Variablen fest (z.B. 'interfaces/eth0/address'). 'dhcp' konfiguriert eine dynamische Zuweisung über DHCP. 'manual' erfordert eine manuelle Konfiguration.
+Description[en]=Defines the type of IP assignment: 'static' configures the interface according to the values configured in additional variables (e.g. 'interfaces/eth0/address'). 'dhcp' configures dynamic assignment over DHCP. 'manual' required manual configuration.
+Type=str
+Categories=system-network
+
+[interfaces/.*/route/.*]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/route/INDEX erlaubt die Konfiguration zusätzlicher Routen pro Netwerkschnittstelle. Der Wert muß das Format 'host a.b.c.d' oder 'net a.b.0.0 netmask 255.255.0.0' haben (see 'man 8 route').
+Description[en]=A variable in the form interfaces/INTERFACE/route/INDEX allows the configuration of additional routes per network interface. The value must be formatted like 'host a.b.c.d' or 'net a.b.0.0 netmask 255.255.0.0' (see 'man 8 route').
+Type=str
+Categories=system-network
+
+[interfaces/.*/mtu]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/mtu erlaubt die Konfiguration der maximalen Transfergröße (MTU) pro Netzwerkschnittstelle.
+Description[en]=A variable in the form interfaces/INTERFACE/mtu allows the configuration the maximum transfer unit (MTU) per network interface.
+Type=pint
+Categories=system-network
+
+[interfaces/.*/options/.*]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/options/INDEX erlaubt die Konfiguration zusätzlicher Optionen pro Netwerkschnittstelle (siehe 'man 5 interfaces').
+Description[en]=A variable in the form interfaces/INTERFACE/options/INDEX allows the configuration of additional options per network interface (see 'man 5 interfaces').
+Type=str
+Categories=system-network
+
+[interfaces/.*/ipv6/.*/address]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/ipv6/IDENTIFIER/address konfiguriert die statische IPv6-Adresse der Netzwerkschnittstelle. Für eine dynamische Vergabe über SLAAC siehe 'interfaces/eth0/ipv6/acceptRA', bei Verwendung von SLAAC wird keine Adresse angegeben.
+Description[en]=A variable in the form interfaces/INTERFACE/ipv6/IDENTIFIER/address configures the static IPv6 address of the network interface. For a dynamic assignment using SLAAC, see 'interfaces/eth0/ipv6/acceptRA'. If SLAAC is used, no address is specified.
+Type=ipv6address
+Categories=system-network
+
+[interfaces/.*/ipv6/.*/prefix]
+Description[de]=Eine Variable in der Form interfaces/INTERFACE/ipv6/IDENTIFIER/prefix konfiguriert die IPv6-Präfixlänge der Netzschnittstelle (CIDR-Notation). Für eine dynamische Vergabe über SLAAC siehe 'interfaces/eth0/ipv6/acceptRA', bei Verwendung von SLAAC wird kein Präfix angegeben.
+Description[en]=A variable in the form interfaces/INTERFACE/ipv6/IDENTIFIER/prefix configures the IPv6 prefix length of the network interface (CIDR notation). For a dynamic assignment using SLAAC, see 'interfaces/eth0/ipv6/acceptRA'. If SLAAC is used, no prefix is specified.
+Type=int
+Min=0
+Max=128
+Categories=system-network
+
+[interfaces/.*/ipv6/acceptRA]
+Description[de]=Ist diese Option aktiviert, kommt für die Netzwerkschnittstelle Stateless Address Autoconfiguration (SLAAC) zum Einsatz. Dabei wird die IP-Adresse von den Routern des lokalen Netzsegmentes zugewiesen.
+Description[en]=If this option is activated, Stateless Address Autoconfiguration (SLAAC) is used for the network interface. In this, the IP address is assigned from the routers of the local network segment.
+Type=bool
+Categories=system-network
+
+[interfaces/.*/hosts]
+Description[de]=Standardmäßig werden statische IP-Adressen mit dem FQHN und Host-Namen in /etc/hosts eingetragen. Diese Option erlaubt es, die Liste der Namen zu überschreiben.
+Description[en]=By default static IP addresses are added to /etc/hosts using the FQHN and host name. The option allows to overwrite this list of names.
+Type=str
+Categories=system-network
+
+[interfaces/restart/auto]
+Description[de]=Diese Option legt fest, ob beim Setzen von Netzwerk-UCR-Variablen (interfaces/*) automatisch die betroffene Netzwerkschnittstelle neu gestartet wird. Ist die Variable nicht gesetzt, erfolgt ein Neustart.
+Description[en]=This option configures, whether network interfaces are automatically restarted if the network-related UCR variables (interfaces/*) are modified. If the variable is unset, a restart occurs.
+Type=bool
+Categories=system-network
+
+[interfaces/primary]
+Description[de]=Existieren mehrere Netzwerkschnittstellen auf einem System, kann mit dieser Variable die primäre angegeben werden. Ist hier kein Wert gesetzt, wird 'eth0' verwendet.
+Description[en]=If multiple network interfaces exist on a system, this variable allows configuring the primary network interface. If no value is set, 'eth0' is assumed.
+Type=str
+Categories=system-network
+
+[hosts/static/.*]
+Description[de]=Mit Variablen nach dem Schema hosts/static/IPADRESSE=RECHNERNAME können Einträge zur /etc/hosts hinzugefügt werden. Beispiel: 'hosts/static/192.168.0.100=w2k8-32.ad.example.com'.
+Description[en]=With variables following the scheme hosts/static/IPADDRESS=HOSTNAME entries can be added to /etc/hosts. Example: 'hosts/static/192.168.0.100=w2k8-32.ad.example.com'.
+Type=str
+Categories=system-base
+
+[kernel/modules]
+Description[de]=Die zu verwendenden Treiber (Kernel-Module) werden automatisch erkannt und geladen. Mit dieser Variable können Module geladen werden, die nicht automatisch erkannt wurden oder erkannt werden können. Mehrere Einträge müssen durch Semikolon getrennt werden.
+Description[en]=The required drivers (kernel modules) are automatically detected and loaded. This variable allows the loading of modules, which couldn't/cannot be automatically detected. If multiple modules are needed, they must be separated by semicolon.
+Type=list
+Separator=;
+Elementtype=str
+Categories=system-kernel
+
+[kernel/blacklist]
+Description[de]=Die zu verwendenden Treiber (Kernel-Module) werden automatisch erkannt und geladen. In dieser Variable können Module aufgeführt werden, die nicht geladen werden sollen. Mehrere Einträge müssen durch Semikolon getrennt werden.
+Description[en]=The required drivers (kernel modules) are automatically detected and loaded. This variable allows a selection of modules which should not be loaded. If multiple modules are needed, they must be separated by semicolon.
+Type=list
+Separator=;
+Elementtype=str
+Categories=system-kernel
+
+[kernel/fs/inotify/max_user_instances]
+Description[de]=Die Obergrenze an Inotify-Diensten pro Benutzer-ID.
+Description[en]=The upper limit of Inotify services per user ID.
+Type=uint
+Categories=system-kernel
+
+[kernel/fs/inotify/max_user_watches]
+Description[de]=Die Obergrenze an Dateien pro Benutzer-ID, die durch den Inotify-Dienst überwacht werden können.
+Description[en]=The upper limit of files per user which can be watched by the Inotify service.
+Type=uint
+Categories=system-kernel
+
+[kernel/fs/inotify/max_queued_events]
+Description[de]=Die Obergrenze für die Anzahl von vorgehaltenen Events pro Inotify-Instanz.
+Description[en]=The upper limit of queued events per Inotify instance.
+Type=uint
+Categories=system-kernel
+
+[kernel/net/ipv4/neigh/default/gc_thresh1]
+Description[de]=Ein Linux Kernel Parameter: Die Grenze von ARP Cache Einträgen unterhalb derer der GC nicht läuft.
+Description[en]=A Linux kernel parameter: The threshold of ARP cache entries below which the garbage collector will not run.
+Type=uint
+Categories=system-kernel
+Default=1024
+
+[kernel/net/ipv4/neigh/default/gc_thresh2]
+Description[de]=Ein Linux Kernel Parameter: Die Grenze ab welcher der GC ARP Cache Einträge die älter als 5 Sekunden sind entfernt.
+Description[en]=A Linux kernel parameter: The threshold when garbage collector purges ARP cache entries that are older than 5 seconds.
+Type=uint
+Categories=system-kernel
+Default=2048
+
+[kernel/net/ipv4/neigh/default/gc_thresh3]
+Description[de]=Ein Linux Kernel Parameter: Die maximale Anzahl von ARP Cache Einträgen die nicht permanent sind.
+Description[en]=A Linux kernel parameter: The maximum number of ARP cache entries that are non-permanent.
+Type=uint
+Categories=system-kernel
+Default=4096
+
+[ldap/backup]
+Description[de]=Der/die Backup Directory Node-Systeme der Domäne. Mehrfache Einträge müssen mit Leerzeichen getrennt werden.
+Description[en]=The Backup Directory Node system(s) in the domain. Multiple entries need to be separated by blanks.
+Type=str
+Categories=service-ldap
+
+[ldap/master]
+Description[de]=Das Primary Directory Node System der Domäne.
+Description[en]=The Primary Directory Node of the domain.
+Type=str
+Categories=service-ldap
+
+[ldap/server/name]
+Description[de]=In einer UCS-Domäne können mehrere LDAP-Server betrieben werden. Der primär verwendete wird mit dieser Variable festgelegt. Weitere Server werden über 'ldap/server/addition' angegeben.
+Description[en]=Several LDAP servers can be operated in a UCS domain. The primary one is specified with this variable. Further servers are specified via 'ldap/server/addition'.
+Type=str
+Categories=service-ldap
+
+[ldap/server/addition]
+Description[de]=In einer UCS-Domäne können mehrere LDAP-Server betrieben werden. Der primär verwendete wird mit 'ldap/server/name' festgelegt. Weitere Server werden von einem Listener-Modul automatisch über dieser Variable verwaltet.
+Description[en]=Several LDAP servers can be operated in a UCS domain. The primary one is specified with 'ldap/server/name'. Further servers are automatically managed by a Listener module through this variable.
+Type=str
+Categories=service-ldap
+
+[ldap/server/ip]
+Description[de]=Die IP-Adresse des lokalen primären LDAP-Servers (siehe 'ldap/server/name').
+Description[en]=The IP address of the local primary LDAP server (see 'ldap/server/name').
+Type=ipaddress
+Categories=service-ldap
+
+[ldap/base]
+Description[de]=Die Basis DN des LDAP-Verzeichnis. Diese Einstellung kann nach der Installation des Primary Directory Node nicht mehr verändert werden.
+Description[en]=The base DN of the LDAP directory. This setting cannot be changed after the installation of the Primary Directory Node.
+Type=str
+Categories=service-ldap
+ReadOnly=yes
+
+[ldap/hostdn]
+Description[de]=Die LDAP-DN des Rechnerkontos des Systems.
+Description[en]=The LDAP DN of the host account of the system.
+Type=str
+Categories=service-ldap
+ReadOnly=yes
+
+[ldap/policy/cron]
+Description[de]=Das Intervall für die regelmäßige Ausführung der Univention Directory Policy-Skripte. Die Konfiguration erfolgt in Cron-Syntax, siehe 'man 5 crontab'
+Description[en]=The interval for the regular execution of Univention Directory Policy scripts. The configuration is done in Cron syntax, see 'man 5 crontab'.
+Type=cron
+Categories=service-ldap
+
+[ldap/client/retry/count]
+Description[de]=Diese Variable definiert wie häufig die internen Programme versuchen den LDAP Server zu erreichen, wenn dieser nicht erreichbar ist. Die Programme warten zwischen jedem Versuch eine Sekunde. Ist die Variable nicht gesetzt, wird 10 verwendet.
+Description[en]=This variable defines how often the internal programs are trying to connect the LDAP server if it is not reachable. The programs wait for one second between each attempt. If the variable is not set, 10 is used.
+Type=uint
+Categories=service-ldap
+Default=10
+
+[locale]
+Description[de]=Lokalisierungseigenschaften von Software wie verwendete Datumsformate und die gewünschte Übersetzung werden in Locales festgelegt. Über das UMC-Modul Systemeinstellungen können die installierten Locales ausgewählt werden. Diese Variable speichert die installierten Locales.
+Description[en]=Localisation properties such as time/date formats and the preferred translation are specified in locales. The installed locales can be selected using the UMC module 'System settings'. This variable contains the installed locales.
+Type=str
+Categories=system-locale
+
+[locale/default]
+Description[de]=Lokalisierungseigenschaften von Software wie verwendete Datumsformate und die gewünschte Übersetzung werden in Locales festgelegt. Über das UMC-Modul Systemeinstellungen können die installierten Locales ausgewählt werden. Diese Variable konfiguriert die Standard-Locale des Systems.
+Description[en]=Localisation properties such as time/date formats and the preferred translation are specified in locales. The installed locales can be selected using the UMC module 'System settings'. This variable selects the default locale for the system.
+Type=str
+Categories=system-locale
+
+[logrotate/rotate]
+Description[de]=Logdateien werden nach diesem Kriterium rotiert, z.B. "daily", "weekly", "monthly", oder eine Größenbegrenzung wie "size 100M". Siehe 'man logrotate.conf' für weitere Formate.
+Description[en]=Log files are rotated according to this criterion, e.g. "daily", "weekly", "monthly" or up to a size limit like "size 100M". See 'man logrotate.conf' for additional formats.
+Type=str
+Categories=system-base
+
+[logrotate/rotate/count]
+Description[de]=Log-Dateien werden mit der gesetzten Anzahl rotiert bevor sie entfernt werden. Steht z.B. 'logrotate/rotate/count' auf 2, werden zwei alte Log-Dateien behalten. Siehe 'man logrotate' für zusätzlichen Informationen.
+Description[en]=Log files are rotated the set number of times before being removed. E.g., if 'logrotate/rotate/count' is set to 2, two old system log files will be kept. See 'man logrotate' for additional information.
+Type=pint
+Categories=system-base
+
+[logrotate/notifempty]
+Description[de]=Wenn diese Option aktiviert ist, werden leere Logdateien nicht rotiert.
+Description[en]=If this option is activated, empty logfiles are not rotated.
+Type=bool
+Categories=system-base
+
+[logrotate/compress]
+Description[de]=Ist diese Option aktiviert, werden Logdateien bei der Rotation komprimiert.
+Description[en]=If this option is activated, log files are compressed during rotation.
+Type=bool
+Categories=system-base
+
+[logrotate/missingok]
+Description[de]=Ist diese Option aktiviert, wird beim Fehlen einer Logdatei die Verarbeitung ohne Ausgabe einer Fehlermeldung fortgesetzt.
+Description[en]=If this option is activated, proceed without printing an error message if a logfile is missing.
+Type=bool
+Categories=system-base
+
+[logrotate/create]
+Description[de]=Konfiguriert Modus, Besitzer und Gruppe einer Logdatei nach der Rotation, z.B. '640 root adm'.
+Description[en]=Configures mode, owner and group of a log file after rotation, e.g. '640 root adm'.
+Type=str
+Categories=system-base
+
+[nameserver1]
+Description[de]=Der erste zu verwendende DNS-Server.
+Description[en]=The first DNS server to be used.
+Type=ipaddress
+Categories=system-network
+
+[nameserver2]
+Description[de]=Der zweite zu verwendende DNS-Server.
+Description[en]=The second DNS server to be used.
+Type=ipaddress
+Categories=system-network
+
+[nameserver3]
+Description[de]=Der dritte zu verwendende DNS-Server.
+Description[en]=The third DNS server to be used.
+Type=ipaddress
+Categories=system-network
+
+[nameserver/option/timeout]
+Description[de]=Diese Variable konfiguriert die maximale Wartezeit in Sekunden für eine DNS-Anfrage. Nach Ablauf der Zeit wird der nächste DNS-Server abgefragt.
+Description[en]=This variable configures the maximum waiting time in seconds for a DNS request. Once elapsed the next DNS server is queried.
+Type=uint
+Categories=system-network
+
+[server/role]
+Description[de]=Die Systemrolle des Systems. Diese Einstellung kann nach dem Domänenbeitritt nicht mehr geändert werden.
+Description[en]=The system role of the system. This setting cannot be changed after domain join.
+Type=str
+Categories=system-base
+ReadOnly=yes
+
+[ntp/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des NTP-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the NTP service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[ntp/signed]
+Description[de]=Windows-Clients, die in eine Samba 4-Domäne gejoint wurden, akzeptieren nur signierte NTP-Zeitanfragen. Wird diese Option aktiviert, werden die NTP-Pakete durch Samba 4 signiert. Ist die Variable nicht gesetzt, erfolgt keine Signierung.
+Description[en]=Windows clients joined in a Samba 4 domain only accept signed NTP time requests. If this option is activated, the NTP replies are signed by Samba 4. If the variable is unset, no signing is done.
+Type=bool
+Categories=system-base
+
+[ntp/tinker/panic]
+Description[de]=Die maximale Zeitdifferenz zum NTP Server in Sekunden die synchronisiert wird (für beliebige Zeitdifferenz auf '0' setzen).
+Description[en]=The maximum time difference to the NTP server in seconds which is synchronised (set to '0' for any time difference).
+Type=int
+Categories=system-base
+
+[ntp/noquery]
+Description[de]=ntpq und ntpdc Abfragen von entfernten Rechnern ablehnen. (Zeitdienst ist nicht betroffen)
+Description[en]=Deny ntpq and ntpdc queries from remote hosts. (Time service is not affected)
+Type=bool
+Categories=system-base
+
+[timeserver]
+Description[de]=In einer UCS-Domäne dient standardmäßig der Primary Directory Node als Zeitserver. Über die 'timeserver', 'timeserver2' und 'timeserver3' können externe NTP-Server als Zeitquelle eingebunden werden.
+Description[en]=Usually the Primary Directory Node functions as the time server of a UCS domain. With the variables 'timeserver', 'timeserver2' and 'timeserver3' external NTP servers can be included as time sources.
+Type=str
+Categories=system-network
+
+[timeserver2]
+Description[de]=In einer UCS-Domäne dient standardmäßig der Primary Directory Node als Zeitserver. Über die 'timeserver', 'timeserver2' und 'timeserver3' können externe NTP-Server als Zeitquelle eingebunden werden.
+Description[en]=Usually the Primary Directory Node functions as the time server of a UCS domain. With the variables 'timeserver', 'timeserver2' and 'timeserver3' external NTP servers can be included as time sources.
+Type=str
+Categories=system-network
+
+[timeserver3]
+Description[de]=In einer UCS-Domäne dient standardmäßig der Primary Directory Node als Zeitserver. Über die 'timeserver', 'timeserver2' und 'timeserver3' können externe NTP-Server als Zeitquelle eingebunden werden.
+Description[en]=Usually the Primary Directory Node functions as the time server of a UCS domain. With the variables 'timeserver', 'timeserver2' and 'timeserver3' external NTP servers can be included as time sources.
+Type=str
+Categories=system-network
+
+[ucr/output/brief]
+Description[de]=Ist diese Option aktiviert, wird bei der Suche nach Univention Configuration Registry-Variablen auf der Kommandozeile mit dem Kommando 'search' die Variablenbeschreibung nicht mit ausgegeben. Ist die Variable nicht gesetzt, wird die Variablenbeschreibung angezeigt.
+Description[en]=If this option is activated, the variable description is not displayed when searching for Univention Configuration Registry variables on the command line using the 'search' command. If the variable is unset, the variable descriptions are shown.
+Type=bool
+Categories=system-base
+
+[ucr/replog/enabled]
+Description[de]=Ist diese Option aktiviert, werden alle Änderungen an Univention Configuration Registry-Variablen in der Transaktions-Logdatei '/var/log/univention/config-registry.replog' prokolliert. Ist die Option nicht gesetzt, erfolgt keine Protokollierung.
+Description[en]=If this option is activated all changes to Univention Configuration Registry variables are logged to the transaction logfile '/var/log/univention/config-registry.replog'. If the option is unset, no changes are logged.
+Type=bool
+Categories=system-base
+
+[ucr/backup/enabled]
+Description[de]=Ist diese Option aktiviert, wird durch einen Cronjob täglich eine Sicherung der Univention Configuration Registry-Daten nach '/var/univention-backup/ucr-backup_*.tgz' durchgeführt. Ist die Variable nicht gesetzt, erfolgt keine Sicherung.
+Description[en]=If this option is activated, a daily cron job performs a backup of all Univention Configuration Registry data tor '/var/univention-backup/ucr-backup_*.tgz'. If the variable is unset, no backup is performed.
+Type=bool
+Categories=system-base
+
+[ucr/encoding/strict]
+Description[de]=Ist diese Option aktiviert, werden in Univention Configuration Registry nur UTF-8 codierte Werte und Variablennamen akzeptiert.
+Description[en]=If this option is activated, only UTF-8 encoded values and variable names are accepted in Univention Configuration Registry.
+Type=bool
+Categories=system-base
+
+[ucr/check/type]
+Description[de]=Ist diese Option aktiviert, wird in Univention Configuration Registry grundsätzlich auf Korrektheit von Typ-Definitionen und die Typ-Kompatibilität von zu setzenden Werten geprüft.
+Description[en]=If this option is activated, correctness of type definitions and type compatibility of values to be set are always checked in Univention Configuration Registry.
+Type=bool
+Default=true
+Categories=system-base
+
+[version/patchlevel]
+Description[de]=Vier Arten von UCS-Updates werden unterschieden: Major Releases (erscheinen ca. alle vier Jahre, können auch größere Veränderungen mit sich bringen), Minor Release (erscheinen ca. alle 6-8 Monate, Fehlerkorrekturen und neue Funktionen), Patchlevel Releases (erscheinen ca. alle 2-3 Monate, enthalten gegenüber einem Minor Release weniger Änderungen und der Fokus liegt auf Bugfixes) und Errata-Updates (zeitnahe Fehlerkorrekturen für Sicherheitslücken oder kritische Programmfehler). Diese Variable wird während Updates automatisch gesetzt und enthält den Stand des Patchlevel Releases.
+Description[en]=Four types of Univention Configuration Registry updates are differentiated: Major releases (released approximately every four years, may introduce bigger changes), minor releases (released approximately every 6-8 months, error corrections and new functions), patch level releases (released every 2-3 months, less changes compared to a minor release, focus on bugfixes) and errata updates (timely bugfixes for security problems and critical bugs). This variable is set automatically during updates and contains the version of the installed patch level release.
+Type=uint
+Categories=system-base
+ReadOnly=yes
+
+[version/erratalevel]
+Description[de]=Vier Arten von UCS-Updates werden unterschieden: Major Releases (erscheinen ca. alle vier Jahre, können auch größere Veränderungen mit sich bringen), Minor Release (erscheinen ca. alle 6-8 Monate, Fehlerkorrekturen und neue Funktionen), Patchlevel Releases (erscheinen ca. alle 2-3 Monate, enthalten gegenüber einem Minor Release weniger Änderungen und der Fokus liegt auf Bugfixes) und Errata-Updates (zeitnahe Fehlerkorrekturen für Sicherheitslücken oder kritische Programmfehler). Diese Variable wird während Updates automatisch gesetzt und enthält den Stand der installierten Errata-Updates.
+Description[en]=Four types of UCS updates are differentiated: Major releases (released approximately every four years, may introduce bigger changes), minor releases (released approximately every 6-8 months, error corrections and new functions), patch level releases (released every 2-3 months, less changes compared to a minor release, focus on bugfixes) and errata updates (timely bugfixes for security problems and critical bugs). This variable is set automatically during updates and contains the version of the installed errata updates.
+Type=uint
+Categories=system-base
+ReadOnly=yes
+
+[version/version]
+Description[de]=Vier Arten von UCS-Updates werden unterschieden: Major Releases (erscheinen ca. alle vier Jahre, können auch größere Veränderungen mit sich bringen), Minor Release (erscheinen ca. alle 6-8 Monate, Fehlerkorrekturen und neue Funktionen), Patchlevel Releases (erscheinen ca. alle 2-3 Monate, enthalten gegenüber einem Minor Release weniger Änderungen und der Fokus liegt auf Bugfixes) und Errata-Updates (zeitnahe Fehlerkorrekturen für Sicherheitslücken oder kritische Programmfehler). Diese Variable wird während Updates automatisch gesetzt und enthält die Version aus Major und Minor-Update.
+Description[en]=Four types of UCS updates are differentiated: Major releases (released approximately every four years, may introduce bigger changes), minor releases (released approximately every 6-8 months, error corrections and new functions), patch level releases (released every 2-3 months, less changes compared to a minor release, focus on bugfixes) and errata updates (timely bugfixes for security problems and critical bugs). This variable is set automatically during updates and contains the version of major and minor update.
+Type=str
+Categories=system-base
+ReadOnly=yes
+
+[cron/*/time]
+Description[de]=Cron-Jobs können in Univention Configuration Registry definiert werden. Jeder Cron-Job setzt sich dabei aus mehreren Variablen zusammen. Es müssen min. die Variablen 'cron/JOBNAME/command' und 'cron/JOBNAME/time' gesetzt werden. Diese Variable setzt die Ausführungszeit in Cron-Syntax, siehe 'man 5 crontab'
+Description[en]=Cron jobs can be defined in Univention Configuration Registry. Each Cron job is composed of various variables. At least the variables 'cron/JOBNAME/command' and 'cron/JOBNAME/time' must be set. This variable specifies the execution time in Cron syntax, see 'man 5 crontab'.
+Type=cron
+Categories=system-base
+
+[cron/*/command]
+Description[de]=Cron-Jobs können in Univention Configuration Registry definiert werden. Jeder Cron-Job setzt sich dabei aus mehreren Variablen zusammen. Es müssen min. die Variablen 'cron/JOBNAME/command' und 'cron/JOBNAME/time' gesetzt werden. Diese Variable legt den auszuführenden Befehl fest.
+Description[en]=Cron jobs can be defined in Univention Configuration Registry. Each cron job is composed of various variables. At least the variables 'cron/JOBNAME/command' and 'cron/JOBNAME/time' must be set. This variable specifies the command to be run.
+Type=str
+Categories=system-base
+
+[cron/*/user]
+Description[de]=Cron-Jobs können in Univention Configuration Registry definiert werden. Jeder Cron-Job setzt sich dabei aus mehreren Variablen zusammen. Es müssen min. die Variablen 'cron/JOBNAME/command' und 'cron/JOBNAME/time' gesetzt werden. Ist die Variable nicht gesetzt, wird der Crob-Job als Benutzer root ausgeführt. Mit dieser Variable kann ein abweichender Benutzer angegeben werden.
+Description[en]=Cron jobs can be defined in Univention Configuration Registry. Each cron job is composed of various variables. At least the variables 'cron/JOBNAME/command' and 'cron/JOBNAME/time' must be set. As standard, the Cron job is run as the root user. This variable can be used to specify a different user.
+Type=str
+Categories=system-base
+
+[cron/*/mailto]
+Description[de]=Cron-Jobs können in Univention Configuration Registry definiert werden. Jeder Cron-Job setzt sich dabei aus mehreren Variablen zusammen. Es müssen min. die Variablen 'cron/JOBNAME/command' und 'cron/JOBNAME/time' gesetzt werden. Wird hier eine Email-Adresse hinterlegt, wird die Ausgabe des Cron-Jobs per Email dorthin gesendet.
+Description[en]=Cron jobs can be defined in Univention Configuration Registry. Each cron job is composed of various variables. At least the variables 'cron/JOBNAME/command' and 'cron/JOBNAME/time' must be set. If an e-mail address is specified here, the output of the cron job is sent there per e-mail.
+Type=str
+Categories=system-base
+
+[cron/*/description]
+Description[de]=Cron-Jobs können in Univention Configuration Registry definiert werden. Jeder Cron-Job setzt sich dabei aus mehreren Variablen zusammen. Es müssen min. die Variablen 'cron/JOBNAME/command' und 'cron/JOBNAME/time' gesetzt werden. Mit dieser Variable kann eine Beschreibung hinterlegt werden.
+Description[en]=Cron jobs can be defined in Univention Configuration Registry. Each cron job is composed of various variables. At least the variables 'cron/JOBNAME/command' and 'cron/JOBNAME/time' must be set. This variable can be used to provide a description.
+Type=str
+Categories=system-base
+
+[cron/path]
+Description[de]=Mit dieser Variable kann die PATH-Umgebungsvariable für die in UCR definierten Cron-Job (siehe 'cron/JOBNAME/*') gesetzt werden. Ist die Variable nicht gesetzt, gilt '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11'.
+Description[en]=This variable allows the configuration of the PATH environment variable for cron jobs defined in UCR (see 'cron/JOBNAME/*'). If the variable is unset, '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11' applies.
+Type=str
+Categories=system-base
+
+[password/quality/credit/digits]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Diese Variable konfiguriert die minimale Anzahl von Zahlen, die in dem neuen Passwort vorkommen muss.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. This variable configures the minimum number of digits in the new password.
+Type=int
+Categories=system-password
+
+[password/quality/credit/upper]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Diese Variable konfiguriert die minimale Anzahl von Grossbuchstaben, die in dem neuen Passwort vorkommen muss.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. This variable configures the minimum number of upper case letters that must be met for a new password.
+Type=int
+Categories=system-password
+
+[password/quality/credit/lower]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Diese Variable konfiguriert die minimale Anzahl von Kleinbuchstaben, die in dem neuen Passwort vorkommen muss.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. This variable configures the minimum number of lower case letters that must be met for a new password.
+Type=int
+Categories=system-password
+
+[password/quality/credit/other]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Diese Variable konfiguriert die Mindestanzahl von Zeichen in dem neuen Passwort, die keine Buchstaben oder Ziffern sind.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. This variable configures the minimum number of characters in the new password which are neither letters nor digits.
+Type=int
+Categories=system-password
+
+[password/quality/forbidden/chars]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Wenn eines der hier angegeben Zeichen Teil des Passworts ist, so wird das Passwort abgelehnt.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. If one of the characters specified here is part of the new password, the password will be rejected.
+Type=str
+Categories=system-password
+
+[password/quality/required/chars]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' für einen Benutzer aktiviert, werden für Passwortänderungen in Samba, Univention Management Console und Kerberos zusätzliche Prüfungen vorgenommen, die auch eine Wörterbuchprüfung beinhalten. Alle hier angegebenen Zeichen/Ziffern müssen im neuen Passwort enthalten sein.
+Description[en]=If the option 'Password quality check' is activated for a user, additional checks - including dictionary checks - are performed for password changes in Samba, Univention Management Console and Kerberos. All given characters/digits need to be present in the new password.
+Type=str
+Categories=system-password
+
+[password/quality/length/min]
+Description[de]=Bei Passwortänderungen via Portalseite, Univention Management Console, Univention Directory Manager und Kerberos (ohne Samba/AD) kann geprüft werden ob das neue Passwort eine Minimallänge haben muss. Der Wert dafür kann über zwei Wege definiert werden. Über diese UCR-Variable lässt auf dem lokalen Server die Minimallänge vorgeben. Dieser Wert greift bei Passwortänderungen an Benutzerkonten, für die nicht per UDM Policy (Objekt-Typ policies/pwhistory) eine andere Mindestlänge definiert worden ist. Per Default ist diese Variable nicht gesetzt. Falls eine 'Passwort-Qualitätsprüfung' per UDM Policy aktiviert ist, dann fordert python-cracklib eine Mindestlänge von 4. In Samba/AD Domänen gibt es zusätzlich die Active Directory 'domain passwordsettings' über die eine minimale Passwortlänge konfiguriert werden kann, die bei Passwortänderungen via Samba, Kerberos und Windows Clients geprüft wird.
+Description[en]=When changing passwords via Portal page, Univention Management Console, Univention Directory Manager and Kerberos (without Samba/AD) UCS can check if the new password has a minimal length. The minimal length for this check can be defined in two ways. This UCR variable can be used to define the value locally per server. This value applies to all accounts which are not subject to a more specific UDM policy (object type policies/pwhistory), which can be used to override the value defined via this UCR variable. If 'Password quality check' is activated via UDM Policy, then python-cracklib demands a minimal length of 4 characters. In Samba/AD domains there are the additional Active Directory 'domain passwordsettings' which can be used to configure a minimal password length, that is checked when changing passwords via Samba, Kerberos and Windows Clients.
+Type=str
+Categories=system-password
+
+[password/quality/mspolicy]
+Description[de]=Ist die Option 'Passwort-Qualitätsprüfung' in einer UDM Policy (Objekt-Typ policies/pwhistory) aktiviert, die einer Organisationseinheit, einem Container oder einzelnen Benutzerkonten zugewiesen ist, dann werden bei Passwortänderungen dieser Benutzerkonten via Portalseite, Univention Management Console, Univention Directory Manager und Kerberos (ohne Samba/AD) Passwortkomplexitätskriterien angewendet. Über diese UCR-Variable lässt sich steuern, ob dabei die Kriterien angewendet werden, die Microsoft für Windows definiert hat (Details dazu liefert z.B. https://docs.microsoft.com/de-de/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements). Wird diese UCR-Variable aktiviert ('yes', 'true', '1') dann werden neue Passwörter anhand der Microsoft-Standard-Komplexitätskriterien geprüft, zusätzlich zu den anderen Kriterien, die per python-cracklib geprüft werden (z.B. Prüfung auf Palindrome) und die sich über die anderen UCR-Variablen (password/quality/.*) konfigurieren lassen. Wird diese UCR-Variable hingegen auf den Wert 'sufficient' gesetzt, dann werden ausschließlich die Microsoft-Standard-Komplexitätskriterien angewendet. Per Default ist diese Variable nicht gesetzt und damit 'false'. In Samba/AD Domänen gibt es zusätzlich die Active Directory 'domain passwordsettings' über die konfiguriert werden kann, ob bei Passwortänderungen via Samba, Kerberos und Windows Clients die Microsoft-Standard-Komplexitätskriterien angewendet werden.
+Description[en]=If the option 'Password quality check' is activated in a UDM policy (object type policies/pwhistory), assigned to an organizational unit, to a container or to individual user accounts, then password complexity criteria are applied for password changes via Portal page, Univention Management Console, Univention Directory Manager and Kerberos (without Samba/AD) for all users that are subject to the policy. This UCR variable can be used to configure if the standard Microsoft password complexity criteria are applied (for details see e.g. https://docs.microsoft.com/de-de/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements). If this UCR variable is activated ('yes', 'true', '1') the criteria defined by Microsoft are applied in addition to the the other criteria that are checked with python-cracklib (e.g. a check for palindromes), which can be configured using the other UCR variables (password/quality/.*). If the UCR variable is set to the value 'sufficient', then the standard Microsoft password complexity criteria are the only criteria that are applied. By default this variable is not set, which corresponds to 'false'. In Samba/AD domains there are the additional Active Directory 'domain passwordsettings' which can be used to configure, if the standard Microsoft password complexity criteria are applied when changing passwords via Samba, Kerberos and Windows Clients.
+Type=str
+Categories=system-password
+
+[syslog/auth]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facilities 'auth' und 'authpriv' nicht in die Datei '/var/log/auth.log' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facilities 'auth' and 'authpriv' are not written to the file '/var/log/auth.log'.
+Type=bool
+Categories=system-base
+
+[syslog/cron]
+Description[de]=Ist diese Option aktiviert, werden Logmeldungen der Syslog Facility 'cron' in die Datei '/var/log/cron.log' geschrieben.
+Description[en]=If this option is activated, log messages belonging to the syslog facility 'cron' are written to the file '/var/log/cron.log'.
+Type=bool
+Categories=system-base
+
+[syslog/kern]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'kern' nicht in die Datei '/var/log/kern.log' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'kern' are not written to the file '/var/log/kern.log'.
+Type=bool
+Categories=system-base
+
+[syslog/daemon]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'daemon' nicht in die Datei '/var/log/daemon.log' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'daemon' are not written to the file '/var/log/daemon.log'.
+Type=bool
+Categories=system-base
+
+[syslog/user]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'user' nicht in die Datei '/var/log/user.log' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'user' are not written to the file '/var/log/user.log'.
+Type=bool
+Categories=system-base
+
+[syslog/lpr]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'lpr' nicht in die Datei '/var/log/lpr.log' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'lpr' are not written to the file '/var/log/lpr.log'.
+Type=bool
+Categories=system-base
+
+[syslog/mail]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'mail' nicht in die Dateien '/var/log/mail.{log|info|warn|err}' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'mail' are not written to the files '/var/log/mail.{log|info|warn|err}'.
+Type=bool
+Categories=system-base
+
+[syslog/news]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen der Syslog Facility 'news' nicht in die Dateien '/var/log/news.{crit|err|notice}' geschrieben.
+Description[en]=If this option is deactivated, log messages belonging to the syslog facility 'news' are not written to the files '/var/log/news.{crit|err|notice}'.
+Type=bool
+Categories=system-base
+
+[syslog/syslog]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen nicht in die Datei '/var/log/syslog' geschrieben.
+Description[en]=If this option is deactivated, log messages are not written to the file '/var/log/syslog'.
+Type=bool
+Categories=system-base
+
+[syslog/syslog/selector]
+Description[de]=Diese Option kann genutzt werden, um manuell einen Selektor für die Auswahl von Logmeldung für die Datei '/var/log/syslog' zu konfigurieren. Diese Option hat Vorrang vor 'syslog/syslog/avoid_duplicate_messages'.
+Description[en]=This option can be used to manually configure a selector for log messages to be written to '/var/log/syslog'. This option takes precedence over 'syslog/syslog/avoid_duplicate_message'.
+Type=str
+Categories=system-base
+
+[syslog/syslog/avoid_duplicate_messages]
+Description[de]=Ist diese Option aktiviert, werden Logmeldungen, die bereits in andere Dateien geschrieben wurden, nicht in '/var/log/syslog' geschrieben. Dies betrifft nicht '/var/log/debug' und '/var/log/messages'.
+Description[en]=If this option is activated, log messages that have been already written to other files, will not be written to '/var/log/syslog'. This does not apply for '/var/log/debug' and '/var/log/messages'.
+Type=bool
+Categories=system-base
+
+[syslog/debug]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen nicht in die Datei '/var/log/debug' geschrieben.
+Description[en]=If this option is deactivated, log messages are not written to the file '/var/log/debug'.
+Type=bool
+Categories=system-base
+
+[syslog/debug/selector]
+Description[de]=Diese Option kann genutzt werden, um manuell einen Selektor für die Auswahl von Logmeldung für die Datei '/var/log/debug' zu konfigurieren.
+Description[en]=This option can be used to manually configure a selector for log messages to be written to '/var/log/debug'.
+Type=str
+Categories=system-base
+
+[syslog/messages]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen nicht in die Datei '/var/log/messages' geschrieben.
+Description[en]=If this option is deactivated, log messages are not written to the file '/var/log/messages'.
+Type=bool
+Categories=system-base
+
+[syslog/messages/selector]
+Description[de]=Diese Option kann genutzt werden, um manuell einen Selektor für die Auswahl von Logmeldung für die Datei '/var/log/messages' zu konfigurieren.
+Description[en]=This option can be used to manually configure a selector for log messages to be written to '/var/log/messages'.
+Type=str
+Categories=system-base
+
+[syslog/xconsole]
+Description[de]=Ist diese Option deaktiviert, werden Logmeldungen nicht in das Device '/dev/xconsole' geschrieben.
+Description[en]=If this option is deactivated, log messages are not written to the device '/dev/xconsole'.
+Type=bool
+Categories=system-base
+
+[syslog/xconsole/selector]
+Description[de]=Diese Option kann genutzt werden, um manuell einen Selektor für die Auswahl von Logmeldung für das Device '/dev/xconsole' zu konfigurieren.
+Description[en]=This option can be used to manually configure a selector for log xconsole to be written to '/dev/xconsole'.
+Type=str
+Categories=system-base
+
+[syslog/mail/mirrorto/syslog]
+Description[de]=Ist diese Option aktiviert, werden Logdaten des Mail-Dienstes nicht nur in den Logdateien '/var/log/mail.*', sondern auch in '/var/log/syslog' gespeichert.
+Description[en]=If this option is activated, log files of the mail service or not only logged in '/var/log/mail.*', but additionally in '/var/log/syslog' as well.
+Type=bool
+Categories=system-base
+
+[syslog/remote]
+Description[de]=Mit Leerzeichen getrennte Adresse(n) eines oder mehrerer Logserver, an die Logmeldungen per Netzwerk weitergeleitet werden. Beispiele: '@primary.domain:514' für UDP, '@@[2001::1]:10514' für TCP über IPv6, ':omrelp:1.2.3.4:2514' für RELP über IPv4
+Description[en]=Space-separated address(es) of one or multiple logging servers, to which log messages are forwarded over the network. Examples: '@primary.domain:514' for UDP, '@@[2001::1]:10514' for TCP over IPv6, ':omrelp:1.2.3.4:2514' for RELP over IPv4
+Type=str
+Categories=system-base
+
+[syslog/remote/fallback]
+Description[de]=Liste von Leerzeichen separierten Logservern, die der Reihe nach verwendet werden, wenn die unter 'syslog/remote' angegebenen Server nicht erreichbar sind. Funktioniert nur, wenn TCP oder RELP verwendet wird!
+Description[en]=Space separated list of logging servers, which are used in that order, if the servers given in 'syslog/remote' are not reachable. Only works when TCP or RELP are used!
+Type=str
+Categories=system-base
+
+[syslog/remote/selector]
+Description[de]=Diese Option kann genutzt werden, um manuell einen Selektor für die Auswahl von Logmeldung für die Weiterleitung per Netzwerk zu konfigurieren. Standard ist '*.*' für alle Meldungen.
+Description[en]=This option can be used to manually configure a selector for log messages to be forwarded over the network. Default is '*.*' for all messages.
+Type=str
+Categories=system-base
+
+[syslog/limit/interval]
+Description[de]=Begrenzt die Log-Rate auf nicht mehr als 'syslog/limit/burst' Nachrichten innerhalb der letzten 'syslog/limit/interval' Sekunden. Standard: 5 [Sekunden]
+Description[en]=Limits the log rate to no more than 'syslog/limit/burst' messages in the last 'syslog/limit/interval' seconds. Default: 5 [seconds]
+Type=uint
+Categories=system-base
+Default=5
+
+[syslog/limit/burst]
+Description[de]=Begrenzt die Log-Rate auf nicht mehr als 'syslog/limit/burst' Nachrichten innerhalb der letzten 'syslog/limit/interval' Sekunden. Standard: 200 [Meldungen]
+Description[en]=Limits the log rate to no more than 'syslog/limit/burst' messages in the last 'syslog/limit/interval' seconds. Default: 200 [messages]
+Type=uint
+Categories=system-base
+Default=200
+
+[syslog/maxmessagesize]
+Description[de]=Maximale Länge der Syslogmeldung. Standard: 4k
+Description[en]=Maximum length of a syslog message. Default: 4k
+Type=str
+Categories=system-base
+
+[syslog/input/udp]
+Description[de]=Diese Option aktiviert den Empfang von Syslog-Meldungen von entfernten Rechnern auf dem angegebenen UDP Port. UDP ist das standardisierte Verfahren, aber Meldungen können verloren gehen. Standardisiert ist Port ist 514.
+Description[en]=This option enabled receiving syslog messages from remote computers through the given UDP port. UDP is the standardized method, but messages can get lost. Standardized is port 514.
+Type=portnumber
+Categories=system-base
+
+[syslog/input/tcp]
+Description[de]=Diese Option aktiviert den Empfang von Syslog-Meldungen von entfernten Rechnern auf dem angegebenen TCP Port. Meldungen können verloren gehen. Port 10514 wird oft verwendet.
+Description[en]=This option enabled receiving syslog messages from remote computers through the given TCP port. Messages can get lost. Port 10514 is commonly used.
+Type=portnumber
+Categories=system-base
+
+[syslog/input/relp]
+Description[de]=Diese Option aktiviert den Empfang von Syslog-Meldungen von entfernten Rechnern per 'Reliable Event Logging Protocol' (RELP) auf dem angegebenen TCP Port. Das Protokoll ist rsyslog spezifisch. Port 2514 oder 20514 werden oft verwendet.
+Description[en]=This option enabled receiving syslog messages from remote computers using the 'Reliable Event Logging Protocol' (RELP) through the given TCP port. The protocol is rsyslog specific. Port 2514 or 20514 are commonly used.
+Type=portnumber
+Categories=system-base
+
+[xorg/keyboard/options/XkbLayout]
+Description[de]=Das verwendete Tastaturlayout. Eine Übersicht der möglichen Werte findet sich unter '/usr/share/X11/xkb/rules/base.lst'. Beispiel: 'de' für ein deutsches Layout.
+Description[en]=The keyboard layout to be used. An overview of possible values can be found at '/usr/share/X11/xkb/rules/base.lst'. Example: 'de' for a German layout.
+Type=str
+Categories=system-base
+
+[xorg/keyboard/options/XkbVariant]
+Description[de]=Von einigen Tastaturlayouts (siehe 'xorg/keyboard/options/XkbLayout') existieren verschiedene Varianten (z.B. "tote Tasten" bei deutschem Layout). Eine Übersicht der möglichen Werte findet sich unter /usr/share/X11/xkb/rules/base.lst.
+Description[en]=Some keyboard layouts (see 'xorg/keyboard/options/XkbLayout') use different variants (e.g. "dead keys" in the German layout). An overview of possible values can be found at /usr/share/X11/xkb/rules/base.lst.
+Type=str
+Categories=system-base
+
+[xorg/keyboard/options/XkbModel]
+Description[de]=Das verwendete Tastaturmodell, z.B. 'pc105'. Eine Übersicht der möglichen Werte findet sich unter '/usr/share/X11/xkb/rules/base.lst'.
+Description[en]=The keyboard model in use, e.g. 'pc105'. An overview of possible values can be found at '/usr/share/X11/xkb/rules/base.lst'.
+Type=str
+Categories=system-base
+
+[xorg/keyboard/options/XkbOptions]
+Description[de]=Hier können weitere Tastatur-Optionen konfiguriert werden. Eine Übersicht der möglichen Werte findet sich unter '/usr/share/X11/xkb/rules/base.lst'.
+Description[en]=Additonal keyboard options can be configured here. An overview of possible values can be found at '/usr/share/X11/xkb/rules/base.lst'.
+Type=str
+Categories=system-base
+
+[update/secure_apt]
+Description[de]=Der Zugriff auf das Univention Online-Repository wird durch Verwendung von Secure Apt über Signaturen kryptographisch gesichert. Ist diese Option aktiviert, sind Updates und Softwareinstallationen nur möglich wenn alle eingebundenen Repositorys gültige Signaturen bereitstellen.
+Description[en]=Access to the Univention online repository is cryptographically secured via the use of Secure Apt employing signatures. If this option is activated, updates and installations are only possible if all enabled repositories provide valid signatures.
+Type=bool
+Categories=service-software-management
+
+[cron/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Cron-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Cron service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, it can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[inetd/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Inetd-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Inetd service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[nscd/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Nameserver Cache-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Nameserver Cache service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[portmap/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des RPC-Registrierungsdienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the RPC registry daemon. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[mysql/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des MySQL-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the MySQL daemon. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-base
+
+[machine/password/length]
+Description[de]=Das Passwort des Rechnerkontos wird in der Regel automatisch erstellt und rotiert. Es wird in der Datei /etc/machine.secret gespeichert. Diese Variable konfiguriert die Länge des generierten Passworts. Ist die Variable nicht gesetzt, ist das Passwort 20 Zeichen lang.
+Description[en]=The password for the computer account is usually automatically created and rotated. It is stored in the file /etc/machine.secret. This variable configures the length of the generated password. If the variable is unset, the password consists of 20 characters.
+Type=pint
+Categories=service-base
+
+[machine/password/complexity]
+Description[de]=Die Maschinenpasswörter werden mit dem pwgen-Tool erzeugt. Diese Variable konfiguriert die Parameter, die bei der Generierung übergeben werden (siehe 'man pwgen'). Ist die Variable nicht gesetzt gilt 'scn'.
+Description[en]=The machine passwords are generated with the tool pwgen. This variable configures the parameters used during generation (see 'man pwgen'). If the variable is unset, 'scn' applies.
+Type=str
+Categories=service-base
+
+[e2fsck/.*/.*]
+Description[de]=Einstellungen für e2fsck im Format 'e2fsck/SECTION/TAG=VALUE'.
+Description[en]=Settings for e2fsck in the format 'e2fsck/SECTION/TAG=VALUE'.
+Type=str
+Categories=service-base

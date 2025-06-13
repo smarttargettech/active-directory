@@ -1,0 +1,14 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: check whether the ntpd daemon is running
+## roles-not: [basesystem]
+## exposure: safe
+## bugs: [39297]
+
+if ! pgrep ntpd
+then
+	echo "ntpd not found in process list"
+	ps afwx
+	exit 1
+fi
+:

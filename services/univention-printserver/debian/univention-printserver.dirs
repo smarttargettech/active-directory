@@ -1,0 +1,3 @@
+etc/cups
+etc/samba/printers.conf.d
+var/cache/univention-printserver

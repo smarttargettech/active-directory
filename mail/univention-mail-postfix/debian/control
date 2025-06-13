@@ -1,0 +1,80 @@
+Source: univention-mail-postfix
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.8.2
+
+Package: univention-mail-postfix
+Architecture: all
+Depends:
+ libpam-univentionmailcyrus,
+ openssl,
+ postfix,
+ postfix-ldap,
+ python3-ldap,
+ python3-univention-directory-manager,
+ python3-univention-lib,
+ sasl2-bin,
+ shell-univention-lib (>> 1.0.16),
+ univention-base-files,
+ univention-config (>= 7.0.31-1),
+ ${misc:Depends},
+Conflicts:
+ exim4,
+ exim4-base,
+ exim4-config,
+ univention-mail,
+ univention-mail-postfix-kolab2,
+Replaces:
+ univention-mail-postfix-forward (<< 6.0),
+Breaks:
+ univention-mail-postfix-forward (<< 6.0),
+Description: UCS - postfix configuration
+ This package contains a basic configuration for the postfix
+ mail transport agent.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-mail-postfix-forward
+Architecture: all
+Depends:
+ univention-mail-postfix,
+ ${misc:Depends},
+Description: Transitional package for univention-mail-postfix-forward
+ This is a transitional package for univention-mail-postfix-forward,
+ and can be safely removed after the installation is complete.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-mail-server
+Architecture: all
+Depends:
+ shell-univention-lib,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-mail-dovecot,
+ univention-mail-postfix (= ${binary:Version}),
+ univention-sasl,
+ ${misc:Depends},
+Recommends:
+ bsd-mailx,
+ univention-antivir-mail,
+ univention-spamassassin,
+Conflicts:
+ univention-mail-postfix-kolab2,
+Description: UCS - postfix configuration
+ This package contains the configuration for the postfix
+ mail transport agent.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

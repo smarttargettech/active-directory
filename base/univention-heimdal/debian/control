@@ -1,0 +1,79 @@
+Source: univention-heimdal
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.2
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-heimdal-kdc
+Architecture: all
+Pre-Depends:
+ heimdal-kdc (>> 0.6.3),
+Depends:
+ heimdal-servers,
+ libsasl2-modules-gssapi-heimdal,
+ python3-cracklib,
+ python3-ldap,
+ python3-univention,
+ python3-univention-heimdal,
+ python3-univention-lib,
+ shell-univention-lib (>= 3.0.26-41),
+ univention-base-files,
+ univention-config,
+ univention-directory-listener,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-heimdal-common (= ${binary:Version}),
+ ${misc:Depends},
+Conflicts:
+ univention-heimdal-member,
+Description: UCS - Kerberos KDC
+ This package installs a Kerberos Key Distribution Center
+ (KDC) using LDAP for the key storage.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-heimdal-member
+Architecture: all
+Depends:
+ heimdal-clients,
+ heimdal-servers,
+ libsasl2-modules-gssapi-heimdal,
+ python3-ldap,
+ univention-config,
+ univention-directory-listener,
+ univention-directory-manager-tools,
+ univention-heimdal-common (= ${binary:Version}),
+ ${misc:Depends},
+Conflicts:
+ univention-heimdal-kdc,
+Description: UCS - Kerberos Managed Node
+ This package configures the computer as a Kerberos Managed
+ Node.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-heimdal-common
+Architecture: all
+Depends:
+ heimdal-clients,
+ python3-univention-heimdal,
+ univention-config,
+ ${misc:Depends},
+Breaks:
+ univention-heimdal-kdc (<< 5.0.6-1),
+ univention-heimdal-member (<< 5.0.6-1),
+Description: UCS - Kerberos common package
+ This package configures Kerberos
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

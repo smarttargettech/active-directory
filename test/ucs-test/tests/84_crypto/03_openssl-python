@@ -1,0 +1,11 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Check that OpenSSL is usable in python
+## bugs: [44741]
+## tags: [basic]
+## packages:
+##  - python3-openssl
+## exposure: safe
+exec python3 -c 'import OpenSSL.SSL'
+# vim: set ft=sh :

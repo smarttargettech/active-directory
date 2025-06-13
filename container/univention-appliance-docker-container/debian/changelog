@@ -1,0 +1,153 @@
+univention-appliance-docker-container (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:57 +0200
+
+univention-appliance-docker-container (7.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-appliance-docker-container (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-appliance-docker-container (6.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:38 +0100
+
+univention-appliance-docker-container (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-appliance-docker-container (5.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:56 +0100
+
+univention-appliance-docker-container (5.0.1-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:27 +0100
+
+univention-appliance-docker-container (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:17 +0200
+
+univention-appliance-docker-container (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:33 +0100
+
+univention-appliance-docker-container (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:54 +0100
+
+univention-appliance-docker-container (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:55:59 +0200
+
+univention-appliance-docker-container (1.0.0-0) unstable; urgency=medium
+
+  * merge to 4.1
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 26 Aug 2015 16:57:11 +0200
+
+univention-appliance-docker-container (0.1.0-13) unstable; urgency=medium
+
+  * Move system/setup settings to univention-docker-dev scriptsts
+    (Bug #38275)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Apr 2015 20:01:21 +0200
+
+univention-appliance-docker-container (0.1.0-12) unstable; urgency=medium
+
+  * Adjust univention-docker-container-mode/download-packages calls
+    to univention-docker-container-mode (0.1.1-8) (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 11:51:53 +0200
+
+univention-appliance-docker-container (0.1.0-11) unstable; urgency=medium
+
+  * univention-container-role-common is downloaded automatically (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Apr 2015 13:22:29 +0200
+
+univention-appliance-docker-container (0.1.0-10) unstable; urgency=medium
+
+  * Move download-packages script to univention-docker-container-mode
+    (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Apr 2015 20:32:54 +0200
+
+univention-appliance-docker-container (0.1.0-9) unstable; urgency=medium
+
+  * Remove packages files only if the package directory exists
+    (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 19 Apr 2015 14:31:49 +0200
+
+univention-appliance-docker-container (0.1.0-8) unstable; urgency=medium
+
+  * Fixed typo in package name (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 08:30:15 +0200
+
+univention-appliance-docker-container (0.1.0-7) unstable; urgency=medium
+
+  * Download container-role packages (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 08:21:29 +0200
+
+univention-appliance-docker-container (0.1.0-6) unstable; urgency=medium
+
+  * Bump version (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 06:56:03 +0200
+
+univention-appliance-docker-container (0.1.0-5) unstable; urgency=medium
+
+  * Set system/setup/boot/fields/blacklist (Bug #38262)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 14:52:17 +0200
+
+univention-appliance-docker-container (0.1.0-4) unstable; urgency=medium
+
+  * Set system/setup/boot/installer=true and disable network page (Bug #38262)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 11:30:25 +0200
+
+univention-appliance-docker-container (0.1.0-3) unstable; urgency=medium
+
+  * temporarily unset aptconf/dockerclean if it is set (Bug #38262)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 18:33:12 +0200
+
+univention-appliance-docker-container (0.1.0-2) unstable; urgency=medium
+
+  * Remove unused conffiles (Bug #38262)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 17:34:00 +0200
+
+univention-appliance-docker-container (0.1.0-1) unstable; urgency=medium
+
+  * Initial release (Bug #38262)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 16:41:59 +0200

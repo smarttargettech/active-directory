@@ -1,0 +1,18 @@
+[pkgdb/scan]
+Description[de]=Ist diese Option aktiviert oder die Variable nicht gesetzt, werden SoftwareinstallationsVorgänge auf UCS-Systemen über den Software-Monitor aufgezeichnet.
+Description[en]=If this option is activated or the variable unset, software installations on UCS systems are reported to the software monitor.
+Type=bool
+Categories=system-swmon
+
+[pkgdb/requiressl]
+Description[de]=Ist die Option aktiviert, werden nur SSL-gesicherte Verbindungen zum PostgreSQL-Datenbankserver des Software-Monitors aufgebaut.
+Description[en]=If this option is activated only SSL-secured connected are opened to the PostgreSQL database server of the software monitor.
+Type=bool
+Default=true
+Categories=system-swmon
+
+[pkgdb/overwrite/joincheck]
+Description[de]=In der Grundeinstellung wird nur der Softwarebestand von Systemen erfasst, die der Domäne beigetreten sind. Wird diese Variable auf 'yes' gesetzt, werden auch ungejointe Systeme erfasst.
+Description[en]=In the standard setting only the software status of systems which have joined the domain are stored in the software monitor. If this variable is set to 'yes', unjoined systems are tracked as well.
+Type=str
+Categories=system-swmon

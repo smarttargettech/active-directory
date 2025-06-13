@@ -1,0 +1,67 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Create a GPO with samba-tool "
+## exposure: safe
+## packages:
+##  - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## tags: [basic]
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/shares.sh
+. "$TESTLIBPATH/shares.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+gponame="$(random_chars 8 "${_upperletters}${_lowerletters}${_ciphers}")"	## samba RC6 seems to dislike UTF-8 in GPO names
+echo gponame "$gponame"
+
+check_domainadmin_credentials || fail_fast 77 "UCR variables for admin credentials are not set"
+ADMINISTRATOR_NAME="$(univention-ldapsearch -b "$tests_domainadmin_account" uid | VAL uid)"
+
+s4_domainname=$(samba-tool domain info 127.0.0.1 | VAL 'Domain[^:]*') ## Samba's idea of spelling
+
+## general sanity check: wait for the samba-share.py Listener to synchronize /etc/samba/shares.conf and /etc/samba/shares.conf.d (Bug #29399)
+i=0
+retry_delay=2 retry 15 samba-tool domain info 127.0.0.1 >/dev/null 2>&1 ||
+		echo "samba-tool Failure (Bug #29399)" >&2
+
+## create the GPO
+echo "----create the GPO in Samba/AD with samba-tool"
+gpo_cn="$(samba-tool gpo create "$gponame" -H ldap://"$hostname.$domainname" -U"$ADMINISTRATOR_NAME%$tests_domainadmin_pwd" | sed -n "s/GPO '$gponame' created as //p")"
+if [ -n "$gpo_cn" ]; then
+	trap 'samba-tool gpo del "$gpo_cn" -H ldap://"$hostname.$domainname" -U"$ADMINISTRATOR_NAME%$tests_domainadmin_pwd"' INT TERM EXIT
+else
+	fail_fast 1 "WARNING: samba-tool gpo create did not return a GPO cn"
+fi
+
+
+## --local tests
+echo "----search sam.ldb for GPO"
+i=0
+
+wait_for_displayName () {
+	displayName="$(ldbsearch -H /var/lib/samba/private/sam.ldb "(&(objectClass=groupPolicyContainer)(cn=$gpo_cn))" displayName | VAL displayName)"
+	[ -n "$displayName" ]
+}
+retry 20 wait_for_displayName ||
+		fail_fast 1 "Could not find displayName of GPO in sam.ldb"
+
+##check whether the directory for the GPO has been created
+echo "----check whether the directory for the GPO has been created"
+retry 20 [ -d "/var/lib/samba/sysvol/$s4_domainname/Policies/$gpo_cn" ] ||
+		fail_fast 1 "Directory for GPO has not been created"
+
+##check whether the GPO is listed in samba-tool
+echo "----check whether the GPO is listed in samba-tool"
+wait_for_gpo () {
+	output=$(samba-tool gpo show "$gpo_cn" 2>&1) && grep -Eq "^GPO\s+:\s$gpo_cn" <<<"$output"
+}
+retry 10 wait_for_gpo ||
+		fail_fast 1 "GPO is not listed in samba-tool: $output"
+
+exit "$RETVAL"

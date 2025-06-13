@@ -1,0 +1,107 @@
+#!/bin/bash
+#
+# Univention Samba 4
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2012-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+. /usr/lib/univention-server/lib/server_password_change/debug.sh
+
+PAUSE_DEBUG
+eval "$(univention-config-registry shell)"
+RESUME_DEBUG
+
+. /usr/share/univention-lib/base.sh
+
+set_machine_secret() {
+	## 1. store password locally in secrets.ldb
+	old_kvno=$(ldbsearch -H /var/lib/samba/private/sam.ldb samAccountName="${hostname}\$" msDS-KeyVersionNumber | sed -n 's/msDS-KeyVersionNumber: \(.*\)/\1/p')
+	new_kvno=$(($old_kvno + 1))
+
+	## Backup /etc/krb5.keytab to avoid key duplication in case a revert is necessary
+	install -m 0600 /etc/krb5.keytab /etc/krb5.keytab.SAVE
+
+	ldbmodify -H /var/lib/samba/private/secrets.ldb <<-%EOF
+	dn: flatname=${windows_domain},cn=Primary Domains
+	changetype: modify
+	replace: secret
+	secret:< file:///etc/machine.secret
+	-
+	replace: msDS-KeyVersionNumber
+	msDS-KeyVersionNumber: $new_kvno
+	-
+	%EOF
+	if [ "$?" -ne "0" ]; then
+		echowithtimestamp "ERROR: Storing new password in samba secrets.ldb failed."
+		install -m 0600 /etc/krb5.keytab.SAVE /etc/krb5.keytab
+		exit 1
+	fi
+
+	## 2. replace random machine secret in SAM with /etc/machine.secret
+	samba-tool user setpassword "${hostname}\$" --newpassword="$(cat /etc/machine.secret)"
+}
+
+if [ "$1" = "localchange" ]; then
+	set_machine_secret
+
+	## if samba-tool user setpassword fails, revert changes to secrets.ldb and krb5.keytab
+	if [ "$?" -ne "0" ]; then
+		echowithtimestamp "ERROR: Changing machine password in Samba failed."
+		echowithtimestamp "INFO: Restoring secrets.ldb and krb5.keytab."
+		old_password=$(tail -n 1 /etc/machine.secret.old | sed -n 's/^[0-9]*: //p')
+		ldbmodify -H /var/lib/samba/private/secrets.ldb <<-%EOF
+		dn: flatname=${windows_domain},cn=Primary Domains
+		changetype: modify
+		replace: secret
+		secret: $old_password
+		-
+		replace: msDS-KeyVersionNumber
+		msDS-KeyVersionNumber: $old_kvno
+		-
+		%EOF
+
+		install -m 0600 /etc/krb5.keytab.SAVE /etc/krb5.keytab
+
+		exit 1
+	fi
+
+	echowithtimestamp "restart samba after server password change"
+	if test -x /etc/init.d/samba; then
+		/etc/init.d/samba stop
+		sleep 5
+		pids=$(pgrep smbd)
+		if [ -n "$pids" ]; then
+			echowithtimestamp "found running smbd processes after stop was sent, sending kill signal"
+			pkill -9 -f /usr/sbin/smbd
+			/etc/init.d/samba stop
+		fi
+		/etc/init.d/samba start
+	fi
+fi

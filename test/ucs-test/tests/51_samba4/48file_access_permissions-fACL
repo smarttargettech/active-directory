@@ -1,0 +1,152 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test whether fACL's  set in UDM are working"
+## exposure: safe
+## packages:
+## - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/shares.sh
+. "$TESTLIBPATH/shares.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+# shellcheck source=../../lib/samba.sh
+. "$TESTLIBPATH/samba.sh" || exit 137
+
+#----create User
+echo "----create User"
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+username="$(user_randomname)"
+username2="$(user_randomname)"
+password="univention"
+sharename="$(random_share)"
+
+trap 'user_remove "$username";user_remove "$username2";share_remove $sharename; wait_for_replication_and_postrun; rm -rf "/${sharename:?}"' INT TERM EXIT
+if ! user_create "$username"; then
+	fail_fast 1 "Could not create user $username."
+fi
+if ! user_create "$username2";then
+	fail_fast 1 "Could not create user $username2."
+fi
+
+#----create Share
+echo "----create share"
+SHARE_POSITION="cn=shares,$ldap_base"
+udm-test shares/share create --position="$SHARE_POSITION" \
+	--set name="$sharename" \
+	--set path="/$sharename" \
+	--set directorymode=0777 \
+	--set host="$hostname.$domainname"
+if [ "$?" != 0 ]; then
+	fail_fast 1 "could not create share"
+fi
+
+
+wait_for_replication
+# force_drs_replication
+wait_for_drs_replication "(sAMAccountName=$username)"
+wait_for_drs_replication "(sAMAccountName=$username2)"
+wait_for_samba4_idmap_listener "(sAMAccountName=$username)"
+wait_for_samba4_idmap_listener "(sAMAccountName=$username2)"
+
+## wait for samba share export
+echo "----wait for samba share export"
+i=0
+sleep_seconds=3
+while ! output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "exit" 2>&1)"
+do
+	let i="$i"+1
+	if [ "$i" = 10 ]; then
+		echo "$output"
+		fail_fast 1 "TIMEOUT: Samba did not export the share '$sharename' after $((i * $sleep_seconds)) seconds"
+	fi
+	sleep "$sleep_seconds"
+done
+
+
+#--Tests
+#----Testing general connection
+echo "----Testing general connection"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "exit" >/dev/null 2>&1)"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Could not connect to the share."
+fi
+
+#----making a folder as another user, so that the other user is not the owner which is important for the ACL tests
+echo "----making a folder as another user"
+output="$(smbclient -U "$username2%$password" "//$hostname.$domainname/$sharename" -c "mkdir folder3" >/dev/null 2>&1)"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Failed to make a folder as a second user even though it should work."
+fi
+
+
+#----accessing a folder without permission
+echo "----accessing a folder without permission"
+setfacl -m "user:$username:---" "/$sharename/folder3"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "ls folder3\*")"
+rc="$?"
+echo "$output" | grep "NT_STATUS_ACCESS_DENIED"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Expected return value NT_STATUS_ACCESS_DENIED (rc: $rc)"
+	echo "----posix, fACLs and NTACLs for folder3:"
+	ls -ld "/$sharename/folder3"
+	getfacl "/$sharename/folder3"
+	samba-tool ntacl get "/$sharename/folder3" --as-sddl
+fi
+
+#----accessing a folder
+echo "----accessing a folder"
+setfacl -m "user:$username:r-x" "/$sharename/folder3"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "ls folder3\*")"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Failed to access the folder even though it should work.."
+	echo "----posix, fACLs and NTACLs for folder3:"
+	ls -ld "/$sharename/folder3"
+	getfacl "/$sharename/folder3"
+	samba-tool ntacl get "/$sharename/folder3" --as-sddl
+fi
+
+
+#----making a folder without permission
+echo "----making a folder without permission"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "mkdir folder3\folder4")"
+rc="$?"
+echo "$output" | grep "NT_STATUS_ACCESS_DENIED"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Expected return value NT_STATUS_ACCESS_DENIED (rc: $rc)"
+	echo "----posix, fACLs and NTACLs for folder3:"
+	ls -ld "/$sharename/folder3"
+	getfacl "/$sharename/folder3"
+	samba-tool ntacl get "/$sharename/folder3" --as-sddl
+fi
+
+#----making a folder
+echo "----making a folder"
+setfacl -m "user:$username:rwx" "/$sharename/folder3"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "mkdir folder3\folder5")"
+if [ "$?" != 0 ]; then
+	echo "$output"
+	fail_test 1 "Failed to make a folder even though it should work."
+	echo "----posix, fACLs and NTACLs for folder3:"
+	ls -ld "/$sharename/folder3"
+	getfacl "/$sharename/folder3"
+	samba-tool ntacl get "/$sharename/folder3" --as-sddl
+fi
+
+
+exit $RETVAL

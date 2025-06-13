@@ -1,0 +1,249 @@
+univention-admingrp-user-passwordreset (12.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:47 +0200
+
+univention-admingrp-user-passwordreset (12.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:33 +0100
+
+univention-admingrp-user-passwordreset (12.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:43:55 +0100
+
+univention-admingrp-user-passwordreset (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:19 +0100
+
+univention-admingrp-user-passwordreset (11.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:38 +0100
+
+univention-admingrp-user-passwordreset (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:32 +0100
+
+univention-admingrp-user-passwordreset (10.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:48 +0100
+
+univention-admingrp-user-passwordreset (10.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:30 +0100
+
+univention-admingrp-user-passwordreset (10.0.2-4) unstable; urgency=low
+
+  * Bug #56099: Fix inverted logic for --no-slapd-restart
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 30 May 2023 14:39:17 +0200
+
+univention-admingrp-user-passwordreset (10.0.2-3) unstable; urgency=low
+
+  * Bug #56099: Move logic into join script
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 30 May 2023 08:11:52 +0200
+
+univention-admingrp-user-passwordreset (10.0.2-2) unstable; urgency=low
+
+  * Bug #56099: Restart `slapd` only on changed group membership
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 26 May 2023 14:17:54 +0200
+
+univention-admingrp-user-passwordreset (10.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:38 +0100
+
+univention-admingrp-user-passwordreset (10.0.1-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Sep 2022 20:00:16 +0200
+
+univention-admingrp-user-passwordreset (10.0.0-4) unstable; urgency=medium
+
+  * Bug #54744: Ensure Python2 backward compatibility
+
+ -- Arvid <requate@univention.de>  Mon, 23 May 2022 13:14:44 +0200
+
+univention-admingrp-user-passwordreset (10.0.0-3) unstable; urgency=medium
+
+  * Bug #54744: Avoid slapd not starting due to exceeding line length
+
+ -- Arvid <requate@univention.de>  Thu, 12 May 2022 15:57:25 +0200
+
+univention-admingrp-user-passwordreset (10.0.0-2) unstable; urgency=medium
+
+  * Bug #53354: Migrated univention-admingrp-user-passwordreset to Python 3
+
+ -- Eduardo Ruiz Moreno <moreno@univention.de>  Wed, 06 Oct 2021 11:50:16 +0200
+
+univention-admingrp-user-passwordreset (10.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:19 +0200
+
+univention-admingrp-user-passwordreset (9.0.2-1) unstable; urgency=medium
+
+  * Bug #51086: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 10:31:09 +0200
+
+univention-admingrp-user-passwordreset (9.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 11:59:01 +0100
+
+univention-admingrp-user-passwordreset (9.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:36 +0100
+
+univention-admingrp-user-passwordreset (8.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:26 +0100
+
+univention-admingrp-user-passwordreset (7.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:06 +0200
+
+univention-admingrp-user-passwordreset (6.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:10:54 +0100
+
+univention-admingrp-user-passwordreset (5.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #36114)
+
+ -- Felix Botner <botner@univention.de>  Wed, 15 Oct 2014 14:48:25 +0200
+
+univention-admingrp-user-passwordreset (4.0.2-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 20 Sep 2013 11:52:23 +0200
+
+univention-admingrp-user-passwordreset (4.0.2-1.1) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 13 Sep 2013 14:00:51 +0200
+
+univention-admingrp-user-passwordreset (4.0.2-1) unstable; urgency=low
+
+  * Added support for protecting groups (Bug #29710)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 13 Sep 2013 13:53:05 +0200
+
+univention-admingrp-user-passwordreset (4.0.1-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 11 Sep 2013 10:04:19 +0200
+
+univention-admingrp-user-passwordreset (4.0.1-1) unstable; urgency=low
+
+  * Replaced hardcoded ldap base with ucr variable value (Bug #25408)
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 05 Jul 2013 10:03:14 +0200
+
+univention-admingrp-user-passwordreset (4.0.0-1) unstable; urgency=low
+
+  * Update to make package work on UCS 3.2 (Bug #25408)
+  * Add default policy to group 'User Password Admins'
+  * UCS 3.2 Version Bump and update copyright
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 02 Jul 2013 12:59:08 +0200
+
+univention-admingrp-user-passwordreset (3.0.0-1) unstable; urgency=low
+
+  * abort join script on failing udm call (Bug #27753)
+  * version bump for UCS 3.1 (Bug #27966)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 10 Oct 2012 13:16:39 +0200
+
+univention-admingrp-user-passwordreset (2.0.1-3) unstable; urgency=low
+
+  * Added dependency to univention-directory-manager-tools (Bug #23342)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 25 Oct 2011 15:35:57 +0200
+
+univention-admingrp-user-passwordreset (2.0.1-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:19 +0200
+
+univention-admingrp-user-passwordreset (2.0.1-1) unstable; urgency=low
+
+  * Added dependency to shell-univention-lib > 1.0.6 (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 07 Jun 2011 09:56:58 +0200
+
+univention-admingrp-user-passwordreset (2.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 06 May 2011 11:13:01 +0200
+
+univention-admingrp-user-passwordreset (1.0.3-1) unstable; urgency=low
+
+  * renamed acl file to be compatible with UCS@school (Bug #18685)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 16 Sep 2010 11:22:29 +0200
+
+univention-admingrp-user-passwordreset (1.0.2-3) unstable; urgency=low
+
+  * fixed missing UCR variable registration (Bug #18685)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Fri, 25 Jun 2010 17:39:55 +0200
+
+univention-admingrp-user-passwordreset (1.0.2-2) unstable; urgency=low
+
+  * fixed UCR variable descriptions (Bug #18685)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 24 Jun 2010 16:10:47 +0200
+
+univention-admingrp-user-passwordreset (1.0.2-1) unstable; urgency=low
+
+  * perform groups in groups lookup if enabled (Bug #18685)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 24 Jun 2010 15:12:54 +0200
+
+univention-admingrp-user-passwordreset (1.0.1-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 23 Jun 2010 13:05:42 +0200
+
+univention-admingrp-user-passwordreset (1.0.0-1) unstable; urgency=low
+
+  * Initial Release
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 17 Jun 2010 17:20:34 +0200
+

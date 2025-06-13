@@ -1,0 +1,65 @@
+Source: univention-samba4
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.5
+Build-Depends:
+ debhelper-compat (=13),
+ libpam0g-dev,
+ libunivention-config-dev (>= 15.0.3),
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+
+Package: univention-samba4
+Architecture: any
+Conflicts:
+ samba (<<2:4.7.3+dfsg-1),
+ univention-samba,
+Depends:
+ acl,
+ ldb-tools,
+ libunivention-ldb-modules,
+ pwgen,
+ python3-lmdb,
+ python3-univention,
+ python3-univention-heimdal,
+ python3-univention-lib (>= 9.0.11-9),
+ samba-ad-dc,
+ shell-univention-lib (>= 9.0.11-9),
+ univention-config (>= 15),
+ univention-directory-manager-tools (>= 13.0.21-21),
+ univention-join (>= 12.0.5-6),
+ univention-samba-local-config,
+ univention-samba4-sysvol-sync (= ${binary:Version}),
+ ${misc:Depends},
+Recommends:
+ univention-monitoring-samba,
+ univention-nagios-samba,
+Description: UCS - Samba4 integration package
+ This package contains the scripts and patches
+ for integration of Samba4 into Univention Corporate Server (UCS)
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-samba4-sysvol-sync
+Architecture: all
+Depends:
+ rsync (>=3.0.7-2),
+ shell-univention-lib,
+ univention-config,
+ util-linux,
+ ${misc:Depends},
+Breaks:
+ univention-samba4 ( << 1.0.139-2),
+Description: UCS - Samba4 sysvol synchronization
+ This package contains the scripts and configuration
+ for integration the Samba4 sysvol synchronisation into
+ Univention Corporate Server (UCS)
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

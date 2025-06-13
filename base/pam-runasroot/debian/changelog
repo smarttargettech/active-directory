@@ -1,0 +1,183 @@
+pam-runasroot (13.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+pam-runasroot (13.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:38 +0100
+
+pam-runasroot (13.0.2) unstable; urgency=medium
+
+  * Bug #56793: Replace libnss-ldapd with SSSd
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Fri, 08 Mar 2024 00:18:47 +0100
+
+pam-runasroot (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:26 +0100
+
+pam-runasroot (12.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:28 +0100
+
+pam-runasroot (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:38 +0100
+
+pam-runasroot (11.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:51 +0100
+
+pam-runasroot (11.0.1-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:24 +0100
+
+pam-runasroot (11.0.0-2) unstable; urgency=medium
+
+  * Bug #56579: Don't use setenv function to modify environment
+    variables and use execle with a local pointer instead.
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Mon, 09 Oct 2023 08:03:00 +0200
+
+pam-runasroot (11.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:09 +0200
+
+pam-runasroot (10.0.0-2) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:37 +0200
+
+pam-runasroot (10.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:27 +0100
+
+pam-runasroot (9.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:45 +0100
+
+pam-runasroot (8.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:27 +0200
+
+pam-runasroot (7.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 21:55:45 +0100
+
+pam-runasroot (6.0.0-1) unstable; urgency=medium
+
+  * Update to UCS 4.0 (Bug #35267)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 25 Jul 2014 15:35:48 +0200
+
+pam-runasroot (5.0.1-1) unstable; urgency=low
+
+  * Set debhelper level to 7 (Bug #22433)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 10 May 2011 08:58:10 +0200
+
+pam-runasroot (5.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22433)
+    * Bump version for UCS 3.0
+    * Update copyright to 2011
+    * Update to debhelper 7
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 10 May 2011 08:53:00 +0200
+
+pam-runasroot (4.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 14:55:41 +0200
+
+pam-runasroot (3.0.2-1) unstable; urgency=low
+
+  * remove "executing" messages. (Bug #17898)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 12 May 2010 11:21:36 +0200
+
+pam-runasroot (3.0.1-1) unstable; urgency=low
+
+  * include syslog.h in pam-runasroot.c. Bug #14660
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  8 Jun 2009 12:06:08 +0200
+
+pam-runasroot (3.0.0-1) unstable; urgency=low
+
+  * rebuild for UCS 2.3. Bug #14128
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 26 May 2009 14:52:46 +0200
+
+pam-runasroot (2.0.0-3) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:32 +0200
+
+pam-runasroot (2.0.0-2) unstable; urgency=low
+
+  * added missing compat file
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 25 May 2007 11:22:43 +0200
+
+pam-runasroot (2.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 15:31:22 +0200
+
+pam-runasroot (1.0-7) unstable; urgency=low
+
+  * updated GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Thu, 23 Nov 2006 13:45:33 +0100
+
+pam-runasroot (1.0-4) unstable; urgency=low
+
+  * don't call getpwnam if unused
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  3 May 2006 14:59:58 +0200
+
+pam-runasroot (1.0-2) unstable; urgency=low
+
+  * change version
+  * activate pam_sm_setcred
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 24 Oct 2003 15:25:17 +0200
+
+pam-runasroot (1.0-1.univention) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Peter H. Ganten <ganten@univention.de>  Wed, 19 Dec 2001 14:58:09 +0100
+
+Local variables:
+mode: debian-changelog
+End:

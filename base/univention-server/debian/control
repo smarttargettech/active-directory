@@ -1,0 +1,282 @@
+Source: univention-server
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.5.2
+
+Package: univention-server-master
+Architecture: all
+Pre-Depends:
+ shell-univention-lib (>= 9.0.11-9),
+ univention-ssl,
+Recommends:
+ openssh-server,
+ univention-monitoring-client,
+ univention-nagios-client,
+ univention-server-overview,
+Depends:
+ nscd,
+ univention-bind,
+ univention-directory-manager-rest,
+ univention-directory-notifier,
+ univention-heimdal-kdc,
+ univention-ldap-acl-master,
+ univention-ldap-config-master,
+ univention-ldap-server,
+ univention-license-import,
+ univention-management-console,
+ univention-management-console-module-ipchange,
+ univention-management-console-module-udm,
+ univention-management-console-module-welcome,
+ univention-role-server-common (= ${source:Version}) | univention-container-role-server-common (= ${source:Version}),
+ ${misc:Depends},
+Description: UCS - Primary Directory Node
+ This package installs a UCS Primary Directory Node.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-server-backup
+Architecture: all
+Recommends:
+ openssh-server,
+ univention-bind,
+ univention-monitoring-client,
+ univention-nagios-client,
+ univention-server-overview,
+Pre-Depends:
+ univention-config (>= 7.0.25),
+Depends:
+ nscd,
+ shell-univention-lib (>= 9.0.11-9),
+ univention-directory-manager-rest,
+ univention-directory-notifier,
+ univention-directory-replication,
+ univention-heimdal-kdc,
+ univention-ldap-acl-master,
+ univention-ldap-config-master,
+ univention-ldap-server,
+ univention-license-import,
+ univention-management-console,
+ univention-management-console-module-ipchange,
+ univention-management-console-module-udm,
+ univention-role-server-common (= ${source:Version}) | univention-container-role-server-common (= ${source:Version}),
+ univention-ssl,
+ ${misc:Depends},
+Description: UCS - Backup Directory Node
+ This package installs a UCS Backup Directory Node.
+ Unlike Replica Directory Nodes, Backup Directory Nodes
+ can be promoted to Primary Directory Nodes.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-server-slave
+Architecture: all
+Recommends:
+ openssh-server,
+ univention-bind,
+ univention-management-console,
+ univention-monitoring-client,
+ univention-nagios-client,
+Depends:
+ nscd,
+ shell-univention-lib (>= 9.0.11-9),
+ univention-directory-replication,
+ univention-heimdal-kdc,
+ univention-ldap-acl-slave,
+ univention-ldap-server,
+ univention-role-server-common (= ${source:Version}) | univention-container-role-server-common (= ${source:Version}),
+ ${misc:Depends},
+Description: UCS - Replica Directory Node
+ This package installs a UCS Replica Directory Node.
+ Unlike Backup Directory Nodes, Replica Directory Nodes
+ cannot be promoted to Primary Directory Nodes.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-server-member
+Architecture: all
+Recommends:
+ openssh-server,
+ univention-management-console,
+ univention-monitoring-client,
+ univention-nagios-client,
+Depends:
+ shell-univention-lib (>= 9.0.11-9),
+ univention-heimdal-member,
+ univention-role-server-common (= ${source:Version}) | univention-container-role-server-common (= ${source:Version}),
+ ${misc:Depends},
+Description: UCS - Managed Node
+ This package installs a UCS Managed Node.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-role-server-common
+Architecture: any
+Depends:
+ linux-image-amd64 [amd64],
+ ntpsec,
+ ntpsec-ntpdate,
+ rdate,
+ univention-directory-listener,
+ univention-directory-manager-tools,
+ univention-home-mounter,
+ univention-initrd,
+ univention-keycloak-client,
+ univention-ldap-client,
+ univention-mail-postfix,
+ univention-maintenance,
+ univention-network-common,
+ univention-nfs-server,
+ univention-quota,
+ univention-role-common (= ${source:Version}),
+ ${misc:Depends},
+Recommends:
+ univention-portal,
+Conflicts:
+ univention-container-role-server-common (>= 12.0.0-10),
+Replaces:
+ univention-ad-connector (<< 14.0.13-6),
+Breaks:
+ univention-ad-connector (<< 14.0.13-6),
+Description: UCS system server role common dependencies and files
+ This package contains common files used by all server system roles.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-container-role-server-common
+Architecture: all
+Depends:
+ univention-container-role-common (= ${source:Version}),
+ univention-directory-listener,
+ univention-directory-manager-tools,
+ univention-ldap-client,
+ univention-mail-postfix,
+ univention-network-common,
+ ${misc:Depends},
+Conflicts:
+ univention-role-server-common (>= 12.0.0-10),
+Description: UCS system server role common dependencies and files
+ This package contains common files used by all server system roles.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-role-common
+Architecture: all
+Depends:
+ shell-univention-lib (>= 9.0.11-9),
+ univention-admin-diary-client,
+ univention-appcenter,
+ univention-archive-key,
+ univention-config,
+ univention-firewall,
+ univention-grub,
+ univention-join,
+ univention-pkgdb-tools,
+ univention-policy-tools (>= 11.0.1-2),
+ univention-system-setup,
+ univention-updater,
+ ${misc:Depends},
+Recommends:
+ cifs-utils,
+ eject,
+ elinks,
+ emacs-gtk,
+ less,
+ locate,
+ lvm2,
+ man-db,
+ memtest86+,
+ nmap,
+ univention-network-common,
+ univention-support-info,
+ univention-welcome-screen,
+ unzip,
+ vim,
+ wget,
+ zip,
+Conflicts:
+ libnss-passwdcache,
+ libpam-passwdcache,
+ python3-univention-directory-manager-uvmm,
+ univention-bacula,
+ univention-check-printers,
+ univention-dansguardian,
+ univention-debootstrap,
+ univention-debootstrap-3,
+ univention-doc,
+ univention-ftp,
+ univention-java,
+ univention-kernel-headers,
+ univention-kernel-image,
+ univention-kernel-source,
+ univention-management-console-doc,
+ univention-management-console-module-packages,
+ univention-mysql,
+ univention-nagios-dansguardian,
+ univention-nagios-libvirtd,
+ univention-nagios-libvirtd-kvm,
+ univention-nagios-libvirtd-xen,
+ univention-nagios-server,
+ univention-nagios-uvmmd,
+ univention-network-manager,
+ univention-passwd-cache,
+ univention-pkgdb-lib,
+ univention-printquota,
+ univention-printquotadb,
+ univention-remote-backup,
+ univention-runit,
+ univention-samba4wins,
+ univention-samba4wins-schema,
+ univention-snmp,
+ univention-snmpd,
+ univention-virtual-machine-manager-schema,
+Description: UCS system role common dependencies and files
+ This package contains common files used by all system roles.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-container-role-common
+Architecture: all
+Depends:
+ shell-univention-lib (>= 1.0.25-1),
+ univention-admin-diary-client,
+ univention-appcenter,
+ univention-archive-key,
+ univention-config,
+ univention-docker-container-mode,
+ univention-join,
+ univention-policy-tools (>= 11.0.1-2),
+ univention-updater,
+ ${misc:Depends},
+Description: UCS system role common dependencies and files
+ This package contains common files used by all system roles
+ which will be installed in a container, for example docker.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

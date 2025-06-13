@@ -1,0 +1,129 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test Apache2 SSL honer cipher order
+## bugs: [38632,46065]
+## packages:
+##  - openssl
+## exposure: dangerous
+set -e -u
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+
+cleanup () {
+	ucr_restore || :
+	apachectl graceful || :
+	exit ${RETVAL:-0}
+}
+trap cleanup EXIT
+
+# http://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslciphersuite>
+ciphers=$(ucr get apache2/ssl/ciphersuite)
+[ -n "$ciphers" ] || ciphers='HIGH:MEDIUM:!aNULL:!eNULL:!EXP'
+
+## TLS 1.2
+#
+
+ucr set apache2/ssl/honorcipherorder=yes
+apachectl configtest
+apachectl graceful
+
+osc1_2 () {
+	## Test TLS 1.2
+	local out
+	out=$(openssl s_client \
+		-CAfile /etc/univention/ssl/ucsCA/CAcert.pem \
+		-connect localhost:443 \
+		-cipher "$1" \
+		-tls1_2 \
+		-no_ign_eof -brief \
+		</dev/null 2>&1)
+	echo "$out" | VAL1 Ciphersuite
+}
+
+s1order=$(openssl ciphers -tls1_2 -s "$ciphers")
+s1preferred=$(osc1_2 "$s1order")
+info "Server 1st TLSv1.2 protocol cipher '$s1preferred'"
+[ -n "$s1preferred" ] ||
+	fail_test 1 "No cipher chosen: $ciphers"
+
+s2order=$(openssl ciphers -tls1_2 -s "$ciphers:-$s1preferred")
+s2preferred=$(osc1_2 "$s2order")
+info "Server 2nd TLSv1.2 protocol cipher '$s2preferred'"
+[ -n "$s2preferred" ] ||
+	fail_test 1 "Server only allows one cipher: $ciphers"
+
+info "Testing if server accepts cipher order from client (should not):"
+c1order=$(openssl ciphers -tls1_2 -s "$ciphers" | tr : '\n' | tac | tr '\n' : | sed 's/:$//')
+c1preferred=$(osc1_2 "$c1order")
+info "Server chose TLSv1.2 protocol cipher '$c1preferred'"
+[ "$s1preferred" = "$c1preferred" ] ||
+	fail_test 1 "$s1preferred != $c1preferred"
+
+ucr set apache2/ssl/honorcipherorder=no
+apachectl configtest
+apachectl graceful
+
+info "Testing if server accepts cipher order from client (it should):"
+c2order="$s2preferred:$s1preferred"
+c2preferred=$(osc1_2 "$c2order")
+info "Server chose TLSv1.2 protocol cipher '$c2preferred'"
+[ "$s2preferred" = "$c2preferred" ] ||
+	fail_test 1 "$s2preferred != $c2preferred"
+
+## TLS 1.3
+#
+
+ucr set apache2/ssl/honorcipherorder=yes
+apachectl configtest
+apachectl graceful
+
+osc1_3 () {
+	## Test TLS 1.3
+	local out
+	out=$(openssl s_client \
+		-CAfile /etc/univention/ssl/ucsCA/CAcert.pem \
+		-connect localhost:443 \
+		-ciphersuites "$1" \
+		-no_ign_eof -brief \
+		</dev/null 2>&1)
+	echo "$out" | VAL1 Ciphersuite
+}
+
+s1order=$(openssl ciphers -tls1_3 -s "$ciphers")
+s1preferred=$(osc1_3 "$s1order")
+info "Server 1st TLSv1.3 protocol cipher '$s1preferred'"
+[ -n "$s1preferred" ] ||
+	fail_test 1 "No cipher chosen: $ciphers"
+
+## The filtering via "-" prefix doesn't seem to work with tls1_3 ciphersuites:
+# s2order=$(openssl ciphers -tls1_3 -s "$ciphers:-$s1preferred")
+## Instead filter out $s1preferred manually:
+s2order=$(echo -n "$s1order" | sed -s "s/$s1preferred://")
+s2preferred=$(osc1_3 "$s2order")
+info "Server 2nd TLSv1.3 protocol cipher '$s2preferred'"
+[ -n "$s2preferred" ] ||
+	fail_test 1 "Server only allows one cipher: $ciphers"
+
+info "Testing if server accepts cipher order from client (should not):"
+c1order=$(openssl ciphers -tls1_3 -s "$ciphers" | tr : '\n' | tac | tr '\n' : | sed 's/:$//')
+c1preferred=$(osc1_3 "$c1order")
+info "Server chose TLSv1.3 protocol cipher '$c1preferred'"
+[ "$s1preferred" = "$c1preferred" ] ||
+	fail_test 1 "$s1preferred != $c1preferred"
+
+ucr set apache2/ssl/honorcipherorder=no
+apachectl configtest
+apachectl graceful
+
+info "Testing if server accepts cipher order from client (it should):"
+c2order="$s2preferred:$s1preferred"
+c2preferred=$(osc1_3 "$c2order")
+info "Server chose TLSv1.3 protocol cipher '$c2preferred'"
+[ "$s2preferred" = "$c2preferred" ] ||
+	fail_test 1 "$s2preferred != $c2preferred"
+
+exit ${RETVAL:-0}
+# vim: set ft=sh :

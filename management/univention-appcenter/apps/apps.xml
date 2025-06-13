@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="apps" icon="apps-module" priority="-100" version="1.0">
+		<name>Applications</name>
+		<description>Introduction to installed Apps</description>
+		<categories>
+			<category name="apps"/>
+		</categories>
+
+		<!-- WARNING!!! This is just a dummy file.
+		     Flavors are added/removed automatically via ucr commit.
+		Example:
+		<flavor icon="NAME" priority="-100" id="NAME">
+			<name>NAME</name>
+			<description>Introduction to NAME</description>
+		</flavor>
+		-->
+
+		<command name="apps/get" function="get" />
+	</module>
+</umc>

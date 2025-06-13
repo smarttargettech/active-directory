@@ -1,0 +1,109 @@
+#!/bin/bash
+#
+# Univention System Activation
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2015-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+declare -a UCR_ARRAY=()
+
+function ucr_build_array(){
+	for service in "gdm" "kdm" "login" "other" "sshd"; do
+		for user in "group/Administrators" "group/Domain Admins" "group/Computers" "group/DC Backup Hosts" "group/DC Slave Hosts" "user/root"; do
+			UCR_ARRAY+=("auth/$service/$user$1")
+		done
+		UCR_ARRAY+=("auth/$service/restrict$2")
+	done
+	UCR_ARRAY+=("auth/sudo$1")
+	UCR_ARRAY+=("auth/su/restrict$2")
+	UCR_ARRAY+=("auth/su/user/root$1")
+}
+
+function allow_root_login() {
+	ucr_build_array "" ""
+	ucr unset --force "${UCR_ARRAY[@]}"
+}
+
+function restrict_root_login() {
+	ucr_build_array "=no" "=yes"
+	ucr set --force "${UCR_ARRAY[@]}"
+}
+
+if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+	echo
+	echo "When called with 'start', deactivates all access to the UCS and enforces"
+	echo "the redirection to a system activation web service. This service will be"
+	echo "disabled and previous apache sites will be re-activated after an"
+	echo "activated license has been imported successfully."
+	echo
+	echo "The action 'restrict-root' disables root access to the machine and"
+	echo "'allow-root' reverts these restrictions. Both will also be called along"
+	echo "with the actions 'start'/'stop', respectively."
+	echo
+	echo "usage: ${0##*/} [start|stop|allow-root|restrict-root]"
+	echo
+	exit 0
+fi
+
+ACTION=$1
+
+eval "$(ucr shell)"
+
+if [ "$ACTION" = "start" ] && [ -e "/etc/apache2/sites-enabled/univention-system-activation.conf" ]; then
+	echo
+	echo "ERROR: It seems that the system activation has already been started."
+	echo
+	exit 1
+elif [ "$ACTION" = "start" ]; then
+	restrict_root_login
+	a2ensite univention-system-activation
+	/etc/init.d/apache2 reload
+elif [ "$ACTION" = "stop" ] && [ ! -e "/etc/apache2/sites-enabled/univention-system-activation.conf" ]; then
+	echo
+	echo "ERROR: It seems that the system activation has not been started yet."
+	echo
+	exit 1
+elif [ "$ACTION" = "stop" ]; then
+	# delay the execution to allow the final HTTP request to be answered
+	sleep 1
+
+	a2dissite univention-system-activation
+	allow_root_login
+	/etc/init.d/apache2 reload
+elif [ "$ACTION" == "allow-root" ]; then
+	allow_root_login
+elif [ "$ACTION" == "restrict-root" ]; then
+	restrict_root_login
+else
+	echo
+	echo "ERROR: Unknown action given"
+	echo
+	exit 1
+fi

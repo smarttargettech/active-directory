@@ -1,0 +1,71 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test creating A, CNAME and SRV records"
+## bugs: [29063]
+## exposure: careful
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## packages:
+##  - univention-samba4
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+cleanup () {
+	echo "----Cleanup"
+	udm-test dns/forward_zone modify \
+		--dn zoneName="$domainname,cn=dns,$ldap_base" \
+		--remove a="111.111.111.111"
+	udm-test dns/srv_record remove \
+		--superordinate "zoneName=$domainname,cn=dns,$ldap_base" \
+		--dn "relativeDomainName=_45dnstest_srv_record._tcp.foobar,zoneName=$domainname,cn=dns,$ldap_base"
+	udm-test dns/alias remove \
+		--superordinate "zoneName=$domainname,cn=dns,$ldap_base" \
+		--dn relativeDomainName="alias1,zoneName=$domainname,cn=dns,$ldap_base"
+}
+
+trap 'cleanup' INT TERM EXIT
+
+REPLICATION_TIME=30
+FQHN="${hostname:?}.${domainname:?}"
+ZONE="zoneName=$domainname,cn=dns,$ldap_base"
+
+#============Prepare============
+echo "----Create CNAME record"
+udm-test dns/alias create --superordinate "$ZONE" --set name=alias1 --set cname="$FQHN" ||
+	fail_test 1 "Could not create CNAME record."
+
+echo "----Create SRV record"
+udm-test dns/srv_record create --superordinate "$ZONE" --set name="45dnstest_srv_record tcp foobar" --set location="0 100 389 $FQHN" ||
+	fail_test 1 "Could not create SRV record."
+
+echo "----Create A record"
+udm-test dns/forward_zone modify --dn "$ZONE" --append a="111.111.111.111" ||
+	fail_test 1 "Could not modify Forward Zone."
+
+#============Check============
+
+echo "----Check functionality of CNAME record"
+check_cname () {
+	dig +noall +answer "alias1.$domainname" CNAME | grep -F "$FQHN"
+}
+retry "$REPLICATION_TIME" check_cname ||
+	fail_test 1 "Created CNAME record could not be found."
+
+echo "----Check functionality of SRV record"
+check_srv () {
+	dig +noall +answer "_45dnstest_srv_record._tcp.foobar.$domainname" SRV | grep -F "$FQHN"
+}
+retry "$REPLICATION_TIME" check_srv ||
+	fail_test 1 "Created SRV record could not be found."
+
+echo "----Check functionality of A record"
+check_a () {
+	dig +noall +answer "$domainname" A | grep -F 111.111.111.111
+}
+retry "$REPLICATION_TIME" check_a ||
+	fail_test 1 "Created A record could not be found."
+
+exit "$RETVAL"

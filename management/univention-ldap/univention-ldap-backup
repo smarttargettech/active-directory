@@ -1,0 +1,95 @@
+#!/bin/sh
+# Univention LDAP Server
+#  creates an LDIF backup on UCS Primary and Backup Directory Nodes
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/backup.sh
+eval "$(univention-config-registry shell server/role slapd/backup/owner slapd/backup/group slapd/backup/permissions)"
+
+# shellcheck disable=SC2154
+if [ "$server_role" = "domaincontroller_master" ] || [ "$server_role" = "domaincontroller_backup" ]; then
+	currentdate=$(date +%Y%m%d)
+	ldapbackupname="/var/univention-backup/ldap-backup_${currentdate}.ldif"
+	ldapbackuplog="/var/univention-backup/ldap-backup_${currentdate}.log"
+
+	# Default backup
+	touch "$ldapbackupname" "$ldapbackuplog"
+	chmod 600 "$ldapbackupname" "$ldapbackuplog"
+
+	slapcat -f /etc/ldap/slapd.conf -l "$ldapbackupname" 2>"$ldapbackuplog"
+	rc=$?
+	gzip -9 "$ldapbackupname" "$ldapbackuplog" -f 2>/dev/null
+	chmod 600 "${ldapbackupname}.gz" "${ldapbackuplog}.gz"
+
+	if [ $rc -ne 0 ]
+	then
+		echo "LDAP could not be dumped!" >&2
+		exit 1
+	fi
+
+	clean_old_backups 'ldap-backup_.*\.\(log\|ldif\)\(\.gz\)?'
+
+	# Attempt backup with user variables
+	chown "${slapd_backup_owner}":"${slapd_backup_group}" "${ldapbackupname}.gz" "${ldapbackuplog}.gz" &&
+		chmod "${slapd_backup_permissions}" "${ldapbackupname}.gz" "${ldapbackuplog}.gz" ||
+		chown 0:0 "${ldapbackupname}.gz" "${ldapbackuplog}.gz"
+fi
+
+# cn=internal
+if [ "$server_role" = "domaincontroller_master" ] && /usr/share/univention-ldap/setup-internal check; then
+	currentdate=$(date +%Y%m%d)
+	ldapbackupname="/var/univention-backup/internal-backup_${currentdate}.ldif"
+	ldapbackuplog="/var/univention-backup/internal-backup_${currentdate}.log"
+
+	# Default backup
+	touch "$ldapbackupname" "$ldapbackuplog"
+	chmod 600 "$ldapbackupname" "$ldapbackuplog"
+
+	slapcat -f /etc/ldap/slapd.conf -b cn=internal -l "$ldapbackupname" 2>"$ldapbackuplog"
+	rc=$?
+	gzip -9 "$ldapbackupname" "$ldapbackuplog" -f 2>/dev/null
+	chmod 600 "${ldapbackupname}.gz" "${ldapbackuplog}.gz"
+
+	if [ $rc -ne 0 ]
+	then
+		echo "internal could not be dumped!" >&2
+		exit 1
+	fi
+
+	clean_old_backups 'internal-backup_.*\.\(log\|ldif\)\(\.gz\)?'
+
+	# Attempt backup with user variables
+	chown "${slapd_backup_owner}":"${slapd_backup_group}" "${ldapbackupname}.gz" "${ldapbackuplog}.gz" &&
+		chmod "${slapd_backup_permissions}" "${ldapbackupname}.gz" "${ldapbackuplog}.gz" ||
+		chown 0:0 "${ldapbackupname}.gz" "${ldapbackuplog}.gz"
+fi

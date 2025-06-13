@@ -1,0 +1,656 @@
+univention-directory-reports (14.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:49 +0200
+
+univention-directory-reports (14.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:32 +0100
+
+univention-directory-reports (14.0.5) unstable; urgency=medium
+
+  * Issue #2495: Adjust copyright
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 28 Nov 2024 13:24:27 +0100
+
+univention-directory-reports (14.0.4) unstable; urgency=medium
+
+  * Bug #57431: Support single-value properties with complex syntax too
+
+ -- Arvid <requate@univention.de>  Thu, 10 Oct 2024 09:36:42 +0200
+
+univention-directory-reports (14.0.3) unstable; urgency=medium
+
+  * Bug #57431: Fix handling of template interpreter when encountering nested lists
+    in properties. Introduced the `inner-separator` template attribute.
+
+ -- Johannes Königer <koeniger@univention.de>  Thu, 10 Oct 2024 09:36:21 +0200
+
+univention-directory-reports (14.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:31 +0100
+
+univention-directory-reports (14.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:17 +0100
+
+univention-directory-reports (13.0.6) unstable; urgency=medium
+
+  * Bug #55915: import `html` without `try`
+
+ -- Maximilian Janßen <janssen@univention.de>  Thu, 07 Mar 2024 23:54:27 +0100
+
+univention-directory-reports (13.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:14 +0100
+
+univention-directory-reports (13.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:52 +0100
+
+univention-directory-reports (13.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:36 +0100
+
+univention-directory-reports (13.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:19 +0100
+
+univention-directory-reports (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:30 +0100
+
+univention-directory-reports (12.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:47 +0100
+
+univention-directory-reports (12.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:29 +0100
+
+univention-directory-reports (12.0.3-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:33 +0100
+
+univention-directory-reports (12.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:39 +0100
+
+univention-directory-reports (12.0.2-2) unstable; urgency=medium
+
+  * Bug #54706: drop Python 2 package
+
+ -- Florian Best <best@univention.de>  Wed, 04 May 2022 09:06:33 +0200
+
+univention-directory-reports (12.0.2-1) unstable; urgency=medium
+
+  * Bug #54706: move essential files into Python 3 package
+
+ -- Florian Best <best@univention.de>  Mon, 02 May 2022 12:18:36 +0200
+
+univention-directory-reports (12.0.1-2) unstable; urgency=medium
+
+  * Bug #54153: Location of directory reports  and name is configurable
+
+ -- Ildefonso González Sánchez <isanchez.extern@univention.de>  Wed, 12 Jan 2022 14:03:04 +0100
+
+univention-directory-reports (12.0.1-1) unstable; urgency=medium
+
+  * Bug #51569: add Python 3 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 25 Jun 2020 00:11:06 +0200
+
+univention-directory-reports (12.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:20 +0200
+
+univention-directory-reports (11.0.0-5) unstable; urgency=medium
+
+  * Bug #51094: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 11:07:55 +0200
+
+univention-directory-reports (11.0.0-4) unstable; urgency=medium
+
+  * Bug #49148: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Tue, 15 Oct 2019 17:53:16 +0200
+
+univention-directory-reports (11.0.0-3) unstable; urgency=medium
+
+  * Bug #47922: fix creating reports for objects having broken references
+
+ -- Florian Best <best@univention.de>  Tue, 12 Mar 2019 15:40:04 +0100
+
+univention-directory-reports (11.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:37 +0100
+
+univention-directory-reports (10.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:25 +0100
+
+univention-directory-reports (10.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:27 +0100
+
+univention-directory-reports (9.0.1-4) unstable; urgency=medium
+
+  * Bug #45231: all groups are shown in PDF user reports
+
+ -- Florian Best <best@univention.de>  Tue, 22 Aug 2017 11:43:41 +0200
+
+univention-directory-reports (9.0.1-3) unstable; urgency=medium
+
+  * Bug #39239: fix locale of _ instances
+
+ -- Florian Best <best@univention.de>  Mon, 26 Jun 2017 14:32:14 +0200
+
+univention-directory-reports (9.0.1-2) unstable; urgency=medium
+
+  * Bug #39239: fix some translations
+
+ -- Florian Best <best@univention.de>  Mon, 26 Jun 2017 14:02:40 +0200
+
+univention-directory-reports (9.0.1-1) unstable; urgency=medium
+
+  * Bug #39239: remove dependency to latex
+
+ -- Florian Best <best@univention.de>  Wed, 14 Jun 2017 14:09:00 +0200
+
+univention-directory-reports (9.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:21 +0200
+
+univention-directory-reports (8.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:12:55 +0100
+
+univention-directory-reports (7.0.0-3) unstable; urgency=low
+
+  * added PATH for pdflatex command (Bug #36234)
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 29 Jan 2015 13:11:48 +0100
+
+univention-directory-reports (7.0.0-2) unstable; urgency=low
+
+  * added home directory for pdflatex (Bug #36234)
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 26 Jan 2015 15:48:08 +0100
+
+univention-directory-reports (7.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35144)
+
+ -- Felix Botner <botner@univention.de>  Tue, 19 Aug 2014 10:58:50 +0200
+
+univention-directory-reports (6.0.0-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 20 Sep 2013 12:00:28 +0200
+
+univention-directory-reports (6.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 3.2, update copyright years for 2013
+  * Update/review UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 12 Sep 2013 13:26:20 +0200
+
+univention-directory-reports (5.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump.
+  * Add UCR variable descriptions (Bug #28134)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 13:10:14 +0200
+
+univention-directory-reports (4.0.9-1) unstable; urgency=low
+
+  * fixed typo in ./templates/en_US/computers.csv (Bug #24358)
+
+ -- Alexander Kläser <klaeser@univention.de>  Sun, 06 Nov 2011 23:36:58 +0100
+
+univention-directory-reports (4.0.8-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:20 +0200
+
+univention-directory-reports (4.0.8-1) unstable; urgency=low
+
+  * change permissions of report files; Bug #23336
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 20 Oct 2011 16:50:42 +0200
+
+univention-directory-reports (4.0.7-1) unstable; urgency=low
+
+  * fixed typo in install file (logo image was installed into wrong directory)
+  * update UDM modules list otherwise no reports can be generated; Bug #23336
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 20 Oct 2011 11:54:39 +0200
+
+univention-directory-reports (4.0.6-1) unstable; urgency=low
+
+  * added logrotate configuration (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Wed, 12 Oct 2011 09:34:14 +0200
+
+univention-directory-reports (4.0.5-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+   [ Sönke Schwardt-Krummrich ]
+    * fixed header of CSV report (Bug #18589)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 16:14:12 +0200
+
+univention-directory-reports (4.0.4-1) unstable; urgency=low
+
+  * Use bash for postinst (Bug #22439)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 25 Jul 2011 15:49:27 +0200
+
+univention-directory-reports (4.0.3-1) unstable; urgency=low
+
+  * Removed univention-webui dependency from python-univention-
+    directory-reports (Bug #22439)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 25 Jul 2011 15:24:37 +0200
+
+univention-directory-reports (4.0.2-1) unstable; urgency=low
+
+  * Move /usr/bin/univention-directory-reports and univention_logo.png
+    to package univention-directory-reports (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 24 May 2011 11:44:06 +0200
+
+univention-directory-reports (4.0.1-1) unstable; urgency=low
+
+  * Added copyright header to test scripts and call univention-install-
+    config-registry in debian/rules like ucslint said (Bug #22439)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 13 May 2011 07:42:34 +0200
+
+univention-directory-reports (4.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+    * Bump version for UCS 3.0
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 09 May 2011 13:26:04 +0200
+
+univention-directory-reports (3.0.6-2) unstable; urgency=low
+
+  * Add even more detailed error report (Bug #9137)
+  * Handle invalid syntax in LDAP DN (Bug #18345).
+  * Add test/failures.sh.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 08 Mar 2011 08:27:45 +0100
+
+univention-directory-reports (3.0.6-1) unstable; urgency=low
+
+  * Handle invalid files (Bug #9137)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 07 Mar 2011 15:50:42 +0100
+
+univention-directory-reports (3.0.5-5) unstable; urgency=low
+
+  * fixed postinst (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 07 Mar 2011 12:18:53 +0100
+
+univention-directory-reports (3.0.5-4) unstable; urgency=low
+
+  * version bump (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 07 Mar 2011 12:04:46 +0100
+
+univention-directory-reports (3.0.5-3) unstable; urgency=low
+
+  * added debug output to postinst script (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 07 Mar 2011 11:54:26 +0100
+
+univention-directory-reports (3.0.5-2) unstable; urgency=low
+
+  * minor changes for the postinst script, did not remove old files properly
+    (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 07 Mar 2011 11:47:21 +0100
+
+univention-directory-reports (3.0.5-1) unstable; urgency=low
+
+  * added support for report entries in old format (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 23 Feb 2011 17:50:52 +0100
+
+univention-directory-reports (3.0.4-4) unstable; urgency=low
+
+  * debian/control: Depends +texlive-latex-recommended (Bug #16637)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 18 Feb 2011 08:44:33 +0100
+
+univention-directory-reports (3.0.4-3) unstable; urgency=low
+
+  * debian/control: Depends +texlive-latex-extra (Bug #16637)
+  * Add test/all.sh script for testing.
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 18 Feb 2011 08:37:11 +0100
+
+univention-directory-reports (3.0.4-2) unstable; urgency=low
+
+  * Handle non-ASCII multi-byte encoding (Bug #16637)
+  * Enable doctest.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 15 Feb 2011 12:21:19 +0100
+
+univention-directory-reports (3.0.4-1) unstable; urgency=low
+
+  * debian/control: transition from TeTeX to TexLive (Bug #21233)
+  * univention-directory-reports:
+    - Handle invalid reports specification (Bug #17930)
+    - Fix --help messages.
+    - Fix handling of header and footer.
+    - List modules with available reports.
+    - Don't delete generated CSV reports (Bug #19985)
+    - Handle not existing DNs (Bug #18345)
+  * Clean up missing and superfluous imports.
+  * Track down TeX-encoding (Bug #20676, Bug #17723)
+  * Handle missing files (Bug #9137)
+  * Add preliminary manual page to source only, pending QA.
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 14 Feb 2011 13:25:51 +0100
+
+univention-directory-reports (3.0.3-1) unstable; urgency=low
+
+  * added language detection via locale.getlocale() (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 14 Feb 2011 16:52:04 +0100
+
+univention-directory-reports (3.0.2-1) unstable; urgency=low
+
+  * submitted users.csv template (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 14 Feb 2011 14:45:17 +0100
+
+univention-directory-reports (3.0.1-1) unstable; urgency=low
+
+  * add multi-language support for report generation (Bug #17425)
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 14 Feb 2011 14:24:42 +0100
+
+univention-directory-reports (3.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 13:48:58 +0200
+
+univention-directory-reports (2.0.6-1) unstable; urgency=low
+
+  * unescape DNs if they have been escaped by a previous call to admin.py (Bug #17723)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 26 Mar 2010 13:29:17 +0100
+
+univention-directory-reports (2.0.5-1) unstable; urgency=low
+
+  * escaped UCR Header, Bug #17816
+
+ -- Tim Petersen <petersen@univention.de>  Tue, 09 Mar 2010 11:09:53 +0100
+
+univention-directory-reports (2.0.4-1) unstable; urgency=low
+
+  * added UCR Header, Bug #17816
+
+ -- Tim Petersen <petersen@univention.de>  Tue, 09 Mar 2010 10:23:53 +0100
+
+univention-directory-reports (2.0.3-2) unstable; urgency=low
+
+  * delete char ` in tex reports because "Unicode char \u8:´ not set up for use with LaTeX" (Bug: #15618)
+
+ -- Felix Botner <botner@univention.de>  Tue,  3 Nov 2009 12:28:53 +0100
+
+univention-directory-reports (2.0.3-1) unstable; urgency=low
+
+  * replaced the title of the PDF reports and add the date of creation
+    (Bug #13191)
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 27 Oct 2009 13:41:17 +0100
+
+univention-directory-reports (2.0.2-3) unstable; urgency=low
+
+  * replace commonly used characters into escaped latex sequence (Bug: #15618)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 01 Oct 2009 15:23:29 +0200
+
+univention-directory-reports (2.0.2-2) unstable; urgency=low
+
+  * saver use of string function in admin.py (Bug: #12569)
+
+ -- Felix Botner <botner@univention.de>  Wed, 30 Sep 2009 17:31:07 +0200
+
+univention-directory-reports (2.0.2-1) unstable; urgency=low
+
+  * if loading a policy module fails, it will be ignored (Bug #11131)
+
+ -- Andreas Büsching <buesching@univention.de>  Mon,  6 Jul 2009 15:31:00 +0200
+
+univention-directory-reports (2.0.1-1) unstable; urgency=low
+
+  * if an UDM object could not be opened it will be shown in the report
+    with empty values and a log entry with the traceback is written (Bug
+    #12930)
+
+ -- Andreas Büsching <buesching@univention.de>  Mon,  6 Jul 2009 14:08:17 +0200
+
+univention-directory-reports (2.0.0-1) unstable; urgency=low
+
+  * switched to python2.4 (Bug: #14709)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 11 Jun 2009 12:12:50 +0200
+
+univention-directory-reports (2.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-directory-reports (1.0.1-2) unstable; urgency=low
+
+  * Added UCR Warning.
+
+ -- Andre Fenske <fenske@univention.de>  Thu,  4 Dec 2008 09:12:29 +0100
+
+univention-directory-reports (1.0.1-1) unstable; urgency=low
+
+  * rename files of CSV reports to *.csv instead of *.src
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 17 Jul 2008 11:22:54 +0200
+
+univention-directory-reports (1.0.0-2) unstable; urgency=low
+
+  * add support for CSV reports
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 16 Jun 2008 09:12:16 +0200
+
+univention-directory-reports (0.5.8-1) unstable; urgency=low
+
+  * add method to clear object cache
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 31 Mar 2008 14:48:44 +0200
+
+univention-directory-reports (0.5.7-1) unstable; urgency=low
+
+  * really deactivate filters for CSV reports
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 28 Mar 2008 11:41:18 +0100
+
+univention-directory-reports (0.5.6-1) unstable; urgency=low
+
+  * minor fixes in latex templates
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 28 Mar 2008 08:52:58 +0100
+
+univention-directory-reports (0.5.5-1) unstable; urgency=low
+
+  * fixed a typo in the report registration
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 28 Mar 2008 08:18:59 +0100
+
+univention-directory-reports (0.5.4-1) unstable; urgency=low
+
+  * add a flag to deactivate the formatting of attribute values (only required
+    for LaTeX)
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 27 Mar 2008 18:00:12 +0100
+
+univention-directory-reports (0.5.3-1) unstable; urgency=low
+
+  * add support for a default report
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 27 Mar 2008 17:30:29 +0100
+
+univention-directory-reports (0.5.2-1) unstable; urgency=low
+
+  * add default computer report for PDF and CSV output
+  * removed Scalix attributes from user report
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 27 Mar 2008 11:31:57 +0100
+
+univention-directory-reports (0.5.1-1) unstable; urgency=low
+
+  * fixed field separators in user template
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 26 Mar 2008 11:11:57 +0100
+
+univention-directory-reports (0.5.0-1) unstable; urgency=low
+
+  * add support for generating reports in CSV format
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 20 Mar 2008 17:21:11 +0100
+
+univention-directory-reports (0.4.1-1) unstable; urgency=low
+
+  * replace \ with $\backslash$ in attribute values
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 15 Oct 2007 15:59:10 +0200
+
+univention-directory-reports (0.4.0-3) unstable; urgency=low
+
+  * fixed logfile permissions
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 27 Sep 2007 14:57:31 +0200
+
+univention-directory-reports (0.4.0-2) unstable; urgency=low
+
+  * fixed package build: python module are now installed into correct path
+  * some more renaming
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 18 Sep 2007 16:59:47 +0200
+
+univention-directory-reports (0.4.0-1) unstable; urgency=low
+
+  * adapt to UCS 2.0 policies
+  * fixed dependencies; use python-central
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 18 Sep 2007 15:53:37 +0200
+
+univention-directory-reports (0.3.4-1) unstable; urgency=low
+
+  * fixes in users template
+  * replace _ with \_ for LaTeX
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 29 Aug 2007 15:40:37 +0200
+
+univention-directory-reports (0.3.3-2) unstable; urgency=low
+
+  * add postinst script
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 29 Aug 2007 10:29:03 +0200
+
+univention-directory-reports (0.3.3-1) unstable; urgency=low
+
+  * fixed a typo in the help message
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 28 Aug 2007 18:42:34 +0200
+
+univention-directory-reports (0.3.2-1) unstable; urgency=low
+
+  * fixed a typo in the users template
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 28 Aug 2007 18:33:37 +0200
+
+univention-directory-reports (0.3.1-1) unstable; urgency=low
+
+  * clean up in templates; remove parts from template
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 28 Aug 2007 18:10:15 +0200
+
+univention-directory-reports (0.3.0-1) unstable; urgency=low
+
+  * users.tex: fixed typo in attribute gidNumber
+  * interpreter: attributes supports new options: append and prepend
+  * univention-directory-reports: remove unused option -t; show help if
+    mandatory options are missing
+  * config.ini is now a Baseconfig template
+  * update user and group templates (fixes and additional information)
+  * interpreter: support for encapsulated entities of the template language
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 28 Aug 2007 11:08:05 +0200
+
+univention-directory-reports (0.2.0-1) unstable; urgency=low
+
+  * add support for several reports per admin module
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 27 Aug 2007 09:19:41 +0200
+
+univention-directory-reports (0.1.0-2) unstable; urgency=low
+
+  * add dependencies to tetex packages
+  * add missing files
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 23 Aug 2007 15:14:52 +0200
+
+univention-directory-reports (0.1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Andreas Büsching <buesching@univention.de>  Tue,  7 Aug 2007 10:19:35 +0200

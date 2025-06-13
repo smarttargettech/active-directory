@@ -1,0 +1,1383 @@
+univention-mail-postfix (16.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:50 +0200
+
+univention-mail-postfix (16.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:35 +0100
+
+univention-mail-postfix (16.0.7) unstable; urgency=medium
+
+  * univention/dev/ucs#2330: Default to TLSv1.2
+
+ -- Marius Meschter <marius.meschter@univention.de>  Tue, 03 Dec 2024 10:31:37 +0100
+
+univention-mail-postfix (16.0.6) unstable; urgency=medium
+
+  * Bug #56793: Use pam/unix/maximum_uid only in UMC pam account
+
+ -- Arvid <requate@univention.de>  Fri, 12 Apr 2024 10:39:18 +0200
+
+univention-mail-postfix (16.0.5) unstable; urgency=medium
+
+  * Bug #56793: Use UCR variable pam/unix/maximum_uid
+
+ -- Arvid <requate@univention.de>  Thu, 14 Mar 2024 12:26:19 +0100
+
+univention-mail-postfix (16.0.4) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:31 +0100
+
+univention-mail-postfix (16.0.3) unstable; urgency=medium
+
+  * Bug #56793: Replace libnss-ldapd with SSSd
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Fri, 08 Mar 2024 00:18:48 +0100
+
+univention-mail-postfix (16.0.2) unstable; urgency=medium
+
+  * Bug #46120: rebase univention-mail-postfix UCR templates
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 08 Mar 2024 00:18:32 +0100
+
+univention-mail-postfix (16.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:24 +0100
+
+univention-mail-postfix (15.0.3) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:20 +0100
+
+univention-mail-postfix (15.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:36 +0100
+
+univention-mail-postfix (15.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:36 +0100
+
+univention-mail-postfix (14.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:48 +0100
+
+univention-mail-postfix (14.0.7-1) unstable; urgency=medium
+
+  * Bug #56957: Applying workaround for CVE-2023-51764 (until update to postfix version with proper fix).
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Alexander Steffen <steffen@univention.de>  Fri, 12 Jan 2024 13:45:34 +0100
+
+univention-mail-postfix (14.0.6-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:32 +0100
+
+univention-mail-postfix (14.0.6-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:38 +0100
+
+univention-mail-postfix (14.0.5-1) unstable; urgency=medium
+
+  * Bug #53092: Added fail checks for the join scripts
+
+ -- Mika Westphal <westphal@univention.de>  Thu, 02 Feb 2023 13:14:54 +0100
+
+univention-mail-postfix (14.0.4-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 Jan 2023 09:48:08 +0100
+
+univention-mail-postfix (14.0.3-1) unstable; urgency=low
+
+  * Bug #55385: handle auth using email address when not using dovecot sasl
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 21 Dec 2022 10:21:02 +0100
+
+univention-mail-postfix (14.0.2-1) unstable; urgency=medium
+
+  * Bug #54273: Include debug script in server_password_change.d/50univention-mail-server subscript
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Tue, 05 Jul 2022 12:25:08 +0200
+
+univention-mail-postfix (14.0.1-4) unstable; urgency=medium
+
+  * Bug #54560: fix defer_if_permit_service unavailable error message
+
+ -- Maximilian Janßen <janssen@univention.de>  Fri, 18 Mar 2022 13:00:59 +0100
+
+univention-mail-postfix (14.0.1-3) unstable; urgency=medium
+
+  * Bug #53182: added timestamp to logger output of server password change
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 08 Oct 2021 15:12:31 +0200
+
+univention-mail-postfix (14.0.1-2) unstable; urgency=medium
+
+  * Bug #53463: fix listfilter test with use_sasl_username
+
+ -- Tobias Wenzel <wenzel@univention.de>  Wed, 30 Jun 2021 09:35:43 +0200
+
+univention-mail-postfix (14.0.1-1) unstable; urgency=medium
+
+  * Bug #52255: Migrate univention-mail-postfix to Python 3
+
+ -- Florian Best <best@univention.de>  Wed, 31 Mar 2021 11:54:43 +0200
+
+univention-mail-postfix (14.0.0-4) unstable; urgency=low
+
+  * Bug #52842: ldap_tables: "search_timeout" has been renamed to "timeout"
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 10 Mar 2021 12:28:27 +0100
+
+univention-mail-postfix (14.0.0-3) unstable; urgency=low
+
+  * Bug #52842: add user listfilter first to prevent errors
+  * Bug #52842: create main.cf file before first use
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 24 Feb 2021 12:51:36 +0100
+
+univention-mail-postfix (14.0.0-2) unstable; urgency=low
+
+  * Bug #45205: readd unionmap support
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 26 Nov 2020 11:28:05 +0100
+
+univention-mail-postfix (14.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:18 +0200
+
+univention-mail-postfix (13.0.2-1) unstable; urgency=low
+
+  * Bug #51151: make UCR templates compatible to python3
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 21 Apr 2020 21:23:57 +0200
+
+univention-mail-postfix (13.0.1-2) unstable; urgency=medium
+
+  * Bug #42241: fix service definition of postfix
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jul 2019 15:32:05 +0200
+
+univention-mail-postfix (13.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Thu, 20 Dec 2018 17:04:03 +0100
+
+univention-mail-postfix (13.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:35 +0100
+
+univention-mail-postfix (12.0.0-21) unstable; urgency=low
+
+  * Bug #47642: The PAM stack has been fixed to allow the login via username
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 24 Aug 2018 10:50:07 +0200
+
+univention-mail-postfix (12.0.0-20) unstable; urgency=low
+
+  * Bug #46454: fix traceback due to "un-open-ed" UDM object
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 05 Jun 2018 21:21:42 +0200
+
+univention-mail-postfix (12.0.0-19) unstable; urgency=medium
+
+  * Bug #46454: actually install script
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 27 Mar 2018 11:42:57 +0200
+
+univention-mail-postfix (12.0.0-18) unstable; urgency=medium
+
+  * Bug #46454: add mailquota policy removal script
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 27 Mar 2018 11:35:30 +0200
+
+univention-mail-postfix (12.0.0-17) unstable; urgency=low
+
+  * Bug #45984: don't disable connection caching on postfix' amavis port
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 01 Mar 2018 08:59:47 +0100
+
+univention-mail-postfix (12.0.0-16) unstable; urgency=low
+
+  * Bug #45963: re-enable chroot'ing of scache service
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 26 Feb 2018 10:38:43 +0100
+
+univention-mail-postfix (12.0.0-15) unstable; urgency=low
+
+  * Bug #46425: ignore ucslint error
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 26 Feb 2018 09:29:18 +0100
+
+univention-mail-postfix (12.0.0-14) unstable; urgency=low
+
+  * Bug #46425: remove AGPL notice
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 26 Feb 2018 09:24:50 +0100
+
+univention-mail-postfix (12.0.0-13) unstable; urgency=low
+
+  * Bug #45963: fix UCR variable descriptions
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Sun, 25 Feb 2018 22:16:02 +0100
+
+univention-mail-postfix (12.0.0-12) unstable; urgency=low
+
+  * Bug #46102: remove cyrus related code
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 23 Jan 2018 13:25:16 +0100
+
+univention-mail-postfix (12.0.0-11) unstable; urgency=low
+
+  * Bug #45422: add missing dependency
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 06 Feb 2018 17:22:33 +0100
+
+univention-mail-postfix (12.0.0-10) unstable; urgency=low
+
+  * Bug #45422: fix typo
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 29 Jan 2018 10:22:25 +0100
+
+univention-mail-postfix (12.0.0-9) unstable; urgency=low
+
+  * Bug #45422: use UDM users/user filter
+  * try possible result before next LDAP query
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 29 Jan 2018 09:38:13 +0100
+
+univention-mail-postfix (12.0.0-8) unstable; urgency=low
+
+  * Bug #45607: allow optional usage of postscreen
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 19 Jan 2018 11:19:26 +0100
+
+univention-mail-postfix (12.0.0-7) unstable; urgency=low
+
+  * Bug #45984: disable connection caching for amavis socket
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 08 Jan 2018 10:24:42 +0100
+
+univention-mail-postfix (12.0.0-6) unstable; urgency=low
+
+  * Bug #45963: force init script to maintain chroot environment
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 04 Jan 2018 12:32:23 +0100
+
+univention-mail-postfix (12.0.0-5) unstable; urgency=low
+
+  * Bug #45963: fix config
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 03 Jan 2018 08:45:35 +0100
+
+univention-mail-postfix (12.0.0-4) unstable; urgency=low
+
+  * Bug #45963: add missing UCR declaration
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 02 Jan 2018 17:55:15 +0100
+
+univention-mail-postfix (12.0.0-3) unstable; urgency=low
+
+  * Bug #45963: update copyright
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 02 Jan 2018 15:33:31 +0100
+
+univention-mail-postfix (12.0.0-2) unstable; urgency=low
+
+  * Bug #45963: adapt configuration and init script to stretch
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 02 Jan 2018 12:27:48 +0100
+
+univention-mail-postfix (12.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:30 +0100
+
+univention-mail-postfix (11.0.1-20) unstable; urgency=low
+
+  * Bug #44473: mention filename in error message
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 17 Oct 2017 12:37:25 +0200
+
+univention-mail-postfix (11.0.1-19) unstable; urgency=low
+
+  * Bug #44473: update include mechanism for main.cf.local and master.cf.local
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 20 Sep 2017 13:05:15 +0200
+
+univention-mail-postfix (11.0.1-18) unstable; urgency=low
+
+  * Bug #45422: handle Cyrus SASL in listfilter.py
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 16 Oct 2017 15:07:53 +0200
+
+univention-mail-postfix (11.0.1-17) unstable; urgency=low
+
+  * Bug #44473: include main.cf.local in /etc/postfix/main.cf
+  * include master.cf.local in /etc/postfix/master.cf
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 15 Sep 2017 10:32:55 +0200
+
+univention-mail-postfix (11.0.1-16) unstable; urgency=low
+
+  * Bug #44922: add logging to mailinglist/groups listfilter
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 11 Sep 2017 12:50:02 +0200
+
+univention-mail-postfix (11.0.1-15) unstable; urgency=low
+
+  * Bug #44948: fixed regression in delivery of mails to cyrus shared folders
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 06 Jul 2017 16:07:31 +0200
+
+univention-mail-postfix (11.0.1-14) unstable; urgency=low
+
+  * Bug #44811: handle subdomains safer, run postmap when installing, wording
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 13:31:25 +0200
+
+univention-mail-postfix (11.0.1-13) unstable; urgency=low
+
+  * Bug #44811: fix default UCR value
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 12:16:49 +0200
+
+univention-mail-postfix (11.0.1-12) unstable; urgency=low
+
+  * Bug #44811: support IPv6 addresses, change UCRV format
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 11:45:57 +0200
+
+univention-mail-postfix (11.0.1-11) unstable; urgency=low
+
+  * Bug #44811: allow setting additional lookup tables for the Postfix SMTP
+    client TLS security policy
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 11:30:37 +0200
+
+univention-mail-postfix (11.0.1-10) unstable; urgency=low
+
+  * Bug #44811: undo global encryption setting from Bug #44589 if relaying is
+    enabled, set it only for $mail/relayhost
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 11:08:47 +0200
+
+univention-mail-postfix (11.0.1-9) unstable; urgency=low
+
+  * Bug #44811: create possibility to set SMTP client TLS policy through
+    UCRV mail/postfix/tls/client/policy/.*
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 19 Jun 2017 10:12:38 +0200
+
+univention-mail-postfix (11.0.1-8) unstable; urgency=low
+
+  * Bug #44589: updated UCR variable descriptions
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 13 Jun 2017 13:56:35 +0200
+
+univention-mail-postfix (11.0.1-7) unstable; urgency=low
+
+  * Bug #44589: updated UCR variable descriptions
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 13 Jun 2017 13:46:12 +0200
+
+univention-mail-postfix (11.0.1-6) unstable; urgency=low
+
+  * Bug #42249: rename mailForwardAddress property
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 02 Jun 2017 13:47:34 +0200
+
+univention-mail-postfix (11.0.1-5) unstable; urgency=low
+
+  * Bug #42249: split ldap.sharedfolderlocal for mailAlternativeAddress
+  * move ldap.sharedfolderremote to virtual_alias_maps
+  * add UCRV update code
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 02 Jun 2017 12:31:22 +0200
+
+univention-mail-postfix (11.0.1-4) unstable; urgency=low
+
+  * Bug #44589: add missing UCRV to ucr-registry
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 31 May 2017 09:32:36 +0200
+
+univention-mail-postfix (11.0.1-3) unstable; urgency=low
+
+  * Bug #44589: the default for mail/postfix/tls/client/level if unset has
+    been changed to "may"
+  * set smtp_tls_security_level=encrypt if mail/relayauth is enabled
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 31 May 2017 09:24:33 +0200
+
+univention-mail-postfix (11.0.1-2) unstable; urgency=low
+
+  * Bug #42249: remove dependency on univention-ldap-config
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 05 May 2017 08:44:46 +0200
+
+univention-mail-postfix (11.0.1-1) unstable; urgency=medium
+
+  * Bug #42249: add support for virtual mail aliases
+  * separate maps for virtual mailboxes and virtual aliases
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 26 Apr 2017 11:06:49 +0200
+
+univention-mail-postfix (11.0.0-4) unstable; urgency=low
+
+  * Bug #43470: Handle UCRV */autostart through systemd
+  * Bug #43874: help systemd track pidfile
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 15 Mar 2017 08:52:56 +0100
+
+univention-mail-postfix (11.0.0-3) unstable; urgency=low
+
+  * Bug #41055: escape LDAP queries
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 06 Feb 2017 11:42:06 +0100
+
+univention-mail-postfix (11.0.0-2) unstable; urgency=low
+
+  * add UCVR mail/postfix/myorigin to configure myorigin option (Bug #42300)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 07 Sep 2016 08:35:58 +0200
+
+univention-mail-postfix (11.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #27872: Remove broken update code
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:58:22 +0200
+
+univention-mail-postfix (10.0.0-15) unstable; urgency=low
+
+  * listfilter.py exists gracefully when told to (Bug #40569)
+  * listfilter.py returns WARN instead of DUNNO in case of error
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 03 Feb 2016 16:32:03 +0100
+
+univention-mail-postfix (10.0.0-14) unstable; urgency=low
+
+  * change UCRV wording (Bug #29615)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 03 Feb 2016 14:50:55 +0100
+
+univention-mail-postfix (10.0.0-13) unstable; urgency=low
+
+  * Mailinglist / mail groups filter now checks sasl_username instead of
+  sender address. Adds mail/postfix/policy/listfilter/use_sasl_username with
+  default "yes". (Bug #29615)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 18 Jan 2016 16:19:14 +0100
+
+univention-mail-postfix (10.0.0-12) unstable; urgency=low
+
+  * write exceptions in listfilter.py to syslog (Bug #40376)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 18 Jan 2016 15:00:13 +0100
+
+univention-mail-postfix (10.0.0-11) unstable; urgency=low
+
+  * reorder checks to allow empty sender for all recipients except restricted
+    mailing lists and to prevent unnecessary LDAP queries (Bug #40353)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 06 Jan 2016 15:01:29 +0100
+
+univention-mail-postfix (10.0.0-10) unstable; urgency=low
+
+  * fix listfilter letting empty senders pass (Bug #40353)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 04 Jan 2016 13:52:51 +0100
+
+univention-mail-postfix (10.0.0-9) unstable; urgency=low
+
+  * remove at job only when updating (Bug #40134)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 15 Dec 2015 15:49:16 +0100
+
+univention-mail-postfix (10.0.0-8) unstable; urgency=low
+
+  * remove at job, if active (Bug #40134)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 08 Dec 2015 08:53:20 +0100
+
+univention-mail-postfix (10.0.0-7) unstable; urgency=low
+
+  * remove leftover scheduling DH parameter generation from postinst
+    (Bug #40134)
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 07 Dec 2015 14:05:25 +0100
+
+univention-mail-postfix (10.0.0-6) unstable; urgency=low
+
+  * recreate missing lookup tables if docker container is started (Bug #39542)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 04 Nov 2015 21:35:30 +0100
+
+univention-mail-postfix (10.0.0-5) unstable; urgency=low
+
+  * Move scheduling of DH parameter generation to join script, create 512 bit
+    DH parameters in postinst (Bug #39482).
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 04 Nov 2015 13:53:52 +0100
+
+univention-mail-postfix (10.0.0-4) unstable; urgency=low
+
+  * Do not schedule DH parameter generation when creating Docker image
+    (Bug #39482).
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 03 Nov 2015 10:12:31 +0100
+
+univention-mail-postfix (10.0.0-3) unstable; urgency=low
+
+  * Bug #39542: fix detection if postfix master is already running
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 30 Oct 2015 15:12:24 +0100
+
+univention-mail-postfix (10.0.0-2) unstable; urgency=low
+
+  * Bug #39542: fix detection if postfix master is already running
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 30 Oct 2015 14:57:56 +0100
+
+univention-mail-postfix (10.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 4.1 (Bug #39093)
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 09 Oct 2015 13:04:35 +0200
+
+univention-mail-postfix (9.0.4-1) unstable; urgency=low
+
+  * Bug #39021: disable authentication (and thus submitting) by default on
+    all ports.
+    By default authentication is now only possible on SMTPS (465) and
+    Submission (587) ports. To re-enabled authentication on SMTP (port 25)
+    using TLS set UCR variable
+    mail/postfix/mastercf/options/smtp/smtpd_sasl_auth_enable=yes.
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 01 Sep 2015 12:38:48 +0200
+
+univention-mail-postfix (9.0.3-8) unstable; urgency=low
+
+  * Bug #37459: fixed installation path of precalculated DH parameter files
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 25 Aug 2015 11:34:45 +0200
+
+univention-mail-postfix (9.0.3-7) unstable; urgency=low
+
+  * Bug #39151: a configuration error prevented Postfix from sending emails
+    if Dovecot was also installed.
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 12 Aug 2015 17:54:09 +0200
+
+univention-mail-postfix (9.0.3-6) unstable; urgency=low
+
+  * Bug #39093: fix listfilter.secret file
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 12 Aug 2015 17:22:33 +0200
+
+univention-mail-postfix (9.0.3-5) unstable; urgency=low
+
+  * Bug #37459: Do not create DH parameters at installation time
+  * provide precalculated 512 and 2048 bit DH parameters
+  * schedule one time generation of DH parameters for the next day
+  * change default of UCRV mail/postfix/cron/recreate/dh/parameter to not
+    recreate DH parameters every night, existing cronjob not changed
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 12 Aug 2015 15:52:19 +0200
+
+univention-mail-postfix (9.0.3-4) unstable; urgency=low
+
+  * Bug #38948: safer smtp_restrictions sorting code
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 23 Jul 2015 16:11:34 +0200
+
+univention-mail-postfix (9.0.3-3) unstable; urgency=low
+
+  * Bug #37653: Add UCR variable mail/antivir/max_servers to configure max.
+  concurrent Amavis processes.
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 17 Jul 2015 11:24:40 +0200
+
+univention-mail-postfix (9.0.3-2) unstable; urgency=low
+
+  * Bug #38292: Postfix: check HELO string against reverse DNS entry, adds UCR
+  mail/postfix/smtpd/restrictions/sender/reject_unknown_client_hostname and
+  mail/postfix/smtpd/restrictions/sender/reject_unknown_reverse_client_hostname
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 14 Jul 2015 17:11:54 +0200
+
+univention-mail-postfix (9.0.3-1) unstable; urgency=low
+
+  * Bug #38884: do not print error message directly into postfix config file
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 10 Jul 2015 10:59:57 +0200
+
+univention-mail-postfix (9.0.2-1) unstable; urgency=low
+
+  * Bug #34839: bumped version
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 08 Jul 2015 20:59:34 +0200
+
+univention-mail-postfix (9.0.1-5) unstable; urgency=low
+
+  * Bug #38471: rm sasl config file from install
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 03 Jun 2015 09:22:43 +0200
+
+univention-mail-postfix (9.0.1-4) unstable; urgency=low
+
+  * Bug #38471: revert move of sasl config file
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 03 Jun 2015 09:03:43 +0200
+
+univention-mail-postfix (9.0.1-3) unstable; urgency=low
+
+  * Bug #38471: support Dovecot shared IMAP folders
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 02 Jun 2015 09:06:43 +0200
+
+univention-mail-postfix (9.0.1-2) unstable; urgency=low
+
+  * Bug #33799 and Bug #38477: create mailbox for archivefolder only if Cyrus
+  is installed and the domain is not external
+  * Bug #14619: don't expand BCC before delivering to amavis if
+  mail/archivefolder is in use
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 08 May 2015 10:25:40 +0200
+
+univention-mail-postfix (9.0.1-1) unstable; urgency=medium
+
+  * Bug #34839 Dovecot as alternative to cyrus
+  * add UCRV mail/postfix/dovecot_sasl (bool) for switching Postfix
+  authentication to Dovecot SASL
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 28 Apr 2015 22:53:07 +0200
+
+univention-mail-postfix (9.0.0-25) unstable; urgency=low
+
+  * Bug #38292: postpone addition of this feature, revert r60366
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 07 May 2015 12:14:25 +0200
+
+univention-mail-postfix (9.0.0-24) unstable; urgency=low
+
+  * Bug #38044: add <..> around hyperlinks in UCR variable description
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 07 May 2015 11:26:29 +0200
+
+univention-mail-postfix (9.0.0-23) unstable; urgency=low
+
+  * Bug #30043: fix typo in variable description
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 07 May 2015 10:57:01 +0200
+
+univention-mail-postfix (9.0.0-22) unstable; urgency=low
+
+  * Bug #38292: Postfix: check HELO string against reverse DNS entry, adds UCR
+  variables "mail/postfix/smtpd/restrictions/sender/require_reverse_dns" and
+  "mail/postfix/smtpd/restrictions/sender/require_forward-confirmed_reverse_dns".
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 04 May 2015 19:06:48 +0200
+
+univention-mail-postfix (9.0.0-21) unstable; urgency=low
+
+  * Bug #38043: Postfix: Prohibit RC4 Cipher Suites.
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 16 Apr 2015 11:55:49 +0200
+
+univention-mail-postfix (9.0.0-20) unstable; urgency=low
+
+  * Bug #38044: Postfix: Allow to set SSL/TLS protocols for client and server,
+  disable SSLv3 for the SMTP client in new installations by default
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 15 Apr 2015 15:48:01 +0200
+
+univention-mail-postfix (9.0.0-19) unstable; urgency=low
+
+  * Bug #30043: Open port 587 in packet filter
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 15 Apr 2015 10:52:04 +0200
+
+univention-mail-postfix (9.0.0-18) unstable; urgency=low
+
+  * Bug #30043: Allow Message Submission via port 587
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 14 Apr 2015 15:47:52 +0200
+
+univention-mail-postfix (9.0.0-17) unstable; urgency=low
+
+  * Bug #37442: Fix UCR variable description for maximum message size
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 23 Mar 2015 15:08:12 +0100
+
+univention-mail-postfix (9.0.0-16) unstable; urgency=low
+
+  * Bug #37442: Fix UCR variable description for maximum message size
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 23 Mar 2015 13:24:07 +0100
+
+univention-mail-postfix (9.0.0-15) unstable; urgency=low
+
+  * Bug #31738: updated UCR variable descriptions
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 18 Mar 2015 11:48:11 +0100
+
+univention-mail-postfix (9.0.0-14) unstable; urgency=low
+
+  * Bug #31738: added base framework to prevent sender address spoofing
+    (deactivated by default)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 16 Mar 2015 13:52:38 +0100
+
+univention-mail-postfix (9.0.0-13) unstable; urgency=low
+
+  * Bug #38049: allow optional arguments for smtp and smtps in master.cf
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 16 Mar 2015 13:44:19 +0100
+
+univention-mail-postfix (9.0.0-12) unstable; urgency=low
+
+  * Bug #37442: Fix UCR variable description for maximum message size
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 13 Mar 2015 11:05:53 +0100
+
+univention-mail-postfix (9.0.0-11) unstable; urgency=low
+
+  * fixed last commit (Bug #31837)
+
+ -- Felix Botner <botner@univention.de>  Wed, 12 Nov 2014 11:54:39 +0100
+
+univention-mail-postfix (9.0.0-10) unstable; urgency=low
+
+  * run newaliases if /etc/aliases is modified (Bug #31837)
+
+ -- Felix Botner <botner@univention.de>  Wed, 12 Nov 2014 11:37:23 +0100
+
+univention-mail-postfix (9.0.0-9) unstable; urgency=low
+
+  * fixed tls debug level and dh parameter file creation (Bug #35923)
+
+ -- Felix Botner <botner@univention.de>  Fri, 07 Nov 2014 10:40:10 +0100
+
+univention-mail-postfix (9.0.0-8) unstable; urgency=low
+
+  * weekly rotate dh parameters (Bug #35923)
+
+ -- Felix Botner <botner@univention.de>  Mon, 13 Oct 2014 13:38:04 +0200
+
+univention-mail-postfix (9.0.0-7) unstable; urgency=low
+
+  * remove old ucr templates (Bug #35264)
+
+ -- Felix Botner <botner@univention.de>  Thu, 02 Oct 2014 09:59:17 +0200
+
+univention-mail-postfix (9.0.0-6) unstable; urgency=low
+
+  * Change owner of LDAP configurations to root.
+  * Move needed UCR variables to subfiles.
+  * Remove useless debian/*.dirs files. (Bug #35264)
+
+ -- Felix Botner <botner@univention.de>  Thu, 02 Oct 2014 09:46:16 +0200
+
+univention-mail-postfix (9.0.0-5) unstable; urgency=low
+
+  * added cron job for re-creating dh parameter files (Bug #35923)
+
+ -- Felix Botner <botner@univention.de>  Tue, 23 Sep 2014 10:57:26 +0200
+
+univention-mail-postfix (9.0.0-4) unstable; urgency=low
+
+  * made TLS Forward Secrecy more visible/configurable (Bug #35923)
+
+ -- Felix Botner <botner@univention.de>  Mon, 22 Sep 2014 15:27:35 +0200
+
+univention-mail-postfix (9.0.0-3) unstable; urgency=low
+
+  * moved hosteddomains.py to u-m-postfix (Bug #35232)
+
+ -- Felix Botner <botner@univention.de>  Wed, 27 Aug 2014 14:43:28 +0200
+
+univention-mail-postfix (9.0.0-2) unstable; urgency=medium
+
+  * Update to UCS 4.0 (Bug #35264)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 21 Aug 2014 11:05:44 +0200
+
+univention-mail-postfix (8.0.11-3) unstable; urgency=low
+
+  * added mail/postfix/ldaptable/debuglevel and
+    mail/postfix/ldaptable/tlscacertfile (Bug #34198)
+
+ -- Felix Botner <botner@univention.de>  Wed, 16 Apr 2014 11:45:12 +0200
+
+univention-mail-postfix (8.0.11-2) unstable; urgency=low
+
+  * added mail/postfix/ldaptable/tlsrequirecert (Bug #34198)
+
+ -- Felix Botner <botner@univention.de>  Mon, 07 Apr 2014 10:15:05 +0200
+
+univention-mail-postfix (8.0.11-1) unstable; urgency=low
+
+  * added mail/postfix/ldaptable/starttls to configure
+    if start_tls should be uses in ldap lookups (Bug #34198)
+
+ -- Felix Botner <botner@univention.de>  Thu, 13 Mar 2014 16:41:03 +0100
+
+univention-mail-postfix (8.0.10-3) unstable; urgency=low
+
+  * use user listfilter for listfilter postfix policy (Bug #26910)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Mar 2014 12:23:10 +0100
+
+univention-mail-postfix (8.0.10-2) unstable; urgency=low
+
+  * use user listfilter for listfilter postfix policy (Bug #26910)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Mar 2014 12:14:11 +0100
+
+univention-mail-postfix (8.0.10-1) unstable; urgency=low
+
+  * use user listfilter for listfilter postfix policy (Bug #26910)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Mar 2014 12:04:30 +0100
+
+univention-mail-postfix (8.0.9-1) unstable; urgency=low
+
+  * do not remove mail domain objects in univention-mail-server unjoin script,
+    but only remove the SMTP service from local host
+  (Bug #32454)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 30 Oct 2013 10:52:36 +0100
+
+univention-mail-postfix (8.0.8-2) unstable; urgency=low
+
+  * Bug #30945: Update UCR variable descriptions
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 29 Oct 2013 09:35:21 +0100
+
+univention-mail-postfix (8.0.8-1) unstable; urgency=low
+
+  * remove unjoin script in postinst
+  * only remove mail domains in unjoin when SMTP service is fully remove
+    from the domain
+  (Bug #32454)
+
+ -- Lukas Walter <walter@univention.de>  Fri, 25 Oct 2013 10:16:17 +0200
+
+univention-mail-postfix (8.0.7-4) unstable; urgency=low
+
+  * call unjoin script when removing, not purging (Bug #32454)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 22 Oct 2013 16:56:50 +0200
+
+univention-mail-postfix (8.0.7-3) unstable; urgency=low
+
+  * Update UCR variable descriptions (Bug #32444, Bug #28124)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Mon, 21 Oct 2013 09:50:07 +0200
+
+univention-mail-postfix (8.0.7-2) unstable; urgency=low
+
+  * added mail/postfix/smtpd/banner (Bug #32444)
+
+ -- Felix Botner <botner@univention.de>  Fri, 18 Oct 2013 14:11:39 +0200
+
+univention-mail-postfix (8.0.7-1) unstable; urgency=low
+
+  * added mail/postfix/ssl/cafile and mail/postfix/ssl/capath (Bug #28124)
+
+ -- Felix Botner <botner@univention.de>  Fri, 18 Oct 2013 12:38:58 +0200
+
+univention-mail-postfix (8.0.6-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30945)
+    Remove description for mail/default/domains, confusing for the user since it's
+    only read during run of the join script, users should rather add/remove domains
+    in the UMC
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 17 Oct 2013 10:56:56 +0200
+
+univention-mail-postfix (8.0.6-1) unstable; urgency=low
+
+  * adapted univention-mail-server unjoin script (Bug #32454)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 16 Oct 2013 14:50:24 +0200
+
+univention-mail-postfix (8.0.5-2) unstable; urgency=low
+
+  * Update/review UCR variable descriptions (Bug #30945)
+  * Update copyright for 2013
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Wed, 16 Oct 2013 14:48:30 +0200
+
+univention-mail-postfix (8.0.5-1) unstable; urgency=low
+
+  * added unjoin script for univention-mail-server (Bug #32454)
+
+ -- Lukas Walter <walter@univention.de>  Tue, 15 Oct 2013 13:52:31 +0200
+
+univention-mail-postfix (8.0.4-1) unstable; urgency=low
+
+  * Register ldap/server/addition for ldap.transport and ldap.groups
+    (Bug #19753)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Aug 2013 17:10:55 +0200
+
+univention-mail-postfix (8.0.3-3) unstable; urgency=low
+
+  * fixed small typo in UCR variable description (Bug #29593)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 19 Aug 2013 11:44:42 +0200
+
+univention-mail-postfix (8.0.3-2) unstable; urgency=low
+
+  * Also register ldap/server/addition in ucr template (Bug #19753)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 10 Jul 2013 08:56:28 +0200
+
+univention-mail-postfix (8.0.3-1) unstable; urgency=low
+
+  * Use ldap/server/addition in postfix pam configuration (Bug #19753)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 10 Jul 2013 08:41:16 +0200
+
+univention-mail-postfix (8.0.2-1) unstable; urgency=low
+
+  * Use ldap/server/addition in postfix configuration (Bug #19753)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 10 Jul 2013 07:36:10 +0200
+
+univention-mail-postfix (8.0.1-1) unstable; urgency=low
+
+  * removed ucr description for mail/relay (Bug #24715)
+
+ -- Felix Botner <botner@univention.de>  Tue, 18 Jun 2013 14:33:56 +0200
+
+univention-mail-postfix (8.0.0-1) unstable; urgency=low
+
+  * added mail/postfix/smtpd/debug (Bug #29593)
+  * version bump for 3.2
+
+ -- Felix Botner <botner@univention.de>  Tue, 18 Jun 2013 13:29:21 +0200
+
+univention-mail-postfix (7.0.3-1) unstable; urgency=low
+
+  * changed permissions of mail.warn and mail.err to 640
+    (Bug #11431)
+
+ -- Lukas Walter <walter@univention.de>  Thu, 11 Oct 2012 16:19:07 +0200
+
+univention-mail-postfix (7.0.2-1) unstable; urgency=low
+
+  * abort join script on failing udm call (Bug #27753)
+
+ -- Lukas Walter <walter@univention.de>  Wed, 10 Oct 2012 12:41:22 +0200
+
+univention-mail-postfix (7.0.1-1) unstable; urgency=low
+
+  * Add UCR variable descriptions (Bug #28134)
+  * Remove interfaces/* from UCR variable triggers (Bug #26058)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 12:56:16 +0200
+
+univention-mail-postfix (7.0.0-2) unstable; urgency=low
+
+  * added variables to ldap.* multifile ucr definition (Bug #27305)
+
+ -- Felix Botner <botner@univention.de>  Tue, 24 Jul 2012 17:41:15 +0200
+
+univention-mail-postfix (7.0.0-1) unstable; urgency=low
+
+  * fixed @%@ldap/server/port@%@ in templates (Bug #27305)
+
+ -- Felix Botner <botner@univention.de>  Tue, 24 Jul 2012 15:56:37 +0200
+
+univention-mail-postfix (6.0.38-1) unstable; urgency=low
+
+  * fixed switch from univention-mail-postfix to univention-mail-server
+    and back (Bug #26339)
+
+ -- Felix Botner <botner@univention.de>  Thu, 07 Jun 2012 17:10:04 +0200
+
+univention-mail-postfix (6.0.37-1) unstable; urgency=low
+
+  * run postmap on transport file after config was written (Bug #27000)
+
+ -- Felix Botner <botner@univention.de>  Thu, 07 Jun 2012 16:38:26 +0200
+
+univention-mail-postfix (6.0.36-1) unstable; urgency=low
+
+  * set mail/postfix/tls/client/level?may in
+    univention-mail-postfix.postinst (Bug #25337)
+
+ -- Felix Botner <botner@univention.de>  Tue, 28 Feb 2012 10:28:56 +0100
+
+univention-mail-postfix (6.0.35-2) unstable; urgency=low
+
+  * fixed last commit (Bug #25836)
+
+ -- Felix Botner <botner@univention.de>  Fri, 24 Feb 2012 14:42:18 +0100
+
+univention-mail-postfix (6.0.35-1) unstable; urgency=low
+
+  * commit postfix ldap.maps properly (Bug #25836)
+
+ -- Felix Botner <botner@univention.de>  Thu, 09 Feb 2012 16:26:52 +0100
+
+univention-mail-postfix (6.0.34-2) unstable; urgency=low
+
+  * renamed mail/postfix/ssl/client/level to
+    mail/postfix/tls/client/level (Bug #25337)
+
+ -- Felix Botner <botner@univention.de>  Thu, 05 Jan 2012 15:11:39 +0100
+
+univention-mail-postfix (6.0.34-1) unstable; urgency=low
+
+  * added smtp_tls_security_level to postfix template (Bug #25337)
+
+ -- Felix Botner <botner@univention.de>  Thu, 05 Jan 2012 14:25:54 +0100
+
+univention-mail-postfix (6.0.33-1) unstable; urgency=low
+
+  * removed mailRelay from join script (Bug #24693)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 17 Nov 2011 14:49:49 +0100
+
+univention-mail-postfix (6.0.32-4) unstable; urgency=low
+
+  * migrate value of mail/relay to mail/relayhost if the latter one is
+    unset (Bug #10527)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 14 Nov 2011 11:40:43 +0100
+
+univention-mail-postfix (6.0.32-3) unstable; urgency=low
+
+  * added missing UCR variable description (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 10 Nov 2011 15:09:01 +0100
+
+univention-mail-postfix (6.0.32-2) unstable; urgency=low
+
+  * fixed control file (Bug #10527)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 04 Nov 2011 09:36:29 +0100
+
+univention-mail-postfix (6.0.32-1) unstable; urgency=low
+
+  * reuse cyrus-ldap.secret for listfilter module (Bug #23819)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 04 Nov 2011 08:56:50 +0100
+
+univention-mail-postfix (6.0.31-1) unstable; urgency=low
+
+  * use mailPrimaryAddress in ldap.group table (Bug #22369)
+  * removed delivery via uid
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 02 Nov 2011 15:46:21 +0100
+
+univention-mail-postfix (6.0.30-2) unstable; urgency=low
+
+  * updated UCR variable descriptions (Bug #24325)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 02 Nov 2011 15:16:55 +0100
+
+univention-mail-postfix (6.0.30-1) unstable; urgency=low
+
+  * fixes for canonical maps handling (Bug #23900)
+  * added UCR variable mail/postfix/local/header/rewrite/clients
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 25 Oct 2011 15:41:14 +0200
+
+univention-mail-postfix (6.0.29-2) unstable; urgency=low
+
+  * Added dependency to univention-directory-manager-tools (Bug #23342)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 25 Oct 2011 15:32:02 +0200
+
+univention-mail-postfix (6.0.29-1) unstable; urgency=low
+
+  * workaround for PEP 366 (Bug #23984)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Oct 2011 13:31:36 +0200
+
+univention-mail-postfix (6.0.28-4) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:18 +0200
+
+univention-mail-postfix (6.0.28-3) unstable; urgency=low
+
+  * updated postinst (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 19 Oct 2011 17:57:36 +0200
+
+univention-mail-postfix (6.0.28-2) unstable; urgency=low
+
+  * changed Dependency to Recommends for univention-spamassassin and
+    univention-antivir-mail (Bug #23369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 19 Oct 2011 15:37:14 +0200
+
+univention-mail-postfix (6.0.28-1) unstable; urgency=low
+
+  * added firewall settings (Bug #23577)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 18 Oct 2011 15:13:39 +0200
+
+univention-mail-postfix (6.0.27-1) unstable; urgency=low
+
+  * added postgrey as recipient restriction (Bug #23775)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 14 Oct 2011 16:48:16 +0200
+
+univention-mail-postfix (6.0.26-1) unstable; urgency=low
+
+  * do not use ldap_master in listfilter script (Bug #23819)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 14 Oct 2011 10:34:50 +0200
+
+univention-mail-postfix (6.0.25-2) unstable; urgency=low
+
+  * fixed description of UCR variables (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 13 Oct 2011 16:28:33 +0200
+
+univention-mail-postfix (6.0.25-1) unstable; urgency=low
+
+  * fixed LDAP connection of listfilter script (Bug #23819)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 13 Oct 2011 15:47:46 +0200
+
+univention-mail-postfix (6.0.24-2) unstable; urgency=low
+
+  * removed old UCR variable descriptions (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 12 Oct 2011 11:06:48 +0200
+
+univention-mail-postfix (6.0.24-1) unstable; urgency=low
+
+  * added recommends to bsd-mailx in univention-mail-server (Bug #23815)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 05 Oct 2011 16:33:11 +0200
+
+univention-mail-postfix (6.0.23-1) unstable; urgency=low
+
+  * removed Recommends dependency to univention-horde4 (Bug #23932)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 05 Oct 2011 14:05:45 +0200
+
+univention-mail-postfix (6.0.22-1) unstable; urgency=low
+
+  * fixed delivery for shared folders (Bug #22369)
+  * reload cyrus2.2 and cyrus2.4 if list of domains changes (Bug #22369)
+  * fixed LDAP filter for mailing lists (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 04 Oct 2011 15:43:15 +0200
+
+univention-mail-postfix (6.0.21-1) unstable; urgency=low
+
+  * rename service "Mail" to "SMTP" (Bug #2136)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 30 Sep 2011 12:25:10 +0200
+
+univention-mail-postfix (6.0.20-1) unstable; urgency=low
+
+  * added transitional package for univention-mail-postfix-forward (Bug #10527)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 29 Sep 2011 19:36:00 +0200
+
+univention-mail-postfix (6.0.19-1) unstable; urgency=low
+
+  * postfix variables do not get parsed in ldap tables (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 27 Sep 2011 14:52:12 +0200
+
+univention-mail-postfix (6.0.18-1) unstable; urgency=low
+
+  * reload cyrus-imapd in listener module hosteddomains.py (Bug #22876)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 27 Sep 2011 11:55:12 +0200
+
+univention-mail-postfix (6.0.17-3) unstable; urgency=low
+
+  * fixed UCR variable descriptions (Bug #21867)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 27 Sep 2011 11:34:10 +0200
+
+univention-mail-postfix (6.0.17-2) unstable; urgency=low
+
+  * fixed typo in UCR variable description (Bug #21867)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 27 Sep 2011 10:15:45 +0200
+
+univention-mail-postfix (6.0.17-1) unstable; urgency=low
+
+  * added UCR variables mail/postfix/ssl/certificate and
+    mail/postfix/ssl/key (Bug #21867)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 26 Sep 2011 18:05:52 +0200
+
+univention-mail-postfix (6.0.16-2) unstable; urgency=low
+
+  * versioned dependency of univention-mail-server to
+    univention-mail-postfix (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 26 Sep 2011 14:05:46 +0200
+
+univention-mail-postfix (6.0.16-1) unstable; urgency=low
+
+  * also restart postfix if machine secret has not been changed (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 23 Sep 2011 09:07:00 +0200
+
+univention-mail-postfix (6.0.15-1) unstable; urgency=low
+
+  * renamed postfix/masquerade/* to mail/postfix/masquerade/* (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 22 Sep 2011 15:37:52 +0200
+
+univention-mail-postfix (6.0.14-1) unstable; urgency=low
+
+  * create mail domain object in join script if no object exists in LDAP (Bug #22369)
+  * do not throw traceback in UCR templates if machine.secret is missing
+  * renamed server-password-change script and call it in join script to
+    take over new server password
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 22 Sep 2011 11:20:04 +0200
+
+univention-mail-postfix (6.0.13-1) unstable; urgency=low
+
+  * made 67univention-mail-server.inst executable
+  * recommends univention-horde4 (Bug #22151)
+
+ -- Felix Botner <botner@univention.de>  Thu, 22 Sep 2011 10:03:13 +0200
+
+univention-mail-postfix (6.0.12-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+   [ Sönke Schwardt-Krummrich ]
+    * added UCR variable mail/smtp/VRFY/disabled (Bug #22835)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 20:02:15 +0200
+
+univention-mail-postfix (6.0.11-1) unstable; urgency=low
+
+  * added dependency to univention-mail-cyrus for
+    univention-mail-server (Bug #22151)
+
+ -- Felix Botner <botner@univention.de>  Wed, 21 Sep 2011 16:52:59 +0200
+
+univention-mail-postfix (6.0.10-1) unstable; urgency=low
+
+  * fixed etc/pam.d/smtp config (ldap authentication) and
+    removed etc/postfix/sasl/pam_ldap_smtp.conf (Bug #22151)
+
+ -- Felix Botner <botner@univention.de>  Wed, 21 Sep 2011 12:09:59 +0200
+
+univention-mail-postfix (6.0.9-2) unstable; urgency=low
+
+  * updated dependencies/conflicts (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 09 Sep 2011 17:37:46 +0200
+
+univention-mail-postfix (6.0.9-1) unstable; urgency=low
+
+  * update ldap tables after server password change (Bug #22369) (Bug #23362)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 09 Sep 2011 14:48:32 +0200
+
+univention-mail-postfix (6.0.8-1) unstable; urgency=low
+
+  * change service entry name (Bug #2136)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 08 Sep 2011 20:49:15 +0200
+
+univention-mail-postfix (6.0.7-3) unstable; urgency=low
+
+  * added univention-sasl as dependency (Bug #23565)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 08 Sep 2011 20:17:38 +0200
+
+univention-mail-postfix (6.0.7-2) unstable; urgency=low
+
+  * remove all UCR remains from univention-mail-postfix-forward and
+    univention-mail-postfix-kolab2 (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 08 Sep 2011 14:34:58 +0200
+
+univention-mail-postfix (6.0.7-1) unstable; urgency=low
+
+  * update ldap tables after server password change (Bug #22369) (Bug #23362)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 08 Sep 2011 11:44:57 +0200
+
+univention-mail-postfix (6.0.6-1) unstable; urgency=low
+
+  * added listener module hosteddomains.py (Bug #22876)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 07 Sep 2011 18:26:47 +0200
+
+univention-mail-postfix (6.0.5-1) unstable; urgency=low
+
+  * do not use special cleanup service for amavis (Bug #22876)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 07 Sep 2011 15:39:05 +0200
+
+univention-mail-postfix (6.0.4-1) unstable; urgency=low
+
+  * do not set virtual_alias_domains (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 06 Sep 2011 14:43:28 +0200
+
+univention-mail-postfix (6.0.3-1) unstable; urgency=low
+
+  * include univention-lib in joinscript (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 05 Sep 2011 16:09:25 +0200
+
+univention-mail-postfix (6.0.2-1) unstable; urgency=low
+
+  * switched LDAP filters to new LDAP objectclasses and attributes (Bug #22369)
+  * do not use content_filter="kolabfilter" for antivir smtpd (Bug #22369)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 01 Sep 2011 15:23:51 +0200
+
+univention-mail-postfix (6.0.1-1) unstable; urgency=low
+
+  * added UCR variables mail/postfix/inet/interfaces and
+    mail/postfix/inet/protocols (Bug #10527)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 31 Aug 2011 19:12:35 +0200
+
+univention-mail-postfix (6.0.0-0) unstable; urgency=low
+
+  * bumped version for UCS 3.0 (Bug #22369)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 03 May 2011 17:25:24 +0200

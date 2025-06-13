@@ -1,0 +1,62 @@
+/* RadioButton
+ *
+ * Styling RadioButton mainly includes:
+ *
+ * 1. Containers
+ * 		.dijitRadio|.dijitRadioIcon - for border, padding, width|height and background image
+ *
+ * 2. RadioButton within ToggleButton
+ * 		.dijitToggleButton|.dijitToggleButtonChecked .* - for background image
+ *
+ * 3. Checked state
+ * 		.dijitRadioChecked - for checked background-color|image
+ * 		.dijitToggleButtonChecked - for border, background-color|image, display and width|height
+ *
+ * 4. Hover state
+ * 		.dijitRadioHover|.dijitRadioCheckedHover - for background image
+ *
+ * 5. Disabled state
+ * 		.dijitRadioDisabled|.dijitRadioCheckedDisabled - for background image
+ */
+
+@require "../variables.styl"
+
+.dijitRadio
+	--local-border-color: var(--font-color-contrast-low)
+	--local-background-color: transparent
+	width: var(--font-size-3)
+	height: @width
+	border: 2px solid var(--local-border-color)
+	border-radius: var(--border-radius-circles)
+	background-color: var(--local-background-color)
+	transition: opacity 250ms, background-color 250ms, border-color 250ms
+	position: relative
+
+	&:before
+		content: ''
+		display: block
+		width: 50%
+		height: @width
+		position: absolute
+		top: 25%
+		left: 25%
+		background: var(--local-border-color)
+		opacity: 0
+		transition: opacity 250ms
+		border-radius: inherit
+
+	&Checked
+		--local-border-color: var(--color-accent)
+		&:before
+			opacity: 1
+
+	&Hover,
+	&Active
+		--local-background-color: var(--bgc-checkbox-hover)
+
+	&Focused
+		--local-background-color: var(--bgc-checkbox-focus)
+
+	&Disabled
+		opacity: 0.4
+

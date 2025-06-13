@@ -1,0 +1,104 @@
+#!/bin/sh
+#
+# UCS Directory Manager
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2013-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+# shellcheck disable=SC2034
+VERSION=4
+# shellcheck disable=SC1091
+. /usr/share/univention-join/joinscripthelper.lib
+# shellcheck disable=SC1091
+. /usr/share/univention-lib/all.sh
+joinscript_init
+
+eval "$(univention-config-registry shell)"
+
+modules="users/user
+users/ldap
+groups/group
+computers/ipmanagedclient
+computers/trustaccount
+computers/linux
+computers/macos
+computers/ubuntu
+computers/windows
+computers/windows_domaincontroller
+computers/memberserver
+computers/domaincontroller_backup
+computers/domaincontroller_master
+computers/domaincontroller_slave"
+
+for i in $modules; do
+	mods="$mods --append module=$i"
+done
+
+# shellcheck disable=SC1112,SC2086,SC2154
+univention-directory-manager settings/extended_attribute create "$@" \
+	--ignore_exists \
+	--position "cn=custom attributes,cn=univention,$ldap_base" \
+	--set name=objectFlag \
+	--set CLIName=objectFlag \
+	--set shortDescription="Univention object flag" \
+	--append translationShortDescription='"de_DE" "Univention Objekt-Flag"' \
+	--append translationShortDescription='"fr_FR" "Drapeau d’objet Univention"' \
+	--set longDescription="Define flags for an object" \
+	--append translationLongDescription='"de_DE" "Flags an Objekten definieren"' \
+	--append translationLongDescription='"fr_FR" "Définir des drapeaux pour un objet"' \
+	--set syntax=ObjectFlag \
+	--set mayChange=1 \
+	--set objectClass=univentionObject \
+	--set ldapMapping=univentionObjectFlag \
+	--set disableUDMWeb=1 \
+	--set multivalue=1 \
+	$mods || die
+
+if [ "$JS_LAST_EXECUTED_VERSION" = 2 ]; then
+	univention-directory-manager settings/extended_attribute modify "$@" --dn "cn=objectFlag,cn=custom attributes,cn=univention,$ldap_base" --append module="users/ldap"
+fi
+
+if [ "$JS_LAST_EXECUTED_VERSION" = 1 ]; then
+	univention-directory-manager settings/extended_attribute modify "$@" --dn "cn=objectFlag,cn=custom attributes,cn=univention,$ldap_base" --set multivalue=1
+fi
+
+univention-directory-manager container/cn create "$@" --ignore_exists \
+	--position="cn=univention,$ldap_base" \
+	--set name="data" \
+	--set description="LDAP data storage." || die
+
+stop_udm_cli_server
+
+joinscript_save_current_version
+
+exit 0

@@ -1,0 +1,24 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check if apache closes FDs after restart
+## packages: [lsof]
+## bugs: [37952, 45924]
+## tags: [apptest]
+## exposure: dangerous
+set -e -u
+
+tmp="$(mktemp)"
+trap "rm -f '$tmp'" EXIT
+exec 42<"$tmp"
+
+/etc/init.d/apache2 restart
+
+for ((i=0;i<10;i++))
+do
+	sleep 1
+	/etc/init.d/apache2 status >"$tmp" && break
+done
+pid=$(cat /run/apache2/apache2.pid)
+
+! lsof -a -p "$pid" -d 42 | grep -F "$tmp"
+# vim: set ft=sh :

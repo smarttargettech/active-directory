@@ -1,0 +1,9 @@
+.benchmarks/
+.coverage
+coverage.xml
+.pytest_cache/
+pytest.xml
+pytest/
+build/
+dist/
+*.egg-info/

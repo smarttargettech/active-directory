@@ -1,0 +1,41 @@
+[nfs/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des NFS-Servers. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the NFS service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=nfs
+
+[nfs/ports]
+Description[de]=Ist diese Variable auf 'static' gesetzt, werden feste Ports für die NFS-Dienste verwendet: 32767 für RPC-Mounts, 32765/32766 für statd und 32769 für den Quota-Dienst. Ansonsten werden die Ports dynamisch vergeben.
+Description[en]=If this variable is set to 'static', fixed ports are used for the NFS services: 32767 for RPC mounts, 32765/32766 for statd and 32769 for the quota service. Otherwise the ports are assigned dynamically.
+Type=str
+Categories=nfs
+
+[nfs/nfsd/nfs4]
+Description[de]=Diese Option aktiviert die NFSv4-Unterstützung des NFS-Servers. Zusätzlich muß in der Regel noch der IDMAPD-Prozess eingerichtet werden.
+Description[en]=This option activates the NFSv4 support of the NFS server. In addition the IDMAPD process must be configured usually.
+Type=bool
+Categories=nfs
+
+[nfs/nfsd/services]
+Description[de]=Diese Option legt die Anzahl der NFS-Dienste fest. Standard ist 8.
+Description[en]=This option configures the count of NFS services. Default is 8.
+Type=int
+Categories=nfs
+
+[nfs/create/homesharepath]
+Description[de]=Ist diese Option aktiviert, wird das für einen Benutzer in den Attributen 'Heimatverzeichnisfreigabe' und 'Pfad zum Heimatverzeichnis' festgelegte Heimatverzeichnis durch ein Univention-Directory-Listener-Modul automatisch angelegt.
+Description[en]=If this option is activated, the home directory configured for a user in the attributes 'Home share' and 'Home share path' is automatically created through a Univention Directory Listener module.
+Type=bool
+Categories=nfs
+
+[nfs/common/gssd]
+Description[de]=Diese Variable bestimmt, ob der gssd Dämon gestartet werden soll. Ausgewertet werden die Werte 'yes', 'no' oder <undefiniert> (default=yes).
+Description[en]=This variable defines if the gssd daemon should be started. Evaluated values are 'yes', 'no' or <undefined> (default=yes).
+Type=str
+Categories=nfs
+
+[nfs/common/idmapd]
+Description[de]=Diese Variable bestimmt, ob der idmap Dämon gestartet werden soll. Ausgewertet werden die Werte 'yes', 'no' oder <undefiniert> (default=yes).
+Description[en]=This variable defines if the idmap daemon should be started. Evaluated values are 'yes', 'no' or <undefined> (default=yes).
+Type=str
+Categories=nfs

@@ -1,0 +1,479 @@
+univention-l10n (9.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:46 +0200
+
+univention-l10n (9.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:29 +0100
+
+univention-l10n (9.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-l10n (9.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-l10n (8.0.4) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:16 +0100
+
+univention-l10n (8.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:32 +0100
+
+univention-l10n (8.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:20 +0100
+
+univention-l10n (8.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-l10n (7.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:53 +0100
+
+univention-l10n (7.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:38 +0100
+
+univention-l10n (7.0.2-2) unstable; urgency=medium
+
+  * Bug #55632: Changed the hashbangs to /usr/bin/python3
+
+ -- Mika Westphal <westphal@univention.de>  Fri, 24 Mar 2023 12:59:49 +0100
+
+univention-l10n (7.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:43 +0100
+
+univention-l10n (7.0.1-3) unstable; urgency=medium
+
+  * Bug #54029 fixed univention-ucs-translation-build-package
+
+ -- Johannes Lohmer <lohmer@univention.de>  Fri, 28 Jan 2022 19:12:22 +0100
+
+univention-l10n (7.0.1-2) unstable; urgency=medium
+
+  * Bug #53565: Allow .ts and .vue files to be found by the debhelper
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 12 Jul 2021 12:14:38 +0200
+
+univention-l10n (7.0.1-1) unstable; urgency=low
+
+  * Bug #51656: Add l10n sequence for DebHelper
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 09 Sep 2020 06:52:29 +0200
+
+univention-l10n (7.0.0-4) unstable; urgency=medium
+
+  * Bug #51656: rename package into univention-l10n-tools
+
+ -- Florian Best <best@univention.de>  Mon, 13 Jul 2020 00:47:58 +0200
+
+univention-ucs-translation-template (7.0.0-3) unstable; urgency=medium
+
+  * Bug #51235: fix python 3 compatibility
+
+ -- Florian Best <best@univention.de>  Wed, 08 Jul 2020 23:28:37 +0200
+
+univention-ucs-translation-template (7.0.0-2) unstable; urgency=medium
+
+  * Bug #51513: enhance circular build dependency between univention-ucs-
+    translation-template and univention-management-console-dev
+
+ -- Florian Best <best@univention.de>  Wed, 17 Jun 2020 15:12:37 +0200
+
+univention-ucs-translation-template (7.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:26 +0200
+
+univention-ucs-translation-template (6.0.0-17) unstable; urgency=medium
+
+  * Bug #51235: fix python import
+
+ -- Florian Best <best@univention.de>  Mon, 11 May 2020 13:17:14 +0200
+
+univention-ucs-translation-template (6.0.0-16) unstable; urgency=medium
+
+  * Bug #51235: fix python 3 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 May 2020 13:59:50 +0200
+
+univention-ucs-translation-template (6.0.0-15) unstable; urgency=medium
+
+  * Bug #51235: fix python 3 compatibility for dh-umc-module-build
+
+ -- Florian Best <best@univention.de>  Fri, 08 May 2020 13:51:04 +0200
+
+univention-ucs-translation-template (6.0.0-14) unstable; urgency=medium
+
+  * Bug #50332: add information on whether umc module provides
+    python2 and/or python3
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 17 Feb 2020 12:44:12 +0100
+
+univention-ucs-translation-template (6.0.0-13) unstable; urgency=low
+
+  * Bug #50521: Document .univention-l10n format
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Nov 2019 13:56:18 +0100
+
+univention-ucs-translation-template (6.0.0-12) unstable; urgency=medium
+
+  * Bug #49161: fix path of python2.7 modules
+
+ -- Florian Best <best@univention.de>  Fri, 11 Oct 2019 12:56:08 +0200
+
+univention-ucs-translation-template (6.0.0-11) unstable; urgency=medium
+
+  * Bug #50341: Fix building of UMC-core
+
+ -- Florian Best <best@univention.de>  Fri, 11 Oct 2019 12:38:34 +0200
+
+univention-ucs-translation-template (6.0.0-10) unstable; urgency=medium
+
+  * Bug #50341: Remove debug output
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 18:56:21 +0200
+
+univention-ucs-translation-template (6.0.0-9) unstable; urgency=medium
+
+  * Bug #50341: Set package
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 18:42:06 +0200
+
+univention-ucs-translation-template (6.0.0-8) unstable; urgency=medium
+
+  * Bug #50341: New version of umc.py
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 18:14:42 +0200
+
+univention-ucs-translation-template (6.0.0-7) unstable; urgency=medium
+
+  * Bug #50341: Adjust dependencies
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 17:07:35 +0200
+
+univention-ucs-translation-template (6.0.0-6) unstable; urgency=medium
+
+  * Bug #50341: Fix deb822
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 17:04:18 +0200
+
+univention-ucs-translation-template (6.0.0-5) unstable; urgency=medium
+
+  * Bug #50341: Explicit python version
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 16:26:29 +0200
+
+univention-ucs-translation-template (6.0.0-4) unstable; urgency=medium
+
+  * Bug #50341: univention-l10n-build now runs without any UCS dependency
+  * Bug #50341: univention-l10n-build now translates UMC modules
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Oct 2019 15:53:10 +0200
+
+univention-ucs-translation-template (6.0.0-3) unstable; urgency=low
+
+  * Bug #49978: Update package dependencies
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 05 Sep 2019 15:44:47 +0200
+
+univention-ucs-translation-template (6.0.0-2) unstable; urgency=medium
+
+  * Bug #28497: migrate to dh_python2
+
+ -- Florian Best <best@univention.de>  Fri, 03 May 2019 18:34:31 +0200
+
+univention-ucs-translation-template (6.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:42 +0100
+
+univention-ucs-translation-template (5.0.0-3) unstable; urgency=medium
+
+  * Bug #46035: Fix translation for selenium tests
+
+ -- Richard Ulmer <ulmer@univention.de>  Fri, 09 Feb 2018 15:49:47 +0100
+
+univention-ucs-translation-template (5.0.0-2) unstable; urgency=medium
+
+  * Bug #45885: use javascript xgettext dialect for javascript files
+
+ -- Florian Best <best@univention.de>  Mon, 18 Dec 2017 12:55:00 +0100
+
+univention-ucs-translation-template (5.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:42 +0100
+
+univention-ucs-translation-template (4.2.2-0) unstable; urgency=medium
+
+  * Bug #42286: fix PO build fail per source package when no PO file is
+    present initially (univention-l10n-build)
+
+ -- Eduard Mai <mai@univention.de>  Thu, 13 Jul 2017 15:42:39 +0200
+
+univention-ucs-translation-template (4.2.1-3) unstable; urgency=medium
+
+  * Bug #43594: remove unnecessary inheritance from object
+
+ -- Eduard Mai <mai@univention.de>  Wed, 22 Mar 2017 18:00:52 +0100
+
+univention-ucs-translation-template (4.2.1-2) unstable; urgency=medium
+
+  * Bug #43594: handle UMC modules without Python or JS files
+
+ -- Eduard Mai <mai@univention.de>  Wed, 22 Mar 2017 16:32:25 +0100
+
+univention-ucs-translation-template (4.2.1-1) unstable; urgency=medium
+
+  * Bug #43594: use absolute path to output generated PO
+
+ -- Eduard Mai <mai@univention.de>  Tue, 21 Mar 2017 18:46:24 +0100
+
+univention-ucs-translation-template (4.2.1-0) unstable; urgency=medium
+
+  * Bug #43594: fix concatenation and merge issues
+
+ -- Eduard Mai <mai@univention.de>  Mon, 20 Mar 2017 10:08:55 +0100
+
+univention-ucs-translation-template (4.2.0-6) unstable; urgency=medium
+
+  * Bug #43594: join and merge targets built from multiple source types
+    correctly
+
+ -- Eduard Mai <mai@univention.de>  Tue, 14 Mar 2017 12:42:51 +0100
+
+univention-ucs-translation-template (4.2.0-5) unstable; urgency=medium
+
+  * Bug #43594: fix problems with mime type detection for JavaScript files
+
+ -- Alexander Kläser <klaeser@univention.de>  Sat, 04 Mar 2017 18:04:01 +0100
+
+univention-ucs-translation-template (4.2.0-4) unstable; urgency=medium
+
+  * Bug #43594: make sure to install mo/json files to debian/<packageName>
+
+ -- Alexander Kläser <klaeser@univention.de>  Sat, 04 Mar 2017 07:02:16 +0100
+
+univention-ucs-translation-template (4.2.0-3) unstable; urgency=medium
+
+  * Bug #43594: change 'not x in y' to 'x not in y'
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Mar 2017 15:42:24 +0100
+
+univention-ucs-translation-template (4.2.0-2) unstable; urgency=medium
+
+  * Bug #43594: fix double po entries for HTML files
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Mar 2017 15:33:14 +0100
+
+univention-ucs-translation-template (4.2.0-1) unstable; urgency=medium
+
+  * Bug #42260: allow po_path property
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Mar 2017 14:55:40 +0100
+
+univention-ucs-translation-template (4.2.0-0) unstable; urgency=medium
+
+  * Bug #42260: add helpers for usage in debian/rules
+
+ -- Eduard Mai <mai@univention.de>  Thu, 02 Mar 2017 21:00:04 +0100
+
+univention-ucs-translation-template (4.1.0-6) unstable; urgency=medium
+
+  * Bug #42260: remove obsolete debian/ucslint.overrides
+
+ -- Eduard Mai <mai@univention.de>  Mon, 07 Nov 2016 13:14:20 +0100
+
+univention-ucs-translation-template (4.1.0-5) unstable; urgency=medium
+
+  * Bug #42260: corrected path in debian/univention-l10n-tools.install
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 03 Nov 2016 13:11:57 +0100
+
+univention-ucs-translation-template (4.1.0-4) unstable; urgency=medium
+
+  * Bug #42260: added missing debian/univention-l10n-tools.install file
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 03 Nov 2016 13:05:56 +0100
+
+univention-ucs-translation-template (4.1.0-3) unstable; urgency=medium
+
+  * Bug #42260: use different translation domain in ucr-l10
+
+ -- Eduard Mai <mai@univention.de>  Wed, 02 Nov 2016 18:37:59 +0100
+
+univention-ucs-translation-template (4.1.0-2) unstable; urgency=medium
+
+  * Bug #42260: fix special case processing
+
+ -- Eduard Mai <mai@univention.de>  Fri, 28 Oct 2016 19:49:23 +0200
+
+univention-ucs-translation-template (4.1.0-0) unstable; urgency=medium
+
+  * Bug #42260: changes in special case processing
+
+ -- Eduard Mai <mai@univention.de>  Fri, 14 Oct 2016 18:30:08 +0200
+
+univention-ucs-translation-template (4.0.1-4) unstable; urgency=medium
+
+  * Bug #42259: restructure Makefile to work with dh_auto_build
+
+ -- Eduard Mai <mai@univention.de>  Thu, 08 Sep 2016 11:51:40 +0200
+
+univention-ucs-translation-template (4.0.1-3) unstable; urgency=medium
+
+  * Bug #42259: Fix blacklisting in module search
+
+ -- Eduard Mai <mai@univention.de>  Wed, 07 Sep 2016 12:02:05 +0200
+
+univention-ucs-translation-template (4.0.1-2) unstable; urgency=medium
+
+  * Bug #42293: use python as default language in specialcases.json
+
+ -- Florian Best <best@univention.de>  Wed, 07 Sep 2016 11:38:40 +0200
+
+univention-ucs-translation-template (4.0.1-1) unstable; urgency=medium
+
+  * Bug #42293: use JavaScript as translation language for .js files
+
+ -- Florian Best <best@univention.de>  Wed, 07 Sep 2016 11:25:26 +0200
+
+univention-ucs-translation-template (4.0.0-2) unstable; urgency=medium
+
+  * Bug #42259: add possibility to blacklist directories for module search
+
+ -- Eduard Mai <mai@univention.de>  Mon, 05 Sep 2016 18:20:09 +0200
+
+univention-ucs-translation-template (4.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:02 +0200
+
+univention-ucs-translation-template (3.0.1-13) unstable; urgency=medium
+
+  * Bug #41223: Remove *.install on merge with legacy translation package
+
+ -- Eduard Mai <mai@univention.de>  Tue, 02 Aug 2016 19:38:55 +0200
+
+univention-ucs-translation-template (3.0.1-12) unstable; urgency=medium
+
+  * Bug #41223: Copy static Makefile on merge with legacy translation package
+
+ -- Eduard Mai <mai@univention.de>  Tue, 02 Aug 2016 18:48:58 +0200
+
+univention-ucs-translation-template (3.0.1-11) unstable; urgency=medium
+
+  * Bug #41223: *merge: handle old translation package format
+
+ -- Eduard Mai <mai@univention.de>  Tue, 02 Aug 2016 18:24:30 +0200
+
+univention-ucs-translation-template (3.0.1-10) unstable; urgency=medium
+
+  * Bug #41223: Fix issues from QA
+
+ -- Eduard Mai <mai@univention.de>  Tue, 02 Aug 2016 14:25:39 +0200
+
+univention-ucs-translation-template (3.0.1-9) unstable; urgency=medium
+
+  * Bug #41223: Improve ability to merge new messages into exiting translation
+
+ -- Eduard Mai <mai@univention.de>  Fri, 15 Jul 2016 15:13:43 +0200
+
+univention-ucs-translation-template (3.0.1-8) unstable; urgency=medium
+
+  * Bug #41223: Simplify translation process.
+
+ -- Eduard Mai <mai@univention.de>  Tue, 12 Jul 2016 15:43:30 +0200
+
+univention-ucs-translation-template (3.0.1-7) unstable; urgency=medium
+
+  * Bug #41222: Add univention/saml to specialcases.json
+
+ -- Eduard Mai <mai@univention.de>  Thu, 02 Jun 2016 16:25:34 +0200
+
+univention-ucs-translation-template (3.0.1-6) unstable; urgency=medium
+
+  * Bug #40917: Locale territory is now written correctly to UCR.
+
+ -- Eduard Mai <mai@univention.de>  Thu, 02 Jun 2016 14:03:02 +0200
+
+univention-ucs-translation-template (3.0.1-5) unstable; urgency=medium
+
+  * Bug #40936: Tested and applied patch which fixes wrong source files being
+    used for po file generation.
+
+ -- Eduard Mai <mai@univention.de>  Wed, 01 Jun 2016 16:13:57 +0200
+
+univention-ucs-translation-template (3.0.1-4) unstable; urgency=medium
+
+  * Bug #40341: Bug #38155: be more error tolerant
+
+ -- Florian Best <best@univention.de>  Wed, 13 Jan 2016 19:39:17 +0100
+
+univention-ucs-translation-template (3.0.1-3) unstable; urgency=medium
+
+  * Bug #38155: enhance robustness of univention-ucs-translation-build-package.py
+
+ -- Florian Best <best@univention.de>  Fri, 08 Jan 2016 15:59:43 +0100
+
+univention-ucs-translation-template (3.0.1-2) unstable; urgency=medium
+
+  * Bug #38155: fix python build
+
+ -- Florian Best <best@univention.de>  Fri, 08 Jan 2016 13:45:58 +0100
+
+univention-ucs-translation-template (3.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:21:46 +0100
+
+univention-ucs-translation-template (2.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #36115)
+
+ -- Felix Botner <botner@univention.de>  Wed, 22 Oct 2014 13:13:47 +0200
+
+univention-ucs-translation-template (1.0.0-2) unstable; urgency=low
+
+  * Small code improvements (Bug #31559)
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 15 Aug 2013 12:12:00 +0200
+
+univention-ucs-translation-template (1.0.0-1) unstable; urgency=low
+
+  * Initial release (Bug #31559)
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 14 Aug 2013 13:44:55 +0200

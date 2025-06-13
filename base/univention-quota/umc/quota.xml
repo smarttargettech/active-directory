@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="quota" icon="filesystem-quota" priority="50" version="1.0">
+		<name>Filesystem quotas</name>
+		<description>Configuration of disk space limitations on the local system</description>
+		<keywords>filesystem,quota,partition</keywords>
+		<categories>
+			<category name="users"/>
+		</categories>
+		<command name="quota/partitions/query" function="partitions_query" />
+		<command name="quota/partitions/info" function="partitions_info" />
+		<command name="quota/partitions/activate" function="partitions_activate" />
+		<command name="quota/partitions/deactivate" function="partitions_deactivate" />
+		<command name="quota/users/query" function="users_query" />
+		<command name="quota/users/set" function="users_set" />
+		<command name="quota/users/remove" function="users_remove" />
+	</module>
+</umc>

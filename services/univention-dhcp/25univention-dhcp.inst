@@ -1,0 +1,108 @@
+#! /bin/bash
+#
+# Univention DHCP
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+# shellcheck disable=SC2034
+VERSION=2
+
+# shellcheck source=/dev/null
+. /usr/share/univention-join/joinscripthelper.lib || exit 1
+joinscript_init
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+
+log () {
+	echo "${0##*/}: $*"
+}
+
+eval "$(univention-config-registry shell)"
+
+# Bug #23718:
+# The isc-dhcpd-ldap uses a LDAP-filter like (!(|(objectClass=dhcpXXX)(...))), which returns no result if dhcpXXX is not known to the LDAP server.
+# dhcpTSigKey and dhcpFailOverPeer are only defines with univention-ldap-config_8.0.34-1.
+if [ 2 -ne "$(univention-ldapsearch -LLL -b 'cn=Subschema' -s base -E mv='(objectClasses=dhcpTSigKey)(objectClasses=dhcpFailOverPeer)' objectClasses | grep -c ^objectClasses:)" ]
+then
+	echo "The LDAP schema for DHCP is too old." >&2
+	echo "objectClasses 'dhcpTSigKey' and 'dhcpFailOverPeer' are not found." >&2
+	echo "Make sure univention-ldap-config (from UCS-2.4-4 or later) is installed." >&2
+	exit 1
+fi
+
+univention-directory-manager dhcp/service create "$@" --ignore_exists \
+	--position "cn=dhcp,${ldap_base:-}" \
+	--set service="${domainname:-}" || die
+SERVICE="cn=$domainname,cn=dhcp,$ldap_base"
+univention-directory-manager dhcp/server create "$@" --ignore_exists \
+	--superordinate "$SERVICE" \
+	--set server="${hostname:-}" || die
+touch /var/univention-join/dhcp-server
+
+# Reference policies only for the first DHCP subnet created ever
+declare -a policies=()
+prepare_policies () {
+	local count cn data
+	count="$(univention-ldapsearch -LLL -b "$ldap_base" "(objectClass=univentionDhcpSubnet)" dn | grep -c ^dn)"
+	log "Number of existing DHCP (Shared) Sub-Networks: $count"
+	[ "$count" -ge 1 ] && return
+
+	for cn in boot dns routing # 'routing' must be last for the following code
+	do
+		dn="cn=default-settings,cn=$cn,cn=dhcp,cn=policies,$ldap_base"
+		data="$(univention-ldapsearch -LLL -o ldif-wrap=no -s base -b "$dn")" || continue
+		log "Referencing DHCP policy $cn"
+		policies+=(--policy-reference "$dn")
+	done
+
+	[ -n "${gateway:-}" ] || return
+	[ -n "$data" ] || return
+	[[ "$data" = *"univentionDhcpRouters:"* ]] && return
+
+	log "Configuring first router $gateway"
+	univention-directory-manager policies/dhcp_routing modify "$@" \
+		--dn "$dn" \
+		--set routers="$gateway" || die
+}
+prepare_policies "$@"
+
+/usr/lib/univention-dhcp/create-subnets --service "$SERVICE" "$@" "${policies[@]}" || die
+
+ucs_addServiceToLocalhost 'DHCP' "$@" || die
+systemctl restart -- isc-dhcp-server.service
+
+joinscript_save_current_version
+
+exit 0

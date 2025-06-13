@@ -1,0 +1,51 @@
+Source: univention-directory-listener
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.5
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ libicu-dev,
+ libldap-dev,
+ liblmdb-dev,
+ libssl-dev,
+ libunivention-config-dev,
+ libunivention-debug-dev (>= 0.8),
+ libunivention-policy-dev,
+ python3-all,
+ python3-all-dev,
+ python3-debian,
+ python3-setuptools,
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-directory-listener
+Architecture: any
+Depends:
+ python3-univention (>= 13),
+ python3-univention-debug,
+ python3-univention-lib (>= 1.0.25-1),
+ shell-univention-lib (>= 1.0.6),
+ univention-base-files,
+ ${misc:Depends},
+ ${python3:Depends},
+ ${shlibs:Depends},
+Suggests:
+ lmdb-utils,
+Conflicts:
+ univention-ldap-listener (<< 2.2.2),
+Breaks:
+ univention-directory-replication (<< 13.0.2-3),
+Description: UCS - Directory Listener
+ UCS Directory Listener is a client for the UCS
+ Directory Notifier which calls Python handlers upon changes. By
+ keeping a local cache, it can detect the change of single
+ attributes and only run the appropriate handlers, providing
+ both, the old and new objects to the handler. Through
+ modules, all sort of functionality such as LDAP replication
+ or host specific configuration files can be implemented.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

@@ -1,0 +1,323 @@
+Type: file
+File: etc/profile
+Variables: proxy/http
+Variables: proxy/https
+Variables: proxy/no_proxy
+Variables: locale/default
+Variables: umask
+
+Type: file
+File: etc/ssh/sshd_config
+Variables: sshd/port
+Variables: sshd/permitroot
+Variables: sshd/xforwarding
+Variables: sshd/X11Forwarding
+Variables: sshd/xdisplayoffset
+Variables: sshd/X11DisplayOffset
+Variables: sshd/xuselocalhost
+Variables: sshd/X11UseLocalHost
+Variables: sshd/challengeresponse
+Variables: sshd/passwordauthentication
+Variables: sshd/banner
+Variables: sshd/Banner
+Variables: sshd/MACs
+Variables: sshd/Ciphers
+Variables: sshd/KexAlgorithms
+Variables: sshd/HostKey
+Variables: sshd/TCPKeepAlive
+Variables: sshd/AddressFamily
+Variables: sshd/ListenAddress
+Variables: sshd/RekeyLimit
+Variables: sshd/SyslogFacility
+Variables: sshd/LogLevel
+Variables: sshd/LoginGraceTime
+Variables: sshd/StrictModes
+Variables: sshd/MaxAuthTries
+Variables: sshd/MaxSessions
+Variables: sshd/PubkeyAuthentication
+Variables: sshd/AuthorizedKeysFile
+Variables: sshd/AuthorizedPrincipalsFile
+Variables: sshd/AuthorizedKeysCommand
+Variables: sshd/AuthorizedKeysCommandUser
+Variables: sshd/HostbasedAuthentication
+Variables: sshd/IgnoreUserKnownHosts
+Variables: sshd/IgnoreRhosts
+Variables: sshd/PermitEmptyPasswords
+Variables: sshd/ChallengeResponseAuthentication
+Variables: sshd/KerberosAuthentication
+Variables: sshd/KerberosOrLocalPasswd
+Variables: sshd/KerberosTicketCleanup
+Variables: sshd/KerberosGetAFSToken
+Variables: sshd/GSSAPIAuthentication
+Variables: sshd/GSSAPICleanupCredentials
+Variables: sshd/GSSAPIStrictAcceptorCheck
+Variables: sshd/GSSAPIKeyExchange
+Variables: sshd/UsePAM
+Variables: sshd/AllowAgentForwarding
+Variables: sshd/AllowTcpForwarding
+Variables: sshd/GatewayPorts
+Variables: sshd/PermitTTY
+Variables: sshd/PrintMotd
+Variables: sshd/PrintLastLog
+Variables: sshd/UsePrivilegeSeparation
+Variables: sshd/PermitUserEnvironment
+Variables: sshd/Compression
+Variables: sshd/ClientAliveInterval
+Variables: sshd/ClientAliveCountMax
+Variables: sshd/UseDNS
+Variables: sshd/PidFile
+Variables: sshd/MaxStartups
+Variables: sshd/PermitTunnel
+Variables: sshd/ChrootDirectory
+Variables: sshd/VersionAddendum
+Variables: sshd/AcceptEnv
+Variables: sshd/Subsystem
+Variables: sshd/KbdInteractiveAuthentication
+Variables: sshd/config/.*
+
+Type: file
+File: etc/lsb-release
+Variables: version/version
+Variables: version/patchlevel
+Variables: version/erratalevel
+
+Type: file
+File: etc/ssh/ssh_config
+Variables: auth/methods
+
+Type: file
+File: etc/systemd/journald.conf
+Variables: systemd/journald/SplitMode
+Variables: systemd/journald/Storage
+Variables: systemd/journald/SystemMaxUse
+Variables: systemd/journald/SystemKeepFree
+Variables: systemd/journald/SystemMaxFileSize
+Variables: systemd/journald/MaxRetentionSec
+Variables: systemd/journald/MaxFileSec
+
+Type: file
+File: etc/default/ssh
+
+Type: file
+File: etc/init.d/networking
+Mode: 0755
+
+Type: file
+File: etc/networks
+Variables: interfaces/.*/network
+Variables: interfaces/primary
+
+Type: file
+File: etc/hostname
+
+Type: file
+File: etc/inputrc
+
+Type: file
+File: etc/ntpsec/ntp.conf
+Variables: ldap/master
+Variables: ldap/backup
+Variables: server/role
+Variables: timeserver
+Variables: timeserver2
+Variables: timeserver3
+Variables: ntp/signed
+Variables: ntp/tinker/panic
+Variables: ntp/noquery
+
+Type: file
+File: etc/default/ntpsec
+
+Type: file
+File: etc/default/ntpsec-ntpdate
+Variables: ldap/master
+Variables: ldap/backup
+Variables: timeserver
+Variables: timeserver2
+Variables: timeserver3
+Variables: server/role
+
+Type: file
+File: boot/boot.msg
+
+Type: file
+File: etc/modules
+Variables: kernel/modules
+
+Type: file
+File: etc/modprobe.d/univention-blacklist.conf
+Variables: kernel/blacklist
+
+Type: file
+File: etc/modprobe.d/vmgfx.conf
+
+Type: file
+File: etc/apt/apt.conf.d/80proxy
+Variables: proxy/http
+Variables: proxy/https
+Variables: proxy/username
+Variables: proxy/password
+Variables: proxy/address
+Variables: proxy/port
+
+Type: file
+File: etc/apt/apt.conf.d/20secureapt
+Variables: update/secure_apt
+
+Type: file
+File: etc/sysctl.d/local.conf
+Variables: interfaces/[^/]*/ipv6/acceptRA
+Variables: kernel/fs/inotify/max_user_instances
+Variables: kernel/fs/inotify/max_user_watches
+Variables: kernel/fs/inotify/max_queued_events
+Variables: kernel/net/ipv4/neigh/default/gc_thresh1
+Variables: kernel/net/ipv4/neigh/default/gc_thresh2
+Variables: kernel/net/ipv4/neigh/default/gc_thresh3
+
+Type: multifile
+Multifile: etc/network/interfaces
+Preinst: interfaces.py
+Postinst: interfaces.py
+
+Type: subfile
+Multifile: etc/network/interfaces
+Subfile: etc/network/interfaces.d/00-base
+
+Type: subfile
+Multifile: etc/network/interfaces
+Subfile: etc/network/interfaces.d/10-default
+Variables: interfaces/[^/]*/.*
+Variables: interfaces/handler
+Variables: interfaces/primary
+Variables: interfaces/restart/auto
+Variables: gateway
+Variables: ipv6/gateway
+
+Type: multifile
+Multifile: etc/hosts
+
+Type: subfile
+Multifile: etc/hosts
+Subfile: etc/hosts.d/00-base
+Variables: interfaces/.*/address
+Variables: interfaces/.*/hosts
+Variables: hostname
+Variables: domainname
+Variables: interfaces/primary
+
+Type: subfile
+Multifile: etc/hosts
+Subfile: etc/hosts.d/20-static
+Variables: hosts/static/.*
+
+Type: subfile
+Multifile: etc/hosts
+Subfile: etc/hosts.d/90-ipv6defaults
+
+Type: file
+File: etc/logrotate.conf
+Variables: logrotate/.*
+
+Type: file
+File: etc/logrotate.d/btmp
+
+Type: file
+File: etc/logrotate.d/wtmp
+
+Type: file
+File: etc/resolv.conf
+Variables: domainname
+Variables: nameserver1
+Variables: nameserver2
+Variables: nameserver3
+Variables: nameserver/option/timeout
+Variables: domain/domainname
+Variables: domain/search
+
+Type: file
+File: etc/locale.gen
+Variables: locale
+Variables: locale/default
+
+Type: file
+File: etc/issue
+Variables: version/version
+Variables: version/patchlevel
+Variables: server/role
+Variables: hostname
+Variables: domainname
+Variables: interfaces/[^/]*/.*
+Variables: interfaces/primary
+
+Type: file
+File: etc/issue.net
+Variables: version/version
+Variables: version/patchlevel
+Variables: server/role
+
+Type: file
+File: etc/welcome.msg
+Variables: version/version
+Variables: version/patchlevel
+Variables: server/role
+Variables: hostname
+Variables: domainname
+Variables: interfaces/[^/]*/.*
+Variables: interfaces/primary
+
+Type: file
+File: etc/bash.bashrc
+
+Type: file
+File: etc/default/keyboard
+Variables: xorg/keyboard/options/XkbModel
+Variables: xorg/keyboard/options/XkbLayout
+Variables: xorg/keyboard/options/XkbVariant
+Variables: xorg/keyboard/options/XkbOptions
+
+Type: module
+Module: xkbKeyboard.py
+Variables: xorg/keyboard/options/XkbModel
+Variables: xorg/keyboard/options/XkbLayout
+Variables: xorg/keyboard/options/XkbVariant
+Variables: xorg/keyboard/options/XkbOptions
+
+Type: file
+File: etc/default/locale
+Variables: locale/default
+
+Type: file
+File: etc/cron.d/univention-ucr-cronjobs
+Variables: cron/.*
+
+Type: file
+File: etc/rsyslog.conf
+Variables: syslog/.*
+
+Type: file
+File: etc/security/packetfilter.d/20_rsyslog.sh
+Variables: syslog/input/.*
+Mode: 0755
+
+Type: file
+File: etc/logrotate.d/univention-config-registry-replog
+Variables: logrotate/.*
+
+Type: file
+File: etc/logrotate.d/rsyslog
+Variables: logrotate/.*
+
+Type: file
+File: etc/cron.d/univention-config-registry-backup
+Variables: ucr/backup/enabled
+
+Type: file
+File: etc/e2fsck.conf
+Variables: e2fsck/.*/.*
+
+Type: module
+Module: autostart.py
+Variables: .*/autostart$
+
+Type: file
+File: etc/selinux/config

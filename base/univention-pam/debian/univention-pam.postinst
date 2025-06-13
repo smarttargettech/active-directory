@@ -1,0 +1,137 @@
+#!/bin/sh
+#
+# Univention PAM
+#  postinst script for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# From /var/lib/dpkg/info/dbus.postinst
+# Copyright © 2003 Colin Walters <walters@debian.org>
+# Copyright © 2006 Sjoerd Simons <sjoerd@debian.org>
+if [ "$1" = configure ]; then
+    MESSAGEUSER=messagebus
+    MESSAGEHOME=/var/run/dbus
+    adduser --system \
+            --quiet \
+            --home "$MESSAGEHOME" \
+            --no-create-home \
+            --disabled-password \
+            --group "$MESSAGEUSER"
+fi
+
+. /usr/share/univention-lib/all.sh
+
+eval "$(univention-config-registry shell)"
+
+univention-config-registry set \
+	nscd/group/size?56003 \
+	nscd/hosts/size?6007 \
+	nscd/group/maxdbsize?62914560 \
+	nscd/group/positive_time_to_live?3600 \
+	nscd/hosts/positive_time_to_live?3600 \
+	nscd/group/negative_time_to_live?60 \
+	nscd/hosts/negative_time_to_live?20 \
+	nscd/group/invalidate_cache_on_changes?"false" \
+	nscd/debug/level?0 \
+	auth/methods?"krb5 ldap unix" \
+ 	auth/login/restrict?"yes" \
+	"auth/login/group/Domain Admins?yes" \
+	auth/login/group/Administrators?"yes" \
+	auth/login/user/root?"yes" \
+ 	auth/other/restrict?"yes" \
+	"auth/other/group/Domain Admins?yes" \
+	auth/other/group/Administrators?"yes" \
+	auth/other/user/root?"yes" \
+ 	auth/ppp/restrict?"yes" \
+	"auth/ppp/group/Domain Admins?yes" \
+	auth/ppp/group/Administrators?"yes" \
+	auth/ppp/user/root?"yes" \
+ 	auth/rlogin/restrict?"yes" \
+	"auth/rlogin/group/Domain Admins?yes" \
+	auth/rlogin/group/Administrators?"yes" \
+	auth/rlogin/user/root?"yes" \
+ 	auth/screen/restrict?"yes" \
+	"auth/screen/group/Domain Admins?yes" \
+	auth/screen/group/Administrators?"yes" \
+	auth/screen/user/root?"yes" \
+	nssldap/tls/checkpeer?no \
+	nssldap/timelimit?30 \
+	auth/faillog?no \
+	nssldap/auth?yes \
+	pamldap/auth?yes \
+	pamaccess/maxent?0x400001 \
+	nss/group/cachefile?yes \
+	nss/group/cachefile/invalidate_on_changes?yes \
+	nss/group/cachefile/invalidate_interval?"30 3 * * *" \
+	nscd/group/enabled?no
+
+
+# remove old non-multifile template
+if [ -e /etc/univention/templates/files/etc/pam.d/common-auth ]; then
+    rm /etc/univention/templates/files/etc/pam.d/common-auth
+fi
+
+# Restart listener
+systemctl try-restart univention-directory-listener
+
+# Reload cron
+test -x /etc/init.d/cron && /etc/init.d/cron reload
+
+# Restart nscd
+deb-systemd-invoke restart nscd
+
+# SSSD alters /etc/nsswitch.conf during installation - revert changes
+ucr commit /etc/nsswitch.conf
+
+# Set SSSD ownership
+ucr commit /etc/sssd/sssd.conf
+chmod -R 0600 /etc/sssd
+
+# Restart sssd
+deb-systemd-invoke restart sssd
+
+# default limits
+univention-config-registry set \
+	'security/limits/default/user/soft/nofile?32768' \
+	'security/limits/default/user/hard/nofile?32768' \
+	'security/limits/group/Domain Users/hard/nproc?1000'
+
+# Bug #37995: Enable sudo only on new UCS-4.1 installs
+if [ "$1" = configure ] && [ -z "$2" ]
+then
+	univention-config-registry set auth/sudo?yes
+fi
+
+call_joinscript 11univention-pam.inst
+
+#DEBHELPER#
+
+exit 0

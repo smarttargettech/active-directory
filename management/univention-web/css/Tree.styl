@@ -1,0 +1,174 @@
+/* Tree
+ *
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ *
+ * Tree Row:
+ * 1. tree row (default styling):
+ * 		.dijitTreeRow - styles for each row of the tree
+ *
+ * 2. hovered tree row (mouse hover on a tree row)
+ * 		.dijitTreeRowHover - styles when mouse over on one row
+ *
+ * 3. active tree row (mouse down on a tree row)
+ * 		.dijitTreeRowActive - styles when mouse down on one row
+ *
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - style when the row has been selected
+ *
+ * Tree Expando:
+ * 	    dijitTreeExpando - the expando at the left of the text of each tree row
+ *
+ * Drag and Drop on TreeNodes: (insert line on dijitTreeContent node so it'll aligned w/ target element)
+ * 		.dijitTreeNode .dojoDndItemBefore/.dojoDndItemAfter - use border style simulate a separate line
+ */
+
+@require "variables.styl"
+@require "icons.styl"
+
+.umc .umcPageNav .umcGridTree
+	margin-bottom: 30px
+
+.umc .umcGridTree
+	background-color: var(--bgc-content-container)
+	border-radius: var(--border-radius-container)
+	overflow: hidden // clip the scrollbar
+
+	.dgrid
+		border: none
+
+	.dgrid-row
+		line-height: 1
+		font-size: var(--font-size-4)
+		box-sizing: content-box
+		transition: background-color 0.2s
+
+		&:hover
+			background-color: var(--bgc-tree-row-hover)
+		&.dgrid-selected
+			background-color: var(--bgc-tree-row-selected)
+
+	.dgrid-cell
+		border: none
+		padding: spacing(1) 0
+		text-overflow: ellipsis
+		white-space: nowrap
+
+
+	.dgrid-expando-icon
+		height: 1em
+		width: @height
+		padding: 0 spacing(1)
+		position: relative
+		box-sizing: content-box
+		float: left
+		display: flex
+		margin-left: calc(var(--level) * 1.2em)
+		cursor: pointer
+
+		.featherIcon
+			transition: transform 250ms
+			pointer-events: none
+
+		.umcStandbySvgWrapper
+			width: inherit
+			height: @width
+			position: absolute
+			color: inherit
+			pointer-events: none
+
+	.dgrid-row-expanded .dgrid-expando-icon .featherIcon
+		transform: rotate(90deg)
+
+	.dgrid-row.noChildren .dgrid-expando-icon .featherIcon,
+	.dgrid-row.childrenUnknown .dgrid-expando-icon .featherIcon,
+	.dgrid-row:not(.childrenUnknown) .dgrid-expando-icon .umcStandbySvgWrapper
+		display: none
+
+	&OnContainer
+		background-color: var(--bgc-content-body)
+
+
+.umc .dijitTreeIsRoot
+    background-image: none
+
+/* Styling for basic tree node (unhovered, unselected)
+ * Also use this styling when dropping between items on the tree (in other words, don't
+ * use hover effect)
+ */
+.umc .dijitTreeRow
+	/* so insert line shows up on IE when dropping after a target element */
+	padding: 4px 0 2px 0
+
+	background-color: none	// IE6 doesn't understand rgba() or transparent below
+	background-color: transparent	// IE8 doesn't understand rgba() below
+	background-color: rgba(171,214,255,0)	// rgba() instead of transparent to prevent flash on hover fade-in
+	background-position:0 0
+	background-repeat:repeat-x
+
+	border: solid 0 transparent
+
+	color: $text-color
+
+	transition-property: background-color, border-color
+	transition-duration: .25s
+	transition-timing-function: ease-out
+
+.umc .dijitTreeRowSelected
+	background-color: $selected-background-color
+	standard-gradient()
+	padding: 3px 0 1px
+	border-color: $selected-border-color
+	border-width: 1px 0
+	color: $selected-text-color
+
+.umc .dijitTreeRowHover
+	background-color: $hovered-background-color
+	standard-gradient()
+	padding: 3px 0 1px
+	border-color: $hovered-border-color
+	border-width: 1px 0
+	color: $hovered-text-color
+	transition-duration: .25s
+
+.umc .dijitTreeRowActive
+	background-color:$pressed-background-color
+	active-gradient()
+	padding: 3px 0 1px
+	border-color: $pressed-border-color
+	border-width: 1px 0
+	color: $selected-text-color
+
+.umc .dijitTreeRowFocused
+	background-repeat: repeat
+
+/* expando (open/closed) icon */
+.umc .dijitTreeExpando
+	background-image: url($image-tree-expand)
+	width: 16px
+	height: 16px
+	background-position: -35px 0		/* for dijitTreeExpandoOpened */
+
+.dj_ie6 .umc .dijitTreeExpando
+	background-image: url($image-tree-expand-ie6)
+
+.umc .dijitTreeRowHover .dijitTreeExpandoOpened
+	background-position: -53px 0
+
+.umc .dijitTreeExpandoClosed
+	background-position: 1px 0
+
+.umc .dijitTreeRowHover .dijitTreeExpandoClosed
+	background-position: -17px 0
+
+.umc .dijitTreeExpandoLeaf,
+.dj_ie6 .umc .dijitTreeExpandoLeaf
+	background-image:none
+
+.umc .dijitTreeExpandoLoading
+	background-image: url($image-loading-animation)
+
+.umc .dgrid-row-table .dgrid-tree-icon
+	margin-right: 5px
+	position: relative
+	bottom: 1px

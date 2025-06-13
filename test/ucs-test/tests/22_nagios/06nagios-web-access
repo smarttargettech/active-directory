@@ -1,0 +1,47 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test access group for nagios web interface
+## bugs: [18684]
+## packages:
+##  - univention-nagios-server
+## exposure: dangerous
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/group.sh
+. "$TESTLIBPATH/group.sh" || exit 137
+
+. /usr/share/univention-lib/base.sh || exit 137
+
+###################
+###  Information  #
+###################
+### This script tests, if users of Domain Admins can access the nagios webinterface
+###################
+
+eval "$(ucr shell hostname domainname)"
+
+username=$(user_randomname)
+
+cleanup () {
+	user_remove "$username"
+}
+trap cleanup EXIT
+
+user_create "$username" || fail_fast 140 "can not create test user"
+group_adduser "$username" "$(custom_groupname "Domain Admins")" || fail_fast 140 "can add $username to Domain Admins group"
+wait_for_replication
+/usr/lib/univention-pam/ldap-group-to-file.py --check_member
+# sss_cache -G
+nscd -i group
+sss_cache -U
+sleep 15
+
+output=$(wget -O - "https://${username}:univention@${hostname}.${domainname}/nagios/" 2>&1)
+test $? -eq 0 || fail_fast 140 "nagios login failed: $output"
+echo $output
+
+exit $RETVAL
+# vim:set filetype=sh noexpandtab ts=4

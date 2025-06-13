@@ -1,0 +1,121 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking for getent group crash
+## bugs:
+##  - 10558
+##  - 33904
+## tags: [BASIC]
+## roles:
+##  - domaincontroller_master
+##  - domaincontroller_backup
+## packages:
+##  - univention-config
+##  - univention-directory-manager-tools
+##  - ldap-utils
+## exposure: dangerous
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/maildomain.sh
+. "$TESTLIBPATH/maildomain.sh" || exit 137
+# shellcheck source=../../lib/undo.sh
+. "$TESTLIBPATH/undo.sh" || exit 137
+
+# echo "The test case is disabled due to Bug #33904"
+# exit 137
+
+section "Preparing"
+
+# create domain part in configured mail domains list
+create_mail_domain "$domainname" && undo delete_mail_domain "$domainname"
+
+for i in $(seq 1 200) ; do
+	udm-test users/user create \
+		--position "cn=users,$ldap_base" \
+		--set username="nsstest$i" \
+		--set lastname="nsstest$i" \
+		--set password="univention" \
+		--set firstname="nsstest$i" \
+		--set mailPrimaryAddress="nsstest$i@domain.de" &&
+		undo udm-test users/user remove --dn "uid=nsstest$i,cn=users,$ldap_base"
+done
+
+SUBGRP=()
+for i in $(seq 140 200); do
+	SUBGRP+=(--append users="uid=nsstest$i,cn=users,$ldap_base")
+done
+
+udm-test groups/group create \
+	--position "cn=groups,$ldap_base" \
+	--set name="subgroup" "${SUBGRP[@]}" &&
+	undo udm-test groups/group remove --dn "cn=subgroup,cn=groups,$ldap_base"
+
+section "Testing groups in groups"
+sleep 3s
+
+undo udm-test groups/group remove --dn "cn=supergroup,cn=groups,$ldap_base"
+for i in $(seq 2 140)
+do
+	echo "---"
+	echo "Testing i=$i"
+	GRP="uniqueMember: uid=nsstest1,cn=users,$ldap_base
+uniqueMember: cn=subgroup,cn=groups,$ldap_base"
+	for t in $(seq 2 $i); do
+		GRP="$GRP
+uniqueMember: uid=nsstest$t,cn=users,$ldap_base"
+	done
+	udm-test groups/group create \
+		--position "cn=groups,$ldap_base" \
+		--set name="supergroup"
+
+	ldapmodify -x -H "ldap://$ldap_master:$ldap_master_port" -D "cn=admin,$ldap_base" -y /etc/ldap.secret <<EOF
+dn: cn=supergroup,cn=groups,$ldap_base
+changetype: modify
+replace: uniqueMember
+$GRP
+EOF
+	getent group 2>&1 > /dev/null
+	if [ $? -eq 134 ] ; then
+		fail_fast 1 "ERROR OCCURRED WITH i=$i"
+	fi
+	udm-test groups/group remove --dn "cn=supergroup,cn=groups,$ldap_base"
+done
+
+section "Testing groups in groups in groups"
+sleep 3s
+
+udm-test groups/group create \
+	--position "cn=groups,$ldap_base" \
+	--set name=subgroup2 "${SUBGRP[@]}" \
+	--set nestedGroup="cn=subgroup,cn=groups,$ldap_base" &&
+	undo udm-test groups/group remove --dn "cn=subgroup2,cn=groups,$ldap_base"
+
+for i in $(seq 2 140)
+do
+	echo "---"
+	echo "Testing i=$i"
+	GRP="uniqueMember: uid=nsstest1,cn=users,$ldap_base
+uniqueMember: cn=subgroup2,cn=groups,$ldap_base"
+	for t in $(seq 2 $i); do
+		GRP="$GRP
+uniqueMember: uid=nsstest$t,cn=users,$ldap_base"
+	done
+	udm-test groups/group create \
+		--position "cn=groups,$ldap_base" \
+		--set name="supergroup"
+
+	ldapmodify -x -H "ldap://$ldap_master:$ldap_master_port" -D "cn=admin,$ldap_base" -y /etc/ldap.secret <<EOF
+dn: cn=supergroup,cn=groups,$ldap_base
+changetype: modify
+replace: uniqueMember
+$GRP
+EOF
+	getent group 2>&1 > /dev/null
+	if [ $? -eq 134 ] ; then
+		fail_fast 111 "ERROR OCCURRED WITH i=$i"
+	fi
+	udm-test groups/group remove --dn "cn=supergroup,cn=groups,$ldap_base"
+done
+echo "The testscript, testing for the crash, doing a \"getent group\" went like it should, everything is fine."
+
+exit "$RETVAL"

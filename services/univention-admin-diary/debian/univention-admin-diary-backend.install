@@ -1,0 +1,3 @@
+admindiary_backend_wrapper.py	usr/share/univention-admin-diary/
+create-database	usr/share/univention-admin-diary/
+create-tables	usr/share/univention-admin-diary/

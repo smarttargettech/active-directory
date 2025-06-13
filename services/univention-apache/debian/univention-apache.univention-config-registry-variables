@@ -1,0 +1,256 @@
+[apache2/allowoverride]
+Description[de]=htaccess-Dateien erlauben verzeichnisspezifische Konfigurationseinstellungen. Diese Variable legt fest, welche Optionen der systemweiten Apache-Konfiguration durch htaccess-Dateien überschrieben werden können. Mögliche Einstellungen sind 'All', 'None' oder eine Aufstellung einzelner Konfigurationsgruppen (siehe <http://httpd.apache.org/docs/2.4/mod/core.html#allowoverride>). Ist die Variable nicht gesetzt, sind die Konfigurationsdirektiven 'AuthConfig Limit FileInfo' erlaubt.
+Description[en]=htaccess files allow the directory-specific configuration of settings. This variable configures which options of the systemwide Apache configuration can be overridden through htaccess files. Possible values are 'All', 'None' or a list of configuration directives (see <http://httpd.apache.org/docs/2.4/mod/core.html#allowoverride>). If the variable is unset, the configuration directives 'AuthConfig Limit FileInfo' are allowed.
+Type=str
+Categories=service-apache
+
+[apache2/startsite]
+Description[de]=Wird die URL des Apache-Servers über die IP-Adresse oder den Hostnamen aufgerufen, wird in der Grundeinstellung eine Weiterleitung auf die UCS-Startseite durchgeführt. Diese Variable erlaubt die Konfiguration der Unterseite, auf die dabei verwiesen werden soll.
+Description[en]=If the URL of the Apache server is accessed over the IP address or the hostname, a redirect to the UCS startpage is done in the standard setting. This variable allows the configuration of the subpage where the redirect points to.
+Type=str
+Categories=service-apache
+
+[apache2/force_https]
+Description[en]=Force use of encrypted connection by re-directing to <https://>.
+Description[de]=Erzwingt eine verschlüsselte Verbindung durch Weiterleitung auf <https://>.
+Type=bool
+Categories=service-apache
+
+[apache2/force_https/exclude/(request_uri|http_host|remote_addr|server_name)/.*]
+Description[en]=Configures conditions which excludes certain requests from being forcing to use an encrypted connection. The conditions type can check one of the request URI, HTTP Host request header, IP address (remote_addr) of the client or server name. If the request matches the set value it is not forced to use an encrypted connection. The wildcard can be anything to name the rule.
+Description[de]=Konfiguriert Bedinungen, um keine verschlüsselte Verbindung für bestimmte Anfragen zu erzwingen. Der Bedingungstyp kann die Anfrage-URL (request_uri), HTTP Host Anfrage-Header (http_host), IP-Adresse des Clients (remote_addr) oder der Server-Name (server_name) sein. Wenn die Anfrage dem gesetzten Wert entspricht wird keine verschlüsselte Verbindung erzwungen. Ein beliebiger Platzhalter kann als Name für die Regel gewählt werden.
+Type=str
+Categories=service-apache
+
+[apache2/hsts]
+Description[en]=Enable HTTP Strict Transport Security (HSTS) by setting this variable to 'yes'. 'apache2/force_https' should be enabled additionally to take full advantage of HSTS.
+Description[de]=Aktiviert HTTP Strict Transport Security (HSTS), wenn auf 'yes' gesetzt. 'apache2/force_https' sollte zusätzlich aktiviert werden, um den Vorteil von HSTS voll nutzen zu können.
+Type=bool
+Categories=service-apache
+
+[apache2/hsts/max-age]
+Description[en]=Time in seconds of how long web browsers will cache and enforce the HSTS policy on the host.
+Description[de]=Zeit in Sekunden, für die Web-Browser die HSTS Richtlinie für diesen Host zwischenspeichern und anwenden.
+Type=uint
+Default=10886400
+Categories=service-apache
+
+[apache2/hsts/includeSubDomains]
+Description[en]=Applies HSTS policy also to subdomains if set to 'yes'.
+Description[de]=Wendet die HSTS Richtlinie auch auf Subdomains an, wenn auf 'yes' gesetzt.
+Type=bool
+Categories=service-apache
+
+[apache2/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Apache-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Apache service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-apache,system-services
+
+[apache2/proxy/access/order]
+Description[de]=Diese Variable konfiguriert die Auswertungsreihenfolge der Zugriffsberechtigungen im mod_proxy-Modul. Eine detaillierte Beschreibung findet sich unter <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>. Ist die Variable nicht gesetzt, greift 'allow,deny'.
+Description[en]=This variable configures the evaluation order of access permissions in the mod_proxy module. A detailed description can be found at <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>. If the variable is unset, 'allow,deny' applies.
+Type=str
+Categories=service-apache
+
+[apache2/proxy/access/allow]
+Description[de]=Diese Variable konfiguriert die Liste der zugriffsberechtigten Domänen im mod_proxy-Modul. Eine detaillierte Beschreibung findet sich unter <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>. Ist die Variable nicht gesetzt, greift 'all' (alle Domänen sind damit erlaubt).
+Description[en]=This variable configures the domains which are granted access to the mod_proxy module. A detailed description can be found at <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>. If the variable is unset, 'all' applies (i.e. all domains are allowed).
+Type=str
+Categories=service-apache
+
+[apache2/proxy/access/deny]
+Description[de]=Diese Variable konfiguriert die Liste der zugriffsverweigerten Domänen im mod_proxy-Modul. Eine detaillierte Beschreibung findet sich unter <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>.
+Description[en]=This variable configures the domains which are denied access to the mod_proxy module. A detailed description can be found at <http://httpd.apache.org/docs/2.4/mod/mod_proxy.html>.
+Type=str
+Categories=service-apache
+
+[apache2/maxclients]
+Description[de]=Diese Variable konfiguriert die maximale Anzahl von HTTP-Anfragen, die von Apache bedient werden kann.
+Description[en]=This variable configures the maximum number of HTTP requests which can be served by Apache.
+Type=pint
+Categories=service-apache
+
+[apache2/server-limit]
+Description[de]=Definiert den Wert der Apache Konfiguration "ServerLimit".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/de/mod/mpm_common.html#serverlimit>.
+Description[en]=Defines the value of the apache configuration "ServerLimit". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/mpm_common.html#serverlimit>.
+Type=uint
+Categories=service-apache
+
+[apache2/start-servers]
+Description[de]=Definiert den Wert der Apache Konfiguration "StartServers".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/de/mod/mpm_common.html#startservers>.
+Description[en]=Defines the value of the apache configuration "StartServers". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/mpm_common.html#startservers>.
+Type=pint
+Categories=service-apache
+
+[apache2/min-spare-servers]
+Description[de]=Definiert den Wert der Apache Konfiguration "MinSpareServers".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/de/mod/prefork.html#minspareservers>.
+Description[en]=Defines the value of the apache configuration "MinSpareServers". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/prefork.html#minspareservers>.
+Type=pint
+Categories=service-apache
+
+[apache2/max-spare-servers]
+Description[de]=Definiert den Wert der Apache Konfiguration "MaxSpareServers".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/de/mod/prefork.html#maxspareservers>.
+Description[en]=Defines the value of the apache configuration "MaxSpareServers". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/prefork.html#maxspareservers>.
+Type=pint
+Categories=service-apache
+
+[apache2/max-request-workers]
+Description[de]=Definiert den Wert der Apache Konfiguration "MaxRequestWorkers".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/de/mod/mpm_common.html#maxrequestworkers>.
+Description[en]=Defines the value of the apache configuration "MaxRequestWorkers". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/mpm_common.html#maxrequestworkers>.
+Type=pint
+Categories=service-apache
+
+[apache2/server-signature]
+Description[de]=Definiert den Wert der Apache Konfiguration "ServerSignature".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/mod/core.html#serversignature>.
+Description[en]=Defines the value of the apache configuration "ServerSignature". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/core.html#serversignature>.
+Type=str
+Categories=service-apache
+
+[apache2/server-tokens]
+Description[de]=Definiert den Wert der Apache Konfiguration "ServerTokens".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/mod/core.html#servertokens>.
+Description[en]=Defines the value of the apache configuration "ServerTokens". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/core.html#servertokens>.
+Type=str
+Categories=service-apache
+
+[apache2/server-admin]
+Description[de]=Definiert den Wert der Apache Konfiguration "ServerAdmin".  Eine detaillierte Beschreibung findet sich unter <https://httpd.apache.org/docs/2.4/mod/core.html#serveradmin>.
+Description[en]=Defines the value of the apache configuration "ServerAdmin". A detailed description can be found at <https://httpd.apache.org/docs/2.4/mod/core.html#serveradmin>.
+Type=str
+Categories=service-apache
+
+[apache2/ssl/certificate]
+Description[de]=Der absolute Pfad zur SSL-Zertifikatsdatei für mod_ssl. Das Zertifikat muss PEM-codiert sein. Ist die Variable nicht gesetzt, wird das Zertifikat aus der UCS-CA verwendet (/etc/univention/ssl/FQDN/cert.pem).
+Description[en]=The absolute path to the SSL certificate file for mod_ssl. The certificate needs to be PEM-encoded. If the variable is unset, the certificate from the UCS CA is used (/etc/univention/ssl/FQDN/cert.pem).
+Type=str
+Categories=service-apache
+
+[apache2/ssl/key]
+Description[de]=Der absolute Pfad zum privaten RSA/DSA-Schlüssel der SSL-Zertifikatsdatei für mod_ssl. Der Schlüssel muss PEM-codiert sein. Ist die Variable nicht gesetzt, wird das Zertifikat aus der UCS-CA verwendet (/etc/univention/ssl/FQDN/private.key).
+Description[en]=The absolute path to the private RSA/DSA key of the SSL certificate file for mod_ssl. The key needs to be PEM-encoded. If the variable is unset, the certificate from the UCS CA is used (/etc/univention/ssl/FQDN/private.key).
+Type=str
+Categories=service-apache
+
+[apache2/ssl/ca]
+Description[de]=Der absolute Pfad zum Zertifikat der Zertifizierungsstelle (CA) für mod_ssl. Das Zertifikat muss PEM-codiert sein. Ist die Variable nicht gesetzt, wird das Zertifikat aus der UCS-CA verwendet (/etc/univention/ssl/ucsCA/CAcert.pem).
+Description[en]=The absolute path to the certificate of the certificate authority (CA) for mod_ssl. The certificate needs to be PEM-encoded. If the variable is unset, the certificate from the UCS CA is used (/etc/univention/ssl/ucsCA/CAcert.pem).
+Type=str
+Categories=service-apache
+
+[apache2/ssl/certificatechain]
+Description[de]=Der Pfad zu einer Datei mit den CA-Zerifikaten. Diese werden dem Clientbrowser eines Benutzers übermittelt, damit ein Zertifikat für die Authentifizierung des Benutzers ausgewählt werden kann, das von einer dieser CAs ausgestellt wurde.
+Description[en]=The path to a file containing CA certificates. They are sent to the client browser of a user, so that a certificate for authentication the user can be selected, which is issued by one of the CAs.
+Type=str
+Categories=service-apache
+
+[apache2/ssl/tlsv11]
+Description[de]=Ist diese Option aktiviert, wird nur noch TLS 1.1, TLS 1.2 und TLS 1.3 von Apache unterstützt. Ist die Variable nicht gesetzt und keine weitere apache2/ssl/* Variable gesetzt, wird TLS 1.0 bis 1.3 unterstützt.
+Description[en]=If this option is enabled, only TLS 1.1, TLS 1.2 and TLS 1.3 is supported in Apache. If the variable is unset and no further apache2/ssl/* variable is set, TLS 1.0 to TLS 1.3 are supported.
+Type=bool
+Categories=service-apache
+
+[apache2/ssl/tlsv12]
+Description[de]=Ist diese Option aktiviert, wird nur noch TLS 1.2 und TLS 1.3 von Apache unterstützt. Ist die Variable nicht gesetzt und keine weitere apache2/ssl/* Variable gesetzt, wird TLS 1.0 bis 1.3 unterstützt.
+Description[en]=If this option is enabled, only TLS 1.2 and TLS 1.3 is supported in Apache. If the variable is unset and no further apache2/ssl/* variable is set, TLS 1.0 to TLS 1.3 are supported.
+Type=bool
+Categories=service-apache
+
+[apache2/ssl/tlsv13]
+Description[de]=Ist diese Option aktiviert, wird nur noch TLS 1.3 von Apache unterstützt. Ist die Variable nicht gesetzt und keine weitere apache2/ssl/* Variable gesetzt, wird TLS 1.0 bis 1.3 unterstützt.
+Description[en]=If this option is enabled, only TLS 1.3 is supported in Apache. If the variable is unset and no further apache2/ssl/* variable is set, TLS 1.0 to TLS 1.3 are supported.
+Type=bool
+Categories=service-apache
+
+[apache2/ssl/compression]
+Description[de]=Ist diese Option aktiviert wird Komprimierung auf der SSL-Ebene aktiviert. Ist die Variable nicht gesetzt, ist die Komprimierung abgeschaltet. Von der Verwendung von SSL-Kompression wird aus Sicherheitsgründen abgeraten (CRIME-Protokoll-Angriff).
+Description[en]=If this option is enabled compression on the SSL level is enabled. If the variable is unset, compression is disabled. The use of SSL compression is discouraged for security reasons (CRIME protocol attack)
+Type=bool
+Categories=service-apache
+
+[apache2/ssl/honorcipherorder]
+Description[de]=Bei der Aushandlung der kryptografischen Verfahren während des Aufbaus einer SSL/TLS-Verbindung wird standardmässig die Präferenz des Clients verwendet. Ist diese Option aktiviert, wird stattdessen die Präferenz des Server verwendet werden. Die Liste der von Apache angebotenen Verfahren kann mit der Variable 'apache2/ssl/ciphersuite' konfiguriert werden.
+Description[en]=During the negotiation of cryptographic algorithms during the setup of a SSL/TLS connection the preference of the client is used by default. If this option is enabled, the preference of the server is used instead. The list of algorithms offered by Apache can be configured with the variable 'apache2/ssl/ciphersuite'.
+Type=bool
+Categories=service-apache
+
+[apache2/ssl/ciphersuite]
+Description[de]=Dies konfiguriert die kryptografischen Verfahren, die ein Client in der SSL-Handshake-Phase angeboten bekommt. Das Format ist unter <http://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslciphersuite> beschrieben. Ist die Variable nicht gesetzt, wird 'HIGH:MEDIUM:!aNULL' verwendet.
+Description[en]=This configures the cryptopgraphic algorithms which are offered to clients during a SSL handshake. The format is described at <http://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslciphersuite>. If the variable is unset, 'HIGH:MEDIUM:!aNULL' is used.
+Type=str
+Categories=service-apache
+
+[apache2/ssl/strict-sni-vhost-check]
+Description[de]=Ist diese Option aktiviert, wird Nicht-SNI-Clients der Zugriff auf namensbasierte virtuelle Hosts untersagt.
+Description[en]=If this option is enabled, non-SNI clients are forbidden to access name based virtual hosts.
+Type=bool
+Categories=service-apache
+
+[apache2/documentroot]
+Description[de]=Das Wurzelverzeichnis für die von Apache bereitgestellten Daten.
+Description[en]=The root directory for the data served by Apache.
+Type=str
+Categories=service-apache
+
+[apache2/loglevel]
+Description[de]=Diese Variable konfiguriert den Detailgrad der Apache-Logmeldungen. Mögliche Werte sind: emerg alert crit error warn notice info debug.
+Description[en]=This variable configures the verbosity level for the Apache web server. Possible values are: emerg alert crit error warn notice info debug.
+Type=str
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/link]
+Description[en]=Defines the link URL of the corresponding entry of the UCS start site. Full format: ucs/web/overview/entries/{admin,service}/<entryID>/link.
+Description[de]=Gibt die Link-URL des entsprechenden Eintrags der UCS-Startseite an. Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/link.
+Type=str
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/label.*]
+Description[en]=Defines the label of the corresponding entry of the UCS start site (optionally localized). Full format: ucs/web/overview/entries/{admin,service}/<entryID>/label[/<locale>].
+Description[de]=Gibt die Bezeichnung des entsprechenden Eintrags der UCS-Startseite an (optional auch lokalisiert). Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/lable[/<locale>].
+Type=str
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/description.*]
+Description[en]=Defines the description of the corresponding entry of the UCS start site (optionally localized). Full format: ucs/web/overview/entries/{admin,service}/<entryID>/description[/<locale>].
+Description[de]=Gibt die Beschreibung des entsprechenden Eintrags der UCS-Startseite an (optional auch lokalisiert). Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/description[/<locale>].
+Type=str
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/icon]
+Description[en]=Defines the URL for the icon of the corresponding entry of the UCS start site (can also be a data URL). Full format: ucs/web/overview/entries/{admin,service}/<entryID>/icon.
+Description[de]=Gibt die URL des Icons für den entsprechenden Eintrag der UCS-Startseite an. Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/icon.
+Type=str
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/port_http]
+Description[en]=Forces the port for URL of the corresponding entry of the UCS start site. Used when the start site is opened with HTTP or when no port_https variable is set. Full format: ucs/web/overview/entries/{admin,service}/<entryID>/port_http.
+Description[de]=Erzwingt den Port für die URL des entsprechenden Eintrages der UCS-Startseite. Findet Verwendung, falls die Startseite per HTTP aufgerufen wird oder falls port_https nicht gesetzt wurde. Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/port_http.
+Type=portnumber
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/port_https]
+Description[en]=Same as ucs/web/overview/entries/.*/port_http, but used when opening the start site with HTTPS or when no port_http variable is set. Full format: ucs/web/overview/entries/{admin,service}/<entryID>/port_https.
+Description[de]=Ähnlich zu ucs/web/overview/entries/.*/port_http; wird benutzt falls Startseite per HTTPS aufgerufen wird oder falls port_http nicht gesetzt wurde. Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/port_https.
+Type=portnumber
+Categories=service-apache
+
+[ucs/web/overview/entries/.*/priority]
+Description[en]=Defines the (lexicographical) sort priority for the corresponding entry of the UCS start site. Full format: ucs/web/overview/entries/{admin,service}/<entryID>/priority.
+Description[de]=Gibt die (lexikografische) Sortierungsreihenfolge des entsprechenden Eintrags der UCS-Startseite an. Vollständiges Format: ucs/web/overview/entries/{admin,service}/<entryID>/priority.
+Type=int
+Categories=service-apache
+
+[ucs/server/robots/allow]
+Description[de]=Die in dieser Variable aufgelisteten Pfade werden in die robots.txt aufgenommen und zur Indizierung durch Suchmaschinen freigegeben. Mehrere Pfade können durch Leerzeichen getrennt angegeben werden.
+Description[en]=The paths listed in this variable will be indexed by search engines and similar services that evaluate robots.txt. Multiple paths are separated by a whitespace character.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-apache
+
+[ucs/server/robots/disallow]
+Description[de]=Die in dieser Variable aufgelisteten Pfade werden in die robots.txt aufgenommen und dadurch von der Indizierung durch Suchmaschinen ausgenommen. Mehrere Pfade können durch Leerzeichen getrennt angegeben werde.
+Description[en]=The paths listed in this variable will be excluded from being indexed by search engines and similar services that evaluate robots.txt. Multiple paths are separated by a whitespace character.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-apache

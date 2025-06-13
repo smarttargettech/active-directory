@@ -1,0 +1,86 @@
+{
+  "domainadmin": [
+    {
+      "condition": {
+        "position": "*"
+      },
+      "permissions": {
+        "*": {
+          "attributes": {
+            "*": "write"
+          },
+          "create": true,
+          "delete": true
+        }
+      }
+    }
+  ],
+  "ouadmin": [
+    {
+      "condition": {
+        "position": "$CONTEXT",
+        "scope": "subtree"
+      },
+      "permissions": {
+        "*": {
+          "attributes": {
+            "*": "write",
+            "guardianMemberRoles": "read",
+            "guardianRoles": "read"
+          },
+          "create": true,
+          "delete": true
+        }
+      }
+    },
+    {
+      "condition": {
+        "position": "cn=groups",
+        "scope": "base"
+      },
+      "permissions": {
+        "groups/group": {
+          "attributes": {
+            "*": "read"
+          }
+        }
+      }
+    },
+    {
+      "condition": {
+        "position": "cn=domain,cn=mail",
+        "scope": "base"
+      },
+      "permissions": {
+        "mail/domain": {
+          "attributes": {
+            "*": "read"
+          }
+        }
+      }
+    },
+    {
+      "condition": {
+        "position": "*",
+        "scope": "base"
+      },
+      "permissions": {
+        "policies/desktop": {
+          "attributes": {
+            "*": "read"
+          }
+        },
+        "policies/pwhistory": {
+          "attributes": {
+            "*": "read"
+          }
+        },
+        "policies/umc": {
+          "attributes": {
+            "*": "read"
+          }
+        }
+      }
+    }
+  ]
+}

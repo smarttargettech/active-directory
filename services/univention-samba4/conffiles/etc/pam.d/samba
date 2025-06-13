@@ -1,0 +1,5 @@
+@%@UCRWARNING=# @%@
+
+@include common-account
+session	requisite	pam_univentionsambadomain.so
+@include common-session

@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+# Univention System Setup
+#  download packages for appliance mode
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2014-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+die () {
+	local rc="$?"
+	echo "${0##*/}: $*" >&2
+	exit "$rc"
+}
+
+declare -a BASE=(
+	# server role packages - must be on ../univention-dvd/tasks/
+	univention-server-master
+	univention-server-backup
+	univention-server-slave
+	univention-server-member
+	# AD Member Mode
+	univention-ad-connector
+	univention-samba
+)
+declare -a COMPONENTS=(
+	firefox-esr-l10n-de
+	univention-dhcp
+	univention-fetchmail
+	univention-mail-server
+	univention-management-console-module-adtakeover
+	univention-pkgdb
+	univention-printserver
+	# FIXME univention-nagios-server
+	univention-radius
+	univention-s4-connector
+	univention-samba
+	univention-samba4
+	univention-self-service
+	univention-self-service-master
+	univention-self-service-passwordreset-umc
+	univention-squid
+)
+declare -a PACKAGES=("${BASE[@]}" "${COMPONENTS[@]}")
+CACHE='/var/cache/univention-system-setup/packages'
+APT='/etc/apt/sources.list.d/05univention-system-setup.list'
+
+while getopts bh option
+do
+	case "$option" in
+		b)
+			PACKAGES=("${BASE[@]}")
+			;;
+		h)
+			echo "Usage: ${0##*/} [-b]"
+			exit 0
+			;;
+		*)
+			echo "Usage: ${0##*/} [-b]"
+			exit 2
+			;;
+	esac
+done
+
+umask 0022
+install -m 0755 -o _apt -d "$CACHE"
+cd "$CACHE" ||
+	die "Failed to change directory to '$CACHE'"
+
+install_cmd="$(univention-config-registry get update/commands/install)"
+for package in "${PACKAGES[@]}"
+do
+	# shellcheck disable=SC2046
+	apt-get download -o Dir::Cache::Archives="$CACHE" $(LC_ALL=C.UTF-8 $install_cmd --reinstall -s -o Debug::NoLocking=1 "${package}" | sed -ne 's|^Inst \([^ ]*\) .*|\1|p') ||
+		die "Failed to download required packages for ${package}"
+done
+
+apt-ftparchive packages . >Packages ||
+	die "Failed to create $CACHE/Packages"
+
+chown _apt ./*
+chmod 0644 ./*
+
+[ -e "$APT" ] ||
+	echo "deb [trusted=yes] file://$CACHE ./" >"$APT"
+
+exit 0

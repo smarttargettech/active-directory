@@ -1,0 +1,37 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost component with no version
+##  1. setup local repository for component with no given version
+##  2. check if the package is installable
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+compname="test${RANDOM}"
+
+setup_apache "${repoprefix}"
+
+mkpdir "${major}.${minor}--component/${compname}" all "${ARCH}"  # 0 1 2 3
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+
+minor+=1
+mkpdir "${major}.${minor}--component/${compname}" all "${ARCH}"  # 4 5 6 7
+mkdeb "${pkgname}" 2 "${ARCH}" "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+
+comp="repository/online/component/${compname}"
+config_repo "${comp}=yes"
+
+	set -e
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${DIRS[0]}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

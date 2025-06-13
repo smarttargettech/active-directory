@@ -1,0 +1,37 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository with repository/online/prefix unset
+##  1. setup local repository with 1 packet in maintained
+##  2. check if that package is installable
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+# "prefix=" only works with the old syntax "server=$FQHN", but not with URLs.
+# This test requires UCRV type-checking to be disabled to allow the old syntax.
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/ucr.sh
+is_ucr_false ucr/check/type ||
+	exit 133  # SKIP starting with UCS 5.1
+
+setup_apache "${repoprefix}"
+
+# shellcheck disable=SC2046
+mkpdir $(allpatchlevels "${_version_version}-${_version_patchlevel:?}") maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+config_repo repository/online/server="${server:-localhost}" repository/online/port="${port:-80}" repository/online/prefix=
+
+	set -e
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${DIR}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

@@ -1,0 +1,18 @@
+[Unit]
+Description=Univention Management Console Server
+After=network.target remote-fs.target
+Wants=slapd.service
+Before=apache2.service
+
+[Service]
+Type=notify
+KillMode=mixed
+UMask=0077
+LimitNOFILE=64512
+ExecStart=/usr/sbin/univention-management-console-server
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

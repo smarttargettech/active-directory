@@ -1,0 +1,118 @@
+@require "variables.styl"
+@require "icons.styl"
+
+.umc .umcGrid
+	background-color: var(--bgc-content-container)
+	border-radius: var(--border-radius-container)
+	overflow: hidden // clip the scrollbar
+
+	.umcGridHeader
+		flex: 0 0 auto
+		display: flex
+		padding: spacing(1)
+
+	.umcGridHeader .ucsButton:not(:last-child)
+		margin-right: spacing(1)
+
+	.umcGrid__actionButtonsWrapper
+		flex: 0 1 auto
+		display: flex
+		overflow: hidden
+		min-height: var(--button-size)
+
+	.umcGrid__globalActionButtonsContainer,
+	.umcGrid__contextActionButtonsContainer
+		display: flex
+
+	.umcGrid__contextActionButtonsContainer
+		padding-left: spacing(1)
+
+	.umcGridStatusWrapper
+		flex: 0 1000 auto
+		margin-left: auto
+		display: flex
+		align-items: center
+		font-size: var(--font-size-5)
+		color: var(--font-color-contrast-middle)
+		padding: spacing(1)
+		overflow: hidden
+		min-width: 4rem
+	.umcGridStatus
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+
+	.umcGridRowIcon
+		margin-right: 0.5em
+
+	.dgrid-cell
+		border: none
+		vertical-align: middle
+		padding: spacing(3, true) 0
+		white-space: nowrap
+		text-overflow: ellipsis
+
+		&.dgrid-selector
+			width: spacing(6)
+			padding-right: spacing(2)
+
+		&:first-child
+			padding-left: spacing(2)
+		&:last-child
+			padding-right: spacing(2)
+
+	.dgrid-cell:not(.dgrid-selector) > *:not(.ucsButton)
+		display: inline // for text-overflow ellipsis
+
+	.dgrid__sortIcon
+		margin-right: 0.3em
+		position: relative
+		top: 3px
+
+	.dgrid
+		border: none
+		border-top: 1px solid var(--bgc-content-body)
+
+	.dgrid-row
+		font-size: var(--font-size-4)
+		line-height: 1
+		transition: background-color 250ms
+		border-top: 1px solid var(--bgc-content-body)
+		&:nth-child(2) /* can't use first-child since the .dgrid-preload element is at first place */
+			border-top: none
+
+		&:hover
+			background-color: var(--bgc-grid-row-hover)
+		&.dgrid-selected
+			background-color: var(--bgc-grid-row-selected)
+
+	.dgrid-header
+		font-size: var(--font-size-3)
+		line-height: 1
+		background-color: inherit
+		border-bottom: 1px solid var(--bgc-content-body)
+
+	.umcGridRowSelectorCheckBox
+		display: block // center the checkbox in the row
+
+	&OnContainer
+		background-color: var(--bgc-inputfield-on-container)
+		.dgrid,
+		.dgrid-row,
+		.dgrid-header
+			border-color: var(--bgc-content-container)
+
+
+.umc .umcGrid--filtering
+	.dgrid
+		max-height: 0px !important
+
+.umcGrid .dgrid-scroller
+	max-height: inherit
+
+.umcGrid .umcGridDefaultAction:hover
+	text-decoration: underline
+	cursor: pointer
+
+.umc .umcGridFooter
+	display: none

@@ -1,0 +1,108 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Check that the primary group is listed in the kerberos PAC_LOGON_INFO GROUP_MEMBERSHIP_ARRAY"
+## exposure: dangerous
+## tags: [SKIP]
+## bugs: [37101,43405]
+## packages: [univention-samba4]
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+eval "$(ucr shell)"
+
+RETVAL=100
+
+machine_password="$(cat /etc/machine.secret)"
+
+keytab="$(mktemp)"
+capture_file="$(mktemp)"
+capture_text="$(mktemp)"
+
+# set up wireshark config
+mkdir -p /root/.wireshark
+echo "kerberos.decrypt: TRUE" >> /root/.wireshark/preferences
+echo "kerberos.file: $keytab" >> /root/.wireshark/preferences
+
+# export keytab
+samba-tool domain exportkeytab "$keytab" || fail_test 110
+
+# start network dump, for 10s
+tshark -a duration:20 -i any -K "$keytab" -O Kerberos -w "$capture_file" >/dev/null &
+sleep 5
+
+# get kerberos ticket/pac
+kinit --password-file=/etc/machine.secret "$hostname"\$ || fail_test 110
+sleep 20
+
+tshark -K "$keytab" -r "$capture_file" -V -2 -R 'kerberos.msg_type==11' >"$capture_text" || fail_test 110
+
+ls -al "$capture_text"
+
+pac_info=false
+group_membership_array=false
+declare -a groups
+while read line; do
+	echo $line
+	type=${line%%: *}
+	value=${line#*: }
+	case $type in
+		"PAC_LOGON_INFO")
+			# enter pacinfo
+			pac_info=true
+			;;
+		"PAC_CLIENT_INFO_TYPE")
+			# leave pacinfo
+			pac_info=false
+			;;
+		"GROUP_MEMBERSHIP_ARRAY")
+			if $pac_info; then
+				# now we are in the pacinfo groupmembership part
+				group_membership_array=true
+			fi
+			;;
+		"User Flags")
+			if $pac_info && $group_membership_array; then
+				# leave pacinfo groupmembership part
+				group_membership_array=false
+			fi
+			;;
+		"Group RID")
+			if $pac_info && ! $group_membership_array; then
+				# this is the pacinfo Group RID, the primary group
+				primary_gid="$value"
+				continue
+			fi
+			if $pac_info && $group_membership_array; then
+				# this is a element of the groupmembership array
+				groups+=("$value")
+				continue
+			fi
+			;;
+	esac
+
+done < "$capture_text"
+
+echo "primary group: $primary_gid"
+echo "rids in GROUP_MEMBERSHIP_ARRAY: ${groups[@]}"
+
+RETVAL=110
+for group in ${groups[@]}; do
+	if [ "$primary_gid" = "$group" ]; then
+		RETVAL=100
+	fi
+done
+
+rm "$keytab"
+rm "$capture_file"
+rm "$capture_text"
+
+exit $RETVAL

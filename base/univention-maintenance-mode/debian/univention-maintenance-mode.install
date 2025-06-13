@@ -1,0 +1,3 @@
+index.html	var/www/univention/maintenance/
+univention-maintenance-mode-update-progress	usr/share/
+univention-maintenance-mode.service	lib/systemd/system/

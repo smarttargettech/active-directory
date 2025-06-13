@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+		<style>
+			body {
+				background-color: #f2f2f2;
+				font-family: 'Roboto', sans-serif;
+				font-size: 14px;
+				color: #282828;
+			}
+			.container {
+				padding: 5ex 5em;
+				margin: 10%;
+				margin-top: 100px;
+				background-color: #ffffff;
+				box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+			}
+			h1 {
+				font-size: 24px;
+				color: #282828;
+				font-weight: normal;
+				line-height: 1em;
+			}
+
+			.progress-container {
+				background-color: #e0e0e0;
+				border-style: hidden;
+				border-radius: 10px;
+				margin: 30px 5em;
+				margin-bottom: 0px;
+			}
+			progress {
+				width: 100%;
+				height: 20px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+
+				border: none;
+				border-radius: 10px;
+
+				color: #7AB51D;
+				background-color: #e0e0e0;
+			}
+
+			progress::-webkit-progress-bar {
+				border-radius: 10px;
+				background-color: #e0e0e0;
+			}
+			progress::-webkit-progress-value {
+				border-radius: 10px;
+				background-color: #7AB51D;
+			}
+			progress:not([value])::-webkit-progress-bar {
+				background: url(https://updates.software-univention.de/download/static/progressBarAnim.gif);
+				background-color: #e0e0e0;
+				background-repeat: repeat;
+			}
+
+			progress::-moz-progress-bar {
+				border-radius: 10px;
+				background-color: #7AB51D;
+			}
+			progress:not([value])::-moz-progress-bar {
+				background-image: url(https://updates.software-univention.de/download/static/progressBarAnim.gif);
+				background-color: #e0e0e0;
+				background-repeat: repeat;
+			}
+
+			.univentionLogo {
+				display: inline-block;
+				vertical-align: top;
+				background-image: url(https://updates.software-univention.de/download/static/univention.svg);
+				background-repeat: no-repeat;
+				background-position: center center;
+				height: 48px;
+				width: 160px;
+				margin-left: 5px;
+				margin-right: 22px;
+				margin-top: -100px;
+				float: right;
+			}
+		</style>
+
+    <title>UCS maintenance</title>
+  </head>
+  <body>
+	<div class="univentionLogo"></div>
+    <div class="container">
+      <h1 id="headline">This system is in maintenance mode</h1>
+      <p id="explanation">Univention Corporate Server is currently updating. Depending on the release, this may take some time. In /var/log/univention/updater.log, you will find more detailed information on the progress of the update. This page will reload once the update is finished.</p>
+			<div class="progress-container">
+				<progress id="progressbar" max="100">
+				</progress>
+      </div>
+    </div>
+
+		<script>
+			failed = 0;
+			progressBar = document.getElementById("progressbar");
+			var langRegexp = RegExp("^UMCLang=(.*)$");
+			locale = "";
+			(document.cookie || "").split(";").forEach(function(cook) {
+				var match = langRegexp.exec(cook.trim());
+				if (match) {
+					locale = match[1];
+				}
+			});
+			if (locale.substring(0,2) === "de") {
+				document.getElementById("headline").innerHTML = "Dieses System ist im Maintenance-Modus";
+				document.getElementById("explanation").innerHTML = "Univention Corporate Server wird gerade aktualisiert. Dies kann je nach Release etwas Zeit in Anspruch nehmen. Die Datei /var/log/univention/updater.log enthält ausführliche Informationen zum Fortschritt des Updates. Diese Seite wird sich nach Ende des Updates automatisch neu laden.";
+			}
+			removeClass = function(elem, cName) {
+				element.className.replace(RegExp("/\b" + cName + "\b/g"), "");
+			};
+			addClass = function(elem, className) {
+				var arr = elem.className.split(" ");
+				if (arr.indexOf(cName) == -1) {
+					elem.className += " " + cName;
+				}
+			};
+			interval = 2000;
+			warnUser = function() {
+				progressBar.removeAttribute("value");
+			};
+			setProgress = function(percentage) {
+				if (percentage > 0) {
+					var old = progressBar.value || 0;
+					var i = 0;
+					var steps = 100;
+					var transitionId = setInterval(function() {
+						i += 1;
+						if (i == steps) {
+							clearInterval(transitionId);
+						}
+						progressBar.value = old + (i / steps * (percentage - old));
+					}, interval / steps);
+				} else {
+					progressBar.removeAttribute("value");
+				}
+			};
+			checkForReload = function() {
+				var xhr = new XMLHttpRequest();
+				xhr.timeout = interval;
+				xhr.open('GET', document.URL + '?preventCache=' + Math.floor(Math.random() * 100000), true);
+				xhr.responseType = 'text';
+				xhr.onload = function() {
+					if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+						if (original_html !== xhr.responseText) {
+							window.location.reload(true);
+						}
+					}
+				};
+				xhr.send(null);
+			};
+			checkProgress = function() {
+				var xhr = new XMLHttpRequest();
+				xhr.timeout = interval;
+				xhr.open('GET', '/univention/maintenance/updater.json', true);
+				xhr.responseType = 'text';
+				xhr.onload = function() {
+					if (xhr.readyState === xhr.DONE) {
+						var fail;
+						if (xhr.status === 200 || xhr.status === 304) {
+							failed = 0;
+							try {
+								var json = JSON.parse(xhr.responseText);
+								setProgress(json.v1.percentage);
+							} catch(err) {
+								fail = true;
+							}
+						} else {
+							fail = true;
+						}
+						if (fail) {
+							failed += 1;
+							if (failed > 60) {
+								warnUser();
+							}
+						}
+					}
+				};
+				xhr.send(null);
+			};
+			poll = function() {
+				checkForReload();
+				checkProgress();
+				setTimeout(poll, interval);
+			};
+			original_html = null;
+			var xhr = new XMLHttpRequest();
+			xhr.responseType = 'text';
+			xhr.open('GET', document.URL + '?preventCache=' + Math.floor(Math.random() * 100000), true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+					original_html = xhr.responseText;
+					poll();
+				}
+			};
+			xhr.send(null);
+		</script>
+  </body>
+</html>

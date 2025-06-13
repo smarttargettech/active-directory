@@ -1,0 +1,85 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test whether Samba respects UNIX permissions set with UDM"
+## bugs: [29056]
+## exposure: dangerous
+## packages:
+## - univention-samba | univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## - memberserver
+## tags:
+## - skip_admember
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/shares.sh
+. "$TESTLIBPATH/shares.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+# shellcheck source=../../lib/samba.sh
+. "$TESTLIBPATH/samba.sh" || exit 137
+
+kdestroy || true # see Bug 52130
+
+listener_replication_sleep_seconds=1
+listener_replication_retry_max=30
+
+echo "## create user"
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+username="$(user_randomname)"
+password="univention"
+sharename="$(random_share)"
+
+check_domainadmin_credentials || fail_fast 77 "UCR variables for admin credentials are not set"
+
+trap 'user_remove "$username";share_remove "$sharename"; wait_for_replication_and_postrun; rm -rf "/${sharename:?}"' INT TERM EXIT
+user_create "$username" ||
+	fail_fast 1 "Could not create user $username."
+
+SHARE_SAMBA_WRITEABLE=1
+SHARE_UNIX_DIRECTORYMODE=0755
+
+echo "## create share"
+share_create "$sharename" "/$sharename" ||
+	fail_fast 1 "could not create share"
+
+wait_for_replication
+# force_drs_replication
+
+echo "## wait for Samba share export"
+wait_for_share () { output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "exit" >/dev/null 2>&1)"; }
+retry_delay="$listener_replication_sleep_seconds" retry "$listener_replication_retry_max" wait_for_share ||
+	fail_fast 1 "TIMEOUT: Samba did not export the share '$sharename' after $((retry_i * listener_replication_sleep_seconds)) seconds: $output"
+
+echo "## create a folder without permission"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "mkdir folder" 2>&1)"
+grep -q "NT_STATUS_ACCESS_DENIED" <<<"$output" ||
+	fail_test 1 "Expected return value NT_STATUS_ACCESS_DENIED, but received: $output"
+
+echo "## change folder unix directorymode"
+SHARE_DN="$(udm-test shares/share list --filter sambaName="$sharename" | DN1)"
+udm-test shares/share modify \
+	--binddn "$tests_domainadmin_account" \
+	--bindpwd "$tests_domainadmin_pwd" \
+	--dn "$SHARE_DN" \
+	--set "directorymode=0777"
+
+check_stat () { [ "$(stat -c '%a' "/$sharename")" = "777" ]; }
+retry_delay="$listener_replication_sleep_seconds" retry "$listener_replication_retry_max" check_stat ||
+		fail_fast 1 "TIMEOUT: Directory mode of folder not updated after $((retry_i * listener_replication_sleep_seconds)) seconds"
+
+echo "## create a folder with permission"
+output="$(smbclient -U "$username%$password" "//$hostname.$domainname/$sharename" -c "mkdir folder2" >/dev/null 2>&1)" ||
+	fail_test 1 "Failed to make a folder even though it should work: $output"
+
+exit "$RETVAL"

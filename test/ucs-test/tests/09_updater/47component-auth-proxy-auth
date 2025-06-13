@@ -1,0 +1,50 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost component with authentication via authorized proxy
+##  1. setup local repository for component with authentication
+##  2. Use minimal proxy implemented in Python
+##  3. check if the package is installable
+## roles-not: [basesystem]
+## tags: [basic, proxy]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+FIXED_12571=false
+
+compname="test${RANDOM}"
+username="user${RANDOM}"
+password="pass${RANDOM}"
+
+proxyuser="user${RANDOM}"
+proxypass="pass${RANDOM}"
+
+setup_apache "${repoprefix}"
+htpasswd -c -m -b "${REPODIR}/.htpasswd" "${username}" "${password}"
+
+mkpdir "${_version_version}--component/${compname}" maintained all "${ARCH}"  # 0 1 2 3
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR}"
+mkpkg "${DIR}" "${DIR}"
+
+cat <<-EOF >"${DIR}/../.htaccess"
+AuthType Basic
+AuthUserFile ${REPODIR}/.htpasswd
+AuthGroupFile /dev/null
+AuthName "${compname}"
+Require user ${username}
+EOF
+
+config_proxy -a -u "${proxyuser}" -w "${proxypass}"
+comp="repository/online/component/${compname}"
+config_repo "${comp}=yes" "${comp}/username=${username}" "${comp}/password=${password}" proxy/http="http://${proxyuser}:${proxypass}@localhost:${proxy_port:?}"
+
+	set -e
+	"${FIXED_12571}" || ucr commit /etc/apt/sources.list.d/20_ucs-online-component.list >&3
+	checkapt "http://${username}:${password}@localhost\\(:80\\)\\?/${repoprefix}/" "${DIRS[0]}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

@@ -1,0 +1,42 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test whether the samba4 replication works"
+## exposure: safe
+## packages:
+##  - univention-samba4
+## roles:
+## - domaincontroller_backup
+## - domaincontroller_slave
+## tags:
+##  - SKIP-UCSSCHOOL
+##  - basic
+##  - apptest
+
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/shares.sh
+. "$TESTLIBPATH/shares.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+# shellcheck source=../../lib/samba.sh
+. "$TESTLIBPATH/samba.sh" || exit 137
+
+#----create User
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+username="$(user_randomname)"
+password=univention
+
+trap 'user_remove "$username"' INT TERM EXIT
+if ! user_create "$username"; then
+	fail_fast 1 "User could not be created"
+fi
+
+wait_for_replication
+wait_for_drs_replication "(sAMAccountName=$username)"
+
+exit $RETVAL

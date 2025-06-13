@@ -1,0 +1,55 @@
+@require "../variables"
+
+.umc .umcMultiInput
+	// reduce spacing between rows
+	.umcMultiInputContainer .umcLabelPane
+		padding-bottom: var(--layout-spacing-unit)
+
+
+	// align add row button to row indention
+	.umcMultiInputAddButton
+		margin: 0 0 0 $labelpane-padding-left
+
+
+	// hide all labels or all but the first row's labels
+	&.umcMultiInput--onlyFirstRowLabels
+		.umcMultiInputContainer:not(:first-child) .umcLabelPane .umcLabelPaneLabelNode
+			display: none
+	&.umcMultiInput--noRowLabels
+		.umcMultiInputContainer .umcLabelPane .umcLabelPaneLabelNode
+			display: none
+
+
+	/* add a padding to the last element of a row */
+	/* and remove the padding when MultiInput is disabled */
+	.umcMultiInputContainer .umcMultiInputLastRowEntry
+		$layoutrow--make-space-for-buttons(1)
+
+	&Disabled
+		.umcMultiInputContainer .umcMultiInputLastRowEntry
+			padding-right: 0
+
+.umc .umcMultiInput
+	box-shadow: inset 2px 0px var(--bgc-inputfield-on-container)
+	margin-left: 2px
+	&.umcMultiInput--noRowLabels
+		padding-top: var(--layout-spacing-unit-small)
+
+.umc .umcPolicyInput
+	margin-left: -($labelpane-padding-left)
+	margin-right: -($labelpane-padding-right)
+	box-shadow: none
+
+/* Improved alignment of umcLabelPane elements in umcMultiInput containers when more than two are present */
+.umc .umcMultiInput > .umcMultiInputContainer:has(.umcLabelPane:nth-of-type(3))
+		display: flex
+		flex-wrap: wrap
+		align-items: end
+		justify-content: space-between
+		margin: calc(2 * var(--layout-spacing-unit)) 0
+
+		.umcLabelPane:has(.umcMultiInputRemoveButton)
+			align-self: end
+
+		.umcLabelPane:has(.dijitCheckBox)
+			align-self: center

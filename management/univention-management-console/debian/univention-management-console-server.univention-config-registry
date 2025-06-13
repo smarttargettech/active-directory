@@ -1,0 +1,103 @@
+Type: multifile
+Multifile: etc/pam.d/univention-management-console
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/00_header
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/50_base
+Variables: auth/methods
+Variables: auth/umc/addon/.*
+Variables: pam/krb5/minimum_uid
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/30_tally
+Variables: auth/faillog
+Variables: auth/faillog/limit
+Variables: auth/faillog/unlock_time
+Variables: auth/faillog/root
+Variables: auth/faillog/lock_global
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/35_oidc
+Variables: hostname
+Variables: domainname
+Variables: ldap/server/sasl/oauthbearer/.*
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/40_saml
+Variables: hostname
+Variables: domainname
+Variables: umc/saml/sp-server
+Variables: umc/saml/grace_time
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/59_auth_end
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/60_account
+Variables: auth/methods
+Variables: pam/krb5/minimum_uid
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/70_session
+
+Type: subfile
+Multifile: etc/pam.d/univention-management-console
+Subfile: etc/pam.d/univention-management-console.d/80_password
+Variables: pam/krb5/ticket_after_pwchange
+Variables: pam/krb5/minimum_uid
+
+Type: file
+File: etc/logrotate.d/univention-management-console
+Variables: logrotate/.*
+
+Type: file
+File: etc/ldap/sasl2/slapd.conf
+Variables: umc/saml/grace_time
+Variables: umc/saml/trusted/sp/.*
+Variables: ldap/server/sasl/mech_list
+Variables: ldap/server/sasl/oauthbearer/.*
+
+Type: file
+File: var/www/univention/meta.json
+Variables: domainname
+Variables: interfaces/
+Variables: locale
+Variables: server/amazon
+Variables: system/setup/showloginmessage
+Variables: umc/http/session/timeout
+Variables: umc/web/.*
+Variables: umc/login/links/.*
+Variables: umc/login/texts/.*
+Variables: umc/server/upload/max
+Variables: license/base
+Variables: uuid/system
+Variables: server/role
+Variables: umc/cookie-banner/.*
+Variables: umc/self-service/profiledata/enabled
+Variables: umc/self-service/allow-authenticated-use
+Variables: umc/self-service/account-registration/frontend/enabled
+Variables: umc/self-service/account-verification/frontend/enabled
+Variables: umc/self-service/passwordchange/frontend/enabled
+Variables: umc/self-service/passwordreset/frontend/enabled
+Variables: umc/self-service/protect-account/frontend/enabled
+Variables: umc/self-service/account-deregistration/enabled
+Variables: umc/self-service/.*/title/.*
+Variables: portal/show-outdated-browser-warning
+Variables: portal/reload-tabs-on-logout
+Variables: umc/web/meta/hide-sensitive-data
+Variables: system/setup/boot/start
+
+Type: file
+File: usr/share/univention-management-console/oidc/oidc.json
+Variables: umc/oidc/.*
+Mode: 600

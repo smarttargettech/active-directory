@@ -1,0 +1,91 @@
+#!/bin/sh
+#
+# postinst file for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2022-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+service univention-directory-listener restart
+
+eval "$(ucr shell server/role ldap/base ldap/hostdn)"
+
+if [ "$server_role" = "domaincontroller_master" ] && dpkg --compare-versions "$2" lt-nl 1.0.0-6; then
+	udm settings/udm_module modify --dn "cn=monitoring/alert,cn=udm_module,cn=univention,$ldap_base" \
+		--set data="$(bzip2 -z -k -c /usr/lib/univention-monitoring-client/udm/alert.py | base64 -w 0)"
+elif [ "$server_role" = "domaincontroller_master" ] && dpkg --compare-versions "$2" lt-nl 1.0.0-2; then
+	udm monitoring/alert modify --ignore_not_exists \
+		--dn "cn=UNIVENTION_SWAP_WARNING,cn=monitoring,$ldap_base" \
+		--set query="(node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) * 100 / node_memory_SwapTotal_bytes > 60"
+	udm monitoring/alert modify --ignore_not_exists \
+		--dn "cn=UNIVENTION_SWAP,cn=monitoring,$ldap_base" \
+		--set query="(node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) * 100 / node_memory_SwapTotal_bytes > 80"
+	udm monitoring/alert modify --ignore_not_exists \
+		--dn "cn=UNIVENTION_SSL_WARNING,cn=monitoring,$ldap_base" \
+		--set query="univention_ssl_certificate_expiry_seconds < 3456000"
+	udm monitoring/alert modify --ignore_not_exists \
+		--dn "cn=UNIVENTION_SSL,cn=monitoring,$ldap_base" \
+		--set query="univention_ssl_certificate_expiry_seconds < 1728000"
+	udm monitoring/alert modify --ignore_not_exists \
+		--dn "cn=UNIVENTION_JOINSTATUS,cn=monitoring,$ldap_base" \
+		--set query="univention_join_status != 0 and univention_join_status != 6" \
+		--set description='Default Service: check if system has been joined successfully
+{{ range query "univention_join_status" }}
+    univention_join_status has value {{.Value}}
+    {{if or (eq .Value -1) (eq .Value 1)}}
+    => /etc/machine.secret not found - system not joined yet?
+    {{end}}
+    {{if (eq .Value 2)}}
+    => ldapsearch auth failed
+    {{end}}
+    {{if (eq .Value 3)}}
+    => ldapsearch auth or TLS failed
+    {{end}}
+    {{if (eq .Value 4)}}
+    => Cannot find /usr/share/univention-join/.joined or /var/univention-join/joined
+    {{end}}
+{{ end }}'
+    udm monitoring/alert create --ignore_not_exists \
+        --position="cn=monitoring,$ldap_base" \
+        --set name="UNIVENTION_JOINSTATUS_WARNING" \
+        --set description='Default Service: check if system has been joined successfully: some join scripts must be called' \
+        --set summary="Default Service: check if system has been joined successfully" \
+        --append labels='"severity" "warning"' \
+        --set query="univention_join_status == 6"
+
+	if udm monitoring/alert list --filter "(&(cn=UNIVENTION_JOINSTATUS)(assignedHosts=$ldap_hostdn))" | grep -q ^DN:; then
+		udm monitoring/alert modify --ignore_not_exists \
+			--dn "cn=UNIVENTION_JOINSTATUS_WARNING,cn=monitoring,$ldap_base" \
+			--append assignedHosts="$ldap_hostdn"
+	fi
+fi
+
+exit 0

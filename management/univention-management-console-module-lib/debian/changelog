@@ -1,0 +1,322 @@
+univention-management-console-module-lib (11.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:48 +0200
+
+univention-management-console-module-lib (11.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:34 +0100
+
+univention-management-console-module-lib (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:19 +0100
+
+univention-management-console-module-lib (10.0.4) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:16 +0100
+
+univention-management-console-module-lib (10.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:30 +0100
+
+univention-management-console-module-lib (10.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:25 +0100
+
+univention-management-console-module-lib (10.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:31 +0100
+
+univention-management-console-module-lib (9.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:46 +0100
+
+univention-management-console-module-lib (9.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:28 +0100
+
+univention-management-console-module-lib (9.0.4-2) unstable; urgency=medium
+
+  * Bug #56201: replace python-notifier and adjust to new UMC module API
+
+ -- Florian Best <best@univention.de>  Tue, 27 Jun 2023 16:16:09 +0200
+
+univention-management-console-module-lib (9.0.4-1) unstable; urgency=medium
+
+  * Bug #43633: remove obsolete references to univention-management-
+    console-web-server systemd service
+
+ -- Florian Best <best@univention.de>  Mon, 12 Jun 2023 08:02:47 +0200
+
+univention-management-console-module-lib (9.0.3-1) unstable; urgency=medium
+
+  * Bug #43633: adjust wording of restarting UMC
+
+ -- Florian Best <best@univention.de>  Sun, 11 Jun 2023 07:52:51 +0200
+
+univention-management-console-module-lib (9.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:40 +0100
+
+univention-management-console-module-lib (9.0.1-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 3 package files
+
+ -- Florian Best <best@univention.de>  Mon, 02 May 2022 12:37:33 +0200
+
+univention-management-console-module-lib (9.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:22 +0200
+
+univention-management-console-module-lib (8.0.2-4) unstable; urgency=medium
+
+  * Bug #51325: delay reboot to finish the request
+
+ -- Florian Best <best@univention.de>  Mon, 25 May 2020 17:44:49 +0200
+
+univention-management-console-module-lib (8.0.2-3) unstable; urgency=medium
+
+  * Bug #51325: fix typos
+
+ -- Florian Best <best@univention.de>  Fri, 22 May 2020 12:12:03 +0200
+
+univention-management-console-module-lib (8.0.2-2) unstable; urgency=medium
+
+  * Bug #51325: Make UMC module python 3 compatible
+
+ -- Florian Best <best@univention.de>  Tue, 19 May 2020 14:39:45 +0200
+
+univention-management-console-module-lib (8.0.2-1) unstable; urgency=medium
+
+  * Bug #49153: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Tue, 08 Oct 2019 18:06:53 +0200
+
+univention-management-console-module-lib (8.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 11:48:00 +0100
+
+univention-management-console-module-lib (8.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:38 +0100
+
+univention-management-console-module-lib (7.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:25 +0100
+
+univention-management-console-module-lib (7.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:24 +0100
+
+univention-management-console-module-lib (6.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:08 +0200
+
+univention-management-console-module-lib (5.0.1-1) unstable; urgency=medium
+
+  * Bug #39578: don't display page reload dialog if a server restart is
+  	required
+
+ -- Florian Best <best@univention.de>  Thu, 29 Oct 2015 15:21:07 +0100
+
+univention-management-console-module-lib (5.0.0-1) unstable; urgency=medium
+
+  * Bug #39227: remove UMC SSO feature
+
+ -- Florian Best <best@univention.de>  Tue, 08 Sep 2015 12:54:26 +0200
+
+univention-management-console-module-lib (4.0.2-3) unstable; urgency=medium
+
+  * Bug #37347: allow a call to lib/server/sso with host=localhost
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 13 Feb 2015 17:56:40 +0100
+
+univention-management-console-module-lib (4.0.2-2) unstable; urgency=medium
+
+  * Bug #36992: don't start progressbar when the command to shutdown the
+  	server failed
+
+ -- Florian Best <best@univention.de>  Fri, 28 Nov 2014 13:30:06 +0100
+
+univention-management-console-module-lib (4.0.2-1) unstable; urgency=medium
+
+  * Bug #35654: correctly initialize empty javascript UMC module definition
+
+ -- Florian Best <best@univention.de>  Mon, 10 Nov 2014 16:20:35 +0100
+
+univention-management-console-module-lib (4.0.1-1) unstable; urgency=medium
+
+  * Bug #36281: add libServer.askShutdown()
+
+ -- Florian Best <best@univention.de>  Thu, 23 Oct 2014 15:13:00 +0200
+
+univention-management-console-module-lib (4.0.0-2) unstable; urgency=low
+
+  * Bug #35145: update copyrights
+
+ -- Florian Best <best@univention.de>  Fri, 29 Aug 2014 11:17:08 +0200
+
+univention-management-console-module-lib (4.0.0-1) unstable; urgency=low
+
+  * Bug #35145: Start UCS 4.0 development
+
+ -- Florian Best <best@univention.de>  Thu, 10 Jul 2014 17:42:25 +0200
+
+univention-management-console-module-lib (3.0.7-2) unstable; urgency=low
+
+  * Bug #34243: reload UMC modules when user cancels the UMC restart
+  	notification
+
+ -- Florian Best <best@univention.de>  Thu, 12 Jun 2014 11:06:21 +0200
+
+univention-management-console-module-lib (3.0.7-1) unstable; urgency=low
+
+  * Bug #24422:
+    - create/add default UMC policy commands
+    - added dependency to shell-univention-lib
+    - updated error message in single sign on
+    - removed useless sanitizer call
+    - use status code 500 instead of 503 (undefined in UMC)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 19 Sep 2013 15:01:57 +0200
+
+univention-management-console-module-lib (3.0.6-2) unstable; urgency=low
+
+  * Bug #24422: create human readable error messages
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 18 Sep 2013 17:11:18 +0200
+
+univention-management-console-module-lib (3.0.6-1) unstable; urgency=low
+
+  * Bug #24422: create human readable error messages
+  * Bug #24422: small fixes
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 18 Sep 2013 16:33:07 +0200
+
+univention-management-console-module-lib (3.0.5-1) unstable; urgency=low
+
+  * Bug #24422: added UMCP command to create a remote UMC session for single sign on
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 01 Aug 2013 16:54:52 +0200
+
+univention-management-console-module-lib (3.0.4-1) unstable; urgency=low
+
+  * Bug #32048: Add keywords to UMC module definition
+
+ -- Florian Best <best@univention.de>  Mon, 09 Sep 2013 13:27:29 +0200
+
+univention-management-console-module-lib (3.0.3-1) unstable; urgency=low
+
+  * Bug #9927: fix fuzzy
+
+ -- Florian Best <best@univention.de>  Thu, 15 Aug 2013 17:18:05 +0200
+
+univention-management-console-module-lib (3.0.2-1) unstable; urgency=low
+
+  * Bug #9927: revert url rename, adapt some texts
+
+ -- Florian Best <best@univention.de>  Thu, 15 Aug 2013 16:59:00 +0200
+
+univention-management-console-module-lib (3.0.1-1) unstable; urgency=low
+
+  * Bug #9927: use a more stable url for pinging
+
+ -- Florian Best <best@univention.de>  Thu, 25 Jul 2013 09:54:03 +0200
+
+univention-management-console-module-lib (3.0.0-1) unstable; urgency=low
+
+  * Bug #9927: Add lib function to reboot / shutdown the server
+
+ -- Florian Best <best@univention.de>  Wed, 24 Jul 2013 16:20:22 +0200
+
+univention-management-console-module-lib (2.0.0-1) unstable; urgency=low
+
+  * Bug #31642: keep session active during dialog for server restart
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 01 Jul 2013 16:37:47 +0200
+
+univention-management-console-module-lib (1.0.4-1) unstable; urgency=low
+
+  * Bug #30577: publish restart actions
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 12 Mar 2013 15:46:41 +0100
+
+univention-management-console-module-lib (1.0.3-1) unstable; urgency=low
+
+  * added minimal lib.js file to avoid warnings at startup; Bug #26857
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 14 Sep 2012 11:57:07 +0200
+
+univention-management-console-module-lib (1.0.2-1) unstable; urgency=low
+
+  * Minor syntax tweaks to make js validation tool happy; Bug #26857
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sat, 08 Sep 2012 22:19:10 +0200
+
+univention-management-console-module-lib (1.0.1-1) unstable; urgency=low
+
+  * version bump; Bug #26857
+
+ -- Florian Best <best@univention.de>  Fri, 07 Sep 2012 12:47:09 +0200
+
+univention-management-console-module-lib (1.0.0-1) unstable; urgency=low
+
+  * ported module to Dojo 1.8; Bug #26857
+
+ -- Florian Best <best@univention.de>  Thu, 06 Sep 2012 12:51:20 +0200
+
+univention-management-console-module-lib (0.1.2-1) unstable; urgency=low
+
+  * adjusted dialog message; Bug #26235
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 05 Jul 2012 17:06:36 +0200
+
+univention-management-console-module-lib (0.1.1-2) unstable; urgency=low
+
+  * fixed package dependencies; Bug #26235
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 03 Jul 2012 12:30:45 +0200
+
+univention-management-console-module-lib (0.1.1-1) unstable; urgency=low
+
+  * added missing translations; Bug #26235
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 03 Jul 2012 10:58:24 +0200
+
+univention-management-console-module-lib (0.1.0-1) unstable; urgency=low
+
+  * Initial release of module with library methods; Bug #26235
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 25 Jun 2012 17:01:14 +0200

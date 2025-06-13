@@ -1,0 +1,133 @@
+[listener/debug/level]
+Description[de]=Diese Variable konfiguriert den Detailgrad der Logausgaben in /var/log/univention/listener.log. Mögliche Werte: 0-4 (0: nur Fehlermeldungen bis 4: alle Debugausgaben).
+Description[en]=This variable configures the verbosity of the log messages in /var/log/univention/listener.log. Possible values: 0-4 (0: only error messages to 4: all debug statements).
+Type=int
+Min=0
+Max=4
+Categories=service-ln
+
+[listener/network/protocol]
+Description[de]=Das verwendete Protokoll für die Verbindung zum Univention Directory Notifier. "ipv4" verwendet nur IPv4, "ipv6" nur IPv6 und "all" probiert beides.
+Description[en]=The protocol used for the connection to the Univention Directory Notifier. "ipv4" uses only IPv4, "ipv6" uses only IPv6 and "all" tries both.
+Type=str
+Categories=service-ln
+
+[listener/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Univention Directory Listener-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Univention Directory Listener service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-ln
+
+[listener/memberuid/skip]
+Description[de]=Ist diese Variable auf 'yes' gesetzt, führt der Univention Directory Listener zusätzliche Konsistenzprüfungen durch, um zu verhindern, das ein Benutzer einer Gruppe mehrfach hinzugefügt wird. Diese Prüfungen können deaktiviert werden, indem die Variablen 'listener/memberuid/skip' und 'listener/uniquemember/skip' auf 'no' gesetzt werden.
+Description[en]=If this variable is set to 'yes', the Univention Directory Listener performs consistency checks to prevent a user name being added into a group multiple times. These checks can be deactivated by setting the variables 'listener/memberuid/skip' and 'listener/uniquemember/skip' to 'no'.
+Type=str
+Categories=service-ln
+
+[listener/uniquemember/skip]
+Description[de]=Ist diese Variable auf 'yes' gesetzt, führt der Univention Directory Listener zusätzliche Konsistenzprüfungen durch, um zu verhindern, das ein Benutzer einer Gruppe mehrfach hinzugefügt wird. Diese Prüfungen können deaktiviert werden, indem die Variablen 'listener/memberuid/skip' und 'listener/uniquemember/skip' auf 'no' gesetzt werden.
+Description[en]=If this variable is set to 'yes', the Univention Directory Listener performs consistency checks to prevent a user name being added into a group multiple times. These checks can be deactivated by setting the variables 'listener/memberuid/skip' and 'listener/uniquemember/skip' to 'no'.
+Type=bool
+Categories=service-ln
+
+[listener/cache/filter]
+Description[de]=LDAP filter string, um das lokale Cachen zu verhindern.
+Description[en]=LDAP filter string to prevent local caching
+Type=str
+Categories=service-ln
+
+[listener/timeout/scans]
+Description[de]=Timeout in Sekunden für lange synchrone LDAP Suchanfragen.
+Description[en]=Timeout in seconds for long running synchronous LDAP search queries.
+Type=int
+Categories=service-ln
+Default=7200
+
+[listener/ldap/retries]
+Description[de]=Anzahl der Versuche zum Verbindungsaufbau zum LDAP-Server im Fall von Fehlern. Zwischen den Versuchen wird ein exponentieller Backoff-Algorithmus verwendet, mit einer maximalen Verzögerung von 32 Sekunden zwischen den Versuchen. D.h. der Default von 6 Versuchen entspricht einem Gesamtzeitraum von gut einer Minute.
+Description[en]=Number of retries to re-connect the LDAP server in case of errors. Between the retry attempts an exponential backoff algorithm is used with a maximal delay of 32 seconds between retry attempts. I.e. the default of 6 retries results in a maximal total retry time of about one minute.
+Type=uint
+Categories=service-ln
+Default=6
+
+[listener/freespace]
+Description[de]=Diese Variable legt die untere Grenze für den freien Speicherplatz in MiB in den Verzeichnissen '/var/lib/univention-ldap/' und '/var/lib/univention-directory-listener/', ab der der Listener gestoppt wird.
+Description[en]=This variable configures the lower limit for free space in MiB in the directories '/var/lib/univention-ldap/' and '/var/lib/univention-directory-listener/', when the Listener will be stopped.
+Type=uint
+Categories=service-ln
+Default=10
+
+[listener/cache/mdb/maxsize]
+Description[de]=Die maximale Größe der Cache-Datenbank in Bytes. Auf 64 Bit Systemen ist der Default 4 GiB. Auf 32 Bit Systemen ist der Default 1.9 GiB.
+Description[en]=The maximum size of the cache database in bytes. On 64 bit systems the default is 4 GiB. On 32 bit systems the default is 1.9 GiB.
+Type=uint
+Categories=service-ln
+
+[listener/module/<name>/deactivate]
+Description[de]=Deaktiviert das Listener Modul <name>, wenn eingeschaltet.
+Description[en]=When enabled, deactivates the listener module <name>.
+Type=bool
+Categories=service-ln
+Default=false
+
+[listener/module/<name>/debug/level]
+Description[de]=Diese Variable konfiguriert den Detailgrad der Logausgaben für das Listener Modul <name> in /var/log/univention/listener_modules/<name>.log. Mögliche Werte: 0-4 (0: nur Fehlermeldungen bis 4: alle Debugausgaben). Standard: 2 (INFO).
+Description[en]=This variable configures the verbosity of the log messages for the listener module <name> in /var/log/univention/listener_modules/<name>.log. Possible values: 0-4 (0: only error messages to 4: all debug statements). Default: 2 (INFO).
+Type=int
+Min=0
+Max=4
+Default=2
+Categories=service-ln
+
+[listener/init/fake/replication/mdb]
+Description[de]=Der Pfad zu einer Lightning Memory Database (LMDB) Datei, die anstatt des Moduls 'replication' für die Initialisierung des LDAP servers verwendet wird. Hat eine höhere Priorität als 'listener/init/fake/replication/ldif'.
+Description[en]=Path to a Lightning Memory Database (LMDB file, which gets used for the LDAP server instead of using the 'replication' module. Has a higher priority than 'listener/init/fake/replication/ldif'.
+Type=str
+Categories=service-ln
+
+[listener/init/fake/replication/ldif]
+Description[de]=Der Pfad zu einer LDAP Data Interchange Format (LDIF) Datei, die anstatt des Moduls 'replication' für die Initialisierung des LDAP servers verwendet wird. Hat eine niedrigere Priorität als 'listener/init/fake/replication/mdb'.
+Description[en]=Path to a LDAP Data Interchange Format (LDIF) file, which gets used for the LDAP server instead of using the 'replication' module. Has a lower priority than 'listener/init/fake/replication/mdb'.
+Type=str
+Categories=service-ln
+
+[listener/init/fake]
+Description[de]=Eine durch Leerzeichen separierte Liste von Listener Modulen, die durch einen alternativen Mechanismus initialisiert werden sollen. Derzeit ist dies nur für das Modul 'replication' umgesetzt, wofür weitere Einstellungen getätigt werden müssen.
+Description[en]=A space separated list of Listener modules, for which an alternative mechanism should be used to initialize them. Currently this is only supported for the module 'replication', which required additional configuration.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-ln
+
+[listener/init/fake/helper]
+Description[de]=Der Pfad zu einem Shell-Datei, über die weitere alternative Mechanismen für die Initialisierung von Module implementiert werden können.
+Description[en]=Path to a shell file, which can be used to implement other alternative Mechanisms to initialize Listener modules.
+Type=str
+Categories=service-ln
+
+[listener/init/fake/cache]
+Description[de]=Der Pfad zu einer Lightning Memory Database (LMDB) Datei, die den Listener-Cache nach der Initialisierung überschreibt.
+Description[en]=Path to a Lightning Memory Database (LMDB) file, which overwrites the Listener cache file after the initialization.
+Type=str
+Categories=service-ln
+
+[listener/init/fake/notifierid/timeout]
+Description[de]=Die Zeitspanne in Sekunden, für die auf die Initialisierung der Listener-Module gewartet wird.
+Description[en]=The time span in seconds, for which the Listener waits for the modules to be initialized.
+Type=uint
+Default=86400
+Categories=service-ln
+
+[logrotate/listener-modules/create]
+Description[de]=Definiert die Fallback-Zugriffsrechte, -Besitzer und -Gruppe der Listener-Module mit der der Logrotate-Mechanismus eine neue Datei anlegt.
+Description[en]=Defines the fallback permissions, file owner and group of the listener module logfiles files created by the logrotate mechanism.
+Type=str
+Default=640 listener adm
+Categories=service-ln
+
+[listener/notifier/retries]
+Description[de]=Anzahl der Versuche zum Verbindungsaufbau zum Notifier-Dienst im Fehlerfall. Zwischen den Versuchen wird ein exponentieller Backoff-Algorithmus verwendet, mit einer maximalen Verzögerung von 32 Sekunden zwischen den Versuchen. D.h. der Default von 30 Versuchen entspricht einem Gesamtzeitraum von ca. 14 Minuten. Zusätzlich wird der Listener im Normalbetrieb vom systemd neu gestartet, falls er sich beendet.
+Description[en]=Number of retries to re-connect the Notivier service in case of errors. Between the retry attempts an exponential backoff algorithm is used with a maximal delay of 32 seconds between retry attempts. I.e. the default of 30 retries results in a maximal total retry time of about 14 Minutes. Additionally during normal operation the Listener gets restarted by systemd in case it terminates.
+Type=uint
+Categories=service-ln
+Default=30

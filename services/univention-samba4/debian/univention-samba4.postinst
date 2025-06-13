@@ -1,0 +1,317 @@
+#!/bin/bash
+#
+# Univention Samba4
+#  postinst script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+. /usr/share/univention-samba4/lib/base.sh
+
+if [ "$1" = "configure" ] && [ -z "$2" ]; then
+	if [ -d '/var/lib/samba' ]; then
+		mkdir -p /var/lib/samba3
+		## backup existing samba3 lib dir
+		cp -a /var/lib/samba/* /var/lib/samba3
+	fi
+fi
+
+#DEBHELPER#
+
+eval "$(univention-config-registry shell)"
+
+dpkg-statoverride --update --add root root 0750 /var/log/samba || true
+
+
+if [ -z "$2" ]; then
+	mkdir -p /home/groups
+
+	mkdir -p /etc/univention/skel/windows-profiles
+	for dname in Win95 WinNT Win2k WinXP Win2K3 Vista Vista.V2 default default.V2 default.V3 default.V4 default.V5 default.V6; do
+		mkdir -p /etc/univention/skel/windows-profiles/$dname
+	done
+fi
+
+## samba3 defaults copied from univention-samba
+univention-config-registry set \
+	samba/share/home?yes \
+	samba/share/groups?no \
+	samba/adminusers?"administrator join-backup" \
+	samba/encrypt_passwords?yes \
+	samba/use_spnego?yes \
+	samba/oplocks?yes \
+	samba/kernel_oplocks?yes \
+	samba/large_readwrite?yes \
+	samba/deadtime?15 \
+	samba/read_raw?yes \
+	samba/write_raw?yes \
+	samba/max_xmit?65535 \
+	samba/max_open_files?32808 \
+	samba/getwd_cache?yes \
+	samba/store_dos_attributes?yes \
+	samba/preserve_case?yes \
+	samba/short_preserve_case?yes \
+	samba/guest_account?nobody \
+	samba/map_to_guest?"Bad User" \
+	samba/enable-msdfs?yes \
+	samba/acl/allow/execute/always?yes \
+	samba/register/exclude/interfaces='docker0'
+
+# Set defaults during new installation
+if [ "$1" = "configure" ] && [ -z "$2" ]; then
+	# https://forge.univention.org/bugzilla/show_bug.cgi?id=41057
+	ucr set samba/interfaces?"lo <interfaces/primary>" \
+			samba/interfaces/bindonly?yes
+fi
+
+## more samba3 defaults copied from univention-samba
+if [ "$server_role" != "memberserver" ]
+then
+	if [ -n "$samba_netbios_name" ]
+	then
+		tmphostname=$samba_netbios_name
+	else
+		tmphostname="$hostname"
+	fi
+	univention-config-registry set samba/profileserver?$tmphostname \
+		samba/profilepath?'%U\windows-profiles\%a' \
+		samba/homedirserver?$tmphostname \
+		samba/homedirpath?%U \
+		samba/homedirletter?I
+fi
+
+univention-config-registry set \
+	samba/debug/level?1 \
+	samba4/sysvol/sync/jitter?60 \
+	samba4/service/smb?'s3fs' \
+	samba4/service/nmb?'nmbd' \
+	samba4/ntacl/backend?'native' \
+	samba4/sysvol/sync/setfacl/AU?'false' \
+	samba4/backup/cron?'0 3 * * *'
+
+# configure firewall
+# http://technet.microsoft.com/en-us/library/dd772723%28WS.10%29.aspx
+ucr set security/packetfilter/package/univention-samba4/tcp/389/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/389/all/en="LDAP" \
+		security/packetfilter/package/univention-samba4/udp/389/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/389/all/en="LDAP" \
+		security/packetfilter/package/univention-samba4/tcp/636/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/636/all/en="LDAPS" \
+		security/packetfilter/package/univention-samba4/tcp/53/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/53/all/en="DNS" \
+		security/packetfilter/package/univention-samba4/udp/53/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/53/all/en="DNS" \
+		security/packetfilter/package/univention-samba4/udp/123/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/123/all/en="TIME" \
+		security/packetfilter/package/univention-samba4/tcp/135/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/135/all/en="RPC (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/137:139/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/137:139/all/en="netbios (Samba)" \
+		security/packetfilter/package/univention-samba4/udp/137:139/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/137:139/all/en="netbios (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/445/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/445/all/en="microsoft-ds (Samba)" \
+		security/packetfilter/package/univention-samba4/udp/445/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/445/all/en="microsoft-ds (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/1024/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/1024/all/en="KDM (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/3268/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/3268/all/en="LDAP GC (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/3269/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/3269/all/en="LDAP GC SSL (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/49152:65535/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/49152:65535/all/en="Dynamic RPC Ports (Samba)" \
+		security/packetfilter/package/univention-samba4/tcp/88/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/88/all/en="Kerberos" \
+		security/packetfilter/package/univention-samba4/udp/88/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/88/all/en="Kerberos" \
+		security/packetfilter/package/univention-samba4/tcp/464/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/464/all/en="Kerberos change/set password" \
+		security/packetfilter/package/univention-samba4/udp/464/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/udp/464/all/en="Kerberos change/set password" \
+		security/packetfilter/package/univention-samba4/tcp/749/all="ACCEPT" \
+		security/packetfilter/package/univention-samba4/tcp/749/all/en="Kerberos admin"
+
+[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+
+divert_univention_heimdal_service_cfg() {
+	univention_heimdal_service_cfg='/etc/univention/service.info/services/univention-heimdal-kdc.cfg'
+	dpkg-divert --local --rename \
+		--divert "$univention_heimdal_service_cfg".disabled \
+		--add "$univention_heimdal_service_cfg" || true
+}
+
+run_dbcheck() {
+	backup_name="samba4_update_to_errata4.2-1"
+
+	## run dbcheck on update but backup first.
+	if ! [ -d /var/lib/samba/private ]; then  # Hmm, well
+		return 0
+	fi
+
+	if samba-tool dbcheck --cross-ncs --quiet > /dev/null; then
+		return 0
+	fi
+
+	required_space=$(du -s -B 1024 /var/lib/samba/private | awk '{print $1}')
+	free_space=$(df -P -B 1024 /var/backups | tail -n1 | awk '{print $4}')
+	safety_margin=102400
+	if [ "$free_space" -lt $((required_space + safety_margin)) ]; then
+		echo "ERROR: Not enough space for backup, skipping samba-tool dbcheck --cross-ncs --fix --yes"
+		return 1
+	fi
+
+	backup_id=$(date +%Y%m%d-%H%M%S)
+	backup_dir="/var/backups/$backup_name.$backup_id"
+	if [ -d "$backup_dir" ]; then
+		rm -rf "$backup_dir"
+	fi
+	/etc/init.d/samba stop
+	mkdir "$backup_dir" && \
+	cp -a /var/lib/samba/private "$backup_dir" && \
+	samba-tool dbcheck --cross-ncs --fix --yes \
+	> "/var/backups/$backup_name.log" 2>&1
+	/etc/init.d/samba start
+}
+
+if [ "$1" = "configure" ]; then
+	if [ -z "$2" ]; then
+		univention-config-registry set samba4/autostart="no"
+
+		# only set this for new installations
+		if [ "$server_role" = "domaincontroller_master" ]; then
+			univention-config-registry set samba/domain/master?yes
+		fi
+
+		## New installation, remove leftover samba3.x rc?.d links
+		update-rc.d -f samba remove > /dev/null
+
+		divert_univention_heimdal_service_cfg
+
+	elif [ -n "$2" ]; then
+		### The samba restart should always be done on updates
+		/etc/init.d/samba restart
+
+		## Is the password in secrets.ldb the valid password? In some cases
+		## the password from machine.secret is the correct password.
+		##  https://forge.univention.org/bugzilla/show_bug.cgi?id=26641
+
+		# get the secret from ldb
+		secret="$(ldbsearch -H /var/lib/samba/private/secrets.ldb "flatname=$windows_domain" secret | sed -ne 's|secret: ||p')"
+		# get the host dn
+		dn="$(ldbsearch -H /var/lib/samba/private/sam.ldb "(&(cn=$hostname)(objectClass=computer))" dn | ldapsearch-wrapper | sed -ne 's|^dn: ||p')"
+		if [ -n "$dn" ] && [ -n "$secret" ]; then
+			machine_secret="$(cat /etc/machine.secret)"
+			if [ "$secret" != "$machine_secret" ]; then
+				# try to search with the machine secret in S4 LDAP
+				s_res="$(univention-ldapsearch -s base -H "ldap://$hostname.$domainname:389" -y /etc/machine.secret -D "$dn" dn | ldapsearch-wrapper | sed -ne 's|^dn: ||p')"
+				if [ -n "$s_res" ]; then
+					# the password from machine.secret is the valid password, so change the secrets.ldb
+					echo "Set secret for flatname=$windows_domain,cn=Primary Domains"
+					ldbmodify -H //var/lib/samba/private/secrets.ldb <<-%EOF
+dn: flatname=$windows_domain,cn=Primary Domains
+changetype: modify
+replace: secret
+secret: $machine_secret
+-
+%EOF
+					/etc/init.d/samba restart
+				fi
+			fi
+		fi
+		# Bug 55597 move logfiles to archive directory
+		if dpkg --compare-versions "$2" lt-nl "9.0.11-5"; then
+			mkdir -p /var/log/samba/archive
+			chmod 750 /var/log/samba/archive
+			chown root:adm /var/log/samba/archive
+			mv /var/log/samba/log.samba-dcerpcd.* /var/log/samba/archive/ || true
+			mv /var/log/samba/log.rpcd_*.* /var/log/samba/archive/ || true
+		fi
+
+		# Bug #55686 fix idmap.ldb
+		if dpkg --compare-versions "$2" lt-nl "9.0.11-6"; then
+			if ldbsearch -H /var/lib/samba/private/idmap.ldb "xidNumber=b*" xidnumber | grep -q ^dn:; then
+				echo "Fixing Bug #55686 related xidnumber records in idmap.ldb"
+				systemctl stop univention-directory-listener
+				/usr/lib/univention-directory-listener/system/samba4-idmap.py --direct-resync
+				systemctl start univention-directory-listener
+			fi
+		fi
+
+		# Bug #55499 restrict access to /var/univention-backup/samba
+		if dpkg --compare-versions "$2" lt-nl "9.0.13-7"; then
+			install -o root -g root -m 700 -d /var/univention-backup/samba
+		fi
+	fi
+
+	ntp_socket_dir='/var/lib/samba/ntp_signd'
+	ntp_needs_restart=false
+	if [ ! -d "$ntp_socket_dir" ]; then
+		install -m 750 -g ntpsec -d  "$ntp_socket_dir"
+		ntp_needs_restart=true
+	else
+		if [ "$(stat --printf '%G' "$ntp_socket_dir")" != 'ntpsec' ]; then
+			echo "fixing group ownership of $ntp_socket_dir"
+			chgrp ntpsec "$ntp_socket_dir"
+			ntp_needs_restart=true
+		fi
+
+		mode=$(stat --printf '%a' "$ntp_socket_dir")
+		if [ $((0$mode & 0010)) -ne $((0010)) ]; then
+			echo "fixing group executable bit of $ntp_socket_dir"
+			chmod g+x "$ntp_socket_dir"
+			ntp_needs_restart=true
+		fi
+	fi
+
+	if [ "$ntp_needs_restart" = 'true' ]; then
+		if test -x /etc/init.d/ntpsec; then
+			## simulate a crestart
+			if /etc/init.d/ntpsec status >/dev/null 2>&1; then
+				/etc/init.d/ntpsec restart
+			fi
+		fi
+	fi
+
+	systemctl try-restart univention-directory-listener
+fi
+
+if [ "$1" = "configure" ]; then
+	uinst=/usr/lib/univention-install/04univention-samba4.uinst
+	[ -e "$uinst" ] && rm "$uinst"
+fi
+
+call_joinscript 96univention-samba4.inst
+call_joinscript 98univention-samba4-saml-kerberos.inst
+## cannot call joinscript 98univention-samba4-dns.inst here, maybe the s4-connector did not run yet
+
+exit 0

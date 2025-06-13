@@ -1,0 +1,561 @@
+univention-directory-manager-rest (12.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:49 +0200
+
+univention-directory-manager-rest (12.1.2) unstable; urgency=medium
+
+  * Bug #58252: Revert openapi.json generation improvement because of test failures
+
+ -- Johannes Lohmer <lohmer@univention.de>  Wed, 14 May 2025 13:52:13 +0200
+
+univention-directory-manager-rest (12.1.1) unstable; urgency=medium
+
+  * Bug #58252: Improved openapi.json generation
+    by only ading a .request and .request-patch section
+    for modules that implement them.
+
+ -- Johannes Lohmer <lohmer@univention.de>  Fri, 09 May 2025 09:40:16 +0200
+
+univention-directory-manager-rest (12.1.0) unstable; urgency=medium
+
+  [ Florian Best ]
+  * Bug #57988: allow to set multiple items for multivlaues policies like UCR
+    policies for strict openapi clients
+
+  [ Christian Castens ]
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Florian Best <best@univention.de>  Tue, 01 Apr 2025 12:25:18 +0200
+
+univention-directory-manager-rest (12.0.7) unstable; urgency=medium
+
+  * Bug #57110: create log file with correct permissions
+
+ -- Felix Botner <botner@univention.de>  Mon, 25 Mar 2024 12:22:57 +0100
+
+univention-directory-manager-rest (12.0.5) unstable; urgency=medium
+
+  * Bug #57110: Added guardianInheritedRoles retrieval methods
+
+ -- Juan Pedro Torres Munoz <juan.torres-munoz@univention.de>  Tue, 19 Mar 2024 12:43:49 +0100
+
+univention-directory-manager-rest (12.0.4) unstable; urgency=medium
+
+  * Bug #56735: fix duplicated module packaging
+
+ -- Florian Best <best@univention.de>  Fri, 15 Mar 2024 11:51:05 +0100
+
+univention-directory-manager-rest (12.0.3) unstable; urgency=medium
+
+  * Bug #56735: add async client
+
+ -- Florian Best <best@univention.de>  Thu, 14 Mar 2024 20:50:48 +0100
+
+univention-directory-manager-rest (12.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:32 +0100
+
+univention-directory-manager-rest (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:17 +0100
+
+univention-directory-manager-rest (11.0.7) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:12 +0100
+
+univention-directory-manager-rest (11.0.6) unstable; urgency=medium
+
+  * Bug #55019: enhance moving of objects without sub-objects
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:05 +0100
+
+univention-directory-manager-rest (11.0.5) unstable; urgency=medium
+
+  * Bug #55057: change status code to 202 for move operations
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:04 +0100
+
+univention-directory-manager-rest (11.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:50 +0100
+
+univention-directory-manager-rest (11.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:30 +0100
+
+univention-directory-manager-rest (11.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:20 +0100
+
+univention-directory-manager-rest (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:30 +0100
+
+univention-directory-manager-rest (10.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:45 +0100
+
+univention-directory-manager-rest (10.0.7-11) unstable; urgency=medium
+
+  * Bug #55555: support application/json-patch+json documents
+
+ -- Florian Best <best@univention.de>  Tue, 27 Feb 2024 11:56:36 +0100
+
+univention-directory-manager-rest (10.0.7-10) unstable; urgency=medium
+
+  * Bug #57039: get default LDAP base from UDM module
+
+ -- Felix Botner <botner@univention.de>  Thu, 15 Feb 2024 12:52:54 +0100
+
+univention-directory-manager-rest (10.0.7-9) unstable; urgency=medium
+
+  * Bug #57058: expose static files also via tornado
+
+ -- Florian Best <best@univention.de>  Wed, 14 Feb 2024 15:03:09 +0100
+
+univention-directory-manager-rest (10.0.7-8) unstable; urgency=medium
+
+  * Bug #56970: set default for prefixing log messages to true
+
+ -- Florian Best <best@univention.de>  Tue, 13 Feb 2024 09:56:59 +0100
+
+univention-directory-manager-rest (10.0.7-7) unstable; urgency=medium
+
+  * Bug #56970: prefix log lines with context id of request
+
+ -- Florian Best <best@univention.de>  Mon, 12 Feb 2024 21:10:18 +0100
+
+univention-directory-manager-rest (10.0.7-6) unstable; urgency=medium
+
+  * Bug #49006: Add Bearer HTTP authentication scheme to reference client
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jan 2024 18:20:13 +0100
+
+univention-directory-manager-rest (10.0.7-5) unstable; urgency=medium
+
+  * Bug #49006: Add OAuth 2.0 authorization for UDM REST API
+
+ -- Florian Best <best@univention.de>  Wed, 24 Jan 2024 16:06:32 +0100
+
+univention-directory-manager-rest (10.0.7-4) unstable; urgency=medium
+
+  * Bug #55324: use univention.logging
+
+ -- Florian Best <best@univention.de>  Wed, 10 Jan 2024 17:47:17 +0100
+
+univention-directory-manager-rest (10.0.7-3) unstable; urgency=medium
+
+  * Bug #54338: reload UDM REST API logfiles after logrotation
+
+ -- Florian Best <best@univention.de>  Tue, 02 Jan 2024 10:35:48 +0100
+
+univention-directory-manager-rest (10.0.7-2) unstable; urgency=medium
+
+  * Bug #56714: fix HAL-JSON formatter
+
+ -- Florian Best <best@univention.de>  Sun, 10 Dec 2023 13:37:12 +0100
+
+univention-directory-manager-rest (10.0.7-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+  * Bug #56714: use Jinja and HTMX for the unsupported unofficial web UI
+
+ -- Florian Best <best@univention.de>  Sun, 10 Dec 2023 04:52:21 +0100
+
+univention-directory-manager-rest (10.0.6-15) unstable; urgency=medium
+
+  * Bug #56714: fix access when no "Accept: application/json" is
+    given.
+
+ -- Florian Best <best@univention.de>  Tue, 17 Oct 2023 16:46:31 +0200
+
+univention-directory-manager-rest (10.0.6-13) unstable; urgency=medium
+
+  * Bug #56714: deactivate HTML view of UDM REST API via UCR variable
+
+ -- Florian Best <best@univention.de>  Mon, 16 Oct 2023 21:41:20 +0200
+
+univention-directory-manager-rest (10.0.6-12) unstable; urgency=medium
+
+  * Bug #56734: add error handling for missing properties
+
+ -- Florian Best <best@univention.de>  Mon, 16 Oct 2023 20:22:32 +0200
+
+univention-directory-manager-rest (10.0.6-11) unstable; urgency=medium
+
+  * Bug #56731: allow If-Match for DELETE requests
+  * Bug #56731: add E-Tag in PUT/POST/PATCH responses with no-cache flag
+
+ -- Florian Best <best@univention.de>  Mon, 16 Oct 2023 18:56:38 +0200
+
+univention-directory-manager-rest (10.0.6-10) unstable; urgency=medium
+
+  * Bug #56351 Fix username enumeration in plain login
+
+ -- Johannes Lohmer <lohmer@univention.de>  Wed, 26 Jul 2023 17:08:54 +0200
+
+univention-directory-manager-rest (10.0.6-9) unstable; urgency=medium
+
+  * Bug #56271 Fix shared link reference with deepcopy
+
+ -- Johannes Lohmer <lohmer@univention.de>  Fri, 07 Jul 2023 10:21:19 +0200
+
+univention-directory-manager-rest (10.0.6-8) unstable; urgency=medium
+
+  * Bug #50632: showing IMAP folder names in LDAP with FQDN
+
+ -- Mika Westphal <westphal@univention.de>  Tue, 27 Jun 2023 10:39:25 +0100
+
+univention-directory-manager-rest (10.0.6-7) unstable; urgency=medium
+
+  * Bug #56189: add missing python3-univention-directory-manager-rest-client
+    dependencies
+
+ -- Florian Best <best@univention.de>  Tue, 27 Jun 2023 10:31:29 +0200
+
+univention-directory-manager-rest (10.0.6-6) unstable; urgency=medium
+
+  * Bug #56189: fix accessing objects with UTF-8 character in its DN
+
+ -- Florian Best <best@univention.de>  Tue, 27 Jun 2023 09:00:07 +0200
+
+univention-directory-manager-rest (10.0.6-5) unstable; urgency=medium
+
+  * Bug #55459: fix IP address assignment when network is selected
+
+ -- Florian Best <best@univention.de>  Tue, 20 Jun 2023 11:52:02 +0200
+
+univention-directory-manager-rest (10.0.6-4) unstable; urgency=medium
+
+  * Bug #55632: Removed useless Python 2.7 compatiblity code
+
+ -- Mika Westphal <westphal@univention.de>  Tue, 11 May 2023 16:40:47 +0200
+
+univention-directory-manager-rest (10.0.6-3) unstable; urgency=medium
+
+  * Bug #56051: pass debug level from CLI to child processes
+
+ -- Florian Best <best@univention.de>  Wed, 10 May 2023 21:06:43 +0200
+
+univention-directory-manager-rest (10.0.6-2) unstable; urgency=medium
+
+  * Bug #55551: fix accessing UDM modules with numbers in its name
+
+ -- Florian Best <best@univention.de>  Wed, 19 Apr 2023 11:13:14 +0200
+
+univention-directory-manager-rest (10.0.6-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:39 +0100
+
+univention-directory-manager-rest (10.0.5-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 Jan 2023 09:48:14 +0100
+
+univention-directory-manager-rest (10.0.4-11) unstable; urgency=medium
+
+  * Bug #55446: fix translation of error messages
+
+ -- Florian Best <best@univention.de>  Fri, 16 Dec 2022 14:38:25 +0100
+
+univention-directory-manager-rest (10.0.4-10) unstable; urgency=medium
+
+  * Bug #50249: use HAL response error format
+
+ -- Florian Best <best@univention.de>  Tue, 22 Nov 2022 11:23:26 +0100
+
+univention-directory-manager-rest (10.0.4-9) unstable; urgency=medium
+
+  * Bug #54623: separate LDAP connections for read and write operations,
+    make them individually configurable
+
+ -- Florian Best <best@univention.de>  Thu, 17 Nov 2022 13:53:39 +0100
+
+univention-directory-manager-rest (10.0.4-8) unstable; urgency=medium
+
+  * Bug #55430: prevent duplicated LDAP object receival
+
+ -- Florian Best <best@univention.de>  Wed, 16 Nov 2022 14:37:39 +0100
+
+univention-directory-manager-rest (10.0.4-7) unstable; urgency=medium
+
+  * Bug #55096: enhance OpenAPI schema
+
+ -- Florian Best <best@univention.de>  Thu, 10 Nov 2022 09:44:04 +0100
+
+univention-directory-manager-rest (10.0.4-6) unstable; urgency=medium
+
+  * Bug #55115: fix URI template for search query
+
+ -- Florian Best <best@univention.de>  Mon, 24 Oct 2022 18:24:19 +0200
+
+univention-directory-manager-rest (10.0.4-5) unstable; urgency=medium
+
+  * Bug #55186: set X-Request-Id header for traceability
+
+ -- Florian Best <best@univention.de>  Wed, 19 Oct 2022 10:22:35 +0200
+
+univention-directory-manager-rest (10.0.4-4) unstable; urgency=medium
+
+  * Bug #55224: fix translation of UDM messages
+
+ -- Florian Best <best@univention.de>  Tue, 27 Sep 2022 15:06:08 +0200
+
+univention-directory-manager-rest (10.0.4-3) unstable; urgency=medium
+
+  * Bug #4498: write error messages of UDM REST API CLI to stderr
+
+ -- Florian Best <best@univention.de>  Wed, 10 Aug 2022 21:23:23 +0200
+
+univention-directory-manager-rest (10.0.4-2) unstable; urgency=medium
+
+  * Bug #54273: Include debug script in server_password_change.d/univention-directory-manager-rest subscript
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Tue, 05 Jul 2022 12:25:08 +0200
+
+univention-directory-manager-rest (10.0.4-1) unstable; urgency=medium
+
+  * Bug #54706: split into python3-univention-directory-manager-rest-client
+
+ -- Florian Best <best@univention.de>  Thu, 23 Jun 2022 19:20:50 +0200
+
+univention-directory-manager-rest (10.0.3-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 2 package
+
+ -- Florian Best <best@univention.de>  Tue, 21 Jun 2022 20:53:05 +0200
+
+univention-directory-manager-rest (10.0.2-12) unstable; urgency=medium
+
+  * Bug #54883: use UDM builtin metadata
+
+ -- Florian Best <best@univention.de>  Tue, 21 Jun 2022 20:44:05 +0200
+
+univention-directory-manager-rest (10.0.2-11) unstable; urgency=medium
+
+  * Bug #38762: move widget<>syntax mapping into UDM syntax classes
+
+ -- Florian Best <best@univention.de>  Wed, 20 Apr 2022 00:40:33 +0200
+
+univention-directory-manager-rest (10.0.2-10) unstable; urgency=medium
+
+  * Bug #54438: add features for client
+
+ -- Florian Best <best@univention.de>  Wed, 16 Mar 2022 15:58:18 +0100
+
+univention-directory-manager-rest (10.0.2-9) unstable; urgency=medium
+
+  * Bug #54438: Generate service specific password via udm(rest)
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 15 Mar 2022 19:22:52 +0100
+
+univention-directory-manager-rest (10.0.2-8) unstable; urgency=medium
+
+  * Bug #54063: support more characters for UDM object types
+
+ -- Florian Best <best@univention.de>  Thu, 10 Mar 2022 11:55:10 +0100
+
+univention-directory-manager-rest (10.0.2-7) unstable; urgency=medium
+
+  * Bug #50050: document UCR variable and use UCR default layer
+
+ -- Florian Best <best@univention.de>  Wed, 26 Jan 2022 19:58:15 +0100
+
+univention-directory-manager-rest (10.0.2-6) unstable; urgency=medium
+
+  * Bug #54347: fix creation of object via PUT request
+
+ -- Florian Best <best@univention.de>  Tue, 18 Jan 2022 09:37:59 +0100
+
+univention-directory-manager-rest (10.0.2-5) unstable; urgency=medium
+
+  * Bug #54347: return the entryUUID and DN after object creation
+
+ -- Florian Best <best@univention.de>  Mon, 17 Jan 2022 13:28:17 +0100
+
+univention-directory-manager-rest (10.0.2-4) unstable; urgency=medium
+
+  * Bug #50050: don't start SyncManager during python import
+
+ -- Florian Best <best@univention.de>  Fri, 07 Jan 2022 19:15:36 +0100
+
+univention-directory-manager-rest (10.0.2-3) unstable; urgency=medium
+
+  * Bug #50050: support multiprocessing and shared memory
+
+ -- Florian Best <best@univention.de>  Sat, 18 Dec 2021 00:32:39 +0100
+
+univention-directory-manager-rest (10.0.2-2) unstable; urgency=medium
+
+  * Bug #51721: missing logrotation for directory-manager-rest.log
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Mon, 25 Oct 2021 10:17:11 +0200
+
+univention-directory-manager-rest (10.0.2-1) unstable; urgency=medium
+
+  * Bug #52984: UDM CLI: support modify --ignore-not-exists
+
+ -- Florian Best <best@univention.de>  Wed, 24 Mar 2021 10:26:10 +0100
+
+univention-directory-manager-rest (10.0.1-3) unstable; urgency=medium
+
+  * Bug #52862: fix OpenAPI schema: remove mutual exclusive "example"
+    and "examples"
+
+ -- Florian Best <best@univention.de>  Wed, 03 Mar 2021 13:27:16 +0100
+
+univention-directory-manager-rest (10.0.1-2) unstable; urgency=low
+
+  * Bug #52723: return HTTP 200 when an object creation template was requested
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 03 Feb 2021 15:35:59 +0100
+
+univention-directory-manager-rest (10.0.1-1) unstable; urgency=low
+
+  * Bug #52725: add HTTP 201 as possible response code for modify operation to
+    OpenAPI schema (when moving)
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 03 Feb 2021 15:26:50 +0100
+
+univention-directory-manager-rest (10.0.1-0) unstable; urgency=medium
+
+  * Bug #51685: Migrate to Python 3
+
+ -- Florian Best <best@univention.de>  Tue, 25 Aug 2020 18:37:10 +0200
+
+univention-directory-manager-rest (10.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS 5: Version bump
+
+ -- Florian Best <best@univention.de>  Tue, 25 Aug 2020 18:37:09 +0200
+
+univention-directory-manager-rest (9.0.16-10) unstable; urgency=medium
+
+  * Bug #51685: fix references to objects with umlauts in the DN
+  * Bug #51685: add some more Python 3 compatibility
+
+ -- Florian Best <best@univention.de>  Tue, 25 Aug 2020 18:37:08 +0200
+
+univention-directory-manager-rest (9.0.16-9) unstable; urgency=medium
+
+  * Bug #51090: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 10:47:03 +0200
+
+univention-directory-manager-rest (9.0.16-8) unstable; urgency=medium
+
+  * Bug #50708: password change should restart UDM REST server
+
+ -- Max Christian Pohle <pohle@univention.de>  Thu, 8 Apr 2020 11:43:00 +0200
+
+univention-directory-manager-rest (9.0.16-7) unstable; urgency=medium
+
+  * Bug #50732: Require authentication to access openapi.json, add ucr-variable
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 04 Feb 2020 11:58:02 +0100
+
+univention-directory-manager-rest (9.0.16-6) unstable; urgency=medium
+
+  * Bug #49147: remove unnecessary dependency
+
+ -- Florian Best <best@univention.de>  Wed, 06 Nov 2019 17:32:02 +0100
+
+univention-directory-manager-rest (9.0.16-5) unstable; urgency=medium
+
+  * Bug #49147: add dh-python integration
+
+ -- Florian Best <best@univention.de>  Fri, 18 Oct 2019 10:11:41 +0200
+
+univention-directory-manager-rest (9.0.16-4) unstable; urgency=medium
+
+  * Bug #27816: fix byte encoding of URL's
+
+ -- Florian Best <best@univention.de>  Mon, 23 Sep 2019 15:58:16 +0200
+
+univention-directory-manager-rest (9.0.16-3) unstable; urgency=medium
+
+  * Bug #50245: fix searching for dhcp/host objects
+
+ -- Florian Best <best@univention.de>  Mon, 23 Sep 2019 14:32:12 +0200
+
+univention-directory-manager-rest (9.0.16-2) unstable; urgency=medium
+
+  * Bug #50175: fix URI in object representation
+
+ -- Florian Best <best@univention.de>  Sun, 22 Sep 2019 15:43:02 +0200
+
+univention-directory-manager-rest (9.0.16-1) unstable; urgency=medium
+
+  * Bug #27816: further enhancements for the release
+
+ -- Florian Best <best@univention.de>  Sun, 22 Sep 2019 14:21:13 +0200
+
+univention-directory-manager-rest (9.0.15-8) unstable; urgency=medium
+
+  * Bug #27816: fix CLI client
+
+ -- Florian Best <best@univention.de>  Tue, 17 Sep 2019 14:11:56 +0200
+
+univention-directory-manager-rest (9.0.15-7) unstable; urgency=medium
+
+  * Bug #27816: Bug #50049: enhance OpenAPI schema
+
+ -- Florian Best <best@univention.de>  Tue, 17 Sep 2019 13:52:48 +0200
+
+univention-directory-manager-rest (9.0.15-6) unstable; urgency=medium
+
+  * Bug #27816: Bug #50026: fix default values of properties with replacements
+
+ -- Florian Best <best@univention.de>  Mon, 16 Sep 2019 15:45:07 +0200
+
+univention-directory-manager-rest (9.0.15-5) unstable; urgency=medium
+
+  * Bug #50034: fixed Breaks: in control
+
+ -- Felix Botner <botner@univention.de>  Mon, 16 Sep 2019 13:19:53 +0200
+
+univention-directory-manager-rest (9.0.15-4) unstable; urgency=medium
+
+  * Bug #50034: added Replace and Breaks as mentioned in
+    https://wiki.debian.org/RenamingPackages
+
+ -- Felix Botner <botner@univention.de>  Mon, 16 Sep 2019 13:09:28 +0200
+
+univention-directory-manager-rest (9.0.15-3) unstable; urgency=medium
+
+  * Bug #27816: various enhancements
+
+ -- Florian Best <best@univention.de>  Fri, 13 Sep 2019 19:03:40 +0200
+
+univention-directory-manager-rest (9.0.15-2) unstable; urgency=medium
+
+  * Bug #27816: add missing file
+
+ -- Florian Best <best@univention.de>  Fri, 13 Sep 2019 16:17:03 +0200
+
+univention-directory-manager-rest (9.0.15-1) unstable; urgency=medium
+
+  * Bug #27816: initial release
+
+ -- Florian Best <best@univention.de>  Wed, 11 Sep 2019 16:00:42 +0200

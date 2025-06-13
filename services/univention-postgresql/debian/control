@@ -1,0 +1,43 @@
+Source: univention-postgresql
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.8.2
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev,
+ univention-join-dev,
+
+Package: univention-postgresql
+Architecture: all
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ shell-univention-lib,
+ univention-config,
+ univention-postgresql-15 | univention-postgresql-13 | univention-postgresql-11 | univention-postgresql-9.6 | univention-postgresql-9.4,
+ ${misc:Depends},
+Description: UCS - PostgreSQL configuration
+ This meta-package depends on the package with the configuration for
+ the specific postgresql-*.* package.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-postgresql-15
+Architecture: all
+Depends:
+ postgresql-15,
+ shell-univention-lib,
+ univention-config,
+ ${misc:Depends},
+Description: UCS - PostgreSQL 15 configuration
+ This package contains the configuration for the
+ postgresql-15 package.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

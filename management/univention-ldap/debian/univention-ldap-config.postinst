@@ -1,0 +1,70 @@
+#!/bin/sh
+#
+# Univention LDAP Configuration
+#  postinst script for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+# UCS 4.2-1-errata: add univentionUDMPropertyCopyable to index. Is part of joinscript and can be removed somewhen.
+if [ -x /etc/init.d/slapd ] &&
+	[ -x /usr/share/univention-ldap/ldap_setup_index ] &&
+	[ -e /var/univention-join/joined ] &&
+	[ "$1" = configure ] &&
+	[ -z "$2" ] &&
+	! ucr get ldap/index/eq | tr , '\n' | grep -Fxq univentionUDMPropertyCopyable &&
+	univention-ldapsearch -LLL -o ldif-wrap=no -b cn=Subschema -s base attributeTypes | grep -Fq "NAME 'univentionUDMPropertyCopyable'"
+then
+	if pidof slapd >/dev/null 2>/dev/null
+	then
+		invoke-rc.d slapd stop
+		/usr/share/univention-ldap/ldap_setup_index --add-eq univentionUDMPropertyCopyable
+		invoke-rc.d slapd start
+	else
+		/usr/share/univention-ldap/ldap_setup_index --add-eq univentionUDMPropertyCopyable
+	fi
+fi
+
+if [ "$1" = "configure" ] && [ -z "$2" ]; then
+	if test -x /etc/init.d/slapd; then
+		# start on Primary, slapd may be down by schema-conflicts which are cleared by a new slapd.conf-template
+		server_role=$(ucr get server/role)
+		if [ "$server_role" = "domaincontroller_master" ]
+		then
+			deb-systemd-invoke restart slapd
+		else
+			deb-systemd-invoke try-restart slapd
+		fi
+	fi
+fi
+
+exit 0

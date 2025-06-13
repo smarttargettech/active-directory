@@ -1,0 +1,153 @@
+#!/bin/bash
+#
+# Univention Welcome Screen
+#  start welcome screen
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2015-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+eval "$(ucr shell)"
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/base.sh
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/ucr.sh
+
+
+get_all_ip_addresses () {
+	python3 2>/dev/null -c 'from univention.config_registry.interfaces import Interfaces; print(" https://".join([interface[1]["address"] for interface in Interfaces().all_interfaces]))'
+}
+
+remove_welcome_screen () {
+	# plymouth quit --retain-splash lets the terminal stay in graphics mode.
+	# The terminal needs to be set into text mode again.
+	# See also "man console_ioctl" keyword: KDSETMODE.
+	python3 -c "from fcntl import ioctl; fd = open('/dev/tty0', 'r'); ioctl(fd, 0x4B3A, 0x00);"
+	chvt 1
+}
+
+check_capabilities () {
+	local dev quit=''
+	keyboards=()
+	for dev in /dev/input/event*
+	do
+		[ -c "$dev" ] &&
+			udevadm info --query=property --name "$dev" | grep -Fqx ID_INPUT_KEYBOARD=1 &&
+			keyboards+=("$dev")
+	done
+	[ -n "${keyboards[*]}" ] ||
+		quit="no keyboard found, exiting"
+	[ -e /etc/X11/default-display-manager ] &&
+		quit="a display-manager is installed/configured, exiting"
+	grep -q -w splash /proc/cmdline ||
+		quit="bootsplash deactivated, exiting"
+	is_ucr_false welcome-screen/autostart &&
+		quit="welcome screen disabled, exiting"
+
+	case "${bootsplash_theme:-}" in
+	ucs|ucs-light|ucs-appliance-dark|ucs-appliance-light) ;;
+	*) quit="theme does not support welcome screen, exiting" ;;
+	esac
+	is_ucr_true system/setup/boot/start &&
+		quit="system/setup/boot/start is activated, exiting"
+
+	if [ -n "$quit" ]; then
+		echo "$quit"
+		exit 0
+	fi
+}
+
+start_plymouthd () {
+	plymouthd
+	if ! plymouth --ping; then
+		echo "plymouthd not running. Do nothing and exit."
+		exit 1
+	fi
+
+	# wait three minutes for plymouth startup
+	for _ in $(seq 320); do
+		plymouth --has-active-vt &&
+			return 0
+		sleep 0.5
+	done
+
+	echo "plymouth could not paint on active vt? Do nothing and exit."
+	plymouth quit
+	exit 1
+}
+
+show_welcome_screen () {
+	local lang header console message1 message2 message3 address addresses
+	start_plymouthd
+	echo "going to plymouth welcome screen mode..."
+	lang="${locale_default%%:*}"
+	if [ -n "$lang" ]; then
+		export LC_ALL="$lang"
+	fi
+	export TEXTDOMAINDIR=/usr/share/plymouth/themes/ucs/
+	export TEXTDOMAIN="univention-welcome-screen"
+	if [ "${bootsplash_theme:-}" != "ucs" ] && [ -n "${umc_web_appliance_name:-}" ]; then
+		header="$umc_web_appliance_name Appliance"
+	else
+		header="Univention Corporate Server"
+	fi
+	console="$(gettext "Press any key to open text console")"
+	message1="$(gettext "Open a browser window")"
+	message2="$(gettext "Navigate to the following address:")"
+	message3="$(gettext "Open the web management interface")"
+	address="https://$(get_default_ip_address)"
+	addresses="https://$(get_all_ip_addresses)"
+	# show welcome screen
+	plymouth --show-splash
+	plymouth update --status=univention-welcome
+	plymouth display-message --text="$console"
+	plymouth update --status="univention-welcome:header:$header"
+	plymouth update --status="univention-welcome:message1:$message1"
+	plymouth update --status="univention-welcome:message2:$message2"
+	plymouth update --status="univention-welcome:message3:$message3"
+	plymouth update --status="univention-welcome:address:$address"
+	plymouth update --status="univention-welcome:addresses:$addresses"
+	plymouth update --status="univention-welcome:console:$console"
+	plymouth update --status="univention-welcome:console:$console" # this is not a typo, second call flushes screen
+	plymouth update --status=""
+	plymouth quit --retain-splash
+}
+
+wait_for_key_press () {
+	trap remove_welcome_screen EXIT
+	dd bs=96 if="${keyboards[0]}" of=/dev/null count=1
+	echo "key pressed, good bye"
+	exit 0
+}
+
+check_capabilities
+show_welcome_screen
+( wait_for_key_press ) &
+exit 0

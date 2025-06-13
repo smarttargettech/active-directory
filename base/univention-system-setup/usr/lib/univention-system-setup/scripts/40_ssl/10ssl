@@ -1,0 +1,141 @@
+#!/bin/bash
+#
+# Univention Setup
+#  regenerate SSL certificates
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2009-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck disable=SC2034
+
+force_recreate=false
+
+while [ "$#" -gt 0 ]; do
+	case "$1" in
+		--force-recreate)
+			force_recreate=true
+			shift 1
+			;;
+		*)
+			echo "WARNING: Unknown parameter $1"
+			shift 1
+			;;
+	esac
+done
+
+# shellcheck source=../setup_utils.sh
+. /usr/lib/univention-system-setup/scripts/setup_utils.sh
+
+eval "$(univention-config-registry shell)"
+
+# SSL certificate can only be created on a Primary Directory Node
+[ "$server_role" = "domaincontroller_master" ] ||
+	exit 0
+
+info_header "$0" "$(gettext "Generating SSL certificate")"
+
+changes=()
+for var in ssl/country ssl/state ssl/locality ssl/organization ssl/organizationalunit ssl/common ssl/email
+do
+	new="$(get_profile_var "$var")" ||
+		continue
+	old="$(ucr get "$var")"
+	[ "$old" != "$new" ] ||
+		continue
+	changes+=("$var=$new")
+done
+
+if [ -n "${changes[*]}" ] || "$force_recreate"
+then
+	progress_steps 10
+	progress_next_step 2
+	progress_msg "$(gettext "Backing up old SSL certificate")"
+
+	rm -rf /etc/univention/ssl.orig
+	mv /etc/univention/ssl /etc/univention/ssl.orig
+
+	if ! is_profile_var_true "ad/member"; then
+		# try to set the clock before generating the root CA, otherwise it
+		# is possible that the certificate is not valid at the end of the
+		# installation Bug #13549
+		timeout -k 5 15 rdate time.fu-berlin.de ||
+			timeout -k 5 15 rdate 130.133.1.10 ||
+			true
+	fi
+
+	[ -n "${changes[*]}" ] &&
+		univention-config-registry set "${changes[@]}"
+
+	_certificate_creation_failed() {
+		progress_next_step 10
+		rm -rf /etc/univention/ssl
+		mv /etc/univention/ssl.orig /etc/univention/ssl
+
+		progress_error "$(gettext "The SSL certificate creation failed. The old certificates have been restored.")"
+		exit 1
+	}
+
+	# create new CA und certificates
+	progress_next_step 5
+	progress_msg "$(gettext "Generating SSL CA certificate.")"
+	# shellcheck source=/dev/null
+	. /usr/share/univention-ssl/make-certificates.sh
+	init || _certificate_creation_failed
+
+	progress_next_step 7
+	[ -d /etc/univention/ssl.orig ] && (
+		cd /etc/univention/ssl.orig ||
+			exit 1
+		for cert in *.*/cert.pem
+		do
+			[ -f "$cert" ] ||
+				continue
+			fqdn="${cert%/*}"
+			case "$fqdn" in
+			unassigned-hostname.*) continue ;;
+			*.unassigned-domain) continue ;;
+			esac
+			# shellcheck disable=SC2059
+			progress_msg "$(printf "$(gettext 'Recreate SSL certificate for %s')" "$fqdn")"
+			# shellcheck disable=SC2059
+			univention-certificate new -name "$fqdn" ||
+				progress_error "$(printf "$(gettext 'Could not recreate SSL certificate for %s.')" "$fqdn")"
+			[ "$fqdn" = "${fqdn%.$domainname}" ] ||
+				ln -snf "$fqdn" "/etc/univention/ssl/${fqdn%%.*}"
+		done
+	)
+	progress_next_step 9
+
+	systemctl restart slapd.service apache2.service postfix.service
+
+	progress_next_step 10
+fi
+
+exit 0

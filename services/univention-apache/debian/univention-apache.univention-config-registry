@@ -1,0 +1,81 @@
+Type: file
+File: etc/apache2/conf-available/ucs.conf
+Variables: apache2/maxclients
+Variables: hostname
+Variables: domainname
+Variables: apache2/loglevel
+Variables: apache2/allowoverride
+Variables: apache2/server-limit
+Variables: apache2/start-servers
+Variables: apache2/min-spare-servers
+Variables: apache2/max-spare-servers
+Variables: apache2/max-request-workers
+Variables: apache2/server-signature
+Variables: apache2/server-tokens
+Variables: apache2/server-admin
+
+Type: file
+File: etc/apache2/ucs-sites.conf.d/ucs-sites.conf
+Variables: apache2/startsite
+Variables: apache2/documentroot
+
+Type: multifile
+Multifile: etc/apache2/sites-available/000-default.conf
+
+Type: subfile
+Multifile: etc/apache2/sites-available/000-default.conf
+Subfile: etc/apache2/sites-available/000-default.d/00start
+
+Type: subfile
+Multifile: etc/apache2/sites-available/000-default.conf
+Subfile: etc/apache2/sites-available/000-default.d/99end
+
+Type: file
+File: etc/apache2/mods-available/ssl.conf
+Variables: apache2/ssl/tlsv11
+Variables: apache2/ssl/tlsv12
+Variables: apache2/ssl/tlsv13
+Variables: apache2/ssl/compression
+Variables: apache2/ssl/honorcipherorder
+Variables: apache2/ssl/ciphersuite
+Variables: apache2/ssl/strict-sni-vhost-check
+Variables: apache2/force_https
+Variables: apache2/force_https/exclude/.*
+
+Type: multifile
+Multifile: etc/apache2/sites-available/default-ssl.conf
+
+Type: subfile
+Multifile: etc/apache2/sites-available/default-ssl.conf
+Subfile: etc/apache2/sites-available/ssl.d/00start
+Variables: apache2/ssl/certificate
+Variables: hostname
+Variables: domainname
+Variables: apache2/ssl/key
+Variables: apache2/ssl/ca
+Variables: apache2/ssl/certificatechain
+
+Type: subfile
+Multifile: etc/apache2/sites-available/default-ssl.conf
+Subfile: etc/apache2/sites-available/ssl.d/10hsts
+Variables: apache2/hsts
+Variables: apache2/hsts/max-age
+Variables: apache2/hsts/includeSubDomains
+
+Type: subfile
+Multifile: etc/apache2/sites-available/default-ssl.conf
+Subfile: etc/apache2/sites-available/ssl.d/99end
+
+Type: file
+File: etc/apache2/mods-available/proxy.conf
+Variables: apache2/proxy/access/order
+Variables: apache2/proxy/access/allow
+Variables: apache2/proxy/access/deny
+
+Type: file
+File: etc/apache2/ports.conf
+
+Type: file
+File: var/www/robots.txt
+Variables: ucs/server/robots/allow
+Variables: ucs/server/robots/disallow

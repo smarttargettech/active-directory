@@ -1,0 +1,39 @@
+Source: univention-directory-manager-module-example
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+Standards-Version: 3.7.2
+
+Package: univention-directory-manager-module-example
+Architecture: all
+Depends:
+ shell-univention-lib (>> 1.0.1-1),
+ univention-config,
+ univention-directory-manager-module-example-schema (= ${source:Version}),
+ univention-directory-manager-tools,
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ univention-directory-manager-module-example-schema,
+Description: Univention Directory Manager example module to manage IP phones
+ This package contains an Univention Directory Manager module that
+ demonstrates how custom LDAP objects can be managed with the
+ Univention Directory Manager.
+
+Package: univention-directory-manager-module-example-schema
+Architecture: all
+Depends:
+ univention-config,
+ ${misc:Depends},
+Description: Univention Directory Manager example module to manage IP phones
+ This package contains the LDAP-schema for univention-directory-manager-module-example.
+ .
+ It needs to be installed on the Primary Directory Node to be available for LDAP operations,
+ and is strongly recommended to be installed in the Backup Directory Node to be available
+ in case the Backup Directory Node has to replace the Primary Directory Node (univention-backup2master).

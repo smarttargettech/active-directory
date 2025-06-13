@@ -1,0 +1,2971 @@
+univention-web (6.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:48 +0200
+
+univention-web (6.0.10) unstable; urgency=medium
+
+  * Bug #58279: Fix html escaping of UCR keys in UMC syntax check popup
+
+ -- Arvid Requate <requate@univention.de>  Fri, 16 May 2025 15:45:19 +0200
+
+univention-web (6.0.9-4) unstable; urgency=medium
+
+  * Bug #49001: Correctly encode container names in tree view
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 08 May 2025 10:43:12 +0200
+
+univention-web (6.0.9-3) unstable; urgency=medium
+
+  * Bug #58122: CSS adjustment for MultiInput widget
+
+ -- Christian Castens <castens@univention.de>  Mon, 01 Apr 2025 09:45:33 +0100
+
+univention-web (6.0.9-2) unstable; urgency=medium
+
+  * Bug #58130: Fix for MultiInput not evaluating CheckBox subwidgets to false
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 28 Mar 2025 14:16:22 +0100
+
+univention-web (6.0.9-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:33 +0100
+
+univention-web (6.0.8) unstable; urgency=medium
+
+  * Bug #57856: fix UMC module header logos
+
+ -- Christian Castens <castens@univention.de>  Tue, 14 Jan 2025 15:49:11 +0100
+
+univention-web (6.0.7) unstable; urgency=medium
+
+  * univention/dev/ucs#2562: improve app logo on preview page
+
+ -- Christian Castens <castens@univention.de>  Tue, 17 Dec 2024 15:49:11 +0100
+
+univention-web (6.0.6) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#2495: Adjust license information
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 25 Nov 2024 22:39:11 +0100
+
+univention-web (6.0.5) unstable; urgency=medium
+
+  * Bug #57378 switch product logos
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Jun 2024 16:00:57 +0200
+
+univention-web (6.0.4) unstable; urgency=medium
+
+  * Bug #57192: Fixed cookie creation for UMCLang inside the portal and univention-web
+
+ -- Mika Westphal <westphal@univention.de>  Fri, 19 Apr 2024 09:20:23 +0200
+
+univention-web (6.0.3) unstable; urgency=medium
+
+  * Bug #57083: add QA feedback to the latest portal style changes
+
+ -- Christian Castens <castens@univention.de>  Fri, 15 Mar 2024 15:35:00 +0100
+
+univention-web (6.0.2) unstable; urgency=medium
+
+  * Bug #57083: change the style of the UMC header
+
+ -- Christian Castens <castens@univention.de>  Fri, 08 Mar 2024 00:18:49 +0100
+
+univention-web (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:19 +0100
+
+univention-web (5.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:32 +0100
+
+univention-web (5.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:31 +0100
+
+univention-web (4.0.7-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:46 +0100
+
+univention-web (4.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:29 +0100
+
+univention-web (4.0.5-2) unstable; urgency=medium
+
+  * Bug #56562: retry aborted progress requests up to 5 times before showing
+    an error
+
+ -- Marius Meschter <marius.meschter@univention.de>  Mon, 18 Sep 2023 12:21:23 +0200
+
+univention-web (4.0.5-1) unstable; urgency=medium
+
+  * Bug #56548: keycloak specific settings have been removed from
+    the themes
+
+ -- Felix Botner <botner@univention.de>  Wed, 13 Sep 2023 11:36:25 +0200
+
+univention-web (4.0.4-4) unstable; urgency=medium
+
+  * Bug #55164: Show cookie banner only if configured for current domain
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 11 Sep 2023 17:02:30 +0200
+
+univention-web (4.0.4-3) unstable; urgency=medium
+
+  * Bug #56458: New variables for the default themes: border-radius,
+    button-text-color, login page specific variables
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sun, 20 Aug 2023 16:09:51 +0200
+
+univention-web (4.0.4-2) unstable; urgency=medium
+
+  * Bug #55939: fix text color of disabled UMC text boxes for Safari browser
+
+ -- Christian Castens <castens@univention.de>  Tue, 13 Jun 2023 08:01:11 +0200
+
+univention-web (4.0.4-1) unstable; urgency=medium
+
+  * Bug #43633: adjust UMCP set/ HTTP requests
+
+ -- Florian Best <best@univention.de>  Mon, 12 Jun 2023 07:48:20 +0200
+
+univention-web (4.0.3-3) unstable; urgency=medium
+
+  * Bug #55990:
+    - Add standby animation to widget loading dynamicValues
+    - Added option to prevent search in MultiObjectSelect while search form loads
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 08 May 2023 15:01:11 +0200
+
+univention-web (4.0.3-2) unstable; urgency=medium
+
+  * Bug #55862: Remove unused icons
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 07 Mar 2023 22:18:01 +0100
+
+univention-web (4.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:42 +0100
+
+univention-web (4.0.2-54) unstable; urgency=medium
+
+  * Bug #55378: improve cookie banner usability
+
+ -- Christian Castens <castens@univention.de>  Mon, 12 Dec 2022 16:06:34 +0100
+
+univention-web (4.0.2-53) unstable; urgency=medium
+
+  * Bug #54451: fix checkboxes in Grid not being rendered correctly when
+    scrolling
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 10 Nov 2022 16:48:47 +0100
+
+univention-web (4.0.2-52) unstable; urgency=medium
+
+  * Bug #55107: expose /usr/share/univention-web/themes to enable the
+    import of the Portal css by the univention-app-appliance css
+
+ -- Johannes Lohmer <lohmer@univention.de>  Tue, 30 Aug 2022 12:36:22 +0200
+
+univention-web (4.0.2-51) unstable; urgency=medium
+
+  * Bug #54467: add widget for users/user:mailPrimaryAddress
+
+ -- Florian Best <best@univention.de>  Fri, 22 Apr 2022 01:34:26 +0200
+
+univention-web (4.0.2-50) unstable; urgency=medium
+
+  * Bug #38762: make MultiInput handle all types of widgets and fix
+    _SelectMixin to not transform staticValues into null
+
+ -- Florian Best <best@univention.de>  Fri, 22 Apr 2022 01:19:39 +0200
+
+univention-web (4.0.2-49) unstable; urgency=medium
+
+  * Bug #53678: don't display domain components of path in reverse
+    domain notation
+
+ -- Florian Best <best@univention.de>  Thu, 10 Mar 2022 12:07:31 +0100
+
+univention-web (4.0.2-48) unstable; urgency=medium
+
+  * Bug #54032: Minor translation adjustment
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 23 Feb 2022 10:16:39 +0100
+
+univention-web (4.0.2-47) unstable; urgency=medium
+
+  * Bug #54032: In case login is not finished within 10 seconds, warning
+    message is displayed to the user with link to the help page with
+    common reasons.
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Tue, 14 Dec 2021 13:24:02 +0100
+
+univention-web (4.0.1-43) unstable; urgency=medium
+
+  * Adjust styling for tabs.
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 26 Oct 2021 09:36:54 +0200
+
+univention-web (4.0.1-42) unstable; urgency=medium
+
+  * Bug #53465: replace Expire-caching with Cache-Control "must-
+    revalidate, max-age=..."
+  * Bug #53465: call umc_frontend_new_hash also in univention-web postinst
+
+ -- Florian Best <best@univention.de>  Tue, 05 Oct 2021 12:17:27 +0200
+
+univention-web (4.0.1-41) unstable; urgency=medium
+
+  * Bug #53665: design:
+    - code cleanup
+    - required handling for MultiInput
+    - padding at bottom of modules
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 10 Sep 2021 11:10:36 +0200
+
+univention-web (4.0.1-40) unstable; urgency=medium
+
+  * Bug #53631: fix DateBox/TimeBox to always return NULL for empty
+    strings
+
+ -- Florian Best <best@univention.de>  Thu, 09 Sep 2021 13:41:36 +0200
+
+univention-web (4.0.1-39) unstable; urgency=medium
+
+  * Bug #53665: fix selenium test and setValid for {Date,Time}Box
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 09 Sep 2021 10:31:53 +0200
+
+univention-web (4.0.1-38) unstable; urgency=medium
+
+  * Bug #53665: UCS 5 design adjustments  + changes for ucs-school
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Sep 2021 09:58:54 +0200
+
+univention-web (4.0.1-37) unstable; urgency=medium
+
+  * Bug #53728: hide 'Login'/'Logout' menu entry on login site
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 31 Aug 2021 12:31:13 +0200
+
+univention-web (4.0.1-36) unstable; urgency=medium
+
+  * Bug #53390: move some css vars out of theme file
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 21 Jun 2021 17:13:36 +0200
+
+univention-web (4.0.1-35) unstable; urgency=medium
+
+  * Bug #53390: adjust Image widget styling
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 21 Jun 2021 12:56:03 +0200
+
+univention-web (4.0.1-34) unstable; urgency=medium
+
+  * Bug #53390: qa feedback
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 21 Jun 2021 12:35:12 +0200
+
+univention-web (4.0.1-33) unstable; urgency=medium
+
+  * Bug #53390: use dark theme as fallback theme
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Jun 2021 14:33:42 +0200
+
+univention-web (4.0.1-32) unstable; urgency=medium
+
+  * Bug #53390: implement light theme
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Jun 2021 13:31:36 +0200
+
+univention-web (4.0.1-31) unstable; urgency=medium
+
+  * Bug #53307: Improved script and documentation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 04 Jun 2021 09:51:36 +0200
+
+univention-web (4.0.1-30) unstable; urgency=medium
+
+  * Bug #53307: Theme switch script
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 03 Jun 2021 10:24:07 +0200
+
+univention-web (4.0.1-29) unstable; urgency=medium
+
+  * Bug #53310: fix regression of saved username being autofilled in firefox
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 26 May 2021 14:11:13 +0200
+
+univention-web (4.0.1-28) unstable; urgency=medium
+
+  * Bug #53217: fix css for open menu
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 10 May 2021 10:09:34 +0200
+
+univention-web (4.0.1-27) unstable; urgency=medium
+
+  * Bug #53217: css adjustments for browser compatibility
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 10 May 2021 10:05:54 +0200
+
+univention-web (4.0.1-26) unstable; urgency=medium
+
+  * Bug #53216: fix text overflow in ProgressBar
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 04 May 2021 09:02:08 +0200
+
+univention-web (4.0.1-25) unstable; urgency=medium
+
+  * Bug #52453: adjust new design
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 27 Apr 2021 10:56:06 +0200
+
+univention-web (4.0.1-24) unstable; urgency=medium
+
+  * Bug #52453:
+    - adjust some error message color
+    - Tree background color on dark background
+    - Uploader button classes
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 14 Apr 2021 09:55:15 +0200
+
+univention-web (4.0.1-23) unstable; urgency=medium
+
+  * Bug #52453: adjust style for ul and ol tags
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 31 Mar 2021 09:01:20 +0200
+
+univention-web (4.0.1-22) unstable; urgency=medium
+
+  * Bug #52453: adjust design
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 25 Mar 2021 17:20:28 +0100
+
+univention-web (4.0.1-21) unstable; urgency=medium
+
+  * Bug #52453: use non breaking space before '*' in labels for required
+    fields
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 25 Mar 2021 14:03:56 +0100
+
+univention-web (4.0.1-20) unstable; urgency=medium
+
+  * Bug #52453: adjust button styling
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 24 Mar 2021 15:02:21 +0100
+
+univention-web (4.0.1-19) unstable; urgency=medium
+
+  * Bug #52453: fix typo
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 23 Mar 2021 08:16:21 +0100
+
+univention-web (4.0.1-18) unstable; urgency=medium
+
+  * Bug #52453: adjust Grid stylings
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 23 Mar 2021 07:25:57 +0100
+
+univention-web (4.0.1-17) unstable; urgency=medium
+
+  * Bug #52453: adjust Wizard styling + misc
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 22 Mar 2021 10:43:25 +0100
+
+univention-web (4.0.1-16) unstable; urgency=medium
+
+  * Bug #52453: adjust variable names
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 16 Mar 2021 12:21:33 +0100
+
+univention-web (4.0.1-15) unstable; urgency=medium
+
+  * Bug #52303: Allow fetching meta.json directly without involving UMC
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 11 Mar 2021 15:42:26 +0100
+
+univention-web (4.0.1-14) unstable; urgency=medium
+
+  * Bug #52453: adjust button row and ContentPane styling
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 08 Mar 2021 18:49:25 +0100
+
+univention-web (4.0.1-13) unstable; urgency=medium
+
+  * Bug #52453: adjust header styling, LiveSearch dark and
+    allow login header in menu be hideable vie menu/Button
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 05 Mar 2021 10:58:03 +0100
+
+univention-web (4.0.1-12) unstable; urgency=medium
+
+  * Bug #52453: adjust font size, spacing and unused styles
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 05 Mar 2021 07:46:55 +0100
+
+univention-web (4.0.1-11) unstable; urgency=medium
+
+  * Bug #52453: adjust styling for Grid
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 16 Feb 2021 15:33:32 +0100
+
+univention-web (4.0.1-10) unstable; urgency=medium
+
+  * Bug #52453: adjust module and dialog styling
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 16 Feb 2021 13:18:20 +0100
+
+univention-web (4.0.1-9) unstable; urgency=medium
+
+  * Bug #52453: mobile tab styling
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 09 Feb 2021 08:09:32 +0100
+
+univention-web (4.0.1-8) unstable; urgency=medium
+
+  * Bug #52453: module specific styling changes
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 29 Jan 2021 11:26:26 +0100
+
+univention-web (4.0.1-7) unstable; urgency=medium
+
+  * Bug #52453: module specific styling changes + misc
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 26 Jan 2021 09:26:17 +0100
+
+univention-web (4.0.1-6) unstable; urgency=medium
+
+  * Bug #52453: module specific styling changes
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 25 Jan 2021 11:36:43 +0100
+
+univention-web (4.0.1-5) unstable; urgency=medium
+
+  * Bug #52453: miscellaneous styling changes
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 22 Jan 2021 12:46:44 +0100
+
+univention-web (4.0.1-4) unstable; urgency=medium
+
+  * Bug #52453: fix App Center install dialog
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 21 Jan 2021 16:07:58 +0100
+
+univention-web (4.0.1-3) unstable; urgency=medium
+
+  * Bug #52453: fix ProgressBar Infinity handling
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 21 Jan 2021 12:33:18 +0100
+
+univention-web (4.0.1-2) unstable; urgency=medium
+
+  * Bug #52453: adjust udm styling
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 21 Jan 2021 11:21:49 +0100
+
+univention-web (4.0.1-1) unstable; urgency=medium
+
+  * Bug #52665: fix XSS vulnerability in Menu
+
+ -- Florian Best <best@univention.de>  Mon, 18 Jan 2021 13:32:57 +0100
+
+univention-web (4.0.0-12) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design:
+    - adjust MultiInput styling
+    - adjust module tab styling
+    - styling for users/user grid view
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 15 Jan 2021 11:05:59 +0100
+
+univention-web (4.0.0-11) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - MultiInput button styling + search form button
+  	alignment
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 12 Jan 2021 00:02:17 +0100
+
+univention-web (4.0.0-10) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - MultiInput, label position and SearchForm
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 11 Jan 2021 12:04:35 +0100
+
+univention-web (4.0.0-9) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - MultiInput / Select / SearchForm
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Dec 2020 08:46:13 +0100
+
+univention-web (4.0.0-8) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - adjust header styling
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 10 Dec 2020 09:14:16 +0100
+
+univention-web (4.0.0-7) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - buttons, overview and performance
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 07 Dec 2020 11:40:35 +0100
+
+univention-web (4.0.0-6) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - Dialog
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 07 Dec 2020 00:05:07 +0100
+
+univention-web (4.0.0-5) unstable; urgency=medium
+
+  * Bug #52453: UCS 5 design - adopt new design
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 01 Dec 2020 17:31:59 +0100
+
+univention-web (4.0.0-4) unstable; urgency=medium
+
+  * Bug #52321: reduce polling of get/session-info
+
+ -- Florian Best <best@univention.de>  Mon, 09 Nov 2020 17:27:02 +0100
+
+univention-web (4.0.0-3) unstable; urgency=medium
+
+  * Bug #42374: Wording - Master -> Primary; Slave -> Replica
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 25 Sep 2020 01:30:21 +0200
+
+univention-web (4.0.0-2) unstable; urgency=medium
+
+  * Bug #44718: fix language cookie setting
+
+ -- Florian Best <best@univention.de>  Mon, 07 Sep 2020 17:57:15 +0200
+
+univention-web (4.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Florian Best <best@univention.de>  Mon, 07 Sep 2020 17:57:14 +0200
+
+univention-web (3.0.5-43) unstable; urgency=medium
+
+  * Bug #51401: fix size of login notices
+
+ -- Florian Best <best@univention.de>  Fri, 04 Sep 2020 12:43:51 +0200
+
+univention-web (3.0.5-42) unstable; urgency=medium
+
+  * Bug #45445: fix "Cannot read property noRedirection of undefined"
+
+ -- Florian Best <best@univention.de>  Wed, 26 Aug 2020 10:40:05 +0200
+
+univention-web (3.0.5-41) unstable; urgency=medium
+
+  * Bug #45445: version bump (3.0.5-40 was already imported to
+  	portal-ucs5-design)
+
+ -- Florian Best <best@univention.de>  Wed, 19 Aug 2020 21:42:40 +0200
+
+univention-web (3.0.5-40) unstable; urgency=medium
+
+  * Bug #45445: add umc.tools.showErrorDialog
+
+ -- Florian Best <best@univention.de>  Wed, 19 Aug 2020 20:38:13 +0200
+
+univention-web (3.0.5-39) unstable; urgency=medium
+
+  * Bug #51753: move outdated browser check to tools and adjust message
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 31 Jul 2020 12:52:42 +0200
+
+univention-web (3.0.5-38) unstable; urgency=medium
+
+  * Bug #51719: ensure deferred is rejected on next alert() (apply
+    feedback from QA)
+
+ -- Florian Best <best@univention.de>  Wed, 29 Jul 2020 12:41:09 +0200
+
+univention-web (3.0.5-37) unstable; urgency=medium
+
+  * Bug #51719: fix displaying of errors in static HTML pages
+
+ -- Florian Best <best@univention.de>  Mon, 27 Jul 2020 14:03:35 +0200
+
+univention-web (3.0.5-36) unstable; urgency=medium
+
+  * Bug #51185: replace 'singlemodule' hash with 'overview' query
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 05 May 2020 06:01:09 +0200
+
+univention-web (3.0.5-35) unstable; urgency=medium
+
+  * Bug #51220: add default menu entries to new portal menu
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 04 May 2020 17:28:09 +0200
+
+univention-web (3.0.5-34) unstable; urgency=medium
+
+  * Bug #51185: added 'singlemodule' hash parameter that allows
+    opening a stripped down UMC without overview and tabs
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 29 Apr 2020 12:28:54 +0200
+
+univention-web (3.0.5-33) unstable; urgency=medium
+
+  * Bug #51180: preparations for new portal
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 28 Apr 2020 14:06:42 +0200
+
+univention-web (3.0.5-32) unstable; urgency=medium
+
+  * Bug #51067: fix syntax error messages not showing up
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 06 Apr 2020 19:44:02 +0200
+
+univention-web (3.0.5-31) unstable; urgency=medium
+
+  * Bug #47845: Fixed typo
+
+ -- Christian Castens <castens@univention.de>  Tue, 14 Jan 2020 14:07:30 +0100
+
+univention-web (3.0.5-30) unstable; urgency=medium
+
+  * Bug #33590: prevent ProgressBar from jumping when text length
+    changes
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 10 Oct 2019 17:26:01 +0200
+
+univention-web (3.0.5-29) unstable; urgency=medium
+
+  * Bug #46790: Make inform vendor on traceback popups hideable
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 05 Sep 2019 09:09:21 +0200
+
+univention-web (3.0.5-28) unstable; urgency=medium
+
+  * Bug #48698: Fix GUI visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 07:10:48 +0200
+
+univention-web (3.0.5-27) unstable; urgency=medium
+
+  * Bug #49768: prevent undefined reference of _headerButtons during creation
+    lifecycle
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 01 Aug 2019 11:11:31 +0200
+
+univention-web (3.0.5-26) unstable; urgency=medium
+
+  * Bug #48002: fix argument position for setTimeout call
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 30 Jul 2019 23:13:32 +0200
+
+univention-web (3.0.5-25) unstable; urgency=medium
+
+  * Bug #48002: make umcpProgressCommand() cancelable
+
+ -- Florian Best <best@univention.de>  Tue, 30 Jul 2019 16:50:47 +0200
+
+univention-web (3.0.5-24) unstable; urgency=medium
+
+  * Bug #48002: allow retry_after == 0
+
+ -- Florian Best <best@univention.de>  Mon, 29 Jul 2019 15:40:15 +0200
+
+univention-web (3.0.5-23) unstable; urgency=medium
+
+  * Bug #48002: make progress interval configurable
+
+ -- Florian Best <best@univention.de>  Mon, 29 Jul 2019 14:03:42 +0200
+
+univention-web (3.0.5-22) unstable; urgency=medium
+
+  * Bug #48811: fix filename
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 25 Jul 2019 12:09:49 +0200
+
+univention-web (3.0.5-21) unstable; urgency=medium
+
+  * Bug #48811: Add SuggestionBox.js
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 25 Jul 2019 11:39:42 +0200
+
+univention-web (3.0.5-20) unstable; urgency=medium
+
+  * Bug #42607: adjust styling of ComboBox inside of SearchForms
+
+ -- Florian Best <best@univention.de>  Tue, 16 Jul 2019 18:50:31 +0200
+
+univention-web (3.0.5-19) unstable; urgency=medium
+
+  * Bug #49731: bell notifications can now be shown non-truncated
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 26 Jun 2019 11:34:57 +0200
+
+univention-web (3.0.5-18) unstable; urgency=medium
+
+  * Bug #49707: changes needed for appcenter-selfservice
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 24 Jun 2019 13:27:45 +0200
+
+univention-web (3.0.5-17) unstable; urgency=medium
+
+  * Bug #47306: fix typo
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 21 Jun 2019 12:06:30 +0200
+
+univention-web (3.0.5-16) unstable; urgency=medium
+
+  * Bug #47306: convert to ES5
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Jun 2019 15:44:37 +0200
+
+univention-web (3.0.5-15) unstable; urgency=medium
+
+  * Bug #47306: add debug methods to umc/tools
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Jun 2019 14:32:46 +0200
+
+univention-web (3.0.5-14) unstable; urgency=medium
+
+  * Bug #45318: make target="_blank" for portal entries configurable
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 27 May 2019 10:22:10 +0200
+
+univention-web (3.0.5-13) unstable; urgency=medium
+
+  * Bug #48812: add dompurify to dojo build
+
+ -- Florian Best <best@univention.de>  Fri, 03 May 2019 12:42:24 +0200
+
+univention-web (3.0.5-12) unstable; urgency=medium
+
+  * Bug #48812: cleanup
+
+ -- Florian Best <best@univention.de>  Thu, 25 Apr 2019 12:32:15 +0200
+
+univention-web (3.0.5-11) unstable; urgency=medium
+
+  * Bug #48812: fix get/set('value')
+
+ -- Florian Best <best@univention.de>  Thu, 25 Apr 2019 12:17:35 +0200
+
+univention-web (3.0.5-10) unstable; urgency=medium
+
+  * Bug #48812: do not load purify during build time
+
+ -- Florian Best <best@univention.de>  Thu, 25 Apr 2019 11:43:00 +0200
+
+univention-web (3.0.5-9) unstable; urgency=medium
+
+  * Bug #48812: fix Cross Site Scripting issue in umc.widgets.Editor which is
+  	used by portal entries
+
+ -- Florian Best <best@univention.de>  Thu, 25 Apr 2019 11:17:20 +0200
+
+univention-web (3.0.5-8) unstable; urgency=medium
+
+  * Bug #46919: add hack for standby animation not showing some
+    milliseconds
+
+ -- Florian Best <best@univention.de>  Fri, 22 Mar 2019 16:16:37 +0100
+
+univention-web (3.0.5-7) unstable; urgency=medium
+
+  * Bug #47646: the PasswordBox can now have a toggle to
+    show the password in clear text
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 21 Mar 2019 16:59:47 +0100
+
+univention-web (3.0.5-6) unstable; urgency=medium
+
+  * Bug #46919: add possibility to enable standby animations during reloading
+  	of dynamic values
+
+ -- Florian Best <best@univention.de>  Thu, 21 Mar 2019 11:57:11 +0100
+
+univention-web (3.0.5-5) unstable; urgency=medium
+
+  * Bug #48995: remove unused imports
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 14 Mar 2019 16:43:20 +0100
+
+univention-web (3.0.5-4) unstable; urgency=medium
+
+  * Bug #48995: adjust require.toUrl() call for dojoConfig.cacheBust
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 14 Mar 2019 15:30:05 +0100
+
+univention-web (3.0.5-3) unstable; urgency=medium
+
+  * Bug #48972: Grids may now auto encode HTML entities
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 12 Mar 2019 17:01:54 +0100
+
+univention-web (3.0.5-2) unstable; urgency=medium
+
+  * Bug #48723: fix grid filter error with empty query
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 06 Mar 2019 18:33:26 +0100
+
+univention-web (3.0.5-1) unstable; urgency=medium
+
+  * Bug #48621: fix styling of CheckBox
+
+ -- Florian Best <best@univention.de>  Wed, 06 Mar 2019 15:54:04 +0100
+
+univention-web (3.0.4-1) unstable; urgency=medium
+
+  * Bug #48621: fix styling of CheckBox
+
+ -- Florian Best <best@univention.de>  Wed, 06 Mar 2019 12:56:11 +0100
+
+univention-web (3.0.3-4) unstable; urgency=medium
+
+  * Bug #48723: don't hide global actions on grid selection
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 05 Mar 2019 18:45:27 +0100
+
+univention-web (3.0.3-3) unstable; urgency=medium
+
+  * Bug #48723: UMC design adjustments
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 04 Mar 2019 09:49:21 +0100
+
+univention-web (3.0.3-2) unstable; urgency=medium
+
+  * Bug #46198: use autocomplete='new-password' for browsers
+    that support it
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 01 Mar 2019 16:30:13 +0100
+
+univention-web (3.0.3-1) unstable; urgency=medium
+
+  * Bug #48621: TitlePanes can be untoggleable now
+
+ -- Florian Best <best@univention.de>  Fri, 01 Mar 2019 13:42:17 +0100
+
+univention-web (3.0.2-5) unstable; urgency=medium
+
+  * Bug #46198: prevent autofill as default for TextBox and PasswordBox
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 28 Feb 2019 18:43:47 +0100
+
+univention-web (3.0.2-4) unstable; urgency=medium
+
+  * Bug #46198 UMC: Fix password auto-fill
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 28 Feb 2019 13:10:07 +0100
+
+univention-web (3.0.2-3) unstable; urgency=medium
+
+  * Bug #48710: fix Uploader.js overwriting value on creation
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 27 Feb 2019 17:33:39 +0100
+
+univention-web (3.0.2-2) unstable; urgency=medium
+
+  * Bug #48621: fix styling of checkboxes
+
+ -- Florian Best <best@univention.de>  Tue, 26 Feb 2019 16:51:23 +0100
+
+univention-web (3.0.2-1) unstable; urgency=medium
+
+  * Bug #48621: fix styling of checkboxes
+
+ -- Florian Best <best@univention.de>  Fri, 22 Feb 2019 18:39:23 +0100
+
+univention-web (3.0.1-3) unstable; urgency=medium
+
+  * Bug #48476: Return deferred when filtering the Grid
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 14:21:35 +0100
+
+univention-web (3.0.1-2) unstable; urgency=medium
+
+  * Bug #48710: move duplicated code in render.js.requiredWidgets()
+    + add function to Form.js to focus first invalid widget
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 21 Feb 2019 11:13:40 +0100
+
+univention-web (3.0.1-1) unstable; urgency=medium
+
+  * Bug #48621: add Anchor widget
+
+ -- Florian Best <best@univention.de>  Wed, 20 Feb 2019 21:13:18 +0100
+
+univention-web (3.0.0-10) unstable; urgency=medium
+
+  * Bug #48546: adjust styling for Editor
+    + add dompurify
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 19 Feb 2019 19:31:11 +0100
+
+univention-web (3.0.0-9) unstable; urgency=medium
+
+  * Bug #48700: Add reworked logo
+
+ -- Ole Schwiegert <schwiegert@univention.de>  Tue, 19 Feb 2019 09:20:05 +0100
+
+univention-web (3.0.0-8) unstable; urgency=medium
+
+  * Bug #48595: Support headers when loading a JSON file
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 14 Feb 2019 13:40:37 +0100
+
+univention-web (3.0.0-7) unstable; urgency=medium
+
+  * Bug #48621: implement app tabs
+
+ -- Florian Best <best@univention.de>  Wed, 13 Feb 2019 13:56:49 +0100
+
+univention-web (3.0.0-6) unstable; urgency=medium
+
+  * Bug #48449: Render new App Center badges correctly
+
+ -- Richard Ulmer <ulmer@univention.de>  Mon, 11 Feb 2019 14:42:00 +0100
+
+univention-web (3.0.0-5) unstable; urgency=medium
+
+  * Bug #48471: make updateActionsVisibility public
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 22 Jan 2019 17:54:20 +0100
+
+univention-web (3.0.0-4) unstable; urgency=medium
+
+  * Bug #48471: fix timing error when updating grid actions
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 22 Jan 2019 17:33:17 +0100
+
+univention-web (3.0.0-3) unstable; urgency=medium
+
+  * Bug #48471: UMC design adjustments
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 17 Jan 2019 16:20:44 +0100
+
+univention-web (3.0.0-2) unstable; urgency=medium
+
+  * Bug #48372: show summit 2019 notification in UCS Core editions
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Dec 2018 18:19:48 +0100
+
+univention-web (3.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:40 +0100
+
+univention-web (2.0.0-30) unstable; urgency=medium
+
+  * Bug #48106: Moved TextBoxMaxLengthChecker to univention-web
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 28 Nov 2018 14:38:30 +0100
+
+univention-web (2.0.0-29) unstable; urgency=medium
+
+  * Bug 45323: Fix wrapping of tree items
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 28 Nov 2018 13:22:59 +0100
+
+univention-web (2.0.0-28) unstable; urgency=medium
+
+  * Bug #47997: Version bump
+
+ -- Ole Schwiegert <schwiegert@univention.de>  Thu, 22 Nov 2018 11:17:23 +0200
+
+univention-web (2.0.0-27) unstable; urgency=medium
+
+  * Bug #47997: Update to dojo version 1.12.4 in package.json
+
+ -- Ole Schwiegert <schwiegert@univention.de>  Tue, 06 Nov 2018 09:51:45 +0200
+
+univention-web (2.0.0-26) unstable; urgency=medium
+
+  * Bug #36624: Add styling for scrollless UMC
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 15 Oct 2018 13:26:34 +0200
+
+univention-web (2.0.0-25) unstable; urgency=medium
+
+  * Bug #45598: improved scrolling for the LDAP directory module
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Sep 2018 16:11:41 +0200
+
+univention-web (2.0.0-24) unstable; urgency=medium
+
+  * Bug #47243: add _setDisabledAttr to LiveSearch
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Sep 2018 12:43:50 +0200
+
+univention-web (2.0.0-23) unstable; urgency=medium
+
+  * Bug #47243: Add custom portal categories
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 10 Sep 2018 12:20:39 +0200
+
+univention-web (2.0.0-22) unstable; urgency=medium
+
+  * Bug #44471: fix class variable that should be instance
+    variable in _SelectMixin.js
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 07 Sep 2018 14:40:40 +0200
+
+univention-web (2.0.0-21) unstable; urgency=medium
+
+  * Bug #47195: Remove trailing comma
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 22 Aug 2018 16:19:32 +0200
+
+univention-web (2.0.0-20) unstable; urgency=medium
+
+  * Bug #47195: Use Intl.Collator in tools.cmpObjects
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 22 Aug 2018 12:35:11 +0200
+
+univention-web (2.0.0-19) unstable; urgency=medium
+
+  * Bug #47201: fix typo
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 18 Jul 2018 14:17:28 +0200
+
+univention-web (2.0.0-18) unstable; urgency=medium
+
+  * Bug #47201: QA feedback
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 18 Jul 2018 12:42:22 +0200
+
+univention-web (2.0.0-17) unstable; urgency=medium
+
+  * Bug #47141: Revert changes from 2.0.0-14
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 17 Jul 2018 12:27:10 +0200
+
+univention-web (2.0.0-16) unstable; urgency=medium
+
+  * Bug #47201: QA feedback
+
+ -- Jannik Ahlers <ahlers@univention.de>  Mon, 16 Jul 2018 13:32:41 +0200
+
+univention-web (2.0.0-15) unstable; urgency=medium
+
+  * Bug #47201: Make DateBox widget convert dates in german format to ISO8601
+
+ -- Jannik Ahlers <ahlers@univention.de>  Fri, 06 Jul 2018 16:36:41 +0200
+
+univention-web (2.0.0-14) unstable; urgency=medium
+
+  * Bug #47141: Reset selection of _SelectMixin if values are updated
+
+ -- Ole Schwiegert <schwiegert@univention.de>  Fri, 22 Jun 2018 08:19:35 +0200
+
+univention-web (2.0.0-13) unstable; urgency=medium
+
+  * Bug #47133: Fix traceback dialogs for 'display_feedback' option
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 13 Jun 2018 17:23:41 +0200
+
+univention-web (2.0.0-12) unstable; urgency=medium
+
+  * Bug #47188: Adjust icons.svg and error.svg for imagemagick
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 13 Jun 2018 15:35:51 +0200
+
+univention-web (2.0.0-11) unstable; urgency=medium
+
+  * Bug #46582: Add tooltip for recommended app badge
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 12 Mar 2018 16:12:10 +0100
+
+univention-web (2.0.0-10) unstable; urgency=medium
+
+  * Bug #46463: Improve click responsiveness for app tiles
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 07 Mar 2018 12:29:13 +0100
+
+univention-web (2.0.0-9) unstable; urgency=medium
+
+  * Bug #46463: Remove portal specific icons
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 05 Mar 2018 17:46:58 +0100
+
+univention-web (2.0.0-8) unstable; urgency=medium
+
+  * Bug #46267: Remove unnecessary dependency on php5-cli
+
+ -- Arvid Requate <requate@univention.de>  Wed, 28 Feb 2018 15:31:51 +0100
+
+univention-web (2.0.0-7) unstable; urgency=medium
+
+  * Bug #46270: Remove unused styling for the portal
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 13 Feb 2018 12:25:28 +0100
+
+univention-web (2.0.0-6) unstable; urgency=medium
+
+  * Bug #46270: Adjustments for UDM portal module
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 09 Feb 2018 20:20:44 +0100
+
+univention-web (2.0.0-5) unstable; urgency=medium
+
+  * Bug #45893: fix typo
+
+ -- Florian Best <best@univention.de>  Thu, 18 Jan 2018 18:37:33 +0100
+
+univention-web (2.0.0-4) unstable; urgency=medium
+
+  * Bug #45076: improve localized sorting performance
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 17 Jan 2018 17:24:08 +0100
+
+univention-web (2.0.0-3) unstable; urgency=medium
+
+  * Bug #45395: Add UCR variable to remove tracebacks from
+    error messages
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 20 Dec 2017 17:34:00 +0100
+
+univention-web (2.0.0-2) unstable; urgency=medium
+
+  * Bug #45893: fix starting of apache during Installation
+
+ -- Florian Best <best@univention.de>  Tue, 19 Dec 2017 10:53:50 +0100
+
+univention-web (2.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:25 +0100
+
+univention-web (1.0.42-65) unstable; urgency=medium
+
+  * Bug #45836: fix typo
+
+ -- Florian Best <best@univention.de>  Fri, 08 Dec 2017 09:47:53 +0100
+
+univention-web (1.0.42-64) unstable; urgency=medium
+
+  * Bug #45836: fix typo
+
+ -- Florian Best <best@univention.de>  Fri, 08 Dec 2017 06:53:35 +0100
+
+univention-web (1.0.42-63) unstable; urgency=medium
+
+  * Bug #45836: Fix import error
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 07 Dec 2017 19:38:05 +0100
+
+univention-web (1.0.42-62) unstable; urgency=medium
+
+  * Bug #45826: fix typo
+
+ -- Florian Best <best@univention.de>  Wed, 06 Dec 2017 18:05:06 +0100
+
+univention-web (1.0.42-61) unstable; urgency=medium
+
+  * Bug #45809: fix typo
+
+ -- Florian Best <best@univention.de>  Wed, 06 Dec 2017 13:12:59 +0100
+
+univention-web (1.0.42-60) unstable; urgency=medium
+
+  * Bug #45809: add an image
+
+ -- Florian Best <best@univention.de>  Wed, 06 Dec 2017 12:28:50 +0100
+
+univention-web (1.0.42-59) unstable; urgency=medium
+
+  * Bug #45809: Adjust button in header
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 05 Dec 2017 15:30:28 +0100
+
+univention-web (1.0.42-58) unstable; urgency=medium
+
+  * Bug #45809: Further adjustments
+
+ -- Florian Best <best@univention.de>  Tue, 05 Dec 2017 13:56:58 +0100
+
+univention-web (1.0.42-57) unstable; urgency=medium
+
+  * Bug #45809: Fix plural forms of de.po
+
+ -- Florian Best <best@univention.de>  Tue, 05 Dec 2017 11:59:15 +0100
+
+univention-web (1.0.42-56) unstable; urgency=medium
+
+  * Bug #45809: display dialog during login about the advantages of using
+    the enterprise edition of UCS
+
+ -- Florian Best <best@univention.de>  Tue, 05 Dec 2017 11:34:53 +0100
+
+univention-web (1.0.42-55) unstable; urgency=medium
+
+  * Bug #44173: Adjust grid header text
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 04 Dec 2017 15:25:36 +0100
+
+univention-web (1.0.42-54) unstable; urgency=medium
+
+  * Bug #44173: Adjust css for grid padding
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 04 Dec 2017 13:13:50 +0100
+
+univention-web (1.0.42-53) unstable; urgency=medium
+
+  * Bug #44173: disabling checkboxes in grid now disables selection counter as
+    well
+
+ -- Jannik Ahlers <ahlers@univention.de>  Thu, 30 Nov 2017 10:14:18 +0100
+
+univention-web (1.0.42-52) unstable; urgency=medium
+
+  * Bug #45461: fix typo
+
+ -- Florian Best <best@univention.de>  Fri, 24 Nov 2017 13:45:20 +0100
+
+univention-web (1.0.42-51) unstable; urgency=medium
+
+  * Bug #45461: don't store username in cookie/localstorage
+
+ -- Florian Best <best@univention.de>  Fri, 24 Nov 2017 13:03:32 +0100
+
+univention-web (1.0.42-50) unstable; urgency=medium
+
+  * Bug #44526: Fix CSS transition for showing/hiding Favorites category
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 13 Oct 2017 13:49:39 +0200
+
+univention-web (1.0.42-49) unstable; urgency=medium
+
+  * Bug #45261: Keep selection when sorting grids or changing grid view
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 12 Oct 2017 15:34:39 +0200
+
+univention-web (1.0.42-48) unstable; urgency=medium
+
+  * Bug #45491: Fix typo
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 09 Oct 2017 15:50:12 +0200
+
+univention-web (1.0.42-47) unstable; urgency=medium
+
+  * Bug #45491: Adjust styling of Calendar widget and add input field for the
+    year
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 09 Oct 2017 14:01:13 +0200
+
+univention-web (1.0.42-46) unstable; urgency=medium
+
+  * Bug #45477: Break long words in the description of gallery items
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 05 Oct 2017 16:53:32 +0200
+
+univention-web (1.0.42-45) unstable; urgency=medium
+
+  * Bug #45281: adjust menu entries
+
+ -- Florian Best <best@univention.de>  Mon, 18 Sep 2017 15:40:50 +0200
+
+univention-web (1.0.42-44) unstable; urgency=medium
+
+  * Bug #45390: add safe default
+
+ -- Florian Best <best@univention.de>  Mon, 18 Sep 2017 15:06:28 +0200
+
+univention-web (1.0.42-43) unstable; urgency=medium
+
+  * Bug #45390: replace username cookie with HTML5 storage
+
+ -- Florian Best <best@univention.de>  Mon, 18 Sep 2017 14:13:24 +0200
+
+univention-web (1.0.42-42) unstable; urgency=medium
+
+  * Bug #43999: Fix collision between identically named css classes
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 15 Sep 2017 17:47:37 +0200
+
+univention-web (1.0.42-41) unstable; urgency=medium
+
+  * Bug #45394: protect /var/www/univention/ against information disclosure by
+  	disabling directory listings
+
+ -- Florian Best <best@univention.de>  Thu, 14 Sep 2017 14:06:42 +0200
+
+univention-web (1.0.42-40) unstable; urgency=medium
+
+  * Bug #45391: remove build-report.txt from debian package
+
+ -- Florian Best <best@univention.de>  Thu, 14 Sep 2017 12:54:11 +0200
+
+univention-web (1.0.42-39) unstable; urgency=medium
+
+  * Bug #43999: Adjust styling of dialogs
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 13 Sep 2017 18:40:31 +0200
+
+univention-web (1.0.42-38) unstable; urgency=medium
+
+  * Bug #44894: allow UMC to be removed on a basesystem
+
+ -- Florian Best <best@univention.de>  Tue, 22 Aug 2017 18:13:08 +0200
+
+univention-web (1.0.42-37) unstable; urgency=medium
+
+  * Bug #43658: fix missing dependency
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 09 Aug 2017 18:03:19 +0200
+
+univention-web (1.0.42-36) unstable; urgency=medium
+
+  * Bug #43658: remove old unused javascript and css code
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 09 Aug 2017 17:49:02 +0200
+
+univention-web (1.0.42-35) unstable; urgency=medium
+
+  * Bug #43658: use full window width for notificationsdropdown on
+    small screens and adjusted NotificationDropDownButton notifications
+    counter
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 09 Aug 2017 17:28:19 +0200
+
+univention-web (1.0.42-34) unstable; urgency=medium
+
+  * Bug #43658: increase time snackbar notifications stay on screen
+    for long messages and show snackbar notifications above standby
+    animations
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 09 Aug 2017 14:11:27 +0200
+
+univention-web (1.0.42-33) unstable; urgency=medium
+
+  * Bug #43658: add shadow to snackbar notifications
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 08 Aug 2017 19:08:31 +0200
+
+univention-web (1.0.42-32) unstable; urgency=medium
+
+  * Bug #43658: fix MouseEvent error due to MouseEvent.path
+    only being available in Chrome
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 08 Aug 2017 19:00:37 +0200
+
+univention-web (1.0.42-31) unstable; urgency=medium
+
+  * Bug #43658: use float instead of flex
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 08 Aug 2017 18:30:16 +0200
+
+univention-web (1.0.42-30) unstable; urgency=medium
+
+  * Bug #43658: add notification counter to NotificationDropDownButton
+    and adjust width of snackbar notifications on small screens
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 08 Aug 2017 17:32:29 +0200
+
+univention-web (1.0.42-29) unstable; urgency=medium
+
+  * Bug #43658: fix non clickable area on bottom of screen, caused
+    by snackbar notifications
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 07 Aug 2017 17:04:12 +0200
+
+univention-web (1.0.42-28) unstable; urgency=medium
+
+  * Bug #43658: adjust styling of action button in snackbar notifications
+    and add copyright notice for google material design and iconmonstr
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 07 Aug 2017 14:54:08 +0200
+
+univention-web (1.0.42-27) unstable; urgency=medium
+
+  * Bug #43658: fix syntax error
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 04 Aug 2017 17:50:19 +0200
+
+univention-web (1.0.42-26) unstable; urgency=medium
+
+  * Bug #43658: adjust design of notifications
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 04 Aug 2017 17:04:24 +0200
+
+univention-web (1.0.42-25) unstable; urgency=medium
+
+  * Bug #44431: fix ellipses in grid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 24 Jul 2017 13:45:42 +0200
+
+univention-web (1.0.42-24) unstable; urgency=medium
+
+  * Bug #44431: fix multiline entries in grid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 24 Jul 2017 10:34:34 +0200
+
+univention-web (1.0.42-23) unstable; urgency=medium
+
+  * Bug #44481: remove padding from grid cells
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 21 Jul 2017 11:56:23 +0200
+
+univention-web (1.0.42-22) unstable; urgency=medium
+
+  * Bug #44481: text content of grid cells is now selectable
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 20 Jul 2017 14:35:45 +0200
+
+univention-web (1.0.42-21) unstable; urgency=medium
+
+  * Bug #19928: add 'Select all' checkbox to MultiSelect widgets
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 19 Jul 2017 15:40:13 +0200
+
+univention-web (1.0.42-20) unstable; urgency=medium
+
+  * Bug #43402: fix disabled text boxes in UMC cards being not
+    distinguishable
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 26 Jun 2017 13:05:33 +0200
+
+univention-web (1.0.42-19) unstable; urgency=medium
+
+  * Bug #44044: Do not show hidden objects in MultiObjectSelect widgets
+    by default
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 20 Jun 2017 19:19:37 +0200
+
+univention-web (1.0.42-18) unstable; urgency=medium
+
+  * Bug #44066: Adapt styling of buttons in policy tab to UCS 4.2 design
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 20 Jun 2017 18:49:28 +0200
+
+univention-web (1.0.42-17) unstable; urgency=medium
+
+  * Bug #44498: escape HTML in progressbar messages
+
+ -- Florian Best <best@univention.de>  Wed, 24 May 2017 12:48:30 +0200
+
+univention-web (1.0.42-16) unstable; urgency=medium
+
+  * Bug #44652: Grid: sortFormatter is now defined at the column
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 23 May 2017 17:43:34 +0200
+
+univention-web (1.0.42-15) unstable; urgency=medium
+
+  * Bug #44652: Grid: API to make the column sorting configurable
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 23 May 2017 13:23:18 +0200
+
+univention-web (1.0.42-14) unstable; urgency=medium
+
+  * Bug #44381: fix link for sending feedback
+
+ -- Florian Best <best@univention.de>  Tue, 16 May 2017 19:29:00 +0200
+
+univention-web (1.0.42-13) unstable; urgency=medium
+
+  * Bug #44527: fix displayTraceback
+
+ -- Florian Best <best@univention.de>  Fri, 05 May 2017 16:54:03 +0200
+
+univention-web (1.0.42-12) unstable; urgency=low
+
+  * Bug #44527: fix displayTraceback
+
+ -- Felix Botner <botner@univention.de>  Thu, 04 May 2017 13:30:38 +0200
+
+univention-web (1.0.42-11) unstable; urgency=low
+
+  * Bug #44527: check info.result.display_feedback in __getErrorHandler and
+    display feedback dialog
+
+ -- Felix Botner <botner@univention.de>  Wed, 03 May 2017 15:08:33 +0200
+
+univention-web (1.0.42-10) unstable; urgency=medium
+
+  * Bug #44361: don't use global dojo variable
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 24 Apr 2017 14:55:42 +0200
+
+univention-web (1.0.42-9) unstable; urgency=medium
+
+  * Bug #44361: sort grid values using locale aware sorting
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 13 Apr 2017 14:19:37 +0200
+
+univention-web (1.0.42-8) unstable; urgency=medium
+
+  * Bug #44179: Grid: Fix subsequent search results after a query error
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 31 Mar 2017 10:26:53 +0200
+
+univention-web (1.0.42-7) unstable; urgency=medium
+
+  * Bug #44070: Recognize GIF as image type
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 31 Mar 2017 01:46:22 +0200
+
+univention-web (1.0.42-6) unstable; urgency=medium
+
+  * Bug #32037: Fix alignment of grid buttons in tile view and
+    adjust the scrollposition that triggers rendering of new items
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 29 Mar 2017 13:57:40 +0200
+
+univention-web (1.0.42-5) unstable; urgency=medium
+
+  * Bug #43531: Fix wrong tree icons in IE 11
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 29 Mar 2017 12:00:29 +0200
+
+univention-web (1.0.42-4) unstable; urgency=medium
+
+  * Bug #43604: Fix return value of umc/tools:loadMetaData()
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Mar 2017 18:17:33 +0200
+
+univention-web (1.0.42-3) unstable; urgency=medium
+
+  * Bug #43977: Only show links to certificates if URI can be deferred
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Mar 2017 14:26:51 +0200
+
+univention-web (1.0.42-2) unstable; urgency=medium
+
+  * Bug #43977: Use dojo/request/xhr in umc/json to handle errors gracefully
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Mar 2017 14:26:18 +0200
+
+univention-web (1.0.42-1) unstable; urgency=medium
+
+  * Bug #42265: make caching for access time instead of last-modified time
+
+ -- Florian Best <best@univention.de>  Tue, 28 Mar 2017 13:44:03 +0200
+
+univention-web (1.0.41-6) unstable; urgency=medium
+
+  * Bug #44059: Fix build errors for include of "login/*"
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Mar 2017 19:47:30 +0200
+
+univention-web (1.0.41-5) unstable; urgency=medium
+
+  * Bug #44059: Ignore the login package during build time
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Mar 2017 19:10:19 +0200
+
+univention-web (1.0.41-4) unstable; urgency=medium
+
+  * Bug #44059: Add extra login button to the header + adjust styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Mar 2017 18:27:57 +0200
+
+univention-web (1.0.41-3) unstable; urgency=medium
+
+  * Bug #42235: Fix undefined reference "tools" in MultiUploader
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Mar 2017 16:51:26 +0200
+
+univention-web (1.0.41-2) unstable; urgency=medium
+
+  * Bug #44059: Fix wrong selection of parent element in tree
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 27 Mar 2017 14:44:01 +0200
+
+univention-web (1.0.41-1) unstable; urgency=medium
+
+  * Bug #43991: correctly html escape all gallery item contents
+
+ -- Florian Best <best@univention.de>  Mon, 27 Mar 2017 13:45:10 +0200
+
+univention-web (1.0.40-22) unstable; urgency=medium
+
+  * Bug #44059: Fix most dialogs not being standby-able
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 27 Mar 2017 13:21:42 +0200
+
+univention-web (1.0.40-21) unstable; urgency=medium
+
+  * Bug #44059: Fix height of input fields in IE
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 24 Mar 2017 19:23:08 +0100
+
+univention-web (1.0.40-20) unstable; urgency=medium
+
+  * Bug #44059: Fix menu entries not being clickable on IE 11
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 24 Mar 2017 17:54:55 +0100
+
+univention-web (1.0.40-19) unstable; urgency=medium
+
+  * Bug #44059: Fix fuzzy entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 15:52:42 +0100
+
+univention-web (1.0.40-18) unstable; urgency=medium
+
+  * Bug #44059: Add website links to default_menu_entries + adjust order
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 15:22:10 +0100
+
+univention-web (1.0.40-17) unstable; urgency=medium
+
+  * Bug #44059: Make sure that focused buttons are visible
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 14:29:04 +0100
+
+univention-web (1.0.40-16) unstable; urgency=medium
+
+  * Bug #44059: Style dialog buttons as flat buttons
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 13:31:44 +0100
+
+univention-web (1.0.40-15) unstable; urgency=medium
+
+  * Bug #44059: Adjust alignment of flat buttons + generalize styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 12:50:35 +0100
+
+univention-web (1.0.40-14) unstable; urgency=medium
+
+  * Bug #44007: move uvmm specific css rules into uvmm module
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 24 Mar 2017 12:13:30 +0100
+
+univention-web (1.0.40-13) unstable; urgency=medium
+
+  * Bug #32027: Grid: cleanup initialization of internal variables
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 24 Mar 2017 11:32:44 +0100
+
+univention-web (1.0.40-12) unstable; urgency=medium
+
+  * Bug #44059: Improve visibility of buttons in grid header
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 10:02:34 +0100
+
+univention-web (1.0.40-11) unstable; urgency=medium
+
+  * Bug #43462: Catch argument errors for translation to avoid UMC errors
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Mar 2017 00:30:39 +0100
+
+univention-web (1.0.40-10) unstable; urgency=medium
+
+  * Bug #44050: Close menu when a menu item is clicked and
+    close all open sub menus when menu is closed
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 23 Mar 2017 19:25:47 +0100
+
+univention-web (1.0.40-9) unstable; urgency=medium
+
+  * Bug #43977: Simplify meta data handling for tools.status()
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Mar 2017 19:09:26 +0100
+
+univention-web (1.0.40-8) unstable; urgency=medium
+
+  * Bug #43977: Move meta.json into UMC server + adjust handling
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Mar 2017 18:51:04 +0100
+
+univention-web (1.0.40-7) unstable; urgency=medium
+
+  * Bug #44007: remember grid scroll position on grid update
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 23 Mar 2017 16:29:49 +0100
+
+univention-web (1.0.40-6) unstable; urgency=medium
+
+  * Bug #44007: fix uvmm grid icons
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 23 Mar 2017 15:34:38 +0100
+
+univention-web (1.0.40-5) unstable; urgency=medium
+
+  * Bug #44007: fix tree icons
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 23 Mar 2017 11:48:35 +0100
+
+univention-web (1.0.40-4) unstable; urgency=medium
+
+  * Bug #43986: fix getItem in grid (2)
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 23 Mar 2017 10:04:30 +0100
+
+univention-web (1.0.40-3) unstable; urgency=medium
+
+  * Bug #43528: make sure that shadow of app tiles is not cut off
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Mar 2017 08:55:29 +0100
+
+univention-web (1.0.40-2) unstable; urgency=medium
+
+  * Bug #44007: add autoExpand option to tree widget
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 22 Mar 2017 18:49:53 +0100
+
+univention-web (1.0.40-1) unstable; urgency=medium
+
+  * Bug #42265: adjust caching time, cache also fonts
+
+ -- Florian Best <best@univention.de>  Wed, 22 Mar 2017 16:11:41 +0100
+
+univention-web (1.0.39-29) unstable; urgency=medium
+
+  * Bug #43985: automatic detection if login state
+
+ -- Florian Best <best@univention.de>  Wed, 22 Mar 2017 14:52:55 +0100
+
+univention-web (1.0.39-28) unstable; urgency=medium
+
+  * Bug #43528: Add missing icon
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Mar 2017 14:39:40 +0100
+
+univention-web (1.0.39-27) unstable; urgency=medium
+
+  * Bug #43528: Fix small gallery names being slightly cut off at the bottom
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 22 Mar 2017 14:14:15 +0100
+
+univention-web (1.0.39-26) unstable; urgency=medium
+
+  * Bug #44004: Fix scroll issue in modules with multiple pages
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 22 Mar 2017 13:34:01 +0100
+
+univention-web (1.0.39-25) unstable; urgency=medium
+
+  * Bug #43528: Add default icon in AppGallery + adjust icon margin
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Mar 2017 12:56:18 +0100
+
+univention-web (1.0.39-24) unstable; urgency=medium
+
+  * Bug #43990: User tile view: Whole tile opens user detail page
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 22 Mar 2017 11:35:27 +0100
+
+univention-web (1.0.39-23) unstable; urgency=medium
+
+  Bug #42235:
+  * Auto detect image type for image widget
+  * Read maximum size for image uploads from UCR variable
+  * Improve display of image uploader
+
+  Bug #44010:
+  * Remove +/- icons from MultiObjectSelect and Uploader widgets
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Mar 2017 03:44:57 +0100
+
+univention-web (1.0.39-22) unstable; urgency=medium
+
+  * Bug #44003: Adjust input fields on login page for IE
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 21 Mar 2017 18:39:07 +0100
+
+univention-web (1.0.39-21) unstable; urgency=medium
+
+  * Bug #44003: Fix UCS logo on login page for IE
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 21 Mar 2017 18:21:00 +0100
+
+univention-web (1.0.39-20) unstable; urgency=medium
+
+  * Bug #43531: Select root element in trees by default
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 21 Mar 2017 18:04:43 +0100
+
+univention-web (1.0.39-19) unstable; urgency=medium
+
+  * Bug #44008: use dom-geometry to get scroll position in grid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 21 Mar 2017 17:58:09 +0100
+
+univention-web (1.0.39-18) unstable; urgency=medium
+
+  * Bug #43531: Adjust styling for trees
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 21 Mar 2017 16:47:15 +0100
+
+univention-web (1.0.39-17) unstable; urgency=medium
+
+  * Bug #32027: fix select all checkbox in grid (indeterminate icon)
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 21 Mar 2017 12:54:05 +0100
+
+univention-web (1.0.39-16) unstable; urgency=medium
+
+  * Bug #43528: Add icon for grid
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 21 Mar 2017 11:56:21 +0100
+
+univention-web (1.0.39-15) unstable; urgency=medium
+
+  * Bug #43986: fix getItem in grid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 21 Mar 2017 10:21:50 +0100
+
+univention-web (1.0.39-14) unstable; urgency=medium
+
+  * Bug #43528: Add flag fullWidth to Page + adjust styling of tiles
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Mar 2017 17:15:39 +0100
+
+univention-web (1.0.39-13) unstable; urgency=medium
+
+  * Bug #43531: Adjust styling for trees
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 20 Mar 2017 16:47:46 +0100
+
+univention-web (1.0.39-12) unstable; urgency=medium
+
+  * Bug #43733: Fix AppCenterGallery for touch devices
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 20 Mar 2017 14:35:25 +0100
+
+univention-web (1.0.39-11) unstable; urgency=medium
+
+  * Bug #43849: Fix AppGallery links being clickable only after animation
+    has finished
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 20 Mar 2017 14:03:42 +0100
+
+univention-web (1.0.39-10) unstable; urgency=medium
+
+  * Bug #43604: Fix JS typos
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Mar 2017 13:00:29 +0100
+
+univention-web (1.0.39-9) unstable; urgency=medium
+
+  * Bug #43528: Fix margins of app icons
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Mar 2017 12:27:18 +0100
+
+univention-web (1.0.39-8) unstable; urgency=medium
+
+  * Bug #43604: Fix UCR variable dependencies for meta.json
+
+ -- Alexander Kläser <klaeser@univention.de>  Sun, 19 Mar 2017 10:31:48 +0100
+
+univention-web (1.0.39-7) unstable; urgency=medium
+
+  * Bug #43604: Move more data into meta.json + improve piwik integration
+
+ -- Alexander Kläser <klaeser@univention.de>  Sat, 18 Mar 2017 23:32:58 +0100
+
+univention-web (1.0.39-6) unstable; urgency=medium
+
+  * Bug #43528: create valid branding.json file
+
+ -- Florian Best <best@univention.de>  Fri, 17 Mar 2017 16:00:29 +0100
+
+univention-web (1.0.39-5) unstable; urgency=medium
+
+  * Bug #32027: remove wrong status messages in grid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 17 Mar 2017 16:04:24 +0100
+
+univention-web (1.0.39-4) unstable; urgency=medium
+
+  * Bug #32027: fix grid lazy rendering
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 16 Mar 2017 17:19:55 +0100
+
+univention-web (1.0.39-3) unstable; urgency=medium
+
+  * Bug #32027: fix window length after tab change
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 16 Mar 2017 17:06:42 +0100
+
+univention-web (1.0.39-2) unstable; urgency=medium
+
+  * Bug #32027: fix select all checkbox in grids
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 16 Mar 2017 16:03:27 +0100
+
+univention-web (1.0.39-1) unstable; urgency=medium
+
+  * Bug #42174: fix handling of 401 error
+
+ -- Florian Best <best@univention.de>  Wed, 15 Mar 2017 19:40:32 +0100
+
+univention-web (1.0.38-2) unstable; urgency=medium
+
+  * Bug #32027: fix comma
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 15 Mar 2017 18:56:47 +0100
+
+univention-web (1.0.38-1) unstable; urgency=medium
+
+  * Bug #42174: adjustments for login dialog
+
+ -- Florian Best <best@univention.de>  Wed, 15 Mar 2017 18:36:56 +0100
+
+univention-web (1.0.37-7) unstable; urgency=medium
+
+  * Bug #43630: grid status information is now shown in the header
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 15 Mar 2017 17:58:20 +0100
+
+univention-web (1.0.37-6) unstable; urgency=medium
+
+  * Bug #32027: fix grid css loading
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 15 Mar 2017 17:51:32 +0100
+
+univention-web (1.0.37-5) unstable; urgency=medium
+
+  * Bug #43864: fix formatter for system/setup software selection
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 15 Mar 2017 13:11:57 +0100
+
+univention-web (1.0.37-4) unstable; urgency=medium
+
+  * Bug #43528: Slight adjustment of user tile styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 14 Mar 2017 22:19:57 +0100
+
+univention-web (1.0.37-3) unstable; urgency=medium
+
+  * Bug #43528: Align user images in tile view of users module
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 14 Mar 2017 22:13:57 +0100
+
+univention-web (1.0.37-2) unstable; urgency=medium
+
+  * Bug #43528: Align header icons + adjust gallery tile styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 14 Mar 2017 22:01:08 +0100
+
+univention-web (1.0.37-1) unstable; urgency=medium
+
+  * Bug #42265: Add default Expires and Cache-Control: max-age values
+
+ -- Florian Best <best@univention.de>  Tue, 14 Mar 2017 19:41:06 +0100
+
+univention-web (1.0.36-14) unstable; urgency=medium
+
+  * Bug #43528: Adjust buttons which are inline in a grid
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 14 Mar 2017 19:28:12 +0100
+
+univention-web (1.0.36-13) unstable; urgency=medium
+
+  * Bug #42263: Fix missing reference to parent menu slide for sub menus
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 14 Mar 2017 18:51:39 +0100
+
+univention-web (1.0.36-12) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling for icons in buttons
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 14 Mar 2017 18:18:19 +0100
+
+univention-web (1.0.36-11) unstable; urgency=medium
+
+  * Bug #32027: Fix grid filter
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 14 Mar 2017 18:12:32 +0100
+
+univention-web (1.0.36-10) unstable; urgency=medium
+
+  * Bug #32027: Fix grid update and formatter
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 14 Mar 2017 18:03:47 +0100
+
+univention-web (1.0.36-9) unstable; urgency=medium
+
+  * Bug #32027: Fix grid for appDetailsPage in app center
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 14 Mar 2017 15:06:05 +0100
+
+univention-web (1.0.36-8) unstable; urgency=medium
+
+  * Bug #42174: Fix build error due to dependency to require
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 13 Mar 2017 18:09:02 +0100
+
+univention-web (1.0.36-7) unstable; urgency=medium
+
+  * Bug #42174: Improve event handling for consecutive login/logout requests
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 13 Mar 2017 17:52:26 +0100
+
+univention-web (1.0.36-6) unstable; urgency=medium
+
+  * Bug #42263: Allow submenus to be added if parent menu does not exist
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 13 Mar 2017 11:55:45 +0100
+
+univention-web (1.0.36-5) unstable; urgency=medium
+
+  * Bug #43695: Added the certificates-menu to the side menu
+
+ -- Richard Ulmer <ulmer@univention.de>  Mon, 13 Mar 2017 11:33:23 +0100
+
+univention-web (1.0.36-4) unstable; urgency=medium
+
+  * Bug #43528: Adjust _resizeItemNames method in GalleryPane
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 10 Mar 2017 17:01:10 +0100
+
+univention-web (1.0.36-3) unstable; urgency=medium
+
+  * Bug #43528: Remove menu entry "Help / UCS start site"
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 10 Mar 2017 15:15:43 +0100
+
+univention-web (1.0.36-2) unstable; urgency=medium
+
+  * Bug #43528: Move 'back to start site' menu entry into univention-web-js
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 10 Mar 2017 15:08:45 +0100
+
+univention-web (1.0.36-1) unstable; urgency=medium
+
+  * Bug #42174: adjust styling of login error messages
+
+ -- Florian Best <best@univention.de>  Fri, 10 Mar 2017 13:16:38 +0100
+
+univention-web (1.0.35-1) unstable; urgency=medium
+
+  * Bug #42174: adjust styling of login error messages
+
+ -- Florian Best <best@univention.de>  Fri, 10 Mar 2017 11:42:32 +0100
+
+univention-web (1.0.34-1) unstable; urgency=medium
+
+  * Bug #43528: make header buttons of widgets shown as child of modules
+    configurable per page
+
+ -- Florian Best <best@univention.de>  Fri, 10 Mar 2017 10:16:14 +0100
+
+univention-web (1.0.33-7) unstable; urgency=medium
+
+  * Bug #43528: Adjust margins for button icons
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 10 Mar 2017 09:25:25 +0100
+
+univention-web (1.0.33-6) unstable; urgency=medium
+
+  * Bug #43528: Remove gradient and border of disabled buttons
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 23:42:46 +0100
+
+univention-web (1.0.33-5) unstable; urgency=medium
+
+  * Bug #43528: Fix errors during dojo build
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 23:04:17 +0100
+
+univention-web (1.0.33-4) unstable; urgency=medium
+
+  * Bug #43528: Adjust gallerypane font weight + use optimize JavaScript build
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 22:39:22 +0100
+
+univention-web (1.0.33-3) unstable; urgency=medium
+
+  * Bug #43509: Use dijitHidden instead of dijitDisplayNone in Wizard
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 22:09:07 +0100
+
+univention-web (1.0.33-2) unstable; urgency=medium
+
+  * Bug #43528: Remove paddings of buttons below a form
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 21:31:46 +0100
+
+univention-web (1.0.33-1) unstable; urgency=medium
+
+  * Bug #43528: make header buttons of widgets shown as child of modules
+  	configurable per page
+
+ -- Florian Best <best@univention.de>  Thu, 09 Mar 2017 16:59:21 +0100
+
+univention-web (1.0.32-1) unstable; urgency=medium
+
+  * Bug #43509: dijitHidden → dijitDisplayNone
+
+ -- Florian Best <best@univention.de>  Thu, 09 Mar 2017 14:42:03 +0100
+
+univention-web (1.0.31-19) unstable; urgency=medium
+
+  * Bug #43528: Add dependency to UCR variable server/role for meta.json
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 14:11:05 +0100
+
+univention-web (1.0.31-18) unstable; urgency=medium
+
+  * Bug #43528: Add server/role to meta.json
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 14:00:02 +0100
+
+univention-web (1.0.31-17) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of PasswordBox placeholders
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 09 Mar 2017 12:21:35 +0100
+
+univention-web (1.0.31-16) unstable; urgency=medium
+
+  * Bug #43528: Make SearchBox disableable and refocus when search icon is
+    clicked + styling of disabled TextBox
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 08 Mar 2017 18:34:02 +0100
+
+univention-web (1.0.31-15) unstable; urgency=medium
+
+  * Bug #43743: fix exception in tools.parseError()
+
+ -- Florian Best <best@univention.de>  Wed, 08 Mar 2017 15:26:40 +0100
+
+univention-web (1.0.31-14) unstable; urgency=medium
+
+  * Bug #42173: Focus first field in dialog.confirmForm() + return references
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Mar 2017 15:14:37 +0100
+
+univention-web (1.0.31-13) unstable; urgency=medium
+
+  * Bug #42172: Adjust FQDN reg exp + add tools.isHostname() check
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Mar 2017 14:52:08 +0100
+
+univention-web (1.0.31-12) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of SearchBox + adjust styling of ComboBox
+    arrow
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 08 Mar 2017 12:58:11 +0100
+
+univention-web (1.0.31-11) unstable; urgency=medium
+
+  * Bug #43528: Make sure not to build again for "make install"
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Mar 2017 11:56:22 +0100
+
+univention-web (1.0.31-10) unstable; urgency=medium
+
+  * Bug #43528: Adjust Makefile to ensure correct image paths
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Mar 2017 11:42:44 +0100
+
+univention-web (1.0.31-9) unstable; urgency=medium
+
+  * Bug #43528: Let submit button of SearchForm be initially hideable
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Mar 2017 19:22:56 +0100
+
+univention-web (1.0.31-8) unstable; urgency=medium
+
+  * Bug #43528: Adjust alignment of search icon in SearchBox widget
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Mar 2017 19:20:40 +0100
+
+univention-web (1.0.31-7) unstable; urgency=medium
+
+  * Bug #43528: Update inline label of text boxes when the value
+    is set via _setValueAttr
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Mar 2017 17:36:59 +0100
+
+univention-web (1.0.31-6) unstable; urgency=medium
+
+  * Bug #42174: load hooks before executing UMC config callback
+
+ -- Florian Best <best@univention.de>  Tue, 07 Mar 2017 16:47:55 +0100
+
+univention-web (1.0.31-5) unstable; urgency=medium
+
+  * Bug #43528: fix tools.isFQDN() (used to accept IP addresses)
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 07 Mar 2017 16:36:53 +0100
+
+univention-web (1.0.31-4) unstable; urgency=medium
+
+  * Bug #42263: Adjust typo in hooks/default_menu_entries.js
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 07 Mar 2017 16:08:38 +0100
+
+univention-web (1.0.31-3) unstable; urgency=medium
+
+  * Bug #42263: Correct menu structure + add close button to menu
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 07 Mar 2017 15:51:49 +0100
+
+univention-web (1.0.31-2) unstable; urgency=medium
+
+  * Bug #43528: ucslint
+
+ -- Florian Best <best@univention.de>  Tue, 07 Mar 2017 14:55:58 +0100
+
+univention-web (1.0.31-1) unstable; urgency=medium
+
+  * Bug #43528: add feedback address to meta.json
+
+ -- Florian Best <best@univention.de>  Tue, 07 Mar 2017 13:33:43 +0100
+
+univention-web (1.0.30-1) unstable; urgency=medium
+
+  * Bug #43743: fixup error messages; svn r77051
+
+ -- Florian Best <best@univention.de>  Tue, 07 Mar 2017 12:41:38 +0100
+
+univention-web (1.0.29-26) unstable; urgency=medium
+
+  * Bug #43528: Fix onClick event for SearchBox + adjust grid view of users
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Mar 2017 11:19:48 +0100
+
+univention-web (1.0.29-25) unstable; urgency=medium
+
+  * Bug #42263: include meta data by default + check login status in hook
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Mar 2017 18:31:42 +0100
+
+univention-web (1.0.29-24) unstable; urgency=medium
+
+  * Bug #43528: Adjust transition for background color of gallery items
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Mar 2017 17:09:00 +0100
+
+univention-web (1.0.29-23) unstable; urgency=medium
+
+  * Bug #43528: Adjust focussing behavior in wizard
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Mar 2017 15:03:11 +0100
+
+univention-web (1.0.29-22) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of focused links in PortalGallery
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 03 Mar 2017 18:07:23 +0100
+
+univention-web (1.0.29-21) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling for links in PortalGallery
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 03 Mar 2017 17:51:15 +0100
+
+univention-web (1.0.29-20) unstable; urgency=medium
+
+  * Bug #43528: Fix display error of progress bars
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 03 Mar 2017 14:55:42 +0100
+
+univention-web (1.0.29-19) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of multi input fields
+    add and remove button
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 03 Mar 2017 14:42:02 +0100
+
+univention-web (1.0.29-18) unstable; urgency=medium
+
+  * Bug #43528: Adjust resizing of AppGallery item names
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 03 Mar 2017 13:50:34 +0100
+
+univention-web (1.0.29-17) unstable; urgency=medium
+
+  * Bug #43528: Add styling for cards + fix select box + buttons
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Mar 2017 13:19:11 +0100
+
+univention-web (1.0.29-16) unstable; urgency=medium
+
+  * Bug #43528: Fix h1 heading alignment
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Mar 2017 09:17:51 +0100
+
+univention-web (1.0.29-15) unstable; urgency=medium
+
+  * Bug #43528: Fix display error of portal categories
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 20:50:00 +0100
+
+univention-web (1.0.29-14) unstable; urgency=medium
+
+  * Bug #43528: Fix typo
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 02 Mar 2017 20:39:03 +0100
+
+univention-web (1.0.29-13) unstable; urgency=medium
+
+  * Bug #43528: Let floating scroll to top button not block module content
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 19:33:25 +0100
+
+univention-web (1.0.29-12) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of wide multi input fields
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 19:27:44 +0100
+
+univention-web (1.0.29-11) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of Grid header more button
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 19:24:52 +0100
+
+univention-web (1.0.29-10) unstable; urgency=medium
+
+  * Bug #43528: Adjust styling of multi input fields
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 16:44:24 +0100
+
+univention-web (1.0.29-9) unstable; urgency=medium
+
+  * Bug #42229: cleanup changeView method
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 02 Mar 2017 15:15:56 +0100
+
+univention-web (1.0.29-8) unstable; urgency=medium
+
+  * Bug #43528: Correct wrong color of left and right border of input fields
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 13:49:17 +0100
+
+univention-web (1.0.29-7) unstable; urgency=medium
+
+  * Bug #43528: Move styling and code for the gallery in the portal
+    and appcenter into univention-web
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 02 Mar 2017 13:17:13 +0100
+
+univention-web (1.0.29-6) unstable; urgency=medium
+
+  * Bug #43528: add isFQDN() check into tools
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Mar 2017 12:50:34 +0100
+
+univention-web (1.0.29-5) unstable; urgency=medium
+
+  * Bug #43528: add isIPAddress() checks into tools
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Mar 2017 11:24:33 +0100
+
+univention-web (1.0.29-4) unstable; urgency=medium
+
+  * Bug #42229: Allow grid view of users with photos being visible
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 01 Mar 2017 18:42:59 +0100
+
+univention-web (1.0.29-3) unstable; urgency=medium
+
+  Bug #43528:
+  * Add username and hostname to umc/widgets/Menu
+  * Adjust styling of umc/widgets/Menu
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 27 Feb 2017 19:27:00 +0100
+
+univention-web (1.0.29-2) unstable; urgency=medium
+
+  * Bug #43528: adjust styling of login page
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 24 Feb 2017 16:27:33 +0100
+
+univention-web (1.0.29-1) unstable; urgency=medium
+
+  * Bug #42174: login dialog
+
+ -- Florian Best <best@univention.de>  Fri, 24 Feb 2017 12:44:04 +0100
+
+univention-web (1.0.28-12) unstable; urgency=medium
+
+  * Bug #42261: do not use standby animation in grid footer, it used a lot of
+    cpu cycles
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 24 Feb 2017 10:28:45 +0100
+
+univention-web (1.0.28-11) unstable; urgency=medium
+
+  * Bug #32027: make initial status message configurable
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 23 Feb 2017 18:22:25 +0100
+
+univention-web (1.0.28-10) unstable; urgency=medium
+
+  * Bug #42263: make menu entries dependent on login state
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Feb 2017 17:01:07 +0100
+
+univention-web (1.0.28-9) unstable; urgency=medium
+
+  * Bug #42174: fix autologin with query string and error appearance during
+    login dialog
+
+ -- Florian Best <best@univention.de>  Thu, 23 Feb 2017 15:10:36 +0100
+
+univention-web (1.0.28-8) unstable; urgency=medium
+
+  Bug #42263:
+  * Fix Makefile due to build problems
+  * Adjust config.js to allow more flexible configuration
+  * Add UCR variable umc/web/hooks/univention-web-js to postinst/prerm
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Feb 2017 12:45:41 +0100
+
+univention-web (1.0.28-7) unstable; urgency=medium
+
+  * Bug #42263: fix fuzzy entry + allow to turn off hooks/menu in config.js
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Feb 2017 11:45:39 +0100
+
+univention-web (1.0.28-6) unstable; urgency=medium
+
+  * Bug #42263: fix build error
+
+ -- Florian Best <best@univention.de>  Thu, 23 Feb 2017 10:48:40 +0100
+
+univention-web (1.0.28-5) unstable; urgency=medium
+
+  * Bug #42263: add generic menu entries
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Feb 2017 03:39:26 +0100
+
+univention-web (1.0.28-4) unstable; urgency=medium
+
+  * Bug #42263: refactor and cleanup umc/widgets/Menu
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Feb 2017 03:36:25 +0100
+
+univention-web (1.0.28-3) unstable; urgency=medium
+
+  * Bug #42263: fix typo
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Feb 2017 14:30:59 +0100
+
+univention-web (1.0.28-2) unstable; urgency=medium
+
+  * Bug #42263: fix typo + always load umc/hooks
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Feb 2017 13:57:33 +0100
+
+univention-web (1.0.28-1) unstable; urgency=medium
+
+  Bug #42263:
+  * Add option to define JavaScript hook modules
+  * Offer interface for editing the global menu via umc/menu
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 22 Feb 2017 13:20:43 +0100
+
+univention-web (1.0.27-1) unstable; urgency=medium
+
+  * Bug #42265: add cacheBust to dojoConfig
+
+ -- Florian Best <best@univention.de>  Tue, 21 Feb 2017 17:49:21 +0100
+
+univention-web (1.0.26-5) unstable; urgency=medium
+
+  * Bug #32027: Fix2: do not show checkboxes if no row should be selected
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 20 Feb 2017 16:32:57 +0100
+
+univention-web (1.0.26-4) unstable; urgency=medium
+
+  * Bug #32027: Fix: do not show checkboxes if no row should be selected
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 20 Feb 2017 14:11:47 +0100
+
+univention-web (1.0.26-3) unstable; urgency=medium
+
+  * Bug #32027: Do not show checkboxes if no row should be selected
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 20 Feb 2017 13:42:47 +0100
+
+univention-web (1.0.26-2) unstable; urgency=medium
+
+  * Bug #42172: revert last changes + fix inline label color in header search
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Feb 2017 13:25:03 +0100
+
+univention-web (1.0.26-1) unstable; urgency=medium
+
+  Bug #42172:
+  * Remove styling for headless mode for setup wizard
+  * Set color of standby overlay to new gray
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 20 Feb 2017 12:25:21 +0100
+
+univention-web (1.0.25-2) unstable; urgency=medium
+
+  * Bug #42266: adjust module header text and styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Sun, 19 Feb 2017 00:34:29 +0100
+
+univention-web (1.0.25-1) unstable; urgency=medium
+
+  * Bug #32027: restore grid footer behavior
+
+ -- Florian Best <best@univention.de>  Sat, 18 Feb 2017 03:17:57 +0100
+
+univention-web (1.0.24-1) unstable; urgency=medium
+
+  * Bug #39731: correctly encode HTML chars to prevent XSS attacks
+
+ -- Florian Best <best@univention.de>  Fri, 17 Feb 2017 14:00:07 +0100
+
+univention-web (1.0.23-1) unstable; urgency=medium
+
+  * Bug #42174: adjust styling of login dialog
+
+ -- Florian Best <best@univention.de>  Thu, 16 Feb 2017 18:49:11 +0100
+
+univention-web (1.0.22-1) unstable; urgency=medium
+
+  * Bug #38370: renew session before switching language in UMC
+
+ -- Florian Best <best@univention.de>  Wed, 15 Feb 2017 14:18:23 +0100
+
+univention-web (1.0.21-1) unstable; urgency=medium
+
+  * Bug #42263: fix building package
+
+ -- Florian Best <best@univention.de>  Tue, 14 Feb 2017 18:20:43 +0100
+
+univention-web (1.0.20-1) unstable; urgency=medium
+
+  * Bug #42263: add a generic umc/Menu
+
+ -- Florian Best <best@univention.de>  Tue, 14 Feb 2017 15:42:20 +0100
+
+univention-web (1.0.19-1) unstable; urgency=medium
+
+  * Bug #42174: styling of login dialog
+
+ -- Florian Best <best@univention.de>  Mon, 13 Feb 2017 18:29:32 +0100
+
+univention-web (1.0.18-2) unstable; urgency=medium
+
+  Bug #42261:
+  * add standbyAnimation to gridfooter when not all entries are loaded
+  * removed unused code
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 10 Feb 2017 11:33:54 +0100
+
+univention-web (1.0.18-1) unstable; urgency=medium
+
+  Bug #42233:
+  * Split LiveSearchSidebar into two classes
+  * Merge code + style for header search from UMC + portal
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Feb 2017 23:58:16 +0100
+
+univention-web (1.0.17-2) unstable; urgency=medium
+
+  * Bug #42261: adjust styling of UDM detailpage and
+    added button to scroll back to top of window
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 08 Feb 2017 16:41:50 +0100
+
+univention-web (1.0.17-1) unstable; urgency=medium
+
+  * Bug #42228: move entries.json to univention-wen meta.json
+
+ -- Florian Best <best@univention.de>  Wed, 08 Feb 2017 11:50:11 +0100
+
+univention-web (1.0.16-1) unstable; urgency=medium
+
+  * Bug #42174: correctly decode uri components in getQuery()
+
+ -- Florian Best <best@univention.de>  Tue, 07 Feb 2017 19:09:55 +0100
+
+univention-web (1.0.15-8) unstable; urgency=medium
+
+  * Bug #42174: split login related things into umc-login package
+
+ -- Florian Best <best@univention.de>  Tue, 07 Feb 2017 18:05:08 +0100
+
+univention-web (1.0.15-7) unstable; urgency=medium
+
+  * Bug #42261: adjust styling of umcHeader
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Feb 2017 14:19:24 +0100
+
+univention-web (1.0.15-6) unstable; urgency=medium
+
+  * Bug #32027: fix translation
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 07 Feb 2017 11:24:11 +0100
+
+univention-web (1.0.15-5) unstable; urgency=medium
+
+  * Bug #32027: fix columns without default actions
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 07 Feb 2017 11:08:21 +0100
+
+univention-web (1.0.15-4) unstable; urgency=medium
+
+  * Bug #32027: fix formatter parameter of grid actions
+
+ -- Florian Best <best@univention.de>  Tue, 07 Feb 2017 10:57:18 +0100
+
+univention-web (1.0.15-3) unstable; urgency=medium
+
+  * Bug #42261: adjust styling of umcHeader
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 06 Feb 2017 19:16:56 +0100
+
+univention-web (1.0.15-2) unstable; urgency=medium
+
+  * Bug #43451: adjust styling of dgrid
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 06 Feb 2017 19:09:13 +0100
+
+univention-web (1.0.15-1) unstable; urgency=medium
+
+  * Bug #42174: adjust styling for login
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 18:36:33 +0100
+
+univention-web (1.0.14-5) unstable; urgency=medium
+
+  * Bug #38824: added target build-live
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 16:23:37 +0100
+
+univention-web (1.0.14-4) unstable; urgency=medium
+
+  * Bug #38824: adjust Makefile build-dev target to create symlink to /var/www
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 16:15:15 +0100
+
+univention-web (1.0.14-3) unstable; urgency=medium
+
+  * Bug #38824: undo last changes for _getPackageName()
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 15:41:23 +0100
+
+univention-web (1.0.14-2) unstable; urgency=medium
+
+  * Bug #38824: make _getPackageName() more robst
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 15:17:56 +0100
+
+univention-web (1.0.14-1) unstable; urgency=medium
+
+  * Bug #38824: provide a generic config.js for Dojo Toolkit
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Feb 2017 14:44:25 +0100
+
+univention-web (1.0.13-3) unstable; urgency=medium
+
+  * Bug #32027: fix formatter parameter of grid actions
+
+ -- Florian Best <best@univention.de>  Mon, 06 Feb 2017 13:55:09 +0100
+
+univention-web (1.0.13-1) unstable; urgency=medium
+
+  * Bug #42228: redirect /univention/
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2017 17:20:01 +0100
+
+univention-web (1.0.12-4) unstable; urgency=medium
+
+  * Bug #42174: re-fix error accessing umc/auth
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Feb 2017 14:33:59 +0100
+
+univention-web (1.0.12-3) unstable; urgency=medium
+
+  * Bug #42174: fix error in setup wizard when accessing umc/auth
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 03 Feb 2017 14:11:45 +0100
+
+univention-web (1.0.12-2) unstable; urgency=medium
+
+  * Bug #42261: adjust side menu arrow
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 23:40:23 +0100
+
+univention-web (1.0.12-1) unstable; urgency=medium
+
+  * Bug #42261: remove ';' + curly brackets (ensuring that output is the same)
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 23:17:21 +0100
+
+univention-web (1.0.11-2) unstable; urgency=medium
+
+  * Bug #42261: fix build target
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 22:28:05 +0100
+
+univention-web (1.0.11-1) unstable; urgency=medium
+
+  * Bug #42261: adjust font stylings and gallery of overview site
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 22:14:25 +0100
+
+univention-web (1.0.10-1) unstable; urgency=medium
+
+  * Bug #42228: migrate essential ucs-overview things into this package
+
+ -- Florian Best <best@univention.de>  Thu, 02 Feb 2017 20:50:10 +0100
+
+univention-web (1.0.9-1) unstable; urgency=medium
+
+  * Bug #42266: adjust styling of modules headers
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 20:53:51 +0100
+
+univention-web (1.0.8-6) unstable; urgency=medium
+
+  * Bug #42261: fix shadow for UMC overview
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 17:30:16 +0100
+
+univention-web (1.0.8-5) unstable; urgency=medium
+
+  Bug #42261:
+  * Adjust Button styling
+  * Provide stylus functions for shadows
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 17:13:31 +0100
+
+univention-web (1.0.8-4) unstable; urgency=medium
+
+  * Bug #42261: fix Makefile for build-dev target
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 14:18:50 +0100
+
+univention-web (1.0.8-3) unstable; urgency=medium
+
+  * Bug #42261: update Roboto font files and add medium font weight
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Feb 2017 11:39:59 +0100
+
+univention-web (1.0.8-2) unstable; urgency=medium
+
+  * Bug #42291: ucslint.overrides update
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 31 Jan 2017 11:35:59 +0100
+
+univention-web (1.0.8-1) unstable; urgency=medium
+
+  * Bug #42261: various styling changes for the umcOverview of the new
+    UMC 4.2 design
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 31 Jan 2017 10:36:48 +0100
+
+univention-web (1.0.7-1) unstable; urgency=medium
+
+  * Bug #42169: fix circular import
+
+ -- Florian Best <best@univention.de>  Tue, 31 Jan 2017 10:09:40 +0100
+
+univention-web (1.0.6-1) unstable; urgency=medium
+
+  * Bug #42321: Removed reference to LinkList in tests
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 30 Jan 2017 18:49:09 +0100
+
+univention-web (1.0.5-1) unstable; urgency=medium
+
+  * Bug #40612: Add language switch to the menu bar
+
+ -- Florian Best <best@univention.de>  Fri, 27 Jan 2017 18:26:51 +0100
+
+univention-web (1.0.4-1) unstable; urgency=medium
+
+  * Bug #40612: set authentication via HTTP header during login
+
+ -- Florian Best <best@univention.de>  Thu, 26 Jan 2017 18:20:54 +0100
+
+univention-web (1.0.3-3) unstable; urgency=medium
+
+  * Bug #32027: Remove fuzzy entry
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 20 Jan 2017 15:41:33 +0100
+
+univention-web (1.0.3-2) unstable; urgency=medium
+
+  * Bug #32027: Tree and Grid updates for better compatibility
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 20 Jan 2017 15:19:50 +0100
+
+univention-web (1.0.3-1) unstable; urgency=medium
+
+  * Bug #42169: move traceback sending into core
+
+ -- Florian Best <best@univention.de>  Tue, 10 Jan 2017 19:09:32 +0100
+
+univention-web (1.0.2-17) unstable; urgency=medium
+
+  * Bug #43091: Jump to login dialog after session time out
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 06 Dec 2016 16:46:42 +0100
+
+univention-web (1.0.2-16) unstable; urgency=medium
+
+  * Bug #43084: Moved style rules fo the UMC menu help
+
+ -- Richard Ulmer <ulmer@univention.de>  Thu, 01 Dec 2016 12:41:31 +0100
+
+univention-web (1.0.2-15) unstable; urgency=medium
+
+  * Bug #43054: Use relative url for mobile menu background image
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 30 Nov 2016 15:59:11 +0100
+
+univention-web (1.0.2-14) unstable; urgency=medium
+
+  * Bug #40492: Show session timeout dialog centered on the viewport
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 29 Nov 2016 16:52:51 +0100
+
+univention-web (1.0.2-13) unstable; urgency=medium
+
+  * Bug #39910: Fix display error of UMC help dialogs
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 25 Nov 2016 17:58:49 +0100
+
+univention-web (1.0.2-12) unstable; urgency=medium
+
+  * Bug #32027: Ignore scroll signal on non active tabs
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 28 Oct 2016 11:57:53 +0200
+
+univention-web (1.0.2-11) unstable; urgency=medium
+
+  * Bug #32027: Use declare() global
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 28 Oct 2016 10:42:31 +0200
+
+univention-web (1.0.2-10) unstable; urgency=medium
+
+  * Bug #32027: Explain getItem better
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 28 Oct 2016 10:06:01 +0200
+
+univention-web (1.0.2-9) unstable; urgency=medium
+
+  * Bug #32027: Fix memory leak by removing old widgets
+
+ -- Jürn Brodersen <brodersen@univention.de>  Thu, 27 Oct 2016 18:20:33 +0200
+
+univention-web (1.0.2-8) unstable; urgency=medium
+
+  * Bug #32027: Set empty list as default path for the tree widget
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 21 Oct 2016 13:34:03 +0200
+
+univention-web (1.0.2-7) unstable; urgency=medium
+
+  * Bug #32027: Update canExecute on grid changes
+
+ -- Jürn Brodersen <brodersen@univention.de>  Fri, 21 Oct 2016 13:05:57 +0200
+
+univention-web (1.0.2-6) unstable; urgency=medium
+
+  * Bug #42291: Update grid and tree widget for dgrid
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 19 Oct 2016 18:28:00 +0200
+
+univention-web (1.0.2-5) unstable; urgency=medium
+
+  * Bug #42261: Replaced 'Clear Sans' font with 'Roboto' font
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 11 Oct 2016 12:30:33 +0200
+
+univention-web (1.0.2-4) unstable; urgency=medium
+
+  * Bug #42220: Added the _.ngettext function to i18n.js
+
+ -- Richard Ulmer <ulmer@univention.de>  Fri, 30 Sep 2016 11:19:02 +0200
+
+univention-web (1.0.2-3) unstable; urgency=medium
+
+  * Bug #38824: Fix build-dev
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 26 Sep 2016 14:50:12 +0200
+
+univention-web (1.0.2-2) unstable; urgency=medium
+
+  Bug #42228:
+  * removed empty directory
+  * removed unused images
+  * removed icons folder from installation
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 20 Sep 2016 13:59:25 +0200
+
+univention-web (1.0.2-1) unstable; urgency=medium
+
+  * Bug #42384: fix images
+
+ -- Florian Best <best@univention.de>  Wed, 14 Sep 2016 18:45:14 +0200
+
+univention-web (1.0.1-8) unstable; urgency=medium
+
+  * Bug #38824: Fix missing icons
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 14 Sep 2016 18:14:13 +0200
+
+univention-web (1.0.1-7) unstable; urgency=medium
+
+  * Bug #38824: do not include images as symlinks in build directory
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 13 Sep 2016 15:22:46 +0200
+
+univention-web (1.0.1-6) unstable; urgency=medium
+
+  * Bug #38824: make sure that package build works correctly
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 12 Sep 2016 14:52:28 +0200
+
+univention-web (1.0.1-5) unstable; urgency=medium
+
+  * Bug #38824: WIP - update README + optimize Makefile
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 12 Sep 2016 11:51:47 +0200
+
+univention-web (1.0.1-4) unstable; urgency=medium
+
+  * Bug #38824: WIP - rename css/js directories
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 12 Sep 2016 10:49:35 +0200
+
+univention-web (1.0.1-3) unstable; urgency=medium
+
+  * Bug #38824: WIP - adjust Makefile and move UMC outside
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 09 Sep 2016 15:07:08 +0200
+
+univention-web (1.0.1-2) unstable; urgency=medium
+
+  * Bug #42257: Corrected some typos.
+
+ -- Richard ulmer <ulmer@univention.de>  Tue, 06 Sep 2016 14:56:01 +0200
+
+univention-web (1.0.1-1) unstable; urgency=medium
+
+  * Bug #42228: adjust paths to /univention/
+
+ -- Florian Best <best@univention.de>  Mon, 05 Sep 2016 18:49:34 +0200
+
+univention-web (1.0.0-1) unstable; urgency=medium
+
+  * Bug #38824: create univention-web package
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 31 Aug 2016 17:18:10 +0200

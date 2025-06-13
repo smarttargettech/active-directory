@@ -1,0 +1,89 @@
+Source: univention-self-service
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ node-stylus,
+ python3-all,
+ python3-polib,
+ univention-config-dev (>= 15.0.3),
+ univention-join-dev,
+ univention-l10n-dev (>= 7.0.1),
+ univention-management-console-dev (>= 12.0.2),
+Standards-Version: 3.7.2
+
+Package: univention-self-service
+Architecture: all
+Depends:
+ shell-univention-lib,
+ univention-config,
+ univention-join,
+ univention-self-service-passwordreset-umc,
+ ${misc:Depends},
+ ${python3:Depends},
+Description: Univention Self Service
+ This package contains the password self service module that
+ allows users to reset their password without administrator
+ intervention. It can be installed on all UCS server roles.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-self-service-master
+Architecture: all
+Depends:
+ python3-univention-directory-manager-rest(>> 10.0.2-8),
+ univention-mail-postfix | mail-transport-agent,
+ univention-postgresql,
+ univention-self-service-invitation,
+ univention-self-service-passwordreset-umc,
+ ${misc:Depends},
+Description: Univention Self Service
+ This package contains the required dependencies for the Primary Directory Node
+ where the self service runs on.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-self-service-passwordreset-umc
+Architecture: all
+Depends:
+ memcached,
+ python3-psycopg2,
+ python3-pylibmc,
+ shell-univention-lib,
+ univention-config,
+ univention-join,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: Password reset module for Univention Self Service.
+ This package contains a UMC module that is the backend for the
+ univention-self-service-passwordreset-frontend package. It must be
+ installed on a Primary Directory Node or Backup Directory Node.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-self-service-invitation
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Description: Invitation module for Univention Self Service.
+ This package contains a listener and a daemon for the
+ invitation functionality of the Univention Self Service.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

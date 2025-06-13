@@ -1,0 +1,62 @@
+== Univention Self Service ==
+..
+
+=== Packages ===
+* univention-management-console-module-passwordreset: UMC module for the
+    password reset plugin (to be installed on Primary or Backup Directory Node)
+* univention-self-service: frontent base package, requirement for all plugins
+    (can be installed on all UCS roles)
+* univention-self-service-passwordreset: password reset plugin frontend (can
+    be installed on all UCS roles)
+
+=== Password reset sending plugins ==
+As a reference three plugins are provided that can be used to send a token to a user.
+A token sending plugin is a Python class that inherits from
+univention.management.console.modules.passwordreset.send_plugin.UniventionSelfServiceTokenEmitter
+and implements its functions.
+
+If you wish to create a sending plugin in a different language, you can use
+the provided send_with_external.py. Activate and configure it with the UCRs
+* umc/self-service/passwordreset/external/enabled
+* umc/self-service/passwordreset/external/command
+* umc/self-service/passwordreset/external/token_length
+* umc/self-service/passwordreset/external/method
+
+Set umc/self-service/passwordreset/external/method to "email" or "sms" and deactivate
+self-service/passwordreset/email/enabled or self-service/passwordreset/sms/enabled to
+replace them.
+
+=== Password reset black/white lists ===
+Blacklists take precedence over whitelists.
+
+A user on a blacklist or in a group in a blacklist cannot use the service
+even if it is a whitelisted user or in a whitelisted group.
+
+A user must be in a whitelist to use the service.
+
+=== Email address verification ===
+If you wish to verify an email address you have to import and instantiate the Client class from
+univention.lib.umc. With the umc_command() function a verification email can be sent to a specific
+email address. The email address can then be verified with a further call of umc_command().
+
+Example: (send a verification email)
+
+from univention.lib.umc import Client
+c = Client()
+c.umc_command(
+		'passwordreset/create_self_registered_account',
+		{'lastname': 'foo', 'username': 'bar', 'email': 'root@localhost', 'password': 'univention'}
+	)
+
+Within the verification email a token can be found. You have to use this token to verify the email
+address as described in the example below.
+
+Example: (verify the email address)
+
+c.umc_command(
+		'passwordreset/verify_contact',
+		{'token': 'ABCDEF123456', 'username': 'bar', 'method': 'verify_email'}
+	)
+
+In UMC the verification status of the email address of a user can be seen under Password recovery in
+the Users module when customizing a user.

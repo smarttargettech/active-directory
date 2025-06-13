@@ -1,0 +1,36 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository online
+##  Check repository/online
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+setup_apache "${repoprefix}"
+
+mkpdir "${_version_version}-${_version_patchlevel}" maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+config_repo repository/online=no
+
+	set -e
+	# Check that lists are empty
+	cd /etc/univention/templates/files &&
+		for template in etc/apt/sources.list.d/*.list
+		do
+			grep -v '^#\|^[[:space:]]*$' "/$template" && false
+		done
+	# Check that all expected repositories are listed
+	ucr set repository/online=yes
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${DIR}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

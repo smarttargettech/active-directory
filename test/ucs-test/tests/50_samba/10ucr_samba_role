@@ -1,0 +1,21 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Check if samba/role is set"
+## exposure: safe
+## bugs: [35584]
+## packages:
+##  - winbind
+##  - univention-samba
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+KEY="samba/role"
+val="$(ucr get "$KEY")"
+case "$val" in
+domaincontroller) fail_test 110 'NT DCs are unsupported since UCS 4.3' ;;
+memberserver) ;;
+*) fail_test 110 "UCR variable $KEY='$val' does not contain value 'domaincontroller' or 'memberserver'" ;;
+esac
+
+exit "${RETVAL:-0}"

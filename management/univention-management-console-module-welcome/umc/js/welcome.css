@@ -1,0 +1,60 @@
+.umcBubble {
+	background-color: var(--bgc-content-container);
+	border-radius: var(--border-radius-container);
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+.umcBubble__header {
+	border-bottom: 2px solid var(--bgc-content-body);
+	padding: calc(2 * var(--layout-spacing-unit));
+}
+.umcBubble__content {
+	padding: calc(2 * var(--layout-spacing-unit));
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto auto;
+	grid-template-areas: "img text" "img buttons";
+	gap: calc(2 * var(--layout-spacing-unit));
+}
+.umcBubble__img {
+	grid-area: img;
+	height: 9rem;
+}
+.umcBubble__img.keycloak {
+	padding: 10px;
+}
+.umcBubble__description {
+	grid-area: text;
+}
+.umcBubble__buttons {
+	grid-area: buttons;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: calc(2 * var(--layout-spacing-unit));
+}
+.umcBubbleButton {
+	background-color: var(--bgc-content-body);
+	border: 2px solid transparent;
+	border-radius: var(--border-radius-container);
+	padding: var(--layout-spacing-unit);
+	transition: border-color 250ms;
+}
+.umcBubbleButton:hover {
+	cursor: pointer;
+	border-color: var(--color-accent);
+}
+
+@media (max-width: 767px) {
+	.umcBubble__content {
+		grid-template-areas: "img text"	"buttons buttons";
+	}
+	.umcBubble__img {
+		height: 5rem;
+	}
+}
+
+@media (max-width: 549px) {
+	.umcBubble__buttons {
+		grid-template-columns: 1fr;
+	}
+}

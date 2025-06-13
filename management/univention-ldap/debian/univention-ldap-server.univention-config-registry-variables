@@ -1,0 +1,434 @@
+[ldap/server/type]
+Description[de]=Für UCS-LDAP-Server gibt es zwei Betriebsmodi, die mit dieser Variable konfiguriert werden: Der Server vom Typ 'master' nimmt schreibende Änderungen entgegen, 'slave' enthält eine Nur-Lese-Kopie. Diese Variable wird intern konfiguriert und sollte nicht angepasst werden. 'master' entspricht einem Primary Directory Node und 'slave' sowohl Backup als auch Replica Directory Nodes.
+Description[en]=Two operational modes exist for UCS LDAP servers, which are configured by this variable: The server of the type 'master' accepts write changes, while 'slave' only contains a read-only copy. This variable is configured internally and should not be modified. 'master' corresponds to a Primary Directory Node and 'slave' corresponds to Backup as well as Replica Directory Nodes.
+Type=str
+Categories=service-ldap
+ReadOnly=yes
+
+[ldap/translogfile]
+Description[de]=Diese Variable enthält der Pfad zur LDAP-Transaktions-Logdatei. Diese Variable sollte nicht geändert werden.
+Description[en]=This variable contains the path to the LDAP transaction logfile. This variable should not be modified.
+Type=str
+Categories=service-ldap
+ReadOnly=yes
+
+[ldap/translog-ignore-temporary]
+Description[de]=Diese Variable kontrolliert, ob temporäre LDAP Objekte vom translog Modul verarbeitet werden sollen. Standardmäßig ist dies aktiviert. Nach der Änderung muss 'systemctl restart slapd' ausgeführt werden.
+Description[en]=This variable controls if temporary LDAP objects should be processed by 'translog' Modul. By default it is enabled. After setting it 'systemctl restart slapd' must be executed.
+Type=bool
+Categories=service-ldap
+
+[slapd/port]
+Description[de]=Diese Variable konfiguriert die Ports, unter denen der LDAP-Server auf unverschlüsselte und TLS-gesicherte LDAP-Anfragen antwortet. Mehrere Ports müssen mit Komma getrennt werden. Ist die Variable nicht gesetzt, gilt 7389.
+Description[en]=This variable configures the ports used by the LDAP server for unencrypted and TLS-secured LDAP requests. Multiple ports need to be separated by commas. If the variable is unset, 7389 applies.
+Default=7389,389
+Type=list
+Separator=,
+Elementtype=portnumber
+Categories=service-ldap
+
+[slapd/port/ldaps]
+Description[de]=Diese Variable konfiguriert die Ports, unter denen der LDAP-Server auf SSL-gesicherte LDAP-Anfragen antwortet. Mehrere Ports müssen mit Komma getrennt werden. Ist die Variable nicht gesetzt, gilt 7636.
+Description[en]=This variable configures the ports used by the LDAP server for SSL-secured LDAP requests. Multiple ports need to be separated by commas. If the variable is unset, 7636 applies.
+Default=7636,636
+Type=list
+Separator=,
+Elementtype=portnumber
+Categories=service-ldap
+
+[ldap/sizelimit]
+Description[de]=Die maximale Anzahl von Einträgen, die von einer LDAP-Suchoperation zurückgegeben werden.
+Description[en]=The maximum number of entries returned by an LDAP search operation.
+Default=400000
+Type=pint
+Categories=service-ldap
+
+[ldap/threads]
+Description[de]=Die Anzahl der verwendeten Server-Threads im LDAP-Server.
+Description[en]=The number of server threads used by the LDAP server.
+Default=16
+Type=pint
+Categories=service-ldap
+
+[ldap/tool-threads]
+Description[de]=Die Anzahl der verwendeten Tool-Threads (slapadd, slapindex).
+Description[en]=The maximum number of threads to use in tool mode (slapadd, slapindex).
+Default=1
+Type=pint
+Categories=service-ldap
+
+[ldap/maxopenfiles]
+Description[de]=Die maximale Anzahl an Dateien, die der LDAP-Server öffnen kann. Wenn der Wert angepasst wird, müssen ggf. auch Unix-Prozesslimits angepasst werden.
+Description[en]=The maximum of files the LDAP server can open. If the value is adapted, Unix process limits might need to be expanded as well.
+Default=8192
+Type=pint
+Categories=service-ldap
+
+[ldap/monitor]
+Description[de]=Ist diese Option aktiviert und der LDAP-Server neu gestartet, dann können Domänen-Admins über das cn=monitor LDAP-Backend auf statistische Daten des LDAP-Servers zugreifen.
+Description[en]=If this variable is activated and the LDAP server restarted, Domain Admins may access statistical data about the LDAP server via the cn=monitor LDAP backend.
+Type=bool
+Categories=service-ldap
+
+[ldap/monitor/acl/read/groups/.*]
+Description[de]=Weitere Gruppen DN's, die über das cn=monitor LDAP-Backend auf statistische Daten des LDAP-Servers zugreifen dürfen.
+Description[en]=Further group DN'S which may access statistical data about the LDAP server via the cn=monitor LDAP backend.
+Type=str
+Categories=service-ldap
+
+[ldap/database/type]
+Description[de]=Diese Variable konfiguriert das Datenbank-Backend des LDAP-Servers. Der Standardwert ist "mdb", was empfohlen wird. Diese Variable sollte nur in Ausnahmefällen geändert werden.
+Description[en]=This variable configures the database backend of the LDAP server. Defaults to 'mdb', which is recommended. This variable should only be modified in exceptional cases.
+Default=mdb
+Type=str
+Categories=service-ldap
+
+[ldap/index/approx]
+Description[de]=Die Liste der LDAP-Attribute, die für die Suche nach ähnlichen Werte indiziert werden. Mehrere Attribute werden durch Komma getrennt.
+Description[en]=A list of LDAP attributes which are indexed for the search for approximate values. Multiple attributes are separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ldap
+
+[ldap/index/eq]
+Description[de]=Die Liste der LDAP-Attribute, die für die Suche nach einem exakten Wert indiziert werden. Mehrere Attribute werden durch Komma getrennt.
+Description[en]=A list of LDAP attributes which are indexed for the search for an exact value. Multiple attributes are separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ldap
+
+[ldap/index/pres]
+Description[de]=Die Liste der LDAP-Attribute, die für die Suche nach dem Vorhandensein eines Wert indiziert werden. Mehrere Attribute werden durch Komma getrennt.
+Description[en]=A list of LDAP attributes which are indexed for the search for the presence of value. Multiple attributes are separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ldap
+
+[ldap/index/sub]
+Description[de]=Die Liste der LDAP-Attribute, die für die  Suche nach Teilausdrücken indiziert werden. Mehrere Werte werden durch Komma getrennt.
+Description[en]=A list of LDAP attributes which are indexed for the search for substring matches. Multiple values are separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-ldap
+
+[ldap/index/autorebuild]
+Description[de]=Ist diese Option aktiviert, werden LDAP-Indizes bei UCS-Updates automatisch ergänzt und aktualisiert.
+Description[en]=If this option is activated, LDAP indices are automatically amended and updated during UCS updates.
+Default=yes
+Type=bool
+Categories=service-ldap
+
+[ldap/index/quickmode]
+Description[de]=Ist diese Option aktiviert, wird das LDAP Reindex-Tool slapindex im "quick" Modus gestartet (weniger Integritätsprüfungen, schnellere Indizierung). Standardmäßig deaktiviert.
+Description[en]=If this option is activated, the LDAP reindex tool slapindex is started in "quick" mode (fewer integrity checks, improved indexing time). Disabled by default.
+Default=false
+Type=bool
+Categories=service-ldap
+
+[ldap/online/master]
+Description[de]=In der Grundeinstellung werden LDAP-Schreibzugriffe auf Backup Directory Nodes und Replica Directory Nodes an den Primary Directory Node weitergeleitet. Wird diese Option deaktiviert, werden die Daten in den lokalen LDAP-Server geschrieben. Diese Variable ist nur für Spezialfälle relevant.
+Description[en]=In the default setting LDAP write changes made on Backup Directory Nodes and Replica Directory Nodes are redirected to the Primary Directory Node. If this option is deactivated, the data is written to the local LDAP server. This variable is only relevant for special setups.
+Type=bool
+Categories=service-ldap
+
+[ldap/acl/read/anonymous]
+Description[de]=Ist diese Option aktiviert, erlaubt der LDAP-Server den anonymen Zugriff auf das LDAP-Verzeichnis ohne Authentifizierung. Ist die Variable nicht gesetzt, wird ein anonymer Zugriff verboten.
+Description[en]=If this option is activated, the LDAP server does allow anonymous access to the LDAP directory without authentication. If the variable is unset, anonymous access is denied.
+Default=no
+Type=bool
+Categories=service-ldap
+
+[ldap/acl/read/ips]
+Description[de]=Wenn die LDAP-Suche nur authentifiziert möglich ist (siehe 'ldap/acl/read/anonymous'), können einzelne IP-Adressen über diese Variable für den anonymen Lesezugriff freigeschaltet werden. Mehrere Werte werden durch Komma getrennt (z.B. ldap/acl/read/ips='127.0.0.1,192.168.0.0%255.255.255.0').
+Description[en]=If only authenticated LDAP searches are allowed (see 'ldap/acl/read/anonymous'), individual IP addresses can be granted anonymous read permissions via this variable. Multiple values are separated by commas (e.g. ldap/acl/read/ips='127.0.0.1,192.168.0.0%255.255.255.0').
+Type=list
+Separator=,
+Elementtype=ipv4address
+Categories=service-ldap
+
+[ldap/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des LDAP-Servers. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird die auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the LDAP server. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Default=yes
+Type=str
+Categories=service-ldap
+
+[ldap/cachesize]
+Description[de]=Die Variable konfiguriert die Anzahl der Einträge, die der LDAP-Server in seinem internen Cache vorhält.
+Description[en]=This variable configures the number of entries the LDAP server holds in the internal cache.
+Default=20000
+Type=pint
+Categories=service-ldap
+
+[ldap/idlcachesize]
+Description[de]=Die Variable konfiguriert die Anzahl der Suchergebnisse, die der LDAP-Server in seinem internen Cache vorhält.
+Description[en]=This variable configures the number of search results the LDAP server holds in the internal cache.
+Default=20000
+Type=pint
+Categories=service-ldap
+
+[ldap/idletimeout]
+Description[de]=Mit dieser Variable kann ein Zeitraum in Sekunden konfiguriert werden, nach dessen Ablauf eine LDAP-Verbindung serverseitig geschlossen wird. Wenn der Wert auf 0 gesetzt wird, wird kein Ablaufzeitraum angewendet.
+Description[en]=This variable is used to configure a time period in seconds after which the LDAP connection is closed on the server side. When the value is set to 0, no expiry period is in use.
+Default=360
+Type=uint
+Categories=service-ldap
+
+[ldap/database/mdb/maxsize]
+Description[de]=Die maximale Größe der Datenbank in Bytes.
+Description[en]=The maximum size of the database in bytes.
+Default=4295000000
+Type=pint
+Categories=service-ldap
+
+[ldap/database/mdb/checkpoint]
+Description[de]=Diese Variable konfiguriert die Häufigkeit mit der die Daten aus dem 'Transaction Log' in die Datenbank geschrieben werden. Änderungen sind nur in Ausnahmefällen nötig und sollten sorgfältig getestet werden. Die Syntax ist unter <http://www.openldap.org/faq/data/cache/1072.html> beschrieben.
+Description[en]=This variable configures the frequency for checkpointing the database transaction log upon updating the database. Changes are only needed in exceptional cases and should be tested carefully. The syntax is documented at <http://www.openldap.org/faq/data/cache/1072.html>.
+Type=str
+Categories=service-ldap
+
+[ldap/database/mdb/envflags]
+Description[de]=Mit dieser Variable können detailliertere Einstellungen zum MDB Datenbank-Backend konfiguriert werden. Mehrere Werte werden durch Leerzeichen getrennt. Mögliche Werte sind  nosync, nometasync, writemap, mapasync und nordahead. Weiter eInmformationen sind im UCS Performance Guide unter <https://docs.software-univention.de/performance-guide-5.2.html> zu finden.
+Description[en]=This variable specifies flags for finer-grained control of the mdb database backend handling. Multiple attributes are separated by spaces. Possible values are nosync, nometasync, writemap, mapasync and nordahead. More details can be found in the UCS performance guide at <https://docs.software-univention.de/performance-guide-5.2.html>.
+Type=list
+Separator=[ ]
+Elementtype=str
+Categories=service-ldap
+
+[ldap/ppolicy/enabled]
+Description[de]=Diese Variable legt fest, ob die Konfiguration des LDAP overlay ppolicy für das lokale System aktivert wird. Wenn die Variable auf yes gesetzt wird, dann wendet der lokale LDAP Server eim LDAP-Anmeldeversuchen die Einstellungen an, die an einem bestimmten pwdPolicy Objekt im LDAP definiert sind (siehe UCR Variable ldap/ppolicy/default).
+Description[en]=Setting this variable to yes activates the configuration of the LDAP overlay ppolicy. If enabled LDAP bind attempts are monitored by the ppolicy overlay according to the settings defined on a special pwdPolicy LDAP objekt (see UCR variable ldap/ppolicy/default).
+Type=str
+Categories=service-ldap
+
+[ldap/ppolicy/default]
+Description[de]=Diese Variable konfiguriert die LDAP-DN an der Standard-Werte für das ppolicy Overlay definiert sind. Die Voreinstellung für diese DN ist cn=default,cn=ppolicy,cn=univention,<ldap_base>. Details zu diesem Objekt liefert z.B. die Unix manual Seite zu slapo-ppolicy. Diese Variable bedarf im Regelfall keiner Anpassung.
+Description[en]=This variable configures the LDAP DN where the defaults for the ppolicy overlay are defined. If the UCR variable is not set, then cn=default,cn=ppolicy,cn=univention,<ldap_base> is assumed. Details about this object can be found in the manual page for slapo-ppolicy. This variable shouldn't need to be adjusted in most cases.
+Type=str
+Categories=service-ldap
+
+[ldap/tls/ciphersuite]
+Description[de]=Dies konfiguriert die kryptografischen Verfahren, die ein Client in der SSL-Handshake-Phase angeboten bekommt. Das Format ist unter <http://www.openldap.org/software/man.cgi?query=slapd.conf> beschrieben.
+Description[en]=This configures the cryptopgraphic algorithms which are offered to clients during a SSL handshake. The format is described at <http://www.openldap.org/software/man.cgi?query=slapd.conf>.
+Default=HIGH:MEDIUM:!aNULL:!MD5:!RC4
+Type=str
+Categories=service-ldap
+
+[ldap/tls/minprotocol]
+Description[de]=Dies konfiguriert die Mindestversion für das SSL/TLS Protokoll. Für TLS 1.0/1.1/1.2 ist respektive 3.1/3.2/3.3 anzugeben.
+Description[en]=This configures the minimum version for the SSL/TLS protocol. For TLS 1.0/1.1/1.2 the value 3.1/3.2/3.3 must be specified.
+Default=3.1
+Type=str
+Categories=service-ldap
+
+[ldap/tls/dh/paramfile]
+Description[de]=Dies konfiguriert den Namen für die Datei mit den kurzlebigen Diffie-Hellman Schlüsselaustausch.
+Description[en]=This configures the name of the file containing the parameters for Diffie-Hellman ephemeral key exchange.
+Default=/etc/ldap/dh_2048.pem
+Type=str
+Categories=service-ldap
+
+[ldap/tls/dh/cron]
+Description[de]=Cronjob Intervall für die Erneuerung der DH Parameter Dateien (Forward Secrecy).
+Description[en]=Cronjob interval for recreating DH parameter files (forward secrecy).
+Type=cron
+Categories=service-ldap
+
+[ldap/tls/dh/restart]
+Description[de]=Startet den LDAP Server automatisch neu, sobald eine neue DH Parameter Datei generiert wurde. Standardmäßig deaktiviert.
+Description[en]=Automatically restart the LDAP server, after a new DH parameter file has been generated. Disabled by default.
+Type=bool
+Categories=service-ldap
+
+[ldap/limits]
+Description[de]=Zeit- oder Größenlimits anhand des Initiators oder der DN definieren.
+Description[en]=Specify time and size limits based on the operation's initiator or base DN.
+Default=users time.soft=-1 time.hard=-1
+Type=str
+Categories=service-ldap
+
+[slapd/backup]
+Description[de]=Aktiviert/Deaktiviert das Backup der slapd Datenbank.
+Description[en]=Activates/deactivates the slapd database backup.
+Default=true
+Type=bool
+Categories=service-ldap
+
+[slapd/backup/cron]
+Description[de]=Cron-Intervall für das Backup der slapd Datenbank. Standard ist '0 0 * * *' (jede Tag um 00:00 Uhr).
+Description[en]=Cron interval for the slapd database backup. Default is '0 0 * * *' (midnight, every day).
+Default=0 0 * * *
+Type=cron
+Categories=service-ldap
+
+[slapd/backup/owner]
+Description[de]=Besitzer der Sicherungsdatei der slapd-Datenbank.
+Description[en]=Owner for the slapd database backup file.
+Default=root
+Type=str
+Categories=service-ldap
+
+[slapd/backup/group]
+Description[de]=Gruppe für die Sicherungsdatei der slapd-Datenbank.
+Description[en]=Group for the slapd database backup file.
+Default=root
+Type=str
+Categories=service-ldap
+
+[slapd/backup/permissions]
+Description[de]=Dateiberechtigungen für die Sicherungsdatei der slapd-Datenbank.
+Description[en]=File permissions for the slapd database backup file.
+Default=0600
+Type=str
+Regex=^[0-7]{3,5}$
+Categories=service-ldap
+
+[ldap/shadowbind]
+Description[de]=Aktiviert/Deaktiviert das Overlay-Modul shadowbind (diese Overlay prüft shadowExpire und shadowMax/shadowLastChange am Objekt der Bind-DN und verbietet den Login ggf.)
+Description[en]=To enable/disable the shadowbind overlay module (shadowbind checks shadowExpire and shadowMax/shadowLastChange of the bind DN object during bind and denies the login possibly)
+Default=true
+Type=bool
+Categories=service-ldap
+
+[ldap/shadowbind/ignorefilter]
+Description[de]=Dieser LDAP-Filter wird auf das Objekt der Bind-DN angewendet. Trifft er zu, prüft das shadowbind Overlay-Modul die shadow-Attribute nicht.
+Description[en]=This LDAP filter is applied to the bind DN object during bind. If it matches, the shadowbind overlay does not check the shadow attributes for this object.
+Default=(|(objectClass=univentionDomainController)(userPassword={KINIT}))
+Type=str
+Categories=service-ldap
+
+[ldap/overlay/lastbind]
+Description[de]=Warnung: Bevor Sie diese Funktion verwenden, lesen Sie bitte https://help.univention.com/t/activating-the-lastbind-overlay-module/14404 ! Aktiviert/deaktiviert das 'lastbind'-Overlay. Wenn das Overlay aktiviert ist, wird der Zeitstempel der letzten erfolgreichen Anmeldung im 'authTimestamp'-Attribut aufgezeichnet. Mit der UCR Variable ldap/overlay/lastbind/precision kann das Overlay so konfiguriert werden, dass dieser Zeitstempel nur dann aktualisiert wird, wenn er älter als ein bestimmter Wert ist. Ein Beispiel für die Verwendung dieses Overlays wäre die Erkennung unbenutzter Konten. Nach dem Setzen dieser UCR-Variablen muss der "slapd"-Dienst neu gestartet werden, damit die Änderungen wirksam werden.
+Description[en]=Caution: Before activating this feature please read https://help.univention.com/t/activating-the-lastbind-overlay-module/14404 ! Enables/Disables the 'lastbind' overlay. When activated the overlay will record the timestamp of the last successful bind in the 'authTimestamp' attribute. With the ldap/overlay/lastbind/precision UCR variable the overlay can be configured to update this timestamp only if it is older than a given value. One sample use for this overlay would be to detect unused accounts. After setting this UCR variable the "slapd" service has to be restarted for the changes to take effect.
+Type=str
+Categories=service-ldap
+
+[ldap/overlay/lastbind/precision]
+Description[de]=Die Genauigkeit in Sekunden gibt an, ob das 'lastbind'-Overlay (siehe ldap/overlay/lastbind) das 'authTimestamp'-Attribut nach einer erfolgreichen Anmeldung aktualisiert. Wenn das 'authTimestamp'-Attribut nicht älter als der angegebene Wert ist, dann wird es nicht aktualisiert. Wenn die Variable nicht gesetzt ist, wird das 'authTimestamp'-Attribut bei jeder erfolgreichen Anmeldung aktualisiert. Nach dem Setzen dieser UCR-Variablen muss der "slapd"-Dienst neu gestartet werden, damit die Änderungen wirksam werden.
+Description[en]=The precision in seconds defines whether the 'lastbind' overlay (see ldap/overlay/lastbind) should update the 'authTimestamp' attribute after a successful bind. If the 'authTimestamp' attribute is not older than the given value, then it is not updated. If the variable is not set then the 'authTimestamp' attribute is updated on every successful bind. After setting this UCR variable the "slapd" service has to be restarted for the changes to take effect.
+Default=3600
+Type=int
+Categories=service-ldap
+
+[ldap/refint]
+Description[de]=Bestimmt, ob das Modul refint geladen werden soll. Es erzwingt referentielle Integrität im Attribut uniqueMember. Wird nur auf dem DC Master ausgewertet.
+Description[en]=Whether or not the refint overlay should be enabled. It enforces referential integrity for the attribute uniqueMember. Only applies to the DC Master.
+Default=true
+Type=bool
+Categories=service-ldap
+
+[ldap/attributeoptions]
+Description[de]=Definiert Tagging-Attributoptionen oder Options-Tags/Range-Präfixe (siehe man slapd.conf).
+Description[en]=Define tagging attribute options or option tag/range prefixes (see man slapd.conf).
+Default=entry-,lang-
+Type=str
+Categories=service-ldap
+
+[ldap/create-ldap-server-policy]
+Description[de]=Definiert, ob eine LDAP-Server Richtlinie automatisch während der Installation angelegt wird.
+Description[en]=Defines, whether an ldap server policy is automatically created during the installation.
+Type=bool
+Categories=service-ldap
+
+[ldap/pw-bcrypt]
+Description[de]=Aktiviert/Deaktiviert das Passwort-Modul bcrypt, standardmäßig deaktiviert.
+Description[en]=To enable/disable the bcrypt passwd scheme module. Disabled by default.
+Type=bool
+Categories=service-ldap
+
+[ldap/server/sasl/mech_list]
+Description[de]=Definiert die SASL-Mechanismen, die der lokale LDAP-Server anbieten soll. Diese Variable sollte nicht angepasst werden ohne gute Gründe und vorhergehende Tests.
+Description[en]=Defines the SASL mechanisms that the local LDAP server shall offer. This variable should not be adjusted without compelling reasons and prior checks.
+Type=str
+Default=EXTERNAL gssapi DIGEST-MD5 CRAM-MD5 LOGIN SAML OAUTHBEARER PLAIN
+Categories=service-ldap
+
+[ldap/server/sasl/oauthbearer/(trusted-audience|trusted-issuer|required-scopes|trusted-jwks|trusted-authorized-party|grace-time|no-tls)/.*]
+Description[de]=Definiert die Konfiguration des SASL-Mechanismus OAUTHBEARER.
+Description[en]=Defines the configuration of the SASL mechanism OAUTHBEARER.
+Type=str
+
+[ldap/syncprov]
+Description[de]=Aktiviert/Deaktiviert das LDAP Modul syncprov.
+Description[en]=To enable/disable the LDAP module syncprov.
+Type=bool
+Default=true
+Categories=service-ldap
+
+[ldap/database/internal/envflags]
+Description[de]=Konfiguriert die envflags Einstellung für die internal MDB Datenbank.
+Description[en]=Envflags settings for internal mdb database.
+Type=str
+Default=nosync
+Categories=service-ldap
+
+[ldap/database/internal/checkpoint]
+Description[de]=Konfiguriert die checkpoint Einstellung für die internal MDB Datenbank.
+Description[en]=checkpoint settings for internal mdb database.
+Type=str
+Default=0 1
+Categories=service-ldap
+
+[ldap/database/internal/syncprov]
+Description[de]=Definiert, ob die Syncrepl Provider Einstellungen für die internal MDB Datenbank aktiviert werden sollen.
+Description[en]=Defines, whether to activate the syncrepl provider settings for internal mdb database.
+Type=bool
+Categories=service-ldap
+
+[ldap/database/internal/syncprov/checkpoint]
+Description[de]=Konfiguriert die syncprov-checkpoint Einstellung für die internal MDB Datenbank.
+Description[en]=syncprov-checkpoint settings for internal mdb database.
+Type=str
+Default=1000 1
+Categories=service-ldap
+
+[ldap/database/internal/syncprov/sessionlog]
+Description[de]=Konfiguriert die syncprov-sessionlog Einstellung für die internal MDB Datenbank.
+Description[en]=syncprov-sessionlog settings for internal mdb database.
+Type=str
+Default=1000
+Categories=service-ldap
+
+[ldap/database/internal/syncrepl]
+Description[de]=Definiert, ob die Syncrepl Consumer Einstellungen für die internal MDB Datenbank aktiviert werden sollen.
+Description[en]=Defines, whether to activate the syncrepl sonsumer settings for internal mdb database.
+Type=bool
+Categories=service-ldap
+
+[ldap/database/internal/syncrepl/retry]
+Description[de]=Konfiguriert die syncrepl-retry Einstellung für die internal MDB Datenbank.
+Description[en]=syncprov-retry settings for internal mdb database.
+Type=str
+Default=10 20 300 +
+Categories=service-ldap
+
+[ldap/database/internal/acl/blocklists/groups/write]
+Description[de]=Liste von DN's von Gruppen, die Schreibzugriff auf alle Object unterhalb desContainers `blocklists` in der Datenbank `internal` haben.
+Description[en]=List of group dn's that have write access to all objects beneath the container `blocklists` the internal database.
+Type=list
+Separator=|
+Categories=service-ldap
+
+[ldap/database/internal/acl/blocklists/groups/read]
+Description[de]=Liste von DN's von Gruppen, die Lesezugriff auf alle Object unterhalb desContainers `blocklists` in der Datenbank `internal` haben.
+Description[en]=List of group dn's that have read access to all objects beneath the container `blocklists` the internal database.
+Type=list
+Separator=|
+Categories=service-ldap
+
+[ldap/overlay/sock]
+Description[de]=Aktiviert/Deaktiviert das LDAP-Overlay slapd-sock. Als `socketpath` wird `/var/lib/univention-ldap/slapd-sock/sock` verwendet (siehe `man slapd-sock`).
+Description[en]=To enable/disable the LDAP overlay slapd-sock. `/var/lib/univention-ldap/slapd-sock/sock` will be used as `socketpath` (see `man slapd-sock).
+Type=bool
+Default=false
+Categories=service-ldap
+
+[ldap/overlay/sock/sockops]
+Description[de]=Konfiguriert die Option `sockops` für das LDAP-Overlay slapd-sock. Aktuell ist nur der Wert `CRUD` unterstützt, der `sockops add delete modify modrdn` setzt. Nach aktivieren des Overlays mit dieser Option schreibt der slapd-Prozess LDAP operation requests und responses in den Unix Domain Socket `/var/lib/univention-ldap/slapd-sock/sock` und erwartet, dass dort ein Prozess diese Daten liest und jeden request mit `CONTINUE` beantwortet (siehe `man slapd-sock). Jede dieser LDAP-Operationen wird solange blockiert, bis der slapd über den socket die Antwort `CONTINUE` erhält.
+Description[en]=Configures the option `sockops` for the LDAP overlay slapd-sock. Currently only the value `CRUD` is suported, which sets 'sockops add delete modify modrdn`. After activating ths overlay and this option, the slapd process process will write these LDAP operation requests and responses to a Unix domain socket `/var/lib/univention-ldap/slapd-sock/sock` and expects that some process reads that data and responds with `CONTINUE` to each operation request (see `man slapd-sock`). Each of the specified LDAP operations will be blocked until slapd receives the response `CONTINUE`.
+Type=str
+Categories=service-ldap

@@ -1,0 +1,100 @@
+#!/usr/bin/python3
+#
+# Univention RADIUS
+#  update clients.univention.conf
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2014-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+
+import os
+import pwd
+import shutil
+import tempfile
+from argparse import ArgumentParser
+
+from univention.uldap import getMachineConnection
+
+
+BASE_DIR = '/etc/freeradius/3.0'
+BASE_NAME = 'clients.univention.conf'
+
+
+def main():  # type: () -> None
+    parser = ArgumentParser()
+    parser.parse_args()
+
+    with tempfile.NamedTemporaryFile(mode='w', prefix=f'{BASE_NAME}.tmp.', dir=BASE_DIR, delete=False) as fd:
+        print('Updating clients.univention.conf')
+        fd.write('''# -*- text -*-
+#
+# clients.univention.conf -- client configuration directives
+#
+# Warning: This file is auto-generated and might be overwritten
+#          triggered by modifications in LDAP directory.
+# Warnung: Diese Datei wurde automatisch generiert und kann,
+#          angestoßen durch Änderungen im LDAP-Verzeichnis,
+#          überschrieben werden.
+#
+
+''')
+
+        lo = getMachineConnection(ldap_master=False)
+        for _dn, attrs in lo.search(filter='(objectClass=univentionRadiusClient)'):
+            hostname = attrs.get('cn', [b'None'])[0].decode('UTF-8')
+            shared_secret = attrs.get('univentionRadiusClientSharedSecret', [b'None'])[0].decode('UTF-8')
+            ipaddr = attrs.get('aRecord', [b''])[0].decode('UTF-8') or attrs.get('aAAARecord', [b'None'])[0].decode('UTF-8')
+            nas_type = attrs.get('univentionRadiusClientType', [b'other'])[0].decode('UTF-8')
+            virtual_server = attrs.get('univentionRadiusClientVirtualServer', [b''])[0].decode('UTF-8')
+            if hostname and ipaddr and shared_secret:
+                print(f'Adding client {hostname} ({ipaddr})')
+                fd.write('''client {} {{
+\tipaddr\t\t= {}
+\tsecret\t\t= {}
+\tnas_type\t= {}
+{}\tvirtual_server\t= {}
+}}
+
+'''.format(
+                    hostname,
+                    ipaddr,
+                    shared_secret,
+                    nas_type,
+                    '' if virtual_server else '# ',
+                    virtual_server or '...not specified...'),
+                )
+
+    shutil.move(fd.name, os.path.join(BASE_DIR, BASE_NAME))
+    os.chmod('/etc/freeradius/3.0/clients.univention.conf', 0o600)
+    os.chown('/etc/freeradius/3.0/clients.univention.conf', pwd.getpwnam('freerad').pw_uid, 0)
+
+
+if __name__ == '__main__':
+    main()

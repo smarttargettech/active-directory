@@ -1,0 +1,1230 @@
+univention-python (15.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:53 +0200
+
+univention-python (15.0.7-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:38 +0100
+
+univention-python (15.0.6) unstable; urgency=medium
+
+  * Bug #57574: no ucr load on module import
+
+ -- Felix Botner <botner@univention.de>  Tue, 01 Oct 2024 09:41:49 +0200
+
+univention-python (15.0.5) unstable; urgency=medium
+
+  * Bug #56858: replace transitional packages
+
+ -- Christian Castens <castens@univention.de>  Fri, 14 Jun 2024 13:00:00 +0200
+
+univention-python (15.0.4) unstable; urgency=medium
+
+  * Bug #57267: New UCR varable `directory/manager/feature/prepostread`
+    to configure `univention.uldap` to send LDAPControls
+    `PostReadControl` and `PreReadControl` for CRUD operations
+    (`add`, `modify`, `modrdn`, `delete`). If this option
+    is activated the LDAPControls will instruct OpenLDAP to
+    return all regular and operational attributes the are
+    readable by the binddn before and after the change.
+
+ -- Arvid <requate@univention.de>  Thu, 06 Jun 2024 12:25:26 +0200
+
+univention-python (15.0.3) unstable; urgency=medium
+
+  * Bug #57267: Make uldap delete pass serverctrls too
+
+ -- Arvid <requate@univention.de>  Thu, 06 Jun 2024 12:24:07 +0200
+
+univention-python (15.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:30 +0100
+
+univention-python (15.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:28 +0100
+
+univention-python (14.0.7) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:17 +0100
+
+univention-python (14.0.6) unstable; urgency=medium
+
+  * Bug #52048: remove UDM settings/portal*
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:06 +0100
+
+univention-python (14.0.5) unstable; urgency=medium
+
+  * Bug #50343: remove decode_ignorelist
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:04 +0100
+
+univention-python (14.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:51 +0100
+
+univention-python (14.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:35 +0100
+
+univention-python (14.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:21 +0100
+
+univention-python (14.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:40 +0100
+
+univention-python (13.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:51 +0100
+
+univention-python (13.0.5-4) unstable; urgency=medium
+
+  * Bug #56911: Remove unused dependency on `py3dns`
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 04 Mar 2024 21:45:05 +0100
+
+univention-python (13.0.5-3) unstable; urgency=medium
+
+  * Bug #57098: make StartTLS configurable in univention.uldap
+
+ -- Maximilian Janßen <janssen@univention.de>  Thu, 29 Feb 2024 14:14:32 +0100
+
+univention-python (13.0.5-2) unstable; urgency=medium
+
+  * Bug #56970: replace use of univention.debug with logging interface
+
+ -- Florian Best <best@univention.de>  Mon, 12 Feb 2024 21:09:55 +0100
+
+univention-python (13.0.5-1) unstable; urgency=medium
+
+  [ Philipp Hahn ]
+  * Bug #56832: UCS 5.0-6 version bump
+
+  [ Florian Best ]
+  * Bug #49006: add bind_oauthbearer(authzid, access_token)
+
+ -- Florian Best <best@univention.de>  Wed, 24 Jan 2024 16:04:16 +0100
+
+univention-python (13.0.4-1) unstable; urgency=medium
+
+  * Bug #43633: uldap: decrease loglevel from INFO(3) to DEBUG/ALL(4)
+
+ -- Florian Best <best@univention.de>  Wed, 14 Jun 2023 10:03:23 +0200
+
+univention-python (13.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:35 +0100
+
+univention-python (13.0.2-13) unstable; urgency=medium
+
+  * Bug #49666: evaluate "response" controls in a LDAP search
+
+ -- Florian Best <best@univention.de>  Thu, 15 Dec 2022 15:54:51 +0100
+
+univention-python (13.0.2-12) unstable; urgency=medium
+
+  * Bug #54555: Fix build dependencies
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 13:54:40 +0100
+
+univention-python (13.0.2-11) unstable; urgency=medium
+
+  * Bug #54555: Fix dependencies
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 13:30:12 +0100
+
+univention-python (13.0.2-10) unstable; urgency=medium
+
+  * Bug #54555: Fix UCR handling; add unittests
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 13:22:23 +0100
+
+univention-python (13.0.2-9) unstable; urgency=medium
+
+  * Bug #54555: Fix typo in set operation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Mar 2022 10:39:41 +0100
+
+univention-python (13.0.2-8) unstable; urgency=medium
+
+  * Bug #54555: Password generation library method for service specific passwords.
+
+ -- Julia Bremer <bremer@univention.de>  Tue, 15 Mar 2022 19:23:32 +0100
+
+univention-python (13.0.2-7) unstable; urgency=medium
+
+  * Bug #51354: fixed KeyError in _userPolicy
+
+ -- Siavash Sefid Rodi <sefid-rodi.extern@univention.de>  Wed, 09 Mar 2022 13:12:11 +0100
+
+univention-python (13.0.2-6) unstable; urgency=medium
+
+  * Bug #54408: add OPT_X_TLS_NEWCTX option for TLS encrypted
+    LDAP connections. This has become a requirement for
+    python-ldap-3.3.0 (and higher)
+
+ -- Christian Castens <castens@univention.de>  Thu, 17 Feb 2022 13:38:27 +0100
+
+univention-python (13.0.2-4) unstable; urgency=medium
+
+  * Bug #53102: introduce _ldap_pre_rename(newdn) and
+    _ldap_post_rename(olddn)
+
+ -- Florian Best <best@univention.de>  Fri, 25 Jun 2021 21:12:51 +0200
+
+univention-python (13.0.2-3) unstable; urgency=medium
+
+  * Bug #49898: make univention.password import samba.check_password_quality
+    only for Python3
+
+ -- Arvid <requate@univention.de>  Wed, 28 Oct 2020 16:06:52 +0100
+
+univention-python (13.0.2-2) unstable; urgency=medium
+
+  * Bug #49898: python-univention cannot depend on python-samba
+    as that does not exist any longer
+
+ -- Arvid <requate@univention.de>  Fri, 23 Oct 2020 08:57:24 +0200
+
+univention-python (13.0.2-1) unstable; urgency=medium
+
+  * Bug #42374: Replace legacy Master/Slave wording by
+    Primary/Backup/Replica/Managed Node
+
+ -- Arvid <requate@univention.de>  Thu, 24 Sep 2020 13:48:37 +0200
+
+univention-python (13.0.1-0) unstable; urgency=medium
+
+  * Bug #52063: remove obsolete modules
+
+ -- Florian Best <best@univention.de>  Sat, 19 Sep 2020 11:55:21 +0200
+
+univention-python (13.0.0-4) unstable; urgency=medium
+
+  * Bug #51506: remove python2 namespacing
+
+ -- Florian Best <best@univention.de>  Thu, 18 Jun 2020 15:41:43 +0200
+
+univention-python (13.0.0-3) unstable; urgency=medium
+
+  * Bug #50648 UDM policies: fix handling of decoding policy values
+
+ -- Florian Best <best@univention.de>  Thu, 18 Jun 2020 13:45:11 +0200
+
+univention-python (13.0.0-2) unstable; urgency=medium
+
+  * Bug #51506: remove python-support
+
+ -- Florian Best <best@univention.de>  Tue, 16 Jun 2020 18:47:15 +0200
+
+univention-python (13.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:15 +0200
+
+univention-python (12.0.1-2) unstable; urgency=medium
+
+  * Bug #51994: fix using wrong variable
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 18 Sep 2020 14:53:29 +0200
+
+univention-python (12.0.1-1) unstable; urgency=medium
+
+  * Bug #51994: Version bump for 4.4-6
+
+ -- Arvid <requate@univention.de>  Fri, 18 Sep 2020 12:21:15 +0200
+
+univention-python (12.0.0-24) unstable; urgency=medium
+
+  * Bug #51994: Support explicit username passing to Check.check()
+
+ -- Arvid <requate@univention.de>  Fri, 18 Sep 2020 11:15:42 +0200
+
+univention-python (12.0.0-23) unstable; urgency=medium
+
+  * Bug #51994: Fix password change exception message
+
+ -- Arvid <requate@univention.de>  Thu, 17 Sep 2020 18:22:48 +0200
+
+univention-python (12.0.0-22) unstable; urgency=medium
+
+  * Bug #51994: check for username must be case insensitive
+
+ -- Arvid <requate@univention.de>  Thu, 17 Sep 2020 12:30:54 +0200
+
+univention-python (12.0.0-21) unstable; urgency=medium
+
+  * Bug #51994: support configuration of standard MS password criteria
+
+ -- Arvid <requate@univention.de>  Wed, 16 Sep 2020 15:06:10 +0200
+
+univention-python (12.0.0-20) unstable; urgency=low
+
+  * Bug #51193: remove excessive log trace information from
+   uldap methods __getstate__, __setstate__ and parentDn
+
+ -- Daniel Troeder <troeder@univention.de>  Fri, 01 May 2020 18:44:51 +0200
+
+univention-python (12.0.0-19) unstable; urgency=low
+
+  * Bug #51182: overhaul randomization of LDAP server order in getMachineConnection
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 29 Apr 2020 15:42:37 +0200
+
+univention-python (12.0.0-18) unstable; urgency=medium
+
+  * Bug #50191: Code cleanup of getMachineConnection
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 17 Jan 2020 17:14:54 +0100
+
+univention-python (12.0.0-17) unstable; urgency=medium
+
+  * Bug #50191: randomize ldap server selection
+
+ -- Julia Bremer <bremer@univention.de>  Wed, 15 Jan 2020 13:07:01 +0100
+
+univention-python (12.0.0-16) unstable; urgency=medium
+
+  * Bug #50033: Sync more attributes in s4connector
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 19 Sep 2019 09:24:18 +0200
+
+univention-python (12.0.0-15) unstable; urgency=medium
+
+  * Bug #47926: reconnect on ldap.UNAVAILABLE & co exceptions
+
+ -- Florian Best <best@univention.de>  Mon, 12 Aug 2019 16:08:59 +0200
+
+univention-python (12.0.0-14) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:38 +0200
+
+univention-python (12.0.0-13) unstable; urgency=medium
+
+  * Bug #49638: partially revert because search_ext() does no
+  	reconnect-handling
+
+ -- Florian Best <best@univention.de>  Mon, 17 Jun 2019 12:09:09 +0200
+
+univention-python (12.0.0-12) unstable; urgency=medium
+
+  * Bug #49638: Implement servercontrols for search()
+
+ -- Florian Best <best@univention.de>  Thu, 13 Jun 2019 12:33:00 +0200
+
+univention-python (12.0.0-11) unstable; urgency=low
+
+  * Bug #49506: Make namespace switch more robust.
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 22 May 2019 07:26:30 +0200
+
+univention-python (12.0.0-10) unstable; urgency=low
+
+  * Bug #49506: Split namespace into separate packages.
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 20 May 2019 09:20:58 +0200
+
+univention-python (12.0.0-9) unstable; urgency=medium
+
+  * Bug #49136: depend on python3-pyldap
+
+ -- Florian Best <best@univention.de>  Fri, 10 May 2019 14:53:04 +0200
+
+univention-python (12.0.0-8) unstable; urgency=medium
+
+  * Bug #49140: improve python3 build process
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 01 May 2019 21:48:58 +0200
+
+univention-python (12.0.0-7) unstable; urgency=medium
+
+  * Bug #49140: fix symlink
+
+ -- Florian Best <best@univention.de>  Tue, 30 Apr 2019 18:06:31 +0200
+
+univention-python (12.0.0-6) unstable; urgency=medium
+
+  * Bug #49140: Add some setup.py metadata
+
+ -- Florian Best <best@univention.de>  Mon, 29 Apr 2019 14:47:43 +0200
+
+univention-python (12.0.0-5) unstable; urgency=medium
+
+  * Bug #49140: add python3-univention package
+
+ -- Florian Best <best@univention.de>  Thu, 18 Apr 2019 14:24:25 +0200
+
+univention-python (12.0.0-4) unstable; urgency=medium
+
+  * Bug #49140: migrate to dh_python2
+
+ -- Florian Best <best@univention.de>  Tue, 16 Apr 2019 18:27:20 +0200
+
+univention-python (12.0.0-3) unstable; urgency=medium
+
+  * Bug #49140: migrate to dh_python2
+
+ -- Florian Best <best@univention.de>  Tue, 16 Apr 2019 15:19:32 +0200
+
+univention-python (12.0.0-2) unstable; urgency=medium
+
+  * Bug #49024: fixed getRootDnConnection
+
+ -- Felix Botner <botner@univention.de>  Mon, 18 Mar 2019 10:02:14 +0100
+
+univention-python (12.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:31 +0100
+
+univention-python (11.0.0-4) unstable; urgency=medium
+
+  * Bug #46066: version bump
+
+ -- Felix Botner <botner@univention.de>  Mon, 05 Feb 2018 12:53:12 +0100
+
+univention-python (11.0.0-3) unstable; urgency=medium
+
+  * Bug #46066: added getRootDnConnection
+
+ -- Felix Botner <botner@univention.de>  Thu, 18 Jan 2018 17:27:10 +0100
+
+univention-python (11.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:23 +0100
+
+univention-python (11.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:43 +0100
+
+univention-python (10.0.4-5) unstable; urgency=medium
+
+  * Bug #45505: fix typo in modify_ext is called instead of modify_ext_s()
+
+ -- Florian Best <best@univention.de>  Wed, 11 Oct 2017 15:48:53 +0200
+
+univention-python (10.0.4-4) unstable; urgency=medium
+
+  * Bug #45474: fix reconnecting in add() / modify() and rename() during
+  	ldap.SERVER_DOWN
+
+ -- Florian Best <best@univention.de>  Fri, 06 Oct 2017 14:52:02 +0200
+
+univention-python (10.0.4-3) unstable; urgency=medium
+
+  * Bug #43628: fix typo: delold=1 and newsuperior=None is already the default
+
+ -- Florian Best <best@univention.de>  Thu, 20 Jul 2017 09:26:19 +0200
+
+univention-python (10.0.4-2) unstable; urgency=medium
+
+  * Bug #43628: Support lookup of specific attributes via PostReadControl
+    (RFC 4527)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 19 Jul 2017 19:09:31 +0200
+
+univention-python (10.0.4-1) unstable; urgency=medium
+
+  * Bug #43628: Refactor rename() to match code of modify()
+
+ -- Arvid Requate <requate@univention.de>  Wed, 19 Jul 2017 19:08:44 +0200
+
+univention-python (10.0.3-4) unstable; urgency=medium
+
+  * Bug #41234: Revert changes made with Bug #36169 due to fix of Bug #36343
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 03 Jul 2017 13:32:46 +0200
+
+univention-python (10.0.3-3) unstable; urgency=low
+
+  * Bug #44316: Use re-connecting LDAP methods
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 24 Apr 2017 09:05:56 +0200
+
+univention-python (10.0.3-2) unstable; urgency=low
+
+  * Bug #44040: add special handling for attribute 'univentionUMCIcon',
+    which doesn't have a matching rule.
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 27 Mar 2017 10:36:25 +0200
+
+univention-python (10.0.3-1) unstable; urgency=medium
+
+  * Add a special handling while removing the attributes
+    univentionPortalBackground, univentionPortalLogo and
+    univentionPortalEntryIcon. These attributes don't have a matching
+    rule so we can't add the old value to the delete command
+    (Bug #44019)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 22 Mar 2017 06:56:53 +0100
+
+univention-python (10.0.2-1) unstable; urgency=medium
+
+  * Bug #43332: fix DN syntax when renamed object contains ","
+
+ -- Florian Best <best@univention.de>  Thu, 12 Jan 2017 18:34:56 +0100
+
+univention-python (10.0.1-1) unstable; urgency=medium
+
+  * Bug #41812: make sure binddn is set when logged in via SAML
+  * Bug #37519: add unbind() method to uldap.access()
+
+ -- Florian Best <best@univention.de>  Tue, 06 Sep 2016 18:14:01 +0200
+
+univention-python (10.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:06 +0200
+
+univention-python (9.0.1-8) unstable; urgency=medium
+
+  * Bug #41785: don't do modrdn() for equal DN's
+
+ -- Florian Best <best@univention.de>  Wed, 13 Jul 2016 10:14:43 +0200
+
+univention-python (9.0.1-7) unstable; urgency=medium
+
+  * Bug #40041: hasChilds() is broken and can therefore be removed
+
+ -- Florian Best <best@univention.de>  Wed, 29 Jun 2016 18:47:45 +0200
+
+univention-python (9.0.1-6) unstable; urgency=medium
+
+  * Bug #40041: ldaps port have to be int
+
+ -- Florian Best <best@univention.de>  Wed, 29 Jun 2016 17:53:21 +0200
+
+univention-python (9.0.1-5) unstable; urgency=medium
+
+  * Bug #40041: make renaming of multi valued RDNs possible
+
+ -- Florian Best <best@univention.de>  Tue, 28 Jun 2016 22:43:39 +0200
+
+univention-python (9.0.1-4) unstable; urgency=medium
+
+  * Bug #40129: use official python-LDAP utilities
+
+ -- Florian Best <best@univention.de>  Mon, 27 Jun 2016 17:51:15 +0200
+
+univention-python (9.0.1-3) unstable; urgency=medium
+
+  * Bug #41207: add access.get_schema()
+
+ -- Florian Best <best@univention.de>  Thu, 09 Jun 2016 17:17:57 +0200
+
+univention-python (9.0.1-2) unstable; urgency=medium
+
+  * Bug #40120: don't depend on attribute order when building modlist
+
+ -- Florian Best <best@univention.de>  Thu, 14 Jan 2016 14:50:31 +0100
+
+univention-python (9.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:02:30 +0100
+
+univention-python (8.0.3-9) unstable; urgency=low
+
+  * Bug #38712: Fix policy inheritance
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 26 Jun 2015 08:09:38 +0200
+
+univention-python (8.0.3-8) unstable; urgency=low
+
+  * Bug #38712: Fix python2.7 set() syntax
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 17 Jun 2015 21:15:41 +0200
+
+univention-python (8.0.3-7) unstable; urgency=low
+
+  * Bug #38712: Fix python2.7 set() syntax
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 17 Jun 2015 18:08:32 +0200
+
+univention-python (8.0.3-6) unstable; urgency=low
+
+  * Bug #38712: Fix policy_result
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 15 Jun 2015 16:27:28 +0200
+
+univention-python (8.0.3-5) unstable; urgency=medium
+
+  * Bug #38663: getPolicies: evaluate requiredObjectClass and
+  	prohibitedObjectClasses
+
+ -- Florian Best <best@univention.de>  Mon, 08 Jun 2015 16:38:46 +0200
+
+univention-python (8.0.3-4) unstable; urgency=medium
+
+  * Bug #36255: getPolicies: evaluate ldapFilter
+
+ -- Florian Best <best@univention.de>  Fri, 05 Jun 2015 21:08:21 +0200
+
+univention-python (8.0.3-3) unstable; urgency=medium
+
+  * uldap.py: Added the parameter reconnect to getAdminConnection,
+    getMachineConnection and getBackupConnection in order to control if
+    a reconnect should be performed. In some situations a reconnect is
+    not desired for example in pam-session (Bug #36805)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 18 Mar 2015 16:35:17 +0100
+
+univention-python (8.0.3-2) unstable; urgency=medium
+
+  * Remove the explicit dependency to python-ldap >= 2.4.15.
+    python-univention needs to be pre-updated (Bug #36229)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 21 Oct 2014 17:20:50 +0200
+
+univention-python (8.0.3-1) unstable; urgency=medium
+
+  * Make reconnect optional in univention.uldap.access (Bug #36227)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Oct 2014 13:05:07 +0200
+
+univention-python (8.0.2-1) unstable; urgency=medium
+
+  * The MDB backend returns the ldap base if scope one is used. Remove
+    the base in this case from the search result (Bug #36169)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 20 Oct 2014 21:32:35 +0200
+
+univention-python (8.0.1-1) unstable; urgency=low
+
+  * Bug #35852: Fix LDAP reconnect count
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 09 Sep 2014 20:13:58 +0200
+
+univention-python (8.0.0-3) unstable; urgency=low
+
+  * Call explicit python_support (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 18 Jun 2014 16:03:55 +0200
+
+univention-python (8.0.0-2) unstable; urgency=low
+
+  * Switch to debian compat level 9 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 18 Jun 2014 11:51:39 +0200
+
+univention-python (8.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 17 Jun 2014 16:47:11 +0200
+
+univention-python (7.0.4-1) unstable; urgency=low
+
+  * Delete old RDN on rename (Bug #34971)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 26 May 2014 11:37:46 +0200
+
+univention-python (7.0.3-4) unstable; urgency=low
+
+  * Set the default for ldap/client/retry/count to 10 (Bug #34292)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 13 Mar 2014 16:12:00 +0100
+
+univention-python (7.0.3-3) unstable; urgency=low
+
+  * Cleanup ldap/client/retry/count handling (Bug #34292)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 13 Mar 2014 12:27:33 +0100
+
+univention-python (7.0.3-2) unstable; urgency=low
+
+  * Added ldap/client/retry/count UCR variable which defines how often
+    uldap tries to reconnect if the ldap server is down. Default is 15.
+    If the server is down the code waits for one second. Secondary the
+    value is used for ReconnectLDAPObject as retry_max. (Bug #34292)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 12 Mar 2014 19:50:47 +0100
+
+univention-python (7.0.3-1) unstable; urgency=low
+
+  * switch to ReconnectLDAPObject (Bug #32617)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 08 Oct 2013 17:45:51 +0200
+
+univention-python (7.0.2-1) unstable; urgency=low
+
+  * Removed deprecated multivalue checks for some attributes (Bug #18929)
+  * Updated copyright
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 01 Jul 2013 14:24:57 +0200
+
+univention-python (7.0.1-1) unstable; urgency=low
+
+  * Fix ldap/server/addition handling (Bug #30436)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 14 Feb 2013 12:10:32 +0100
+
+univention-python (7.0.0-1) unstable; urgency=low
+
+  * Build only for Python 2.6 (Bug #26852)
+  * Bump version for UCS 3.1 (Bug #27966)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 05 Sep 2012 09:27:35 +0200
+
+univention-python (6.0.21-2) unstable; urgency=low
+
+  * bumped version  (Bug #9139)
+
+ -- Felix Botner <botner@univention.de>  Fri, 29 Jun 2012 09:46:19 +0200
+
+univention-python (6.0.21-1) unstable; urgency=low
+
+  * Added a referral handling in uldap (Bug #9139)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 01 Feb 2012 14:31:28 +0100
+
+univention-python (6.0.20-1) unstable; urgency=low
+
+  * fixed cracklib configuration in modules/password.py  (Bug #24799)
+
+ -- Felix Botner <botner@univention.de>  Tue, 22 Nov 2011 16:50:15 +0100
+
+univention-python (6.0.19-1) unstable; urgency=low
+
+  * getPolicies: support evaluating policies just for a list of policies
+    without an object; Bug #24722
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 18 Nov 2011 15:05:18 +0100
+
+univention-python (6.0.18-1) unstable; urgency=low
+
+  * another fix in default values for gtPolicies; Bug #22439
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 15 Nov 2011 12:07:37 +0100
+
+univention-python (6.0.17-1) unstable; urgency=low
+
+  * getPolicies: fix default values for keyword arguments; Bug #22439
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 02 Nov 2011 16:42:19 +0100
+
+univention-python (6.0.16-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:14 +0200
+
+univention-python (6.0.16-1) unstable; urgency=low
+
+  * uldap.py:getMachineConnection new option secret_file (default
+    /etc/machine.secret) (Bug #21649)
+
+ -- Felix Botner <botner@univention.de>  Fri, 14 Oct 2011 10:56:12 +0200
+
+univention-python (6.0.15-1) unstable; urgency=low
+
+  * SmartLDAPObject is no longer part of python-ldap. Removed from
+    uldap.py (Bug #17588)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 10:34:49 +0200
+
+univention-python (6.0.14-1) unstable; urgency=low
+
+  * use port 7389 as default for ldap/server/port and ldap/master/port
+    (Bug #23231)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 19 Sep 2011 18:29:23 +0200
+
+univention-python (6.0.13-1) unstable; urgency=low
+
+  * add univentionObjecType to list of ignored attributes; Bug #23155
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 16 Sep 2011 12:12:59 +0200
+
+univention-python (6.0.12-1) unstable; urgency=low
+
+  * getPolicies: ensure that the objectClass univentionObject is excluded
+    when determining the policy type; Bug #23115
+
+ -- Andreas Büsching <buesching@univention.de>  Sun, 14 Aug 2011 13:39:19 +0200
+
+univention-python (6.0.11-1) unstable; urgency=low
+
+  * debian/control: Break python-univention-config-registry (Bug #23054)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 08 Aug 2011 19:30:02 +0200
+
+univention-python (6.0.10-1) unstable; urgency=low
+
+  * adjust automatic port defaults for use_ldaps (Bug #20026)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 04 Aug 2011 10:13:14 +0200
+
+univention-python (6.0.9-3) unstable; urgency=low
+
+  * Bump version number (Bug #23054)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 21 Jul 2011 16:45:25 +0200
+
+univention-python (6.0.9-2) unstable; urgency=low
+
+  * Purge leftover files from PyCentral on upgrade (Bug #23054)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 21 Jul 2011 16:12:52 +0200
+
+univention-python (6.0.9-1) unstable; urgency=low
+
+  * Actually add univention/__init__.py (Bug #23054, Bug #22521)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Jul 2011 17:24:05 +0200
+
+univention-python (6.0.8-1) unstable; urgency=low
+
+  * use ldap/master/port in getAdminConnection (Bug #20026)
+  * use ldap/master/port in getBackupConnection
+  * use ldap/server/port in getMachineConnection by default
+  * use ldap/master/port in getMachineConnection if the parameter
+    ldap_master is set to true
+
+ -- Arvid Requate <requate@univention.de>  Wed, 20 Jul 2011 16:45:48 +0200
+
+univention-python (6.0.7-1) unstable; urgency=low
+
+  * replace univention_baseconfig with ConfigRegistry; Bug #22160
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 16 Jun 2011 14:18:34 +0200
+
+univention-python (6.0.6-1) unstable; urgency=low
+
+  * Consider ldap/server/port and add support for uri in access class
+    (Bug #20026)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 07 Jun 2011 07:47:03 +0200
+
+univention-python (6.0.5-1) unstable; urgency=low
+
+  * Move sitecustomize.py to univention-base-files (Bug #22160)
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 27 May 2011 18:18:12 +0200
+
+univention-python (6.0.4-1) unstable; urgency=low
+
+  * Split ipv4 helpers to own module (Bug #22521)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 26 May 2011 12:34:04 +0200
+
+univention-python (6.0.3-1) unstable; urgency=low
+
+  * Fixed typo s/isinstace/isinstance/ (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 17 May 2011 12:12:06 +0200
+
+univention-python (6.0.2-1) unstable; urgency=low
+
+  * Cleanup and add documentation (Bug #22160)
+  * debian/control: Fix dependency on debhelper and python-all.
+  * Add fstab implementation.
+  * Provide univention/__init__.py.
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 10 May 2011 13:54:01 +0200
+
+univention-python (6.0.1-2) unstable; urgency=low
+
+  * Install python modules in pyshared/univention/ (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 09 May 2011 14:30:34 +0200
+
+univention-python (6.0.1-1) unstable; urgency=low
+
+  * Depend on python2.6-dev (Bug #22160)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 09 May 2011 14:15:45 +0200
+
+univention-python (6.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22160)
+    * Bump version for UCS 3.0
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 09 May 2011 14:12:22 +0200
+
+univention-python (5.0.11-1) unstable; urgency=low
+
+  * Initialize protocol with a default value. This is required if an old
+    uldap pickle file is loaded (Bug #21007)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 21 Mar 2011 17:12:34 +0100
+
+univention-python (5.0.10-1) unstable; urgency=low
+
+  * uldap.getMachineConnection: added a parameter ldap_master to control
+    if the connection goes to the DC Master. Otherwise the function
+    tries to connect to ldap/server/name and if ldap/server/name is down
+    too the ldap/server/addition servers will be checked (Bug #21559)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 04 Mar 2011 10:17:13 +0100
+
+univention-python (5.0.9-3) unstable; urgency=low
+
+  * fixed typo in replaces and conflicts (Bug #10556)
+
+ -- Jascha Geerds <geerds@univention.de>  Mon, 03 Jan 2011 12:29:48 +0100
+
+univention-python (5.0.9-2) unstable; urgency=low
+
+  * fixed documentation of class HookManager() (Bug #20428)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 19 Oct 2010 15:57:44 +0200
+
+univention-python (5.0.9-1) unstable; urgency=low
+
+  * added hook manager (Bug #20428)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Fri, 15 Oct 2010 13:45:40 +0200
+
+univention-python (5.0.8-1) unstable; urgency=low
+
+  * fix traceback when fetching ldap connection with machine account (Bug #20241)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 04 Oct 2010 18:07:05 +0200
+
+univention-python (5.0.7-1) unstable; urgency=low
+
+  * Support ldaps:// connections in access class. This is needed for
+    encrypted connections to Windows 2000 systems (Bug #19606)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 24 Sep 2010 11:00:38 +0200
+
+univention-python (5.0.6-1) unstable; urgency=low
+
+  * replace old ucr varname in password.py (Bug #19585)
+
+ -- Tim Petersen <petersen@univention.de>  Thu, 16 Sep 2010 09:50:00 +0200
+
+univention-python (5.0.5-1) unstable; urgency=low
+
+  * fix required character test (Bug #14943)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 17 Aug 2010 18:38:59 +0200
+
+univention-python (5.0.4-1) unstable; urgency=low
+
+  * added python-cracklib dependency. Bug #14943
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 29 Jul 2010 21:40:19 +0200
+
+univention-python (5.0.3-1) unstable; urgency=low
+
+  * fixed typo in 'required'. Bug #14943
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 28 Jul 2010 08:43:59 +0200
+
+univention-python (5.0.2-1) unstable; urgency=low
+
+  * added password quality check python module. Bug #14943
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 28 Jul 2010 07:17:16 +0200
+
+univention-python (5.0.1-1) unstable; urgency=low
+
+  * Fix broken if-elif-else construct in uldap.py#modify (Bug #18926)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 06 Jul 2010 18:12:03 +0200
+
+univention-python (5.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 15:29:15 +0200
+
+univention-python (4.0.5-1) unstable; urgency=low
+
+  * ensure that TLS is activated before the bind request (Bug #16432)
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 03 Feb 2010 16:12:01 +0100
+
+univention-python (4.0.4-1) unstable; urgency=low
+
+  * use ldap:// instead of LDAP:// as prefix for LDAP URIs, otherwise TLS
+    encryption is not activated (Bug #16432)
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 07 Jan 2010 17:31:47 +0100
+
+univention-python (4.0.3-1) unstable; urgency=low
+
+  * removed useless dependencies and moved set command of UCR to
+    univention-config-registry (Bug: #15971)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 14 Oct 2009 15:19:48 +0200
+
+univention-python (4.0.2-1) unstable; urgency=low
+
+  * delete jpegPhoto with "None" as old value, because jpegphoto has no matching rule (Bug: #15171)
+
+ -- Felix Botner <botner@univention.de>  Wed, 23 Sep 2009 13:52:12 +0200
+
+univention-python (4.0.1-2) unstable; urgency=low
+
+  * switched to python2.4 (Bug: #14709)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 11 Jun 2009 12:11:22 +0200
+
+univention-python (4.0.1-1) unstable; urgency=low
+
+  * reload the sys module in sitecustomize.py, otherwise
+    setdefaultencoding is unknown. Bug #14709
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 11 Jun 2009 11:36:14 +0200
+
+univention-python (4.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-python (3.0.1-1) unstable; urgency=low
+
+  * removed logging.py - logging is handled by univention-debug (Bug 9715)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Fri, 19 Sep 2008 10:59:11 +0200
+
+univention-python (3.0.0-1) unstable; urgency=low
+
+  * added a function for creating a ldap connection with the machine
+    account
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 27 Jun 2008 09:08:36 +0200
+
+univention-python (2.2.2-2) unstable; urgency=low
+
+  * re-added the utf8 module
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue,  2 Oct 2007 10:23:07 +0200
+
+univention-python (2.2.2-1) unstable; urgency=low
+
+  * added conflict to the old transition package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 20 Sep 2007 08:15:39 +0200
+
+univention-python (2.2.1-3) unstable; urgency=low
+
+  * added univention-python transition package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Sep 2007 13:05:11 +0200
+
+univention-python (2.2.1-2) unstable; urgency=low
+
+  * no password encoding to ISO-8859-1 anymore
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 15 Jun 2007 15:09:58 +0200
+
+univention-python (2.2.0-1) unstable; urgency=low
+
+  * removed univention.utf8; UCS 2.0 using UTF-8 by default
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 15 Jun 2007 09:34:14 +0200
+
+univention-python (2.1.1-2) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:44 +0200
+
+univention-python (2.1.1-1) unstable; urgency=low
+
+  * add sitecustomize.py to set default encoding for python processes to utf-8
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Tue, 12 Jun 2007 15:38:11 +0200
+
+univention-python (2.1.0-1) unstable; urgency=low
+
+  * move univention/__init__.py to package python-univention-baseconfig
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 11 Jun 2007 12:10:40 +0200
+
+univention-python (2.0-1-2) unstable; urgency=low
+
+  * added python-univention-baseconfig to the dependency list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat,  9 Jun 2007 22:04:20 +0200
+
+univention-python (2.0-1-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri,  4 May 2007 15:06:31 +0200
+
+univention-python (1.20-1) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Sun,  3 Dec 2006 11:52:52 +0100
+
+univention-python (1.19-6) unstable; urgency=low
+
+  * Uniquify values of add lists before running ldap.add_s.
+    This prevents "value #x provided more than once" errors.
+
+ -- Martin Kuehl <kuehl@univention.de>  Tue,  5 Sep 2006 17:02:31 +0200
+
+univention-python (1.19-5) unstable; urgency=low
+
+  * read ignorelist from baseconfig an use it also in decode
+
+ -- Ingo Steuwer <steuwer@univention.de>  Fri, 19 May 2006 10:16:17 +0200
+
+univention-python (1.19-4) unstable; urgency=low
+
+  * getPolicies failed if policy tried to set an attribute empty which was
+    not inherited earlier
+
+ -- Ingo Steuwer <steuwer@univention.de>  Wed, 19 Apr 2006 12:05:34 +0200
+
+univention-python (1.19-3) unstable; urgency=low
+
+  * don't treat ldap attribute as unicode if ldap/binaryattributes
+    contains it
+
+ -- Martin Kuehl <kuehl@univention.de>  Thu, 30 Mar 2006 15:49:15 +0200
+
+univention-python (1.19-2) unstable; urgency=low
+
+  * set debug level for ldap operation to INFO
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Wed,  1 Mar 2006 11:21:10 +0100
+
+univention-python (1.19-1) unstable; urgency=low
+
+  * increase version number above the one of the UGS release
+
+ -- Martin Kuehl <kuehl@univention.de>  Tue, 28 Feb 2006 16:54:46 +0100
+
+univention-python (1.17-2) unstable; urgency=low
+
+  * do not decode userCertificate
+
+ -- Ingo Steuwer <steuwer@univention.de>  Thu, 19 Jan 2006 14:25:43 +0100
+
+univention-python (1.16) unstable; urgency=low
+
+  * added dependency for the package python
+
+ -- Wolf Wiegand <wiegand@univention.de>  Thu,  8 Dec 2005 08:23:38 +0100
+
+univention-python (1.13) unstable; urgency=low
+
+  * provide python2.3-univention
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  6 Oct 2005 07:49:04 +0200
+
+univention-python (1.12) unstable; urgency=low
+
+  * Switched to python 2.4 (support for older versions has been dropped)
+
+ -- Alexander Reelsen <reelsen@univention.de>  Mon, 19 Sep 2005 14:24:32 +0200
+
+univention-python (1.11) unstable; urgency=low
+
+  * added parameter decode_ignorelist to getAdminConnection
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 28 Jul 2005 11:47:48 +0200
+
+univention-python (1.10) unstable; urgency=low
+
+  * fix another encoding failure in modrdn
+
+ -- Ingo Steuwer <steuwer@univention.de>  Thu, 28 Jul 2005 10:08:37 +0200
+
+univention-python (1.9) unstable; urgency=low
+
+  * fix encoding of dn in rename
+
+ -- Ingo Steuwer <steuwer@univention.de>  Tue,  7 Jun 2005 07:53:47 +0200
+
+univention-python (1.8) unstable; urgency=low
+
+  * support for tls_cacertfile in access class
+  * support for ldap controls
+  * support for dn-rename
+
+ -- Ingo Steuwer <steuwer@univention.de>  Thu, 20 Jan 2005 14:41:20 +0100
+
+univention-python (1.7) unstable; urgency=low
+
+  * Build Python 2.1 package for listener.
+  * Add proper package description.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 27 Apr 2004 14:58:10 +0200
+
+univention-python (1.6) unstable; urgency=low
+
+  * Updated for Python 2.3.
+  * Renamed univention-python to python2.3-univention.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 17 Feb 2004 16:09:45 +0100
+
+univention-python (1.5) unstable; urgency=low
+
+  * Remove existing connection optimization. It doesn't seem to be
+    needed anymore.
+  * Add bind function to upgrade anonymous connections.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Wed, 11 Feb 2004 09:31:15 +0100
+
+univention-python (1.4) unstable; urgency=low
+
+  * added support for start_tls
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Sat, 11 Oct 2003 10:53:44 +0200
+
+univention-python (1.3) unstable; urgency=low
+
+  * added uldap, logging and utf8 modules
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Fri, 30 May 2003 15:19:42 +0200
+
+univention-python (1.2) unstable; urgency=low
+
+  * new versioning scheme
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 May 2003 13:49:43 +0200
+
+univention-python (0.1) unstable; urgency=low
+
+  * Initial release
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 09 Oct 2002 16:22:45 +0200

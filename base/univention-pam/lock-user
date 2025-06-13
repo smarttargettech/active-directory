@@ -1,0 +1,75 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+#
+# Univention PAM
+#  lock a user account
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/ucr.sh
+eval "$(univention-config-registry shell)"
+
+if is_ucr_true auth/faillog
+then
+	attempts=$(( $(faillock --user "$USER" | wc -l) -2 ))
+	max_attempts=5
+	if [ -n "$auth_faillog_limit" ]; then
+		max_attempts="$auth_faillog_limit"
+	fi
+
+	if [ "$attempts" -ge "$max_attempts" ]; then
+		# max attempts reached
+
+		user_dn=$(univention-ldapsearch -LLLo ldif-wrap=no "(&(uid=$USER)(objectClass=shadowAccount))" 1.1 | ldapsearch-decode64 | sed -ne 's|dn: ||p')
+
+		if [ -z "$user_dn" ]; then
+			echo "E: ldap dn for $USER not found"
+			exit 1
+		fi
+
+		HOME=/ python3 -m univention.lib.account lock --dn "$user_dn" --lock-time "$(date --utc '+%Y%m%d%H%M%SZ')"
+		### Just locking would be good, but requires ppolicy LDAP overlay
+		### active and configured properly to temporarily block LDAP
+		### authentication too. For now we additionally disable the user in this case:
+		HOME=/ /usr/sbin/univention-directory-manager users/user modify --dn "$user_dn" --set disabled=1
+		### FYI: disabling a users/user object automatically resets locked to 0, this is Samba/AD
+		### behavior too. This causes the faillog listener to directly reset the pam_faillock counter.
+
+		exit $?
+	else
+		# max attempts not reached
+		exit 0
+	fi
+else
+	# pam_faillock is disabled
+	exit 0
+fi

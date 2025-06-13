@@ -1,0 +1,13 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check dpkg-vendor
+## tags:
+##  - basic
+##  - apptest
+## bugs: [44645]
+## exposure: safe
+
+## Debug output:
+dpkg-vendor --query Vendor
+
+exec dpkg-vendor --is univention

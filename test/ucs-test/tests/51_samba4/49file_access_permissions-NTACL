@@ -1,0 +1,95 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test to set a NTACL with an Allow ACE"
+## exposure: safe
+## packages:
+## - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/shares.sh
+. "$TESTLIBPATH/shares.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+# shellcheck source=../../lib/samba.sh
+. "$TESTLIBPATH/samba.sh" || exit 137
+
+##----create User
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+username="$(user_randomname)"
+first_password="univention"
+sharename="$(random_share)"
+
+trap 'user_remove "$username";
+share_remove "$sharename";
+rm -rf "/${sharename:?}";
+wait_for_replication_and_postrun;
+' INT TERM EXIT
+
+check_domainadmin_credentials || fail_fast 77 "UCR variables for admin credentials are not set"
+ADMINISTRATOR_NAME="$(univention-ldapsearch -b "$tests_domainadmin_account" uid | VAL uid)"
+
+user_create "$username" ||
+	fail_fast 1 "User could not be created"
+
+
+##----create Share
+SHARE_POSITION="cn=shares,$ldap_base"
+SHARE_UNIX_DIRECTORYMODE=0777
+SHARE_HOST="$hostname.$domainname"
+share_create "$sharename" "/$sharename" ||
+	fail_fast 1 "could not create share"
+sleep 10	## wait a bit for listener module postrun
+wait_for_replication
+wait_for_drs_replication "(sAMAccountName=$username)"
+
+## wait for samba share export
+wait_for_share () {
+	output="$(smbclient -U "$username%$first_password" "//$hostname.$domainname/$sharename" -c "exit" >/dev/null 2>&1)"
+}
+sleep_seconds=3
+retry_delay="$sleep_seconds" retry 10 wait_for_share ||
+	fail_fast 1 "TIMEOUT: Samba did not export the share '$sharename' after $((i * sleep_seconds)) seconds: $output"
+
+##--Tests
+
+echo "----create a folder as Administrator, so that the testuser has no rights to write in it"
+output="$(smbclient -U "$ADMINISTRATOR_NAME%$tests_domainadmin_pwd" "//$hostname.$domainname/$sharename" -c "mkdir folder" 2>&1)"
+echo "$output" | grep -q "^NT_STATUS_" &&
+	fail_fast 1 "Failed to make a folder as Administrator even though it should work: $output"
+
+echo "----attempt to create a folder without permission"
+output=$(smbclient -U "$username%$first_password" "//$hostname.$domainname/$sharename" -c "mkdir folder\folder2" 2>&1)
+echo "$output" | grep -q "NT_STATUS_ACCESS_DENIED" ||
+	fail_test 1 "Expected return value NT_STATUS_ACCESS_DENIED: $output"
+
+## get objectSID
+sid="$(ldbsearch -H ldap://localhost -U"$username%$first_password" "cn=$username" | VAL objectSid)"
+[ -n "$sid" ] ||
+	fail_fast 1 "Could not retrieve objectSid of samba user account '$username'"
+
+## get and set NTACL
+echo "----get NTACL"
+NTACL_old="$(samba-tool ntacl get "/$sharename/folder" --as-sddl 2>/dev/null)"
+echo "$NTACL_old" | grep -q "^O:" ||
+	fail_test 1 "Could not retrieve NTACL"
+echo "----set NTACL"
+samba-tool ntacl set "$NTACL_old""(A;;CC;;;$sid)" "/$sharename/folder" ||
+	fail_test 1 "Failed to set NTACL"
+
+echo "----attempt to create a folder with permission"
+output="$(smbclient -U "$username%$first_password" "//$hostname.$domainname/$sharename" -c "mkdir folder\folder3")" ||
+	fail_test 1 "Failed to make a folder even though it should work: $output"
+
+exit "$RETVAL"

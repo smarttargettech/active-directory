@@ -1,0 +1,3 @@
+etc/nagios/nrpe.local.d
+etc/nagios/nrpe.univention.d
+var/lib/univention-nagios

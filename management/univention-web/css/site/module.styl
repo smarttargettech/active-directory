@@ -1,0 +1,193 @@
+/*
+ * Like what you see? Join us!
+ * https://www.univention.com/about-us/careers/vacancies/
+ *
+ * Copyright 2014-2025 Univention GmbH
+ *
+ * https://www.univention.de/
+ *
+ * All rights reserved.
+ *
+ * The source code of this program is made available
+ * under the terms of the GNU Affero General Public License version 3
+ * (GNU AGPL V3) as published by the Free Software Foundation.
+ *
+ * Binary versions of this program provided by Univention to you as
+ * well as other copyrighted, protected or trademarked materials like
+ * Logos, graphics, fonts, specific documentations and configurations,
+ * cryptographic keys etc. are subject to a license agreement between
+ * you and Univention and not subject to the GNU AGPL V3
+ *
+ * In the case you use this program under the terms of the GNU AGPL V3,
+ * the program is provided in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Publi
+ * License with the Debian GNU/Linux or Univention distribution in file
+ * /usr/share/common-licenses/AGPL-3 if not, see
+ * <https://www.gnu.org/licenses/>.
+ */
+
+@require "../variables.styl"
+@require "../document.styl"
+@require "../Grid.styl"
+@require "../widgets/TitlePane.styl"
+
+// seperation line between module header and content when scrolling
+.umcModuleHeader
+	transition: border-color 0.2s
+	--local-border-color: transparent
+	border-bottom: 1px solid var(--local-border-color)
+.umcModule--scrolled .umcModuleHeader
+	--local-border-color: var(--font-color-contrast-low)
+
+
+.umcModuleHeaderOuterContainer
+	padding: spacing(3) 0
+
+.umcModuleHeaderWrapper
+	display: flex
+	align-items: center
+	flex-wrap: wrap
+	gap: spacing(1) 0
+	min-height: var(--button-size)
+
+.umcModuleLogoWrapper
+	border-radius: var(--border-radius-interactable)
+	margin-right: calc(1.5*var(--layout-spacing-unit))
+
+.umcModuleTitleWrapper
+	display: flex
+	align-items: center
+
+.umcModuleLogo
+	height: 2rem
+	width: @height
+
+.umcModuleHeader--withSubTitle .umcModuleHeaderWrapper
+	align-items: flex-start
+
+.umcModuleHeaderRight
+	margin-left: auto
+
+.umcModuleHeaderRight__buttons
+	display: flex
+	flex-wrap: wrap
+	justify-content: flex-end
+	// gap: spacing(2) // replace margin with this if supported in all browsers
+	margin: spacing(-1)
+	> .ucsButton
+		margin: spacing(1)
+
+.umcModuleTitle
+	@extends h1
+	display: flex
+	align-items: center
+
+.umcModuleTitleBreadCrumb
+	color: var(--font-color-contrast-middle)
+
+.umcModuleTitleBreadCrumbSeperator
+	margin: 0 spacing(1, true)
+
+.umcModuleSubTitle
+	font-size: var(--font-size-5)
+	margin-top: calc(3 * var(--layout-spacing-unit-small))
+
+.umc .umcModuleWrapper
+	margin: 0 auto
+	padding: 0
+
+
+.umc .umcPageHeader
+	overflow-wrap: break-word
+.umc .umcPageHelpText
+	font-size: var(--font-size-4)
+
+
+// headerText/helpText spacing
+.umc .umcPageHeader + *
+	margin-top: spacing(1)
+.umc .umcPageHelpText + *
+	margin-top: spacing(2)
+.umc .umcPageNavContent:last-child
+	margin-bottom: spacing(2)
+
+
+// UDM module spacing
+.umc .umcUDMDetailPage
+	.umcPageMainContent
+		background-color: var(--bgc-content-container)
+		border-radius: var(--border-radius-container)
+
+		// for e.g. "Password recovery" tab in users/user module
+		> .umcLayoutRow
+			padding: 0 spacing(2)
+			&:last-child
+				padding-bottom: spacing(2)
+
+	.umcPageHeader h2
+		@extends h1
+	.umcPageHeader
+		padding: spacing(2)
+	.umcPageHelpText
+		margin: 0
+		padding: 0 spacing(2) spacing(2)
+
+	.dijitTitlePane
+		border-radius: 0
+		border-top: 2px solid var(--bgc-content-body)
+		margin-bottom: 0
+
+		.dijitTitlePane
+			border-top: 0
+			border-radius: var(--border-radius-container)
+
+.umc .umcSetupNetworkPage,
+.umc .umcAppCenterRepositorySettingsPage
+	.umcGrid
+		@extends .umc .umcGridOnContainer
+
+.umc .umcSetupNetworkPage,
+.umc .umcSetupCertificatePage,
+.umc .umcSetupLanguagePage,
+.umc .umcAppCenterRepositorySettingsPage,
+.umc .umcAppCenterRepositoryDetailsPage,
+.umc .umcUpdatesPage,
+.umc .umcAdconnectorConfigPage
+	.umcPageMainContent
+		background-color: var(--bgc-content-container)
+		border-radius: var(--border-radius-container)
+
+	.dijitTitlePane
+		border-radius: 0
+		border-top: 2px solid var(--bgc-content-body)
+		margin-bottom: 0
+
+		.dijitTitlePane
+			border-top: 0
+
+.umc .umcPKGDBPage
+	.umcPageNavContent
+		@extends .umcCard2
+
+	.umcGrid
+		margin-top: spacing(4)
+
+.umc .umcSetupInterfaceWizard
+	border-radius: var(--border-radius-container)
+
+	.umcSetupInterfaceWizard__networkPage
+		.umcPageMainContent
+			background-color: var(--bgc-content-body)
+			border-radius: var(--border-radius-container)
+
+		.dijitTitlePane
+			@extends .umcTitlePaneOnContainer
+			border-radius: 0
+			margin-bottom: 0
+
+			& + .dijitTitlePane
+				border-top: 2px solid var(--bgc-content-body)

@@ -1,0 +1,74 @@
+#! /bin/sh
+#
+# Univention Squid
+#  postinst script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+
+# the proxy user needs to be in the group winbindd_priv to be able to access winbind
+adduser proxy winbindd_priv
+
+LOCALINCLUDE=/etc/squid/local.conf
+if [ ! -e "$LOCALINCLUDE" ]; then
+	echo "# add local config here" >> "$LOCALINCLUDE"
+fi
+
+ucr set squid/transparentproxy?false \
+	squid/cache?yes \
+	squid/debug/level?ALL,1 \
+	squid/forwardedfor?off \
+	squid/cache/format?ufs \
+	squid/cache/directory?/var/spool/squid \
+	squid/cache/size?512 \
+	squid/cache/l1_size?16 \
+	squid/cache/l2_size?256 \
+	squid/basicauth/encoding_wrapper?true
+
+invoke-rc.d squid restart
+
+# configure firewall
+ucr set security/packetfilter/package/univention-squid/tcp/3128/all="ACCEPT" \
+		security/packetfilter/package/univention-squid/tcp/3128/all/en="HTTP proxy"
+[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+
+if [ "$1" = "configure" ]; then
+	uinst=/usr/lib/univention-install/60univention-squid.uinst
+	[ -e "$uinst" ] && rm "$uinst"
+fi
+
+call_joinscript 79univention-squid.inst
+
+exit 0

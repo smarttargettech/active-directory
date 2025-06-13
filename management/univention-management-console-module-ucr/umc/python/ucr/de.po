@@ -1,0 +1,53 @@
+# SPDX-FileCopyrightText: 2020-2025 Univention GmbH
+# SPDX-License-Identifier: AGPL-3.0-only
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-ucr\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2020-09-21 13:45+0200\n"
+"PO-Revision-Date: 2011-10-29 15:00+0200\n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: umc/python/ucr/__init__.py:58
+msgid ""
+"A valid UCR variable name must contain at least one character and can only "
+"contain letters, numerals, \"/\", \".\", \":\", \"_\" and \"-\"."
+msgstr ""
+"Ein gültiger UCR-Variablenname muss mindestens ein Zeichen lang sein und "
+"kann nur Buchstaben, Zahlen und die Zeichen \"/\", \".\", \":\", \"_\" und "
+"\"-\" enthalten."
+
+#: umc/python/ucr/__init__.py:170
+#, python-format
+msgid "The UCR variable %(key)s could not be found"
+msgstr "Die UCR-Variable %(key)s konnte nicht gefunden werden"
+
+#: umc/python/ucr/__init__.py:116
+#, python-format
+msgid "The UCR variable %s is already set."
+msgstr "Die UCR-Variable %s ist bereits gesetzt."
+
+#: umc/python/ucr/__init__.py:132
+#, python-format
+msgid "The UCR variable %s is read-only and can not be changed!"
+msgstr "Die UCR-Variable %s ist nur lesbar und kann nicht geändert werden!"
+
+#: umc/python/ucr/__init__.py:145
+#, python-format
+msgid "The UCR variable %s is read-only and can not be removed!"
+msgstr "Die UCR-variable %s ist nur lesbar und kann nicht entfernt werden"
+
+#: umc/python/ucr/__init__.py:167
+#, python-format
+msgid "The value %s is not valid for the UCR variable %s!"
+msgstr "Der Wert %s ist für die UCR-Variable %s nicht gültig!"
+
+#: umc/python/ucr/__init__.py:170
+#, python-format
+msgid "Invalid UCR type definition for type %r of %r, value %r not set"
+msgstr "Ungültige UCR-Typdefinition für Typ %r von %r, Wert %r nicht gesetzt"

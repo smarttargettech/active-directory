@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/ucr.sh
+
+# deconfigure temporary interfaces
+ucr search --brief --value '^appliance-mode-temporary$' |
+	cut -f1 -d: |
+	grep -E '^interfaces/[^/]+_[^/]/type$' |
+	while read -r
+	do
+		echo "${REPLY%type}"{netmask,address,broadcast,network,type}
+	done |
+	xargs -r ucr unset
+
+# Show correct EC2 server address in motd and meta.json
+ucr commit /etc/motd.setup /var/www/univention/meta.json >/dev/null 2>&1
+
+# Add public ssh key if the system was started in EC2:
+if is_ucr_true server/amazon
+then
+	log_action_cont_msg "Getting ssh keys from EC2"
+	[ -d /root/.ssh ] ||
+		mkdir -p /root/.ssh
+	[ -e /root/.ssh/authorized_keys ] ||
+		touch /root/.ssh/authorized_keys
+
+	key="$(wget -q -O - http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key)"
+	grep -q "$key" /root/.ssh/authorized_keys ||
+		echo "$key" >>/root/.ssh/authorized_keys
+fi
+
+is_ucr_true system/setup/boot/start &&
+	exec /usr/share/univention-system-setup/startxwithfirefox > "/var/log/univention/system-setup-boot.log" 2>&1
+:

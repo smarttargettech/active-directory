@@ -1,0 +1,328 @@
+univention-python-heimdal (12.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:54 +0200
+
+univention-python-heimdal (12.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:40 +0100
+
+univention-python-heimdal (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:27 +0100
+
+univention-python-heimdal (11.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:22 +0100
+
+univention-python-heimdal (11.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:51 +0100
+
+univention-python-heimdal (11.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:28 +0100
+
+univention-python-heimdal (11.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:21 +0100
+
+univention-python-heimdal (11.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:39 +0100
+
+univention-python-heimdal (10.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:52 +0100
+
+univention-python-heimdal (10.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:26 +0100
+
+univention-python-heimdal (10.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:35 +0100
+
+univention-python-heimdal (10.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:15 +0200
+
+univention-python-heimdal (9.0.0-4) unstable; urgency=low
+
+  * Bug #50475: Fix Python 3 support
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 11 Mar 2020 11:53:11 +0100
+
+univention-python-heimdal (9.0.0-3) unstable; urgency=low
+
+  * Bug #50475: Add Python 3 support
+  * Bug #49383: Fix memory leaks, memory corruption and segmentation faults
+  * Bug #38736: Improve error handling
+
+ -- Philipp Hahn <hahn@univention.de>  Sun, 08 Dec 2019 23:49:32 +0100
+
+univention-python-heimdal (9.0.0-2) unstable; urgency=low
+
+  * Bug #49139: Migrate to dh_python2
+  * Bug #28681: Fix package description
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 24 Apr 2019 17:32:39 +0200
+
+univention-python-heimdal (9.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:31 +0100
+
+univention-python-heimdal (8.0.0-5) unstable; urgency=medium
+
+  * Bug #43336: remove pyversions
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 13:55:45 +0100
+
+univention-python-heimdal (8.0.0-4) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:23 +0100
+
+univention-python-heimdal (8.0.0-3) unstable; urgency=medium
+
+  * Bug #45841: fix setup.py, second try ...
+
+ -- Felix Botner <botner@univention.de>  Tue, 12 Dec 2017 13:59:04 +0100
+
+univention-python-heimdal (8.0.0-2) unstable; urgency=medium
+
+  * Bug #45841: fix setup.py
+
+ -- Felix Botner <botner@univention.de>  Tue, 12 Dec 2017 13:49:49 +0100
+
+univention-python-heimdal (8.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:49 +0100
+
+univention-python-heimdal (7.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:04 +0200
+
+univention-python-heimdal (6.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:02:39 +0100
+
+univention-python-heimdal (5.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 09:00:37 +0200
+
+univention-python-heimdal (4.0.4-1) unstable; urgency=low
+
+  * version bump (Bug #29747)
+
+ -- Felix Botner <botner@univention.de>  Tue, 05 Mar 2013 17:33:37 +0100
+
+univention-python-heimdal (4.0.3-2.1) unstable; urgency=low
+
+  * Remove copyright block for code not present in univention-python-heimdal
+    (Bug #26440)
+
+ -- Moritz Mühlenhoff <muehlenhoffunivention.de>  Thu, 04 Oct 2012 12:04:05 +0200
+
+univention-python-heimdal (4.0.3-2) unstable; urgency=low
+
+  * return keybloks properly in keytab.list() (Bug #24277)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 24 Jan 2012 22:13:19 +0100
+
+univention-python-heimdal (4.0.3-1) unstable; urgency=low
+
+  * fix traceback in keytab binding (Bug #24277)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 24 Jan 2012 15:54:29 +0100
+
+univention-python-heimdal (4.0.2-3) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:14 +0200
+
+univention-python-heimdal (4.0.2-2) unstable; urgency=low
+
+  * merge module API changes from ucs_2.4-samba4 to ucs main (Bug #22580)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 01 Dec 2010 19:14:36 +0100
+
+univention-python-heimdal (4.0.2-1) unstable; urgency=low
+
+  * merge keyblock_raw code of versions 3.1.2-1 and 3.1.3-1 from
+    ucs_2.4-samba4 to ucs main (Bug #22580)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 01 Aug 2011 17:55:07 +0200
+
+univention-python-heimdal (4.0.1-3) unstable; urgency=low
+
+  * use generic include files in asn1 and document the upstream
+    HDB_INTERFACE_VERSION where the Salt.opaque field can be found
+    (Bug #22559)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 28 Jul 2011 15:25:36 +0200
+
+univention-python-heimdal (4.0.1-2) unstable; urgency=low
+
+  * adjust to extended Salt structure in heimdal-1.5 introduced by
+    upstream commit 95f39b1cc05578a4e486a3a7e371d6eb66cb846f (Bug #22559)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 28 Jul 2011 14:56:11 +0200
+
+univention-python-heimdal (4.0.1-1) unstable; urgency=low
+
+  * adjust krb5_get_default_in_tkt_etypes to upstream change for heimdal-1.5
+    https://github.com/heimdal/heimdal/commit/2fbad6432b41f6c20df716051199bb1222baf55b
+    switching to new krb5_get_permitted_enctypes function introduced in
+    https://github.com/heimdal/heimdal/commit/ba5c014af01c2de7c3ef0575d5082e8582d4c574
+    (Bug #22559)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 26 Jul 2011 20:44:46 +0200
+
+univention-python-heimdal (4.0.0-3) unstable; urgency=low
+
+  * copyright updated for Bug #22520
+  * Standards-Version updated
+
+ -- Arvid Requate <requate@univention.de>  Wed, 06 Jul 2011 11:20:29 +0200
+
+univention-python-heimdal (4.0.0-2) unstable; urgency=low
+
+  * fixed build dependency; Bug #22520
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 16 May 2011 16:28:08 +0200
+
+univention-python-heimdal (4.0.0-1) unstable; urgency=low
+
+  * bumped version for UCS 3.0
+  * adapted build process
+  * fixed some minor memory management issues;  Bug #22520
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 13 May 2011 15:53:54 +0200
+
+univention-python-heimdal (3.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 15:25:39 +0200
+
+univention-python-heimdal (2.0.2-2) unstable; urgency=low
+
+  * switched to python2.4 (Bug: #14709)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 11 Jun 2009 12:10:58 +0200
+
+univention-python-heimdal (2.0.2-1) unstable; urgency=low
+
+  * only build the python 2.4 package. Bug #14709
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 11 Jun 2009 10:37:53 +0200
+
+univention-python-heimdal (2.0.1-1) unstable; urgency=low
+
+  * update to Heimdal 1.2. Bug #14667
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue,  9 Jun 2009 08:06:40 +0200
+
+univention-python-heimdal (1.0.2-1) unstable; urgency=low
+
+  * change the architecture to any
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 15 Apr 2008 06:54:19 +0200
+
+univention-python-heimdal (1.0.1-2) unstable; urgency=low
+
+  * added conflict to the old transition package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 20 Sep 2007 08:16:20 +0200
+
+univention-python-heimdal (1.0.1-1) unstable; urgency=low
+
+  * added python2.4-heimdal transition package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Sep 2007 13:07:25 +0200
+
+univention-python-heimdal (1.0.1-0) unstable; urgency=low
+
+  * added a missing dependency on hdb to setup.py otherwise it doesn't work
+    with heimdal 1.0, thanks to Love
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  2 Aug 2007 07:18:20 +0200
+
+univention-python-heimdal (1.0.0-2) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:45 +0200
+
+univention-python-heimdal (1.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 13:55:58 +0200
+
+python-heimdal (0.7) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Thu, 23 Nov 2006 15:04:40 +0100
+
+python-heimdal (0.6) unstable; urgency=low
+
+  * provide python2.3-heimdal
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  6 Oct 2005 07:50:55 +0200
+
+python-heimdal (0.4) unstable; urgency=low
+
+  * Switched to python 2.4 (support for older versions has been dropped)
+
+ -- Alexander Reelsen <reelsen@univention.de>  Mon, 19 Sep 2005 13:51:51 +0200
+
+python-heimdal (0.2) unstable; urgency=low
+
+  * new version policy
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 23 Feb 2004 11:46:42 +0100
+
+python-heimdal (0.1-1) unstable; urgency=low
+
+  * Initial version
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Thu, 26 Sep 2003 13:33:17 +0200

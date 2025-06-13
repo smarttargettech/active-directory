@@ -1,0 +1,167 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Mirror localhost repository parts
+##  1. Create releases before and after an artificial version
+##  2. Mirror only two releases in between
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+##  - apt-mirror
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+declare -a BDIR CDIR ADIR # before current after
+
+setup_apache "${repoprefix}"
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 0:dists/ucs500/main/binary-amd64/
+# 1:dists/errata500/main/binary-amd64/
+mkdeb "${pkgname}ua" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[0]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mkdeb "${pkgname}ea" 1 all "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[1]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+mkpdir "${major}.${minor}-1" maintained "${ARCH}"
+# 2:dists/ucs501/main/binary-amd64/
+# 3:dists/errata501/main/binary-amd64/
+mkdeb "${pkgname}ua" 3 all "${DIR_POOL}"
+mkpkg "${DIRS[2]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 3 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[2]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mkdeb "${pkgname}ea" 3 all "${DIR_POOL}"
+mkpkg "${DIRS[3]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 3 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[3]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+minor+=1
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 4:dists/ucs510/main/binary-amd64/
+# 5:dists/errata510/main/binary-amd64/
+mkdeb "${pkgname}ua" 4 all "${DIR_POOL}"
+mkpkg "${DIRS[4]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 4 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[4]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mkdeb "${pkgname}ea" 4 all "${DIR_POOL}"
+mkpkg "${DIRS[5]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 4 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[5]}" "${DIR_POOL}"
+BDIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+# START
+
+mkpdir "${major}.${minor}-1" maintained "${ARCH}"
+# 6:dists/ucs511/main/binary-amd64/
+# 7:dists/errata511/main/binary-amd64/
+mkdeb "${pkgname}ua" 6 all "${DIR_POOL}"
+mkpkg "${DIRS[6]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 6 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[6]}" "${DIR_POOL}"
+CDIR+=("${DIR}")
+mkdeb "${pkgname}ea" 6 all "${DIR_POOL}"
+mkpkg "${DIRS[7]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 6 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[7]}" "${DIR_POOL}"
+CDIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+mkpdir "${major}.${minor}-2" maintained "${ARCH}"
+# 8:dists/ucs512/main/binary-amd64/
+# 9:dists/errata512/main/binary-amd64/
+mkdeb "${pkgname}ua" 7 all "${DIR_POOL}"
+mkpkg "${DIRS[8]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 7 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[8]}" "${DIR_POOL}"
+CDIR+=("${DIR}")
+mkdeb "${pkgname}ea" 7 all "${DIR_POOL}"
+mkpkg "${DIRS[9]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 7 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[9]}" "${DIR_POOL}"
+CDIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+# END
+
+mkpdir "${major}.${minor}-3" maintained "${ARCH}"
+# 10:dists/ucs513/main/binary-amd64/
+# 11:dists/errata513/main/binary-amd64/
+mkdeb "${pkgname}ua" 8 all "${DIR_POOL}"
+mkpkg "${DIRS[10]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 8 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[10]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mkdeb "${pkgname}ea" 8 all "${DIR_POOL}"
+mkpkg "${DIRS[11]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 8 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[11]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+minor+=1
+
+mkpdir "${major}.${minor}-0" maintained "${ARCH}"
+# 12:dists/ucs520/main/binary-amd64/
+# 13:dists/errata520/main/binary-amd64/
+mkdeb "${pkgname}ua" 9 all "${DIR_POOL}"
+mkpkg "${DIRS[12]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 9 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[12]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mkdeb "${pkgname}ea" 9 all "${DIR_POOL}"
+mkpkg "${DIRS[13]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 9 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[13]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+mkpdir "${major}.${minor}-1" maintained "${ARCH}"
+# 14:dists/ucs521/main/binary-amd64/
+# 15:dists/errata521/main/binary-amd64/
+mkdeb "${pkgname}ua" 11 all "${DIR_POOL}"
+mkpkg "${DIRS[14]}" "${DIR_POOL}"
+mkdeb "${pkgname}ub" 11 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[14]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mkdeb "${pkgname}ea" 11 all "${DIR_POOL}"
+mkpkg "${DIRS[15]}" "${DIR_POOL}"
+mkdeb "${pkgname}eb" 11 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIRS[15]}" "${DIR_POOL}"
+ADIR+=("${DIR}")
+mksh "${DIR}" preup postup
+
+minor+=-1
+
+# r/m/v/end is updated by u-r-update and read for/etc/apt/mirror.list
+# r/m/v/end does NOT control u-r-update, --updateto must be used!
+# r/m/v/start on the other hand is user-controlled.
+config_mirror \
+	version/version="${major}.${minor}" \
+	version/patchlevel=0 \
+	repository/mirror/version/start="${major}.${minor}-1" \
+	repository/mirror/version/end="${major}.${minor}-2"
+
+	set -e
+	checkapt --mirror "http://localhost\\(:80\\)\\?/${repoprefix}/" "${CDIR[@]}"
+	wait_for_updater_lock
+	univention-repository-update net --updateto "${major}.${minor}-2"
+	checkmirror "${CDIR[@]}" -- "${BDIR[@]}" "${ADIR[@]}"
+	wait_for_updater_lock
+	univention-repository-update net
+	checkmirror "${CDIR[@]}" "${ADIR[@]}" -- "${BDIR[@]}"
+# vim:set ft=sh:

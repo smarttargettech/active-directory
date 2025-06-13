@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="adconnector" icon="ad-connector" priority="50" version="1.0">
+		<name>Active Directory Connection</name>
+		<description>Configuration of the Active Directory connection of the local system</description>
+		<keywords>adconnector,admember</keywords>
+
+		<categories>
+			<category name="domain"/>
+		</categories>
+		<command name="adconnector/load" function="load" />
+		<command name="adconnector/defaults" function="defaults" />
+		<command name="adconnector/state" function="state" />
+		<command name="adconnector/enable_ssl" function="enable_ssl" />
+		<command name="adconnector/password_sync_service" function="password_sync_service" />
+		<command name="adconnector/service" function="service" />
+		<command name="adconnector/upload/certificate" function="upload_certificate" />
+		<command name="adconnector/check_domain" function="check_domain" />
+		<command name="adconnector/adconnector/save" function="adconnector_save" />
+		<command name="adconnector/admember/join" function="admember_join" />
+		<command name="adconnector/admember/progress" function="progress" />
+		<command name="adconnector/admember/check_dcmaster_srv_rec" function="check_dcmaster_srv_rec" />
+	</module>
+</umc>

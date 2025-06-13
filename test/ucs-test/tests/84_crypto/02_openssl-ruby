@@ -1,0 +1,11 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Check that OpenSSL is usable in Ruby
+## bugs: [43934]
+## tags: [basic]
+## packages:
+##  - ruby | ruby2.1
+## exposure: safe
+exec ruby -e "require 'openssl'"
+# vim: set ft=sh :

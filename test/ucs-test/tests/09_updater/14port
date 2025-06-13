@@ -1,0 +1,33 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository from port 81
+##  1. change apache repository to port 81
+##  2. setup local repository with 1 packet in maintained
+##  3. check if that package is installable
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+port=81
+
+setup_apache --port "${port}" "${repoprefix}"
+
+# shellcheck disable=SC2046
+mkpdir $(allpatchlevels "${_version_version}-${_version_patchlevel:?}") maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+config_repo :${port}
+
+	set -e
+	checkapt "http://localhost:${port}/${repoprefix}/" "${DIR}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

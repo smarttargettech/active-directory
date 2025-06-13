@@ -1,0 +1,642 @@
+# Sandrine Burriel <sandrine@workshop-chapina.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-web-js\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2021-11-03 17:54+0100\n"
+"PO-Revision-Date: 2021-12-17 11:15+0100\n"
+"Last-Translator: Nicolas Sidi <nicolas.sidi@mailbox.org>\n"
+"Language-Team: French <fr@workshop-chapina.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: js/widgets/MultiInput.js:703
+msgid " (required)"
+msgstr " (requis)"
+
+#: js/tools.js:1938
+msgid "\"${moduleName}\" module"
+msgstr "Module « ${moduleName} »"
+
+#: js/widgets/PasswordInputBox.js:71
+msgid "%(label)s (retype)"
+msgstr "%(label)s (saisir à nouveau)"
+
+#: js/widgets/Form.js:662
+msgid "%(label)s: %(message)s"
+msgstr "%(label)s : %(message)s"
+
+#: js/widgets/Grid.js:1189
+msgid "%(num)d entries of %(total)d selected"
+msgstr "%(num)d entrées sur %(total)d sélectionnées"
+
+#: js/widgets/Grid.js:1194
+#, javascript-format
+msgid "%d entries found"
+msgstr "%d entrées trouvées"
+
+#: js/widgets/Form.js:654
+msgid "%s (%.1f%)"
+msgstr "%s (%.1f%)"
+
+#: js/widgets/Form.js:642 js/widgets/Form.js:658
+#, javascript-format
+msgid "%s loaded"
+msgstr "%s chargé"
+
+#: js/widgets/Grid.js:1191
+#, javascript-format
+msgid "1 entry of %d selected"
+msgstr "1 entrée sur %d sélectionnées"
+
+#: js/hooks/default_menu_entries.js:157
+msgid ""
+"<b>Warning</b>: The current session with all opened modules and unsaved "
+"settings gets lost and a page reload is done when switching the language."
+msgstr ""
+"<b>Avertissement </b>: la session en cours, y compris tous les modules "
+"ouverts et les réglages non enregistrés, sera perdue et un rafraîchissement "
+"de page a lieu lorsque vous changez de langue."
+
+#: js/tools.js:303
+msgid ""
+"A reload of the Univention Management Console is required to use new modules."
+"<br>Currently opened modules may not work properly.<br>Do you want to reload "
+"the page?"
+msgstr ""
+"Il faut recharger l’Univention Management Console pour utiliser les nouveaux "
+"modules.<br>Les modules ouverts actuellement peuvent ne pas fonctionner "
+"convenablement.<br>Voulez-vous recharger la page ?"
+
+#: js/widgets/CookieBanner.js:58
+msgid "Accept"
+msgstr "Accepter"
+
+#: js/widgets/UnixAccessRights.js:98 js/widgets/UnixAccessRightsExtended.js:98
+msgid "Access"
+msgstr "Accès"
+
+#: js/widgets/Calendar.js:205
+msgid "Action"
+msgstr "Action"
+
+#: js/widgets/Grid.js:970
+msgid "Actions"
+msgstr "Actions"
+
+#: js/widgets/MultiObjectSelect.js:98 js/widgets/MultiObjectSelect.js:324
+msgid "Add"
+msgstr "Ajouter"
+
+#: js/widgets/MultiObjectSelect.js:257
+msgid "Add objects"
+msgstr "Ajouter les objets"
+
+#: js/hooks/default_menu_entries.js:374
+msgid "Advantages of the Enterprise Edition"
+msgstr "Avantages de l’Enterprise Edition"
+
+#: js/tools.js:1188
+msgid "An assert statement failed"
+msgstr "Échec d'un assert (vérification)"
+
+#: js/tools.js:684 js/tools.js:986
+msgid "An error occurred"
+msgstr "Une erreur est survenue"
+
+#: js/tools.js:690
+msgid ""
+"An error occurred while connecting to the server, please try again later."
+msgstr ""
+"Une erreur inconnue est survenue en se connectant au serveur, veuillez "
+"réessayer plus tard."
+
+#: js/widgets/ProgressBar.js:182
+msgid "An error occurred: "
+msgstr "Une erreur est survenue : "
+
+#: js/tools.js:687
+#, javascript-format
+msgid ""
+"An unknown error with status code %s occurred while connecting to the "
+"server, please try again later."
+msgstr ""
+"Une erreur inconnue avec le code d'état %s est survenue en se connectant au "
+"serveur, veuillez réessayer plus tard."
+
+#: js/widgets/Wizard.js:163
+msgid "Back"
+msgstr "Retour"
+
+#: js/hooks/default_menu_entries.js:267
+msgid "Back to start site"
+msgstr "Retour vers page d'accueil"
+
+#: js/hooks/default_menu_entries.js:353
+msgid "Buy support package"
+msgstr "Acheter un forfait d’assistance"
+
+#: js/tools.js:305 js/dialog.js:302 js/hooks/default_menu_entries.js:159
+#: js/widgets/Wizard.js:178 js/widgets/MultiObjectSelect.js:86
+msgid "Cancel"
+msgstr "Annuler"
+
+#: js/hooks/default_menu_entries.js:107
+msgid "Certificate revocation list"
+msgstr "Liste de révocation de certificats"
+
+#: js/hooks/default_menu_entries.js:81
+msgid "Certificates"
+msgstr "Certificats"
+
+#: js/hooks/default_menu_entries.js:166
+msgid "Changing language"
+msgstr "Changer langue"
+
+#: js/tools.js:955 js/hooks/default_menu_entries.js:384
+#: js/widgets/Module.js:180
+msgid "Close"
+msgstr "Fermer"
+
+#: js/dialog.js:255 js/dialog.js:311
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: js/widgets/CookieBanner.js:54
+msgid "Cookie Settings"
+msgstr "Paramètres de cookies"
+
+#: js/tools.js:779
+msgid "Could not fulfill the request."
+msgstr "Impossible de satisfaire la requête."
+
+#: js/widgets/Grid.js:1296
+msgid "Could not load search results"
+msgstr "Impossible de charger les résultats de recherche"
+
+#: js/tools.js:799
+msgid "Could not process the request."
+msgstr "Impossible de traiter la requête."
+
+#: js/hooks/default_menu_entries.js:396
+msgid "Do not show this notification again"
+msgstr "Ne plus afficher cette notification"
+
+#: js/widgets/Calendar.js:186
+msgid "End"
+msgstr "Fin"
+
+#: js/widgets/Calendar.js:189
+msgid "Enter"
+msgstr "Entrer"
+
+#: js/hooks/default_menu_entries.js:230
+msgid "Feedback"
+msgstr "Impressions"
+
+#: js/widgets/ProgressBar.js:154
+msgid "Fetching information from the server failed!"
+msgstr "Échec en obtenant les informations sur le serveur !"
+
+#: js/widgets/Wizard.js:174
+msgid "Finish"
+msgstr "Terminer"
+
+#: js/widgets/UnixAccessRights.js:78 js/widgets/UnixAccessRightsExtended.js:78
+msgid "Group"
+msgstr "Groupe"
+
+#: js/tools.js:897
+#, javascript-format
+msgid "HTTP Error %s"
+msgstr "Erreur HTTP %s"
+
+#: js/hooks/default_menu_entries.js:369
+msgid "Hard- and software certifications"
+msgstr "Certifications des matériels et logiciels"
+
+#: js/hooks/default_menu_entries.js:185
+msgid "Help"
+msgstr "Aide"
+
+#: js/tools.js:934
+msgid "Hide server error message"
+msgstr "Masquer le message d'erreur du serveur"
+
+#: js/widgets/Calendar.js:183
+msgid "Home"
+msgstr "Accueil"
+
+#: js/tools.js:976
+msgid "Inform vendor"
+msgstr "Informer le vendeur"
+
+#: js/tools.js:411
+msgid "Information"
+msgstr "Informations"
+
+#: js/tools.js:997
+msgid ""
+"Information about the error will be sent to the vendor along with some data "
+"about the operating system."
+msgstr ""
+"Les informations concernant l'erreur seront envoyées au vendeur avec "
+"quelques données concernant le système d'exploitation."
+
+#: js/tools.js:800
+msgid ""
+"Internal module error: The initialization of the module caused a fatal error."
+msgstr ""
+"Erreur interne du module : l'initialisation du module a provoqué une erreur "
+"fatale."
+
+#: js/tools.js:789
+msgid "Internal server error."
+msgstr "Erreur interne du serveur."
+
+#: js/tools.js:790
+msgid "Internal server error: The service is temporarily not available."
+msgstr ""
+"Erreur interne du serveur : le service est temporairement indisponible."
+
+#: js/widgets/Calendar.js:204
+msgid "Key"
+msgstr "Clé"
+
+#: js/menu/Menu.js:117 js/hooks/default_menu_entries.js:283
+#: js/widgets/LoginButton.js:41 js/widgets/LoginButton.js:54
+msgid "Login"
+msgstr "Connexion"
+
+#: js/menu/Menu.js:118 js/hooks/default_menu_entries.js:295
+#: js/widgets/LoginButton.js:54
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: js/hooks/default_menu_entries.js:370
+msgid "Manufacturer warranty with product liability"
+msgstr "Garantie du fabricant et fiabilité du produit"
+
+#: js/menu/Menu.js:202
+msgid "Menu"
+msgstr "Menu"
+
+#: js/widgets/Calendar.js:169
+msgid "Move between date cells"
+msgstr "Passer d’une cellule de date à l’autre"
+
+#: js/widgets/Calendar.js:184
+msgid "Move to first day in month"
+msgstr "Passer au premier jour du mois"
+
+#: js/widgets/Calendar.js:187
+msgid "Move to last day in month"
+msgstr "Passer au dernier jour du mois"
+
+#: js/widgets/Calendar.js:172
+msgid "Move to same day in next month"
+msgstr "Passer au même jour le mois suivant"
+
+#: js/widgets/Calendar.js:178
+msgid "Move to same day in next year"
+msgstr "Passer au même jour l’année suivante"
+
+#: js/widgets/Calendar.js:175
+msgid "Move to same day in previous month"
+msgstr "Passer au même jour le mois précédent"
+
+#: js/widgets/Calendar.js:181
+msgid "Move to same day in previous year"
+msgstr "Passer au même jour l’année précédente"
+
+#: js/widgets/MultiInput.js:78
+msgid "New entry"
+msgstr "Nouvelle entrée"
+
+#: js/widgets/Wizard.js:169
+msgid "Next"
+msgstr "Suivant"
+
+#: js/widgets/Grid.js:1198
+msgid "No entries could be found"
+msgstr "Aucune entrée n'a été trouvée"
+
+#: js/widgets/NotificationsButton.js:261
+msgid "No notifications"
+msgstr "Pas de notifications"
+
+#: js/dialog.js:98 js/dialog.js:145 js/dialog.js:171
+msgid "Notification"
+msgstr "Notifications"
+
+#: js/widgets/NotificationsButton.js:238 js/widgets/NotificationsButton.js:263
+msgid "Notifications"
+msgstr "Notifications"
+
+#: js/dialog.js:148
+msgid "Ok"
+msgstr "Valider"
+
+#: js/widgets/UnixAccessRights.js:79 js/widgets/UnixAccessRightsExtended.js:79
+msgid "Others"
+msgstr "Autres"
+
+#: js/widgets/UnixAccessRights.js:77 js/widgets/UnixAccessRightsExtended.js:77
+msgid "Owner"
+msgstr "Propriétaire"
+
+#: js/widgets/Calendar.js:171 js/widgets/Calendar.js:174
+#: js/widgets/Calendar.js:177 js/widgets/Calendar.js:180
+msgid "Page"
+msgstr "Page"
+
+#: js/widgets/Grid.js:250
+msgid "Please perform a search"
+msgstr "Veuillez effectuer une recherche"
+
+#: js/tools.js:917
+msgid "Please take a second to provide the following information:"
+msgstr "Veuillez prendre une seconde pour fournir les informations suivantes :"
+
+#: js/hooks/default_menu_entries.js:375
+msgid "Prices and support"
+msgstr "Prix et assistance"
+
+#: js/widgets/UnixAccessRights.js:90 js/widgets/UnixAccessRightsExtended.js:90
+msgid "Read"
+msgstr "Lecture"
+
+#: js/tools.js:311
+msgid "Reload"
+msgstr "Recharger"
+
+#: js/tools.js:1009
+msgid "Remarks (e.g. steps to reproduce) (optional)"
+msgstr "Remarques (ex. : étapes pour reproduire le problème) (facultatif)"
+
+#: js/widgets/Uploader.js:115 js/widgets/MultiObjectSelect.js:349
+#: js/widgets/MultiUploader.js:66
+msgid "Remove"
+msgstr "Supprimer"
+
+#: js/widgets/MultiInput.js:561
+msgid "Remove entry"
+msgstr "Supprimer l’entrée"
+
+#: js/hooks/default_menu_entries.js:93
+msgid "Root certificate"
+msgstr "Certificat racine"
+
+#: js/widgets/MultiObjectSelect.js:164
+msgid "Search results:"
+msgstr "Résultats de la recherche :"
+
+#: js/widgets/LiveSearch.js:45
+msgid "Search term"
+msgstr "Chercher un terme"
+
+#: js/widgets/MultiSelect.js:67
+msgid "Select all"
+msgstr "Tout sélectionner"
+
+#: js/widgets/ImageUploader.js:66
+msgid "Select file"
+msgstr "Sélectionner le fichier"
+
+#: js/widgets/Calendar.js:190
+msgid "Select the date"
+msgstr "Sélectionner la date"
+
+#: js/tools.js:930
+msgid "Send as email"
+msgstr "Envoyer par courriel"
+
+#: js/tools.js:993
+msgid "Send to vendor"
+msgstr "Envoyer au vendeur"
+
+#: js/tools.js:1020
+msgid "Sending the information to the vendor failed"
+msgstr "Échec de l'envoi des informations au vendeur"
+
+#: js/tools.js:684
+msgid "Server error message:"
+msgstr "Message d'erreur du serveur :"
+
+#: js/widgets/UnixAccessRightsExtended.js:104
+msgid "Setgid"
+msgstr "Setgid"
+
+#: js/tools.js:1001
+msgid "Show error message"
+msgstr "Afficher le message d'erreur"
+
+#: js/tools.js:935
+msgid "Show server error message"
+msgstr "Afficher le message d'erreur du serveur"
+
+#: js/tools.js:396
+msgid ""
+"So far, the connection to the server could not be established after {time} "
+"seconds. This can be a normal behavior. In any case, the process will "
+"continue to establish the connection."
+msgstr ""
+"Pour le moment, la connexion au serveur n'a pu aboutir après {time} "
+"secondes. Ce comportement est parfois normal. Dans tous les cas, le "
+"processus va continuer à établir la connexion."
+
+#: js/widgets/Calendar.js:189
+msgid "Space"
+msgstr "Espace"
+
+#: js/hooks/default_menu_entries.js:372
+msgid ""
+"Starting at <b>290.- Euro/year</b> you can purchase a UCS Enterprise "
+"Edition. This license allows you to benefit from basic support services as "
+"well as individually bookable, additional support and professional services."
+msgstr ""
+"À partir de <b>290 euros/an</b>, vous pouvez acheter une Enterprise Edition "
+"d’UCS. Cette licence vous permet de bénéficier des services d’assistance de "
+"base ainsi que de services d’assistance et professionnels supplémentaires "
+"réservables individuellement."
+
+#: js/widgets/UnixAccessRightsExtended.js:105
+msgid "Sticky bit"
+msgstr "Sticky bit"
+
+#: js/dialog.js:306
+msgid "Submit"
+msgstr "Soumettre"
+
+#: js/hooks/default_menu_entries.js:367
+msgid "Support and Professional Services"
+msgstr "Assistance et services professionnels"
+
+#: js/hooks/default_menu_entries.js:139 js/hooks/default_menu_entries.js:162
+msgid "Switch language"
+msgstr "Changer langue"
+
+#: js/tools.js:1018
+msgid "Thank you for your help"
+msgstr "Merci pour votre aide"
+
+#: js/widgets/Uploader.js:234
+msgid ""
+"The following files cannot be uploaded because they exceed the maximum file "
+"size:"
+msgstr ""
+"Impossible d'envoyer les fichiers suivants, ils dépassent la taille maximale "
+"des fichiers :"
+
+#: js/widgets/Uploader.js:236
+#, javascript-format
+msgid "The maximum size of a file is %.1f MB."
+msgstr "La taille maximale d'un fichier est de %.1f Mo."
+
+#: js/widgets/PasswordInputBox.js:122
+msgid "The passwords do not match, please retype again."
+msgstr "Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."
+
+#: js/tools.js:302
+msgid "UMC reload required"
+msgstr "Rechargement d'UMC nécessaire"
+
+#: js/hooks/default_menu_entries.js:252
+msgid "Univention Blog"
+msgstr "Blog d’Univention"
+
+#: js/hooks/default_menu_entries.js:217
+msgid "Univention Forum \"Help\""
+msgstr "Forum d’aide d’Univention"
+
+#: js/hooks/default_menu_entries.js:204
+msgid "Univention Website"
+msgstr "Site Internet Univention"
+
+#: js/hooks/default_menu_entries.js:368
+msgid "Up to 7 years of maintenance (LTS)"
+msgstr "Jusqu’à 7 ans de maintenance (LTS)"
+
+#: js/widgets/Uploader.js:99 js/widgets/MultiUploader.js:63
+#: js/widgets/InfoUploader.js:43
+msgid "Upload"
+msgstr "Envoyer"
+
+#: js/widgets/Uploader.js:372
+msgid "Uploading..."
+msgstr "Envoi..."
+
+#: js/widgets/MultiUploader.js:241
+msgid "Uploading... %(current)d of %(total)d files remaining."
+msgstr "Envoi en cours... %(current)d sur %(total)d fichiers restants."
+
+#: js/hooks/default_menu_entries.js:64
+msgid "User settings"
+msgstr "Réglages utilisateur"
+
+#: js/tools.js:786
+msgid "Validation error"
+msgstr "Erreur de validation"
+
+#: js/dialog.js:113
+msgid "Warning"
+msgstr "Avertissement"
+
+#: js/widgets/CookieBanner.js:55
+msgid ""
+"We use cookies in order to provide you with certain functions and to be able "
+"to guarantee an unrestricted service. By clicking on \"Accept\", you consent "
+"to the collection of information on this portal."
+msgstr ""
+"Nous utilisons des cookies pour vous fournir certaines fonctionnalités et "
+"pouvoir garantir un service sans restriction. En cliquant sur « Accepter », "
+"vous consentez à la collecte d’informations sur ce portail."
+
+#: js/tools.js:783
+msgid "Webfrontend error: The specified request is unknown."
+msgstr "Erreur de l'interface Web : le type de requête est inconnu."
+
+#: js/widgets/UnixAccessRights.js:94 js/widgets/UnixAccessRightsExtended.js:94
+msgid "Write"
+msgstr "Écriture"
+
+#: js/tools.js:781
+msgid "You are not authorized to perform this action."
+msgstr "Vous ne pouvez pas effectuer cette action."
+
+#: js/tools.js:1022
+msgid "You can also send the information via mail:"
+msgstr "Vous pouvez également envoyer les informations par courriel :"
+
+#: js/hooks/default_menu_entries.js:373
+msgid ""
+"You can extend the maintenance for your UCS version to up to 7 years and "
+"thanks to certifications and manufacturer warranty you are legally secured "
+"when operating your IT infrastructure."
+msgstr ""
+"Vous pouvez prolonger la maintenance de votre version UCS jusqu’à 7 ans et "
+"grâce aux certifications et à la garantie du fabricant, vous êtes légalement "
+"assuré·e lors de l’exploitation de votre infrastructure IT."
+
+#: js/tools.js:2151
+msgid ""
+"Your browser is outdated! You may experience performance issues and other "
+"problems when using this site. The supported Browsers are Firefox (>=60), "
+"Chrome (>=71), Edge (>=18), Safari (>=12)."
+msgstr ""
+"Votre navigateur est obsolète ! Vous pouvez rencontrer des problèmes de "
+"performance et d’autres problèmes lors de l’utilisation de ce site. Les "
+"navigateurs pris en charge sont Firefox (> = 60), Chrome (> = 71), Edge (> = "
+"18), Safari (> = 12)."
+
+#: js/tools.js:1013
+msgid "Your email address (optional)"
+msgstr "Votre adresse de courriel (facultatif)"
+
+#: js/tools.js:780
+msgid "Your session has expired, please login again."
+msgstr "Votre session a expiré, veuillez vous reconnecter."
+
+#: js/tools.js:920
+msgid "actual result"
+msgstr "résultat obtenu"
+
+#: js/tools.js:919
+msgid "expected result"
+msgstr "résultat attendu"
+
+#: js/hooks/default_menu_entries.js:218
+msgid "https://help.univention.com/"
+msgstr "https://help.univention.com/"
+
+#: js/hooks/default_menu_entries.js:205
+msgid "https://www.univention.com/"
+msgstr "https://www.univention.com/"
+
+#: js/hooks/default_menu_entries.js:239
+msgid "https://www.univention.com/feedback/"
+msgstr "https://www.univention.com/feedback/"
+
+#: js/hooks/default_menu_entries.js:253
+msgid "https://www.univention.com/news/blog-en/"
+msgstr "https://www.univention.com/news/blog-en/"
+
+#: js/hooks/default_menu_entries.js:357 js/hooks/default_menu_entries.js:401
+msgid "https://www.univention.com/products/prices-and-subscriptions/"
+msgstr "https://www.univention.com/products/prices-and-subscriptions/"
+
+#: js/widgets/Grid.js:923
+msgid "more"
+msgstr "plus"
+
+#: js/tools.js:918
+msgid "steps to reproduce the failure"
+msgstr "étapes pour reproduire l'erreur"
+
+#: js/widgets/ProgressBar.js:184
+msgid "{number} errors occurred: "
+msgstr "{number} erreurs survenues : "

@@ -1,0 +1,386 @@
+univention-directory-logger (13.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:46 +0200
+
+univention-directory-logger (13.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:33 +0100
+
+univention-directory-logger (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:20 +0100
+
+univention-directory-logger (12.0.3) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:18 +0100
+
+univention-directory-logger (12.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:40 +0100
+
+univention-directory-logger (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:33 +0100
+
+univention-directory-logger (11.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:48 +0100
+
+univention-directory-logger (11.0.5-2) unstable; urgency=medium
+
+  * Bug #56954: Don't replicate objectClass=lock
+
+ -- Arvid <requate@univention.de>  Mon, 08 Jan 2024 18:35:16 +0100
+
+univention-directory-logger (11.0.5-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:32 +0100
+
+univention-directory-logger (11.0.4-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:39 +0100
+
+univention-directory-logger (11.0.3-5) unstable; urgency=medium
+
+  * Bug #51722: Revert Revert changes, add handling of objects that are
+    ignored by the listener
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 22 Sep 2022 21:21:53 +0200
+
+univention-directory-logger (11.0.3-4) unstable; urgency=medium
+
+  * Bug #51722: Revert changes
+
+ -- Eric Monne Mesalles <monne-mesalles.extern@univention.de>  Wed, 15 Jun 2022 11:00:23 +0200
+
+univention-directory-logger (11.0.3-3) unstable; urgency=medium
+
+  * Bug #51772: Improve corrupted log files handling, delete
+    corrupted files and log the error
+
+ -- Eric Monne Mesalles <monne-mesalles.extern@univention.de>  Thu, 09 Jun 2022 11:11:39 +0200
+
+univention-directory-logger (11.0.3-2) unstable; urgency=medium
+
+  * Bug #51772: Fix crashing on corrupted log files in OpenLDAP "delete
+    log"-directory (see UCR-Variable "ldap/logging/dellogdir")
+
+ -- Johannes Königer <koeniger@univention.de>  Mon, 09 May 2022 12:53:33 +0200
+
+univention-directory-logger (11.0.3-1) unstable; urgency=medium
+
+  * Bug #53304: fix Python 3 error: RuntimeError: dictionary changed
+    size during iteration
+
+ -- Florian Best <best@univention.de>  Fri, 21 May 2021 13:48:32 +0200
+
+univention-directory-logger (11.0.2-1) unstable; urgency=medium
+
+  * Bug #52301: fix int(filemode, 0) guessing of Python 3
+
+ -- Florian Best <best@univention.de>  Thu, 11 Mar 2021 16:10:39 +0100
+
+univention-directory-logger (11.0.1-2) unstable; urgency=low
+
+  * Bug #52301: Depend on UDL for listener.SetUID
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 19 Feb 2021 11:41:52 +0100
+
+univention-directory-logger (11.0.1-1) unstable; urgency=medium
+
+  * Bug #52301: migrate univention-directory-logger to Python 3
+
+ -- Florian Best <best@univention.de>  Thu, 28 Jan 2021 20:12:30 +0100
+
+univention-directory-logger (11.0.0-2) unstable; urgency=medium
+
+  * Bug #43686: use systemctl calls for UDL
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 17 Nov 2020 12:27:53 +0100
+
+univention-directory-logger (11.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:19 +0200
+
+univention-directory-logger (10.0.2-2) unstable; urgency=low
+
+  * Issue #22459 / Bug #51082: improve UCR variable description and
+    fix missing newline
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 14 Apr 2020 22:32:55 +0200
+
+univention-directory-logger (10.0.2-1) unstable; urgency=medium
+
+  * Bug #51088: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 10:39:17 +0200
+
+univention-directory-logger (10.0.1-1) unstable; urgency=medium
+
+  * Issue #22459 / Bug #51082: Prefix record lines by ID.
+    Configurable via UCR variable ldap/logging/id-prefix, enabled
+    for new installations.
+
+ -- Arvid <requate@univention.de>  Thu, 09 Apr 2020 20:19:59 +0200
+
+univention-directory-logger (10.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:36 +0100
+
+univention-directory-logger (9.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:28 +0100
+
+univention-directory-logger (8.0.0-2) unstable; urgency=low
+
+  * Bug #25404: Fix old LDAP parsing
+  * Bug #34739: Switch hash implementation
+  * Bug #34420: Fix base64 encoding
+  * Bug #34916: Fix tracebacks
+  * Bug #42665: Fix small issues
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 10 Oct 2016 18:26:27 +0200
+
+univention-directory-logger (8.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:07 +0200
+
+univention-directory-logger (7.0.1-1) unstable; urgency=medium
+
+  * restart slapd only if it runs (Bug #39683)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 30 Oct 2015 16:38:38 +0100
+
+univention-directory-logger (6.0.1-4) unstable; urgency=medium
+
+  * Bug #36604: setuid required before creating the log file
+
+ -- Arvid Requate <requate@univention.de>  Wed, 12 Nov 2014 16:52:44 +0100
+
+univention-directory-logger (6.0.1-3) unstable; urgency=medium
+
+  * Bug #36589: Update for UCS 4.0
+
+ -- Arvid Requate <requate@univention.de>  Wed, 12 Nov 2014 15:03:46 +0100
+
+univention-directory-logger (6.0.1-2) unstable; urgency=medium
+
+  * Bug #36589: Update for UCS 4.0
+
+ -- Arvid Requate <requate@univention.de>  Wed, 12 Nov 2014 14:55:09 +0100
+
+univention-directory-logger (6.0.1-1) unstable; urgency=medium
+
+  * Bug #36589: Copy from UCS 3.2-3 to UCS 4.0
+
+ -- Arvid Requate <requate@univention.de>  Wed, 12 Nov 2014 14:45:15 +0100
+
+univention-directory-logger (5.0.0-2) unstable; urgency=low
+
+  * Update UCR variable descriptions (Bug #30946)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Fri, 20 Sep 2013 11:58:02 +0200
+
+univention-directory-logger (5.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 3.2, update copyright years for 2013
+  * Add UCR variable descriptions (Bug #30946)
+  * Convert changelog to UTF-8
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Thu, 12 Sep 2013 15:06:10 +0200
+
+univention-directory-logger (4.0.3-3) unstable; urgency=low
+
+  * workaround for PEP 366 (Bug #23984)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 25 Oct 2011 13:29:39 +0200
+
+univention-directory-logger (4.0.3-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:19 +0200
+
+univention-directory-logger (4.0.3-1) unstable; urgency=low
+
+  * added logrotate configuration (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 17:25:03 +0200
+
+univention-directory-logger (4.0.2-1) unstable; urgency=low
+
+  * Merge patches from UCS 2.4-3
+   [ Stefan Gohmann ]
+    * Copy the dictonaries new and old in handlers function, because the
+      dicts will be modified (Bug #22564)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 21 Sep 2011 17:23:00 +0200
+
+univention-directory-logger (4.0.1-1) unstable; urgency=low
+
+  * Depend on python-univention instead of univention-python
+    (Bug #22431)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 10 Aug 2011 16:14:56 +0200
+
+univention-directory-logger (4.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22431)
+    * Bump version for UCS 3.0
+    * Replace univention-baseconfig with univention-config-registry
+    * Update copyright to 2011
+    * Update to debhelper 7
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 09 May 2011 08:56:51 +0200
+
+univention-directory-logger (3.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 13:41:13 +0200
+
+univention-directory-logger (2.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- SÃ¶nke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-directory-logger (1.0.0-1) unstable; urgency=low
+
+  * rebuild for UCS 2.1
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 11 Jul 2008 07:16:13 +0200
+
+univention-directory-logger (0.4-1) unstable; urgency=low
+
+  * Adapt to UCS 2.0
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  5 Jun 2008 10:31:54 +0200
+
+univention-directory-logger (0.3-13) unstable; urgency=low
+
+  * use UTC time instead of localtime for log entries
+
+ -- Arvid Requate <requate@univention.de>  Wed,  2 Jan 2008 10:41:42 +0100
+
+univention-directory-logger (0.3-12) unstable; urgency=low
+
+  * remove listener 'handler' status file when purging the package
+
+ -- Arvid Requate <arequate@anton.knut.univention.de>  Thu, 27 Dec 2007 09:45:21 +0100
+
+univention-directory-logger (0.3-11) unstable; urgency=low
+
+  * reverted rename behavior to 'delete'+'add' to stay consistent with 'ldap/logging/exclude' feature
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Fri, 21 Dec 2007 17:12:31 +0100
+
+univention-directory-logger (0.3-10) unstable; urgency=low
+
+  * report rename ('remove' and 'add') as single operation
+  * report initialization and resync
+  * fixed order of listener and slapd initialization at installation time
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Fri, 21 Dec 2007 09:38:23 +0100
+
+univention-directory-logger (0.3-9) unstable; urgency=low
+
+  * added support for rename operations: listener reports them as 'remove' and 'add'
+  * package removal now deactivated dellog overlay in slapd.conf
+  * fixed naming of 'ldap/logging/exclude' Univention Baseconfig key
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Thu, 20 Dec 2007 18:25:29 +0100
+
+univention-directory-logger (0.3-8) unstable; urgency=low
+
+  * PreDepends on univention-ldap-listener and slapd
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Thu, 20 Dec 2007 13:42:03 +0100
+
+univention-directory-logger (0.3-7) unstable; urgency=low
+
+  * changed debugging message
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Tue, 18 Dec 2007 17:58:51 +0100
+
+univention-directory-logger (0.3-6) unstable; urgency=low
+
+  * changed syslog message from "Logfile Hash" to "New Hash"
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Tue, 18 Dec 2007 17:00:26 +0100
+
+univention-directory-logger (0.3-5) unstable; urgency=low
+
+  * fixed install-time setup
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Tue, 18 Dec 2007 15:55:08 +0100
+
+univention-directory-logger (0.3-4) unstable; urgency=low
+
+  * fixed package dependence
+
+ -- Arvid Requate <arequate@omar.knut.univention.de>  Tue, 18 Dec 2007 15:21:01 +0100
+
+univention-directory-logger (0.3-3) unstable; urgency=low
+
+  * Paketierung: Anpassung der Depends-Versionsnummer für openldap2.2
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Dec 2007 14:46:07 +0100
+
+univention-directory-logger (0.3-2) unstable; urgency=low
+
+  * Paketierung: univention-config-dev fehlte als Build-dependency
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Dec 2007 11:19:01 +0100
+
+univention-directory-logger (0.3-1) unstable; urgency=low
+
+  * Paketierung
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Dec 2007 11:19:01 +0100
+
+univention-directory-logger (0.3) unstable; urgency=low
+
+  * Paketierung
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Dec 2007 11:19:01 +0100
+
+univention-directory-logger (0.2) unstable; urgency=low
+
+  * Added cleanup for leftover dellog entries to reduce useless log messages
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Dec 2007 10:34:15 +0100
+
+univention-directory-logger (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Arvid Requate <requate@univention.de>  Mon, 17 Dec 2007 10:15:48 +0100
+

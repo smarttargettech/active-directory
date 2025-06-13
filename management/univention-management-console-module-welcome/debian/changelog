@@ -1,0 +1,90 @@
+univention-management-console-module-welcome (3.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:49 +0200
+
+univention-management-console-module-welcome (3.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:33 +0100
+
+univention-management-console-module-welcome (3.0.3) unstable; urgency=medium
+
+  * univention/dev/ucs#2522: add keycloak installation hint to the welcome dialog
+
+ -- Christian Castens <castens@univention.de>  Wed, 04 Dec 2024 08:33:35 +0100
+
+univention-management-console-module-welcome (3.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:35 +0100
+
+univention-management-console-module-welcome (3.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:19 +0100
+
+univention-management-console-module-welcome (2.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:39 +0100
+
+univention-management-console-module-welcome (2.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:26 +0100
+
+univention-management-console-module-welcome (2.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:32 +0100
+
+univention-management-console-module-welcome (1.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:46 +0100
+
+univention-management-console-module-welcome (1.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:31 +0100
+
+univention-management-console-module-welcome (1.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:41 +0100
+
+univention-management-console-module-welcome (1.0.0-5) unstable; urgency=medium
+
+  * Bug #53147: adjust layout for different screen sizes
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 04 May 2021 01:59:28 +0200
+
+univention-management-console-module-welcome (1.0.0-4) unstable; urgency=medium
+
+  * Bug #53147: Minor cleanups
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 27 Apr 2021 02:34:58 +0200
+
+univention-management-console-module-welcome (1.0.0-3) unstable; urgency=medium
+
+  * Bug #53147: Dependencies
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 23 Apr 2021 18:12:35 +0200
+
+univention-management-console-module-welcome (1.0.0-2) unstable; urgency=medium
+
+  * Bug #53147: Initial release
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 23 Apr 2021 14:24:48 +0200

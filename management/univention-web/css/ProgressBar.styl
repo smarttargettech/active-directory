@@ -1,0 +1,91 @@
+/* ProgressBar
+ *
+ * Styling of the ProgressBar consists of the following:
+ *
+ * 1. the base progress bar
+ *		.dijitProgressBar -	sets margins for the progress bar
+ *
+ * 2. the empty bar
+ *		.dijitProgressBarEmpty  - sets background img and color for bar or parts of bar that are not finished yet
+ *		Also sets border color for whole bar
+ *
+ * 3. tile mode
+ * 		.dijitProgressBarTile
+ *		inner container for finished portion when in 'tile' (image) mode
+ *
+ * 4. full bar mode
+ * 		.dijitProgressBarFull
+ *		adds border to right side of the filled portion of bar
+ *
+ * 5. text for label of  bar
+ *		.dijitProgressBarLabel - sets text color, which must contrast with both the "Empty" and "Full" parts.
+ *
+ * 6. indeterminate mode
+ *		.dijitProgressBarIndeterminate .dijitProgressBarTile
+ * 		sets animated gif for the progress bar in 'indeterminate' mode
+ */
+
+@require "variables.styl"
+
+.umc .dijitProgressBarEmpty
+	border: none
+	background-color: var(--bgc-progressbar-empty)
+	height: 5px
+
+.umc .dijitProgressBarTile
+	background-color: var(--bgc-progressbar-progress)
+
+.umc .dijitProgressBarFull
+	transition-property: width
+	transition-duration: .5s
+	height: 100%
+
+.umc .dijitProgressBarIndeterminate .dijitProgressBarFull
+	transition: none
+
+.umc .dijitProgressBar[aria-valuenow="0"] .dijitProgressBarFull
+	transition: none
+
+.umc .dijitProgressBarLabel
+	display: none
+
+.umc .dijitProgressBarIndeterminate .dijitProgressBarTile
+	/* use an animated gif for the progress bar in 'indeterminate' mode
+		background-color won't appear unless user has turned off background images */
+	background: $bar-background-color url($image-progressbar-anim) repeat-x top
+
+.umc .umcProgressBar,
+.umc .umcProgressInfo
+	width: 460px
+
+.umc .umcProgressDetails
+	display: grid
+	grid-template-columns: auto 4ch
+	gap: 0 spacing(1, true)
+	margin-top: spacing(2)
+
+	.umcProgressPercentage
+		color: var(--font-color-contrast-middle)
+		font-size: var(--font-size-4);
+		justify-self: flex-end
+
+.umc .umcProgressBar
+	background-color: var(--bgc-content-container)
+	border-radius: var(--border-radius-container);
+	padding: spacing(2)
+	overflow: visible
+
+	.umcProgressBarComponent
+		min-height: calc(2 * 1em * var(--font-lineheight-normal))
+		font-size: var(--font-size-2);
+		font-weight: var(--font-weight-bold)
+		margin-bottom: spacing(2)
+		overflow: hidden
+		overflow-wrap: break-word
+
+	.umcProgressBarMessage
+		min-height: calc(3 * 1em * var(--font-lineheight-normal))
+		font-size: var(--font-size-4);
+		color: var(--font-color-contrast-middle)
+		overflow: hidden
+		overflow-wrap: break-word

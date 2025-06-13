@@ -1,0 +1,548 @@
+[mail/alias/.*]
+Description[de]=Mit Variablen der Form mail/alias/BENUTZERNAME=EMAILADRESSE kann eine Mailweiterleitung für Mailkonten lokaler Benutzer konfiguriert werden.
+Description[en]=Variables in the format mail/alias/USERNAME=EMAILADDRESS allow the configuration of a mail forwarding for the mail accounts of local users.
+Type=str
+Categories=service-mail
+
+[mail/antivir]
+Description[de]=Ist diese Option aktiviert, werden E-Mails durch den ClamAV-Scanner auf Malware/Viren geprüft.
+Description[en]=If this option is activated, e-mails are scanned for malware/viruses using the scanner ClamAV.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/hosteddomains]
+Description[de]=Diese Variable speichert die verwendeten Mail-Domänen. Anpassungen sollten nicht über diese Variable erfolgen, stattdessen können Maildomänen über das Mail-Modul der UMC hinzugefügt und entfernt werden.
+Description[en]=This variable contains the mail domains in use. This variable should not be directly modified, instead mail domains can be created/removed in the mail module of the UMC.
+Type=str
+ReadOnly=yes
+Categories=service-mail
+
+[mail/postfix/smtpd/banner]
+Description[de]=Mit dieser Variable kann der SMTP-Banner (verwendet zur Identifikation im SMTP-Protokoll) angepasst werden. Das Format ist unter <http://www.postfix.org/postconf.5.html#smtpd_banner> beschrieben.
+Description[en]=This variable allows the configuration of the SMTP banner (used for identification in the SMTP protocol). The format is documented at <http://www.postfix.org/postconf.5.html#smtpd_banner>.
+Type=str
+Categories=service-mail
+
+[mail/archivefolder]
+Description[de]=Wird diese Variable auf eine E-Mail-Adresse gesetzt, sendet Postfix eine Blindkopie aller ein- und ausgehenden E-Mails an diese Adresse. So kann z.B. eine  Mailarchivierungslösung angebunden werden. Falls noch kein Postfach für diese Adresse existiert, wird es automatisch angelegt.
+Description[en]=If this variable is set to an e-mail address, Postfix sends a blind carbon copy of all incoming and outgoing e-mails to this address. This can e.g. be used to connect a mail archive solution. If there is no mailbox for this address, one will be created automatically.
+Type=str
+Categories=service-mail
+
+[mail/messagesizelimit]
+Description[de]=Mit dieser Variable kann die maximale Größe in Byte für ein- und ausgehende E-Mails festgelegt werden. Es ist zu beachten, dass Emailanhänge durch die Base64-Kodierung um ca. ein Drittel vergrössert werden.
+Description[en]=This variable can be used to set the maximum size in bytes for incoming and outgoing e-mails. Please note that e-mail attachments are enlarged by approximately a third due to the base64 encoding.
+Type=uint
+Categories=service-mail
+Default=10240000
+
+[mail/postfix/mynetworks]
+Description[de]=Für E-Mails aus den hier angegebenen Netz(en) ist Relaying erlaubt. Das Format ist unter <http://www.postfix.org/postconf.5.html#mynetworks> beschrieben.
+Description[en]=Relaying is permitted for e-mails from the network(s) specified hier. The format is described at <http://www.postfix.org/postconf.5.html#mynetworks>.
+Type=str
+Categories=service-mail
+Default=127.0.0.0/8
+
+[mail/postfix/mynetworks_style]
+Description[de]=Diese Variable definiert die Methode, über den der Defaultwert für den Parameter "mynetworks" ermittelt word, siehe <http://www.postfix.org/postconf.5.html#mynetworks_style>.
+Description[en]=This variable defines the method to generate the default value for the "mynetworks" parameter, see <http://www.postfix.org/postconf.5.html#mynetworks_style>.
+Type=str
+Categories=service-mail
+Default=subnet
+
+[mail/relayhost]
+Description[de]=In der Grundeinstellung baut Postfix beim Versenden einer E-Mail an eine nicht-lokale Adresse eine direkte SMTP-Verbindung an den für diese Domain zuständigen Mailserver auf. Dieser Server wird durch eine Abfrage des MX-Records im DNS ermittelt. Alternativ kann ein Mail-Relay-Server zu Einsatz kommen, also ein Server der die Mails entgegen nimmt und den weiteren Versand abwickelt. Der Server muss in dieser Variable als vollqualifizierter Domänenname (FQDN) eingetragen werden.
+Description[en]=In the default setting, Postfix creates a direct SMTP connection to the mail server responsible for the domain when an e-mail is sent to a non-local address. This server is determined by querying the MX record in the DNS. Alternatively, a mail relay server can also be used, i.e., a server which receives the mails and takes over their further sending. The server must be entered as a fully qualified domain name(FQDN).
+Type=str
+Categories=service-mail
+
+[mail/relayauth]
+Description[de]=Wird ein Mail-Relay verwendet (siehe 'mail/relayhost') und erfordert das Relay Authentifizierung, muss diese Option aktiviert werden. Der Benutzername und das Passwort für den Relay-Server werden in der Datei /etc/postfix/smtp_auth konfiguriert. Dies ist im UCS-Handbuch dokumentiert.
+Description[en]=If a mail relay is used (see 'mail/relayhost') and if the relay requires authentication, this option must be enabled. The username and the password for the relay server are configured in the file /etc/postfix/smtp_auth. This is documented in the UCS manual.
+Type=bool
+Categories=service-mail
+
+[mail/smtp/helo/name]
+Description[de]=Mit dieser Variable kann der Rechnername konfiguriert werden, unter dem sich der Server im Rahmen des SMTP-Protokolls identifiziert (EHLO/HELO). Ist die Variable nicht gesetzt, wird der vollqualifizierte Rechnername verwendet.
+Description[en]=This variable allows the configuration of the hostname the server used for identification as part of the SMTP protocol (EHLO/HELO). If the variable is unset, the fully qualified hostname is used.
+Type=str
+Categories=service-mail
+
+[mail/smtpport]
+Description[de]=Mit dieser Variable kann der Port konfiguriert werden, unter dem Postfix erreichbar ist. Wird der Port angepasst und wird Univention Firewall verwendet, müssen zusätzlich Paketfilterregeln angepasst werden.
+Description[en]=This variable configures the port under which Postfix operates. If the port is changed and if Univention Firewall is used, packet filter rules must be adapted as well.
+Type=portnumber
+Categories=service-mail
+Default=25
+
+[postfix/autostart]
+Description[de]=Die Variable konfiguriert den Startmodus des Postfix-Dienstes. Wird sie auf 'no' oder 'disabled' gesetzt, kann der Dienst nicht gestartet werden. Wird sie auf 'manually' gesetzt, erfolgt kein automatischer Start zum Systemstart, der Dienst kann aber später gezielt gestartet werden.
+Description[en]=This variable configures the start mode of the Postfix service. If set to 'no' or 'disabled', the service cannot be started. If the variable is set to 'manually', the service isn't started during system boot, but can be enabled manually at a later point.
+Type=str
+Categories=service-mail
+
+[mail/localmailboxsizelimit]
+Description[de]=Diese Variable konfiguriert die maximale Dateigröße in Bytes von Mailbox- oder Maildir-Dateien.
+Description[en]=This variable configures the maximum size in bytes of mailbox or Maildir files.
+Type=uint
+Categories=service-mail
+Default=51200000
+
+[mail/postfix/masquerade/domains]
+Description[de]=Mit dieser Variable kann eine Unterdomäne aus E-Mail-Adressen entfernt werden, so dass z.B. user@server.example.com nach user@example.com umgeschrieben wird. Das Format ist unter <http://www.postfix.org/postconf.5.html#masquerade_domains> beschrieben. Ist die Variable nicht gesetzt, gilt der vollqualifizierte Rechnername des Servers.
+Description[en]=This variable can be used to strip a subdomain from an e-mail-adress, so that e.g. user@server.example.com can be rewritten to user@example.com. The format is described at <http://www.postfix.org/postconf.5.html#masquerade_domains>. If the variable is unset, the fully qualified hostname of the server is used.
+Type=str
+Categories=service-mail
+
+[mail/postfix/masquerade/exceptions]
+Description[de]=Mit dieser Variable können Benutzernamen angegeben werden, deren E-Mail-Adressen vom Masquerading ausgenommen werden (siehe 'mail/postfix/masquerade/domains). Mehrere Benutzernamen werden durch Kommas getrennt.
+Description[en]=This variable can be used to exempt users from e-mail address masquerading (see 'mail/postfix/masquerade/domains). Multiple user names must be separated by commas.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+
+[mail/postfix/softbounce]
+Description[de]=Bei einer Reihe von Fehlersituationen (z.B. bei nicht vorhandenen Benutzern) kann es zu einem Bounce der betroffenen Mail kommen, d.h. die Mail wird an den Absender zurückgesendet. Ist diese Option aktiviert werden E-Mails nie mit einem Bounce zurückgesendet, sondern immer weiterhin in der Queue vorgehalten. Diese Einstellung ist insbesondere für Konfigurationsarbeiten am Mailserver nützlich. Ist die Variable nicht gesetzt, werden Bounces verwendet.
+Description[en]=In a number of error situations (e.g., for non-existent users) the result may be a mail bounce, i.e., the mail cannot be delivered and is returned to the sender. If this option is enabled e-mails are never returned as bounces, but instead are held in the queue. This setting is particularly useful during configuration work on the mail server. If the variable is unset, bounces are made.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/dnslookups]
+Description[de]=In der Grundeinstellung baut Postfix beim Versenden einer E-Mail an eine nicht-lokale Adresse eine direkte SMTP-Verbindung an den für diese Domain zuständigen Mailserver auf. Ist diese Option aktiviert oder die Variable nicht gesetzt, wird dieser Server durch eine Abfrage des MX-Records im DNS ermittelt. Wird sie deaktiviert erfolgt die Auflösung über die Systemfunktion getaddrinfo() (dies ist nur in Sonderfällen nötig).
+Description[en]=In the default setting, Postfix creates a direct STMP connection to the mail server responsible for the domain when an e-mail is sent to a non-local address. If this option is enabled or the variable unset, this server is determined by querying the MX record in the DNS. If the option is disabled, the system function getaddrinfo() is used (this is only needed in exceptional cases).
+Type=bool
+Categories=service-mail
+
+[mail/postfix/local/header/rewrite/clients]
+Description[de]=Für die hier konfigurierten Clients ist das Umschreiben von Headern erlaubt. Das Format ist unter <http://www.postfix.org/postconf.5.html#local_header_rewrite_clients> beschrieben.
+Description[en]=Header rewriting is permitted to the clients configured here. The format is described at <http://www.postfix.org/postconf.5.html#local_header_rewrite_clients>.
+Type=str
+Categories=service-mail
+
+[mail/maps/canonical/sender/classes]
+Description[de]=Ist diese Variable nicht gesetzt, werden Canonical Sender Maps auf die Header im Mail-Envelope und im Mail-Header angewendet. Alternativ kann sie auf 'envelope_sender' oder 'header_sender' konfiguriert werden.
+Description[en]=If this variable is unset, canonical sender maps are applied to the header in the mail envelope and the mail header. Alternatively is can be configured to 'envelope_sender' or 'header_sender'.
+Type=str
+Categories=service-mail
+
+[mail/maps/canonical/sender/enable]
+Description[de]=Diese Variable konfiguriert die Quellen für Canonical Sender Maps. Mögliche Werte sind 'ldap' (dazu muss das Paket 'univention-mail-canonical-maps' installiert sein) oder 'file'.
+Description[en]=This variable configures the sources for canonical sender maps. Possible values are 'ldap' (the package 'univention-mail-canonical-maps' must be installed) or 'file'.
+Type=str
+Categories=service-mail
+
+[mail/maps/canonical/recipient/enable]
+Description[de]=Diese Variable konfiguriert die Quellen für Canonical Recipient Maps. Mögliche Werte sind 'ldap' (dazu muss das Paket 'univention-mail-canonical-maps' installiert sein) oder 'file'.
+Description[en]=This variable configures the sources for canonical recipient maps. Possible values are 'ldap' (the package 'univention-mail-canonical-maps' must be installed) or 'file'.
+Type=str
+Categories=service-mail
+
+[mail/maps/canonical/recipient/classes]
+Description[de]=Ist diese Variable nicht gesetzt, werden Canonical Recipient Maps auf die Header im Mail-Envelope und im Mail-Header angewendet. Alternativ kann sie auf 'envelope_sender' oder 'header_sender' konfiguriert werden.
+Description[en]=If this variable is unset, canonical recipient maps are applied to the header in the mail envelope and the mail header. Alternatively is can be configured to 'envelope_sender' or 'header_sender'.
+Type=str
+Categories=service-mail
+
+[mail/maps/transport/.*]
+Description[de]=Im Regelfall erfolgt das Mailrouting über im DNS hinterlegte MX-Records. Für Sonderfälle - beispielsweise den Betrieb eines Tunnels zwischen zwei Servern, die nicht über DNS aufgelöst werden können - kann die Konfiguration einer manuellen Transportroute nötig sein. Mit Variablen der Form mail/maps/transport/IDENTIFIER=TRANSPORTENTRY kann dies konfiguriert werden. Das Format der Transportrouten ist unter <http://www.postfix.org/transport.5.html> dokumentiert. Beispiel: mail/maps/transport/TUNNEL="somedomain.org smtp:[mail.somedomain.com]"
+Description[en]=Usually mail routing is based on MX records retrieved from DNS. For some cases - e.g. the operation of a tunnel between two servers which do not have access to DNS - the configuration of a manual transport route can be necessary. This can be configured with variables in the format mail/maps/transport/IDENTIFIER=TRANSPORTENTRY. The format of the transport routes is documented at <http://www.postfix.org/transport.5.html>. Example: Beispiel: mail/maps/transport/TUNNEL="somedomain.org smtp:[mail.somedomain.com]".
+Type=str
+Categories=service-mail
+
+[mail/postfix/ldap/timeout]
+Description[de]=Der Timeout für LDAP-Abfragen des Postfix-Servers in Sekunden.
+Description[en]=The timeout for LDAP requests of the Postfix server in seconds.
+Type=uint
+Categories=service-mail
+
+[mail/postfix/policy/listfilter]
+Description[de]=In der Grundeinstellungen kann jeder Benutzer an in der UMC konfigurierte Mailinglisten und Mailgruppen schreiben. Um Missbrauch zu verhindern, besteht die Möglichkeit den Senderkreis einzuschränken. Um diese Funktion zu verwenden, muss die Option aktiviert werden. Ist die Variable nicht gesetzt, kann jeder Benutzer an Mailgruppen oder Mailinglisten schreiben.
+Description[en]=In the default settings, everyone can write to mail groups or mailing lists configured in the UMC. To prevent misuse, there is the possibility of restricting the circle of people who can send mails. To use these sender restriction, this option must be enabled. If the variable is unset, every user can send to mail groups or mailing lists.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/policy/listfilter/debug]
+Description[de]=Ist diese Variable auf den Wert "yes" gesetzt, werden beim Filtern von Mails an Gruppen und Mailinglisten log Informationen an die "mail" facility (/var/log/mail.*) gesendet.
+Description[en]=If this variable is set to "yes", log information is sent to the mail facility (/var/log/mail.*), when filtering messages to groups and mailing lists..
+Type=bool
+Categories=service-mail
+
+[mail/postfix/policy/listfilter/maxproc]
+Description[de]=Sind Sendeeinschränkungen konfiguriert (siehe 'mail/postfix/policy/listfilter'), kann mit dieser Variable die Anzahl der maximal gestarteten Filterprozesse konfiguriert werden.
+Description[en]=If sender restrictions are configured (see 'mail/postfix/policy/listfilter'), this variable configures the maximum amount of filter processes started.
+Type=uint
+Categories=service-mail
+
+[mail/postfix/policy/listfilter/use_sasl_username]
+Description[de]=Diese Variable beeinflusst die Prüfung von Mails an sender-beschränkte Mailinglisten oder Mailgruppen. Ist diese Variable nicht bzw. auf den Wert "yes" gesetzt, wird der authentifizierte Benutzer aus dem SMTP-Dialog und nicht die angegebene Envelope-Absenderadresse verwendet. Dies ist sicherer, setzt aber vorraus, dass der Benutzer sich bei der Maileinlieferung an diesem Mailserver authentifiziert. Um stattdessen die Envelope-Absenderadresse in der Prüfung zu verwenden, muss diese Variable auf "no" gesetzt werden.
+Description[en]=This variable controls sender-limited mailing lists and mail groups. If this variable is set to "yes" or unset, the authenticated user of the SMTP dialog is used instead of the envelope sender address. This is more secure. It does require however, that the sender authenticates itself against the mail server during mail delivery. To use the envelope sender address, set this variable to "no".
+Type=bool
+Categories=service-mail
+
+[mail/postfix/smtpd/restrictions/recipient/.*]
+Description[de]=Mit Variablen der Form mail/postfix/smtpd/restrictions/recipient/SEQUENZNUMMER=REGEL können Empfangsbeschränkungen über die Postfix-Option 'smtpd_recipient_restrictions' konfiguriert werden (siehe <http://www.postfix.org/postconf.5.html#smtpd_recipient_restrictions>). Die Sequenznummer wird alphanumerisch sortiert und beeinflusst die Reihenfolge.
+Description[en]=Variables in the format mail/postfix/smtpd/restrictions/recipient/SEQUENCE=RULE can be used to configure recipient restrictions using the Postfix option 'smtpd_recipient_restrictions' (see <http://www.postfix.org/postconf.5.html#smtpd_recipient_restrictions>). The sequence numbers are sorted alphabetically and ensure the order.
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtpd/restrictions/sender/reject_unknown_client_hostname]
+Description[de]=Diese Variable schaltet die Postfix-Empfangsbeschränkung "reject_unknown_client_hostname" ein (siehe auch <http://www.postfix.org/postconf.5.html#reject_unknown_client_hostname>). E-Mails werden abgelehnt, wenn eine von drei Prüfungen fehl schlägt: 1) die SMTP-Client-IP-Adresse kann nicht per DNS zu einem FQDN aufgelöst werden, 2) der FQDN kann nicht zu einer IP-Adresse aufgelöst werden oder 3) die IP-Adresse aus 2) stimmt nicht mit der Client-IP-Adresse überein. Dies ist eine striktere Beschränkung als die in mail/postfix/smtpd/restrictions/sender/reject_unknown_reverse_client_hostname, welche nur Fall 1) überprüft.
+Description[en]=This enables the Postfix restriction "reject_unknown_client_hostname" (see also <http://www.postfix.org/postconf.5.html#reject_unknown_client_hostname>). Mail will be rejected if any of three checks fail: 1) the client IP address to name mapping fails, 2) the name to IP address mapping fails, or 3) the name to IP address mapping does not match the client IP address. This is a stronger restriction than mail/postfix/smtpd/restrictions/sender/reject_unknown_reverse_client_hostname, which triggers only under condition 1).
+Type=bool
+Categories=service-mail
+
+[mail/postfix/smtpd/restrictions/sender/reject_unknown_reverse_client_hostname]
+Description[de]=Diese Variable schaltet die Postfix-Empfangsbeschränkung "reject_unknown_reverse_client_hostname" ein (siehe auch <http://www.postfix.org/postconf.5.html#reject_unknown_reverse_client_hostname>). E-Mails werden abgelehnt, wenn die SMTP-Client-IP nicht per DNS zu einem FQDN aufgelöst werden kann. Dies ist eine schwächere Beschränkung als die in mail/postfix/smtpd/restrictions/sender/reject_unknown_client_hostname.
+Description[en]=This enables the Postfix restriction "reject_unknown_reverse_client_hostname" (see also <http://www.postfix.org/postconf.5.html#reject_unknown_reverse_client_hostname>): Reject the request if the client IP address has no IP address->name mapping. This is a weaker restriction than mail/postfix/smtpd/restrictions/sender/reject_unknown_client_hostname.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/submission/restrictions/recipient/.*]
+Description[de]=Mit Variablen der Form mail/postfix/submission/restrictions/recipient/SEQUENZNUMMER=REGEL können Empfangsbeschränkungen über die benutzerdefinierte Option 'submission_recipient_restrictions' konfiguriert werden (siehe auch <http://www.postfix.org/postconf.5.html#smtpd_recipient_restrictions>). Die Sequenznummer wird alphanumerisch sortiert und beeinflusst die Reihenfolge.
+Description[en]=Variables in the format mail/postfix/submission/restrictions/recipient/SEQUENCE=RULE can be used to configure recipient restrictions using the custom option 'submission_recipient_restrictions' (see also <http://www.postfix.org/postconf.5.html#smtpd_recipient_restrictions>). The sequence numbers are sorted alphabetically and ensure the order.
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtp/hostlookup]
+Description[de]=Die Mechanismen, die Postfix verwendet, um die IP-Adresse eines Rechners aufzulösen: 'dns', 'native' (Auflösung über nsswitch.conf) oder 'dns,native' (erst DNS, dann Fallback auf Methoden aus nsswitch.conf).
+Description[en]=The mechanisms used by Postfix to look up a host's IP address: 'dns', 'native' (resolution via nsswitch.conf' or 'dns,native' (first DNS and fallback to nsswich.conf).
+Type=str
+Categories=service-mail
+
+[mail/smtp/VRFY/disabled]
+Description[de]=Ist diese Option aktiviert, wird das SMTP-Kommando VRFY deaktiviert. Mit diesem Kommando kann geprüft werden, ob eine E-Mail-Adresse gültig ist, was von Spammern missbraucht werden kann.
+Description[en]=If this option is activated, the SMTP command VRFY is disabled. This command can be used to verify whether an e-mail address is valid (which can be abused by spammers).
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/ssl/certificate]
+Description[de]=Vollständiger Dateiname des SSL-Zertifikats, das von Postfix für SSL-Verbindungen verwendet wird. Ist die Variable nicht gesetzt, wird das Rechnerzertifikat verwendet.
+Description[en]=The full path name of the SSL certificate that is used by Postfix to establish SSL connections. If the variable is unset, the host certificate is used.
+Type=str
+Categories=service-mail
+
+[mail/postfix/ssl/key]
+Description[de]=Vollständiger Dateiname der SSL-Schlüsseldatei, die von Postfix für SSL-Verbindungen verwendet wird. Ist die Variable nicht gesetzt, wird der SSL-Schlüssel des Servers verwendet.
+Description[en]=The full path name of the SSL key file that is used by Postfix to establish SSL connections. If the variable is unset, the SSL key of the host is used.
+Type=str
+Categories=service-mail
+
+[mail/postfix/tls/client/level]
+Description[de]=Die Variable konfiguriert die Verwendung von TLS-Verschlüsselung durch den SMTP-Client (ausgehende Verbindungen): 'may' verwendet TLS wenn der andere Server es anbietet, 'none' deaktiviert es. Weitere Konfigurationsoptionen sind unter <http://www.postfix.org/postconf.5.html#smtp_tls_security_level> beschrieben. Eine zielabhängige Konfiguration ist möglich durch das Setzen von mail/postfix/tls/client/policy/.*.
+Description[en]=This variable configures the use of TLS encryption by the SMTP client (outgoing connections): 'may' uses TLS if the other server offers it, 'none' deactivates it. Further configuration directives are documented at <http://www.postfix.org/postconf.5.html#smtp_tls_security_level>. A target dependent configuration is possible by setting mail/postfix/tls/client/policy/.*.
+Type=str
+Categories=service-mail
+Default=may
+
+[mail/postfix/tls/client/mandatory_protocols]
+Description[de]=Liste der TLS-Protokolle, die der Postfix SMTP-Client mit zwingender TLS-Verschlüsselung verwendet. <http://www.postfix.org/postconf.5.html#smtp_tls_mandatory_protocols>
+Description[en]=List of SSL/TLS protocols that the Postfix SMTP client will use with mandatory TLS encryption. <http://www.postfix.org/postconf.5.html#smtp_tls_mandatory_protocols>
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=>=TLSv1.2
+
+[mail/postfix/tls/client/policy/.*]
+Description[de]=Diese Variablen konfigurieren die Verwendung von TLS-Verschlüsselung durch den SMTP-Client für bestimmte Domänen oder Mailserver in der Datei /etc/postfix/tls_policy (siehe  <http://www.postfix.org/TLS_README.html#client_tls_policy>). Der Variablenwert enthält enthält je eine Zeile der Tabelle (z.B. mail/postfix/tls/client/policy/1='[127.0.0.1]:10024 none').
+Description[en]=This variable configures the use of TLS encryption by the SMTP client for certain mail domains or mail servers. The entries are stored in /etc/postfix/tls_policy (see <http://www.postfix.org/TLS_README.html#client_tls_policy>). Each variable value contains a complete line of the table (e.g. mail/postfix/tls/client/policy/1='[127.0.0.1]:10024 none').
+Type=str
+Categories=service-mail
+
+[mail/postfix/tls/client/protocols]
+Description[de]=Liste der TLS-Protokolle, die der Postfix SMTP-Client mit opportunistischer TLS-Verschlüsselung verwendet. <http://www.postfix.org/postconf.5.html#smtp_tls_protocols>
+Description[en]=List of TLS protocols that the Postfix SMTP client will exclude or include with opportunistic TLS encryption. <http://www.postfix.org/postconf.5.html#smtp_tls_protocols>
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=>=TLSv1.2
+
+[mail/postfix/tls/client/exclude_ciphers]
+Description[de]=Liste der Verschlüsselungstypen, die aus der SMTP-Client Cipher Liste auf allen TLS Sicherheitsstufen ausgenommen sind, siehe <http://www.postfix.org/postconf.5.html#smtp_tls_exclude_ciphers>.
+Description[en]=List of ciphers or cipher types to exclude from the Postfix SMTP client cipher list at all TLS security levels as described in <http://www.postfix.org/postconf.5.html#smtp_tls_exclude_ciphers>.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=RC4, aNULL
+
+[mail/postfix/tls/policy/maps]
+Description[de]=Liste der Tabellen für TLS-Sicherheitsrichtlinien für den SMTP-Client (siehe smtp_tls_policy_maps: <http://www.postfix.org/postconf.5.html#smtp_tls_policy_maps>).
+Description[en]=List of lookup tables for TLS security policies for the Postfix SMTP client (see smtp_tls_policy_maps: <http://www.postfix.org/postconf.5.html#smtp_tls_policy_maps>).
+Type=str
+Categories=service-mail
+Default=hash:/etc/postfix/tls_policy
+
+[mail/postfix/ssl/cafile]
+Description[de]=Eine Datei mit CA-Zertifikaten (im PEM-Format) von vertrauenswürdigen Stammzertifizierungsstellen, um entweder Remote-SMTP-Client-Zertifikate oder Zwischen-CA-Zertifikate zu signieren.
+Description[en]=A file containing  CA certificates (in PEM format) of root CAs trusted to sign either remote SMTP client certificates or intermediate CA certificates.
+Type=str
+Categories=service-mail
+
+[mail/postfix/ssl/capath]
+Description[de]=Ein Verzeichnis mit CA-Zertifikaten (im PEM-Format) von vertrauenswürdigen Stammzertifizierungsstellen, um entweder Remote-SMTP-Client-Zertifikate oder Zwischen-CA Zertifikate signieren.
+Description[en]=A directory containing CA certificates (in PEM format) of root CAs trusted to sign either remote SMTP client certificates or intermediate CA certificates.
+Type=str
+Categories=service-mail
+
+[mail/postfix/inet/protocols]
+Description[de]=Ist diese Variable auf 'ipv4' gesetzt oder nicht gesetzt, verwendet Postfix nur IPv4 für den Verbindungsaufbau. 'all' konfiguriert zusätzlich die Verwendung von IPv6.
+Description[en]=If this variable is set to 'ipv4' or unset, Postfix only uses IPv4 for its connections. 'all' configures to also use IPv6.
+Type=str
+Categories=service-mail
+
+[mail/postfix/inet/interfaces]
+Description[de]=Die Liste der Netzwerkinterfaces, auf denen Postfix E-Mails entgegennimmt: 'all', 'loopback-only', oder einzelne IP-Adressen.
+Description[en]=The list of network interfaces, on which Postfix accepts incoming mail: 'all', 'loopback-only', or a selection of IP addresses.
+Type=str
+Categories=service-mail
+
+[mail/postfix/transport/ldap/enabled]
+Description[de]=Ist diese Option aktiviert, werden Transport Maps auch aus dem LDAP-Verzeichnis gelesen.
+Description[en]=If this option is enabled, transport maps are also read from the LDAP directory.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/virtual/enabled]
+Description[de]=Ist diese Option aktiviert, werden virtuelle Mail-Domänen unterstützt.
+Description[en]=If this option is activated virtual mail domains are supported.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/smtpd/debug]
+Description[de]=Ist diese Option aktiviert, wird der smtpd im Debug-Modus gestartet.
+Description[en]=If this option is enabled, the smtpd is started in debug mode.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/ldaptable/starttls]
+Description[de]=Ist diese Option aktiviert, verwendet Postfix eine verschlüsselte Verbindung für LDAP-Suchen.
+Description[en]=If this option is activated, Postfix uses an encrypted connection for ldap lookups.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/ldaptable/tlsrequirecert]
+Description[de]=Ist diese Option aktiviert, wird beim Aufbau einer SSL/TLS Verbindung die Gültigkeit des X509 Zertifikat des Server geprüft.
+Description[en]=Whether or not to request the server's X509 certificate and check its validity when establishing SSL/TLS connections.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/ldaptable/tlscacertfile]
+Description[de]=Datei mit den X509 CA-Zertifikaten in PEM Format für Validierung der SSL/TLS Verbindungen.
+Description[en]=File containing the X509 CA certificates in PEM format which are to be recognized by the client in SSL/TLS connections.
+Type=str
+Categories=service-mail
+
+[mail/postfix/ldaptable/debuglevel]
+Description[de]=Debug-Level für OpenLDAP Operationen.
+Description[en]=What level to set for debugging in the OpenLDAP libraries.
+Type=int
+Categories=service-mail
+
+[mail/postfix/smtpd/tls/eecdh/grade]
+Description[de]=Sicherheitsstufe für den EECDH Schlüsselaustausch des Postfix SMTP-Server.
+Description[en]=The Postfix SMTP server security grade for ephemeral elliptic-curve Diffie-Hellman (EECDH) key exchange.
+Type=str
+Categories=service-mail
+
+[mail/postfix/tls/preempt/cipherlist]
+Description[de]=Falls auf 'yes' gesetzt, verwendet der Postfix SMTP-Server seine Chiffren Präferenzordnung anstelle die des Clients.
+Description[en]=If set to 'yes' the Postfix SMTP server uses its own cipher preference order instead of the remote client's cipher preference order.
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtpd/tls/dh512/param/file]
+Description[de]=DH Parameter Datei für non-export EDH Chiffren.
+Description[en]=File with DH parameters that the Postfix SMTP server should use with non-export EDH ciphers.
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtpd/tls/dh1024/param/file]
+Description[de]=DH Parameter Datei für non-export EDH Chiffren.
+Description[en]=File with DH parameters that the Postfix SMTP server should use with non-export EDH ciphers.
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtpd/tls/mandatory_protocols]
+Description[de]=Liste der TLS-Protokolle, die der Postfix SMTP-Server mit zwingender TLS-Verschlüsselung verwendet. <http://www.postfix.org/postconf.5.html#smtpd_tls_mandatory_protocols>
+Description[en]=The SSL/TLS protocols accepted by the Postfix SMTP server with mandatory TLS encryption. <http://www.postfix.org/postconf.5.html#smtpd_tls_mandatory_protocols>
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=>=TLSv1.2
+
+[mail/postfix/smtpd/tls/protocols]
+Description[de]=Liste der TLS-Protokolle, die der Postfix SMTP-Server mit opportunistischer TLS-Verschlüsselung verwendet. <http://www.postfix.org/postconf.5.html#smtpd_tls_protocols>
+Description[en]=List of TLS protocols that the Postfix SMTP server will exclude or include with opportunistic TLS encryption. <http://www.postfix.org/postconf.5.html#smtpd_tls_protocols>
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=
+
+[mail/postfix/smtpd/tls/exclude_ciphers]
+Description[de]=Liste der Verschlüsselungstypen, die aus der SMTP-Server Cipher Liste auf allen TLS Sicherheitsstufen ausgenommen sind, siehe <http://www.postfix.org/postconf.5.html#smtpd_tls_exclude_ciphers>.
+Description[en]=List of ciphers or cipher types to exclude from the SMTP server cipher list at all TLS security levels as described in <http://www.postfix.org/postconf.5.html#smtpd_tls_exclude_ciphers>.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=RC4, aNULL
+
+[mail/postfix/smtp/tls/loglevel]
+Description[de]=TLS Loglevel für den Postfix SMTP Client.
+Description[en]=Enable additional Postfix SMTP client logging of TLS activity.
+Type=int
+Categories=service-mail
+
+[mail/postfix/smtpd/tls/loglevel]
+Description[de]=TLS Loglevel für den Postfix SMTP Server.
+Description[en]=Enable additional Postfix SMTP server logging of TLS activity.
+Type=int
+Categories=service-mail
+
+[mail/postfix/cron/recreate/dh/parameter]
+Description[de]=Cronjob Intervall für die Erneuerung der DH Parameter Dateien (Forward Secrecy), z.B. "0 4 * * *". Standard ist keine automatische Erneuerung.
+Description[en]=Cronjob interval for recreating dh parameter files (forward secrecy), e.g. "0 4 * * *". Defaults to no automatic recreation.
+Type=cron
+Categories=service-mail
+
+[mail/postfix/mastercf/options/smtp/.*]
+Description[de]=Diese Variablen definieren zusätzliche Optionen für den Postfix-smtp-Dienst auf Port 25. Die Variablen müssen die Form mail/postfix/mastercf/options/smtp/OPTION=WERT aufweisen.
+Description[en]=These variables define additional options for the smtp service of postfix on port 25. The variables have to be defined as mail/postfix/mastercf/options/smtp/OPTION=VALUE.
+Type=str
+Categories=service-mail
+
+[mail/postfix/mastercf/options/smtps/.*]
+Description[de]=Diese Variablen definieren zusätzliche Optionen für den Postfix-smtps-Dienst auf Port 465. Die Variablen müssen die Form mail/postfix/mastercf/options/smtps/OPTION=WERT aufweisen.
+Description[en]=These variables define additional options for the smtps service of postfix on port 465. The variables have to be defined as mail/postfix/mastercf/options/smtps/OPTION=VALUE.
+Type=str
+Categories=service-mail
+
+[mail/postfix/mastercf/options/submission/.*]
+Description[de]=Diese Variablen definieren zusätzliche Optionen für den Postfix-submission-Dienst auf Port 587. Die Variablen müssen die Form mail/postfix/mastercf/options/submission/OPTION=WERT aufweisen.
+Description[en]=These variables define additional options for the submission service of postfix on port 587. The variables have to be defined as mail/postfix/mastercf/options/submission/OPTION=VALUE.
+Type=str
+Categories=service-mail
+
+[mail/postfix/dovecot_sasl]
+Description[de]=Ist diese Option aktiviert, verwendet Postfix den SASL-Dienst von Dovecot.
+Description[en]=If this option is activated, Postfix uses Dovecots SASL service.
+Type=bool
+Categories=service-mail
+
+[mail/postfix/myorigin]
+Description[de]=Die Domäne, von der lokal verschickte Mail zu kommen scheint, und an die lokal zugestellte Mail geschickt wird (siehe <http://www.postfix.org/postconf.5.html#myorigin>). Der Standard ist der vollqualifizierte Domänenname (FQDN).
+Description[en]=The domain name that locally-posted mail appears to come from, and that locally posted mail is delivered to (see <http://www.postfix.org/postconf.5.html#myorigin>). The default is the fully qualified domain name (FQDN).
+Type=str
+Categories=service-mail
+
+[mail/postfix/smtputf8_enable]
+Description[de]=Wenn aktiviert, weist Postfix nicht-ASCII-Adressen von Clients zurück, die den SMTPUTF8-Support nicht explizit angefragt haben (siehe <http://www.postfix.org/postconf.5.html#smtputf8_enable>).
+Description[en]=Set this variable to "yes" to reject non-ASCII addresses from clients that don't request SMTPUTF8 support (see <http://www.postfix.org/postconf.5.html#smtputf8_enable>).
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/postscreen/enabled]
+Description[de]=Ist diese Option aktiviert, werden eingehende SMTP-Verbindungen durch Postscreen geprüft, bevor sie an den SMTP-Dienst übergeben werden.
+Description[en]=If this option is activated, incoming SMTP connections are checked by postscreen before the connection is passed to the SMTP daemon.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/postscreen/dnsbl/action]
+Description[de]=Aktion, die ausgeführt wird, wenn die DNSBL-Trefferpunkte den Schwellwert erreichen (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_action>)
+Description[en]=Action that is performed when the DNSBL hitpoints reach the threshold (see also <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_action>)
+Type=str
+Categories=service-mail
+Default=enforce
+
+[mail/postfix/postscreen/dnsbl/threshold]
+Description[de]=Der Schwellwert, ab dem postscreen eingehende SMTP-Verbindungen basierend auf den DNSBL-Trefferpunkten ablehnt (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_threshold>)
+Description[en]=The threshold from which postscreen rejects incoming SMTP connections based on the DNSBL hitpoints (see also <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_threshold>)
+Type=uint
+Categories=service-mail
+Default=3
+
+[mail/postfix/postscreen/dnsbl/sites]
+Description[de]=Optionale Liste an DNS-White/Blacklist-Domänen, Filtern and Gewichtungsfaktoren. Das Format ist unter <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_sites> beschrieben.
+Description[en]=Optional list of DNS white/blacklist domains, filters and weight factors. The format is described at <http://www.postfix.org/postconf.5.html#postscreen_dnsbl_sites>.
+Type=str
+Categories=service-mail
+Default=
+
+[mail/postfix/postscreen/helo/required]
+Description[de]=Ist diese Option aktiviert, ist es erforderlich, dass ein SMTP-Client sich mit dem HELO- oder EHLO-Befehl vor dem Senden des MAIL-Befehls oder anderer Befehle, die EHLO-Negotiation erfordern, vorstellt.
+Description[en]=If this option is activated, it is required that a remote SMTP client introduces itself with the HELO or EHLO command before sending the MAIL command or other commands that require EHLO negotiation.
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/postscreen/greet/action]
+Description[de]=Die Aktion, die postscreen ausführt, wenn ein SMTP-Client Befehle sendet, bevor dieser an der Reihe ist (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_greet_action>)
+Description[en]=The action that postscreen takes when a remote SMTP client speaks before its turn within the configured waiting time (see also <http://www.postfix.org/postconf.5.html#postscreen_greet_action>)
+Type=str
+Categories=service-mail
+Default=drop
+
+[mail/postfix/postscreen/greet/ttl]
+Description[de]=Diese Option definiert die Zeitspanne, in der SMTP-Clients keinen PREGREET-Test durchlaufen müssen, sofern sie diesen bereits erfolgreich bestanden haben (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_greet_ttl>)
+Description[en]=This option defines the time period that remote SMTP clients do not have to run a PREGREET test if they have already passed the PREGREET test (see also <http://www.postfix.org/postconf.5.html#postscreen_greet_ttl>)
+Type=str
+Categories=service-mail
+Default=1d
+
+[mail/postfix/postscreen/blacklist/action]
+Description[de]=Die Aktion, die postscreen ausführt, wenn ein SMTP-Client über die Option postscreen_access_list permanent geblacklisted wurde (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_blacklist_action>)
+Description[en]=The action that postscreen takes when a remote SMTP client is permanently blacklisted with the postscreen_access_list parameter (see also <http://www.postfix.org/postconf.5.html#postscreen_blacklist_action>)
+Type=str
+Categories=service-mail
+Default=ignore
+
+[mail/postfix/postscreen/access_list]
+Description[de]=Permanente Whiteliste/Blacklist für IP-Adressen von SMTP-Clients (siehe auch <http://www.postfix.org/postconf.5.html#postscreen_access_list>)
+Description[en]=Permanent white/blacklist for remote SMTP client IP addresses (see also <http://www.postfix.org/postconf.5.html#postscreen_access_list>)
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+Default=permit_mynetworks, cidr:/etc/postfix/postscreen_access.cidr
+
+[mail/postfix/activate_unionmap_in_virtual_alias_maps]
+Description[de]=Gibt an, ob für die Berechnung der virtual_alias_maps die Vereinigung der angegebenen Abfragen verwendet werden soll. Ist die Variable nicht gesetzt, wird das erste gefundene Resultat in der Liste der Abfragen zurückgegeben (Für mehr Informationen siehe <https://help.univention.com/t/migration-of-ldap-attribute-mailforwardcopytoself/16509>, siehe auch directory/manager/user/activate_ldap_attribute_mailForwardCopyToSelf und mail/postfix/activate_ldap_attribute_mailForwardCopyToSelf_in_virtual_alias_maps)
+Description[en]=Defines whether the union of the configured queries should be used for the calculation of virtual_alias_maps. Otherwise the first result of the list of queries is returned (Please visit <https://help.univention.com/t/migration-of-ldap-attribute-mailforwardcopytoself/16509>, see also directory/manager/user/activate_ldap_attribute_mailForwardCopyToSelf and mail/postfix/activate_ldap_attribute_mailForwardCopyToSelf_in_virtual_alias_maps)
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/activate_ldap_attribute_mailForwardCopyToSelf_in_virtual_alias_maps]
+Description[de]=Gibt an, ob bei der Abfrage virtual_alias_maps das LDAP Attribut mailForwardCopyToSelf mit einbezogen werden soll. Wenn der Wert nicht gesetzt wird, ändert sich die Abfrage nicht (Für mehr Informationen siehe <https://help.univention.com/t/migration-of-ldap-attribute-mailforwardcopytoself/16509>, siehe auch directory/manager/user/activate_ldap_attribute_mailForwardCopyToSelf und mail/postfix/activate_unionmap_in_virtual_alias_maps)
+Description[en]=Specifies whether the LDAP attribute mailForwardCopyToSelf should be included in the query virtual_alias_maps. If the value is not set, the query does not change (Please visit: <https://help.univention.com/t/migration-of-ldap-attribute-mailforwardcopytoself/16509>, see also directory/manager/user/activate_ldap_attribute_mailForwardCopyToSelf and mail/postfix/activate_unionmap_in_virtual_alias_maps)
+Type=bool
+Categories=service-mail
+Default=no
+
+[mail/postfix/smtpd/data_restrictions]
+Description[de]=Setzt optionale Zugriffsbeschränkungen für den Server im Kontext von STMP Daten Kommandos. Aus Sicherheitsgründen wird empfohlen die Standardeinstellung beizubehalten (siehe auch <https://www.postfix.org/smtp-smuggling.html>).
+Description[en]=Sets optional access restictions that the server applies in the context of SMTP data commands. For security reasons, it is recommended to keep the default setting (see also <https://www.postfix.org/smtp-smuggling.html>).
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail
+
+[mail/postfix/smtpd/discard_ehlo_keywords]
+Description[de]=Setzt eine Liste von EHLO Schlüsselwörtern, die in der Antwort vom Server ignoriert werden (ohne Berücksichtigung der Groß- und Kleinschreibung). Aus Sicherheitsgründen wird empfohlen die Standardeinstellung beizubehalten (siehe auch <https://www.postfix.org/smtp-smuggling.html>).
+Description[en]=Sets a case insensitive list of EHLO keywords that the client will ignore in the EHLO responses from the server. For security reasons, it is recommended to keep the default setting (see also <https://www.postfix.org/smtp-smuggling.html>).
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-mail

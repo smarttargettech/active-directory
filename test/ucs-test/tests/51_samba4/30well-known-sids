@@ -1,0 +1,87 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Test well-known SIDs"
+## exposure: safe
+## packages:
+##  - univention-samba4
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## - domaincontroller_slave
+## versions:
+##  3.1-1: skip
+##  3.2-0: fixed
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+# List of well known sids:
+#  http://support.microsoft.com/kb/243330/en-us
+
+domainSid="$(univention-s4search -s base objectSid | VAL1 objectSid)"
+
+test -z "$domainSid" && fail_test 110 "domainSid not found"
+
+. /usr/share/univention-lib/base.sh
+
+test_group_sid_openldap () {
+	group="$1"
+	expected_sid="$2"
+	sid_ldap=$(univention-ldapsearch "(&(objectClass=univentionGroup)(cn=$group))" sambaSID | VAL1 sambaSID)
+	[ "$sid_ldap" = "$expected_sid" ] ||
+		fail_test 110 "Expected sid for $group: $expected_sid; found in LDAP: $sid_ldap"
+}
+test_group_sid_s4 () {
+	group="$1"
+	expected_sid="$2"
+	sid_ad=$(univention-s4search "(&(objectClass=group)(cn=$group))" objectSid | VAL1 objectSid)
+	[ "$sid_ad" = "$expected_sid" ] ||
+		fail_test 110 "Expected sid for $group: $expected_sid; found in S4: $sid_ad"
+}
+
+test_group_sid () {
+	test_group_sid_s4 "$@"
+	test_group_sid_openldap "$@"
+
+}
+test_user_sid () {
+	user="$1"
+	expected_sid="$2"
+	sid_ad=$(univention-s4search "(&(objectClass=user)(cn=$user))" objectSid | VAL1 objectSid)
+	sid_ldap=$(univention-ldapsearch "(uid=$user)" sambaSID | VAL1 sambaSID)
+	[ "$sid_ad" = "$expected_sid" ] ||
+		fail_test 110 "Expected sid for $user: $expected_sid; found in S4: $sid_ad"
+	[ "$sid_ldap" = "$expected_sid" ] ||
+		fail_test 110 "Expected sid for $user: $expected_sid; found in LDAP: $sid_ldap"
+}
+
+test_user_sid "$(custom_username "Administrator")" "$domainSid-500"
+test_user_sid "$(custom_username "KRBTGT")" "$domainSid-502"
+test_user_sid "$(custom_username "Guest")" "$domainSid-501"
+
+test_group_sid "$(custom_groupname "Domain Admins")" "$domainSid-512"
+test_group_sid "$(custom_groupname "Domain Users")" "$domainSid-513"
+test_group_sid "$(custom_groupname "Domain Guests")" "$domainSid-514"
+test_group_sid "$(custom_groupname "Domain Computers")" "$domainSid-515"
+test_group_sid "$(custom_groupname "Domain Controllers")" "$domainSid-516"
+test_group_sid "$(custom_groupname "Cert Publishers")" "$domainSid-517"
+test_group_sid "$(custom_groupname "Schema Admins")" "$domainSid-518"
+test_group_sid "$(custom_groupname "Enterprise Admins")" "$domainSid-519"
+test_group_sid "$(custom_groupname "Group Policy Creator Owners")" "$domainSid-520"
+test_group_sid "$(custom_groupname "RAS and IAS Servers")" "$domainSid-553"
+test_group_sid "$(custom_groupname "Administrators")" S-1-5-32-544
+test_group_sid "$(custom_groupname "Users")" S-1-5-32-545
+test_group_sid "$(custom_groupname "Guests")" S-1-5-32-546
+test_group_sid "$(custom_groupname "Account Operators")" S-1-5-32-548
+test_group_sid "$(custom_groupname "Backup Operators")" S-1-5-32-551
+
+if getent group "Server Operators" >/dev/null; then
+	# Server Operators is not available on an updated 3.1 to 3.2 system
+	test_group_sid "$(custom_groupname "Server Operators")" S-1-5-32-549
+fi
+if getent group "Replicator" >/dev/null; then
+	# Replicator is not available on an updated 3.1 to 3.2 system
+	test_group_sid "$(custom_groupname "Replicator")" S-1-5-32-552
+fi
+
+exit "$RETVAL"

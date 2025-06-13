@@ -1,0 +1,122 @@
+[kerberos/adminserver]
+Description[de]=Auf dem Primary Directory Node läuft der Kerberos-Adminserver, auf dem administrative Einstellungen der Domäne vorgenommen werden können. Diese Variable konfiguriert, welches System als Kerberos-Adminserver verwendet werden soll.
+Description[en]=The Kerberos admin server, on which the administrative settings of the domain can be changed, runs on the Primary Directory Node. This variable configures which system should be used as the Kerberos admin server.
+Type=str
+Categories=service-heimdal
+
+[kerberos/kpasswdserver]
+Description[de]=Diese Variable konfiguriert den Server, der Passwortänderungen über Kerberos entgegennimmt: Wird Samba/AD eingesetzt, kann ein beliebiger Samba/AD-Domänencontroller gesetzt werden. Wird nur OpenLDAP eingesetzt, muss der Primary Directory Node konfiguriert werden.
+Description[en]=This variable configures the server which accepts Kerberos-based password changes: If Samba/AD is used, any Samba/AD domain controller can be specified. If only OpenLDAP is used the Primary Directory Node must be used.
+Type=str
+Categories=service-heimdal
+
+[kerberos/kdc]
+Description[de]=Hier kann eine Liste von Kerberos KDC-Servern konfiguriert werden. Die Rechnernamen sollten in FQDN-Form angegeben werden. Mehrfache Werte sind durch Leerzeichen zu trennen. Ist die Variable nicht gesetzt, wird der KDC aus DNS-Service-Records ausgelesen (siehe 'kerberos/defaults/dns_lookup_kdc').
+Description[en]=A list of Kerberos KDC servers can be configured here. The hostnames should be specified in FQDN form. Multiple values need to be separated by a blank. If the variable is unset, the KDC is queried from DNS service records (see 'kerberos/defaults/dns_lookup_kdc').
+Type=str
+Categories=service-heimdal
+
+[kerberos/realm]
+Description[de]=Die gemeinsame Kerberos-Vertrauensbasis einer Domäne wird als Kerberos-Realm bezeichnet. Diese Variable enthält den Namen der Kerberos-Realm. Der Name der Kerberos-Realm wird bei der Installation des Primary Directory Node festgelegt und kann nachträglich nicht geändert werden.
+Description[en]=The common Kerberos trust context of a domain is called a Kerberos realm. This variable contains the name of the Kerberos realm. The name of the Kerberos realm is set during the installation of the Primary Directory Node and cannot be changed subsequently.
+Type=str
+Categories=service-heimdal
+ReadOnly=yes
+
+[kerberos/afscell]
+Description[de]=Der Name der AFS-Zelle, einer administrativen Einheit im verteilten AFS-Dateisystem.
+Description[en]=The name of the AFS cell, an administrative unit in the distributed AFS filesystem.
+Type=str
+Categories=service-heimdal
+
+[kerberos/kadmin/default/keys]
+Description[de]=Diese Variable konfiguriert die bei der Schlüsselerstellung verwendeten Salt-Methoden. Ist die Variable nicht gesetzt, werden die Heimdal-internen Defaultwerte verwendet. Diese Variable sollte im Regelfall nicht gesetzt werden.
+Description[en]=This variable configures the salt methods used during key generation. If the variable is unset, the Heimdal-internal default values are used. This variable should usually not be set.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/enctypes/tgs]
+Description[de]=Diese Variable konfiguriert die verfügbaren Verschlüsselungsverfahren für Service-Tickets. Ist die Variable nicht gesetzt, wird 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des-cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' verwendet.
+Description[en]=This variable configures the available encryption methods for service tickets. If the variable is unset, 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des-cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' is used.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/enctypes/tkt]
+Description[de]=Diese Variable konfiguriert die verfügbaren Verschlüsselungsverfahren für Ticket-Granting-Tickets. Ist die Variable nicht gesetzt, wird 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des-cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' verwendet.
+Description[en]=This variable configures the available encryption methods for ticket granting tickets. If the variable is unset, 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des- cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' is used.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/enctypes/permitted]
+Description[de]=Die unterstützten Verschlüsselungsverfahren: Bei der Aushandlung eines Session-Keys werden die vom Client unterstützten Verschlüsselungsverfahren mit den hier konfigurierten Verfahren abgeglichen. Ist die Variable nicht gesetzt, wird 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des-cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' verwendet.
+Description[en]=The supported encryption methods. During negotiation of a session the methods supported by the client are matched with the methods configured in this variable. If the variable is unset, 'aes256-cts-hmac-sha1-96 aes128-cts-hmac-sha1-96 arcfour-hmac-md5 des-cbc-crc des-cbc-md5 des-cbc-md4 des3-hmac-sha1 des3-cbc-sha1' is used.
+Type=str
+Categories=service-heimdal
+
+[kerberos/allow/weak/crypto]
+Description[de]=Zur Herstellung der Kompatibilität mit Active Directory werden Single-DES-Keys (des-cbc-md5) in der Grundeinstellung unterstützt. Wird diese Option deaktiviert, wird die Erzeugung von solchen Keys unterbunden. Ist die Variable nicht gesetzt, werden Single-DES-Keys unterstützt.
+Description[en]=To ensure compatibility with Active Directory single DES keys (des-cbc-md5) are supported as standard. If this option is deactivated, the creation of such keys is disabled. If the variable is unset, single DES keys are supported.
+Type=bool
+Categories=service-heimdal
+
+[kerberos/domain_realms]
+Description[de]=Mit dieser Variable können Abbildungen von DNS-Domänennamen auf Namen von Kerberos-Realms vorgenommen werden. Dies ist z.B. nötig, wenn eine weitere DNS-Forward-Zone in der DNS-Verwaltung angelegt wurde und diese der Kerberos-Realm der Domäne zugeordnet werden soll. Mehrere Einträge müssen durch Komma getrennt werden. Beispiel: 'additionaldomain1.example=EXAMPLEREALM,additionaldomain2.example=EXAMPLEREALM'.
+Description[en]=With this variable DNS domain names can be mapped to names of Kerberos realms. This can be necessary, if e.g. an additional DNS forward zone has been created in the DNS management and this DNS domain should be mapped to the Kerberos realm of the domain. Multiple entries must be separated by a comma. Example: 'additionaldomain1.example=EXAMPLEREALM,additionaldomain2.example=EXAMPLEREALM'.
+Type=list
+Separator=,
+Elementtype=str
+Categories=service-heimdal
+
+[kerberos/defaults/dns_lookup_realm]
+Description[de]=Die Abbildung zusätzliche DNS-Domänennamen zu Kerberos-Realms erfolgt in der Regel über die Variable 'kerberos/domain_realms'. Wird diese Variable auf 'true' gesetzt, wird die Kerberos-Realm aus einem TXT-Record im DNS ausgelesen werden. Das Format wird unter <http://web.mit.edu/Kerberos/krb5-1.6/krb5-1.6.3/doc/krb5-admin.html#Mapping-Hostnames-onto-Kerberos-Realms> beschrieben. Ist die Variable nicht gesetzt, wird auf die Auflösung per DNS verzichtet.
+Description[en]=Additional DNS domainnames can be mapped on Kerberos realms using the variable 'kerberos/domain_realms'. If this variable is set to 'true', the Kerberos realm is read from a TXT record in DNS. The format is described at <http://web.mit.edu/Kerberos/krb5-1.6/krb5-1.6.3/doc/krb5-admin.html#Mapping-Hostnames-onto-Kerberos-Realms>. If the variable is unset, no DNS lookups are made.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/dns_lookup_kdc]
+Description[de]=Ist diese Variable auf 'true' gesetzt oder nicht gesetzt, wird der/die KDC-Server für das System aus DNS-Service-Records gelesen. Dies kann durch Setzen der Variable auf 'false' deaktiviert werden, in welchem Fall der/die KDCs über die Variable 'kerberos/kdc' konfiguriert werden muss.
+Description[en]=If this variable is set to 'true' or unset, the KDC(s) used by the system are read from DNS service records. This can be disabled by setting the variable to 'false', is which case the KDC(s) must be set through the variable 'kerberos/kdc'.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/forwardable]
+Description[de]=Ist diese Variable auf 'true' gesetzt ist, kann ein ausgestelltes Kerberos-Ticket auch für die Anmeldung an weiteren Systemen der Domäne verwendet werden. Wird sie auf 'false' gesetzt, ist das Ticket an eine IP-Adresse gebunden. Ist die Variable nicht gesetzt, ist die Option aktiviert.
+Description[en]=If this variable is set to 'true', an issued Kerberos ticket can be used for logging into additional systems of the domain. If set to 'false', the ticket is bound to an IP address. If the variable is unset, the option is deactivated.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/proxiable]
+Description[de]=Ist diese Variable auf 'true' gesetzt oder nicht gesetzt, ist das Ticket Granting Ticket nicht auf eine IP-Adresse beschränkt.
+Description[en]=If this variable is set to 'true' or not set, the ticket granting ticket is not limited to an IP address.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/kdc_timesync]
+Description[de]=Wenn diese Variable auf '1' gesetzt ist, kann ein Kerberos-Client Unterschiede zwischen der lokalen Rechneruhr und der Uhr des KDCs ausgleichen. Um die Option zu verwenden, muss zusätzlich der Typ des Credential-Caches angepasst werden (Option 'ccache_type').
+Description[en]=If this is set to '1', Kerberos clients can balance differences between the time of the local clock and the clock of the KDC. To use this option, the type of the credentials cache need to be adapted (option 'ccache_type').
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/debug]
+Description[de]=Wird diese Variable auf 'true' gesetzt, werden zusätzliche Debugausgaben protokolliert.
+Description[en]=If this variable is set to 'true' additional debug statements are logged.
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/ignore_acceptor_hostname]
+Description[de]=Wird diese Variable auf 'true' gesetzt, wird der hostname des aufrufenden Programms ignoriert, und Clients dürfen mit jedem Service Prinzipal in der keytab authentifizieren, der dem Service- und Realmnamen entspricht (sofern angegeben). Falls die Variable nicht gesetzt ist, dann gilt  die Voreinstellung der MIT Kerberos Bibliothek ('false').
+Description[en]=If this variable is set to 'true', any hostname passed by the calling application is ignored, and clients are allowed to authenticate to any service principal in the keytab matching the service name and realm name (if given). If the variable is unset the default of the MIT Kerberos library applies ('false').
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/rdns]
+Description[de]=Wird diese Variable auf 'true' gesetzt, dann werden beim Anfordern eines Service Tickets Hostnamen nicht nur mit Hilfe von DNS in FQDNs umgewandelt, sondern zusätzlich auch noch rückwärts aufelöst. Für Dienste, die über DNS-Aliase angesprochen werden, kann das nicht gewünscht sein. Falls die Variable nicht gesetzt ist, dann gilt die Voreinstellung der MIT Kerberos Bibliothek ('true').
+Description[en]=If this variable is set to 'true', reverse DNS lookup will be used in addition to forward DNS lookup to canonicalizing hostnames for use in service principal names. This may be undesirable for serices accessed via DNS alias. If the variable is unset the default of the MIT Kerberos library applies ('true').
+Type=str
+Categories=service-heimdal
+
+[kerberos/defaults/ticket-lifetime]
+Description[de]=Legt die Standardlebensdauer für anfängliche Ticketanfragen in Stunden fest.
+Description[en]=Sets the default lifetime for initial ticket requests, in hours.
+Type=uint
+Categories=service-heimdal

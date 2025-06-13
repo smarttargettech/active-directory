@@ -1,0 +1,33 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository via proxy
+##  1. Use minimal proxy implemented in Python
+## roles-not: [basesystem]
+## tags: [basic, proxy]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+FIXED_12571=false
+
+setup_apache "${repoprefix}"
+
+# shellcheck disable=SC2046
+mkpdir $(allpatchlevels "${_version_version}-${_version_patchlevel:?}") maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+# shellcheck disable=SC2119
+config_proxy
+config_repo proxy/http="http://localhost:${proxy_port:?}"
+
+	set -e
+	"${FIXED_12571}" || ucr commit /etc/apt/sources.list.d/15_ucs-online-version.list >&3
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${DIR}"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

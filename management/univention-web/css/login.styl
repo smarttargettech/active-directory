@@ -1,0 +1,180 @@
+body
+	display: flex
+	flex-direction: column
+
+#umcLoginContent
+	flex: 1 0 auto
+	display: flex
+	flex-direction: column
+	align-items: center
+	// justify-content: center
+	margin-top: 3rem
+
+#umcLoginTitle
+	text-align: center
+	margin-bottom: 2.5rem
+
+#umcLoginPrivacyPolicyHeader
+	text-align: center
+	margin-top: -1.5rem
+	margin-bottom: 1.5rem
+
+#umcLoginDialog
+	background-color: var(--bgc-content-container)
+	border-radius: 10px
+	width: 400px
+	min-height: @width
+	// max-height: 515px
+
+#umcLoginLogo
+	width: 80px
+	margin: 0 auto
+	padding: calc(6 * var(--layout-spacing-unit)) 0
+	display: block
+	// transition: margin-top 0.75s
+
+#umcLoginFormWrapper
+	position: relative
+	padding: 0 1rem 3rem
+
+.umcLoginFormInput
+	position: relative
+
+	input
+		--border-color: transparent
+		width: 100%
+		margin-bottom: 1rem
+		padding: 1.2rem 1rem .3rem 1rem
+		background: var(--bgc-inputfield-on-container)
+		border: 1px solid var(--border-color)
+		border-radius: var(--border-radius-interactable)
+		outline: none
+		font-size: var(--font-size-3)
+		transition: border 250ms
+
+		&:hover,
+		&:focus
+			--border-color: var(--font-color-contrast-low)
+
+	label
+		position: absolute
+		top: .75rem
+		left: 1rem
+		transform-origin: left center
+		transition: transform .3s, color .3s
+		pointer-events: none
+		font-size: var(--font-size-3)
+
+	input:not(:placeholder-shown) + label,
+	input:focus + label
+		transform: translateY(-0.7rem) scale(0.65)
+		color: var(--font-color-contrast-middle)
+
+.umcLoginFormSelect
+	position: relative
+
+	select
+		--border-color: transparent
+		width: 100%
+		margin-bottom: 1rem
+		padding: 0.75rem 2rem 0.75rem 1rem
+		background-color: var(--bgc-inputfield-on-container)
+		background-image: url(/univention/js/dijit/themes/umc/images/chevron-down_white.svg)
+		background-repeat: no-repeat
+		background-position: right 0.5em center
+		outline: none
+		-moz-appearance: none
+		-webkit-appearance: none
+		appearance: none
+		border: 1px solid var(--border-color)
+		border-radius: var(--border-radius-interactable)
+		cursor: pointer
+
+		&:hover,
+		&:focus
+			--border-color: var(--font-color-contrast-low)
+
+	label
+		margin-bottom: 0.5rem
+
+.umcLoginFormButton
+	--bgc: var(--button-primary-bgc)
+	position: relative
+	width: 100%
+	padding: 0.75rem 1rem
+	border: none
+	border-radius: var(--border-radius-interactable)
+	color: var(--font-color-contrast-high)
+	background-color: var(--bgc)
+	transition: var(--button-bgc-transition)
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	font-size: var(--font-size-3)
+
+	.featherIcon
+		margin-right: 0.4rem
+
+	&:hover,
+	&:focus
+		--bgc: var(--button-primary-bgc-hover)
+
+	&:active
+		--bgc: var(--button-primary-bgc-active)
+
+.umcLoginFormButton__label
+	position: relative
+
+#umcLoginNotices
+	margin-bottom: 1rem
+
+#umcLoginLinks
+	text-align: center
+	margin-top: 1rem
+
+	a
+		margin: 0 0.5rem
+
+.umcLoginLinkWarning
+	background-color: var(--bgc-error)
+	border-radius: var(--border-radius-tooltip)
+	padding: 0.4em
+
+#umcLoginFormWrapperWrapper
+	position: relative
+
+#umcLoginStandbyWrapper
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	display: flex
+	align-items: center
+	justify-content: center
+
+
+// loading anim
+#umcLoginTitle
+	opacity: 1
+	transition: opacity 250ms
+	.umcLoginLoading &
+		opacity: 0
+
+#umcLoginLinks
+	opacity: 1
+	transition: opacity 250ms
+	.umcLoginLoading &
+		opacity: 0
+
+#umcLoginStandbyWrapper
+	opacity: 0
+	transition: opacity 250ms
+	.umcLoginLoading &
+		opacity: 1
+
+#umcLoginFormWrapper
+	opacity: 1
+	transition: opacity 250ms
+	.umcLoginLoading &
+		opacity: 0

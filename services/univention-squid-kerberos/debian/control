@@ -1,0 +1,27 @@
+Source: univention-squid-kerberos
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+
+Package: univention-squid-kerberos
+Architecture: all
+Depends:
+ shell-univention-lib (>= 3.0.1-1),
+ univention-heimdal-common (>> 5.0.24-1),
+ univention-join (>= 10.0.0-12A),
+ univention-squid,
+ ${misc:Depends},
+Suggests:
+ univention-firewall,
+Description: Kerberos authentication for UCS Squid web proxy
+ This package provides the kerberos (negotiate) authentication
+ on the squid web proxy with samba4 as backend.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

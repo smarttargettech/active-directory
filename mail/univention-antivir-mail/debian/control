@@ -1,0 +1,25 @@
+Source: univention-antivir-mail
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ univention-config-dev (>= 15.0.3),
+Standards-Version: 3.8.2
+
+Package: univention-antivir-mail
+Architecture: all
+Depends:
+ amavisd-new,
+ clamav,
+ clamav-daemon | kav4fileservers | sophie,
+ univention-config,
+ univention-spamassassin,
+ ${misc:Depends},
+Description: UCS anti virus mail configuration.
+ UCS anti virus mail module.
+ .
+ This package is part of Univention Corporate Server (UCS),
+ an integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

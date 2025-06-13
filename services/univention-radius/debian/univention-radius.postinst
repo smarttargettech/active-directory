@@ -1,0 +1,148 @@
+#!/bin/bash
+#
+# Univention RADIUS 802.1X
+#  postinst script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright (C) 2011-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of the software contained in this package
+# as well as the source package itself are made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this package provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use the software under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+install -o freerad -g freerad -m 0660 /dev/null /var/log/univention/radius_ntlm_auth.log
+
+eval "$(univention-config-registry shell)"
+
+case "$1" in
+    configure)
+		uinst=/usr/lib/univention-install/20univention-radius.uinst
+		[ -e "$uinst" ] && rm "$uinst"
+
+		univention-config-registry set \
+			security/packetfilter/package/univention-radius/udp/1812/all=ACCEPT \
+			security/packetfilter/package/univention-radius/udp/1812/all/en='freeradius (802.1x)' \
+			security/packetfilter/package/univention-radius/udp/1813/all=ACCEPT \
+			security/packetfilter/package/univention-radius/udp/1813/all/en='freeradius (802.1x)' \
+			security/packetfilter/package/univention-radius/udp/1814/all=ACCEPT \
+			security/packetfilter/package/univention-radius/udp/1814/all/en='freeradius (802.1x)' \
+			freeradius/conf/auth-type/mschap?yes \
+			freeradius/conf/auth-type/mschap/ntdomainhack?yes \
+			freeradius/conf/realm?ntdomain \
+			freeradius/conf/users?files \
+			freeradius/conf/log/strippednames?yes \
+			freeradius/conf/log/auth?yes \
+			freeradius/conf/log/auth/badpass?yes \
+			freeradius/conf/log/auth/goodpass?no \
+			freeradius/conf/starttls?yes \
+			freeradius/conf/private/key/file?/etc/freeradius/ssl/private.key \
+			freeradius/conf/certificate/file?/etc/freeradius/ssl/cert.pem \
+			freeradius/conf/ca/file?/etc/univention/ssl/ucsCA/CAcert.pem \
+			logrotate/radius_ntlm_auth/create?"644 root freerad" \
+			freeradius/auth/helper/ntlm/debug?2
+
+		# Bug #25935: create empty clients.univention.conf if still missing
+		fn="/etc/freeradius/3.0/clients.univention.conf"
+		if [ ! -e "$fn" ] ; then
+			touch "$fn"
+			ucr commit /etc/freeradius/3.0/radiusd.conf
+		fi
+
+		[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+		systemctl try-restart univention-directory-listener
+		;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+		;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+		;;
+esac
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/base.sh
+call_joinscript 80univention-radius.inst
+
+test -d /etc/freeradius/ssl && chmod -cf 2755 /etc/freeradius/ssl
+
+# Bug #55007: preserve custom symbolic link to sites-available
+default_enabled_site_link="/etc/freeradius/3.0/sites-enabled/default"
+package_default_enabled_site="../sites-available/default"
+backup_default_enabled_site_link="/etc/freeradius/3.0/sites-enabled/default.backup"
+if ! [ -e "$default_enabled_site_link" ]; then
+	if [ -e "$backup_default_enabled_site_link" ]; then
+		mv "$backup_default_enabled_site_link" "$default_enabled_site_link"
+		echo "WARNING: Using configuration found in $(readlink "$default_enabled_site_link")"
+	else
+		ln -s "$package_default_enabled_site" "$default_enabled_site_link"
+		echo "Creating symbolic link with default configuration"
+	fi
+fi
+
+deb-systemd-helper enable freeradius.service
+systemctl restart freeradius
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl "7.0.1-7"; then
+	udm settings/extended_options modify --dn "cn=radiusAuthenticator,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Authentificateur RADIUS"' \
+		--append translationLongDescription='"fr_FR" "Active les options de configurations de l’authentificateur RADIUS, par exemple pour les points d’accès sans fil ou les serveurs d’accès au résau (NAS : Network Access Server)"'
+
+	udm settings/extended_attribute modify --dn "cn=univentionRadiusClientSharedSecret,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Secret partagé"' \
+		--append translationLongDescription='"fr_FR" "Secret partagé utilisé pour la communication entre le client RADIUS et le serveur RADIUS"' \
+		--append translationGroupName='"fr_FR" "Authentificateur RADIUS"'
+
+	udm settings/extended_attribute modify --dn "cn=univentionRadiusClientType,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Type de NAS"' \
+		--append translationLongDescription='"fr_FR" "Cette option indique à RADIUS la méthode spécifique au NAS devant être employée avec celui-ci pour les requêtes simultanées. La valeur par défaut est »other«."' \
+		--append translationGroupName='"fr_FR" "Authentificateur RADIUS"'
+
+	udm settings/extended_attribute modify --dn "cn=univentionRadiusClientVirtualServer,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Serveur virtuel"' \
+		--append translationLongDescription='"fr_FR" "Les clients RADIUS peuvent également être reliés à un serveur virtuel. Indiquez simplement le nom du serveur virtuel."' \
+		--append translationGroupName='"fr_FR" "Authentificateur RADIUS"'
+
+	udm settings/extended_attribute modify --dn "cn=networkAccessComputers,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Autoriser l’accès au réseau"' \
+		--append translationLongDescription='"fr_FR" "Autoriser l’accès via RADIUS (par exemple via IEEE 802.1x) pour cet ordinateur."' \
+		--append translationGroupName='"fr_FR" "Demandeur RADIUS"'
+
+	udm settings/extended_attribute modify --dn "cn=networkAccessGroups,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Autoriser l’accès au réseau"' \
+		--append translationLongDescription='"fr_FR" "Autoriser l’accès via RADIUS (par exemple via IEEE 802.1x) pour les membres de ce groupe."' \
+		--append translationGroupName='"fr_FR" "Demandeur RADIUS"'
+
+	udm settings/extended_attribute modify --dn "cn=networkAccessUsers,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Autoriser l’accès au réseau"' \
+		--append translationLongDescription='"fr_FR" "Autoriser l’accès via RADIUS (802.1x) pour cet utilisateur ou utilisatrice."'
+fi
+
+exit 0

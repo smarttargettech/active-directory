@@ -1,0 +1,70 @@
+#!/bin/bash
+#
+# Univention Self Service
+#  postinst file for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2015-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+eval "$(univention-config-registry shell)"
+
+univention-config-registry set \
+	"umc/web/hooks/univention-self-service?passwordreset" \
+	"umc/login/links/forgot_your_password/enabled?true"
+
+if ! ucr get portal/paths | tr , '\n' | grep -qe '^ \?/univention/selfservice/$'; then
+	echo "Adding /univention/selfservice/ to the portal configuration"
+	ucr set portal/paths="$(ucr get portal/paths), /univention/selfservice/"
+	if [ ! -e "/usr/lib/univention-portal/config/selfservice.json" ]; then
+		echo "{\"selfservice_portal_dn\":\"cn=self-service,cn=portal,cn=portals,cn=univention,$(ucr get ldap/base)\"}" > /usr/lib/univention-portal/config/selfservice.json
+	fi
+	univention-portal add-selfservice-default
+	univention-portal update
+	systemctl restart univention-portal-server apache2
+fi
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl "5.0.1-16"; then
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-CanonicalRecipientRewriteEnable,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+	--append translationShortDescription='"fr_FR" "Adresse e-mail pour la réinitialisation du mot de passe"' \
+	--append translationLongDescription='"fr_FR" "Lors de la réinitialisation du mot de passe, un e-mail est envoyé à l’adresse spécifiée. La réinitialisation du mot de passe par e-mail est disponible pour les utilisateurs et utilisatrices uniquement si elle a été activée et configurée par l’administrateur ou l’administratrice."' \
+	--append translationTabName='"fr_FR" "Réinitialisation du mot de passe"'
+
+	univention-directory-manager portals/entry modify --dn "cn=self-service-my-profile,cn=entry,cn=portals,cn=univention,$ldap_base" \
+		--append displayName='"fr_FR" "Mon profil"' \
+		--append description='"fr_FR" "Gérer le profil"'
+
+	univention-directory-manager portals/entry modify --dn "cn=self-service-protect-account,cn=entry,cn=portals,cn=univention,$ldap_base" \
+		--append displayName='"fr_FR" "Protéger votre compte"' \
+		--append description='"fr_FR" "Protéger votre compte"'
+fi
+
+exit 0

@@ -1,0 +1,15 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check if the host account gets a kerberos ticket
+## exposure: safe
+## tags:
+##  - basic
+##  - apptest
+## bugs: [40434]
+## roles-not: [basesystem]
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+kinit --password-file=/etc/machine.secret "$(hostname)$" ||
+	fail_fast 1 "Failed to get a kerberos ticket for $(hostname)$"

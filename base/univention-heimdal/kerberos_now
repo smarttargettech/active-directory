@@ -1,0 +1,111 @@
+#!/usr/bin/python3
+#
+# Univention Heimdal
+#  kerberos_now
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import ldap
+
+import univention.config_registry
+import univention.debug as ud
+import univention.lib.policy_result
+import univention.uldap
+
+
+ud.init('/dev/null', ud.FLUSH, ud.FUNCTION)
+
+configRegistry = univention.config_registry.ConfigRegistry()
+configRegistry.load()
+
+lo = univention.uldap.getAdminConnection()
+realm = configRegistry['kerberos/realm']
+
+
+def nt_password_to_arcfour_hmac_md5(nt_password):
+    # all arcfour-hmac-md5 keys begin this way
+    key = b'0\x1d\xa1\x1b0\x19\xa0\x03\x02\x01\x17\xa1\x12\x04\x10'
+
+    for i in range(16):
+        o = nt_password[2 * i:2 * i + 2]
+        key += chr(int(o, 16)).encode('ISO8859-1')
+    return key
+
+
+ldap_attr = ['objectClass', 'sambaNTPassword', 'sambaAcctFlags', 'uid', 'krb5KDCFlags', 'krb5Key']
+for dn, attrs in lo.search(filter='(&(objectClass=sambaSamAccount)(sambaNTPassword=*)(uid=*)(!(objectClass=univentionWindows)))', attr=ldap_attr):
+    if attrs['sambaNTPassword'][0] != b"NO PASSWORDXXXXXXXXXXXXXXXXXXXXX":
+
+        if attrs['uid'][0] == b'root':
+            print('Skipping user root ')
+            continue
+
+        # check if the user was disabled
+        sambaAcctFlags = attrs.get('sambaAcctFlags', [b''])[0]
+        disabled = b'D' in sambaAcctFlags
+
+        ocs = []
+        ml = []
+        if b'krb5Principal' not in attrs['objectClass']:
+            ocs.append('krb5Principal')
+            principal = b'%s@%s' % (attrs['uid'][0], realm.encode('UTF-8'))
+            ml.append(('krb5PrincipalName', None, principal))
+
+        if b'krb5KDCEntry' not in attrs['objectClass']:
+            ocs.append('krb5KDCEntry')
+            ml.extend([
+                ('krb5MaxLife', None, b'86400'),
+                ('krb5MaxRenew', None, b'604800'),
+                ('krb5KeyVersionNumber', None, b'1'),
+            ])
+
+        old_flag = attrs.get('krb5KDCFlags', [])
+        old_keys = attrs.get('krb5Key', [])
+
+        ml.extend([
+            ('krb5Key', old_keys, nt_password_to_arcfour_hmac_md5(attrs['sambaNTPassword'][0])),
+            ('krb5KDCFlags', old_flag, b'256' if disabled else b'126'),
+        ])
+
+        if ocs:
+            print('Adding Kerberos key for %r...' % (dn,), end=' ')
+            ml.insert(0, ('objectClass', None, [x.encode('UTF-8') for x in ocs]))
+
+        try:
+            lo.modify(dn, ml)
+        except ldap.ALREADY_EXISTS:
+            print('already exists')
+        else:
+            print('done')
+
+    else:
+        print('Can not add Kerberos key for %s...' % repr(dn), end=' ')
+        print('no password set')

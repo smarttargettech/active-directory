@@ -1,0 +1,46 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost component with Packages for all archs
+##  1. setup local repository for component from alternative hierarchy
+##  2. check if the package is installable
+## bugs: [22015]
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+compname="test${RANDOM}"
+
+setup_apache "${repoprefix}"
+
+mkpdir "${_version_version}--component/${compname}" maintained "${ARCH}"  # 0 1 2 3
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR}"
+# mkpkg "${DIR}" "${DIR}"
+PDIR="${DIR%/$ARCH}" # only one level
+cd "${PDIR}"
+dpkg-scanpackages "${DIR#${PWD}/}" >"${PDIR}/Packages" 2>&3
+compress "${PDIR}/Packages"
+apt-ftparchive \
+	-o "APT::FTPArchive::Release::Origin=Univention" \
+	-o "APT::FTPArchive::Release::Label=Univention" \
+	-o "APT::FTPArchive::Release::Version=${_version_version}" \
+	-o "APT::FTPArchive::Release::Codename=./" \
+	release . >Release.tmp 2>&3
+mv Release.tmp Release
+gpgsign Release
+cd "${OLDPWD}"
+
+comp="repository/online/component/${compname}"
+config_repo "${comp}=yes" "${comp}/layout=flat"
+
+	set -e
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/${PDIR#$REPODIR/}/ \\./"
+	apt-get -qq update
+	apt-get -qq install "${pkgname}"
+	dpkg-query -W "${pkgname}" | grep -Fqx "${pkgname}	1"
+	checkdeb "${pkgname}" 1
+# vim:set ft=sh:

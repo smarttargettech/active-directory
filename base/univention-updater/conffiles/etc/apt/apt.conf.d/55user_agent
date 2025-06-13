@@ -1,0 +1,14 @@
+@%@UCRWARNING=#@%@
+
+Acquire
+{
+  http
+  {
+    User-Agent "@!@
+import sys
+from univention.updater.tools import UniventionUpdater
+u = UniventionUpdater(check_access=False)
+sys.stdout.write(u._get_user_agent_string())
+@!@";
+  };
+};

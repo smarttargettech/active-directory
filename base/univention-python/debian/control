@@ -1,0 +1,40 @@
+Source: univention-python
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ python3-cracklib,
+ python3-debian,
+ python3-ldap,
+ python3-pytest,
+ python3-samba,
+ python3-setuptools,
+ python3-univention-config-registry (>= 15.0.7-16),
+ python3-univention-debug,
+ python3-univentionunittests,
+ univention-config-dev,
+
+Package: python3-univention
+Architecture: all
+Depends:
+ python3-cracklib,
+ python3-ldap,
+ python3-samba,
+ python3-univention-config-registry (>= 15.0.7-16),
+ python3-univention-debug (>= 12.0.3-5),
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UCS - common Python 3 modules
+ This package contains Python modules used by various
+ components of UCS.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

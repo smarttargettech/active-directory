@@ -1,0 +1,110 @@
+univention-errata-level (5.2.2-118) unstable; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Thu, 29 May 2025 07:20:44 +0200
+
+
+univention-errata-level (5.2.1-34) unstable; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:42 +0100
+
+univention-errata-level (5.2.0-0) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:26 +0100
+
+univention-errata-level (5.1.0-0) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:38 +0100
+
+univention-errata-level (5.0.7-994) unstable; urgency=low
+
+  * Bug #57118: UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:54:55 +0100
+
+univention-errata-level (5.0.6-897) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:22 +0100
+
+univention-errata-level (5.0.4-713) unstable; urgency=low
+
+  * Bug #54263: maintain more packages
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 19 Jun 2023 08:43:29 +0200
+
+univention-errata-level (5.0.0-0) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 16 Jun 2020 16:31:46 +0200
+
+univention-errata-level (4.4.0-0) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:13:25 +0100
+
+univention-errata-level (4.3.0-0) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:51 +0100
+
+univention-errata-level (4.2.0-0) unstable; urgency=low
+
+  * Bug #41963: Bump version to reset the errata level for UCS 4.2
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 01 Feb 2017 13:45:45 +0100
+
+univention-errata-level (4.0.0-1) unstable; urgency=medium
+
+  * Bump version to reset the errata level for UCS 4.1 (Bug #39312)
+  * Update copyright
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 11 Sep 2015 06:54:54 +0200
+
+univention-errata-level (3.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 08:10:51 +0200
+
+univention-errata-level (2.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS-3.2 (Bug #32236)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 19 Aug 2013 09:51:11 +0200
+
+univention-errata-level (1.0.1-1) unstable; urgency=low
+
+  * Update copyright to 2013
+  * Bump version for UCS-3.1 (Bug #30802)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 15 Mar 2013 20:57:37 +0100
+
+univention-errata-level (1.0.0-2) unstable; urgency=low
+
+  * Add DEBHELPER stanza to postinst (Bug #26387)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 27 Nov 2012 11:31:23 +0100
+
+univention-errata-level (1.0.0-1.1) unstable; urgency=low
+
+  * Update copyright file (Bug #26387)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Tue, 27 Nov 2012 11:27:14 +0100
+
+univention-errata-level (1.0.0-1) unstable; urgency=low
+
+  * Initial Release (Bug #26387)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 02 Nov 2012 16:40:23 +0100

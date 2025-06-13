@@ -1,0 +1,153 @@
+Source: univention-system-setup
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.8.2
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ node-stylus,
+ python3-all,
+ python3-apt,
+ python3-dnspython,
+ python3-lxml,
+ python3-packaging,
+ python3-pil,
+ python3-psutil,
+ python3-univention-appcenter,
+ python3-univention-lib,
+ python3-univention-management-console,
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+ univention-management-console-dev (>= 12.0.2),
+ unzip,
+
+Package: univention-system-setup
+Architecture: all
+Depends:
+ gettext-base,
+ python3-univention-lib,
+ shell-univention-lib (>= 3.0.1-1),
+ univention-appcenter-dev,
+ univention-config (>= 8.0-2),
+ univention-grub,
+ univention-welcome-screen,
+ whois,
+ ${misc:Depends},
+ ${python3:Depends},
+Breaks:
+ univention-system-setup-boot (<< 8.1.63-5),
+Recommends:
+ rdate,
+ univention-management-console-module-setup,
+Provides:
+ ${python3:Provides},
+Description: UCS System Setup tools
+ This package provides the tool to configure the system, especially its name,
+ domain, network configuration, and software.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-system-setup-boot
+Architecture: all
+Provides:
+ univention-setup-boot,
+ univention-system-setup-appliance,
+Conflicts:
+ univention-server-backup,
+ univention-server-member,
+ univention-server-slave,
+ univention-system-setup-appliance,
+Depends:
+ openbox,
+ python3-univention-appcenter,
+ shell-univention-lib,
+ univention-apache (>= 7.0.16-10),
+ univention-network-common,
+ univention-system-setup (= ${source:Version}),
+ x11-utils,
+ x11-xkb-utils,
+ x11-xserver-utils,
+ ${misc:Depends},
+Recommends:
+ dbus-x11,
+ firefox-esr,
+ linux-image-amd64,
+ smbclient,
+ xinit,
+Replaces:
+ univention-setup-boot,
+ univention-system-setup-appliance,
+Description: Starting univention-system-setup on next boot
+ This package configures the computer to launch UCS System Setup on its next
+ boot. This package is only allowed on the server role Primary Directory Node.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: di-univention-system-setup
+Package-Type: udeb
+Architecture: any
+Section: debian-installer
+Priority: standard
+XB-Subarchitecture: ${subarch}
+Provides:
+ configured-ucs,
+Depends:
+ bootable-system,
+ cdebconf-udeb,
+ created-fstab,
+ di-utils,
+ installed-base,
+ kernel-installer,
+ ${misc:Depends},
+XB-Installer-Menu-Item: 7650
+Description: Configure Univention System Setup
+ This package is used to configure Univention System Setup in boot mode from
+ the Debian based UCS installer.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-module-setup
+Architecture: all
+Depends:
+ at,
+ libsasl2-modules-gssapi-heimdal,
+ python3-apt,
+ python3-dnspython,
+ python3-ldap,
+ python3-lxml,
+ python3-packaging,
+ python3-psutil,
+ python3-univention-appcenter,
+ python3-univention-ipcalc,
+ python3-univention-lib,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-heimdal-common,
+ univention-management-console-frontend,
+ univention-management-console-module-lib,
+ univention-management-console-module-sysinfo,
+ univention-management-console-server (>= 12.0.31-10),
+ univention-system-setup (= ${source:Version}),
+ univention-updater,
+ x11-xkb-utils,
+ xkb-data,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UMC module for Univention System Setup
+ This package contains the UMC module for the UCS System Setup.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

@@ -1,0 +1,82 @@
+#!/usr/bin/python3
+#
+# Univention Server Memberserver
+#  sets LDAP server according to policy
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2003-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import sys
+
+from univention.config_registry import ConfigRegistry
+from univention.config_registry.frontend import ucr_update
+from univention.lib.policy_result import PolicyResultFailed, policy_result
+
+
+configRegistry = ConfigRegistry(write_registry=ConfigRegistry.LDAP)
+configRegistry.load()
+
+found = False
+
+ldap_hostdn = configRegistry.get('ldap/hostdn')
+if ldap_hostdn:
+    for key in ['ldap/server/name', 'ldap/server/addition']:
+        ldap_server_string = configRegistry.get(key)
+        if ldap_server_string:
+            for k in ldap_server_string.split(' '):
+                try:
+                    results, _policies = policy_result(ldap_hostdn, ldap_server=k)
+                except PolicyResultFailed:
+                    continue
+
+                addition = []
+                updates = {}
+
+                ldap_server_name = configRegistry.get('ldap/server/name')
+                results = results.get('univentionLDAPServer', [])
+                for new_ldap_server in results:
+                    if not found:
+                        if not ldap_server_name or new_ldap_server != ldap_server_name:
+                            updates['ldap/server/name'] = new_ldap_server
+                        found = True
+                    else:
+                        addition.append(new_ldap_server)
+
+                old = configRegistry.get('ldap/server/addition', '')
+                new = ' '.join(addition)
+                if new != old:
+                    updates['ldap/server/addition'] = new
+
+                if updates:
+                    ucr_update(configRegistry, updates)
+
+                sys.exit(0)
+
+sys.exit(1)

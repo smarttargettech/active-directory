@@ -1,0 +1,189 @@
+stages:
+  - prepare
+  - build
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "api"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_OPEN_MERGE_REQUESTS
+    - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_REF_PROTECTED == "true"
+    - if: $CI_PIPELINE_SOURCE == "trigger"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "webide"
+
+include:
+  - project: univention/infrastructure/docker-services
+    file: kaniko.yml
+  - local: '.gitlab-ci/base.yml'
+  - project: univention/infrastructure/docker-services
+    file: pre-commit.yml
+
+variables:
+  pipeline:
+    value: ""
+    description: "Skip or force jobs: '(skip|force)-(doc|ucslint|build)'"
+  BUILD: docker-registry.knut.univention.de/knut/deb-builder
+
+pre-commit:
+  stage: prepare
+  extends: .pre-commit
+
+generate-config:
+  stage: prepare
+  image:
+    name: $BUILD
+    entrypoint: [""]
+  script:
+    - >
+      deb-builder
+      --yaml .gitlab-ci/base.yml
+      --yaml .gitlab-ci/base-deb.yml
+      --out generated-config-deb.yml
+      --skip src:python-notifier
+      */*/debian/control
+    - >
+      .gitlab-ci/doc-builder
+      --yaml .gitlab-ci/base.yml
+      --yaml .gitlab-ci/base-doc.yml
+      --out generated-config-doc.yml
+  artifacts:
+    paths:
+      - generated-config-doc.yml
+      - generated-config-deb.yml
+
+prepare aptly:
+  stage: prepare
+  interruptible: false
+  image:
+    name: $BUILD
+    entrypoint: [""]
+  script:
+    - "$CI_PROJECT_DIR/.gitlab-ci/aptly-create || :"
+    - $CI_PROJECT_DIR/.gitlab-ci/aptly-publish
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    url: $APT/$CI_COMMIT_REF_SLUG/
+    on_stop: drop aptly
+    auto_stop_in: 6 month
+
+drop aptly:
+  stage: prepare
+  interruptible: false
+  variables:
+    GIT_STRATEGY: none
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/curlimages/curl
+  script:
+    - "curl --silent --show-error -X DELETE $APTLY/publish/$CI_COMMIT_REF_SLUG/git || :"
+    - "curl --silent --show-error -X DELETE $APTLY/repos/$CI_COMMIT_REF_SLUG || :"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+    - if: $CI_COMMIT_REF_PROTECTED
+      when: never
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    action: stop
+
+build ucslint:
+  stage: prepare
+  extends: .kaniko
+  variables:
+    KANIKO_BUILD_CONTEXT: packaging/ucslint
+    KANIKO_ARGS: --build-arg ucs=$ucs --cache=true
+  rules:
+    - changes:
+      - packaging/ucslint/**/*
+
+select ucslint:
+  stage: prepare
+  needs:
+    - job: build ucslint
+      optional: true
+  script:
+    - echo "UCSLINT=${IMAGE_TAG:-$CI_REGISTRY_IMAGE:latest}" | tee .env
+  artifacts:
+    reports:
+      dotenv: .env
+
+doc-pipeline:
+  stage: build
+  rules:
+    - if: "$CI_COMMIT_MESSAGE =~ /skip-doc/ || $pipeline =~ /skip-doc/"
+      when: never
+    - if: "$CI_COMMIT_MESSAGE =~ /force-doc/ || $pipeline =~ /force-doc/"
+    - changes:
+      - "doc/[^e]*/**/*"
+      - "doc/e[^r]*/**/*"
+      - "doc/er[^r]*/**/*"
+      - "doc/err[^a]*/**/*"
+      - "doc/erra[^t]*/**/*"
+      - "doc/errat[^a]*/**/*"
+      - "doc/errata?*/**/*"
+  needs:
+    - job: generate-config
+  trigger:
+    include:
+      - artifact: generated-config-doc.yml
+        job: generate-config
+    strategy: depend
+    forward:
+      pipeline_variables: true
+
+deb-pipeline:
+  stage: build
+  rules:
+    - if: "$CI_COMMIT_MESSAGE =~ /skip-build/ || $pipeline =~ /skip-build/"
+      when: never
+    - if: "$CI_COMMIT_MESSAGE =~ /force-ucslint/ || $pipeline =~ /force-ucslint/"
+    - if: "$CI_COMMIT_MESSAGE =~ /force-build/ || $pipeline =~ /force-build/"
+    - changes:
+      - "[^dt.]*/*/**/*"
+      - "d[^o]*/*/**/*"
+      - "do[^c]*/*/**/*"
+      - "doc?*/*/**/*"
+      - "t[^e]*/*/**/*"
+      - "te[^s]*/*/**/*"
+      - "tes[^t]*/*/**/*"
+      - "test?*/*/**/*"
+      - "test/generate-appliance/**/*"
+      - "test/ucs-test/**/*"
+      - "test/ucs-test-tools/**/*"
+      - "test/univention-demo-configuration/**/*"
+  needs:
+    - job: generate-config
+    - job: prepare aptly
+    - job: select ucslint
+  variables:
+    UCSLINT: $UCSLINT
+  trigger:
+    include:
+      - artifact: generated-config-deb.yml
+        job: generate-config
+    strategy: depend
+    forward:
+      pipeline_variables: true
+
+errata validation:
+  stage: prepare
+  tags:
+    - omar
+  resource_group: omar
+  rules:
+    - changes:
+      - doc/errata/staging/*.yaml
+  needs: []
+  script:
+    - set -- doc/errata/staging/[!0]*.yaml && [ $# -ge 1 ] && [ -f "$1" ] || exit 0
+    - check_errata_for_release --html=errata.html --mail=errata.txt "$@" || [ $? -eq 10 ]
+    - for y in "$@"; do /usr/sbin/announce_errata --validate-xml="$(basename "$y" .yaml).xml" $("${CI_COMMIT_REF_PROTECTED:-false}" && echo -BB || echo -B --ignore-validate changes --ignore-validate fix --ignore-validate bug) -V "$y" || true; done
+  artifacts:
+    paths:
+      - errata.html
+      - errata.txt
+    expire_in: 1 week
+    expose_as: 'Errata Validation'
+    name: 'errata-validation'
+    reports:
+      junit: "*.xml"

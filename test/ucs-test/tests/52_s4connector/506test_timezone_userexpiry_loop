@@ -1,0 +1,86 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Check if timezone changes create loop in s4connector"
+## exposure: dangerous
+## packages:
+## - univention-s4-connector
+## roles:
+## - domaincontroller_master
+## - domaincontroller_backup
+## bugs:
+##  - 50202
+##  - 50944
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/udm.sh
+. "$TESTLIBPATH/udm.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+. "s4connector.sh" || exit 137
+
+if [ "$(command -v univention-ad-connector)" ]; then
+	echo "SKIP if AD-Connector installed: The AD-Connector still has the userexpiry loop problem. See Bug #50944"
+	exit 138
+fi
+test -n "$connector_s4_ldap_host" || exit 137
+connector_running_on_this_host || exit 137
+SYNCMODE="$(ad_get_sync_mode)"
+ad_set_sync_mode "sync"
+
+TIMEZONE="$(cat /etc/timezone)"
+UDM_users_user_username="$(random_chars)"
+UDM_users_user_lastname="$(random_chars)"
+UDM_users_user_password="U$(random_chars)123"
+UDM_users_user_firstname="$(random_chars)"
+UDM_users_user_userexpiry="$(random_date)"
+AD_DN="CN=$UDM_users_user_username,CN=users,$(ad_get_base)"
+UCS_DN="uid=$UDM_users_user_username,cn=users,$(ucr get ldap/base)"
+
+function set_timezone {
+	tmp_dir=$(mktemp -d)
+	cd "$tmp_dir" || exit 1
+
+	IFS='/' read -r AREA CITY <<< "$1"
+
+	echo "tzdata tzdata/Areas select $AREA" > preseed.txt
+	echo "tzdata tzdata/Zones/$AREA select $CITY" >> preseed.txt
+
+	rm /etc/localtime /etc/timezone
+
+	debconf-set-selections preseed.txt
+	dpkg-reconfigure -f noninteractive tzdata
+
+	rm preseed.txt
+}
+
+function cleanup {
+	set_timezone "$TIMEZONE"
+	udm_remove 'users/user'
+	ad_wait_for_synchronization; fail_bool 0 110
+	udm_exists 'users/user'; fail_bool 1 110
+	ad_set_sync_mode "$SYNCMODE"
+}
+
+trap cleanup EXIT
+
+ad_connector_stop
+udm_create "users/user" || fail_fast 110
+
+for timezone in  "Pacific/Niue" "America/Mexico_City" "Etc/UTC" "Pacific/Fiji" "Asia/Bangkok"
+do
+	set_timezone "$timezone"
+	echo "Setting timezone to $timezone"
+	udm_verify_udm_attribute "userexpiry" "$UDM_users_user_userexpiry" "users/user" || fail_fast 110
+
+	ad_connector_start
+	ad_wait_for_synchronization
+	udm_verify_udm_attribute "userexpiry" "$UDM_users_user_userexpiry" "users/user" || fail_fast 110 "FAIL: userexpiry changed in timezone $timezone"
+	ad_connector_stop
+	UDM_users_user_userexpiry="$(random_date)"
+	echo "Setting userexpiry to $UDM_users_user_userexpiry"
+	udm-test 'users/user' modify \
+		--dn "$UCS_DN" \
+		--set userexpiry="$UDM_users_user_userexpiry" || fail_fast 110
+
+done

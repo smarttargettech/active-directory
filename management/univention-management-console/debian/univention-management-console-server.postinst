@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# Univention Management Console Server
+#  postinst script for UMC server
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2002-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+
+# set default UCR settings
+univention-config-registry set \
+	umc/server/debug/level?2 \
+	umc/server/autostart?yes \
+	umc/server/upload/max?2048 \
+	umc/module/debug/level?2 \
+	umc/module/timeout?600
+
+create_logfile /var/log/univention/ec2.log "root:adm" 640
+
+# create UMC ACLs for user root
+eval "$(ucr shell server/role)"
+
+# append new command patterns to allow list
+/usr/sbin/univention-management-console-acls allow --user root --host "*" \
+			--command 'ucr/*' \
+			--command 'service/*' \
+			--command 'quota/*' \
+			--command 'top/*' \
+			--command 'reboot/*' \
+			--command 'services/*' \
+			--command 'sysinfo/*' \
+			--command 'updater/*' \
+			--command 'lib/*'  \
+			--command 'join/*'
+
+/usr/sbin/univention-management-console-acls allow --user root --host "*" --flavor "*" \
+			--command 'setup/*'
+
+systemctl restart univention-directory-listener
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl 12.0.20-1; then
+	ucr unset security/packetfilter/package/univention-management-console-server/tcp/6670/all \
+		security/packetfilter/package/univention-management-console-server/tcp/6670/all/en
+	[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+fi
+
+# protect secret contents!
+touch /usr/share/univention-management-console/oidc/oidc.json
+chmod 0600 /usr/share/univention-management-console/oidc/oidc.json
+
+# ucslint needs this
+exit 0

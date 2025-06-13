@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="394.69357"
+   height="320"
+   id="svg2"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="umc-architecture.svg">
+  <metadata
+     id="metadata51">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1916"
+     inkscape:window-height="975"
+     id="namedview49"
+     showgrid="false"
+     inkscape:zoom="1.8628304"
+     inkscape:cx="125.2463"
+     inkscape:cy="121.7127"
+     inkscape:window-x="2"
+     inkscape:window-y="103"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         id="path3345"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;marker-start:none"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mstart"
+       style="overflow:visible">
+      <path
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         id="path3342"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;marker-start:none"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mstart-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         id="path3342-6"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Mend-7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         id="path3345-5"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;marker-start:none" />
+    </marker>
+  </defs>
+  <path
+     style="display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend);enable-background:accumulate"
+     id="path4634"
+     inkscape:connection-start="#g2531"
+     d="M 99.633617,206.51005 155.29269,177.70058"
+     inkscape:connector-curvature="0" />
+  <path
+     style="display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend);enable-background:accumulate"
+     id="path2594"
+     inkscape:connection-end="#g2559"
+     d="m 193.29299,177.70058 -5.14219,28.80947"
+     inkscape:connector-curvature="0" />
+  <path
+     style="display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend);enable-background:accumulate"
+     id="path2596"
+     inkscape:connection-end="#g2569"
+     d="m 239.14104,177.70058 55.80736,28.80947"
+     inkscape:connector-curvature="0" />
+  <g
+     id="g2614"
+     transform="translate(94.934217,30.832645)">
+    <rect
+       style="display:inline;overflow:visible;visibility:visible;fill:#ffff99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect2616"
+       y="117.11875"
+       x="29.812168"
+       ry="4.8872128"
+       rx="6.2018828"
+       height="28.765659"
+       width="144.82941" />
+    <text
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       id="text2618"
+       y="135.50574"
+       x="101.75421"><tspan
+         style="font-weight:bold;text-align:center;text-anchor:middle"
+         id="tspan2620"
+         y="135.50574"
+         x="101.75421">UMC HTTP server</tspan></text>
+  </g>
+  <g
+     id="g2531"
+     transform="translate(-93.25723,-13.823615)">
+    <rect
+       style="display:inline;overflow:visible;visibility:visible;fill:#ffff99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect3327"
+       y="220.88412"
+       x="93.80764"
+       ry="7.1767855"
+       rx="7.1767855"
+       height="42.241859"
+       width="114.4296" />
+    <text
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       id="text3265"
+       y="239.23088"
+       x="150.83713"><tspan
+         style="font-weight:bold;text-align:center;text-anchor:middle"
+         id="tspan3267"
+         y="239.23088"
+         x="150.83713">UMC module</tspan><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan2529"
+         y="252.98088"
+         x="150.83713">UCR</tspan></text>
+  </g>
+  <g
+     id="g2559"
+     transform="translate(33.260257,-13.823615)">
+    <rect
+       style="display:inline;overflow:visible;visibility:visible;fill:#ffff99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect2561"
+       y="220.88412"
+       x="93.80764"
+       ry="7.1767855"
+       rx="7.1767855"
+       height="42.241859"
+       width="114.4296" />
+    <text
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       id="text2563"
+       y="239.23088"
+       x="150.83713"><tspan
+         style="font-weight:bold;text-align:center;text-anchor:middle"
+         id="tspan2565"
+         y="239.23088"
+         x="150.83713">UMC module</tspan><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan2567"
+         y="252.98088"
+         x="150.83713">UVMM</tspan></text>
+  </g>
+  <g
+     id="g2569"
+     transform="translate(185.90591,-13.823615)">
+    <rect
+       style="display:inline;overflow:visible;visibility:visible;fill:#ffff99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect2571"
+       y="220.88412"
+       x="93.80764"
+       ry="7.1767855"
+       rx="7.1767855"
+       height="42.241859"
+       width="114.4296" />
+    <text
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       id="text2573"
+       y="239.23088"
+       x="150.83713"><tspan
+         style="font-weight:bold;text-align:center;text-anchor:middle"
+         id="tspan2575"
+         y="239.23088"
+         x="150.83713">UMC module</tspan><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan2577"
+         y="252.98088"
+         x="150.83713">UDM</tspan></text>
+  </g>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"
+     id="text2630"
+     y="228.86349"
+     x="260.61359"><tspan
+       style="text-align:center;text-anchor:middle"
+       id="tspan2634"
+       y="228.86349"
+       x="260.61359">.....</tspan></text>
+  <g
+     id="g2659"
+     transform="translate(94.934217,-45.811986)" />
+  <g
+     id="g2669"
+     transform="translate(45.080995,-219.74013)">
+    <rect
+       style="display:inline;overflow:visible;visibility:visible;fill:#b3defd;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect2671"
+       y="220.88412"
+       x="79.665504"
+       ry="7.1767855"
+       rx="7.176785"
+       height="42.241859"
+       width="144.82918" />
+    <text
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       id="text2673"
+       y="239.23088"
+       x="152.14186"><tspan
+         style="font-weight:bold;text-align:center;text-anchor:middle"
+         id="tspan2675"
+         y="239.23088"
+         x="152.14186">Web browser</tspan><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan2677"
+         y="252.98088"
+         x="152.14186">Dojo/UMC JavaScript API</tspan></text>
+  </g>
+  <path
+     style="display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend);enable-background:accumulate"
+     id="path2679"
+     inkscape:connection-end="#g2669"
+     inkscape:connection-start="#g2614"
+     d="M 197.16109,92.108745 V 43.936305"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"
+     id="text2837"
+     y="61.970798"
+     x="202.97354"><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2839"
+       y="61.970798"
+       x="202.97354" /><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2841"
+       y="75.720795"
+       x="202.97354">HTTP(S) (AJAX) </tspan></text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"
+     id="text2837-4-0"
+     y="189.97559"
+     x="263.3241"><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2839-4-7"
+       y="189.97559"
+       x="263.3241">HTTP (UNIX socket)</tspan><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2841-3-8"
+       y="203.72559"
+       x="263.3241" /></text>
+  <g
+     transform="translate(94.934217,-24.45957)"
+     id="g885">
+    <rect
+       width="144.82941"
+       height="28.765659"
+       rx="6.2018828"
+       ry="4.8872128"
+       x="29.812168"
+       y="117.11875"
+       id="rect879"
+       style="display:inline;overflow:visible;visibility:visible;fill:#b3defd;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10082078;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    <text
+       x="101.75421"
+       y="135.50574"
+       id="text883"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="101.75421"
+         y="135.50574"
+         id="tspan881"
+         style="font-weight:bold;text-align:center;text-anchor:middle">Apache HTTP server</tspan></text>
+  </g>
+  <path
+     style="display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow1Mstart-3);marker-end:url(#Arrow1Mend-7);enable-background:accumulate"
+     id="path2657-3"
+     inkscape:connection-start="#g2614"
+     d="M 195.40158,122.25272 V 147.3432"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"
+     id="text2837-5"
+     y="122.50977"
+     x="202.71362"><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2839-6"
+       y="122.50977"
+       x="202.71362" /><tspan
+       style="font-weight:normal;text-align:start;text-anchor:start"
+       id="tspan2841-2"
+       y="136.25977"
+       x="202.71362">HTTP</tspan></text>
+</svg>

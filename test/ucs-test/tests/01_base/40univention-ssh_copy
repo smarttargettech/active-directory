@@ -1,0 +1,21 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Check univention-scp und univention-ssh-rsync
+## tags: [univention]
+## packages: [univention-ssh]
+## exposure: careful
+
+. "${TESTLIBPATH}/base.sh" || exit 137
+tmpfile="$(mktemp)"
+trap "rm -f '$tmpfile'" EXIT
+
+if \
+	univention-ssh-rsync "$tests_root_pwdfile" /etc/hostname "root@${hostname}.${domainname}:/tmp/$$" && \
+	univention-scp "$tests_root_pwdfile" "root@${hostname}.${domainname}:/tmp/$$" "$tmpfile" && \
+	cmp /etc/hostname "$tmpfile"
+then
+	exit 100 # OK
+else
+	exit 110 # ERROR
+fi
+# vim:set ft=sh:

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Univention Management Console</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/univention/management/style.css" type="text/css"/>
+		<link rel="stylesheet" href="/univention/js/dijit/themes/umc/umc.css" type="text/css"/>
+		<link rel="stylesheet" href="/univention/theme.css" type="text/css"/>
+
+		<script type="text/javascript" src="/univention/js/config.js"></script>
+		<script type="text/javascript">
+			//<!--
+			dojoConfig.map = {
+				'*': {
+					'umc/app': 'management',
+					'umc/modules': 'management/modules'
+				}
+			};
+			umcConfig.forceLogin = true;
+			umcConfig.callback = function() {
+				require(["management", "umc/tools"], function(management, tools) {
+					management.start({
+						username: getQuery('username'),
+						password: getQuery('password'),
+						overview: getQuery('overview'),
+						menu:	  getQuery('menu'),
+						header:   getQuery('header')
+					});
+				});
+			};
+			//-->
+		</script>
+		<script type="text/javascript" async src="/univention/js/dojo/dojo.js"></script>
+	</head>
+	<body class="umc umcOverviewShown">
+		<div id="umcTopContainer" class="umcTopContainer"></div>
+		<noscript>
+			<div class="nojs__warningWrapper">
+				<h1 class="nojs__warning__header">Welcome to Univention Corporate Server</h1>
+				<div class="nojs__warning umcCard2">
+					<svg class="nojs__warning__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="/univention/js/dijit/themes/umc/images/info.svg#info"/></svg>
+					<div>
+						<h2 class="nojs__warning__title">JavaScript required</h2>
+						<p>A browser with JavaScript enabled is required in order to use this service.</p>
+						<p>When using Internet Explorer, please check your security settings and add this address to your trusted sites.</p>
+					</div>
+				</div>
+			</div>
+		</noscript>
+	</body>
+</html>

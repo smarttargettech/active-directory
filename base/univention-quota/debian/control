@@ -1,0 +1,57 @@
+Source: univention-quota
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.5.5
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-management-console-dev (>= 12.0.2),
+
+Package: univention-quota
+Architecture: all
+Pre-Depends:
+ quota (>= 3.14),
+Depends:
+ ldap-utils,
+ shell-univention-lib,
+ univention-config,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-pam (>> 0.8),
+ univention-policy-tools,
+ ${misc:Depends},
+ ${python3:Depends},
+Conflicts:
+ univention-management-console (<< 0.9.33-1),
+Description: UCS - set default-quotas for users
+ This package can set default-quotas for a user at login.
+ The quotas are set by resolving the shares corresponding
+ to a local filesystem an look which policies are set for
+ this share. Quotas are only set if the filesystem supports
+ them and they are not already set for this user.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: univention-management-console-module-quota
+Architecture: all
+Depends:
+ python3-univention-lib,
+ univention-directory-manager-tools (>> 7.0.147),
+ univention-management-console-server (>= 12.0.20-1),
+ univention-quota,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UMC module for filesystem quota
+ This package contains the UMC module for the filesystem quota
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

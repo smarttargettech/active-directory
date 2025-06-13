@@ -1,0 +1,126 @@
+[ssl/common]
+Description[de]=Der 'Common Name' des SSL-Root-Zertifikats, ein eindeutiger Bezeichner für die Domäne.
+Description[en]=The 'common name' for the root SSL certificate, a unique identifier for the domain.
+Type=str
+Categories=system-ssl
+
+[ssl/country]
+Description[de]=Der zweistellige ISO-Ländercode der Organisation, für die das Zertifikat ausgestellt wurde. Eine vollständige Liste findet sich unter <http://en.wikipedia.org/wiki/ISO_3166-1>.
+Description[en]=The two letter country code of the organisation for which the certificate was issued. A complete list can be found at <http://en.wikipedia.org/wiki/ISO_3166-1>.
+Type=str
+Categories=system-ssl
+
+[ssl/email]
+Description[de]=Eine Kontakt-E-Mail-Adresse der Organisation, für die das Root-Zertifikat ausgestellt wurde.
+Description[en]=A contact e-mail address for the organisation for which the root certificate was issued.
+Type=str
+Categories=system-ssl
+
+[ssl/state]
+Description[de]=Das Bundesland/Region der Organisation, für die das Root-Zertifikat ausgestellt wurde.
+Description[en]=The state/region of the organisation for in which the root certificate was issued.
+Type=str
+Categories=system-ssl
+
+[ssl/locality]
+Description[de]=Das Ort der Organisation, für die das Root-Zertifikat ausgestellt wurde.
+Description[en]=The Ort of the organisation for in which the root certificate was issued.
+Type=str
+Categories=system-ssl
+
+[ssl/organization]
+Description[de]=Der Name der Organisation, für die das Root-Zertifikat ausgestellt wurde.
+Description[en]=The Name of the organisation for which the root certificate was issued.
+Type=str
+Categories=system-ssl
+
+[ssl/organizationalunit]
+Description[de]=Der Name der Abteilung der Organisation, für die das Root-Zertifikat ausgestellt wurde.
+Description[en]=The Name of the organisational unit/department of the organisation for which the root certificate was issued.
+Type=str
+Categories=system-ssl
+
+[ssl/default/days]
+Description[de]=Die Gültigkeitsdauer neu ausgestellter SSL-Zertifikate in Tagen.
+Description[en]=The validity time span in days for newly created SSL certificates.
+Type=pint
+Categories=system-ssl
+
+[ssl/default/hashfunction]
+Description[de]=Diese Hash-Funktion (Message Digest) wird in neu ausgestellten SSL-Zertifikaten verwendet: 'md5', 'sha1', 'sha256',...
+Description[en]=This hash function (message digest) is used in newly created SSL certificates: 'md5', 'sha1', 'sha256', ...
+Type=str
+Categories=system-ssl
+
+[ssl/default/bits]
+Description[de]=Default Schlüssellänge in Bits.
+Description[en]=Default key size in bits.
+Type=pint
+Categories=system-ssl
+
+[ssl/validity/check]
+Description[de]=Ist diese Option aktiviert, wird durch einen täglichen Cron-Job die Gültigkeit der SSL-Zertifikate geprüft.
+Description[en]=If this option is activated, the validity of the SSL certificates is checked through a daily cron job.
+Type=bool
+Categories=system-ssl
+
+[ssl/update/expired]
+Description[de]=Ist diese Option aktiviert, werden durch einen täglichen Cron-Job abgelaufene SSL-Zertifikate entfernt.
+Description[en]=If this option is activated, expired SSL certificates are purged through a daily cron job.
+Type=bool
+Categories=system-ssl
+
+[ssl/validity/host]
+Description[de]=Diese Variable speichert die Gültigkeitsdauer des Rechner-Zertifikats in Tagen seit dem 1. Januar 1970. Dieser Wert wird automatisch generiert und sollte nicht geändert werden.
+Description[en]=This variable stores the validity length of the host certificate in days since the 1st of January 1970. This value is generated automatically and should not be modified.
+Type=int
+Categories=system-ssl
+ReadOnly=yes
+
+[ssl/validity/root]
+Description[de]=Diese Variable speichert die Gültigkeitsdauer des Root-Zertifikats in Tagen seit dem 1. Januar 1970. Dieser Wert wird automatisch generiert und sollte nicht geändert werden.
+Description[en]=This variable stores the validity length of the root certificate in days since the 1st of January 1970. This value is generated automatically and should not be modified.
+Type=int
+Categories=system-ssl
+ReadOnly=yes
+
+[ssl/validity/warning]
+Description[de]=Beträgt die Restgültigkeit des Root-Zertifikats weniger als die hier konfigurierten Tage, wird in der Univention Management Console eine Warnmeldung angezeigt.
+Description[en]=If the root certificate is valid for less days than configured here, a warning message is shown in the Univention Management Console.
+Type=uint
+Categories=system-ssl
+
+[ssl/host/extensions]
+Description[de]=Diese Variable definiert ein Shell-Script für die Erstellung einer Datei mit Zertifikats-Erweiterungen. Ein Beispiel findet sich unter /usr/share/doc/univention-ssl/extensions-example.sh.
+Description[en]=This variable defines a shell script for the creation of a certificate extensions file. An example can be found at /usr/share/doc/univention-ssl/extensions-example.sh.
+Type=str
+Categories=system-ssl
+
+[ssl/host/objectclass]
+Description[de]=Eine Komma-separierte Liste von LDAP-Objektklassen, für die automatisch SSL-Zertifikate erzeugt werden. [univentionDomainController,univentionMemberServer,univentionClient]
+Description[en]=A comma separated list of LDAP object classes, for which SSL certificates are created automatically. [univentionDomainController,univentionMemberServer,univentionClient]
+Type=list
+Separator=,
+Elementtype=str
+Categories=system-ssl
+
+[ssl/crl/validity]
+Description[de]=Die Gültigkeitsdauer der SSL-Zertifikat-Widerrufsliste in Tagen.
+Description[en]=The validity time span in days of the SSL certificate revokation list.
+Type=pint
+Categories=system-ssl
+Default=10
+
+[ssl/crl/interval]
+Description[de]=Das Aktualisierungsinterval der SSL-Zertifikat-Widerrufsliste in Tagen. Keine automatische Aktualisierung wenn nicht gesetzt, leer oder 0.
+Description[en]=The update interval in days of the SSL certificate revokation list. No automatic update if unset, empty or zero.
+Type=uint
+Categories=system-ssl
+Default=7
+
+[ssl/ca/cipher]
+Description[de]=Bestimmt den Verschlüsselungsalgorithmus für den privaten Schlüssel der Root-CA: aes128,aes192,aes256,camellia128,camellia192,camellia256,des,des3,idea.
+Description[en]=Specifies the cipher the private key of the root CA is encrypted with: aes128,aes192,aes256,camellia128,camellia192,camellia256,des,des3,idea.
+Type=str
+Categories=system-ssl
+Default=aes256

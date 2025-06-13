@@ -1,0 +1,654 @@
+univention-system-activation (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:53 +0200
+
+univention-system-activation (7.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:38 +0100
+
+univention-system-activation (7.0.3) unstable; urgency=medium
+
+  * Bug #57378 switch product logos
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Jun 2024 16:00:58 +0200
+
+univention-system-activation (7.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:36 +0100
+
+univention-system-activation (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:29 +0100
+
+univention-system-activation (6.0.4) unstable; urgency=medium
+
+  * Bug #55915: replace `cgi` import with `email`
+
+ -- Maximilian Janßen <janssen@univention.de>  Thu, 07 Mar 2024 23:54:27 +0100
+
+univention-system-activation (6.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:32 +0100
+
+univention-system-activation (6.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:20 +0100
+
+univention-system-activation (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:41 +0100
+
+univention-system-activation (5.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:51 +0100
+
+univention-system-activation (5.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:21 +0100
+
+univention-system-activation (5.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:36 +0100
+
+univention-system-activation (5.0.2-2) unstable; urgency=medium
+
+  * Bug #55107: make the system activation frontend compatible with
+    the UCS 5.0 Portal
+
+ -- Johannes Lohmer <lohmer@univention.de>  Tue, 30 Aug 2022 12:32:12 +0200
+
+univention-system-activation (5.0.2-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 3 UMC package files
+
+ -- Florian Best <best@univention.de>  Wed, 04 May 2022 08:12:08 +0200
+
+univention-system-activation (5.0.1-2) unstable; urgency=medium
+
+  * Bug #53390: implement light theme
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Jun 2021 13:37:48 +0200
+
+univention-system-activation (5.0.1-1) unstable; urgency=medium
+
+  * Bug #42374: Replace legacy Master/Slave wording by
+    Primary/Backup/Replica/Managed Node
+
+ -- Arvid <requate@univention.de>  Thu, 24 Sep 2020 13:48:37 +0200
+
+univention-system-activation (5.0.0-3) unstable; urgency=medium
+
+  * Bug #48963: remove unnecessary build dependency
+
+ -- Florian Best <best@univention.de>  Sat, 01 Aug 2020 03:25:36 +0200
+
+univention-system-activation (5.0.0-2) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:16 +0200
+
+univention-system-activation (4.0.0-13) unstable; urgency=medium
+
+  * Bug #51420: fix apache permissions
+
+ -- Florian Best <best@univention.de>  Thu, 04 Jun 2020 11:45:14 +0200
+
+univention-system-activation (4.0.0-12) unstable; urgency=medium
+
+  * Bug #51373: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Fri, 29 May 2020 11:46:45 +0200
+
+univention-system-activation (4.0.0-11) unstable; urgency=medium
+
+  * Bug #51024: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Thu, 26 Mar 2020 15:20:56 +0100
+
+univention-system-activation (4.0.0-10) unstable; urgency=medium
+
+  * Bug #50951: link to sdb article in case of error
+
+ -- Jannik Ahlers <ahlers@univention.de>  Fri, 13 Mar 2020 14:16:05 +0100
+
+univention-system-activation (4.0.0-9) unstable; urgency=medium
+
+  * Bug #49555: track system-uuid after appliance activation
+
+ -- Jannik Ahlers <ahlers@univention.de>  Fri, 29 Nov 2019 11:21:16 +0100
+
+univention-system-activation (4.0.0-8) unstable; urgency=medium
+
+  * Bug #50267: Fix UCS Version for links
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 26 Sep 2019 11:50:12 +0200
+
+univention-system-activation (4.0.0-7) unstable; urgency=medium
+
+  * Bug #50205: Update links from UCS 4.x-y to UCS 4.4-2
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 20 Sep 2019 14:32:29 +0200
+
+univention-system-activation (4.0.0-6) unstable; urgency=medium
+
+  * Bug #46790: Show traceback if univention-ldapsearch fails
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 11 Sep 2019 23:27:48 +0200
+
+univention-system-activation (4.0.0-5) unstable; urgency=medium
+
+  * Bug #46790: i10n
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 05 Sep 2019 11:41:17 +0200
+
+univention-system-activation (4.0.0-4) unstable; urgency=medium
+
+  * Bug #46790: Better error messages for activation wizard
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 05 Sep 2019 08:52:06 +0200
+
+univention-system-activation (4.0.0-3) unstable; urgency=medium
+
+  * Bug #48698: Fix GUI visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 07:10:47 +0200
+
+univention-system-activation (4.0.0-2) unstable; urgency=medium
+
+  * Bug #35687: replace simplejson with json
+
+ -- Florian Best <best@univention.de>  Thu, 14 Mar 2019 08:18:56 +0100
+
+univention-system-activation (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:33 +0100
+
+univention-system-activation (3.0.0-6) unstable; urgency=medium
+
+  * Bug #46742: Move univention privacy statement link to the
+    summary page of the system setup
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 28 Mar 2018 12:55:23 +0200
+
+univention-system-activation (3.0.0-5) unstable; urgency=medium
+
+  * Bug #46742: Add link to univention privacy statement when
+    user enters e-mail for UCS system activation
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 26 Mar 2018 16:12:56 +0200
+
+univention-system-activation (3.0.0-4) unstable; urgency=medium
+
+  * Bug #45899: Fix sentence
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 16 Jan 2018 12:07:20 +0100
+
+univention-system-activation (3.0.0-3) unstable; urgency=medium
+
+  * Bug #45899: Merge to 4.3
+  * Always open link in new browser tab
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 12 Jan 2018 15:12:12 +0100
+
+univention-system-activation (3.0.0-2) unstable; urgency=medium
+
+  * Bug #45899: Merge to 4.3
+  * Add information about blocking browser addons to system activation error
+    message
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 11 Jan 2018 17:56:17 +0100
+
+univention-system-activation (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:50 +0100
+
+univention-system-activation (2.0.2-12) unstable; urgency=medium
+
+  * Bug #43999: Adjust styling of dialogs
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 13 Sep 2017 18:37:53 +0200
+
+univention-system-activation (2.0.2-11) unstable; urgency=medium
+
+  * Bug #44523: Adjust apache rules to allow UMCP commands and auth requests
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 18 Jul 2017 09:58:08 +0200
+
+univention-system-activation (2.0.2-10) unstable; urgency=medium
+
+  * Bug #44910:
+    - check for successful license request properly
+    - inform the user if there was an internal server error and the license
+      request was not sent
+
+ -- Eduard Mai <mai@univention.de>  Fri, 30 Jun 2017 14:37:40 +0200
+
+univention-system-activation (2.0.2-9) unstable; urgency=medium
+
+  * Bug #44523: Remove superfluous header
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 23 May 2017 16:25:16 +0200
+
+univention-system-activation (2.0.2-8) unstable; urgency=medium
+
+  * Bug #44523: Refactor redirect to portal function to make it
+    clearer that it only works with the portal
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 22 May 2017 13:16:54 +0200
+
+univention-system-activation (2.0.2-7) unstable; urgency=medium
+
+  * Bug #44523: Wait for apache to reload before redirecting to portal
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 22 May 2017 11:34:52 +0200
+
+univention-system-activation (2.0.2-6) unstable; urgency=medium
+
+  * Bug #44523: Add missing JS module dependency
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 15 May 2017 17:00:09 +0200
+
+univention-system-activation (2.0.2-5) unstable; urgency=medium
+
+  * Bug #44523: Add mod_rewrite exception for file required by system-setup
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 15 May 2017 12:36:14 +0200
+
+univention-system-activation (2.0.2-4) unstable; urgency=medium
+
+  * Bug #44523: Adapt system-activation to UCS 4.2 design
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 12 May 2017 16:56:21 +0200
+
+univention-system-activation (2.0.2-3) unstable; urgency=medium
+
+  * [WIP] Bug #44523: Make sure that LDIF does not contain MOTD output
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 10 May 2017 18:28:25 +0200
+
+univention-system-activation (2.0.2-2) unstable; urgency=medium
+
+  * [WIP] Bug #44523: Adjust package to changes in UCS 4.2
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 10 May 2017 18:15:40 +0200
+
+univention-system-activation (2.0.2-1) unstable; urgency=medium
+
+  * Bug #43509: dijitHidden → dijitDisplayNone
+
+ -- Florian Best <best@univention.de>  Thu, 09 Mar 2017 13:59:40 +0100
+
+univention-system-activation (2.0.1-3) unstable; urgency=low
+
+  * Bug #42296: use rm_conffile to remove template
+
+ -- Felix Botner <botner@univention.de>  Wed, 08 Feb 2017 13:31:02 +0100
+
+univention-system-activation (2.0.1-2) unstable; urgency=low
+
+  * Bug #42296: rename/fix apache conf
+
+ -- Felix Botner <botner@univention.de>  Wed, 08 Feb 2017 13:17:58 +0100
+
+univention-system-activation (2.0.1-1) unstable; urgency=medium
+
+  * Bug #42228: ucs-overview → univention
+
+ -- Florian Best <best@univention.de>  Thu, 02 Feb 2017 21:19:00 +0100
+
+univention-system-activation (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:20 +0200
+
+univention-system-activation (1.0.1-11) unstable; urgency=medium
+
+  * Bug #40913: "dpkg-reconfigure univention-pam" not necessary anymore
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 22 Jun 2016 10:14:05 +0200
+
+univention-system-activation (1.0.1-10) unstable; urgency=medium
+
+  * Bug #39700: Fix for prerm & postrm
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 16 Mar 2016 16:02:26 +0100
+
+univention-system-activation (1.0.1-9) unstable; urgency=medium
+
+  * Bug #39700: reconfigure pam instead of setting UCR values manually to default
+  	values
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 16 Mar 2016 14:17:00 +0100
+
+univention-system-activation (1.0.1-8) unstable; urgency=medium
+
+  * Bug #39700: more restrictions, make sure auth/$service/restrict=yes is set
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 16 Mar 2016 13:20:35 +0100
+
+univention-system-activation (1.0.1-7) unstable; urgency=medium
+
+  Bug #39700:
+  * use array for ucr parameters
+  * catch IOError in entries.json ucr template
+
+ -- Jürn Brodersen <brodersen@univention.de>  Wed, 16 Mar 2016 11:56:37 +0100
+
+univention-system-activation (1.0.1-6) unstable; urgency=medium
+
+  * Bug #39700: more restrictions like auth/sudo=no
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 15 Mar 2016 18:07:26 +0100
+
+univention-system-activation (1.0.1-5) unstable; urgency=medium
+
+  * Bug #39700: Changed help text
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 15 Mar 2016 11:28:24 +0100
+
+univention-system-activation (1.0.1-4) unstable; urgency=low
+
+  * Bug #39700: removed the setup of root restrictions in postinst file
+
+ -- Eduard Mai <mai@univention.de>  Thu, 03 Mar 2016 14:22:46 +0100
+
+univention-system-activation (1.0.1-3) unstable; urgency=low
+
+  * Bug #39700: Ensure system activation page is only shown on DC master
+
+ -- Eduard Mai <mai@univention.de>  Thu, 18 Feb 2016 16:25:43 +0100
+
+univention-system-activation (1.0.1-2) unstable; urgency=low
+
+  * Bug #40304: Rename "<appname> Univention App" to "<appname> appliance"
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 11 Jan 2016 14:55:12 +0100
+
+univention-system-activation (1.0.1-1) unstable; urgency=medium
+
+  * Bug #38820: change /umcp/ to /univention-management-console/
+
+ -- Florian Best <best@univention.de>  Mon, 28 Sep 2015 18:50:59 +0200
+
+univention-system-activation (1.0.0-11) unstable; urgency=low
+
+  * Bug #39395: get uuid from license file
+
+ -- Felix Botner <botner@univention.de>  Thu, 24 Sep 2015 09:30:55 +0200
+
+univention-system-activation (1.0.0-10) unstable; urgency=low
+
+  * Bug #39154: Added a link to skip requesting a license file
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 09 Sep 2015 07:49:54 +0200
+
+univention-system-activation (1.0.0-9) unstable; urgency=low
+
+  * Bug #39153: Fixed indentation
+
+ -- Eduard Mai <mai@univention.de>  Tue, 08 Sep 2015 16:26:49 +0200
+
+univention-system-activation (1.0.0-8) unstable; urgency=low
+
+  * Bug #39153: Show e-mail field instead of error message block
+
+ -- Eduard Mai <mai@univention.de>  Tue, 08 Sep 2015 15:43:42 +0200
+
+univention-system-activation (1.0.0-7) unstable; urgency=low
+
+  * Bug #39159: Adapted the text #finished page and set the time to wait
+    for apache to 30secs
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 19 Aug 2015 11:46:33 +0200
+
+univention-system-activation (1.0.0-6) unstable; urgency=low
+
+  * Bug #39159: Deactivated apache redirect from umc to system-activation
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 19 Aug 2015 08:44:36 +0200
+
+univention-system-activation (1.0.0-5) unstable; urgency=low
+
+  * Bug #35159: Made sure that apache does not reload to early
+
+ -- Alexander Kramer <kramer@univention.de>  Tue, 18 Aug 2015 08:19:45 +0200
+
+univention-system-activation (1.0.0-4) unstable; urgency=low
+
+  * Bug #39159: Added a delay for stopping the service
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 17 Aug 2015 15:32:55 +0200
+
+univention-system-activation (1.0.0-3) unstable; urgency=low
+
+  * Bug #39159: Added a sleep for the last page of the wizard
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 14 Aug 2015 14:52:58 +0200
+
+univention-system-activation (1.0.0-2) unstable; urgency=low
+
+  * Bug #38918: version bump
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 31 Jul 2015 13:09:09 +0200
+
+univention-system-activation (1.0.0-1) unstable; urgency=low
+
+  * Bug #38918: Loading animation is now visible in Firefox
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 30 Jul 2015 13:21:35 +0200
+
+univention-system-activation (0.0.1-30) unstable; urgency=low
+
+  * Bug #39019: Improved wording on the activation page
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 30 Jul 2015 12:42:18 +0200
+
+univention-system-activation (0.0.1-29) unstable; urgency=medium
+
+  * Bug #38850: check for existing email address instead license request
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 10 Jul 2015 14:42:42 +0200
+
+univention-system-activation (0.0.1-28) unstable; urgency=medium
+
+  * Bug #38850: allow access to /icon
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Jul 2015 17:48:20 +0200
+
+univention-system-activation (0.0.1-27) unstable; urgency=medium
+
+  * Bug #38850: redirect accesses to UMC to the activation service
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Jul 2015 12:00:36 +0200
+
+univention-system-activation (0.0.1-26) unstable; urgency=medium
+
+  * Bug #38850: activate service in appliance hooks and allow umcp commands
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Jul 2015 13:51:39 +0200
+
+univention-system-activation (0.0.1-25) unstable; urgency=medium
+
+  * Bug #38782: adjust typo
+  * Bug #38547: adjust error handling and encoding issues
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Jul 2015 13:55:09 +0200
+
+univention-system-activation (0.0.1-24) unstable; urgency=medium
+
+  * Bug #38547: Allow access to /ucs-overview for welcome site
+  * Bug #38547: adjust parsing setup profile for email address
+  * Bug #38782: adjust wording app vendor/provider
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 01 Jul 2015 17:17:30 +0200
+
+univention-system-activation (0.0.1-23) unstable; urgency=medium
+
+  * Bug #38547, Bug #38782: adjusted texts and wording
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 01 Jul 2015 12:55:14 +0200
+
+univention-system-activation (0.0.1-22) unstable; urgency=medium
+
+  * Bug #38547: update UCR variable dependencies for entries.json
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 26 Jun 2015 23:51:40 +0200
+
+univention-system-activation (0.0.1-21) unstable; urgency=medium
+
+  Bug #38547:
+  * Move given email address into entries.json
+  * Some JS fine tuning
+  * Send notification request to appcenter server via JavaScript
+  * Added and fixed integration of translations
+  * Fix redirection to UMC
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 26 Jun 2015 23:40:12 +0200
+
+univention-system-activation (0.0.1-20) unstable; urgency=medium
+
+  * Also restrict su (Bug #38547)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 26 Jun 2015 21:21:17 +0200
+
+univention-system-activation (0.0.1-19) unstable; urgency=medium
+
+  * Forbid root login for several services instead disallow sshd only
+    (Bug #38547)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 26 Jun 2015 16:41:34 +0200
+
+univention-system-activation (0.0.1-18) unstable; urgency=low
+
+  * Bug #38547: Removed iptables, call notify_vendor, add feedback mail address
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 26 Jun 2015 14:46:24 +0200
+
+univention-system-activation (0.0.1-17) unstable; urgency=low
+
+  * Bug #38547: CSS and icon cleanup
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 26 Jun 2015 13:27:21 +0200
+
+univention-system-activation (0.0.1-16) unstable; urgency=low
+
+  * Bug #38547: Make sure ssh will be enabled on deinstallation
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 26 Jun 2015 09:34:38 +0200
+
+univention-system-activation (0.0.1-15) unstable; urgency=low
+
+  * Bug #38547: Disable and enable upload button
+
+ -- Alexander Kramer <kramer@univention.de>  Fri, 26 Jun 2015 09:01:51 +0200
+
+univention-system-activation (0.0.1-14) unstable; urgency=low
+
+  * Bug #38547: Adapted postinst
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 25 Jun 2015 14:05:24 +0200
+
+univention-system-activation (0.0.1-13) unstable; urgency=low
+
+  * Bug #38547: Use sshd/autostart instead of iptables to forbid ssh
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 25 Jun 2015 14:02:53 +0200
+
+univention-system-activation (0.0.1-12) unstable; urgency=low
+
+  * Bug #38547: Added a script to notify vendors, adapted upload transition
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 25 Jun 2015 13:06:49 +0200
+
+univention-system-activation (0.0.1-11) unstable; urgency=low
+
+  * Bug #38547: The user email is now displayed
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 24 Jun 2015 12:15:25 +0200
+
+univention-system-activation (0.0.1-10) unstable; urgency=low
+
+  * Bug #38547: Adapted umc link and activation script
+
+ -- Alexander Kramer <kramer@univention.de>  Tue, 23 Jun 2015 15:10:58 +0200
+
+univention-system-activation (0.0.1-9) unstable; urgency=low
+
+  * Bug #38547: Adapted tab transition
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 22 Jun 2015 14:03:29 +0200
+
+univention-system-activation (0.0.1-8) unstable; urgency=low
+
+  * Bug #38547: First css adaptions
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 22 Jun 2015 12:37:57 +0200
+
+univention-system-activation (0.0.1-7) unstable; urgency=low
+
+  * Bug #38547: Adapted text and layout
+
+ -- Alexander Kramer <kramer@univention.de>  Mon, 22 Jun 2015 09:38:36 +0200
+
+univention-system-activation (0.0.1-6) unstable; urgency=low
+
+  * Bug #38547: Apdapted animation, upload check and start tab
+
+ -- Alexander Kramer <kramer@univention.de>  Thu, 18 Jun 2015 11:50:36 +0200
+
+univention-system-activation (0.0.1-5) unstable; urgency=low
+
+  * Bug #38547: Added animation, apdapted styles and logic
+
+ -- Alexander Kramer <kramer@univention.de>  Wed, 17 Jun 2015 15:06:18 +0200
+
+univention-system-activation (0.0.1-4) unstable; urgency=low
+
+  * Bug #38547: Added error handling for upload
+
+ -- Alexander Kramer <kramer@univention.de>  Tue, 16 Jun 2015 14:52:21 +0200
+
+univention-system-activation (0.0.1-3) unstable; urgency=low
+
+  * Bug #38547: Added firewall rules and adapted install script
+
+ -- Alexander Kramer <kramer@univention.de>  Tue, 16 Jun 2015 12:15:56 +0200
+
+univention-system-activation (0.0.1-2) unstable; urgency=low
+
+  * Bug #38547: Extended app.js
+
+ -- Alexander Kramer <kramer@univention.de>  Tue, 16 Jun 2015 11:33:45 +0200
+
+univention-system-activation (0.0.1-1) unstable; urgency=medium
+
+  * Initial release
+
+ -- Alexander Kläser <klaeser@univention.de>  Sat, 06 Jun 2015 00:05:44 +0200
+

@@ -1,0 +1,236 @@
+#!/bin/bash
+#
+# Univention LDAP Server
+#  postinst script for the debian package
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/all.sh
+
+# check for running slapd first
+if [ -n "$(pidof slapd)" ]; then
+	slapd_was_running=yes
+fi
+
+# { # function definitions
+start_slapd () {
+	if test -x /etc/init.d/slapd; then
+		/etc/init.d/slapd start
+		sleep 1
+	fi
+}
+stop_slapd () {
+	if test -x /etc/init.d/slapd; then
+		/etc/init.d/slapd stop
+		sleep 1
+	fi
+}
+restart_slapd () {
+	/etc/init.d/slapd stop
+	sleep 1
+	if [ -n "$(pidof slapd)" ]; then
+		killall slapd
+		sleep 1
+		if [ -n "$(pidof slapd)" ]; then
+			killall -9 slapd
+			sleep 1
+		fi
+	fi
+	/etc/init.d/slapd start
+}
+# } # end of function definitions
+
+# Bug #54465: Move fake_initial_schema from 01univention-ldap-server-init.inst
+# here so unjoined backups/slaves upgrades don't fail.
+# slap* needs schema information, which is later fetched by replication.py
+fake_initial_schema () {
+	[ "$ldap_server_type" = master ] && return
+	[ -s /var/lib/univention-ldap/schema.conf ] && return
+	local tmp
+	tmp="$(mktemp)"
+	printf '# univention_dummy.conf\n\nldap/server/type: master' >"$tmp"
+	UNIVENTION_BASECONF="$tmp" univention-config-registry filter \
+		</etc/univention/templates/files/etc/ldap/slapd.conf.d/10univention-ldap-server_schema \
+		>/var/lib/univention-ldap/schema.conf
+	rm -f "$tmp"
+}
+fake_initial_schema
+
+
+# Replication: password for rootdn/updatedn and schema from Primary
+case "$ldap_server_type" in
+master) ;;
+slave|*) touch /etc/ldap/rootpw.conf ;;
+esac
+
+#DEBHELPER#
+
+eval "$(univention-config-registry shell)"
+
+if [ "$server_role" = "domaincontroller_master" ]; then
+	univention-config-registry set ldap/translogfile?"/var/lib/univention-ldap/listener/listener"
+	univention-config-registry set ldap/translog-ignore-temporary?"yes"
+fi
+
+# configure firewall
+ucr set \
+	security/packetfilter/package/univention-ldap-server/tcp/389/all="ACCEPT" \
+	security/packetfilter/package/univention-ldap-server/tcp/389/all/en="LDAP" \
+	security/packetfilter/package/univention-ldap-server/tcp/636/all="ACCEPT" \
+	security/packetfilter/package/univention-ldap-server/tcp/636/all/en="LDAPS" \
+	security/packetfilter/package/univention-ldap-server/tcp/7389/all="ACCEPT" \
+	security/packetfilter/package/univention-ldap-server/tcp/7389/all/en="LDAP" \
+	security/packetfilter/package/univention-ldap-server/tcp/7636/all="ACCEPT" \
+	security/packetfilter/package/univention-ldap-server/tcp/7636/all/en="LDAPS"
+[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+
+[ -s /etc/ldap/dh_2048.pem ] || cp /usr/share/univention-ldap/dh_2048.pem /etc/ldap/
+
+ucr set \
+	ldap/debug/level?none \
+	ldap/acl/user/password/change?no \
+	ldap/acl/slavepdc?yes \
+	ldap/acl/nestedgroups?yes
+
+eval "$(univention-config-registry shell)"
+
+if [ "$1" = "configure" ]; then
+	if [ -z "$2" ]; then
+		stop_slapd
+		## careful, if slapd is not running the following command will re-index everything in case there are changes.
+		## If you want to just add an index precisely for one attribute only, then see Bug #57193#c4 "--only-update-ucr"
+		## and run "slapindex -f /etc/ldap/slapd.conf $ATTRIBUTE" manually after that (and start slapd again)
+		## See block below.
+		/usr/share/univention-ldap/ldap_setup_index --add-defaults
+		start_slapd
+	elif dpkg --compare-versions "$2" lt-nl 18.2.3; then
+		stop_slapd
+		/usr/share/univention-ldap/ldap_setup_index --add-defaults --only-update-ucr
+		output=$(/usr/sbin/slapindex -f /etc/ldap/slapd.conf univentionObjectIdentifier 2>&1) ||
+			echo "$output"
+		start_slapd
+	fi
+fi
+
+upgrade_license () {
+	case "$server_role" in
+	domaincontroller_master)
+		;;
+	*)
+		echo "Not the Primary Directory Node: skipping upgrade."
+		return 0
+		;;
+	esac
+
+	tmp=$(mktemp)
+	trap "rm -f '$tmp'" EXIT
+	dn="cn=admin,cn=license,cn=univention,$ldap_base"
+	univention-ldapsearch -LLLo ldif-wrap=no -b "$dn" -s base >"$tmp" ||
+		{ echo "Failed to retrieve UCS license: '$dn'"; return 1; }
+
+	if ! grep -Fxq 'univentionLicenseBaseDN: Free for personal use edition' "$tmp"
+	then
+		echo "No 'Free for personal use edition' found: nothing to do."
+		return 0
+	elif grep -q '^univentionLicenseKeyID: ' "$tmp"
+	then
+		echo "Activated 'Free for personal use edition' found: see <http://sdb.univention.de/1324>."
+		return 1
+	else
+		echo "Old 'Free for personal use edition' found: performing upgrade..."
+		univention-config-registry filter </usr/share/univention-ldap/core-edition.ldif >"$tmp" &&
+		univention-license-import "$tmp" ||
+		echo "Failed to import new license: see <http://sdb.univention.de/1324>."
+		return 1
+	fi
+}
+
+
+if [ "$server_role" = "domaincontroller_master" ] || [ "$server_role" = "domaincontroller_backup" ]; then
+	/usr/lib/univention-install/01univention-ldap-server-init.inst || true
+	/usr/lib/univention-install/10univention-ldap-server.inst || true
+fi
+
+## after this line slapd.conf is expected to be updated properly and slapd may restart
+
+if [ "$1" = "configure" ]; then
+	if [ -n "$2" ]; then	## package update
+		if test -x /etc/init.d/slapd; then
+			# always start on Primary, slapd may be down by schema-conflicts which are cleared by a new slapd.conf-template
+			if [ "$server_role" = "domaincontroller_master" ]; then
+				restart_slapd
+			else
+				#/etc/init.d/slapd crestart
+				if [ -n "$slapd_was_running" ]; then
+					restart_slapd
+				fi
+			fi
+		fi
+	else					## fresh installation
+		if test -x /etc/init.d/slapd; then
+			/etc/init.d/slapd start
+		fi
+		ucr set backup/clean/max_age?365
+	fi
+
+	## load the listener module
+	systemctl try-restart univention-directory-listener
+
+	if dpkg --compare-versions "$2" lt-nl 16.0.7-22; then
+		if [ -e /var/univention-join/joined ] ; then
+			if [ "$server_role" = "domaincontroller_master" ] ; then
+				univention-directory-manager \
+					container/cn create \
+					--position "cn=temporary,cn=univention,$ldap_base" \
+					--set name=univentionObjectIdentifier
+			fi
+		fi
+	fi
+
+	## setup cn=internal during update
+	if dpkg --compare-versions "$2" lt-nl 16.0.14-5; then
+		if [ -e /var/univention-join/joined ] ; then
+			if [ "$server_role" = "domaincontroller_master" ] || [ "$server_role" = "domaincontroller_backup" ]; then
+				/usr/share/univention-ldap/setup-internal init || true
+				if [ "$server_role" = "domaincontroller_master" ]; then
+					ucr set ldap/database/internal/syncprov=true
+				elif [ "$server_role" = "domaincontroller_backup" ]; then
+					ucr set ldap/database/internal/syncrepl=true
+				fi
+				systemctl restart slapd || true
+			fi
+		fi
+	fi
+fi
+
+
+exit 0

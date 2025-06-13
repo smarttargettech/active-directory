@@ -1,0 +1,101 @@
+#!/bin/bash
+#
+# Univention samba backup
+#  backup samba provision
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2014-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+. /usr/share/univention-lib/backup.sh
+. /usr/share/univention-lib/base.sh
+
+display_help() {
+	cat <<-EOL
+		univention-samba4-backup: backups the samba provision directory
+
+		Syntax:
+		    univention-samba4-backup [options]
+
+		Options:
+		    --help|-h			display this message
+		    --where|-w <DIR>		backup directory
+		    --days|-d <INT>		retention period in days
+	EOL
+}
+
+terminate_on_error() {
+	>&2 echo "$*"
+	exit 1
+}
+
+WHERE=/var/univention-backup/samba
+DAYS=""
+WHEN="$(date +%Y-%m-%d)"
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		# just for compatibility reasons
+		"--from-where"|"-f")
+			echo "Warning: --from-where|-f removed and ignored"
+                        shift 2 || exit 2
+			;;
+		"--where"|"-w")
+			WHERE="${2:?missing parameter for $1}"
+			shift 2 || exit 2
+			;;
+		"--days"|"-d")
+			DAYS="${2:?missing parameter for $1}"
+			[ $DAYS -eq $DAYS ] 2>/dev/null
+			if [ ! $? -eq 0 ]; then
+				display_help
+				exit 1
+			fi
+			shift 2 || exit 2
+			;;
+		"--help"|"-h"|"-?")
+			display_help
+			exit 0
+			;;
+		*)
+			display_help
+			exit 1
+			;;
+	esac
+done
+
+if [ ! -d $WHERE ]; then
+	terminate_on_error "Missing backup directory $WHERE"
+fi
+install -o root -g root -m 700 -d "$WHERE"
+
+umask 0026 # samba-tool updates private/sam.ldb.d/metadata.tdb
+samba-tool domain backup offline --targetdir="$WHERE" || die "ERROR: samba-tool domain backup failed"
+chmod 600 "$WHERE"/samba-backup-*.bz2
+clean_old_backups 'samba/samba-backup-.*.bz2' "$DAYS"

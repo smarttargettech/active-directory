@@ -1,0 +1,52 @@
+@!@
+krb5_minimum_uid = int(configRegistry.get('pam/krb5/minimum_uid', 1000))
+pam_krb5 = '''
+auth     [success=<succ> new_authtok_reqd=ok \\
+         user_unknown=<unknown> \\
+         service_err=<unavail> authinfo_unavail=<unavail> \\
+         default=<unknown>]   pam_krb5.so use_first_pass minimum_uid=%d''' % (krb5_minimum_uid,)
+pam_sss = '''
+auth     [success=<succ> new_authtok_reqd=ok \\
+         user_unknown=<unknown> \\
+         service_err=<unavail> authinfo_unavail=<unavail> \\
+         default=<unknown>]   pam_sss.so use_first_pass'''
+pam_winbind = '''
+auth     [success=<succ> new_authtok_reqd=ok \\
+         user_unknown=<unknown> \\
+         service_err=<unavail> authinfo_unavail=<unavail> \\
+         default=<unknown>]   pam_winbind.so use_first_pass'''
+
+
+def pam_section(template, last):
+    succ = 'done'
+    unavail = 'die' if last else 'ignore'
+    fail = 'die'
+    unknown = 'die' if last else 'ignore'
+
+    return template.replace('<succ>', succ).replace('<unavail>', unavail).replace('<fail>', fail).replace('<unknown>', unknown)
+
+
+methods = [x for x in configRegistry['auth/methods'].split(' ') if x in ['krb5', 'ldap', 'winbind']]
+
+# if no other authentication mechanism but unix is active it is required
+predicate = 'required' if not methods else 'sufficient'
+
+print(f'''
+# local unix authentication
+auth     {predicate: <10}        pam_unix.so
+''')
+
+print('''
+# remote authentication; if a service
+# - is not aware of the user, proceed with the next service
+'''.strip())
+
+if 'krb5' in methods:
+    last = 'ldap' not in methods and 'winbind' not in methods
+    print(pam_section(pam_krb5, last))
+if 'ldap' in methods:
+    last = 'winbind' not in methods
+    print(pam_section(pam_sss, last))
+if 'winbind' in methods:
+    print(pam_section(pam_winbind, True))
+@!@

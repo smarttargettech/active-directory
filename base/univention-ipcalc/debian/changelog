@@ -1,0 +1,261 @@
+univention-ipcalc (13.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+univention-ipcalc (13.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:38 +0100
+
+univention-ipcalc (13.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-ipcalc (13.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:25 +0100
+
+univention-ipcalc (12.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:17 +0100
+
+univention-ipcalc (12.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:52 +0100
+
+univention-ipcalc (12.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:40 +0100
+
+univention-ipcalc (12.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:20 +0100
+
+univention-ipcalc (12.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:37 +0100
+
+univention-ipcalc (11.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:50 +0100
+
+univention-ipcalc (11.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:23 +0100
+
+univention-ipcalc (11.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:34 +0100
+
+univention-ipcalc (11.0.0-5) unstable; urgency=low
+
+  * Bug #53345: Convert to Python3
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Sep 2021 12:39:43 +0200
+
+univention-ipcalc (11.0.0-4) unstable; urgency=low
+
+  * Bug #53345: Convert to Python3
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Sep 2021 08:13:36 +0200
+
+univention-ipcalc (11.0.0-3) unstable; urgency=low
+
+  * Bug #53345: Convert to Python3
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 27 Sep 2021 07:41:29 +0200
+
+univention-ipcalc (11.0.0-2) unstable; urgency=low
+
+  * Bug #22511: Remove old univention-ipcalc
+  * Bug #53345: Convert to Python3
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 25 Sep 2021 09:54:17 +0200
+
+univention-ipcalc (11.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:12 +0200
+
+univention-ipcalc (10.0.0-2) unstable; urgency=medium
+
+  * Bug #49135: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Tue, 15 Oct 2019 09:55:11 +0200
+
+univention-ipcalc (10.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:29 +0100
+
+univention-ipcalc (9.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:22 +0100
+
+univention-ipcalc (9.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:44 +0100
+
+univention-ipcalc (8.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:37 +0200
+
+univention-ipcalc (7.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:00:01 +0100
+
+univention-ipcalc (6.0.0-2) unstable; urgency=low
+
+  * Fix python2.7 support for UCS-4.0 (Bug #35138)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 Aug 2014 19:37:54 +0200
+
+univention-ipcalc (6.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 08:29:12 +0200
+
+univention-ipcalc (5.0.0-3) unstable; urgency=low
+
+  * Add missing Depends: python-ipaddr (Bug #32931)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 30 Oct 2013 17:09:22 +0100
+
+univention-ipcalc (5.0.0-2) unstable; urgency=low
+
+  * Add missing Build-Depends: python-ipaddr (Bug #32931)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 21 Oct 2013 13:31:15 +0200
+
+univention-ipcalc (5.0.0-1) unstable; urgency=low
+
+  * Bump version for UCS 3.2
+  * Split IP calculation into re-usable module (Bug #32931)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 21 Oct 2013 13:09:08 +0200
+
+univention-ipcalc (4.0.0-3) unstable; urgency=low
+
+  * Convert spaces to tab (Bug #28143, Bug #25626)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 17 Sep 2012 15:38:28 +0200
+
+univention-ipcalc (4.0.0-2) unstable; urgency=low
+
+  * Fix spelling type (Bug #28143, Bug #25626)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 13 Sep 2012 18:08:36 +0200
+
+univention-ipcalc (4.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump.
+  * Add --help, fix IPv6 output (Bug #28143)
+  * Add --help, fix IPv4 output (Bug #25626)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Aug 2012 22:16:24 +0200
+
+univention-ipcalc (3.0.1-1) unstable; urgency=low
+
+  * add univention-ipcalc6 (Bug #23942)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 31 Oct 2011 14:59:22 +0100
+
+univention-ipcalc (3.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22511)
+    * Bump version for UCS 3.0
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 01 Aug 2011 13:47:32 +0200
+
+univention-ipcalc (2.0.1-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 15:09:35 +0200
+
+univention-ipcalc (2.0.0-1) unstable; urgency=low
+
+  * version bump for UCS 2.4
+  * add 32 netmask "support" (uses 24 netmask reverse zone names) Bug #17413
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 May 2010 12:58:43 +0200
+
+univention-ipcalc (1.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-ipcalc (0.4.3) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:41 +0200
+
+univention-ipcalc (0.4.2) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 22 May 2007 16:15:01 +0200
+
+univention-ipcalc (0.4.1) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Wed, 29 Nov 2006 08:13:21 +0100
+
+univention-ipcalc (0.3) unstable; urgency=low
+
+  * Switched to python 2.4 (support older versions has been dropped)
+
+ -- Alexander Reelsen <reelsen@univention.de>  Mon, 19 Sep 2005 13:14:19 +0200
+
+univention-ipcalc (0.2) unstable; urgency=low
+
+  * added parameter --full
+  * added broadcast output
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon,  2 Feb 2004 14:58:49 +0100
+
+univention-ipcalc (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 21 nov 2003 11:09:12 +0200

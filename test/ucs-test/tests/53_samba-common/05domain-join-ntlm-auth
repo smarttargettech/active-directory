@@ -1,0 +1,113 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Checking domain join and ntlm authentication"
+## exposure: safe
+## packages:
+##  - winbind
+##  - univention-config
+##  - univention-directory-manager-tools
+##  - univention-samba
+## roles-not:
+## - basesystem
+## tags:
+##  - basic
+##  - apptest
+##  - skip_admember
+## join: true
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/group.sh
+. "$TESTLIBPATH/group.sh" || exit 137
+
+username="$(user_randomname)"
+password=univention
+
+SAMBA="true"
+MAIL="false"
+KERBEROS="true"
+PERSON="false"
+POSIX="true"
+
+##create user
+trap 'user_remove "$username"' INT TERM EXIT
+echo "----create user"
+if ! user_create "$username"; then
+        fail_fast 1 "Failed to create user"
+fi
+
+group_adduser "$username" "Domain Admins"
+
+winbind_separator=$(testparm -sv --parameter-name="winbind separator" 2>/dev/null)
+FQUSERNAME="$windows_domain$winbind_separator$username"
+if [ "$samba_domain_security" = ads ]; then
+	net_mode=ads
+else
+	net_mode=rpc
+fi
+
+wait_for_replication
+
+##wait for the user to be created
+echo "----wait for the user to be created"
+i=0
+while ! output="$(net "$net_mode" user info $username -U"$username%$password" 2>&1)"
+do
+	let i="$i"+1
+	sleep 1
+	if [ "$i" = 20 ]; then
+		echo "$output"
+		echo "TIMEOUT: The user which has been created in UDM could not be found in samba after $i seconds"
+		break
+	fi
+done
+
+## start/restart winbind
+echo "----restart winbind"
+/etc/init.d/winbind restart
+if [ "$?" != 0 ];then
+	fail_fast 1 "could not restart winbind"
+fi
+
+if [ "$server_role" = "memberserver" ]; then
+        NAME="$FQUSERNAME"
+else
+        NAME="$username"
+fi
+
+dump_debug ()
+{
+	echo "************* ps auwx ********************"
+	ps auwx
+	echo "******************************************"
+	echo "************* /etc/samba/smb.conf ********************"
+	cat /etc/samba/smb.conf
+	echo "******************************************************"
+}
+
+## ntml auth
+echo "----ntml auth with a wrong password (should fail)"
+ntlm_auth --domain="$windows_domain" --username="$NAME" --password="${password}2"
+if [ "$?" = 0 ];then
+	dump_debug
+	fail_fast 1 "ntlm_auth was successful with an wrong password"
+fi
+
+echo "----ntml auth with a wrong username (should fail)"
+ntlm_auth --domain="$windows_domain" --username="${NAME}2" --password="${password}"
+if [ "$?" = 0 ];then
+	dump_debug
+	fail_fast 1 "ntlm_auth was successful with an wrong username"
+fi
+
+echo "----ntml auth with correct credentials"
+ntlm_auth --domain="$windows_domain" --username="$NAME" --password="$password"
+if [ "$?" != 0 ];then
+	dump_debug
+	fail_fast 1 "ntlm_auth failed"
+fi
+
+
+exit 0

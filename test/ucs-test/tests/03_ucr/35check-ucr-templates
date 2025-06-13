@@ -1,0 +1,12 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Checking for modified UCR templates
+## tags:
+##  - basic
+##  - apptest
+## exposure: safe
+## versions:
+##  1.0-0: skip
+##  2.4-0: fixed
+exec /usr/sbin/univention-check-templates
+# vim:set ft=sh:

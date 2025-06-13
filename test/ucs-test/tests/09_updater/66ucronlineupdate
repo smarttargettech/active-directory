@@ -1,0 +1,46 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: checking online update sources.list creation
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - univention-config
+##  - univention-directory-manager-tools
+## exposure: dangerous
+## versions:
+##  3.0-0: skip
+
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+
+ping -c 1 "${_repository_online_server:?}" || exit 120 # Transient error in DNS resolution
+
+arch=$(dpkg-architecture -qDEB_HOST_ARCH 2>/dev/null)
+ucr set \
+	repository/online=yes \
+	repository/online/component/xen/server=apt.univention.de \
+	repository/online/component/xen/version='2.1,2.2' \
+	repository/online/component/xen=yes
+trap ucr_restore EXIT
+
+if [ "${_local_repository:-}" = "yes" ]
+then
+	echo "server is repository-server"
+	sources="/etc/apt/mirror.list"
+else
+	sources="/etc/apt/sources.list.d/20_ucs-online-component.list"
+fi
+
+for component in \
+	'deb http://apt.univention.de\(:80\)\?/2.1/maintained/component/\? xen/all/' \
+	'deb http://apt.univention.de\(:80\)\?/2.1/maintained/component/\? xen/'"$arch/"
+do
+	grep "$component" "$sources" ||
+		fail_test 110 "$component is missing in $sources"
+done
+
+echo "=== RESULT: $RETVAL ==="
+exit "$RETVAL"
+# vim:set ft=sh:

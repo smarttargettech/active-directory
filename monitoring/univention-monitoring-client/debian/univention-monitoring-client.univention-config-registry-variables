@@ -1,0 +1,20 @@
+[monitoring/client/cron]
+Description[en]=Specifies the cron interval for the execution of scripts to generate the alert metric data.
+Description[de]=Spezifiziert das cron-Interval für das Ausführen von Skripten zur Alert-Metrik-Daten generierung.
+Type=cron
+Default=*/5 * * * *
+Categories=service-monitoring
+
+[monitoring/client/autoregister]
+Description[en]=Automatically register alerts for this server.
+Description[de]=Warnmeldungen automatisch für diesen Server registrieren.
+Type=bool
+Default=true
+Categories=service-monitoring
+
+[monitoring/client/nagios-automigration]
+Description[en]=Automatically do a migration of nagios services to monitoring alerts during initial installation.
+Description[de]=Automatisch eine Migration von Nagios-Diensten nach Monitoring-Alarme während der initialen Installation durchführen.
+Type=bool
+Default=false
+Categories=service-monitoring

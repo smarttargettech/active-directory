@@ -1,0 +1,262 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: "Check User-Mail-Attributes in sync-mode (Exchange attribute-checks disabled)"
+## exposure: dangerous
+## packages:
+## - univention-ad-connector
+## tags:
+##  - skip_admember
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/udm.sh
+. "$TESTLIBPATH/udm.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+. "adconnector.sh" || exit 137
+test -n "$connector_ad_ldap_host" || exit 137
+
+UDM_users_user_username="$(random_chars)"
+UDM_users_user_lastname="$(random_chars)"
+# If the password doesn't adhere the configured Windows-Password-Guidelines
+# weird things might happen when the user is synced to AD.
+UDM_users_user_password="U$(random_chars)123"
+UDM_users_user_firstname="$(random_chars)"
+UDM_users_user_description="$(random_chars)"
+UDM_users_user_street="$(random_chars)"
+UDM_mail_domain_name="$(random_chars)"
+UDM_users_user_mailPrimaryAddress="$(random_chars)@${UDM_mail_domain_name}"
+UDM_users_user_mailAlternativeAddress="$(random_chars)@${UDM_mail_domain_name}"
+UDM_users_user_mail="private1@external.org"
+#UDM_users_user_Exchange_Homeserver="$(random_chars)"
+#UDM_users_user_Exchange_homeMDB="$(random_chars)"
+#UDM_users_user_Exchange_Nickname="$(random_chars)"
+AD_DN="CN=$UDM_users_user_username,CN=users,$(ad_get_base)"
+
+SYNCMODE="$(ad_get_sync_mode)"
+SYNCPRIMARYMAIL="$(ucr get connector/ad/mapping/user/primarymail)"
+SYNCALTERNATIVEMAIL="$(ucr get connector/ad/mapping/user/alternativemail)"
+#SYNCEXCHANGE="$(ucr get connector/ad/mapping/user/exchange)"
+
+udm_create mail/domain "" "" "cn=domain,cn=mail,$ldap_base"
+
+invoke-rc.d univention-ad-connector stop
+ucr set connector/ad/mapping/user/primarymail=true
+ucr set connector/ad/mapping/user/alternativemail=true
+#ucr set connector/ad/mapping/user/exchange=true
+ad_set_sync_mode "sync"
+invoke-rc.d univention-ad-connector start
+
+cleanup() {
+	section "==========Test done - Cleanup=========="
+
+	udm_remove "users/user" || fail_test 110
+	ad_wait_for_synchronization; fail_bool 0 110
+
+	udm_exists "users/user"; fail_bool 1 110
+	ad_exists "$AD_DN"; fail_bool 1 110
+
+	udm_remove mail/domain "" "" "cn=domain,cn=mail,$ldap_base"
+
+	invoke-rc.d univention-ad-connector stop
+	ucr set connector/ad/mapping/user/primarymail="$SYNCPRIMARYMAIL"
+	ucr set connector/ad/mapping/user/alternativemail="$SYNCALTERNATIVEMAIL"
+	#ucr set connector/ad/mapping/user/exchange="$SYNCEXCHANGE"
+	ad_set_sync_mode "$SYNCMODE"
+	invoke-rc.d univention-ad-connector start
+}
+trap cleanup EXIT
+
+section "==========Create user with mail addresses in UDM=========="
+udm_create "users/user" "" "" "" "" --option=pki || fail_test 110
+
+udm_modify "users/user" "" "" "" "" \
+	--set mailAlternativeAddress="$UDM_users_user_mailAlternativeAddress" \
+	--set e-mail="$UDM_users_user_mail" || fail_test 110
+
+ad_wait_for_synchronization; fail_bool 0 110
+
+udm_exists "users/user"; fail_bool 0 110
+ad_exists "$AD_DN"; fail_bool 0 110
+
+udm_verify_udm_attribute "mailPrimaryAddress" "$UDM_users_user_mailPrimaryAddress" "users/user"; fail_bool 0 110
+udm_verify_udm_attribute "mailAlternativeAddress" "$UDM_users_user_mailAlternativeAddress" "users/user"; fail_bool 0 110
+udm_verify_udm_attribute "e-mail" "$UDM_users_user_mail" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-Homeserver" "$UDM_users_user_Exchange_Homeserver" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-homeMDB" "$UDM_users_user_Exchange_homeMDB" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-Nickname" "$UDM_users_user_Exchange_Nickname" "users/user"; fail_bool 0 110
+
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "SMTP:$UDM_users_user_mailPrimaryAddress"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress"; fail_bool 0 110
+ad_verify_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "msExchHomeServerName" "$UDM_users_user_Exchange_Homeserver"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "homeMDB" "$UDM_users_user_Exchange_homeMDB"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "mailNickname" "$UDM_users_user_Exchange_Nickname"; fail_bool 0 110
+
+output=$(univention-adconnector-list-rejected 2>&1)
+if echo "$output" | grep -qi "$UDM_users_user_username"; then
+	echo "$output" >&2
+	fail_fast 110 ""
+fi
+
+section "==========Change addresses in UDM=========="
+#UDM_users_user_Exchange_Homeserver="$(random_chars)"
+#UDM_users_user_Exchange_homeMDB="$(random_chars)"
+#UDM_users_user_Exchange_Nickname="$(random_chars)"
+UDM_users_user_mailPrimaryAddress="$(random_chars)@${UDM_mail_domain_name}"
+UDM_users_user_mailAlternativeAddress="$(random_chars)@${UDM_mail_domain_name}"
+udm_modify "users/user" "" "" "" "" \
+		   --set mailPrimaryAddress="$UDM_users_user_mailPrimaryAddress" \
+		   --set mailAlternativeAddress="$UDM_users_user_mailAlternativeAddress" || fail_test 110
+#		   --set Exchange-Homeserver="$UDM_users_user_Exchange_Homeserver" \
+#		   --set Exchange-homeMDB="$UDM_users_user_Exchange_homeMDB" \
+#		   --set Exchange-Nickname="$UDM_users_user_Exchange_Nickname" \
+
+ad_wait_for_synchronization; fail_bool 0 110
+
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "SMTP:$UDM_users_user_mailPrimaryAddress"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress"; fail_bool 0 110
+ad_verify_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "msExchHomeServerName" "$UDM_users_user_Exchange_Homeserver"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "homeMDB" "$UDM_users_user_Exchange_homeMDB"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "mailNickname" "$UDM_users_user_Exchange_Nickname"; fail_bool 0 110
+
+udm_verify_udm_attribute "mailPrimaryAddress" "$UDM_users_user_mailPrimaryAddress" "users/user"; fail_bool 0 110
+udm_verify_udm_attribute "mailAlternativeAddress" "$UDM_users_user_mailAlternativeAddress" "users/user"; fail_bool 0 110
+udm_verify_udm_attribute "e-mail" "$UDM_users_user_mail" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-Homeserver" "$UDM_users_user_Exchange_Homeserver" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-homeMDB" "$UDM_users_user_Exchange_homeMDB" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-Nickname" "$UDM_users_user_Exchange_Nickname" "users/user"; fail_bool 0 110
+
+output=$(univention-adconnector-list-rejected 2>&1)
+if echo "$output" | grep -qi "$UDM_users_user_username"; then
+	echo "$output" >&2
+	fail_fast 110 ""
+fi
+
+section "==========Replace 'mail' value in AD while proxyAddresses is set=========="
+AD_user_mail="$(random_chars)@${UDM_mail_domain_name}"
+
+echo "Changing 'mail' in AD to '$AD_user_mail' while 'proxyAddresses' in AD still contains 'SMTP:$UDM_users_user_mailPrimaryAddress'"
+echo
+
+ad_set_attribute "$AD_DN" "mail" "$AD_user_mail" || fail_test 110
+
+ad_wait_for_synchronization; fail_bool 0 110
+
+ad_verify_attribute "$AD_DN" "mail" "$AD_user_mail"; fail_bool 0 110
+
+## Since "proxyAddress" is present in AD, it takes precendence over "mail"
+udm_verify_udm_attribute "mailPrimaryAddress" "$UDM_users_user_mailPrimaryAddress" "users/user"; fail_bool 0 110
+udm_verify_multi_value_udm_attribute_contains "mailAlternativeAddress" \
+	"$AD_user_mail" "users/user"; fail_bool 1 110
+
+## don't overwrite UDM/OpenLDAP:"mail", which is only informative
+udm_verify_udm_attribute "e-mail" "$UDM_users_user_mail" "users/user"; fail_bool 0 110
+
+output=$(univention-adconnector-list-rejected 2>&1)
+if echo "$output" | grep -qi "$UDM_users_user_username"; then
+	echo "$output" >&2
+	fail_fast 110 ""
+fi
+
+
+section "==========Set+Append new preferred proxyAddress in AD=========="
+#UDM_users_user_Exchange_Homeserver="$(random_chars)"
+#UDM_users_user_Exchange_homeMDB="$(random_chars)"
+#UDM_users_user_Exchange_Nickname="$(random_chars)"
+UDM_users_user_mailPrimaryAddress3="$(random_chars)@${UDM_mail_domain_name}"
+UDM_users_user_mailAlternativeAddress2="$(random_chars)@${UDM_mail_domain_name}"
+AD_preferred_sip_address="SIP:$(random_chars)@$(random_chars)"
+
+echo "Set 'proxyAddresses' in AD to 'SMTP:$UDM_users_user_mailPrimaryAddress3'"
+echo "    and append '$smtp:$UDM_users_user_mailAlternativeAddress2'"
+echo "    and append '$AD_preferred_sip_address'"
+echo
+
+ad_set_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress3" || fail_test 110
+ad_set_attribute "$AD_DN" "proxyAddresses" "SMTP:$UDM_users_user_mailPrimaryAddress3" || fail_test 110
+ad_append_to_attribute "$AD_DN" "proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress2" || fail_test 110
+ad_append_to_attribute "$AD_DN" "proxyAddresses" "$AD_preferred_sip_address" || fail_test 110
+#ad_set_attribute "$AD_DN" "msExchHomeServerName" "$UDM_users_user_Exchange_Homeserver"; fail_bool 0 110
+#ad_set_attribute "$AD_DN" "homeMDB" "$UDM_users_user_Exchange_homeMDB"; fail_bool 0 110
+#ad_set_attribute "$AD_DN" "mailNickname" "$UDM_users_user_Exchange_Nickname"; fail_bool 0 110
+
+ad_wait_for_synchronization; fail_bool 0 110
+
+ad_verify_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress3"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "SMTP:$UDM_users_user_mailPrimaryAddress3"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress2"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "$AD_preferred_sip_address"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "msExchHomeServerName" "$UDM_users_user_Exchange_Homeserver"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "homeMDB" "$UDM_users_user_Exchange_homeMDB"; fail_bool 0 110
+#ad_verify_attribute "$AD_DN" "mailNickname" "$UDM_users_user_Exchange_Nickname"; fail_bool 0 110
+
+udm_verify_udm_attribute "mailPrimaryAddress" "$UDM_users_user_mailPrimaryAddress3" "users/user"; fail_bool 0 110
+udm_verify_multi_value_udm_attribute_contains "mailAlternativeAddress" \
+	"$UDM_users_user_mailAlternativeAddress2" "users/user"; fail_bool 0 110
+udm_verify_multi_value_udm_attribute_contains "mailAlternativeAddress" \
+	"$UDM_users_user_mailPrimaryAddress3" "users/user"; fail_bool 1 110
+
+## and the mailPrimaryAddress should get written back to AD:mail too
+ad_verify_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress3"; fail_bool 0 110
+
+## don't overwrite UDM/OpenLDAP:"mail", which is only informative
+udm_verify_udm_attribute "e-mail" "$UDM_users_user_mail" "users/user"; fail_bool 0 110
+
+#udm_verify_udm_attribute "Exchange-Homeserver" "$UDM_users_user_Exchange_Homeserver" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-homeMDB" "$UDM_users_user_Exchange_homeMDB" "users/user"; fail_bool 0 110
+#udm_verify_udm_attribute "Exchange-Nickname" "$UDM_users_user_Exchange_Nickname" "users/user"; fail_bool 0 110
+
+output=$(univention-adconnector-list-rejected 2>&1)
+if echo "$output" | grep -qi "$UDM_users_user_username"; then
+	echo "$output" >&2
+	fail_fast 110 ""
+fi
+
+section "==========Set multivalue mailAlternativeAddress=========="
+UDM_users_user_mailAlternativeAddress3="$(random_chars)@${UDM_mail_domain_name}"
+
+echo "Append additional 'mailAlternativeAddress' in UDM: '$UDM_users_user_mailAlternativeAddress3'"
+echo
+
+udm_modify "users/user" "" "" "" "" \
+		   --append mailAlternativeAddress="$UDM_users_user_mailAlternativeAddress3" || fail_test 110
+
+ad_wait_for_synchronization; fail_bool 0 110
+
+ad_verify_attribute "$AD_DN" "mail" "$UDM_users_user_mailPrimaryAddress3"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "SMTP:$UDM_users_user_mailPrimaryAddress3"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress2"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "$AD_preferred_sip_address"; fail_bool 0 110
+ad_verify_multi_value_attribute_contains "$AD_DN" \
+	"proxyAddresses" "smtp:$UDM_users_user_mailAlternativeAddress3"; fail_bool 0 110
+
+udm_verify_multi_value_udm_attribute_contains "mailPrimaryAddress" \
+	"$UDM_users_user_mailPrimaryAddress3" "users/user"; fail_bool 0 110
+udm_verify_multi_value_udm_attribute_contains "mailAlternativeAddress" \
+	"$UDM_users_user_mailAlternativeAddress2" "users/user"; fail_bool 0 110
+udm_verify_multi_value_udm_attribute_contains "mailAlternativeAddress" \
+	"$UDM_users_user_mailAlternativeAddress3" "users/user"; fail_bool 0 110
+
+## don't overwrite UDM/OpenLDAP:"mail", which is only informative
+udm_verify_udm_attribute "e-mail" "$UDM_users_user_mail" "users/user"; fail_bool 0 110
+
+output=$(univention-adconnector-list-rejected 2>&1)
+if echo "$output" | grep -qi "$UDM_users_user_username"; then
+	echo "$output" >&2
+	fail_fast 110
+fi
+
+exit "$RETVAL"

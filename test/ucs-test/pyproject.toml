@@ -1,0 +1,6 @@
+[tool.ruff]
+extend = "../../pyproject.toml"
+[tool.ruff.lint]
+# E266: ucs-test headers is ##-prefixed YAML
+# CPY001: No copyright for test cases
+extend-ignore = ["G", "E266", "CPY001", "PLC0415"]

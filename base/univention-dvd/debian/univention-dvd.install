@@ -1,0 +1,5 @@
+data	usr/share/debian-cd/
+share/*	usr/share/univention-dvd/
+tasks	usr/share/debian-cd/
+tools	usr/share/debian-cd/
+ucs*.conf	usr/share/debian-cd/

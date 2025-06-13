@@ -1,0 +1,135 @@
+@require "../variables.styl"
+
+/* GalleryPane */
+.umcGalleryPane.dgrid
+	overflow: hidden
+	&.umcOverviewPane
+		overflow: visible
+
+	height: auto
+	border: none
+
+	.dgrid-scroller
+		outline: none
+		position: relative
+		overflow: visible
+
+	.dgrid-selected
+		background-color: inherit
+
+/* gallery header may be outside of gallerypane */
+.umcGalleryCategoryHeader
+	padding: 0 0 spacing(1, true) 0
+	margin: 0 spacing(1) spacing(2)
+	font-size: var(--font-size-3)
+	border-bottom: 1px solid var(--bgc-content-container)
+
+.umcGalleryCategoryHeader:first-child
+	margin-top: 0
+
+.umcGalleryPane
+	// disable selection on touch devices
+	// taken from: http://stackoverflow.com/a/11237968
+	-webkit-touch-callout:none
+	-webkit-user-select:none
+
+	.umcGalleryWrapperItem
+		padding: var(--layout-spacing-unit)
+
+	$galleryItemColorTransitionDur = 250ms
+	.umcGalleryItem
+		transition: box-shadow 250ms, color $galleryItemColorTransitionDur, background-color $galleryItemColorTransitionDur
+		.umcFavoriteIconDefault polyline
+			transition: fill $galleryItemColorTransitionDur
+		.featherIcon
+			transition: none
+	.umcGalleryItem
+		position: relative
+		padding: calc(2 * var(--layout-spacing-unit))
+		background-color: var(--bgc-content-container)
+		box-sizing: content-box
+		box-shadow: var(--box-shadow)
+		border-radius: var(--border-radius-container)
+
+		// definitions in px instead of em due to size of image in px
+		height: 80px
+		overflow: hidden
+
+		.umcGalleryName
+			overflow-wrap: break-word
+			margin-right: 24px
+			max-height: 26px
+			line-height: 1
+			font-size: var(--font-size-3)
+			font-weight: var(--font-weight-bold)
+
+		.umcGalleryDescription
+			font-size: var(--font-size-4)
+			padding-top: 8px
+			max-height: 64px
+			line-height: var(--font-lineheight-compact)
+			word-wrap: break-word
+
+		.umcGalleryIcon
+			height: 78px
+			width: 80px
+			float: left
+			background-position: center center
+			/* make sure to have some spacing for SVG images with the property background-size=contain */
+			border: 5px transparent solid
+
+
+		/* if an icon is present, set a margin to the text elements */
+		.umcGalleryIcon + .umcGalleryName,
+		.umcGalleryIcon + .umcGalleryName + .umcGalleryDescription
+			margin-left: 85px
+
+		.umcGalleryStatusIcon
+			position: absolute
+			width: 20px
+			height: 20px
+			top: 5px
+			left: auto
+			right: 5px
+
+		.umcFavoriteIconDefault
+			position: absolute
+			top: 0
+			right: 20px
+			width: 10px
+			height: 10px
+			line-height: 0
+
+		.umcGalleryContextIcon
+			position: absolute
+			top: 10px
+			right: 12px
+			--button-size: 26px
+			--button-icon-bgc-hover: rgba(0, 0, 0, 0.15)
+			--button-icon-bgc-active: rgba(0, 0, 0, 0.20)
+
+	.umcGalleryItem.touched,
+	.umcGalleryItemActive,
+	.umcGalleryItem:hover
+		cursor: pointer
+
+		&.umcGalleryCategory--contrastDark
+			color: #1e1e1d
+			.umcFavoriteIconDefault polyline
+				fill: currentColor
+		&.umcGalleryCategory--contrastLight
+			color: #fff
+			.umcFavoriteIconDefault polyline
+				fill: currentColor
+
+
+/*
+.umcGalleryPane .umcGalleryItem:active
+	material-shadow(2)
+*/
+
+// no left/right padding for full size item
+@media (max-width: $xxs-max)
+	.umcGalleryPane .umcGalleryWrapperItem
+		padding-left: 0
+		padding-right: 0

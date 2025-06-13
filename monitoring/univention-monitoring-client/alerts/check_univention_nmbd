@@ -1,0 +1,81 @@
+#!/usr/bin/python3
+#
+# Univention Monitoring Plugin
+#  check_univention_nmbd: check nmbd status
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2007-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+import re
+import shlex
+import subprocess
+
+from univention.config_registry import ucr
+from univention.monitoring import Alert
+
+
+class NMBD(Alert):
+
+    def write_metrics(self):
+        ucr_hosts = ucr.get("monitoring/nmbd/query-wins-hosts")
+        if ucr_hosts:
+            hosts = [ent.strip().split(' ', 1) for ent in ucr_hosts.split(',')]
+        else:
+            query_host = wins_host = subprocess.check_output('/bin/hostname').strip().decode('UTF-8')
+            hosts = [(query_host, wins_host)]
+
+        for query_host, wins_host in hosts:
+            cmd = ['/usr/bin/nmblookup', '-U', wins_host, '--recursion', query_host]
+            try:
+                output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode('UTF-8', 'replace')
+            except FileNotFoundError:
+                self.write_metric('univention_nmbd_running', -1, query_host=query_host, wins_host=wins_host)
+                self.log.debug('Cannot find nmblookup executable')
+                continue
+            except subprocess.CalledProcessError as exc:
+                output = exc.output.decode('UTF-8', 'replace')
+
+            output = output.replace('\n', ';')
+            if 'failed to find name' in output:
+                self.log.debug('nmblookup for %s at host %s failed (%s): %s' % (wins_host, query_host, ' '.join(shlex.quote(x) for x in cmd), output))
+                self.write_metric('univention_nmbd_running', 0, query_host=query_host, wins_host=wins_host)
+                continue
+
+            # FIXME: IPv6 possible?
+            if re.search(r'[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ %s' % (re.escape(query_host),), output):
+                self.log.debug('nmblookup for %s at host %s ok' % (wins_host, query_host))
+                self.write_metric('univention_nmbd_running', 1, query_host=query_host, wins_host=wins_host)
+            else:
+                self.log.debug('unknown nmblookup for %s at host %s: %s' % (wins_host, query_host, output))
+                self.write_metric('univention_nmbd_running', 0, query_host=query_host, wins_host=wins_host)
+
+
+if __name__ == '__main__':
+    NMBD.main()

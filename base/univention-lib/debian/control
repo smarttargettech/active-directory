@@ -1,0 +1,63 @@
+Source: univention-lib
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Standards-Version: 3.9.8
+Build-Depends:
+ at,
+ debhelper-compat (=13),
+ dh-python,
+ pwgen,
+ python3-all,
+ python3-pil,
+ univention-config-dev (>= 15.0.3),
+ univention-l10n-dev (>= 7.0.1),
+ univention-unittests (>= 2.0.2-1),
+
+Package: python3-univention-lib
+Architecture: all
+Depends:
+ at,
+ bind9-dnsutils,
+ pwgen,
+ python3-apt,
+ python3-dnspython,
+ python3-ldap,
+ python3-ldb,
+ python3-magic,
+ python3-pil,
+ python3-samba,
+ python3-univention,
+ python3-univention-config-registry,
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ ${python3:Provides},
+Description: UCS - common scripting functions for Python 3 scripts
+ This package contains Python functions used by various
+ components of UCS.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/
+
+Package: shell-univention-lib
+Architecture: all
+Depends:
+ pwgen,
+ python3-univention-lib (= ${binary:Version}),
+ univention-config (>= 15),
+ ${misc:Depends},
+Breaks:
+ univention-join (<< 12),
+Recommends:
+ univention-join,
+Description: UCS - common scripting functions for shell scripts
+ This package contains shell functions used by various
+ components of UCS.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

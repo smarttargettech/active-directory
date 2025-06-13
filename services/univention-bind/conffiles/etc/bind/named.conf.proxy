@@ -1,0 +1,85 @@
+@%@UCRWARNING=# @%@
+
+controls{
+	inet 127.0.0.1
+@!@
+allowed_controllers = {configRegistry.get('dns/master/address', '127.0.0.1'), '127.0.0.1'}
+print('\t\tallow {{ {}; }};'.format('; '.join(sorted(allowed_controllers))))
+@!@
+};
+options {
+	directory "/var/cache/bind";
+	listen-on { any; };
+@!@
+dns_allow_query = configRegistry.get('dns/allow/query', '').strip(';')
+dnssec_val = configRegistry.is_true('dns/sec/validation', False)
+if not dnssec_val:
+    print('\tdnssec-validation no;')
+if dns_allow_query:
+    print('\tallow-query { %s; };' % dns_allow_query)
+
+dns_allow_query_cache = configRegistry.get('dns/allow/query/cache', '').strip(';')
+if dns_allow_query_cache:
+    print('\tallow-recursion { %s; };' % dns_allow_query_cache)
+    print('\tallow-query-cache { %s; };' % dns_allow_query_cache)
+
+dns_allow_transfer = configRegistry.get('dns/allow/transfer', '').strip(';')
+if dns_allow_transfer:
+    print('\tallow-transfer { %s; };' % dns_allow_transfer)
+
+val = 'any' if configRegistry.is_true('dns/ipv6', True) else 'none'
+print('\tlisten-on-v6 { %s; };' % val)
+@!@};
+logging {
+	category lame-servers { null; };
+	category default{ default_syslog; };
+	channel default_syslog {
+		syslog daemon;		# send to syslog's daemon facility
+		severity dynamic;	# log at the server's current debug level
+	};
+};
+@!@
+forwarders = [v for v in (configRegistry.get('dns/forwarder%d' % (key,), '').rstrip(';') for key in range(1, 4)) if v]
+if forwarders:
+    print('\n# Found a forwarder in ucr variables, using forwarder in zone ".".')
+    print('# Ignoring any setting of dns/fakeroot.')
+    print('zone "." {')
+    print('\ttype forward;')
+    print('\tforwarders { %s; };' % ('; '.join(forwarders),))
+    print('};')
+elif configRegistry.is_true('dns/fakeroot', True):
+    print('\n# Found no forwarder in ucr variables.')
+    print('# dns/fakeroot is either missing or set to True.')
+    print('# So setting a fake root zone ".".')
+    print('zone "." {')
+    print('\ttype master;')
+    print('\tfile "/etc/bind/db.root.fake";')
+    print('};')
+else:
+    print('\n# Found no forwarder in ucr variables.')
+    print('# dns/fakeroot is set to False.')
+    print('# So setting a root zone "." of type "hint" with default root servers.')
+    print('zone "." {')
+    print('\ttype hint;')
+    print('\tfile "/etc/bind/db.root";')
+    print('};')
+@!@
+zone "localhost" {
+	type master;
+	file "/etc/bind/db.local";
+};
+zone "127.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.127";
+};
+zone "0.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.0";
+};
+zone "255.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.255";
+};
+
+include "/etc/bind/univention.conf.proxy";
+include "/etc/bind/local.conf.proxy";

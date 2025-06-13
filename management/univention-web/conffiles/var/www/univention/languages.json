@@ -1,0 +1,14 @@
+@!@
+import json
+locale = configRegistry.get('locale', '')
+
+locales = []
+for loc in locale.split(' '):
+    if '.' in loc:
+        loc = loc.split('.')[0]
+    configured_locale = configRegistry.get('ucs/server/languages/%s' % loc)
+    if configured_locale:
+        locales.append((loc.replace('_', '-'), configured_locale))
+
+print(json.dumps([{'id': id, 'label': label} for id, label in locales]))
+@!@

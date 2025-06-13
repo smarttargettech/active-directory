@@ -1,0 +1,191 @@
+univention-monitoring-client (3.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:49 +0200
+
+univention-monitoring-client (3.0.7-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-monitoring-client (3.0.6) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#1952: fix some checks for 5.2
+
+ -- Felix Botner <botner@univention.de>  Mon, 09 Dec 2024 14:52:57 +0100
+
+univention-monitoring-client (3.0.5) unstable; urgency=medium
+
+  * Bug #56858: replace transitional packages
+
+ -- Christian Castens <castens@univention.de>  Thu, 30 May 2024 10:53:32 +0200
+
+univention-monitoring-client (3.0.4) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:34 +0100
+
+univention-monitoring-client (3.0.3) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:36 +0100
+
+univention-monitoring-client (3.0.2) unstable; urgency=medium
+
+  * Bug #56927: increase all modified joinscripts by 10
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:18:45 +0100
+
+univention-monitoring-client (3.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:15 +0100
+
+univention-monitoring-client (2.0.5) unstable; urgency=medium
+
+  * Bug #56124: set --ucsversionstart flag to 5.0-7
+
+ -- Marius Meschter <marius.meschter@univention.de>  Thu, 07 Mar 2024 23:54:54 +0100
+
+univention-monitoring-client (2.0.4) unstable; urgency=medium
+
+  * Bug #56858: Replace transitional package dependencies
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 23:54:44 +0100
+
+univention-monitoring-client (2.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:37 +0100
+
+univention-monitoring-client (2.0.2) unstable; urgency=medium
+
+  * Bug #56530: check only for Python 3 services
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:24 +0100
+
+univention-monitoring-client (2.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:28 +0100
+
+univention-monitoring-client (1.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:45 +0100
+
+univention-monitoring-client (1.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:37 +0100
+
+univention-monitoring-client (1.0.2-6) unstable; urgency=medium
+
+  * Bug #56350: fix writing of metrics and labels in
+    check_univention_ad_connector
+
+ -- Florian Best <best@univention.de>  Wed, 26 Jul 2023 11:28:56 +0200
+
+univention-monitoring-client (1.0.2-5) unstable; urgency=medium
+
+  * Bug #56341: Revert "feat(monitoring): add timestamp to metrics to be
+    more accurate"
+
+ -- Florian Best <best@univention.de>  Wed, 19 Jul 2023 17:55:48 +0200
+
+univention-monitoring-client (1.0.2-4) unstable; urgency=medium
+
+  * Bug #55367: use prometheus library to write metrics to disk
+
+ -- Florian Best <best@univention.de>  Mon, 17 Jul 2023 14:06:05 +0200
+
+univention-monitoring-client (1.0.2-3) unstable; urgency=medium
+
+  * Bug #56324: prevent machine.secret content to appear in the process
+    list
+
+ -- Florian Best <best@univention.de>  Mon, 17 Jul 2023 13:44:35 +0200
+
+univention-monitoring-client (1.0.2-2) unstable; urgency=medium
+
+  * Bug #55632: improved the Python 3.11 compatiblity
+
+ -- Mika Westphal <westphal@univention.de>  Wed, 12 Apr 2023 15:06:37 +0200
+
+univention-monitoring-client (1.0.2-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:42 +0100
+
+univention-monitoring-client (1.0.1-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 18 Jan 2023 09:48:08 +0100
+
+univention-monitoring-client (1.0.0-8) unstable; urgency=medium
+
+  * Bug #55341: restrict UMC flavor to necessary UDM commands
+
+ -- Florian Best <best@univention.de>  Tue, 08 Nov 2022 16:39:50 +0100
+
+univention-monitoring-client (1.0.0-7) unstable; urgency=medium
+
+  * Bug #55068: fixed typos in JoinStatusCheck
+
+ -- Siavash Sefid Rodi <sefid-rodi.extern@univention.de>  Thu, 04 Aug 2022 14:03:58 +0200
+
+univention-monitoring-client (1.0.0-6) unstable; urgency=medium
+
+  * Bug #55017: fix check_univention_ntp in error conditions
+
+ -- Florian Best <best@univention.de>  Fri, 22 Jul 2022 10:49:20 +0200
+
+univention-monitoring-client (1.0.0-5) unstable; urgency=medium
+
+  * Bug #54947: register ACL which allows DC hosts to change/add alerts
+  * Bug #54947: add temlating of query expression
+  * Bug #54947: enhance alert descriptions
+  * Bug #54947: fix authentication when reloading metrics
+  * Bug #54985: fix unassigning monitoringAlerts from computer objects
+
+ -- Florian Best <best@univention.de>  Mon, 18 Jul 2022 15:24:50 +0200
+
+univention-monitoring-client (1.0.0-4) unstable; urgency=medium
+
+  * Bug #54968: add missing metric to
+    UNIVENTION_ADCONNECTOR_METRIC_MISSING query
+  * Bug #54968: fix leftover nagios reference in
+    check_univention_nfsstatus
+  * Bug #54968: restrict check execution to valid system roles
+
+ -- Florian Best <best@univention.de>  Mon, 11 Jul 2022 11:41:30 +0200
+
+univention-monitoring-client (1.0.0-3) unstable; urgency=medium
+
+  * Bug #54927: prevent errors if prometheus node exporter is not
+    installed
+
+ -- Florian Best <best@univention.de>  Mon, 04 Jul 2022 10:42:59 +0200
+
+univention-monitoring-client (1.0.0-2) unstable; urgency=medium
+
+  * Bug #54919: fixed expressions of ssl and swap checks
+
+ -- Florian Best <best@univention.de>  Fri, 01 Jul 2022 12:06:50 +0200
+
+univention-monitoring-client (1.0.0-1) unstable; urgency=medium
+
+  * Bug #54748: initial release
+
+ -- Florian Best <best@univention.de>  Mon, 16 May 2022 15:20:47 +0200

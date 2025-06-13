@@ -1,0 +1,55 @@
+[atd]
+Description[de]=AT Dämon zur verzögerten Ausführen von Kommandos
+Description[en]=AT scheduled command execution daemon
+start_type=atd/autostart
+programs=/usr/sbin/atd
+icon=service/atd
+systemd=atd.service
+
+[cron]
+Description[de]=Cron Dämon
+Description[en]=Cron Daemon
+start_type=cron/autostart
+programs=/usr/sbin/cron
+icon=service/cron
+systemd=cron.service
+
+[openbsd-inetd]
+Description[de]=Internet Superserver
+Description[en]=Internet Superserver
+start_type=inetd/autostart
+programs=/usr/sbin/inetd
+icon=service/inetd
+systemd=inetd.service
+
+[nscd]
+Description[de]=Name Service Caching Dämon
+Description[en]=Name Service Caching Daemon
+start_type=nscd/autostart
+programs=/usr/sbin/nscd
+icon=service/nscd
+systemd=nscd.service
+
+[ntp]
+Description[de]=NTP-Server
+Description[en]=NTP Server
+programs=/usr/sbin/ntpd
+start_type=ntp/autostart
+icon=service/ntp
+systemd=ntpsec.service
+
+[rpcbind]
+Description[de]=RPC Port-Mapper Dienst
+Description[en]=RPC port mapper service
+programs=/sbin/rpcbind
+start_type=rpcbind/autostart
+icon=service/rpcbind
+systemd=rpcbind.service
+
+[ssh]
+Description[de]=SSH-Server
+Description[en]=SSH Server
+programs=/usr/sbin/sshd
+start_type=sshd/autostart
+icon=service/ssh
+systemd=ssh.service

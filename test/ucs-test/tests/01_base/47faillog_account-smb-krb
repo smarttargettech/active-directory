@@ -1,0 +1,138 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: Test account locking via shadow/ldap, smb, krb
+## roles: [domaincontroller_master]
+## tags: [basic, univention, skip_admember]
+## bugs: [35014, 32014]
+## packages: [univention-directory-manager-tools, openssh-server, smbclient, heimdal-clients]
+## exposure: dangerous
+## versions:
+##  1.0-0: skip
+##  2.4-0: fixed
+
+# shellcheck source=../../lib/ucr.sh
+. "$TESTLIBPATH/ucr.sh" || exit 137
+# shellcheck source=../../lib/user.sh
+. "$TESTLIBPATH/user.sh" || exit 137
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+# see Bug #35014.
+s4_services="$(univention-ldapsearch univentionService="Samba 4" | dn1)"
+if [ -n "$s4_services" ]; then
+	echo "Skip in S4 environments. See https://forge.univention.org/bugzilla/show_bug.cgi?id=35014."
+	exit 137
+fi
+
+NAME=$(user_randomname)
+
+ucr set \
+	auth/faillog=no \
+	auth/faillog/lock_global=no
+
+tdir=$(mktemp -d)
+trap 'rm -rf "$tdir" ; user_remove "$NAME" ; ucr_restore ; invoke-rc.d ssh restart' EXIT
+
+posix_login () {
+	local name pass lstchg min max warn inact expire flag
+	# shellcheck disable=SC2034
+	IFS=: read -r name pass lstchg min max warn inact expire flag < <(getent shadow "$NAME")
+	[ -z "$expire" ] || [ "$expire" -gt 1 ]
+}
+posix_login () {
+	python3 -c '
+import sys
+import os
+import PAM
+
+service = "ucstest"
+name = sys.argv[1]
+passwd = sys.stdin.readline().rstrip()
+conf = "/etc/pam.d/%s" % service
+
+def pam_conv(auth, query_list, userData):
+	resp = []
+	for query, type in query_list:
+		if type == PAM.PAM_PROMPT_ECHO_ON:
+			resp.append((name, 0))
+		elif type == PAM.PAM_PROMPT_ECHO_OFF:
+			resp.append((passwd, 0))
+		elif type in (PAM.PAM_ERROR_MSG, PAM.PAM_TEXT_INFO):
+			print(query, file=sys.stderr)
+			resp.append(("", 0))
+		else:
+			return None
+	return resp
+
+with open(conf, "w") as fd:
+	print("auth required pam_sss.so", file=fd)
+	print("account required pam_sss.so", file=fd)
+
+try:
+	auth = PAM.pam()
+	auth.start(service)
+	auth.set_item(PAM.PAM_USER, name)
+	auth.set_item(PAM.PAM_CONV, pam_conv)
+	auth.authenticate()
+	auth.acct_mgmt()
+	sys.exit(0)
+finally:
+	os.remove(conf)' "$NAME" <"$1"
+}
+
+smb_login () {
+	smbclient -g -L "${hostname:?}" -U "${NAME}%$(<"$1")" | grep "^Disk|$NAME|"
+}
+
+krb_login () {
+	kinit --password-file="${1}" "$NAME"
+}
+
+user_create "$NAME" \
+	--set password="$(<"$tests_domainadmin_pwdfile")" \
+	--set primaryGroup="$(get_domain_admins_dn)"
+
+# shellcheck disable=SC2034
+while read -r udm windows kerberos posix comment
+do
+	[[ "$udm" = "#"* ]] && continue
+	[ -z "${udm//[	 ]/}" ] && continue
+	info "udm=$udm"
+	user_set_attr "$NAME" disabled "" "$udm"
+
+	[ 0 -ne "$windows" ] && kerberos="$windows" # Kerberos checks sambaAcctFlags
+	[ 0 -ne "$posix" ] && windows="$posix" # Samba depends on pam_sss: acct_expired=bad
+
+	sleep 5 # wait for replication
+
+	# this on only if univention-samba? is installed
+	if [ -n "$(ucr get samba/share/home)" ]; then
+		smb_login "$tests_domainadmin_pwdfile"
+		result=$?
+		if [ "$result" -ne "$windows" ]
+		then
+			fail_test 110 "Failed Windows login: expected $windows, got $result"
+		fi
+	fi
+
+	krb_login "$tests_domainadmin_pwdfile"
+	result=$?
+	if [ "$result" -ne "$kerberos" ]
+	then
+		fail_test 110 "Failed Kerberos login: expected $kerberos, got $result"
+	fi
+
+	posix_login "$tests_domainadmin_pwdfile"
+	result=$?
+	if [ "$result" -ne "$posix" ]
+	then
+		fail_test 110 "Failed POSIX login: expected $posix, got $result"
+	fi
+done <<EOF
+#udm	windows	kerberos	posix	comment
+0	0	0	0
+1	1	1	1
+EOF
+
+exit "$RETVAL"
+# vim: set ft=sh :

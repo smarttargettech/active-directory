@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+  <module id="udm" icon="monitoring" version="1.0" translationId="udm-monitoring">
+    <!-- Translation currently broken due to Bug #35061 -->
+    <flavor icon="udm-monitoring-alert" id="monitoring/alert">
+      <name>Monitoring</name>
+      <description>Configuration of Monitoring alert settings in the domain</description>
+      <keywords>alert,monitoring,prometheus</keywords>
+      <categories>
+         <category name="devices"/>
+      </categories>
+      <requiredCommands>
+        <requiredCommand name="udm/reports/query"/>
+        <requiredCommand name="udm/meta_info"/>
+        <requiredCommand name="udm/containers"/>
+        <requiredCommand name="udm/types"/>
+        <requiredCommand name="udm/properties"/>
+        <requiredCommand name="udm/layout"/>
+        <requiredCommand name="udm/policies"/>
+        <requiredCommand name="udm/query"/>
+        <requiredCommand name="udm/syntax/choices/info"/>
+        <requiredCommand name="udm/syntax/choices"/>
+      </requiredCommands>
+    </flavor>
+  </module>
+</umc>

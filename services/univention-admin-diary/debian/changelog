@@ -1,0 +1,552 @@
+univention-admin-diary (4.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:52 +0200
+
+univention-admin-diary (4.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:31 +0100
+
+univention-admin-diary (4.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:33 +0100
+
+univention-admin-diary (4.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:21 +0100
+
+univention-admin-diary (3.0.6) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:17 +0100
+
+univention-admin-diary (3.0.5) unstable; urgency=medium
+
+  * Bug #56540: Update Postgres 11 -> 13
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 07 Mar 2024 23:53:56 +0100
+
+univention-admin-diary (3.0.4) unstable; urgency=medium
+
+  * Bug #55994: drop Python 2 binary packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:52 +0100
+
+univention-admin-diary (3.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:40 +0100
+
+univention-admin-diary (3.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:23 +0100
+
+univention-admin-diary (3.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:34 +0100
+
+univention-admin-diary (2.0.9-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:54 +0100
+
+univention-admin-diary (2.0.8-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:33 +0100
+
+univention-admin-diary (2.0.7-2) unstable; urgency=medium
+
+  * Bug #56201: replace python-notifier and adjust to new UMC module API
+
+ -- Florian Best <best@univention.de>  Tue, 27 Jun 2023 16:16:36 +0200
+
+univention-admin-diary (2.0.7-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:43 +0100
+
+univention-admin-diary (2.0.6-1) unstable; urgency=medium
+
+  * Bug #53092: Added fail checks for the join scripts
+
+ -- Mika Westphal <westphal@univention.de>  Thu, 02 Feb 2023 13:17:15 +0100
+
+univention-admin-diary (2.0.5-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 28 Sep 2022 19:53:25 +0200
+
+univention-admin-diary (2.0.4-7) unstable; urgency=medium
+
+  * Bug #49016: Typo
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 19 Sep 2022 21:08:47 +0200
+
+univention-admin-diary (2.0.4-6) unstable; urgency=medium
+
+  * Bug #49016: Enhanced exception handling in admin diary
+
+ -- Peter Stoll <stoll.extern@univention.de>  Thu, 15 Sep 2022 16:28:13 +0200
+
+univention-admin-diary (2.0.4-5) unstable; urgency=medium
+
+  * Bug #51902: The UMC module "Admin Diary" now consumes less RAM
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Thu, 18 Aug 2022 12:22:37 +0200
+
+univention-admin-diary (2.0.4-4) unstable; urgency=medium
+
+  * Bug #54273: Include debug script in server_password_change/univention-admin-diary subscript
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Tue, 05 Jul 2022 12:25:08 +0200
+
+univention-admin-diary (2.0.4-3) unstable; urgency=low
+
+  * Bug #54706: Fix missing dependency for create_logfile
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 23 Jun 2022 18:23:33 +0200
+
+univention-admin-diary (2.0.4-2) unstable; urgency=medium
+
+  * Bug #54706: drop Python 3 package files
+
+ -- Florian Best <best@univention.de>  Mon, 02 May 2022 12:51:57 +0200
+
+univention-admin-diary (2.0.4-1) unstable; urgency=medium
+
+  * Bug #54706: move essential files into Python 3 package
+
+ -- Florian Best <best@univention.de>  Mon, 02 May 2022 11:37:19 +0200
+
+univention-admin-diary (2.0.3-2) unstable; urgency=medium
+
+  * Bug #53665: rename css class
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 07 Sep 2021 10:05:13 +0200
+
+univention-admin-diary (2.0.3-1) unstable; urgency=low
+
+  * Bug #51334: Fix Python 3 compatibility
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 May 2021 14:04:10 +0200
+
+univention-admin-diary (2.0.2-7) unstable; urgency=low
+
+  * Bug #51334: add python 3 compatibility
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 03 May 2021 09:15:24 +0200
+
+univention-admin-diary (2.0.2-6) unstable; urgency=medium
+
+  * Bug #52941: added Icon tag to umc_modules file
+
+ -- Jan Luttermann <luttermann@univention.de>  Mon, 26 Apr 2021 17:25:33 +0200
+
+univention-admin-diary (2.0.2-5) unstable; urgency=medium
+
+  * Bug #52941: moved svg file to icon directory in install file
+
+ -- Jan Luttermann <luttermann@univention.de>  Mon, 26 Apr 2021 17:16:53 +0200
+
+univention-admin-diary (2.0.2-4) unstable; urgency=medium
+
+  * Bug #52941: added new icon design for admin diary
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 23 Apr 2021 14:02:14 +0200
+
+univention-admin-diary (2.0.2-3) unstable; urgency=medium
+
+  * Bug #52453: adjust font size
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 05 Mar 2021 07:45:13 +0100
+
+univention-admin-diary (2.0.2-2) unstable; urgency=medium
+
+  * Bug #52453: adjust styling for UCS 5 Design
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 09 Feb 2021 08:10:47 +0100
+
+univention-admin-diary (2.0.2-1) unstable; urgency=medium
+
+  * Bug #43686: use systemctl to start, stop or restart univention-directory-listener
+
+ -- Sebastian Lobinger <lobinger@univention.de>  Fri, 30 Oct 2020 15:09:31 +0100
+
+univention-admin-diary (2.0.1-2) unstable; urgency=low
+
+  * Bug #52211: Convert to univention-join-dev
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 15 Oct 2020 09:59:10 +0200
+
+univention-admin-diary (2.0.1-1) unstable; urgency=medium
+
+  * Bug #42374: IP Managed Client -> IP Client
+
+ -- Arvid <requate@univention.de>  Mon, 05 Oct 2020 18:02:43 +0200
+
+univention-admin-diary (2.0.1-0) unstable; urgency=medium
+
+  * Bug #51334: add python 3 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 02 Oct 2020 09:58:27 +0200
+
+univention-admin-diary (2.0.0-5) unstable; urgency=medium
+
+  * Bug #42374: Wording - Master -> Primary; Slave -> Replica
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 25 Sep 2020 10:14:07 +0200
+
+univention-admin-diary (2.0.0-4) unstable; urgency=medium
+
+  * some python 3 fixes
+
+ -- Florian Best <best@univention.de>  Thu, 02 Jul 2020 12:55:31 +0200
+
+univention-admin-diary (2.0.0-3) unstable; urgency=medium
+
+  * Bug #51334: install global dependency everywhere
+
+ -- Florian Best <best@univention.de>  Wed, 17 Jun 2020 01:17:47 +0200
+
+univention-admin-diary (2.0.0-2) unstable; urgency=medium
+
+  * Bug #51419: Remove false line in postinst
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 12 Jun 2020 16:35:18 +0200
+
+univention-admin-diary (2.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:27 +0200
+
+univention-admin-diary (1.0.0-51) unstable; urgency=medium
+
+  * Bug #51134: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 21 Apr 2020 15:40:41 +0200
+
+univention-admin-diary (1.0.0-50) unstable; urgency=medium
+
+  * Bug #50531: negative limits are ignored and the default is used
+
+ -- Johannes Keiser <keiser@univention.de>  Tue, 18 Feb 2020 12:06:58 +0100
+
+univention-admin-diary (1.0.0-49) unstable; urgency=medium
+
+  * Bug #50531: added admin/diary/query/limit ucr variable
+    that limits the results of a query
+
+ -- Johannes Keiser <keiser@univention.de>  Mon, 17 Feb 2020 11:37:54 +0100
+
+univention-admin-diary (1.0.0-48) unstable; urgency=medium
+
+  * Bug #49169: migrate univention-admin-diary to dh_python
+
+ -- Florian Best <best@univention.de>  Mon, 11 Nov 2019 16:17:50 +0100
+
+univention-admin-diary (1.0.0-47) unstable; urgency=medium
+
+  * Bug #48698: Fix user visible spelling errors
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 08 Aug 2019 05:46:40 +0200
+
+univention-admin-diary (1.0.0-46) unstable; urgency=medium
+
+  * Bug #49579: fix date not being shown correctly in IE and Safari
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 12 Jul 2019 12:17:21 +0200
+
+univention-admin-diary (1.0.0-45) unstable; urgency=medium
+
+  * Bug #49056: Improve robustness and traceback logging
+
+ -- Arvid Requate <requate@univention.de>  Mon, 13 May 2019 15:09:42 +0200
+
+univention-admin-diary (1.0.0-44) unstable; urgency=medium
+
+  * Bug #48972: Encode HTML entities in page
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 12 Mar 2019 18:39:30 +0100
+
+univention-admin-diary (1.0.0-43) unstable; urgency=medium
+
+  * Bug #48972: Encode HTML entities in grid
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 12 Mar 2019 17:07:40 +0100
+
+univention-admin-diary (1.0.0-42) unstable; urgency=medium
+
+  * Bug #48865: Lower log level when the client successfully writes rsyslog
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 05 Mar 2019 17:48:22 +0100
+
+univention-admin-diary (1.0.0-41) unstable; urgency=medium
+
+  * Bug #48341: UTF-8 support for mysql/mariadb
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 04 Mar 2019 23:29:35 +0100
+
+univention-admin-diary (1.0.0-40) unstable; urgency=medium
+
+  * Bug #48341: Better support for preinstalled mysql/mariadb
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 04 Mar 2019 13:25:17 +0100
+
+univention-admin-diary (1.0.0-39) unstable; urgency=medium
+
+  * Bug #48341: Do not open sockets during import
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 04 Mar 2019 04:56:47 +0100
+
+univention-admin-diary (1.0.0-38) unstable; urgency=medium
+
+  * Bug #48342: Do not unset backend UCRV during upgrades
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 27 Feb 2019 16:50:27 +0100
+
+univention-admin-diary (1.0.0-37) unstable; urgency=medium
+
+  * Bug #48717: Typos in Events
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 27 Feb 2019 16:25:56 +0100
+
+univention-admin-diary (1.0.0-36) unstable; urgency=medium
+
+  * Bug #48342: Don't log admin diary messages in local syslog
+
+ -- Arvid Requate <requate@univention.de>  Wed, 27 Feb 2019 14:59:20 +0100
+
+univention-admin-diary (1.0.0-35) unstable; urgency=medium
+
+  * Bug #48341: Put DB initialization into joinscript
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 27 Feb 2019 11:35:14 +0100
+
+univention-admin-diary (1.0.0-34) unstable; urgency=medium
+
+  * Bug #48342: More verbose default log level
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 27 Feb 2019 01:36:55 +0100
+
+univention-admin-diary (1.0.0-33) unstable; urgency=medium
+
+  * Bug #28499: Update debian/copyright
+  * Bug #48342: Set admin/diary/backend/port?10514 for firewall config
+
+ -- Arvid Requate <requate@univention.de>  Tue, 26 Feb 2019 21:01:58 +0100
+
+univention-admin-diary (1.0.0-32) unstable; urgency=medium
+
+  * Bug #48342: disable "confirmMessages" currently because it's only
+    supported with rsyslog 8.38.0 and above.
+  * Fix tls.permittedPeer value syntax
+
+ -- Arvid Requate <requate@univention.de>  Tue, 26 Feb 2019 19:24:23 +0100
+
+univention-admin-diary (1.0.0-31) unstable; urgency=medium
+
+  * Bug #48342: Updated dependency, better dbhost name
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Feb 2019 17:36:46 +0100
+
+univention-admin-diary (1.0.0-30) unstable; urgency=medium
+
+  * Bug #48717: Updated names
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Feb 2019 17:06:25 +0100
+
+univention-admin-diary (1.0.0-29) unstable; urgency=medium
+
+  * Bug #48717: Generic UDM Events
+  * Bug #48717: More App Events
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Feb 2019 13:35:59 +0100
+
+univention-admin-diary (1.0.0-28) unstable; urgency=medium
+
+  * Bug #48476: No right aligned comments
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Feb 2019 11:32:46 +0100
+
+univention-admin-diary (1.0.0-27) unstable; urgency=medium
+
+  * Bug #48476: Fix icons, "all" filters
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 26 Feb 2019 11:30:27 +0100
+
+univention-admin-diary (1.0.0-26) unstable; urgency=medium
+
+  * Bug #48476: Improved Error message
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 25 Feb 2019 22:50:46 +0100
+
+univention-admin-diary (1.0.0-25) unstable; urgency=medium
+
+  * Bug #48342: New Backend package for UMC only
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sun, 24 Feb 2019 14:55:44 +0100
+
+univention-admin-diary (1.0.0-24) unstable; urgency=medium
+
+  * Bug #48341: Not very intrusive syslog implementation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 21:52:50 +0100
+
+univention-admin-diary (1.0.0-23) unstable; urgency=medium
+
+  * Bug #48341: Temporary revert of Non-intrusive syslog implementation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 21:24:52 +0100
+
+univention-admin-diary (1.0.0-22) unstable; urgency=medium
+
+  * Bug #48341: Non-intrusive syslog implementation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 14:45:27 +0100
+
+univention-admin-diary (1.0.0-21) unstable; urgency=medium
+
+  * Bug #48717: UDM events
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 14:23:31 +0100
+
+univention-admin-diary (1.0.0-20) unstable; urgency=medium
+
+  * Bug #48476: Improved UMC design
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Feb 2019 14:20:44 +0100
+
+univention-admin-diary (1.0.0-19) unstable; urgency=medium
+
+  * Bug #48717: More events
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 20 Feb 2019 17:07:34 +0100
+
+univention-admin-diary (1.0.0-18) unstable; urgency=medium
+
+  * Bug #48476: Improved UMC design
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 20 Feb 2019 15:36:27 +0100
+
+univention-admin-diary (1.0.0-17) unstable; urgency=medium
+
+  * Bug #48342: Turn on "confirmMessages" for the backend omprog script
+
+ -- Arvid Requate <requate@univention.de>  Fri, 15 Feb 2019 16:03:28 +0100
+
+univention-admin-diary (1.0.0-16) unstable; urgency=medium
+
+  * Bug #48476: Change from positional args to keyword args
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 14 Feb 2019 21:52:44 +0100
+
+univention-admin-diary (1.0.0-15) unstable; urgency=medium
+
+  * Bug #48476: Next / previous week in UMC
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 12 Feb 2019 13:29:50 +0100
+
+univention-admin-diary (1.0.0-14) unstable; urgency=medium
+
+  * Bug #48476: Improve Arg definition
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sat, 09 Feb 2019 01:44:55 +0100
+
+univention-admin-diary (1.0.0-13) unstable; urgency=medium
+
+  * Bug #48476: Using sqlalchemy to support MySQL
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 07 Feb 2019 02:09:48 +0100
+
+univention-admin-diary (1.0.0-12) unstable; urgency=medium
+
+  * Bug #48476: UMC Module: second iteration
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 06 Feb 2019 01:58:30 +0100
+
+univention-admin-diary (1.0.0-11) unstable; urgency=medium
+
+  * Bug #48476: UMC Module: first iteration
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 05 Feb 2019 14:49:43 +0100
+
+univention-admin-diary (1.0.0-10) unstable; urgency=medium
+
+  * Bug #48343: Log rotate
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 16 Jan 2019 18:15:58 +0100
+
+univention-admin-diary (1.0.0-9) unstable; urgency=medium
+
+  * Bug #48342: Various improvements
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 10 Jan 2019 21:31:06 +0100
+
+univention-admin-diary (1.0.0-8) unstable; urgency=medium
+
+  * Bug #48342: add comments
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 09 Jan 2019 13:04:08 +0100
+
+univention-admin-diary (1.0.0-7) unstable; urgency=medium
+
+  * Bug #48343: Write Admin Diary Entry when rotating server password
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sun, 06 Jan 2019 21:36:48 +0100
+
+univention-admin-diary (1.0.0-6) unstable; urgency=medium
+
+  * Bug #48342: unset admin/diary/backend in client postrm
+  * crestart listener in client postrm
+
+ -- Arvid Requate <requate@univention.de>  Thu, 03 Jan 2019 19:45:55 +0100
+
+univention-admin-diary (1.0.0-5) unstable; urgency=medium
+
+  * Bug #48341: backend code
+  * Bug #48342: add UCR variable descriptions
+
+ -- Arvid Requate <requate@univention.de>  Thu, 03 Jan 2019 19:37:38 +0100
+
+univention-admin-diary (1.0.0-4) unstable; urgency=medium
+
+  * Bug #48342: only restart rsyslog if necessary
+
+ -- Arvid Requate <requate@univention.de>  Thu, 20 Dec 2018 18:50:50 +0100
+
+univention-admin-diary (1.0.0-3) unstable; urgency=medium
+
+  * Bug #48342: Update UCR admin/diary/backend from univentionService
+
+ -- Arvid Requate <requate@univention.de>  Thu, 20 Dec 2018 18:35:03 +0100
+
+univention-admin-diary (1.0.0-2) unstable; urgency=medium
+
+  * Bug #48342: rsyslog relp+TLS config
+
+ -- Arvid Requate <requate@univention.de>  Thu, 20 Dec 2018 13:34:47 +0100
+
+univention-admin-diary (1.0.0-1) unstable; urgency=medium
+
+  * Bug #48342: initial release
+
+ -- Felix Botner <botner@univention.de>  Mon, 17 Dec 2018 11:01:41 +0100

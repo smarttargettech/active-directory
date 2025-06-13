@@ -1,0 +1,1656 @@
+univention-server (17.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:55 +0200
+
+univention-server (17.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:39 +0100
+
+univention-server (17.0.4) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:34 +0100
+
+univention-server (17.0.3) unstable; urgency=medium
+
+  * Bug #56765: Remove univention-saml
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 08 Mar 2024 00:18:41 +0100
+
+univention-server (17.0.2) unstable; urgency=medium
+
+  * Bug #56661: migrate from NTP to NTPSEC
+
+ -- Marius Meschter <marius.meschter@univention.de>  Fri, 08 Mar 2024 00:18:27 +0100
+
+univention-server (17.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:26 +0100
+
+univention-server (16.0.5) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:19 +0100
+
+univention-server (16.0.4) unstable; urgency=medium
+
+  * Bug #55997: replace obsolete ldap client utility options (-h/-p)
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:46 +0100
+
+univention-server (16.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:36 +0100
+
+univention-server (16.0.2) unstable; urgency=medium
+
+  * Bug #56530: change Python 2 packages into transitional packages
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:20 +0100
+
+univention-server (16.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:38 +0100
+
+univention-server (15.0.9-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:49 +0100
+
+univention-server (15.0.8-2) unstable; urgency=low
+
+  * Bug #56911: Replace `py3dns` with `dnspython`
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 14 Dec 2023 08:10:42 +0100
+
+univention-server (15.0.8-1) unstable; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+  * Bug #56046: Use `bash` to execure Primary preinst for SSL generation
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 09 Dec 2023 15:08:31 +0100
+
+univention-server (15.0.7-3) unstable; urgency=medium
+
+  * Bug #55940: move server_password_change script univention-admember
+    to univention-role-server-common
+
+ -- Arvid <requate@univention.de>  Wed, 26 Apr 2023 18:23:05 +0200
+
+univention-server (15.0.7-2) unstable; urgency=medium
+
+  * Bug #42330: Remove old maintainer script package update code
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Feb 2023 14:21:31 +0100
+
+univention-server (15.0.7-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:35 +0100
+
+univention-server (15.0.6-1) unstable; urgency=medium
+
+  * Bug #55554: Fix UCR variable typing
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Feb 2023 11:43:03 +0100
+
+univention-server (15.0.5-4) unstable; urgency=medium
+
+  * Bug #55485: Add dependency on univention-support-info to univention-role-server-common
+
+ -- Mika Westphal <westphal@univention.de>  Tue, 03 Jan 2023 10:55:06 +0100
+
+univention-server (15.0.5-3) unstable; urgency=medium
+
+  * Bug #55383: Add univention-keycloak to role-server-common
+
+ -- Julia Bremer <bremer@univention.de>  Fri, 04 Nov 2022 08:52:54 +0100
+
+univention-server (15.0.5-2) unstable; urgency=medium
+
+  * Bug #54273: Add debug information to server_password_change
+
+ -- Juan Carlos García García <garcia-garcia.extern@univention.de>  Tue, 05 Jul 2022 12:25:08 +0200
+
+univention-server (15.0.5-1) unstable; urgency=medium
+
+  * Bug #54748: add dependencies to monitoring packages
+
+ -- Florian Best <best@univention.de>  Mon, 27 Jun 2022 17:41:36 +0200
+
+univention-server (15.0.4-8) unstable; urgency=medium
+
+  * Bug #53205: move samba call to the end of changes queue in server_password_change
+
+ -- Juan Pedro Torres <torres-munoz.extern@univention.de>  Thu, 21 Apr 2022 10:36:47 +0200
+
+univention-server (15.0.4-7) unstable; urgency=medium
+
+  * Bug #53182: Add timestamps to server_password_change log messages
+
+ -- Erik Damrose <damrose@univention.de>  Fri, 22 Oct 2021 09:13:04 +0200
+
+univention-server (15.0.4-6) unstable; urgency=medium
+
+  * Bug #53348: Migrated univention-server to Python 3
+
+ -- Eduardo Ruiz Moreno <emoreno@univention.de>  Mon, 18 Oct 2021 15:50:26 +0200
+
+univention-server (15.0.4-5) unstable; urgency=medium
+
+  * Bug #53182: added timestamp to echo calls of password change
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 08 Oct 2021 15:11:26 +0200
+
+univention-server (15.0.4-4) unstable; urgency=medium
+
+  * Bug #52959: New option --own-ip for univention-fix-ucr-dns
+
+ -- Arvid <requate@univention.de>  Tue, 11 May 2021 11:01:07 +0200
+
+univention-server (15.0.4-3) unstable; urgency=medium
+
+  * Bug #52957: Added removed packages to univention-role-common conflict section
+
+ -- Jan Luttermann <luttermann@univention.de>  Tue, 27 Apr 2021 17:13:45 +0200
+
+univention-server (15.0.4-2) unstable; urgency=medium
+
+  * Bug #53147: Add welcome UMC module for primary role
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 23 Apr 2021 18:13:55 +0200
+
+univention-server (15.0.4-1) unstable; urgency=medium
+
+  * Bug #52122: Remove univention-nagios-server
+
+ -- Arvid <requate@univention.de>  Tue, 20 Apr 2021 14:43:22 +0200
+
+univention-server (15.0.3-6) unstable; urgency=low
+
+  * Bug #51984: Depend on linux-image-amd64 instead of univention-kernel-image
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 16 Apr 2021 15:34:47 +0200
+
+univention-server (15.0.3-5) unstable; urgency=low
+
+  * Bug #52993: add dependency to univention-initrd that was lost due to
+    removal of univention-kernel-image
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 31 Mar 2021 11:08:01 +0200
+
+univention-server (15.0.3-4) unstable; urgency=medium
+
+  * Bug #52957: moved removed packages of ucs5 from the check function of the
+    updater to the Breaks part of the univention-server control
+
+ -- Jan Luttermann <luttermann@univention.de>  Fri, 19 Mar 2021 13:58:27 +0100
+
+univention-server (15.0.3-3) unstable; urgency=low
+
+  * Bug #44462: Handle unjoined DCs in univention-fix-ucr-dns
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 09 Mar 2021 10:16:47 +0100
+
+univention-server (15.0.3-2) unstable; urgency=low
+
+  * Bug #44462: always set nameservers passed via CLI
+  * Bug #44462: do not update UCR/reload BIND if nothing changed
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 08 Mar 2021 11:13:18 +0100
+
+univention-server (15.0.3-1) unstable; urgency=low
+
+  * Bug #44462: add new options --no-ucr and --dnsserver to univention-fix-ucr-dns
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 01 Mar 2021 21:54:53 +0100
+
+univention-server (15.0.2-3) unstable; urgency=low
+
+  * Bug #52807: remove dependency alternative to mail-transport-agent
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 23 Feb 2021 17:58:17 +0100
+
+univention-server (15.0.2-2) unstable; urgency=medium
+
+  * Bug #43686: use systemctl calls for UDL
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 17 Nov 2020 12:23:36 +0100
+
+univention-server (15.0.2-1) unstable; urgency=medium
+
+  * Bug #42374: Replace legacy Master/Slave wording by
+    Primary/Backup/Replica/Managed Node
+
+ -- Arvid <requate@univention.de>  Thu, 24 Sep 2020 13:48:37 +0200
+
+univention-server (15.0.1-0) unstable; urgency=low
+
+  * Bug #31026: Cleanup scripts
+  * Bug #32847: Remove ifplugd support
+  * Bug #39259: Recommends: cifs-utils
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 04 Jul 2020 18:33:45 +0200
+
+univention-server (15.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Jannik Ahlers <ahlers@univention.de>  Wed, 03 Jun 2020 11:53:47 +0200
+
+univention-server (14.0.0-16) unstable; urgency=medium
+
+  * Bug #50708: reverted, because it did not belong here.
+
+ -- Max Christian Pohle <pohle@univention.de>  Tue, 07 Apr 2020 15:59:17 +0200
+
+univention-server (14.0.0-14) unstable; urgency=medium
+
+  * Bug #50708: restart udm-rest service when machine.secret changed
+
+ -- Max Christian Pohle <pohle@univention.de>  Tue, 07 Apr 2020 13:10:17 +0200
+
+univention-server (14.0.0-13) unstable; urgency=low
+
+  * Bug #51011: make UCR templates compatible to python3
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 25 Mar 2020 14:48:28 +0100
+
+univention-server (14.0.0-12) unstable; urgency=medium
+
+  * Bug #49700: added new package univention-ldap-config-master to
+    univention-server-master/univention-server-backup dependencies
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 26 Feb 2020 14:21:15 +0100
+
+univention-server (14.0.0-11) unstable; urgency=low
+
+  * Bug #49036: Fix file permission when creating new host certificates
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 10 Oct 2019 15:34:05 +0200
+
+univention-server (14.0.0-10) unstable; urgency=medium
+
+  * Bug #50171: install UDM REST API by default on DC Master/Backup
+
+ -- Florian Best <best@univention.de>  Wed, 18 Sep 2019 20:08:33 +0200
+
+univention-server (14.0.0-9) unstable; urgency=medium
+
+  * Bug #50034: rename package
+
+ -- Florian Best <best@univention.de>  Tue, 10 Sep 2019 16:47:19 +0200
+
+univention-server (14.0.0-8) unstable; urgency=medium
+
+  * Bug #50034: make dependency more explicit
+
+ -- Florian Best <best@univention.de>  Thu, 22 Aug 2019 09:18:42 +0200
+
+univention-server (14.0.0-7) unstable; urgency=medium
+
+  * Bug #50034: install REST service on DC Master and DC Backup by default
+
+ -- Florian Best <best@univention.de>  Tue, 20 Aug 2019 20:29:45 +0200
+
+univention-server (14.0.0-6) unstable; urgency=medium
+
+  * Bug #49193: fixed messages
+
+ -- Felix Botner <botner@univention.de>  Mon, 13 May 2019 13:08:45 +0200
+
+univention-server (14.0.0-5) unstable; urgency=medium
+
+  * Bug #49193: Correct order of commands, typo
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 25 Apr 2019 11:33:30 +0200
+
+univention-server (14.0.0-4) unstable; urgency=medium
+
+  * Bug #49193: Restore keytab if samba password change fails, and code cleanup
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 25 Apr 2019 10:31:12 +0200
+
+univention-server (14.0.0-3) unstable; urgency=medium
+
+  * Bug #49193: Set new sambapassword in server_password_change earlier, to be able to rollback if this fails.
+
+ -- Julia Bremer <bremer@univention.de>  Thu, 18 Apr 2019 14:08:24 +0200
+
+univention-server (14.0.0-2) unstable; urgency=medium
+
+  * Bug #48342: Add dependency for the Admin Diary client
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sun, 06 Jan 2019 21:40:18 +0100
+
+univention-server (14.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:32 +0100
+
+univention-server (13.0.0-8) unstable; urgency=medium
+
+  * Bug #47781: fix ucr variable descriptions
+
+ -- Jannik Ahlers <ahlers@univention.de>  Tue, 02 Oct 2018 17:15:20 +0200
+
+univention-server (13.0.0-7) unstable; urgency=low
+
+  * Bug #47781: Make time for password change check configurable
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 11 Sep 2018 15:06:25 +0200
+
+univention-server (13.0.0-6) unstable; urgency=low
+
+  * Bug #47581: improved check when to trigger OX schema issue cleanup
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 15 Aug 2018 15:59:21 +0200
+
+univention-server (13.0.0-5) unstable; urgency=low
+
+  * Bug #47581: improved check when to trigger OX schema issue cleanup
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 15 Aug 2018 13:21:51 +0200
+
+univention-server (13.0.0-4) unstable; urgency=low
+
+  * Bug #47581: fix OX schema issue caused by default master packages
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 13 Aug 2018 22:07:52 +0200
+
+univention-server (13.0.0-3) unstable; urgency=medium
+
+  * Bug #45909: Remove univention-system-setup from
+    univention-container-role-common
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 16 Mar 2018 15:06:36 +0100
+
+univention-server (13.0.0-2) unstable; urgency=medium
+
+  * Bug #46224: add man-db to univention-role-common recommends
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 20 Feb 2018 13:31:22 +0100
+
+univention-server (13.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:43 +0100
+
+univention-server (12.0.0-13) unstable; urgency=medium
+
+  * Bug #39283: Check pending listener transactions in server
+    password change script
+
+ -- Felix Botner <botner@univention.de>  Thu, 28 Sep 2017 17:15:39 +0200
+
+univention-server (12.0.0-12) unstable; urgency=low
+
+  * Bug #45272: Change Priotity: standard to optional
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 05 Sep 2017 09:05:18 +0200
+
+univention-server (12.0.0-11) unstable; urgency=low
+
+  * Bug #45120: Handle not default gateway set
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 02 Aug 2017 11:26:42 +0200
+
+univention-server (12.0.0-10) unstable; urgency=medium
+
+  * Bug #45040: Install univention-fix-ucr-dns in
+    univention-container-role-server-common too, adding conflict with
+    univention-role-server-common
+
+ -- Arvid Requate <requate@univention.de>  Tue, 18 Jul 2017 20:54:01 +0200
+
+univention-server (12.0.0-9) unstable; urgency=medium
+
+  * Bug #42109: remove time protocol server from inetd.conf during update
+
+ -- Arvid Requate <requate@univention.de>  Thu, 09 Mar 2017 15:28:49 +0100
+
+univention-server (12.0.0-8) unstable; urgency=low
+
+  * Bug #43217: Add --force-self
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 06 Mar 2017 14:45:33 +0100
+
+univention-server (12.0.0-7) unstable; urgency=medium
+
+  * Bug #43595: Add recommendation to univention-server-overview
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 01 Mar 2017 04:40:47 +0100
+
+univention-server (12.0.0-6) unstable; urgency=medium
+
+  * Bug #43495: Adjust dependency to univention-portal
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Feb 2017 14:59:11 +0100
+
+univention-server (12.0.0-5) unstable; urgency=low
+
+  * Bug #43217: Fix duplicate -n option
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 28 Feb 2017 11:03:24 +0100
+
+univention-server (12.0.0-4) unstable; urgency=low
+
+  * Bug #43217: Change default for adding master or nameservers
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 28 Feb 2017 07:47:36 +0100
+
+univention-server (12.0.0-3) unstable; urgency=low
+
+  * Bug #43217: Move fix script for DNS settings to univention-server
+  * Bug #43649: Change emacs23 to emacs24
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 24 Feb 2017 12:19:59 +0100
+
+univention-server (12.0.0-2) unstable; urgency=medium
+
+  * Make univention-portal a dependency of master and backup
+    (Bug #43495)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 05 Feb 2017 10:36:18 +0100
+
+univention-server (12.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #38438: Make init-script LSB compliant
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:57:56 +0200
+
+univention-server (11.0.1-8) unstable; urgency=low
+
+  * back to hard dependency for ntpdate/rdate (Bug #39410)
+    in univention-basesystem and univention-role-server-common
+
+ -- Felix Botner <botner@univention.de>  Wed, 14 Oct 2015 11:26:56 +0200
+
+univention-server (11.0.1-7) unstable; urgency=low
+
+  * added ntpdate/rdate to recommends in (Bug #39410)
+    univention-basesystem and univention-role-server-common
+
+ -- Felix Botner <botner@univention.de>  Tue, 13 Oct 2015 17:04:04 +0200
+
+univention-server (11.0.1-6) unstable; urgency=low
+
+  * added ntpdate/rdate to dependencies in (Bug #39410)
+    univention-basesystem and univention-role-server-common
+
+ -- Felix Botner <botner@univention.de>  Tue, 13 Oct 2015 16:32:05 +0200
+
+univention-server (11.0.1-5) unstable; urgency=low
+
+  * moved ntp|ntp-server dependency from specific role
+    packages to univention-role-server-common (Bug #39410)
+
+ -- Felix Botner <botner@univention.de>  Thu, 08 Oct 2015 17:03:29 +0200
+
+univention-server (11.0.1-4) unstable; urgency=medium
+
+  * univention-container-role-common now depends on univention-docker-
+    container-mode (Bug #38260)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 01 Oct 2015 15:01:19 +0200
+
+univention-server (11.0.1-3) unstable; urgency=medium
+
+  * Add univention-container-role-server-common package definition
+    (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 17 Sep 2015 19:45:15 +0200
+
+univention-server (11.0.1-2) unstable; urgency=medium
+
+  * Added univention-container-role-server-common.univention-config-
+    registry-variables (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 10 Sep 2015 10:51:29 +0200
+
+univention-server (11.0.1-1) unstable; urgency=medium
+
+  * Added univention-container-role-common. It is an alternative to the
+    univention-role-server-common package which has more dependencies
+    (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 10 Sep 2015 10:39:18 +0200
+
+univention-server (11.0.0-3) unstable; urgency=medium
+
+  * Bug #31943: make univention-saml a Recommends insteaf of Dependency
+
+ -- Florian Best <best@univention.de>  Sat, 05 Sep 2015 10:17:00 +0200
+
+univention-server (11.0.0-2) unstable; urgency=medium
+
+  * Bug #31943: add dependency to univention-saml for DC master and DC backup
+  	systems
+
+ -- Florian Best <best@univention.de>  Tue, 01 Sep 2015 14:14:06 +0200
+
+univention-server (11.0.0-1) unstable; urgency=medium
+
+  * Bug #39258: Add package univention-appcenter to each installation
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 25 Aug 2015 12:00:51 +0200
+
+univention-server (10.0.3-2) unstable; urgency=low
+
+  * Bug #38094: Move ldap/server/additional into LDAP layer
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 May 2015 11:18:25 +0200
+
+univention-server (10.0.3-1) unstable; urgency=medium
+
+  * Removed lock_expired_passwords lock_expired_accounts cron job
+    (Bug #36215)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 06 Nov 2014 12:24:26 +0100
+
+univention-server (10.0.2-1) unstable; urgency=low
+
+  * added cron job for automatic deactivation of expired user accounts
+    (Bug #35088)
+  * added cron job for automatic deactivation of user accounts with
+    expired password (Bug #36215)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Thu, 16 Oct 2014 15:41:07 +0200
+
+univention-server (10.0.1-3) unstable; urgency=low
+
+  * Bug #35635: Fix UCR variable quoting
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 25 Aug 2014 16:14:32 +0200
+
+univention-server (10.0.1-2) unstable; urgency=low
+
+  * Bug #35659: Install recommended packages again
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 25 Aug 2014 10:23:39 +0200
+
+univention-server (10.0.1-1) unstable; urgency=low
+
+  * Don't set specific bootsplash theme for every server role
+    (Bug #35138)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 21 Aug 2014 13:36:44 +0200
+
+univention-server (10.0.0-4) unstable; urgency=low
+
+  * Fix dependency ordering (Bug #35637)
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 20 Aug 2014 16:25:51 +0200
+
+univention-server (10.0.0-3) unstable; urgency=low
+
+  * Removed mobile and managed client packages (Bug #31751)
+  * Set server/role (Bug #35635)
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 19 Aug 2014 14:33:19 +0200
+
+univention-server (10.0.0-2) unstable; urgency=low
+
+  * Remove dependency on univention-showload (Bug #35138)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 18 Aug 2014 20:28:17 +0200
+
+univention-server (10.0.0-1) unstable; urgency=low
+
+  * Update to UCS 4.0 (Bug #35138)
+  * Removed mobile and managed client packages
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 30 Jun 2014 09:11:21 +0200
+
+univention-server (9.0.0-4) unstable; urgency=low
+
+  * Bump version for UCS 3.2, update copyright years for 2013
+  * Update/review UCR variable descriptions (Bug #30943)
+
+ -- Moritz Mühlenhoff <muehlenhoff@univention.de>  Mon, 17 Jun 2013 14:39:53 +0200
+
+univention-server (9.0.0-3) unstable; urgency=low
+
+  * fixed last commit (Bug #31068)
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 16:34:23 +0200
+
+univention-server (9.0.0-2) unstable; urgency=low
+
+  * rotate machine password if last modification of
+    /etc/machine.secret is more than $(server/password/interval)
+    days ago (Bug #31068)
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 16:26:45 +0200
+
+univention-server (9.0.0-1) unstable; urgency=low
+
+  * bump version for UCS 3.2
+  * replaced makepasswd with create_machine_password (Bug #31281)
+
+ -- Felix Botner <botner@univention.de>  Mon, 10 Jun 2013 11:12:49 +0200
+
+univention-server (8.0.3-1) unstable; urgency=low
+
+  * specific parts of server_password_change moved to univention-samba
+    (Bug #30539)
+
+ -- Arvid Requate <requate@univention.de>  Fri, 15 Mar 2013 16:40:55 +0100
+
+univention-server (8.0.2-1) unstable; urgency=low
+
+  * added ntp as package dependency to univention-server-member (Bug #30041)
+
+ -- Felix Botner <botner@univention.de>  Fri, 08 Mar 2013 17:05:44 +0100
+
+univention-server (8.0.1-1) unstable; urgency=low
+
+  * update idmap secret setting to Samba 3.6.x rewrite (Bug #30170)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 18 Feb 2013 12:33:29 +0100
+
+univention-server (8.0.0-1) unstable; urgency=low
+
+  * UCS-3.1 version bump.
+  * Add UCR variable description (Bug #28134)
+  * Remove unused conffiles/etc/default/ifplugd.
+  * Use library function to create logfile (Bug #22011)
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 02 Aug 2012 09:37:35 +0200
+
+univention-server (7.0.18-2) unstable; urgency=low
+
+  * redirect listener restart output to log file (Bug #27577)
+
+ -- Felix Botner <botner@univention.de>  Fri, 13 Jul 2012 10:21:03 +0200
+
+univention-server (7.0.18-1) unstable; urgency=low
+
+  * restart listener if machine.secret is changed (Bug #27577)
+
+ -- Felix Botner <botner@univention.de>  Fri, 13 Jul 2012 09:34:54 +0200
+
+univention-server (7.0.17-4) unstable; urgency=low
+
+  * server_password_change: /etc/machine.secret is now changed
+    earlier so that it can be used by the Listener during replication.
+    If the replication fails for some reason, then /etc/machine.secret
+    gets rolled back to its old value (Bug #27577).
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Mon, 09 Jul 2012 11:25:34 +0200
+
+univention-server (7.0.17-3) unstable; urgency=low
+
+  * server_password_change: Additional safety check; access to
+    LDAP master and to local LDAP are now tested before finalizing
+    password change (Bug #27577).
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Tue, 26 Jun 2012 09:35:34 +0200
+
+univention-server (7.0.17-2) unstable; urgency=low
+
+  * server_password_change: Even more safety checking to avoid
+    inconsistent states of the server (Bug #27577).
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Mon, 25 Jun 2012 12:07:04 +0200
+
+univention-server (7.0.17-1) unstable; urgency=low
+
+  * server_password_change: Improved safety by checking for errors
+    and rolling back changes as long as it is safe to do so (Bug #27577).
+    Updated copyright lines.
+
+ -- Juergen Kahrs <Kahrs@univention.de>  Fri, 22 Jun 2012 15:37:05 +0200
+
+univention-server (7.0.16-1) unstable; urgency=low
+
+  * Added dependency to umc-module-ipchange for Master and Backup
+    (Bug #26416)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Mar 2012 06:33:07 +0100
+
+univention-server (7.0.15-2) unstable; urgency=low
+
+  * Enable IPv6 for time (Bug #25456)
+  * Due to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=638791 we cannot
+    use update-inetd for this.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 24 Jan 2012 09:44:10 +0100
+
+univention-server (7.0.15-1) unstable; urgency=low
+
+  * fixed logrotate template (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Fri, 18 Nov 2011 16:32:48 +0100
+
+univention-server (7.0.14-1) unstable; urgency=low
+
+  * Added a UCR variable server/password/change to disable the password
+    rotation (Bug #21213)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 17 Nov 2011 16:45:30 +0100
+
+univention-server (7.0.13-2) unstable; urgency=low
+
+  * Fix dependencies on u-c (Bug #22668)
+
+ -- Philipp Hahn <hahn@univention.de>  Sat, 22 Oct 2011 04:11:14 +0200
+
+univention-server (7.0.13-1) unstable; urgency=low
+
+  * added logrotate configuration for
+    /var/log/univention/server_password_change.log on master, backup,
+    slave and member, for /var/log/univention/mobile-client.log on
+    mobile clients and /var/log/univention/managed-client.log on
+    managed clients (Bug #18002)
+
+ -- Felix Botner <botner@univention.de>  Tue, 11 Oct 2011 16:26:02 +0200
+
+univention-server (7.0.12-1) unstable; urgency=low
+
+  * remove obsolete HA in server_password_change (Bug #23362)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 30 Sep 2011 12:50:58 +0200
+
+univention-server (7.0.11-1) unstable; urgency=low
+
+  * Removed Linux-Arbeitsplatz script (Bug #23711)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 29 Sep 2011 21:05:57 +0200
+
+univention-server (7.0.10-2) unstable; urgency=low
+
+  * set ldap/server/port conditionally (Bug #23231)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 Sep 2011 11:11:33 +0200
+
+univention-server (7.0.10-1) unstable; urgency=low
+
+  * set ldap/server/port in univention-server-master.postinst (Bug #23231)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 26 Sep 2011 11:05:23 +0200
+
+univention-server (7.0.9-1) unstable; urgency=low
+
+  * Use ldap/server/port instead of ldap/port (Bug #23711)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 19 Sep 2011 19:40:41 +0200
+
+univention-server (7.0.8-1) unstable; urgency=low
+
+  * use port 7389 as default for ldap/server/port (Bug #23231)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 19 Sep 2011 18:26:01 +0200
+
+univention-server (7.0.7-1) unstable; urgency=low
+
+  * execute password change hooks (Bug #23362)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 19 Sep 2011 15:27:16 +0200
+
+univention-server (7.0.6-1) unstable; urgency=low
+
+  * Added openssh-server to recommends (Bug #23594)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 17 Sep 2011 12:50:40 +0200
+
+univention-server (7.0.5-2) unstable; urgency=low
+
+  * control: Fixed typo from last commit (Bug #23594)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 16 Sep 2011 20:38:57 +0200
+
+univention-server (7.0.5-1) unstable; urgency=low
+
+  * Reduce software selection for the UCS installer (Bug #23594)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 16 Sep 2011 20:33:20 +0200
+
+univention-server (7.0.4-1) unstable; urgency=low
+
+  * removed dependency to ntp|ntp-server in packages
+    univention-managed-client, univention-mobile-client and
+    univention-server-member (Bug #23434)
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Sep 2011 15:46:17 +0200
+
+univention-server (7.0.3-2) unstable; urgency=low
+
+  * use -ZZ when providing credentials to ldapsearch (Bug #17519)
+  * avoid using bind/bindpw, simply use machine.secret
+
+ -- Arvid Requate <requate@univention.de>  Tue, 09 Aug 2011 09:33:21 +0200
+
+univention-server (7.0.3-1) unstable; urgency=low
+
+  * use ldap/hostdn and bind/bindpw for univention_policy_result
+    (Bug #23178)
+  * wording fix for configRegistry
+
+ -- Arvid Requate <requate@univention.de>  Mon, 08 Aug 2011 18:21:17 +0200
+
+univention-server (7.0.2-1) unstable; urgency=low
+
+  * Fix bashism in server_password_change (Bug #22160)
+
+ -- Philipp Hahn <hahn@univention.de>  Mon, 01 Aug 2011 15:25:26 +0200
+
+univention-server (7.0.1-1) unstable; urgency=low
+
+  * avoid EOL in ldap.secret, ldap-backup.secret and machine.secret
+    (Bug #14186)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 28 Jun 2011 15:53:54 +0200
+
+univention-server (7.0.0-2) unstable; urgency=low
+
+  * removed auth/admin/services and auth/user/services
+  * merged auth/admin/methods and auth/user/methods to auth/methods
+  * Bug #20138
+
+ -- Felix Botner <botner@univention.de>  Fri, 03 Jun 2011 13:31:55 +0200
+
+univention-server (7.0.0-1) unstable; urgency=low
+
+  * Package cleanup for UCS 3.0 (Bug #22433)
+    * Bump version for UCS 3.0
+    * Replace univention-baseconfig with univention-config-registry
+    * Replace static UCR header in the UCR templates with '@%@UCRWARNING=#
+      @%@'
+    * Update copyright to 2011
+    * Update to debhelper 7
+    * Switch from python2.4 to python2.6
+    * Add ucslint
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 16 May 2011 08:32:48 +0200
+
+univention-server (6.0.6-1) unstable; urgency=low
+
+  * removed openssh-server dependency from u-managed[mobile]-client
+    because this package is installed via installer/system-setup
+    Bug #10666
+
+ -- Felix Botner <botner@univention.de>  Thu, 27 Jan 2011 15:42:05 +0100
+
+univention-server (6.0.5-1) unstable; urgency=low
+
+  * updated copyright
+  * always set ldap/server/addition=%s if policy is available Bug #20849
+
+ -- Felix Botner <botner@univention.de>  Fri, 07 Jan 2011 14:26:26 +0100
+
+univention-server (6.0.4-2) unstable; urgency=low
+
+  * fixed check_connection path in managed-client start script Bug #20753
+
+ -- Felix Botner <botner@univention.de>  Mon, 22 Nov 2010 14:27:46 +0100
+
+univention-server (6.0.3-1) unstable; urgency=low
+
+  * execute run-parts on /etc/network/if-ACTION.d in check_connection
+    only if called with $1=runParts to avoid multiple runs on
+    /etc/network/if-ACTION.d when called via networkManager Bug #20697
+
+ -- Felix Botner <botner@univention.de>  Fri, 19 Nov 2010 16:11:14 +0100
+
+univention-server (6.0.2-1) unstable; urgency=low
+
+  * undo last commit. Bug #19218
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Aug 2010 20:21:43 +0200
+
+univention-server (6.0.1-1) unstable; urgency=low
+
+  * save the locale password in secrets.tdb via 'net changesecretpw'.
+    Bug #19218
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Aug 2010 06:43:51 +0200
+
+univention-server (6.0.0-1) unstable; urgency=low
+
+  * convert to GNU APGL V3 (Bug #17543)
+  * bump version for UCS 2.4
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 22 Jun 2010 15:27:21 +0200
+
+univention-server (5.0.22-1) unstable; urgency=low
+
+  * log "net idmap secret" output to logfile (Bug #18509)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 28 May 2010 16:28:19 +0200
+
+univention-server (5.0.21-1) unstable; urgency=low
+
+  * remove obsolete univention-domain-connection script (Bug #17961)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 12 May 2010 09:52:56 +0200
+
+univention-server (5.0.20-2) unstable; urgency=low
+
+  * add script univention-ldap-server-available to univention-basesystem; Bug #9981
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 26 Apr 2010 15:03:47 +0200
+
+univention-server (5.0.20-1) unstable; urgency=low
+
+  * update idmap secrets for alloc and samba/idmap/domains (Bug #17448)
+
+ -- Arvid Requate <requate@univention.de>  Sun, 25 Apr 2010 11:07:16 +0200
+
+univention-server (5.0.19-1) unstable; urgency=low
+
+  * check_connection: pipe stdin and stderr to new logfile
+    /var/log/univention/check_connection.log, Bug#17879
+
+ -- Tim Petersen <petersen@univention.de>  Tue, 06 Apr 2010 11:43:48 +0200
+
+univention-server (5.0.18-1) unstable; urgency=low
+
+  * check_connection: export environment variable MODE; required by some
+    network event scripts; Bug #17781
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 29 Mar 2010 13:45:48 +0200
+
+univention-server (5.0.17-2) unstable; urgency=low
+
+  * really add script univention-ldap-server-available; Bug #9981
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 26 Mar 2010 16:03:09 +0100
+
+univention-server (5.0.17-1) unstable; urgency=low
+
+  * add a script univention-ldap-server-available to check if a connection
+    to the LDAP server is possible; Bug #9981
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 26 Mar 2010 14:36:52 +0100
+
+univention-server (5.0.16-1) unstable; urgency=low
+
+  * fixed a typo in check for additional LDAP servers; Bug #17675
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 23 Mar 2010 11:43:47 +0100
+
+univention-server (5.0.15-1) unstable; urgency=low
+
+  * run lockfile-create with -q in check_connection Bug #17500
+
+ -- Felix Botner <botner@univention.de>  Mon, 22 Mar 2010 10:34:24 +0100
+
+univention-server (5.0.14-1) unstable; urgency=low
+
+  * added UCR Header, Bug #17816
+
+ -- Tim Petersen <petersen@univention.de>  Tue, 09 Mar 2010 09:57:06 +0100
+
+univention-server (5.0.13-1) unstable; urgency=low
+
+  * invoke the network event scripts directly instead of using the
+    NetworkManager dispatcher script. Bug #16865, Bug #16880
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 11 Dec 2009 10:55:06 +0100
+
+univention-server (5.0.12-1) unstable; urgency=low
+
+  * also set the cache for auth/admin/methods. Bug #16727
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 08 Dec 2009 21:42:04 +0100
+
+univention-server (5.0.11-1) unstable; urgency=low
+
+  * fixed typo in managed and mobile client preinst which was imported
+    with the last commit. Bug #16727
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 08 Dec 2009 20:18:41 +0100
+
+univention-server (5.0.10-1) unstable; urgency=low
+
+  * ensure that cache authentication method is set on managed and mobile
+    clients. Bug #16727
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 08 Dec 2009 16:00:34 +0100
+
+univention-server (5.0.9-4) unstable; urgency=low
+
+  * ensure that cache authentication method is set on mobile clients
+    (Bug #16727)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 08 Dec 2009 09:06:46 +0100
+
+univention-server (5.0.9-3) unstable; urgency=low
+
+  * ensure that cache authentication method is set on mobile clients
+    (Bug #16727)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 07 Dec 2009 12:00:18 +0100
+
+univention-server (5.0.9-2) unstable; urgency=low
+
+  * use ifplugd instead of NetworkManager on mobile and managed clients
+    (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 27 Nov 2009 10:12:57 +0100
+
+univention-server (5.0.9-1) unstable; urgency=low
+
+  * ensure that cache authentication method is set on mobile and managed
+    clients (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 26 Nov 2009 14:22:39 +0100
+
+univention-server (5.0.8-5) unstable; urgency=low
+
+  * move the activation of the cache authentication mechanismn to the
+    preinst script (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Thu, 19 Nov 2009 13:23:10 +0100
+
+univention-server (5.0.8-4) unstable; urgency=low
+
+  * added dependency to univention-ifplugd (Bug: #12130)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 17 Nov 2009 15:09:45 +0100
+
+univention-server (5.0.8-3) unstable; urgency=low
+
+  * add network event script that checks the available authentication
+    methods (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 17 Nov 2009 10:49:33 +0100
+
+univention-server (5.0.8-2) unstable; urgency=low
+
+  * revert to ifplugd (optionally univention-network-manager) (Bug: #8994)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 16 Nov 2009 14:19:37 +0100
+
+univention-server (5.0.8-1) unstable; urgency=low
+
+  * revert to ifplugd (Bug: #8994)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 16 Nov 2009 14:05:28 +0100
+
+univention-server (5.0.7-1) unstable; urgency=low
+
+  * removed pre-dependencies to univention-config-registry and
+    univention-pam for univention-mobile-client, univention-managed-
+    client and univention-basesystem. Bug #16143
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 28 Oct 2009 15:26:32 +0100
+
+univention-server (5.0.6-2) unstable; urgency=low
+
+  * removed univention-appendsplash (Bug: #14309)
+
+ -- Felix Botner <botner@univention.de>  Mon, 19 Oct 2009 13:41:17 +0200
+
+univention-server (5.0.6-1) unstable; urgency=low
+
+  * added missing predependency to univention-ssl (Bug: #15987)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Fri, 16 Oct 2009 09:44:59 +0200
+
+univention-server (5.0.5-1) unstable; urgency=low
+
+  * ensure that check_connection is just called once at a time; loop detection (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 13 Oct 2009 17:45:52 +0200
+
+univention-server (5.0.4-3) unstable; urgency=low
+
+  * add time entry to etc/inetd.conf (Bug: #15782)
+
+ -- Felix Botner <botner@univention.de>  Mon,  5 Oct 2009 15:17:01 +0200
+
+univention-server (5.0.4-2) unstable; urgency=low
+
+  * added univention-firewall to univention-basesystem dependencies (Bug: #9905)
+
+ -- Felix Botner <botner@univention.de>  Fri, 25 Sep 2009 12:43:25 +0200
+
+univention-server (5.0.4-1) unstable; urgency=low
+
+  * removed network manager configuration
+  * add dependency to univention-network-manager (Bug #8994)
+
+ -- Andreas Büsching <buesching@univention.de>  Fri,  7 Aug 2009 07:57:10 +0200
+
+univention-server (5.0.3-2) unstable; urgency=low
+
+  * add directories /etc/network/if-(up|down).d to package
+    univention-managed-client. Bug #8994
+
+ -- Andreas Büsching <buesching@univention.de>  Wed, 22 Jul 2009 08:49:49 +0200
+
+univention-server (5.0.3-1) unstable; urgency=low
+
+  * rename UCR variables interfaces/eth0*/ifplugd to
+    interfaces/eth0*/networkmanager. Bug #8994
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 21 Jul 2009 15:30:56 +0200
+
+univention-server (5.0.2-1) unstable; urgency=low
+
+  * replace ifplugd with the network manager. Bug #8994
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 21 Jul 2009 14:09:41 +0200
+
+univention-server (5.0.1-1) unstable; urgency=low
+
+  * remove the handling of windows/wins* from univention-server* and set
+    windows/wins-support and windows/wins-server only during the
+    installation. Bug #14734
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 24 Jun 2009 08:36:36 +0200
+
+univention-server (5.0.0-0) unstable; urgency=low
+
+  * bump version for UCS 2.3
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 10 Jun 2009 08:20:32 +0200
+
+univention-server (4.0.0-1) unstable; urgency=low
+
+  * bumped version for UCS 2.2 (Bug #13730)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 16 Mar 2009 17:08:51 +0100
+
+univention-server (3.0.2-3) unstable; urgency=low
+
+  * updated the copyright. Bug #6875
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 12 Mar 2009 13:47:35 +0100
+
+univention-server (3.0.2-2) unstable; urgency=low
+
+  * updated the copyright. Bug #6875
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 19 Feb 2009 09:26:58 +0100
+
+univention-server (3.0.2-1) unstable; urgency=low
+
+  * removed dependency to univention-debmirror (Bug #12511)
+
+ -- Andreas Büsching <buesching@univention.de>  Fri, 13 Feb 2009 10:28:22 +0100
+
+univention-server (3.0.1-2) unstable; urgency=low
+
+  * disable windows/wins-server on DC-Slave server only if not set (Bug #11667)
+
+ -- Arvid Requate <arequate@visdalen.knut.univention.de>  Mon,  8 Dec 2008 14:52:49 +0100
+
+univention-server (3.0.1-1) unstable; urgency=low
+
+  * fixed restart of samba on password change of local machine account
+    (bug #11104)
+
+ -- Sönke Schwardt <schwardt@univention.de>  Thu, 11 Sep 2008 11:57:44 +0200
+
+univention-server (3.0.0-3) unstable; urgency=low
+
+  * quote bash command in univention-set-ldap-server
+
+ -- Felix Botner <fbotner@visdalen.knut.univention.de>  Fri, 15 Aug 2008 12:48:30 +0200
+
+univention-server (3.0.0-2) unstable; urgency=low
+
+  * remove reference to univention-kde-profile-ucs-kde-menu21 which has been
+    incorporated into univention-kde
+
+ -- Arvid Requate <requate@univention.de>  Fri, 25 Jul 2008 14:25:06 +0200
+
+univention-server (3.0.0-1) unstable; urgency=low
+
+  * increase version for UCS 2.1-0 release
+
+ -- Arvid Requate <requate@univention.de>  Thu, 10 Jul 2008 16:48:17 +0200
+
+univention-server (2.3.2-2) unstable; urgency=low
+
+  * depend univention-server-master on univention-kde-profile-ucs-kde-menu21
+    to install the corresponding univentionDesktopPolicy on a fresh installed system
+
+ -- Arvid Requate <requate@univention.de>  Thu, 10 Jul 2008 16:11:59 +0200
+
+univention-server (2.3.2-1) unstable; urgency=low
+
+  * update the 640x480 and 800x600 bootsplash configs
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 12 Jun 2008 15:14:18 +0200
+
+univention-server (2.3.1-1) unstable; urgency=low
+
+  * use new bootsplash themes
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 12 Jun 2008 09:02:39 +0200
+
+univention-server (2.2.12-1) unstable; urgency=low
+
+  * redirect the normal output to /dev/null in check_connection
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 28 Nov 2007 08:25:28 +0100
+
+univention-server (2.2.11-1) unstable; urgency=low
+
+  * fix a syntax error in the chech_connection cron job on managed and
+    mobile clients
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri,  9 Nov 2007 07:17:39 +0100
+
+univention-server (2.2.10-2) unstable; urgency=low
+
+  * the check_connection script on a managed client is now under
+    /usr/share/univention-managed-client instead of
+    /usr/share/univention-fat-client
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  7 Nov 2007 12:53:09 +0100
+
+univention-server (2.2.10-1) unstable; urgency=low
+
+  * unset the baseconfig var ldap/server/addition only if the value is
+    set
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 24 Oct 2007 13:00:31 +0200
+
+univention-server (2.2.9-1) unstable; urgency=low
+
+  * change path in managedclient bootsplah from fatclient to
+    managedclient
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 24 Oct 2007 07:49:37 +0200
+
+univention-server (2.2.8-2) unstable; urgency=low
+
+  * Add dependencies on univention-archive-key to all system roles.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed, 17 Oct 2007 14:27:57 +0200
+
+univention-server (2.2.8-1) unstable; urgency=low
+
+  * switch the bootsplash theme from fatclient to managedclient
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 17 Oct 2007 09:52:31 +0200
+
+univention-server (2.2.7-1) unstable; urgency=low
+
+  * fixed policy handling in startup scripts
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 17 Oct 2007 09:37:42 +0200
+
+univention-server (2.2.6-2) unstable; urgency=low
+
+  * depend on univention-lilo or univention-grub
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 10 Oct 2007 13:10:53 +0200
+
+univention-server (2.2.6-1) unstable; urgency=low
+
+  * fixed policy handling in startup scripts
+
+ -- Sönke Schwardt <schwardt@univention.de>  Tue, 02 Oct 2007 15:44:33 +0200
+
+univention-server (2.2.5-1) unstable; urgency=low
+
+  * fixed logfile permissions
+  * added mapping of old 1.3-2 policy names to new 2.0-0 policy names
+    for mobile clients and managed clients
+
+ -- Sönke Schwardt <schwardt@univention.de>  Mon, 01 Oct 2007 15:44:13 +0200
+
+univention-server (2.2.4-6) unstable; urgency=low
+
+  * depend on openssh-server instead of ssh
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 27 Sep 2007 10:25:18 +0200
+
+univention-server (2.2.4-5) unstable; urgency=low
+
+  * call univention-baseconfig shell in the univention-server master postinst
+    script.
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 17 Sep 2007 15:58:44 +0200
+
+univention-server (2.2.4-4) unstable; urgency=low
+
+  * make the pre dependency to univention-config-registry obsolete
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 17 Sep 2007 10:46:38 +0200
+
+univention-server (2.2.4-3) unstable; urgency=low
+
+  * remove univention-config-registry dependency for univention-server-
+    master
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 17 Sep 2007 10:23:55 +0200
+
+univention-server (2.2.4-2) unstable; urgency=low
+
+  * change dependency to ntp or ntp-server. The ntp package replaces the
+    ntp-server package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Sep 2007 14:53:27 +0200
+
+univention-server (2.2.4-1) unstable; urgency=low
+
+  * change package priority from optional to standard
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 14 Sep 2007 13:47:05 +0200
+
+univention-server (2.2.3-2) unstable; urgency=low
+
+  * more dependency/wording stuff
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 31 Aug 2007 15:15:04 +0200
+
+univention-server (2.2.3-1) unstable; urgency=low
+
+  * use the correct red color for the bootsplah progessbar on DC Backup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 29 Aug 2007 08:50:12 +0200
+
+univention-server (2.2.2-1) unstable; urgency=low
+
+  * new bootsplash images
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 27 Aug 2007 12:10:59 +0200
+
+univention-server (2.1.6-1) unstable; urgency=low
+
+  * install hibernate and acpid on a mobile client
+  * install acpid on a managed client
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 24 Aug 2007 14:10:37 +0200
+
+univention-server (2.1.5-1) unstable; urgency=low
+
+  * install univention-system-setup on Managed and Mobile Clients
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Aug 2007 14:54:21 +0200
+
+univention-server (2.1.4-1) unstable; urgency=low
+
+  * don't create /usr/share/univention-install/.joined in univention-
+    server-master preinst
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 22 Aug 2007 12:07:58 +0200
+
+univention-server (2.1.3-1) unstable; urgency=low
+
+  * check if makepasswd returned an empty password during the server password
+    change
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 22 Aug 2007 08:26:12 +0200
+
+univention-server (2.1.2-11) unstable; urgency=low
+
+  * Depend on univention-system-setup
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 13:54:12 +0200
+
+univention-server (2.1.2-10) unstable; urgency=low
+
+  * Adapt to Univention Directory Replication
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 13:44:07 +0200
+
+univention-server (2.1.2-9) unstable; urgency=low
+
+  * Adapt to Univention Directory Listener
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  8 Aug 2007 13:36:13 +0200
+
+univention-server (2.1.2-8) unstable; urgency=low
+
+  * added a meta package for the basesystem
+  * depend on univention-grub
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue,  7 Aug 2007 15:19:37 +0200
+
+univention-server (2.1.2-7) unstable; urgency=low
+
+  * more wording change univention-config-registry and univention-
+    baseconfig
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri,  3 Aug 2007 09:45:42 +0200
+
+univention-server (2.1.2-6) unstable; urgency=low
+
+  * Adapt to Univention Directory Replication.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Thu,  2 Aug 2007 11:29:06 +0200
+
+univention-server (2.1.2-5) unstable; urgency=low
+
+  * Adapt to Univention Directory Policy.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  1 Aug 2007 17:20:06 +0200
+
+univention-server (2.1.2-4) unstable; urgency=low
+
+  * Adapt to Univention Directory Policy.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed,  1 Aug 2007 17:16:33 +0200
+
+univention-server (2.1.2-3) unstable; urgency=low
+
+  * Depend on univention-directory-listener and univention-directory-notifier
+    instead of univention-ldap-listener and univention-ldap-notifier
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Tue, 31 Jul 2007 12:11:32 +0200
+
+univention-server (2.1.2-2) unstable; urgency=low
+
+  * Make server and client roles depend on univention-firewall.
+
+ -- Moritz Muehlenhoff <muehlenhoff@univention.de>  Wed, 25 Jul 2007 10:37:14 +0200
+
+univention-server (2.1.2-1) unstable; urgency=low
+
+  * set bootsplash images
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 20 Jun 2007 16:57:05 +0200
+
+univention-server (2.1.1-6) unstable; urgency=low
+
+  * don't call univention-appendsplash and lilo in the postinst script
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 19 Jun 2007 06:21:03 +0200
+
+univention-server (2.1.1-5) unstable; urgency=low
+
+  * remove univention-console from the dependency list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 18 Jun 2007 12:03:28 +0200
+
+univention-server (2.1.1-4) unstable; urgency=low
+
+  * remove univention-basetools from the univention-managed-client dependency
+    list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 14 Jun 2007 15:31:04 +0200
+
+univention-server (2.1.1-3) unstable; urgency=low
+
+  * remove less from the package dependency list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 14 Jun 2007 11:51:23 +0200
+
+univention-server (2.1.1-2) unstable; urgency=low
+
+  * encoded files utf-8
+
+ -- Janis Meybohm <meybohm@univention.de>  Wed, 13 Jun 2007 11:21:46 +0200
+
+univention-server (2.1.1-1) unstable; urgency=low
+
+  * do not change the server password if a failed.ldif exists
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 12 Jun 2007 14:49:31 +0200
+
+univention-server (2.1.0-6) unstable; urgency=low
+
+  * remove univention-local-users from the DC Slave dependency list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  6 Jun 2007 08:59:50 +0200
+
+univention-server (2.1.0-5) unstable; urgency=low
+
+  * add univention-bind to the univention-server-master dependency
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 31 May 2007 15:11:21 +0200
+
+univention-server (2.1.0-4) unstable; urgency=low
+
+  * set package priority from required to optional
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 25 May 2007 09:56:59 +0200
+
+univention-server (2.1.0-3) unstable; urgency=low
+
+  * integrate univention-managed-client (univention-fat-client) and
+    univention-mobile-client packages form cvs
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 25 May 2007 08:50:26 +0200
+
+univention-server (2.0.0-2) unstable; urgency=low
+
+  * remove univention-basetools from dependency list
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 25 May 2007 07:45:42 +0200
+
+univention-server (2.0.0-1) unstable; urgency=low
+
+  * update to ucs 2.0 policies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 24 May 2007 16:00:35 +0200
+
+univention-server (1.22) unstable; urgency=low
+
+  * add GPL headers
+
+ -- Andreas BÃŒsching <buesching@univention.de>  Mon,  4 Dec 2006 12:03:22 +0100
+
+univention-server (1.21) unstable; urgency=low
+
+  * depend on univention-setup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 22 Nov 2006 17:36:44 +0100
+
+univention-server (1.20) unstable; urgency=low
+
+  * added sendmail as alternative for dependency on univention-mail*
+
+ -- Wolf Wiegand <wiegand@univention.de>  Tue,  8 Aug 2006 18:18:49 +0200
+
+univention-server (1.19) unstable; urgency=low
+
+  * added pre-depends for univention-baseconfig
+
+ -- Janis Meybohm <meybohm@univention.de>  Thu, 27 Jul 2006 14:53:04 +0200
+
+univention-server (1.18) unstable; urgency=low
+
+  * cleanup the package dependencies
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 18 Jul 2006 08:39:09 +0200
+
+univention-server (1.16) unstable; urgency=low
+
+  * modified postinst script: recreate initrd image when the installation is
+    an update otherwise just append bootsplash images
+
+ -- Andreas Büsching <buesching@univention.de>  Tue, 13 Dec 2005 11:00:06 +0100
+
+univention-server (1.13) unstable; urgency=low
+
+  * new background images for the bootsplash
+
+ -- Andreas Büsching <buesching@univention.de>  Mon, 12 Dec 2005 11:25:06 +0100
+
+univention-server (1.12) unstable; urgency=low
+
+  * check for ha samba
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu,  7 Jul 2005 07:47:39 +0200
+
+univention-server (1.11) unstable; urgency=low
+
+  * reset ldap/server/addition
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 27 Apr 2005 09:27:14 +0200
+
+univention-server (1.10) unstable; urgency=low
+
+  * fix syntax errors
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 15 Apr 2005 15:01:44 +0200
+
+univention-server (1.9) unstable; urgency=low
+
+  * fix cron job syntax
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed,  1 Dec 2004 13:19:48 +0100
+
+univention-server (1.8) unstable; urgency=low
+
+  * conflict to exim
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 23 Sep 2004 10:28:51 +0200
+
+univention-server (1.7) unstable; urgency=low
+
+  * Add dependency to univention-license-import.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 Jul 2004 10:54:52 +0200
+
+univention-server (1.6) unstable; urgency=low
+
+  * Add proper package description.
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Fri, 30 Apr 2004 10:37:01 +0200
+
+univention-server (1.5) unstable; urgency=low
+
+  * cron job for password change
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 14 Apr 2004 19:32:42 +0200
+
+univention-server (1.4) unstable; urgency=low
+
+  * added univention-debmirror to univention-server-backup
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 29 Jan 2004 15:05:32 +0100
+
+univention-server (1.3) unstable; urgency=low
+
+  * split package
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 10 Oct 2003 17:09:12 +0200
+
+univention-server (1.2) unstable; urgency=low
+
+  * new versioning scheme
+
+ -- Roland Bauerschmidt <bauerschmidt@univention.de>  Tue, 20 May 2003 13:49:41 +0200
+
+univention-server (0.1.univention) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 11 Mar 2003 11:09:12 +0200

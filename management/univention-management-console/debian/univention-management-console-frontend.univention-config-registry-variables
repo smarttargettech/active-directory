@@ -1,0 +1,56 @@
+[umc/web/feedback/mail]
+Description[de]=Tritt in der Univention Management Console ein Fehler auf, der zu einem Traceback führt, kann der Fehler gemeldet werden. Die hier angegebene E-Mail-Adresse wird in dem Dialog als Kontaktadresse angezeigt.
+Description[en]=If an error leading to a traceback occurs in the Univention Management Console, the bug can be reported. This email address configured here is shown as a contact address in the dialogue.
+Type=str
+Categories=management-umc
+
+[umc/web/feedback/description]
+Description[de]=Tritt in der Univention Management Console ein Fehler auf, der zu einem Traceback führt, kann der Fehler gemeldet werden. Dieser Betreff wird bei der Feedback-Mail verwendet.
+Description[en]=If an error leading to a traceback occurs in the Univention Management Console, the bug can be reported. This subject is used in the feedback mail.
+Type=str
+Categories=management-umc
+
+[umc/web/favorites/default]
+Description[de]=Die hier konfigurierten UMC-Module werden in der Grundeinstellung als "Favoriten"-Module in der Univention Management Console angezeigt. Mehrere Einträge müssen durch Komma getrennt werden.
+Description[en]=The UMC modules configured here are shown as "Favorites" modules in the default setting of the Univention Management Console. Multiple entries are separated by comma.
+Type=list
+Separator=,
+Elementtype=str
+Categories=management-umc
+
+[umc/web/piwik]
+Description[de]=Ist diese Option aktiviert oder die Variable nicht gesetzt, werden bei Verwendung der Univention Core License (die in der Regel für Evaluationen von UCS herangezogen wird) anonyme Nutzungsstatistiken zur Verwendung der UMC erzeugt. Die aufgerufenen Module werden dabei von einer Instanz des Web-Traffic-Analyse-Tools Piwik protokolliert. Dies ermöglicht es Univention die Entwicklung besser auf das Kundeninteresse zuzuschneiden und Usability-Verbesserungen vorzunehmen.
+Description[en]=If this option is activated or the variable is unset, anonymous usage statistics on the use of the UMC are collected when using the Univention Core License (which is generally used for evaluating UCS). The modules opened are logged in an instance of the web traffic analysis tool Piwik. This allows Univention to tailor the development better to customer needs and carry out usability improvements.
+Type=bool
+Categories=management-umc
+
+[umc/web/host_referrallimit]
+Description[de]=In der Titelzeile der UMC wird eine Auswahlliste angezeigt, mit der auf eine andere Univention Management Console in der Domäne gewechselt werden kann. Diese Variable konfiguriert die maximale Anzahl an Instanzen, die als Drop-Down-Menü angeboten wird.
+Description[en]=In the title panel of the UMC a selection list is shown. It can be used to navigate to a different Univention Management Console in the domain. This variable configures the maximum number of instances which are presented as a drop down menu.
+Type=uint
+Categories=management-umc
+
+[umc/web/sso/enabled]
+Description[de]=Ist diese Option aktiviert, wird der Login an UMC per Single Sign-On versucht bevor der reguläre Login benutzt wird.
+Description[en]=If this option is activated, the login via single sign-on is tried before the regular login is used.
+Type=bool
+Categories=management-umc
+
+[umc/web/oidc/enabled]
+Description[de]=Ist diese Option aktiviert, wird der Login an UMC per OpenID Connect Single Sign-On versucht bevor der reguläre Login benutzt wird. Experimentell: Diese Funktion wird derzeit nicht unterstützt.
+Description[en]=If this option is activated, the login via OpenID Connect single sign-on is tried before the regular login is used. Experimental: This feature is currently not supported.
+Type=bool
+Default=false
+Categories=management-umc,oidc
+
+[umc/web/title]
+Description[de]=Spezifiziert den HTML-Titel von UMC, Portal und Self-Service.
+Description[en]=Specifies the HTML title of UMC, Portal and self service.
+Type=str
+Categories=management-umc
+
+[umc/web/favicon]
+Description[de]=Spezifiziert das favicon von UMC, Portal und Self-Service.
+Description[en]=Specifies the favicon icon of UMC, Portal and self service.
+Type=str
+Categories=management-umc

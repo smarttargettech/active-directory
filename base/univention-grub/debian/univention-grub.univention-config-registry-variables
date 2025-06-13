@@ -1,0 +1,121 @@
+[grub/timeout]
+Description[de]=Beim Systemstart wird eine Auswahl der verfügbaren Kernel angezeigt. Die hier konfigurierte Zeit in Sekunden wird auf eine Benutzereingabe gewartet, bevor der Standardkernel gebootet wird. Ist die Variable auf '0' gesetzt, wird direkt der Standardkernel geladen, wird sie auf '-1' gesetzt erfolgt die Kernelauswahl immer manuell.
+Description[en]=During system boot a selection of available kernels is shown. The time in seconds configured here is waited for user input. Once elapsed the default kernel is booted. If the variable is set to '0' the default kernel is booted directly, if set to '-1' the kernel must be selected manually.
+Type=int
+Categories=system-base
+
+[grub/gfxmode]
+Description[de]=Die Bildschirmauflösung für das Bootmenu, z.B. 1024x768x32 (Breite x Höhe x Farbtiefe in Bit).
+Description[en]=Graphical resolution for the boot menu, e.g. 1024x768 (width x height x colour depth in bits).
+Type=str
+Categories=system-base
+
+[grub/gfxpayload]
+Description[de]=Definiert in welchem Video Mode der Linux Kernel gestartet werden soll, ersetzt die "vga=" boot Option.
+Description[en]=Controls the video mode in which the Linux kernel starts up, replacing the "vga=" boot option.
+Type=str
+Categories=system-base
+
+[grub/xenhopt]
+Description[de]=Diese Optionen werden an den Xen-Hypervisor weitergegeben, z.B. 'dom0_mem=1024M'.
+Description[en]=These options are passed to the Xen hypervisor, e.g. 'dom0_mem=1024M'.
+Type=str
+Categories=system-base
+
+[grub/append]
+Description[de]=Mit dieser Variable können zusätzliche Optionen an den Linux-Kernel übergeben werden. Eine Übersicht findet sich unter <https://www.kernel.org/doc/Documentation/kernel-parameters.txt>.
+Description[en]=With this variable additional options can be passed to the Linux kernel. An overview can be found at <https://www.kernel.org/doc/Documentation/kernel-parameters.txt>.
+Type=str
+Categories=system-base
+
+[grub/quiet]
+Description[de]=Ist diese Variable auf 'yes' gesetzt werden die meisten Meldungen während des Systemstarts unterdrückt.
+Description[en]=If this variable is set to 'yes', messages are suppressed during startup .
+Type=bool
+Categories=system-base
+
+[grub/efi]
+Description[de]=Gibt an, ob das System mit EFI-Unterstütung installiert wurde.
+Description[en]=Defines if the local system has been installed with EFI support.
+Type=bool
+Categories=system-base
+
+[grub/loglevel]
+Description[de]=Alle Kernelmeldungen mit einem Loglevel kleiner als der hier angegebene Wert werden auf die Konsole ausgegeben (0 für kritische Meldungen bis 7 für Debugmeldungen).
+Description[en]=All kernel messages with a loglevel smaller than the loglevel specified here will be printed to the console (ranging from 0 for critical messages to 7 for debugging output).
+Type=int
+Min=0
+Max=7
+Categories=system-base
+
+[grub/bootsplash]
+Description[de]=Ist diese Variable auf 'splash' gesetzt, wird eine grafische Startanimation angezeigt. Ist die Variable auf 'nosplash' gesetzt oder nicht gesetzt, wird keine Animation angezeigt.
+Description[en]=If this variable is set to 'splash' a graphical startup animation is shown. If the variable is set to 'nosplash' or unset, no animation is shown.
+Type=str
+Categories=system-base
+
+[grub/backgroundimage]
+Description[de]=Diese Variable konfiguriert das Hintergrundbild in den Grub-Dialogen.
+Description[en]=This variable configures the background image for Grub dialogues.
+Type=str
+Categories=system-base
+
+[grub/color/normal]
+Description[de]=Das Farbschema im Grub-Terminal. Eine Übersicht der möglichen Werte findet sich unter <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Description[en]=The colour scheme in the Grub terminal. An overview of available values can be found at <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Type=str
+Categories=system-base
+
+[grub/color/highlight]
+Description[de]=Das Farbschema für hervorgehobene Einträge im Grub-Terminal. Eine Übersicht der möglichen Werte findet sich unter <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Description[en]=The colour scheme for emphasised entries in the Grub terminal. An overview of available values can be found at <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Type=str
+Categories=system-base
+
+[grub/menu/color/normal]
+Description[de]=Das Farbschema für Grub-Menüeinträge. Eine Übersicht der möglichen Werte findet sich unter <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Description[en]=The colour scheme in the Grub menu. An overview of available values can be found at <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Type=str
+Categories=system-base
+
+[grub/menu/color/highlight]
+Description[de]=Das Farbschema für ausgewählte Grub-Menüeinträge. Eine Übersicht der möglichen Werte findet sich unter <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Description[en]=The colour scheme for selected entries in the Grub menu. An overview of available values can be found at <https://www.gnu.org/software/grub/manual/html_node/color_005fnormal.html>.
+Type=str
+Categories=system-base
+
+[grub/terminal]
+Description[de]=Konfiguration des Terminalgerätes. Default: <empty> (Erlaubt grafische Ausgabe). Setzen der Variable auf "console" um grafische Ausgabe abzuschalten, "console serial" um gleichzeitig auch die serielle Ausgabe zu erlauben. Dokumentation: <https://www.gnu.org/software/grub/manual/grub.html>
+Description[en]=Select the terminal device. Default: <empty> (graphical terminal is allowed). Set to "console" to disable graphical terminal. Set to "console serial" to also enable serial output. Documentation: <https://www.gnu.org/software/grub/manual/grub.html>
+Type=str
+Categories=system-base
+
+[grub/serialcommand]
+Description[de]=Konfiguriert den seriellen Port wenn eine serielle Konsole benutzt wird. Standard: <empty>. Beispieleintrag: "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1". Hinweis: Der serielle Port wird nicht genutzt wenn keine serielle Konsole konfiguriert ist, siehe auch "grub/terminal". Dokumentation: <https://www.gnu.org/software/grub/manual/grub.html>
+Description[en]=Configures the serial port when using the serial console. Default: <empty>. Example: "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1". Note: The serial port is not used as a communication channel unless the terminal is configured (see "grub/terminal"). Documentation: <https://www.gnu.org/software/grub/manual/grub.html>
+Type=str
+Categories=system-base
+
+[grub/rootdelay]
+Description[de]=Diese Variable konfiguriert eine Zeitspanne in Sekunden, die gewartet wird, bevor die Initial Ramdisk das Root-Device einbindet. Durch Setzen der Variable auf '0' kann die Wartezeit deaktiviert werden. Ist die Variable nicht gesetzt, gelten fünf Sekunden.
+Description[en]=This variable configures a time span in seconds, which is being waited until the initial ramdisk mounts the root device. Setting the variable to '0' deactivates the delay. If the variable is unset, five seconds are waited.
+Type=uint
+Categories=system-base
+
+[grub/title]
+Description[de]=Titel für den Eintrag von UCS im GRUB Boot Menü. Standard ist "Univention Corporate Server".
+Description[en]=Title for the entry of UCS in the GRUB boot menu. Default is "Univention Corporate Server".
+Type=str
+Categories=system-base
+
+[grub/default]
+Description[de]=Der Menü-Eintrag, der standardmäßig gebootet wird. Entweder ein 0-basierter Index, der Menü-Titel, oder 'saved' zum laden des gespeicherten Eintrags (siehe UCRV 'grub/savedefault' bzw. Kommando 'grub-set-default'). Standard ist '0' zum booten des ersten/neusten Eintrags.
+Description[en]=The menu entry to boot by default. Either selected by a 0-based index, title name or 'saved' to load the saved entry (see UCRV 'grub/savedefault' or command 'grub-set-set-default'). Default is '0' to boot the first/newest entry.
+Type=str
+Categories=system-base
+
+[grub/savedefault]
+Description[de]=Wird diese Option aktiviert, speichert GRUB den ausgewählten Eintrag, sodaß dieser beim nächsten Booten wieder benutzt wird. Wird nicht von allen Dateisystemen unterstützt!
+Description[en]=If this option is enabled, GRUB saves the selected entry, so it gets selected again on the next boot. Not supported by all file systems!
+Type=bool
+Categories=system-base

@@ -1,0 +1,35 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Update localhost repository with sources
+##  1. setup local repository with sources
+##  2. check if including sources works
+## bugs: [17200]
+## roles-not: [basesystem]
+## tags: [basic]
+## packages:
+##  - apache2 | apache2-mpm-prefork
+## exposure: dangerous
+
+. pool.sh || exit 137
+
+setup_apache "${repoprefix}"
+
+mkpdir "${_version_version}-${_version_patchlevel}" maintained "${ARCH}"
+mkdeb "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mkpkg "${DIR}" "${DIR_POOL}"
+
+SDIR="${DIR//binary-*/source}"
+mkdir -p "$SDIR"
+mkdsc "${pkgname}" 1 "${ARCH}" "${DIR_POOL}"
+mksrc "${SDIR}" "${DIR_POOL}"
+
+config_repo repository/online/sources=yes
+
+	set -e
+	checkapt "http://localhost\\(:80\\)\\?/${repoprefix}/" "${DIRS[@]}"
+	checkapt --source "http://localhost\\(:80\\)\\?/${repoprefix}/" "${SDIR}"
+	apt-get -qq update
+	mkdir "${BASEDIR}/src"
+	cd "${BASEDIR}/src" && apt-get -qq source "${pkgname}"
+# vim:set ft=sh:

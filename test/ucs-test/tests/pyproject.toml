@@ -1,0 +1,5 @@
+[tool.ruff]
+extend = "../pyproject.toml"
+[tool.ruff.lint]
+# CPY001: No copyright for test cases
+extend-ignore = ["EXE003", "G", "CPY001"]

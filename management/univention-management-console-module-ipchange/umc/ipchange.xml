@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="ipchange" version="1.0">
+		<name>IP address change</name>
+		<description>Change IP address of UCS system</description>
+		<keywords></keywords>
+		<command name="ip/change" function="change" />
+	</module>
+</umc>

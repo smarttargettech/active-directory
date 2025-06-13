@@ -1,0 +1,20 @@
+0014-4:debian/univention-config-registry.preinst
+# Implementation for has_key
+# Detect deprecated base config
+0016-3: python/univention-config-registry:62
+0016-3: python/univention-config-registry:63
+0016-5: tests/test_handler.py
+# Internal unit tests: has_key, #!python
+0009-2:tests/test_ldif.py
+0009-2:tests/test_info_tools.py
+0009-2:tests/test_backend.py
+0009-2:tests/test_backend_threading.py
+0009-2:tests/test_cli.py
+0009-2:tests/test_filters.py
+0009-2:tests/test_frontend.py
+0009-2:tests/test_handler.py
+0009-2:tests/test_info.py
+0009-2:tests/test_interfaces.py
+0009-2:tests/test_misc.py
+0009-2:tests/test_service_info.py
+0013-2:tests/multifile.sh

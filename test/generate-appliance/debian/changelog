@@ -1,0 +1,307 @@
+generate-appliance (8.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:57 +0200
+
+generate-appliance (8.0.6-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+generate-appliance (8.0.5) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#1711: add ubformat=streamOptimized for ec2
+
+ -- Felix Botner <botner@univention.de>  Thu, 30 Jan 2025 09:43:52 +0100
+
+generate-appliance (8.0.4) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#1711: remove subformat=streamOptimized option from
+    vmdk (not supported by wmware player)
+
+ -- Felix Botner <botner@univention.de>  Fri, 17 Jan 2025 12:28:04 +0100
+
+generate-appliance (8.0.3) unstable; urgency=medium
+
+  * Issue univention/dev/ucs#2309: ignore missing status info in response
+
+ -- Felix Botner <botner@univention.de>  Thu, 12 Dec 2024 10:00:45 +0100
+
+generate-appliance (8.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:31 +0100
+
+generate-appliance (8.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:21 +0100
+
+generate-appliance (7.0.3) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:19 +0100
+
+generate-appliance (7.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:28 +0100
+
+generate-appliance (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:33 +0100
+
+generate-appliance (6.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:56 +0100
+
+generate-appliance (6.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:20 +0100
+
+generate-appliance (6.0.2-2) unstable; urgency=low
+
+  * Bug #45426: Fix OVA capacity size
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 23 Jun 2023 17:44:19 +0200
+
+generate-appliance (6.0.2-1) unstable; urgency=low
+
+  * Bug #55124: Fix OVA image creation
+  * Bug #45426: Convert to Python 3 and boto3
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Jun 2023 20:18:39 +0200
+
+generate-appliance (6.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:46 +0100
+
+generate-appliance (6.0.0-2) unstable; urgency=low
+
+  * Bug #45426: Cleanup implementation
+
+ -- Philipp Hahn <hahn@univention.de>  Wed, 09 Nov 2022 15:04:06 +0100
+
+generate-appliance (6.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:33 +0200
+
+generate-appliance (5.0.0-2) unstable; urgency=medium
+
+  * Bug #50451: Change default description to include RAM requirement
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 05 Nov 2019 16:13:05 +0100
+
+generate-appliance (5.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:47 +0100
+
+generate-appliance (4.0.0-4) unstable; urgency=medium
+
+  * Bug #47355: Adapt conventions for output file names
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 16 Jul 2018 17:21:26 +0200
+
+generate-appliance (4.0.0-3) unstable; urgency=medium
+
+  * Bug #47130: fix description for EC2 AMI
+  * Remove deprecated option from boto call
+
+ -- Erik Damrose <damrose@univention.de>  Mon, 11 Jun 2018 16:47:07 +0200
+
+generate-appliance (4.0.0-2) unstable; urgency=medium
+
+  * Bug #39140: Revert
+
+ -- Erik Damrose <damrose@univention.de>  Wed, 28 Mar 2018 13:45:35 +0200
+
+generate-appliance (4.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:53 +0100
+
+generate-appliance (3.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:58:16 +0200
+
+generate-appliance (2.1.0-1) unstable; urgency=medium
+
+  * Add "Amazon AWS EC2 AMI (EBS based) (HVM x64_64)" target
+  * Make --help output deterministic
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 22 Jun 2016 18:00:42 +0200
+
+generate-appliance (2.0.2-2) unstable; urgency=medium
+
+  * Bug #39140: Add support for seamless mouse integration for VirtualBox by
+    configuring a USB pointing device
+
+ -- Erik Damrose <damrose@univention.de>  Tue, 09 Feb 2016 15:33:13 +0100
+
+generate-appliance (2.0.2-1) unstable; urgency=medium
+
+  * Switch from FFPU to Core Edition (Bug #38532)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 17 Nov 2015 07:05:55 +0100
+
+generate-appliance (2.0.1-1) unstable; urgency=medium
+
+  * Bump version for UCS 4.1 (Bug #39729)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 03 Nov 2015 22:28:07 +0100
+
+generate-appliance (1.2.8-1) unstable; urgency=low
+
+  * Bug #37935: docker: removed unused script start-app
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 23 Oct 2015 17:20:33 +0200
+
+generate-appliance (1.2.7-1) unstable; urgency=medium
+
+  * Bug #37619: change vmware to not show MAC popup
+  * add dependency to zip
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 05 Jun 2015 17:10:37 +0200
+
+generate-appliance (1.2.6-5) unstable; urgency=low
+
+  * Bug #37935: updated start-app
+    - added DNS settings
+    - removed setting of system/setup/boot/start=true
+    - improved UCR setting
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Fri, 10 Apr 2015 17:51:02 +0200
+
+generate-appliance (1.2.6-4) unstable; urgency=low
+
+  * Bug #37935: fixed regex in start-app for extracting IP address
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 08 Apr 2015 14:38:21 +0200
+
+generate-appliance (1.2.6-3) unstable; urgency=low
+
+  * Bug #37935: add start-app script that is "patched" into the existing image
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 01 Apr 2015 11:05:44 +0200
+
+generate-appliance (1.2.6-2) unstable; urgency=medium
+
+  * Bug #37908: fix links to univention.de
+
+ -- Florian Best <best@univention.de>  Thu, 12 Mar 2015 10:49:32 +0100
+
+generate-appliance (1.2.6-1) unstable; urgency=low
+
+  *  Bug #37935: added dependency to libguestfs-tools
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 11 Mar 2015 14:45:05 +0100
+
+generate-appliance (1.2.5-2) unstable; urgency=low
+
+  * add Docker target to generate-appliance (Bug #37935)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 04 Mar 2015 14:17:55 +0100
+
+generate-appliance (1.2.5-1) unstable; urgency=medium
+
+  * Update to UCS 4.0 (Bug #37137)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 09 Dec 2014 17:50:21 +0100
+
+generate-appliance (0.2.5-1) unstable; urgency=medium
+
+  * simplify virtualbox hardware (Bug #36023)
+  * simplify ESX hardware (Bug #36023)
+  * simplify VMPlayer hardware (Bug #36023)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Tue, 07 Oct 2014 13:16:38 +0200
+
+generate-appliance (0.2.4-1) unstable; urgency=medium
+
+  * add --memory-size option (Bug #35998)
+  * cleanup OVA metadata
+  * add --cpu-count option (Bug #35998)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 25 Sep 2014 16:15:12 +0200
+
+generate-appliance (0.2.3-1) unstable; urgency=low
+
+  * Cleanup of virtualbox xml to support import on MS Windows (Bug #35756)
+
+ -- Erik Damrose <damrose@univention.de>  Thu, 18 Sep 2014 10:40:09 +0200
+
+generate-appliance (0.2.2-1) unstable; urgency=medium
+
+  * VirtualBox: Change to USB default disabled (Bug #35756)
+  * ESXi: Change filename
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 17 Sep 2014 17:27:16 +0200
+
+generate-appliance (0.2.1-1) unstable; urgency=medium
+
+  * VirtualBox: Debian_64 instead of Linux_64 (Bug #35756)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 12 Sep 2014 14:32:46 +0200
+
+generate-appliance (0.2.1-0) unstable; urgency=medium
+
+  * Make metadata configurable (Bug #35756)
+  * fix install path
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 12 Sep 2014 13:26:54 +0200
+
+generate-appliance (0.1.2-0) unstable; urgency=medium
+
+  * Generate amd64 metadata (Bug #35756)
+  * Check tempdir is directory
+  * Revert OVA VMDK unification
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 12 Sep 2014 12:07:53 +0200
+
+generate-appliance (0.1.1-0) unstable; urgency=medium
+
+  * Add --tempdir (Bug #35756)
+  * Unify OVA VMDKs
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Mon, 08 Sep 2014 15:51:06 +0200
+
+generate-appliance (0.1.0-0) unstable; urgency=medium
+
+  * Add ESXi support (Bug #35756)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Thu, 04 Sep 2014 18:49:02 +0200
+
+generate-appliance (0.0.2-0) unstable; urgency=medium
+
+  * Add progress output (Bug #35756)
+  * Fix ZIP issue
+  * Add --product option
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Wed, 03 Sep 2014 19:20:21 +0200
+
+generate-appliance (0.0.1-0) unstable; urgency=medium
+
+  * Initial release. (Bug #35756)
+
+ -- Janek Walkenhorst <walkenhorst@univention.de>  Fri, 29 Aug 2014 18:36:07 +0200

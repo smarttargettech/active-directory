@@ -1,0 +1,62 @@
+#!/bin/sh -e
+#
+# Univention Setup
+#  timezone change script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+# shellcheck source=../setup_utils.sh
+. /usr/lib/univention-system-setup/scripts/setup_utils.sh
+
+info_header "$0" "$(gettext "Configuring time zones")"
+
+[ "$check_ldap_access" = "1" ] &&
+	exit 0
+
+timezone="$(get_profile_var timezone)" ||
+	exit 0
+[ -n "$timezone" ] ||
+	exit 0
+
+[ -e /etc/timezone ] &&
+	[ "$(cat /etc/timezone)" = "$timezone" ] &&
+	exit 0
+
+rm -f /etc/localtime /etc/timezone
+echo "$timezone" >/etc/timezone
+install -m644 "/usr/share/zoneinfo/$timezone" /etc/localtime
+
+service stop ntpsec
+# shellcheck disable=SC2015
+[ -x /usr/sbin/ntpdate-debian ] && /usr/sbin/ntpdate-debian || true
+service start ntpsec
+
+exit 0

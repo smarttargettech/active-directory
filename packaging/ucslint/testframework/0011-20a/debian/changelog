@@ -1,0 +1,5 @@
+ucs-tools (1.2.4-1) unstable; urgency=low
+
+  * ucslint: added test for "fuzzy" in .po-files
+
+ -- Sönke Schwardt <schwardt@univention.de>  Wed, 12 Nov 2008 10:20:18 +0100

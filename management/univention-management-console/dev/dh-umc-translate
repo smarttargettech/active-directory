@@ -1,0 +1,95 @@
+#!/usr/bin/python3
+#
+# Univention Management Console
+"""Tool creates .json files for translation using gettext."""
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2011-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+
+import os
+import sys
+from argparse import ArgumentParser
+
+import univention.l10n.umc as dh_umc
+
+
+def main():
+    # parse all options
+    parser = ArgumentParser()
+    parser.add_argument(
+        '-p', '--package',
+        required=True,
+        help='Specifies the package name which is needed for the creation of .po files. (Mandatory)',
+    )
+    parser.add_argument(
+        '-t', '--type',
+        choices=['json', 'mo', 'po'],
+        default='json',
+        help='Type of the final output file; note that "json" and "mo" will both also create .po files [%(default)s]',
+    )
+    parser.add_argument(
+        '-o', '--outdir',
+        required=True,
+        help='Specifies the output directory where translations from all js files are saved to. (Mandatory)')
+    parser.add_argument(
+        '-l', '--lang', action='append',
+        help='Specifies the languages that are processed (default: de)')
+    parser.add_argument('args', metavar='jsFile', nargs='*')
+
+    options = parser.parse_args()
+
+    # update the list of languages
+    if options.lang and len(options.lang):
+        dh_umc.LANGUAGES = options.lang
+
+    # set the po/mo/json file names and the correct function for generating the
+    # final output
+    create_final_output = {
+        'json': dh_umc.create_json_file,
+        'mo': dh_umc.create_mo_file,
+        'po': lambda x: None,
+    }[options.type]
+
+    # build translation files
+    for lang in dh_umc.LANGUAGES:
+        ipo_file = os.path.join(options.outdir, '%s.po' % lang)
+        if options.args:
+            # only re-create po files if javascript files are given
+            dh_umc.create_po_file(ipo_file, options.package, options.args, 'JavaScript')
+        create_final_output(ipo_file)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except dh_umc.Error as exc:
+        print(str(exc), file=sys.stderr)
+        sys.exit(1)

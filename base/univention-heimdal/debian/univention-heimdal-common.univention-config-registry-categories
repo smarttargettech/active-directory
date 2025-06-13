@@ -1,0 +1,4 @@
+[service-kerberos]
+name[de]=Kerberos
+name[en]=Kerberos
+icon=service-kerberos.gif

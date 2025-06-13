@@ -1,0 +1,155 @@
+#!/usr/bin/python3
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2007-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+"""
+synchronise attributes uniqueMember to memberUID of group objects.
+
+Update the UIDs in memberUid of all groups to match the uid of the objects
+referenced by uniqueMember.
+"""
+
+
+import sys
+from argparse import ArgumentParser
+from logging import getLogger
+
+import univention.admin.filter
+import univention.admin.uldap
+import univention.logging
+from univention.config_registry import ucr
+
+
+log = getLogger('ADMIN')
+
+
+class ConsistencyError(Exception):
+    """Inconsistence detected."""
+
+
+def main() -> None:
+    """synchronise attributes uniqueMember to memberUID of group objects."""
+    parser = ArgumentParser()
+    parser.add_argument('-t', '--test', action='store_true', dest='test', default=False, help='just test the modification')
+    parser.add_argument('-d', action='store', default=2, type=int, dest='debug', help='set debug level')
+    parser.add_argument('-c', '--continue', action='store_true', dest='cont', default=False, help='continue on error')
+    parser.add_argument('-g', '--groups', action='append', required=False, dest='groups', help='Only process the specified group')
+    parser.add_argument('-x', '--exclude', action='append', required=False, dest='exclude', help='Exclude the specified group')
+
+    options = parser.parse_args()
+
+    univention.logging.basicConfig(filename='/var/log/univention/sync-memberuid.log', univention_debug_level=options.debug)
+
+    base_dn = ucr['ldap/base']
+
+    lo, _ = univention.admin.uldap.getAdminConnection()
+
+    try:
+        process_groups(lo, base_dn, options.groups, options.exclude, options.test, options.cont)
+    except ConsistencyError:
+        sys.exit(1)
+
+
+def make_searchfilter(
+    groups,  # type: list[str] | None
+    exclude,  # type: list[str] | None
+):  # type: (...) -> univention.admin.filter.conjunction
+    filters = []
+    if groups is not None:
+        filters = [univention.admin.filter.conjunction('|', [f'(cn={group})' for group in groups])] + filters  # noqa: RUF005
+    if exclude is not None:
+        filters = [univention.admin.filter.conjunction('!', f'(cn={group})') for group in exclude] + filters
+    return str(univention.admin.filter.conjunction('&', ['(objectClass=posixGroup)', '(objectClass=univentionGroup)'] + filters))  # noqa: RUF005
+
+
+def process_groups(
+    lo,  # type: univention.admin.uldap.access
+    base_dn,  # type: str
+    groups,  # type: list[str]
+    exclude,  # type: list[str]
+    test=False,  # type: bool
+    cont=False,  # type: bool
+):  # type: (...) -> None
+    filter = make_searchfilter(groups, exclude)
+    groups = lo.search(filter, base_dn, attr=['uniqueMember', 'memberUid'])
+
+    if test:
+        print('Test Mode: The following groups have to be modified:')
+    for grp_dn, grp_attrs in groups:
+        old = set(grp_attrs.get('memberUid', ()))
+
+        log.info('Group: %s', grp_dn)
+        new = set()
+        member_dns = grp_attrs.get('uniqueMember', ())
+        for uniqueMember in member_dns:
+            uniqueMember = uniqueMember.decode('utf-8')
+            try:
+                result = lo.search(base=uniqueMember, scope='base')
+            except univention.admin.uexceptions.noObject as ex:
+                log.warning('searching %s failed: %s', uniqueMember, ex)
+                print('WARNING: DN %s not found' % uniqueMember, file=sys.stderr)
+                continue
+            if not result:
+                log.warning('empty result for uniqueMember %s', uniqueMember)
+                print('WARNING: empty result for uniqueMember %s' % uniqueMember, file=sys.stderr)
+                continue
+            _, uniqueMemberAttrs = result[0]
+            uniqueMemberUid = uniqueMemberAttrs.get('uid')
+            if uniqueMemberUid:
+                new.add(uniqueMemberUid[0])
+
+        if old != new:
+            log.debug('  members: %s', member_dns)
+            log.debug('  old memberUid: %s', old)
+            log.debug('  new memberUid: %s', new)
+            if test:
+                print('Group:', grp_dn)
+                continue
+            add = list(new - old)
+            if add:
+                try:
+                    lo.modify(grp_dn, [('memberUid', '', add)])
+                except univention.admin.uexceptions.ldapError as ex:
+                    log.error('adding memberUid entries failed: %s', ex)
+                    if not cont:
+                        raise ConsistencyError()
+            remove = list(old - new)
+            if remove:
+                try:
+                    lo.modify(grp_dn, [('memberUid', remove, '')], exceptions=True)
+                except univention.admin.uexceptions.ldapError as ex:
+                    log.error('removing memberUid entries failed: %s', ex)
+                    if not cont:
+                        raise ConsistencyError()
+
+
+if __name__ == '__main__':
+    main()

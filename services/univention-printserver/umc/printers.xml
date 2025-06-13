@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<umc version="2.0">
+	<module id="printers" icon="print-jobs" priority="50" version="1.0">
+		<name>Print jobs</name>
+		<description>Management of print jobs of local printers</description>
+		<keywords>printer</keywords>
+		<categories>
+			<category name="devices"/>
+		</categories>
+
+		<command name="printers/query" function="list_printers"/>
+		<command name="printers/get" function="get_printer" />
+		<command name="printers/enable" function="enable_printer" />
+		<command name="printers/jobs/query" function="list_jobs" />
+		<command name="printers/jobs/cancel" function="cancel_jobs" />
+		<command name="printers/users/query" function="list_users"/>
+	</module>
+</umc>

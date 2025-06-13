@@ -1,0 +1,89 @@
+#!/bin/sh
+#
+# Univention Fetchmail
+#  postinst script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+. /usr/share/univention-lib/all.sh
+
+eval "$(univention-config-registry shell)"
+
+univention-config-registry set \
+  mail/maps/canonical/sender/enable=ldap \
+  mail/maps/canonical/recipient/enable=ldap \
+  mail/postfix/local/header/rewrite/clients="static:all"
+
+call_joinscript 92univention-mail-canonical-maps.inst
+
+stop_udm_cli_server
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" lt-nl "8.0.0-2"; then
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-CanonicalRecipientRewriteEnable,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "redirection activée pour les destinataires"' \
+		--append translationLongDescription='"fr_FR" "Cette case active la redirection pour les champs de destinataires (À: et CC:) des courriers traités."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-CanonicalSenderRewriteEnable,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "redirection activée pour les émetteurs"' \
+		--append translationLongDescription='"fr_FR" "Cette case active la redirection pour les champs d’émetteurs (De:) des courriers traités."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-InternalPrimaryMailAddress,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Adresse e-mail interne principale"' \
+		--append translationLongDescription='"fr_FR" "Adresse e-mail interne sur laquelle les adresses e-mail publiques seront redirigées."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-PublicPrimaryMailAddress,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Adresse e-mail publique principale"' \
+		--append translationLongDescription='"fr_FR" "Adresse e-mail publique sur laquelle les adresses e-mail internes seront redirigées."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-InternalAlternativeMailAddress,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Adresses e-mail internes alternatives"' \
+		--append translationLongDescription='"fr_FR" "Adresses e-mail internes supplémentaires qui seront utilisées à côté de l’adresse e-mail interne principale."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+
+	univention-directory-manager settings/extended_attribute modify --dn "cn=Univention-PublicAlternativeMailAddress,cn=canonical-maps,cn=custom attributes,cn=univention,$ldap_base" \
+		--append translationShortDescription='"fr_FR" "Adresses e-mail publiques alternatives"' \
+		--append translationLongDescription='"fr_FR" "Adresses e-mail publiques supplémentaires qui seront utilisées à côté de l’adresse e-mail publique principale."' \
+		--append translationTabName='"fr_FR" "Courrier"' \
+		--append translationGroupName='"fr_FR" "Tables canoniques"'
+fi
+
+exit 0

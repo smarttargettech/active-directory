@@ -1,0 +1,1047 @@
+#!/bin/bash
+#
+# Univention Samba4
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=6
+. /usr/share/univention-join/joinscripthelper.lib
+joinscript_init
+
+. /usr/share/univention-lib/all.sh
+. /usr/share/univention-samba4/lib/all.sh
+
+eval "$(univention-config-registry shell)"
+
+# samba4 allowed on this system?
+if is_ucr_true samba4/disabled; then
+	echo "WARNING: samba4 on this system is not allowed."
+	echo "         The samba4 join stops here. To rerun the"
+	echo "         join script, use "
+	echo "         -> univention-run-join-scripts"
+	exit 0
+fi
+
+s3setup="$(ldapsearch -x -ZZ -D "$ldap_hostdn" -y /etc/machine.secret \
+		   '(&(univentionService=Samba 3)(objectClass=univentionDomainController))' -LLL dn \
+		   | ldapsearch-wrapper | sed -ne 's|dn: ||p')"
+if [ -n "$s3setup" ] && is_domain_controller; then
+
+	if is_ucr_true samba4/ignore/mixsetup; then
+		echo "WARNING: It is not possible to install a samba 4 domaincontroller "
+		echo "         into a samba 3 environment. samba4/ignore/mixsetup is true."
+		echo "         Continue as requested"
+	else
+		# Try to install a S4 DC in a S3 environment ...
+		echo "ERROR: It is not possible to install a samba 4 domaincontroller "
+		echo "       into a samba 3 environment."
+		exit 1
+	fi
+fi
+
+NAME="Samba 4"
+SYSVOL_PATH='/var/lib/samba/sysvol'
+
+# check for dead links in sysvol (provisioning and sysvol reset fail with
+# dead links in sysvol)
+if [ -d "$SYSVOL_PATH" ]; then
+	correct_message="Please correct this problem on this host"
+	test -n "$samba4_sysvol_sync_host" && correct_message="$correct_message and on the sysvol sync host \"${samba4_sysvol_sync_host}\""
+	correct_message="${correct_message}."
+	dead_links="$(find "$SYSVOL_PATH" -type l -xtype l 2>&1)"
+	if [ $? -ne 0 ]; then
+		echo "ERROR: The test for dead links in $SYSVOL_PATH failed with:"
+		echo "       $dead_links"
+		echo "       $correct_message"
+		exit 1
+	fi
+	if [ -n "$dead_links" ]; then
+		echo "ERROR: Found dead symbolic links in $SYSVOL_PATH:"
+		while read -r dead; do
+			echo "        * $dead"
+		done <<< "$dead_links"
+		echo "       The samba provisioning will fail with dead links in"
+		echo "       $SYSVOL_PATH, so please remove those links and try again."
+		echo "       $correct_message"
+		exit 1
+	fi
+fi
+
+### --- BEGIN helper functions ---
+
+operatingSystem_attribute() {
+	operation=$1
+
+	if [ "$operation"  == 'add' ]; then
+		operatingSystem="$(ldbsearch -H tdb:///var/lib/samba/private/sam.ldb \
+			-b "CN=$hostname,OU=Domain Controllers,$samba4_ldap_base" \
+			operatingSystem)"
+		if [ -n "$operatingSystem" ]; then
+			operation=replace
+		fi
+	fi
+
+	ldbmodify -H tdb:///var/lib/samba/private/sam.ldb <<-%EOF
+	dn: CN=$hostname,OU=Domain Controllers,$samba4_ldap_base
+	changetype: modify
+	$operation: operatingSystem
+	operatingSystem: Univention Corporate Server
+	-
+	$operation: operatingSystemVersion
+	operatingSystemVersion: $version_version-$version_patchlevel
+	%EOF
+}
+
+let_samba4_manage_etc_krb5_keytab() {
+	## Let samba4 manage /etc/krb5.keytab
+	if [ -e /etc/krb5.keytab ]; then
+		cp /etc/krb5.keytab /etc/krb5.keytab.SAVE
+	fi
+
+	keytab_file="$(ldbsearch -H /var/lib/samba/private/secrets.ldb samAccountName="$hostname\$" krb5Keytab | sed -n 's/^krb5Keytab: //p')"
+	if [ "$keytab_file" != "/etc/krb5.keytab" ]; then
+		ldbmodify -H /var/lib/samba/private/secrets.ldb <<-%EOF
+		dn: flatname=$windows_domain,cn=Primary Domains
+		changetype: modify
+		add: krb5Keytab
+		krb5Keytab: /etc/krb5.keytab
+		-
+		%EOF
+	else
+		echo "/etc/krb5.keytab is already registered in samba4."
+	fi
+
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "/etc/krb5.keytab does not exist yet, triggering samba4 commit."
+		/usr/share/univention-samba4/scripts/create-keytab.sh
+	fi
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "WARNING: /etc/krb5.keytab not created."
+	fi
+}
+
+add_servicePrincipals() {
+	{
+	cat <<-%EOF
+	dn: flatname=$windows_domain,cn=Primary Domains
+	changetype: modify
+	add: servicePrincipalName
+	%EOF
+
+	for spn in "$@"; do
+		echo "servicePrincipalName: $spn"
+	done
+	} | ldbmodify -H /var/lib/samba/private/secrets.ldb
+}
+
+create_site() {
+
+	assert_dcaccount_and_bindpwd
+
+	if [ -n "$samba4_dc" ]; then
+		ucr_variable='samba4/dc'
+	else
+		ucr_variable='ldap/master'
+	fi
+
+	try_server=$(ucr get $ucr_variable)
+	if ldbsearch -k no -A"$authenticationfile" -H "ldap://$try_server" -s base > /dev/null 2>&1; then
+		/usr/share/univention-samba4/scripts/univention-samba4-site-tool.py \
+				-H "ldap://$try_server" \
+				-A"$authenticationfile" \
+				--site "$1" --createsite \
+				--ignore-exists
+	else
+		echo "create_site: looks like there is no Samba4 on $ucr_variable='$try_server', site creation skipped."
+	fi
+}
+
+set_rid_pool() {
+	lower="$1"
+	upper="$2"
+
+	ldbmodify -H /var/lib/samba/private/sam.ldb <<-%EOF
+	dn: CN=RID Set,CN=$hostname,OU=Domain Controllers,$samba4_ldap_base
+	changetype: modify
+	replace: rIDAllocationPool
+	rIDAllocationPool: ${lower}-${upper}
+	-
+	replace: rIDPreviousAllocationPool
+	rIDPreviousAllocationPool: ${lower}-${upper}
+	-
+	replace: rIDNextRID
+	rIDNextRID: $(($lower + 1))
+	%EOF
+}
+
+stop_conflicting_services() {
+	## stop samba3 services and heimdal-kdc if present
+	if [ -x /etc/init.d/winbind ]; then
+		if [ -n "$(pgrep -f /usr/sbin/winbindd)" ]; then
+			/etc/init.d/winbind stop
+			# Bug #35600: Really stop all winbind processes
+			start-stop-daemon --stop --quiet --retry 2 --exec /usr/sbin/winbindd
+		fi
+	fi
+	if [ -x /etc/init.d/samba ]; then
+		if [ -n "$(pgrep -f '/usr/sbin/(smbd|nmbd)')" ]; then
+			/etc/init.d/samba stop
+			## the smbd init script might refuse to run if it detects ADDC config in smb.conf
+			start-stop-daemon --stop --quiet --retry 2 --exec /usr/sbin/smbd
+		fi
+	fi
+	if [ -x /etc/init.d/heimdal-kdc ]; then
+		if [ -n "$(pgrep -f '/usr/lib/heimdal-servers/(kdc|kpasswdd)')" ]; then
+			/etc/init.d/heimdal-kdc stop
+		fi
+	fi
+
+	tmp_ucr_key_value_list=()
+	if [ "$samba_autostart" != "no" ]; then
+			tmp_ucr_key_value_list[0]="samba/autostart=no"
+	fi
+	if [ "$winbind_autostart" != "no" ]; then
+			tmp_ucr_key_value_list[${#tmp_ucr_key_value_list[@]}]="winbind/autostart=no"
+	fi
+	if [ "$kerberos_autostart" != "no" ]; then
+		# Bug #43874: samba4 has that idea to divert the univention-service file to "not confuse the admin with a stopped heimdal-kdc", but now we're confusing systemd
+		[ -d /run/systemd ] && systemctl disable heimdal-kdc.service || :
+		[ -d /run/systemd ] && systemctl mask heimdal-kdc.service || :
+			tmp_ucr_key_value_list[${#tmp_ucr_key_value_list[@]}]="kerberos/autostart=no"
+	fi
+	if [ -n "$tmp_ucr_key_value_list" ]; then
+		univention-config-registry set "${tmp_ucr_key_value_list[@]}"
+	fi
+	unset tmp_ucr_key_value_list
+}
+
+get_samba_role() {
+	case "$server_role" in
+		domaincontroller_*) echo DC;;
+		memberserver) echo MEMBER;;
+	esac
+}
+
+configure_samba_role() {
+	if [ -z "$samba4_role" ]; then
+		samba4_role=$(get_samba_role)
+	fi
+
+	if [ "$samba4_role" != "MEMBER" ] && is_domain_in_admember_mode; then
+		echo "ERROR: The domain is in AD Member Mode, cannot join as $samba4_role."
+		exit 1
+	fi
+
+	univention-config-registry set samba4/role?"$samba4_role"
+	systemctl try-restart univention-directory-listener
+}
+
+set_samba4_ldap_base() {
+	default_samba4_ldap_base="DC=$(echo "$kerberos_realm" | sed 's/\./,DC=/g')"
+	if [ "$samba4_ldap_base" != "$default_samba4_ldap_base" ]; then
+		univention-config-registry set samba4/ldap/base="$default_samba4_ldap_base"
+		samba4_ldap_base="$default_samba4_ldap_base"
+	fi
+}
+
+run_samba_provision() {
+	## Provision Samba4
+	/usr/share/univention-samba4/scripts/setup-s4.sh "$@" "${SITE_OPTION[@]}"
+	rc="$?"
+	if [ "$rc" != 0 ]; then
+		exit "$rc"
+	fi
+
+	# do not start wins in an ipv6 (only) setup
+	wins=yes
+	if [ -z "$(get_default_ipv4_address)" ]; then
+		wins=no
+		echo "WARNING: Wins support deactivated (this is an ipv6 only environment)."
+	fi
+	univention-config-registry set windows/wins-support="$wins" windows/wins-server?"localhost"
+
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "/etc/krb5.keytab does not exist yet."
+	fi
+	# Re-commit /etc/krb5.keytab
+	#  https://forge.univention.org/bugzilla/show_bug.cgi?id=27426
+	/usr/share/univention-samba4/scripts/create-keytab.sh
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "WARNING: /etc/krb5.keytab not created."
+	fi
+	restore_rIDNextRID
+}
+
+samba_domain_join() {
+	local success
+	local samba_join_options
+	samba_join_options=("${@}")
+	samba_join_options+=( --kerberos=no )	## don't use kerberos for authentication during join
+	samba_join_options+=( -U"$dcaccount"%"$bindpwd" )
+	samba_join_options+=( --realm="$kerberos_realm" )
+	samba_join_options+=( --machinepass="$(cat /etc/machine.secret)" )
+	samba_join_options+=( --backend-store="$samba_database_backend_store" )
+	samba_join_options+=( --backend-store-size="$samba_database_backend_store_size" )
+
+	local server_fail_message="Make sure the server is online or if this server is no longer in use,\nplease completely remove the server object from the domain."
+
+	if [ -n "$SITE_OPTION" ]; then
+		samba_join_options+=( "${SITE_OPTION[@]}" )
+	fi
+
+	univention-config-registry set windows/wins-support?no
+
+	if [ -n "$samba4_dc" ]; then
+		samba-tool domain join "$domainname" "$samba4_role" --server "$samba4_dc" "${samba_join_options[@]}"
+		if [ $? -eq 0 ]; then
+			univention-config-registry set windows/wins-server?"$samba4_dc"
+			success=true
+		else
+			echo "Failed to join the server $samba4_dc."
+			echo -e "$server_fail_message"
+			exit 1
+		fi
+	else
+
+		# Let's try to join against the S4 Connector
+		s4connector_dc=$(ldapsearch -x -ZZ -LLL -D "$ldap_hostdn" -y /etc/machine.secret \
+			"(&(univentionService=S4 Connector)(objectClass=univentionDomainController)(!(univentionService=S4 SlavePDC)))" cn \
+			| ldapsearch-wrapper | sed -n 's/^cn: \(.*\)/\1/p')
+
+		if [ -n "$s4connector_dc" ]; then
+			echo "Join against S4 Connector server: $s4connector_dc"
+			if samba-tool domain info "$s4connector_dc.$domainname"; then
+				samba-tool domain join "$domainname" "$samba4_role" --server "$s4connector_dc" "${samba_join_options[@]}"
+				if [ $? -eq 0 ]; then
+					success=true
+				else
+					echo "Failed to join against the S4 Connector server ${s4connector_dc}."
+					echo -e "$server_fail_message"
+				fi
+			else
+				echo "Samba currently not available on S4 Connector server ${s4connector_dc}."
+				echo -e "$server_fail_message"
+			fi
+		fi
+
+
+		if [ -z "$success" ]; then
+			if samba-tool domain info "$domainname"; then
+				samba-tool domain join "$domainname" "$samba4_role" "${samba_join_options[@]}"
+				if [ $? -eq 0 ]; then
+					success=true
+				else
+					echo "Failed to join the domain $domainname."
+					echo -e "$server_fail_message"
+					exit 1
+				fi
+			fi
+		fi
+
+		if [ -z "$success" ]; then
+			# try again with --server
+			cn=($(ldapsearch -x -ZZ -LLL -D "$ldap_hostdn" -y /etc/machine.secret \
+						"(&(univentionService=Samba 4)(objectClass=univentionDomainController))" cn \
+										| ldapsearch-wrapper | sed -n 's/^cn: \(.*\)/\1/p' ))
+			for name in "${cn[@]}"; do
+				if samba-tool domain info "$name.$domainname"; then
+					samba-tool domain join "$domainname" "$samba4_role" --server "$name.$domainname" "${samba_join_options[@]}"
+					if [ $? -eq 0 ]; then
+						success=true
+						univention-config-registry set windows/wins-server?"$name.$domainname"
+						break
+					else
+						echo "Failed to join the server $name.$domainname."
+						echo -e "$server_fail_message"
+						exit 1
+					fi
+				fi
+			done
+		fi
+	fi
+
+
+	if [ -z "$success" ]; then
+		echo "Failed to join the domain."
+		exit 1
+	fi
+
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "/etc/krb5.keytab does not exist yet."
+	fi
+	# Re-commit /etc/krb5.keytab
+	#  https://forge.univention.org/bugzilla/show_bug.cgi?id=27426
+	/usr/share/univention-samba4/scripts/create-keytab.sh
+	if ! [ -r "/etc/krb5.keytab" ]; then
+		echo "WARNING: /etc/krb5.keytab not created."
+	fi
+}
+
+backup_samba4_keytab() {
+	pre_join_kvno=$(ldbsearch -H /var/lib/samba/private/sam.ldb sAMAccountName="$hostname\$" msDS-KeyVersionNumber | sed -n 's/^msDS-KeyVersionNumber: \(.*\)/\1/p')
+	if [ -n "$pre_join_kvno" ]; then
+		if ! [ -f /etc/krb5.keytab ]; then
+			## usually the keytab is removed during 03univention-directory-listener.inst
+			## so recreate it with the last known key version
+			/usr/share/univention-samba4/scripts/create-keytab.sh
+		fi
+		if [ -f /etc/krb5.keytab ]; then
+			## create a backup from the old keytab
+			if [ -d /var/lib/samba/private ]; then
+				backup_id=$(date +%Y%m%d-%H%M%S)
+				backup_dir="/var/backups/samba4.$backup_id"
+				if [ -d "$backup_dir" ]; then
+					rm -rf "$backup_dir"
+				fi
+				mkdir "$backup_dir" && \
+				cp /etc/krb5.keytab "$backup_dir"
+			fi
+		fi
+	fi
+}
+
+merge_backup_samba4_keytab() {
+	if [ -n "$pre_join_kvno" ] && [ -f "$backup_dir/krb5.keytab" ]; then
+		post_join_kvno=$(ldbsearch -H /var/lib/samba/private/sam.ldb sAMAccountName="$hostname\$" msDS-KeyVersionNumber | sed -n 's/^msDS-KeyVersionNumber: \(.*\)/\1/p')
+		if [ "$post_join_kvno" -gt "$pre_join_kvno" ]; then
+			tmp_krb5_keytab=$(mktemp)
+			cp "$backup_dir/krb5.keytab" "$tmp_krb5_keytab"
+			ktutil copy /etc/krb5.keytab "$tmp_krb5_keytab"
+			mv "$tmp_krb5_keytab" /etc/krb5.keytab
+		fi
+	fi
+}
+
+create_and_replicate_DnsZone_partitions() {
+	if [ "$s4connectorservicedcs" = "$hostname" ]; then
+		## create new DOMAIN/FOREST application partitions
+		/usr/sbin/samba_upgradedns
+	elif [ -n "$s4connectorservicedcs" ]; then
+		## replicate new DOMAIN/FOREST application partitions
+		for part in ForestDnsZones, DomainDnsZones; do
+			samba-tool drs replicate --full-sync \
+								"$s4connectorservicedcs" "$hostname" \
+								"DC=$part,$samba4_ldap_base"
+		done
+	fi
+}
+
+set_default_fACL() {
+	dirname="$1"
+	if ! [ -d "$dirname" ]; then
+		print "Warning: $dirname is not a directory"
+	fi
+	## set default ACLs so sysvol-sync can read files and directories
+	update_nss_group_cache
+	if ! getent group "Authenticated Users" >/dev/null; then
+		/etc/init.d/nscd restart
+	fi
+	setfacl -R -P -m 'g:Authenticated Users:r-x,d:g:Authenticated Users:r-x' "$dirname"
+	rc="$?"
+	if [ "$rc" != 0 ]; then
+		echo "Error: Could not set fACL for $dirname" >&2
+		exit "$rc"
+	fi
+}
+
+register_server_ips_with_domain() {
+	zone="$(udm dns/forward_zone list "$@" --filter zoneName="$domainname" | sed -ne 's|^DN: ||p')"
+	if [ -n "$zone" ]; then
+		IPs=$(univention-ldapsearch "(&(relativeDomainname=$hostname)(zoneName=$domainname))" aRecord aAAARecord \
+		      | ldapsearch-wrapper | sed -ne 's|^aRecord: ||p;s|^aAAARecord: ||p')
+		for ip in $IPs; do
+			udm dns/forward_zone modify "$@" --ignore_exists --dn "$zone" --append a="$ip"
+		done
+	fi
+}
+
+set_samba4_sysvol_sync_host() {
+	## determine default sysvol parent for this host from univentionService="S4 Connector"
+	if [ -z "$samba4_sysvol_sync_host" ]; then
+		s4connectorservicedcs=$(ldapsearch -x -ZZ -LLL -D "$ldap_hostdn" -y /etc/machine.secret \
+			"(&(univentionService=S4 Connector)(objectClass=univentionDomainController)(!(univentionService=S4 SlavePDC)))" cn \
+								| ldapsearch-wrapper | sed -n 's/^cn: \(.*\)/\1/p')      ## currently there is no u-d-m module computers/dc
+		if [ -n "$s4connectorservicedcs" ]; then
+			univention-config-registry set samba4/sysvol/sync/host="$s4connectorservicedcs"
+		fi
+	fi
+}
+
+remove_dc_ntds_guid_records_from_dns() {
+	local zoneDN
+	zoneDN=$(univention-directory-manager dns/forward_zone list "$@" \
+				--filter zone=$domainname | sed -n 's/^DN: //p')
+
+	univention-directory-manager dns/alias list "$@" \
+		--superordinate "$zoneDN" \
+		--filter "(&(cname="$hostname.$domainname.")(name=*._msdcs))" \
+		| sed -n 's/^DN: //p' | while read recordDN; do
+
+		univention-directory-manager dns/alias delete "$@" \
+			--superordinate "$zoneDN" \
+			--dn "$recordDN"
+	done
+}
+
+sysvol_fixup() {
+	## determine default sysvol parent for this host from univentionService="S4 Connector"
+	set_samba4_sysvol_sync_host
+
+	if [ "$1" = '--overwrite-local' ]; then
+		/usr/share/univention-samba4/scripts/sysvol-sync.sh --overwrite-local
+	else
+		/usr/share/univention-samba4/scripts/sysvol-sync.sh
+	fi
+
+	## flush cached SIDs, useful e.g. for sysvol problem solving via re-join
+	net cache flush
+
+	## set the default sysvol and GPO NTACLs
+	samba-tool ntacl sysvolreset
+
+	## set default ACLs so sysvol-sync can read files and directories
+	set_default_fACL /var/lib/samba/sysvol
+}
+
+wait_until_dc_was_replicated_to_connector_dc() {
+	s4connector_dc=$(get_available_s4connector_dc) || return $?
+	if [ -z "$s4connector_dc" ]; then
+		echo "WARNING: Failed to search for S4 connector DC"
+		return 0
+	fi
+	if [ "$s4connector_dc" = "$hostname" ]; then
+		return 0
+	fi
+
+	echo -n "Waiting for DRS replication: "
+	for((i=0;i<300;i++)); do
+		search_result="$(ldbsearch -H "ldap://$s4connector_dc" -A"$authenticationfile" "(&(objectClass=computer)(cn=${hostname}))" cn 2>/dev/null| sed -n 's/^cn: \(.*\)/\1/p')"
+		test -n "$search_result" && break
+		echo -n "."
+		sleep 1
+	done
+
+	test -n "$search_result" && echo " done" || echo " failed"
+}
+
+_create_group_with_special_sid()
+{
+	local name="$1"
+	local sid="$2"
+	local position="$3"
+	local ldif
+
+	shift 3
+
+	group_dn="$(univention-ldapsearch "(&(objectClass=univentionGroup)(cn=$name))" | ldapsearch-wrapper | sed -ne 's|dn: ||p')"
+
+	if [ -z "$group_dn" ]; then
+
+		udm groups/group create "$@" --ignore_exists --option=posix \
+				--position "$position,$ldap_base" \
+				--set name="$name"
+
+		ldif="dn: cn=$name,$position,$ldap_base
+changetype: modify
+add: objectClass
+objectClass: sambaGroupMapping
+-
+add: sambaSID
+sambaSID: $sid
+-
+replace: univentionObjectFlag
+univentionObjectFlag: hidden
+-
+add: univentionGroupType
+univentionGroupType: -2147483643
+-
+add: sambaGroupType
+sambaGroupType: 5"
+
+		if is_ucr_true directory/manager/samba3/legacy && univention_samba4_is_ucr_false connector/s4/mapping/sid; then
+			ldif="$ldif
+-
+add: univentionSamba4SID
+univentionSamba4SID: $sid
+"
+		fi
+
+		echo "$ldif" | ldapmodify -x -H "ldap://$ldap_master:${ldap_master_port:-7389}" -D "$binddn" -y "$bindpwdfile"
+
+		if [ "$name" = "Authenticated Users" ]; then
+			udm groups/group modify "$@" --dn "cn=$name,$position,$ldap_base" \
+				--append nestedGroup="cn=DC Slave Hosts,cn=groups,$ldap_base" \
+				--append nestedGroup="cn=Windows Hosts,cn=groups,$ldap_base"
+		fi
+	fi
+}
+
+
+create_pseudo_groups()
+{
+	udm container/cn create "$@" --ignore_exists --set name=Builtin
+
+	_create_group_with_special_sid "Authenticated Users" "S-1-5-11" "cn=Builtin" "$@"
+	_create_group_with_special_sid "World Authority" "S-1-1" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Everyone" "S-1-1-0" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Null Authority" "S-1-0" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Nobody" "S-1-0-0" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Enterprise Domain Controllers" "S-1-5-9" "cn=groups" "$@"
+
+	udm groups/group modify "$@" --dn  "cn=Enterprise Domain Controllers,cn=groups,$ldap_base" \
+			--append nestedGroup="cn=DC Backup Hosts,cn=groups,$ldap_base"
+
+	udm groups/group modify "$@" --dn  "cn=Enterprise Domain Controllers,cn=groups,$ldap_base" \
+			--append hosts="$ldap_hostdn"
+
+	_create_group_with_special_sid "Remote Interactive Logon" "S-1-5-14" "cn=Builtin" "$@"
+	_create_group_with_special_sid "SChannel Authentication" "S-1-5-64-14" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Digest Authentication" "S-1-5-64-21" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Terminal Server User" "S-1-5-13" "cn=Builtin" "$@"
+	_create_group_with_special_sid "NTLM Authentication" "S-1-5-64-10" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Other Organization" "S-1-5-1000" "cn=Builtin" "$@"
+	_create_group_with_special_sid "This Organization" "S-1-5-15" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Anonymous Logon" "S-1-5-7" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Network Service" "S-1-5-20" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Creator Group" "S-1-3-1" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Creator Owner" "S-1-3-0" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Local Service" "S-1-5-19" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Owner Rights" "S-1-3-4" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Interactive" "S-1-5-4" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Restricted" "S-1-5-12" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Network" "S-1-5-2" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Service" "S-1-5-6" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Dialup" "S-1-5-1" "cn=Builtin" "$@"
+	_create_group_with_special_sid "System" "S-1-5-18" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Batch" "S-1-5-3" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Proxy" "S-1-5-8" "cn=Builtin" "$@"
+	_create_group_with_special_sid "IUSR" "S-1-5-17" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Self" "S-1-5-10" "cn=Builtin" "$@"
+	_create_group_with_special_sid "Console Logon" "S-1-2-1" "cn=Builtin" "$@"
+
+}
+
+_update_pseudo_group()
+{
+	local name="$1"
+
+	shift 1
+
+	group_dn="$(univention-ldapsearch "(&(objectClass=univentionGroup)(cn=$name)(!(univentionGroupType=-2147483643)))" | ldapsearch-wrapper | sed -ne 's|dn: ||p')"
+
+	if [ -n "$group_dn" ]; then
+		echo "dn: $group_dn
+changetype: modify
+replace: univentionObjectFlag
+univentionObjectFlag: hidden
+-
+add: univentionGroupType
+univentionGroupType: -2147483643
+-
+replace: sambaGroupType
+sambaGroupType: 5" | ldapmodify -x -H "ldap://$ldap_master:${ldap_master_port:-7389}" -D "$binddn" -y "$bindpwdfile"
+	fi
+}
+
+update_pseudo_groups()
+{
+	_update_pseudo_group "Authenticated Users" "$@" || die
+	_update_pseudo_group "World Authority" "$@" || die
+	_update_pseudo_group "Everyone" "$@" || die
+	_update_pseudo_group "Null Authority" "$@" || die
+	_update_pseudo_group "Nobody" "$@" || die
+	_update_pseudo_group "Enterprise Domain Controllers" "$@" || die
+}
+
+exit_on_slave_if_no_s4_connector_on_master_or_backup()
+{
+	local s4connectorservicedcs
+	is_ucr_true samba4/provision/secondary
+	if [ $? -eq 0 ]; then
+		## secondary provision for selective replication
+		return
+	fi
+	if [ "$server_role" != "domaincontroller_slave" ]; then
+		return
+	fi
+	s4connectorservicedcs=$(ldapsearch -x -ZZ -LLL -D "$ldap_hostdn" -y /etc/machine.secret \
+		"(&(univentionService=S4 Connector)(|(univentionServerRole=master)(univentionServerRole=backup)))" cn \
+		| ldapsearch-wrapper | sed -n 's/^cn: \(.*\)/\1/p')
+	if [ -z "$s4connectorservicedcs" ]; then
+		echo "ERROR: No S4 Connector installed yet on Primary or Backup Directory Node."
+		exit 1
+	fi
+}
+
+### --- END helper functions ---
+
+# lp.load('/dev'null') might have exported SMB_CONF_PATH, explicitly unset it here
+unset SMB_CONF_PATH
+
+exit_on_slave_if_no_s4_connector_on_master_or_backup
+
+# parse credentials
+extract_binddn_bindpwd_bindpwdfile_dcaccount_authenticationfile_from_args "$@"
+
+configure_samba_role
+
+univention-config-registry commit /etc/samba/smb.conf		# 03univention-directory-listener.inst might remove include
+
+if [ "$JS_LAST_EXECUTED_VERSION" = 0 ]; then
+
+	if [ "$samba_quota_command" != None ]; then
+		univention-config-registry set samba/quota/command='None'	# currently unsupported in samba4
+	fi
+
+	stop_conflicting_services
+fi
+
+# during installation samba4/autostart was set to no to prevent a half configured samba server.
+if [ "$samba4_autostart" != "yes" ]; then
+	univention-config-registry set samba4/autostart=yes
+fi
+
+/usr/share/univention-samba4/scripts/mount_extfs_with_user_xattr.py
+
+## the code in :py:mod:`samba.provision` derives the 'domaindn' from the realm, save it for later use
+set_samba4_ldap_base
+
+if [ -n "$samba4_join_site" ]; then
+	if [ "$samba4_role" = 'DC' ] ||  [ "$samba4_role" = 'RODC' ]; then
+		create_site "$samba4_join_site"
+		SITE_OPTION="--site=$samba4_join_site"
+		## use "${SITE_OPTION[@]}" below instead of "$SITE_OPTION" for proper quoting and to avoid passing an empty string
+	fi
+fi
+
+create_pseudo_groups "$@"
+
+if [ $JS_LAST_EXECUTED_VERSION -gt 0 ] && [ $JS_LAST_EXECUTED_VERSION -lt 6 ]; then
+	update_pseudo_groups "$@"
+fi
+
+if [ -r '/var/lib/samba/private/.adtakeover' ]; then
+	adtakeover_state=$(</var/lib/samba/private/.adtakeover)
+	echo "INFO: Detected adtakeover state $adtakeover_state"
+fi
+
+if [ "$adtakeover_state" = start ]; then
+	disable_slapd_on_standard_port
+
+	echo "INFO: Stopping univention-samba4 joinscript for AD-Takeover"
+	eval VERSION=1
+	joinscript_save_current_version
+	exit 0
+fi
+
+if [ "$samba4_role" = 'DC' ]; then
+
+	if [ "$samba_share_netlogon" != "yes" ]; then
+		univention-config-registry set samba/share/netlogon=yes
+	fi
+
+	## check if we there already is a **domaincontroller** providing the service "Samba 4"
+	samba4servicedcs=$(ldapsearch -x -ZZ -LLL -D "$ldap_hostdn" -y /etc/machine.secret \
+	                   "(&(univentionService=${NAME})(objectClass=univentionDomainController))" cn \
+					   | ldapsearch-wrapper | sed -n 's/^cn: \(.*\)/\1/p')	## currently there is no u-d-m module computers/dc
+
+	s4connector_dc=$(get_available_s4connector_dc) || exit $?
+
+	/etc/init.d/samba stop
+
+	univention-config-registry set \
+		kerberos/kdc=127.0.0.1 \
+		kerberos/kpasswdserver=127.0.0.1
+
+
+	# samba4/provision/secondary in this context means
+	# ucs@school Replica Directory Node
+
+	is_ucr_true samba4/provision/primary
+	if [ $? -eq 0 ] \
+		|| [ -z "$samba4servicedcs" ] \
+		|| [ -z "$s4connector_dc" ] \
+		|| [ "$s4connector_dc" = "$hostname" ]; then
+
+		if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+			run_samba_provision "$@"
+		fi
+
+		## provision erases the idmap.ldb
+		/usr/lib/univention-directory-listener/system/samba4-idmap.py --direct-resync 2>/dev/null
+
+
+		if is_ucr_true samba4/provision/secondary; then
+			sysvol_fixup --overwrite-local
+		else
+			sysvol_fixup
+		fi
+
+		## Add DNS records, allowing finer control over gc and pdc records than samba_dnsupdate
+		if is_ucr_true samba4/provision/secondary; then
+			/usr/share/univention-samba4/scripts/setup-dns-in-ucsldap.sh "$@" --dc "${SITE_OPTION[@]}"
+		else
+			/usr/share/univention-samba4/scripts/setup-dns-in-ucsldap.sh "$@" --dc --gc --pdc "${SITE_OPTION[@]}"
+		fi
+
+		if ! univention_samba4_is_ucr_false dns/register/srv_records/kerberos; then
+			remove_non_samba4_dc_srv_records
+		fi
+
+		operatingSystem_attribute replace
+
+		if is_ucr_true samba4/provision/secondary; then
+			# Don't use the default RID pool
+			set_rid_pool 2100 2599
+		fi
+
+		## Start samba daemon
+		/etc/init.d/samba start
+
+	else	## otherwise we will simply join the new DC
+
+		if [ $JS_LAST_EXECUTED_VERSION -lt 2 ]; then
+			## remove slapd from port 389 on upgrade
+			disable_slapd_on_standard_port
+		fi
+
+		if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+
+			assert_dcaccount_and_bindpwd
+
+			remove_dc_ntds_guid_records_from_dns "$@"
+
+			## Check if this is a re-join
+			if [ -n "$samba4_ldap_base" ] && \
+				ldbsearch -H  /var/lib/samba/private/sam.ldb samAccountName="$hostname\$" \
+					msDS-KeyVersionNumber 2>/dev/null | grep -qi "^msDS-KeyVersionNumber: "
+			then
+				## backup old keytab if samba4 generated it
+				backup_samba4_keytab
+			fi
+
+			cleanup_var_lib_samba
+			samba_domain_join "${samba_join_options[@]}"
+
+			## if the key version number increased, merge the old keys into the new keytab
+			merge_backup_samba4_keytab
+			restore_rIDNextRID
+
+		fi
+
+		## write UCS posix IDs into the idmap.ldb
+		/usr/lib/univention-directory-listener/system/samba4-idmap.py --direct-resync 2>/dev/null
+
+		sysvol_fixup --overwrite-local
+
+		## Add DNS records, allowing finer control over gc and pdc records than samba_dnsupdate
+		/usr/share/univention-samba4/scripts/setup-dns-in-ucsldap.sh "$@" --dc "${SITE_OPTION[@]}"
+
+		operatingSystem_attribute add
+
+		if [ $JS_LAST_EXECUTED_VERSION -lt 4 ] && [ $JS_LAST_EXECUTED_VERSION -gt 0 ]; then
+			create_and_replicate_DnsZone_partitions
+		fi
+
+		## Start samba daemon
+		/etc/init.d/samba start
+
+	fi
+
+	ucr commit /var/lib/samba/private/krb5.conf
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 6 ]; then
+		## add server to Enterprise Domain Controllers group if it exists
+		if univention-ldapsearch sambaSID='S-1-5-9' cn | ldapsearch-wrapper | grep -q '^cn:'; then
+			# While Bug #28756 is not fixed, do not die
+			udm groups/group modify "$@" --ignore_exists \
+							--dn "cn=Enterprise Domain Controllers,cn=groups,$ldap_base" \
+							--append hosts="$ldap_hostdn" >/dev/null 2>&1
+		fi
+
+	fi
+
+	## activate sysvol replication
+	univention-config-registry set samba4/sysvol/sync/cron?"*/5 * * * *"
+
+	# The windows clients connect to //$domainname/sysvol for GPOs during logon
+	# Register the local ips for the forward zone, skip with 'ucr set samba4/dns/domain/register=false'
+	is_ucr_true samba4/dns/domain/register
+	if [ $? != 1 ]; then
+		register_server_ips_with_domain "$@"
+	fi
+
+	## Kerberos keytab adjustments for Samba 4
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+		## Create kerberos service entries for sshd and slapd (ssh and ldapsearch -Y GSSAPI)
+		add_servicePrincipals "host/$hostname.$domainname" "ldap/$hostname.$domainname"
+	fi
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 2 ]; then
+		let_samba4_manage_etc_krb5_keytab
+	fi
+
+elif [ "$samba4_role" = "RODC" ]; then
+
+	assert_dcaccount_and_bindpwd
+
+	/etc/init.d/samba stop
+
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+		## remove slapd from port 389 on upgrade
+		disable_slapd_on_standard_port
+
+		remove_dc_ntds_guid_records_from_dns "$@"
+
+		## Check if this is a re-join
+		if [ -n "$samba4_ldap_base" ] && \
+			ldbsearch -H  /var/lib/samba/private/sam.ldb samAccountName="$hostname\$" \
+				msDS-KeyVersionNumber 2>/dev/null | grep -qi "^msDS-KeyVersionNumber: "
+		then
+			## backup old keytab if samba4 generated it
+			backup_samba4_keytab
+			cleanup_var_lib_samba
+		fi
+
+		samba_domain_join "${samba_join_options[@]}"
+
+		## write UCS posix IDs into the idmap.ldb
+		/usr/lib/univention-directory-listener/system/samba4-idmap.py --direct-resync 2>/dev/null
+
+		sysvol_fixup --overwrite-local
+
+		## if the key version number increased, merge the old keys into the new keytab
+		merge_backup_samba4_keytab
+
+	fi
+
+	/usr/share/univention-samba4/scripts/setup-dns-in-ucsldap.sh "$@" --rodc "${SITE_OPTION[@]}"
+
+	operatingSystem_attribute add
+
+	## Start samba daemon
+	/etc/init.d/samba start
+
+	## activate sysvol replication
+	univention-config-registry set samba4/sysvol/sync/cron?"*/5 * * * *"
+
+	# The windows clients connect to //$domainname/sysvol for GPOs during logon
+	# Register the local ips for the forward zone, skip with 'ucr set samba4/dns/domain/register=false'
+	is_ucr_true samba4/dns/domain/register
+	if [ $? != 1 ]; then
+		register_server_ips_with_domain "$@"
+	fi
+
+	## Kerberos keytab adjustments for Samba 4
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+		## Create kerberos service entries for sshd and slapd (ssh and ldapsearch -Y GSSAPI)
+		add_servicePrincipals "host/$hostname.$domainname" "ldap/$hostname.$domainname"
+	fi
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 2 ]; then
+		let_samba4_manage_etc_krb5_keytab
+	fi
+
+elif [ "$samba4_role" = "MEMBER" ]; then
+
+	if [ $JS_LAST_EXECUTED_VERSION -lt 1 ]; then
+		cleanup_var_lib_samba
+		samba_domain_join
+	fi
+
+	univention-config-registry set samba/share/netlogon?no \
+									samba/share/sysvol?no
+
+fi
+
+if [ -n "$samba4_join_site" ] && [ "$samba4_role" != "MEMBER" ]; then
+	## create subnet locally
+	subnet=$(python3 -c 'from univention.config_registry.interfaces import Interfaces; print(Interfaces().get_default_ip_address().network)' 2>/dev/null)
+	/usr/share/univention-samba4/scripts/univention-samba4-site-tool.py \
+			-H "/var/lib/samba/private/sam.ldb" \
+			--subnet "$subnet" --createsubnet \
+			--site "$samba4_join_site" \
+			--ignore-exists
+fi
+
+SAMBA_DRIVERS="/var/lib/samba/drivers"
+mkdir -p "$SAMBA_DRIVERS"
+for X in COLOR IA64 W32ALPHA W32MIPS W32PPC W32X86 WIN40 x64; do
+	mkdir -p "$SAMBA_DRIVERS/$X"
+done
+chgrp -R "Printer-Admins" "$SAMBA_DRIVERS"
+chmod -R g+rws "$SAMBA_DRIVERS"
+setfacl -R -d -m g:Printer-Admins:rwx "$SAMBA_DRIVERS"
+
+give_print_admin_rights
+
+# do create and modify in two steps, maybe the share already exists
+univention-directory-manager container/cn create "$@" --position "cn=shares,$ldap_base" --ignore_exists --set name=$hostname.$domainname || die
+univention-directory-manager container/cn modify "$@" --dn "cn=$hostname.$domainname,cn=shares,$ldap_base" --set sharePath=1 || die
+
+
+if [ -n "$create_home_share" -a "$create_home_share" = "true" ]; then
+	univention-directory-manager shares/share create "$@" \
+			--position "cn=$hostname.$domainname,cn=shares,$ldap_base" --ignore_exists \
+			--set name=homes --set path=/home --set sambaName=homes \
+			--set host=$hostname.$domainname --set writeable=1 --set sambaWriteable=1 || die
+	univention-config-registry unset create/home/share
+fi
+
+if ! [ -r "/etc/krb5.keytab" ]; then
+	echo "/etc/krb5.keytab does not exist after initial samba4 start, re-triggering samba4 commit."
+	/usr/share/univention-samba4/scripts/create-keytab.sh
+fi
+if ! [ -r "/etc/krb5.keytab" ]; then
+	echo "WARNING: /etc/krb5.keytab not created."
+fi
+
+if [ $JS_LAST_EXECUTED_VERSION -le 0 ]; then
+	samba4_ldb_sam_module_prepend || true
+fi
+
+/etc/init.d/samba restart
+
+# To prevent a DRS replication conflict:
+#  https://forge.univention.org/bugzilla/show_bug.cgi?id=32257
+wait_until_dc_was_replicated_to_connector_dc
+
+ucs_addServiceToLocalhost "${NAME}" "$@" || die
+
+joinscript_save_current_version
+
+exit 0

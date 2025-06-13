@@ -1,0 +1,16 @@
+### cn=translog backend
+database	mdb
+suffix		"cn=translog"
+directory	"/var/lib/univention-ldap/translog"
+maxsize		@%@ldap/database/mdb/maxsize@%@
+envflags	nosync
+checkpoint	0 1
+
+limits dn.children=cn=peercred,cn=external,cn=auth time=unlimited size=unlimited size.prtotal=unlimited size.pr=unlimited
+limits group/univentionGroup/uniqueMember="cn=DC Backup Hosts,cn=groups,@%@ldap/base@%@" time=unlimited size=unlimited size.prtotal=unlimited size.pr=unlimited
+limits group/univentionGroup/uniqueMember="cn=DC Slave Hosts,cn=groups,@%@ldap/base@%@" time=unlimited size=unlimited size.prtotal=unlimited size.pr=unlimited
+# access via LDAPI (simple or SASL EXTERNAL bind):
+access to *
+    by sockname="PATH=/var/run/slapd/ldapi" write
+    by users read
+    by * none

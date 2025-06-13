@@ -1,0 +1,95 @@
+@!@
+from univention.lib.misc import custom_username, custom_groupname
+
+ldap_base = configRegistry['ldap/base']
+ldap_port = configRegistry['slapd/port']
+usr = 'write' if configRegistry.get('ldap/server/type') == "master" else 'read'
+
+groups_default_domainadmins = custom_groupname('Domain Admins')
+users_default_administrator = custom_username('Administrator')
+
+print('authz-regexp')
+print('    uid=([^,]*),cn=(gssapi|saml|oauthbearer),cn=auth')
+print('    ldap:///%s??sub?uid=$1' % (ldap_base,))
+print('')
+
+print('access to attrs=uid value=root by * none stop')
+
+print('access to attrs=userPassword')
+print('    by anonymous auth')
+print('    by * none break')
+print('')
+
+print('access to dn="cn=admin,%s"' % (ldap_base))
+print('    by self %s' % (usr))
+print('    by * none')
+print('')
+
+print('access to *')
+print('    by sockname="PATH=/var/run/slapd/ldapi" %s' % (usr))
+if configRegistry['ldap/server/type'] == "slave":
+    print('    by dn.base="cn=admin,%s" %s' % (ldap_base, usr))
+print('    by dn.base="uid=%s,cn=users,%s" %s' % (users_default_administrator, ldap_base, usr))
+print('    by * none break')
+print('')
+
+print('access to dn="uid=%s,cn=users,%s"' % (users_default_administrator, ldap_base))
+print('    by group/univentionGroup/uniqueMember="cn=%s,cn=groups,%s" %s' % (groups_default_domainadmins, ldap_base, usr))
+if configRegistry['ldap/server/type'] == "slave":
+    print('    by dn.base="cn=admin,%s" %s' % (ldap_base, usr))
+print('    by self %s' % (usr))
+print('    by * +0 break')
+print('')
+
+print('access to dn="uid=join-backup,cn=users,%s"' % (ldap_base))
+print('    by group/univentionGroup/uniqueMember="cn=%s,cn=groups,%s" %s' % (groups_default_domainadmins, ldap_base, usr))
+if configRegistry['ldap/server/type'] == "slave":
+    print('    by dn.base="cn=admin,%s" %s' % (ldap_base, usr))
+print('    by self %s' % (usr))
+print('    by * +0 break')
+print('')
+
+print('access to dn="uid=join-slave,cn=users,%s"' % (ldap_base))
+print('    by group/univentionGroup/uniqueMember="cn=%s,cn=groups,%s" %s' % (groups_default_domainadmins, ldap_base, usr))
+if configRegistry['ldap/server/type'] == "slave":
+    print('    by dn.base="cn=admin,%s" %s' % (ldap_base, usr))
+print('    by self %s' % (usr))
+print('    by * +0 break')
+print('')
+
+print('access to attrs=entry,objectClass,uniqueMember,ou,uid,loginShell,homeDirectory,uidNumber,gidNumber,sn,cn,gecos,description,memberUid')
+print('    by group/univentionGroup/uniqueMember="cn=%s,cn=groups,%s" %s' % (groups_default_domainadmins, ldap_base, usr))
+if configRegistry['ldap/server/type'] == "slave":
+    print('    by dn.base="cn=admin,%s" %s' % (ldap_base, usr))
+print('    by * +0 break')
+print('')
+
+print('access to attrs=univentionOperatingSystem,univentionOperatingSystemVersion')
+print('    by self %s' % (usr))
+print('    by * none break')
+print('')
+
+if configRegistry.get('ldap/hostdn'):
+    print('# Bug #54140: There are systems with a large amount (>50000) of DNS-Zone objects,')
+    print('# the following access directive provides a faster access for services which have to')
+    print('# read all of them via the machine account (like Bind9 on nodes without samba/AD).')
+    print('access to dn.children="cn=dns,%s" filter="(objectClass=dNSZone)"' % configRegistry['ldap/base'])
+    print('    by dn="%s" read' % configRegistry['ldap/hostdn'])
+    print('    by * +0 break')
+    print('')
+
+print('access to filter="(&(univentionObjectType=settings/data)(cn=umc))" attrs=univentionData')
+print('    by group/univentionGroup/uniqueMember="cn=%s,cn=groups,%s" read' % (groups_default_domainadmins, ldap_base))
+print('    by set="user/objectClass & ([univentionDomainController] | [univentionMemberServer])" read')
+print('    by * none')
+print('')
+
+@!@
+
+access to attrs=univentionRadiusPassword
+    by set="user/univentionObjectType & [computers/domaincontroller_master]" read
+    by set="user/univentionObjectType & [computers/domaincontroller_backup]" read
+    by set="user/univentionObjectType & [computers/domaincontroller_slave]" read
+    by set="user/univentionObjectType & [computers/memberserver]" read
+    by * none
+

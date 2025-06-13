@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-demo-configuration\n"
+"Report-Msgid-Bugs-To: forge.univention.org\n"
+"POT-Creation-Date: 2017-11-28 12:01+0100\n"
+"PO-Revision-Date: 2020-09-05 16:09+0200\n"
+"Last-Translator: Erik Damrose <damrose@univention.de>\n"
+"Language-Team: German <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:267
+msgid "Demo help"
+msgstr "Demo Hilfe"
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:231
+msgid "Dummy entries to apps that could be installed on UCS"
+msgstr "Pseudoeinträge von Apps, die mit UCS installiert werden könnten"
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:226
+msgid "The UCS web interface for administrating users, computers, etc."
+msgstr "Die UCS Weboberfläche zur Verwaltung von Benutzern, Computern etc."
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:236
+msgid ""
+"This help screen can be displayed again via <i>Help</i> in the user menu"
+msgstr ""
+"Diese Hilfeansicht kann erneut über <i>Hilfe</i> im Benutzermenü angezeigt "
+"werden"
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:278
+msgid ""
+"Welcome to the online demo of Univention Corporate Server (UCS). You are now"
+" on the start site of the UCS system. Click on \"System and domain "
+"settings\" to start exploring the possibilities UCS offers."
+msgstr ""
+"Willkommen auf der Online-Demo von Univention Corporate Server (UCS). Sie "
+"befinden sich nun auf der Startseite des UCS-Systems. Klicken Sie auf "
+"\"System- und Domäneneinstellungen\", um einen Eindruck davon zu erhalten "
+"welche Möglichkeiten Ihnen UCS bietet."
+
+#: usr/share/univention-web/js/umc/hooks/univention_demo.js:87
+msgid "https://univention.com/download/ucs-download/"
+msgstr "https://www.univention.de/download/ucs-download/"

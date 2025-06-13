@@ -1,0 +1,35 @@
+Source: univention-management-console-module-udm
+Section: univention
+Priority: optional
+Maintainer: Univention GmbH <packages@univention.de>
+Build-Depends:
+ debhelper-compat (=13),
+ dh-python,
+ python3-all,
+ univention-config-dev (>= 15.0.3),
+ univention-management-console-dev (>= 12.0.2),
+Standards-Version: 3.5.2
+
+Package: univention-management-console-module-udm
+Architecture: all
+Depends:
+ python3-ldap,
+ python3-univention-config-registry,
+ python3-univention-directory-manager (>= 17.0.30-1),
+ univention-directory-manager-tools (>= 15),
+ univention-directory-reports,
+ univention-management-console-server (>= 12.0.31-10),
+ ${misc:Depends},
+ ${python3:Depends},
+Provides:
+ univention-directory-manager,
+ ${python3:Provides},
+Replaces:
+ univention-directory-manager (<< 9.0.0),
+Description: UMC module for UCS Directory Manager
+ This package contains the UMC module for UCS Directory Manager.
+ .
+ It is part of Univention Corporate Server (UCS), an
+ integrated, directory driven solution for managing
+ corporate environments. For more information about UCS,
+ refer to: https://www.univention.de/

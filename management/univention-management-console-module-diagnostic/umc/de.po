@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-diagnostic\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: Mon, 02 Mar 2020 15:14:10 +0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Analyse the system for known problems"
+msgstr "Das System auf bekannte Probleme analysieren"
+
+msgid "System diagnostic"
+msgstr "Systemdiagnose"
+
+msgid "support"
+msgstr ""

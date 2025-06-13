@@ -1,0 +1,659 @@
+univention-docker-container-mode (7.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:57 +0200
+
+univention-docker-container-mode (7.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:36 +0100
+
+univention-docker-container-mode (7.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:16 +0100
+
+univention-docker-container-mode (6.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:39 +0100
+
+univention-docker-container-mode (6.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:29 +0100
+
+univention-docker-container-mode (5.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:56 +0100
+
+univention-docker-container-mode (5.0.1-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:27 +0100
+
+univention-docker-container-mode (5.0.0-2) unstable; urgency=medium
+
+  * Bug #52539: Deprecate univention-docker-container-mode
+
+ -- Johannes Lohmer <lohmer@univention.de>  Tue, 05 Apr 2022 15:24:10 +0200
+
+univention-docker-container-mode (5.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:17 +0200
+
+univention-docker-container-mode (4.0.0-2) unstable; urgency=medium
+
+  * Bug #51132: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 21 Apr 2020 14:11:50 +0200
+
+univention-docker-container-mode (4.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:33 +0100
+
+univention-docker-container-mode (3.0.2-2) unstable; urgency=medium
+
+  * Bug #46665: Add cron to dependencies
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 13 Nov 2018 01:02:42 +0100
+
+univention-docker-container-mode (3.0.2-1) unstable; urgency=medium
+
+  * Bug #46665: Version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 13 Nov 2018 00:55:02 +0100
+
+univention-docker-container-mode (3.0.0-3) unstable; urgency=medium
+
+  * Bug #46665: Fixed saving the initial network configuration into UCR during
+    startup of the container.
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 17 May 2018 18:36:14 +0200
+
+univention-docker-container-mode (3.0.0-2) unstable; urgency=medium
+
+  * Bug #46758 won't be released, yet needs a version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 04 Apr 2018 14:18:45 +0200
+
+univention-docker-container-mode (3.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:53 +0100
+
+univention-docker-container-mode (2.0.0-16) unstable; urgency=medium
+
+  * Bug #45172: Always commit resolv.conf in /sbin/init wrapper
+
+ -- Arvid Requate <requate@univention.de>  Wed, 25 Oct 2017 13:41:27 +0200
+
+univention-docker-container-mode (2.0.0-15) unstable; urgency=medium
+
+  * Bug #45172: Only set nameserver* UCR from environment if not joined yet
+
+ -- Arvid Requate <requate@univention.de>  Tue, 24 Oct 2017 16:11:33 +0200
+
+univention-docker-container-mode (2.0.0-14) unstable; urgency=low
+
+  * Bug #45103: disable update check cron job and limit update_available
+    to once per day
+
+ -- Felix Botner <botner@univention.de>  Mon, 07 Aug 2017 14:50:53 +0200
+
+univention-docker-container-mode (2.0.0-13) unstable; urgency=medium
+
+  * Bug #44015: disable update check cron job and limit update_available
+    to once per day
+
+ -- Felix Botner <botner@univention.de>  Wed, 07 Jun 2017 09:56:47 +0200
+
+univention-docker-container-mode (2.0.0-12) unstable; urgency=low
+
+  * Bug #44015: disable update check cron job and limit update_available
+    to once per day
+
+ -- Felix Botner <botner@univention.de>  Thu, 18 May 2017 10:21:35 +0200
+
+univention-docker-container-mode (2.0.0-11) unstable; urgency=medium
+
+  * Bug #43324: Fix UCR restoration
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 17 Jan 2017 14:21:47 +0100
+
+univention-docker-container-mode (2.0.0-10) unstable; urgency=low
+
+  * Bug #43177: install package updates update_app_version
+
+ -- Felix Botner <botner@univention.de>  Mon, 16 Jan 2017 13:33:57 +0100
+
+univention-docker-container-mode (2.0.0-9) unstable; urgency=low
+
+  * Bug #43177: install package updates update_app_version
+
+ -- Felix Botner <botner@univention.de>  Wed, 21 Dec 2016 12:50:01 +0100
+
+univention-docker-container-mode (2.0.0-8) unstable; urgency=low
+
+  * Bug #43177: install package updates update_app_version
+
+ -- Felix Botner <botner@univention.de>  Wed, 14 Dec 2016 15:54:43 +0100
+
+univention-docker-container-mode (2.0.0-7) unstable; urgency=low
+
+  * Bug #42923: always update in docker (ignore master version)
+
+ -- Felix Botner <botner@univention.de>  Wed, 14 Dec 2016 15:17:48 +0100
+
+univention-docker-container-mode (2.0.0-6) unstable; urgency=low
+
+  * Bug #40611: use -containerAdMemberMode for joining
+
+ -- Felix Botner <botner@univention.de>  Thu, 03 Nov 2016 14:16:37 +0100
+
+univention-docker-container-mode (2.0.0-5) unstable; urgency=medium
+
+  * Bug #42735: Disable version check when joining
+  * Bug #42760: Disable app updates when updating container packages
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 02 Nov 2016 09:37:32 +0100
+
+univention-docker-container-mode (2.0.0-4) unstable; urgency=low
+
+  * Bug #40611: call univention-join with -skipAdMemberMode
+
+ -- Felix Botner <botner@univention.de>  Mon, 24 Oct 2016 13:52:25 +0200
+
+univention-docker-container-mode (2.0.0-3) unstable; urgency=medium
+
+  * Bug #42602: Fixed quoting issues to support App installations with
+    versions containing spaces
+  * Bug #42603: When upgrading the underlying container, all available release
+    updates are installed in one run
+  * Bug #39803: Abort installation if the App is not found instead of doing
+    nothing
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 19 Oct 2016 15:49:05 +0200
+
+univention-docker-container-mode (2.0.0-2) unstable; urgency=low
+
+  * Bug #38438: Fix use of get_lsb_header_val
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 13 Sep 2016 10:06:15 +0200
+
+univention-docker-container-mode (2.0.0-1) unstable; urgency=medium
+
+  * Bug #41963: UCS-4.2 version bump
+  * Bug #38438: Make init-script LSB compliant
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 12 Aug 2016 13:56:00 +0200
+
+univention-docker-container-mode (1.0.12-5) unstable; urgency=medium
+
+  * Bug #39677: Fix preinit.d script name for run-parts
+  * Run fix-cron-hardlinks during package update
+
+ -- Arvid Requate <requate@univention.de>  Wed, 27 Jul 2016 17:16:29 +0200
+
+univention-docker-container-mode (1.0.12-4) unstable; urgency=medium
+
+  * Bug #39551: Put join in package updates
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 25 Jul 2016 10:05:53 +0200
+
+univention-docker-container-mode (1.0.12-3) unstable; urgency=medium
+
+  * Bug #39551: Support running missing join scripts in container
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 22 Jul 2016 10:25:30 +0200
+
+univention-docker-container-mode (1.0.12-2) unstable; urgency=medium
+
+  * Bug #39677: Add copyright block
+
+ -- Arvid Requate <requate@univention.de>  Tue, 19 Jul 2016 18:51:10 +0200
+
+univention-docker-container-mode (1.0.12-1) unstable; urgency=medium
+
+  * Bug #39677: Workaround for cron hardlink issue on overlayfs
+
+ -- Arvid Requate <requate@univention.de>  Tue, 19 Jul 2016 18:30:58 +0200
+
+univention-docker-container-mode (1.0.11-1) unstable; urgency=low
+
+  * run all scripts from /etc/univention/docker/init.d after starting
+    "univention-docker-container-mode" (Bug #39542)
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Wed, 04 Nov 2015 21:25:04 +0100
+
+univention-docker-container-mode (1.0.10-2) unstable; urgency=medium
+
+  * Updates to the link support in store_data and restore_data
+    (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 30 Oct 2015 09:16:42 +0100
+
+univention-docker-container-mode (1.0.10-1) unstable; urgency=medium
+
+  * Support links in store_data and restore_data (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 30 Oct 2015 07:25:28 +0100
+
+univention-docker-container-mode (1.0.9-1) unstable; urgency=medium
+
+  * Re-enable postfix (Bug #39542)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 27 Oct 2015 11:26:30 +0100
+
+univention-docker-container-mode (1.0.8-2) unstable; urgency=medium
+
+  * Disable postfix by default (Bug #39542)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Oct 2015 22:57:05 +0200
+
+univention-docker-container-mode (1.0.8-1) unstable; urgency=medium
+
+  * Disable homedir/mount by default (Bug #39490)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 23 Oct 2015 17:01:36 +0200
+
+univention-docker-container-mode (1.0.7-1) unstable; urgency=medium
+
+  * store_data + restore_data_before_setup: dump traceback to error file
+    (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 22 Oct 2015 15:21:21 +0200
+
+univention-docker-container-mode (1.0.6-1) unstable; urgency=medium
+
+  * restore_data_before_setup: check if files and directories exist
+    (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 20 Oct 2015 20:29:35 +0200
+
+univention-docker-container-mode (1.0.5-2) unstable; urgency=medium
+
+  * univention-docker-container-mod/setup: fixed typo in last commit
+    (Bug #39204)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 19 Oct 2015 17:14:14 +0200
+
+univention-docker-container-mode (1.0.5-1) unstable; urgency=medium
+
+  * univention-docker-container-mod/setup: if the container is already
+    joined, univention-run-joinr-scripts is executed instead of
+    rejoining the container (Bug #39204)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Mon, 19 Oct 2015 06:58:28 +0200
+
+univention-docker-container-mode (1.0.4-1) unstable; urgency=medium
+
+  * store_data and restore_data_before_setup: change directory to
+    /var/lib/univention-appcenter/apps/ and parse arguments (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 18 Oct 2015 13:23:31 +0200
+
+univention-docker-container-mode (1.0.3-1) unstable; urgency=medium
+
+  * Update store_data and restore_data_before_setup to make the re-join
+    useless (Bug #39462)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sat, 17 Oct 2015 22:15:17 +0200
+
+univention-docker-container-mode (1.0.2-4) unstable; urgency=low
+
+  * Bug #39448: Added conflict to univention-docker, docker.io ...
+
+ -- Felix Botner <botner@univention.de>  Wed, 14 Oct 2015 17:25:11 +0200
+
+univention-docker-container-mode (1.0.2-3) unstable; urgency=medium
+
+  * Bug #39082: Only search for updates if suitable
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 14 Oct 2015 12:59:44 +0200
+
+univention-docker-container-mode (1.0.2-2) unstable; urgency=medium
+
+  * Bug #39414: Correctly output "packages" if packages may be updated
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 28 Sep 2015 01:04:56 +0200
+
+univention-docker-container-mode (1.0.2-1) unstable; urgency=medium
+
+  * Use -skipIpMac while joining a Docker App (Bug #39331)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Tue, 15 Sep 2015 05:59:41 +0200
+
+univention-docker-container-mode (1.0.1-1) unstable; urgency=medium
+
+  * Register the IP only if an old IP address was set. The IP and MAC
+    registration is skipped if a Docker App is installed / configured
+    (Bug #38365)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 11 Sep 2015 15:29:52 +0200
+
+univention-docker-container-mode (1.0.0-0) unstable; urgency=low
+
+  * merge to ucs 4.1
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 26 Aug 2015 16:23:00 +0200
+
+univention-docker-container-mode (0.1.1-30) unstable; urgency=low
+
+  * Bug #38194: Improved (re)store_data scripts
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 08 Jul 2015 23:14:27 +0200
+
+univention-docker-container-mode (0.1.1-29) unstable; urgency=low
+
+  * Bug #38194: Fix situations where no package is to be installed (as in
+    preconfigured images)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 01 Jul 2015 20:16:32 +0200
+
+univention-docker-container-mode (0.1.1-28) unstable; urgency=low
+
+  * Bug #38194: New scripts for updating an app
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 23 Jun 2015 17:15:02 +0200
+
+univention-docker-container-mode (0.1.1-27) unstable; urgency=low
+
+  * Bug #38194: Fixing app installation script
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 10 Jun 2015 14:08:20 +0200
+
+univention-docker-container-mode (0.1.1-26) unstable; urgency=low
+
+  * Bug #38194: Add scripts to check for updates
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 10 Jun 2015 13:37:21 +0200
+
+univention-docker-container-mode (0.1.1-25) unstable; urgency=low
+
+  * Bug #38194: Add scripts to be called while upgrading an app; misc
+    improvements
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 10 Jun 2015 09:59:08 +0200
+
+univention-docker-container-mode (0.1.1-24) unstable; urgency=low
+
+  * Bug #38194: Do not install docker integration for univention-appcenter
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 04 Jun 2015 17:03:21 +0200
+
+univention-docker-container-mode (0.1.1-23) unstable; urgency=medium
+
+  * Try to get along without running haveged in the container (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 01 Jun 2015 17:11:23 +0200
+
+univention-docker-container-mode (0.1.1-22) unstable; urgency=medium
+
+  * Don't depend on univention-ssl and univention-apache (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Mon, 01 Jun 2015 14:18:45 +0200
+
+univention-docker-container-mode (0.1.1-21) unstable; urgency=low
+
+  * Bug #38194: Better setup script
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 15 May 2015 14:31:54 +0200
+
+univention-docker-container-mode (0.1.1-20) unstable; urgency=medium
+
+  * Also try to contact consul at standard docker gateway address to
+    set & get master domain info (Bug #38331)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 30 Apr 2015 11:33:18 +0200
+
+univention-docker-container-mode (0.1.1-19) unstable; urgency=low
+
+  * Bug #38194: Add setup script
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 30 Apr 2015 00:55:06 +0200
+
+univention-docker-container-mode (0.1.1-18) unstable; urgency=low
+
+  * Bug #38369: revert last changeset of this bug
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Tue, 28 Apr 2015 09:10:14 +0200
+
+univention-docker-container-mode (0.1.1-17) unstable; urgency=low
+
+  * Bug #38194: Make download script callable without arguments
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 27 Apr 2015 16:50:30 +0200
+
+univention-docker-container-mode (0.1.1-16) unstable; urgency=low
+
+  * Bug #38369: set locale in /sbin/init so system setup shows all
+    available languages
+
+ -- Sönke Schwardt-Krummrich <schwardt@univention.de>  Mon, 27 Apr 2015 12:15:57 +0200
+
+univention-docker-container-mode (0.1.1-15) unstable; urgency=medium
+
+  * Start univention-docker-container-mode at a later point otherwise
+    UMC isn't available (Bug #38365)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 24 Apr 2015 21:04:25 +0200
+
+univention-docker-container-mode (0.1.1-14) unstable; urgency=medium
+
+  * Small fixes (Bug #38331)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 19:16:19 +0200
+
+univention-docker-container-mode (0.1.1-13) unstable; urgency=medium
+
+  * nameserver1 and ldap/server/name and ldap/server/addition should
+    only be overwritten from etcd values on a memberserver (Bug #38331)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 19:09:53 +0200
+
+univention-docker-container-mode (0.1.1-12) unstable; urgency=medium
+
+  * Try to contact etcd at standard docker gateway address to
+    set & get master domain info (Bug #38331)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 19:00:32 +0200
+
+univention-docker-container-mode (0.1.1-11) unstable; urgency=medium
+
+  * Add debian/univention-docker-container-mode.init, modified
+    version of
+    univention-network-manager/debian/univention-network-common.init
+    (Bug #38334)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 13:54:07 +0200
+
+univention-docker-container-mode (0.1.1-10) unstable; urgency=medium
+
+  * Fix comment (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 13:33:42 +0200
+
+univention-docker-container-mode (0.1.1-9) unstable; urgency=medium
+
+  * Add run-parts /etc/univention/docker/preinit.d to /sbin/init wrapper
+    (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 12:56:51 +0200
+
+univention-docker-container-mode (0.1.1-8) unstable; urgency=medium
+
+  * Safely handle PID != 1 in /sbin/init wrapper (Bug #38283)
+  * Fix argv[0] when calling the real /sbin/init.debian
+  * Make univention-docker-container-mode/download-packages run apt-get
+    on all specified packages in one go to allow apt-get to resolve
+    package dependency alternatives.
+
+ -- Arvid Requate <requate@univention.de>  Thu, 23 Apr 2015 11:49:45 +0200
+
+univention-docker-container-mode (0.1.1-7) unstable; urgency=medium
+
+  * Reset utmp as first action in /sbin/init wrapper (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Apr 2015 23:07:01 +0200
+
+univention-docker-container-mode (0.1.1-6) unstable; urgency=medium
+
+  * Set nameservers first in /sbin/init wrapper (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 22 Apr 2015 10:16:16 +0200
+
+univention-docker-container-mode (0.1.1-5) unstable; urgency=medium
+
+  * Move download-packages script to univention-docker-container-mode
+    (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Apr 2015 20:32:06 +0200
+
+univention-docker-container-mode (0.1.1-4) unstable; urgency=medium
+
+  * Add copyright notice for shell code functions (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Apr 2015 13:29:41 +0200
+
+univention-docker-container-mode (0.1.1-3) unstable; urgency=medium
+
+  * Fix network parsing in /sbin/init wrapper (Bug #38283)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 21 Apr 2015 13:21:13 +0200
+
+univention-docker-container-mode (0.1.1-2) unstable; urgency=medium
+
+  * Use $hostname.$domainname instead of hostname -f to avoid race
+    conditions (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Sun, 19 Apr 2015 14:33:03 +0200
+
+univention-docker-container-mode (0.1.1-1) unstable; urgency=medium
+
+  * Use $hostname.$domainname instead of hostname -f to avoid race
+    conditions directly after setting hostname (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 22:02:25 +0200
+
+univention-docker-container-mode (0.1.0-17) unstable; urgency=medium
+
+  * Added univention-ssl and univention-apache to the dependency list
+    (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 09:01:44 +0200
+
+univention-docker-container-mode (0.1.0-16) unstable; urgency=medium
+
+  * Bump version (Bug #38283)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Fri, 17 Apr 2015 07:00:09 +0200
+
+univention-docker-container-mode (0.1.0-15) unstable; urgency=medium
+
+  * Experimental: When UCR docker/container/pid1 is used then
+    pass the original docker pid1 process argv as docker_cmd_pid1
+    to the environment of the new pid1_process (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 18:56:50 +0200
+
+univention-docker-container-mode (0.1.0-14) unstable; urgency=medium
+
+  * Experimental: Allow the container to override the pid1 process
+    via UCR docker/container/pid1 (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 18:46:43 +0200
+
+univention-docker-container-mode (0.1.0-13) unstable; urgency=medium
+
+  * Move UCR adjstments for USS to univention-appliance-docker-container
+  * Store container uuid in UCR docker/container/uuid
+  * Unset all temporary environment variables in the pid1 wrapper before
+    starting the actual pid1 process (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 18:45:51 +0200
+
+univention-docker-container-mode (0.1.0-10) unstable; urgency=medium
+
+  * Read domainname from resolv.conf if none found in env (Bug #38274)
+  * Read nameserver[1-3] from resolv.conf if none found in env
+  * Adjust ucr gateway to the actual container setting
+  * Determine container id from /proc/self/cgroup (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Thu, 16 Apr 2015 13:41:12 +0200
+
+univention-docker-container-mode (0.1.0-9) unstable; urgency=medium
+
+  * Block software page in system setup and let system setup use the
+    configured nameserver by setting system/setup/boot/installer to true
+    (Bug #38260)
+  * Check if UCS_PWD_ROOT is set otherwise skip the root password
+    setting (Bug #38260)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Thu, 16 Apr 2015 09:07:50 +0200
+
+univention-docker-container-mode (0.1.0-8) unstable; urgency=medium
+
+  * docker-run needs normally a hostname and not a fqdn. The init script
+    support both but the environment variable domainname is preferred
+    (Bug #38260)
+
+ -- Stefan Gohmann <gohmann@univention.de>  Wed, 15 Apr 2015 20:36:16 +0200
+
+univention-docker-container-mode (0.1.0-7) unstable; urgency=medium
+
+  * Install PID 1 wrapper as /sbin/init (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Wed, 15 Apr 2015 15:00:04 +0200
+
+univention-docker-container-mode (0.1.0-6) unstable; urgency=medium
+
+  * Add copyright block to start-app (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 18:48:15 +0200
+
+univention-docker-container-mode (0.1.0-5) unstable; urgency=medium
+
+  * Include "start-app" init wrapper (copied from generate-appliance)
+    (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 18:43:15 +0200
+
+univention-docker-container-mode (0.1.0-4) unstable; urgency=medium
+
+  * Register aptconf/dockerclean with file (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 18:39:38 +0200
+
+univention-docker-container-mode (0.1.0-3) unstable; urgency=medium
+
+  * Make aptconf/dockerclean configurable (Bug #38260)
+    Needs to be disabled by univention-applience-docker-container.
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 18:32:42 +0200
+
+univention-docker-container-mode (0.1.0-2) unstable; urgency=medium
+
+  * Add copyright headers and .univention-environment for convenience
+    (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 17:15:49 +0200
+
+univention-docker-container-mode (0.1.0-1) unstable; urgency=medium
+
+  * Initial release (Bug #38260)
+
+ -- Arvid Requate <requate@univention.de>  Tue, 14 Apr 2015 15:17:28 +0200

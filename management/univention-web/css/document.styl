@@ -1,0 +1,21 @@
+/* ======= Styling for the document itself (overriding dojo.css) ======== */
+
+@require "variables.styl"
+
+// TODO discuss if we want to hide the focus generally or should either keep it or disable it individually
+// *:focus
+	// remove outline in chromium
+	// outline: 0
+
+html,
+body
+	background-color: var(--bgc-content-body)
+
+body
+	overflow-x: hidden
+	min-height: 100vh
+
+.umcCard2
+	padding: spacing(2)
+	background-color: var(--bgc-content-container)
+	border-radius: var(--border-radius-container)

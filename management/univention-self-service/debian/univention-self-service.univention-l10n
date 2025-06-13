@@ -1,0 +1,10 @@
+[
+	{
+		"input_files": [
+			"hook/.*\\.js"
+		],
+		"po_subdir": "hook/",
+		"target_type": "json",
+		"destination": "usr/share/univention-web/js/umc/hooks/i18n/{lang}/passwordreset.json"
+	}
+]

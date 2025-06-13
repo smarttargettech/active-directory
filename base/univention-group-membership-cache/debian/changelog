@@ -1,0 +1,189 @@
+univention-group-membership-cache (4.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:53 +0200
+
+univention-group-membership-cache (4.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:37 +0100
+
+univention-group-membership-cache (4.0.2) unstable; urgency=medium
+
+  * Bug #56604: use Python 3.11 code annotations
+
+ -- Florian Best <best@univention.de>  Wed, 13 Mar 2024 00:46:32 +0100
+
+univention-group-membership-cache (4.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:26 +0100
+
+univention-group-membership-cache (3.0.3) unstable; urgency=medium
+
+  * Bug #56604: remove workarounds for Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:54:15 +0100
+
+univention-group-membership-cache (3.0.2) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:27 +0100
+
+univention-group-membership-cache (3.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:38 +0100
+
+univention-group-membership-cache (2.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:51 +0100
+
+univention-group-membership-cache (2.0.2-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:25 +0100
+
+univention-group-membership-cache (2.0.1-3) unstable; urgency=medium
+
+  * Revert "Bug #55610: added univention-group-membership-cache logrotate configuration and a UCR variable"
+
+    This reverts commit d06f3bfdd9a98b85d49b3e879c95a336465fda5c.
+
+ -- Mika Westphal <westphal@univention.de>  Tue, 22 Aug 2023 12:41:28 +0200
+
+univention-group-membership-cache (2.0.1-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:34 +0100
+
+univention-group-membership-cache (2.0.0-12) unstable; urgency=low
+
+  * Bug #54502: Update UDN module API
+
+ -- Philipp Hahn <hahn@univention.de>  Tue, 27 Sep 2022 14:11:36 +0200
+
+univention-group-membership-cache (2.0.0-11) unstable; urgency=medium
+
+  * Bug #55120: Fix load()
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 24 Aug 2022 10:25:35 +0200
+
+univention-group-membership-cache (2.0.0-10) unstable; urgency=medium
+
+  * Bug #55120: Further improve performance
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 23 Aug 2022 23:10:27 +0200
+
+univention-group-membership-cache (2.0.0-9) unstable; urgency=medium
+
+  * Bug #55120: Fix users_groups
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 22 Aug 2022 20:49:49 +0200
+
+univention-group-membership-cache (2.0.0-8) unstable; urgency=medium
+
+  * Bug #55120: users_groups consumes all CPU time
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Mon, 22 Aug 2022 15:01:32 +0200
+
+univention-group-membership-cache (2.0.0-7) unstable; urgency=medium
+
+  * Bug #54497: Use univention-group-membership-cache to obtain groups
+    user belongs to
+
+ -- Nikola Radovanovic <radovanovic.extern@univention.de>  Wed, 10 Aug 2022 19:10:34 +0200
+
+univention-group-membership-cache (2.0.0-6) unstable; urgency=medium
+
+  * Bug #54561: Return empty list instead of None
+
+ -- Julia Bremer <bremer@univention.de>  Mon, 21 Mar 2022 18:34:03 +0100
+
+univention-group-membership-cache (2.0.0-5) unstable; urgency=medium
+
+  * Bug #54182: Retry on reorganize
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 07 Dec 2021 11:48:19 +0100
+
+univention-group-membership-cache (2.0.0-3) unstable; urgency=medium
+
+  * Bug #54182: Do not open in blocking mode
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sun, 05 Dec 2021 21:24:50 +0100
+
+univention-group-membership-cache (2.0.0-2) unstable; urgency=medium
+
+  * Bug #54182: Fixing clear method of gdbm cache
+
+ -- Esteban Martinena <martinena@univention.de>  Fri, 03 Dec 2021 18:53:29 +0100
+
+univention-group-membership-cache (2.0.0-1) unstable; urgency=medium
+
+  * Bug #54182: Port to UCS 5
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 02 Dec 2021 13:35:10 +0100
+
+univention-group-membership-cache (1.0.0-9) unstable; urgency=medium
+
+  * Bug #54119: Typo in list output
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 23 Nov 2021 02:07:49 +0100
+
+univention-group-membership-cache (1.0.0-8) unstable; urgency=medium
+
+  * Bug #54119: Add reverse caches
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 22 Nov 2021 14:59:07 +0100
+
+univention-group-membership-cache (1.0.0-7) unstable; urgency=medium
+
+  * Bug #54068: Add listener version dependency
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 18 Nov 2021 15:49:57 +0100
+
+univention-group-membership-cache (1.0.0-6) unstable; urgency=medium
+
+  * Bug #54068: Fix attr encoding
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 17 Nov 2021 09:55:56 +0100
+
+univention-group-membership-cache (1.0.0-5) unstable; urgency=medium
+
+  * Bug #54068: Remove doublets in returning list
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 17 Nov 2021 09:23:10 +0100
+
+univention-group-membership-cache (1.0.0-4) unstable; urgency=medium
+
+  * Bug #54068: Fix listener reinitialization
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 16 Nov 2021 16:00:44 +0100
+
+univention-group-membership-cache (1.0.0-3) unstable; urgency=medium
+
+  * Bug #54068: Fix file permissions
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 16 Nov 2021 11:18:40 +0100
+
+univention-group-membership-cache (1.0.0-2) unstable; urgency=medium
+
+  * Bug #54068: Fix listener not removing items from cache
+  * Cleanup
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Tue, 16 Nov 2021 10:12:40 +0100
+
+univention-group-membership-cache (1.0.0-1) unstable; urgency=low
+
+  * Bug #54068: Initial Release
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 08 Nov 2021 14:57:48 +0100

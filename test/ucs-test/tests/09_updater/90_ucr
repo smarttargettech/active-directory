@@ -1,0 +1,37 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: |
+##  Check version/{version,patchlevel} is set correctly by univention-updater.postinst
+## bugs: [41165]
+## versions:
+##  4.1-1: found
+##  4.1-2: fixed
+## tags: [basic]
+## exposure: dangerous
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+tmp_base_conf="$(mktemp)"
+tmp_templates_info="$(mktemp -d)"
+trap 'rm -f "$tmp_base_conf"; rm -rf "$tmp_templates_info"' EXIT
+grep -v "^version/" /etc/univention/base.conf > "$tmp_base_conf"
+touch "$tmp_templates_info"/univention-updater.info
+unshare -m bash -c "
+	mount -B $tmp_templates_info /etc/univention/templates/info
+	UNIVENTION_BASECONF=$tmp_base_conf dpkg-reconfigure univention-updater || :
+	umount /etc/univention/templates/info
+"
+dpkg-reconfigure univention-updater
+
+result=0
+for var in version patchlevel # erratalevel
+do
+	var="version/$var"
+	cur="$(ucr get "$var")"
+	new="$(UNIVENTION_BASECONF="$tmp_base_conf" ucr get "$var")"
+	verify_value "$var" "$new" "$cur" || result=$?
+done
+
+exit $result
+# vim:set ft=sh:

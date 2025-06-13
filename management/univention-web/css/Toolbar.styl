@@ -1,0 +1,47 @@
+/* Toolbar
+ *
+ * Styling Toolbar means styling the toolbar container and the widget inside toolbar  (dijitToolbar)
+ *
+ * 1. toolbar (default styling):
+ * 		.dijitToolbar - styles for outer container
+ *
+ * 2. widget inside toolbar
+ * 		.dijitToolbar .dijitButtonNode   - Button widget
+ * 					  .dijitComboButton  - ComboButton widget
+ * 					  .dijitDropDownButton  - DropDownButton widget
+ * 					  .dijitToggleButton  - ToggleButton widget
+ *
+ * 3. hovered widget inside toolbar (ie, mouse hover on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeHover  - styles for hovered Button widget
+ *
+ * 4. activated widget inside toolbar (ie, mouse down on the widget inside)
+ * 			.dijitToolbar .dijitButtonNodeActive  - mouse down on Button widget
+ */
+
+@require "variables.styl"
+
+.umc .dijitToolbar
+	border-bottom: 1px solid $border-color
+	background-color: #fff
+
+.umc .dijitToolbar label
+	padding: 0 spacing(1)
+
+.umc .dijitToolbar
+	& .dijitButton
+	& .dijitDropDownButton
+		margin: spacing(1, true)
+
+	& .dijitToggleButton
+		margin: spacing(1, true)
+
+/* toggle button checked status */
+.umc .dijitToolbarSeparator
+	background: url($image-editor-icons-enabled)
+
+/* Toolbar inside of disabled Editor */
+.umc .dijitDisabled .dijitToolbar
+	background:none
+	background-color:$disabled-background-color
+	border-bottom: 1px solid $disabled-border-color
+

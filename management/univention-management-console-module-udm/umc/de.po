@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-management-console-module-udm\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: Tue, 06 Feb 2024 16:24:30 +0100\n"
+"PO-Revision-Date: 2011-10-21 17:59+0200\n"
+"Last-Translator: Univention GmbH <packages@univention.de>\n"
+"Language-Team: Univention GmbH <packages@univention.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Browsing and managing the LDAP tree"
+msgstr "Durchsuchen und Verwalten des LDAP-Verzeichnisbaums"
+
+msgid "Change settings for the user currently logged in"
+msgstr "Änderung der Benutzereinstellungen des angemeldeten Benutzers"
+
+msgid "Computers"
+msgstr "Rechner"
+
+msgid "Configuration of DHCP settings in the domain"
+msgstr "Konfiguration von DHCP-Einstellungen der Domäne"
+
+msgid "Configuration of DNS settings in the domain"
+msgstr "Konfiguration von DNS-Einstellungen der Domäne"
+
+msgid "Configuration of Nagios settings in the domain"
+msgstr "Konfiguration von Nagios-Einstellungen der Domäne"
+
+msgid "Configuration of network settings in the domain"
+msgstr "Konfiguration von Netzwerkeinstellungen der Domäne"
+
+msgid "Contacts"
+msgstr "Kontakte"
+
+msgid "DHCP"
+msgstr "DHCP"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Groups"
+msgstr "Gruppen"
+
+msgid "Import new license"
+msgstr "Neue Lizenz importieren"
+
+msgid "LDAP directory"
+msgstr "LDAP-Verzeichnis"
+
+msgid "Mail"
+msgstr "E-Mail"
+
+msgid "Management of blocklists in the domain"
+msgstr "Verwaltung von Blocklisten in der Domäne"
+
+msgid "Management of computers in the domain"
+msgstr "Verwaltung von Rechnern in der Domäne"
+
+msgid "Management of contacts"
+msgstr "Verwaltung von Kontakten"
+
+msgid "Management of directory shares in the domain"
+msgstr "Verwaltung von Verzeichnisfreigaben in der Domäne"
+
+msgid "Management of domain users"
+msgstr "Verwaltung von Benutzern in der Domäne"
+
+msgid "Management of domain wide policies"
+msgstr "Verwaltung von domänenweiten Richtlinien"
+
+msgid "Management of mail domains and mailing lists"
+msgstr "Verwaltung von Mail-Domänen und Mailing-Listen"
+
+msgid "Management of portals and their entries"
+msgstr "Verwaltung von Portalen und Portaleinträgen"
+
+msgid "Management of printers and printer groups in the domain"
+msgstr "Verwaltung von Druckern und Druckergruppen in der Domäne"
+
+msgid "Management of user and computer groups in the domain"
+msgstr "Verwaltung von Benutzer- und Rechnergruppen in der Domäne"
+
+msgid "Manages all UDM modules"
+msgstr "Verwaltet alle UDM-Module"
+
+msgid "Nagios"
+msgstr "Nagios"
+
+msgid "Networks"
+msgstr "Netzwerke"
+
+msgid "Policies"
+msgstr "Richtlinien"
+
+msgid "Portal settings"
+msgstr "Portaleinstellungen"
+
+msgid "Printers"
+msgstr "Drucker"
+
+msgid "Request new license"
+msgstr "Neue Lizenz anfordern"
+
+msgid "Shares"
+msgstr "Freigaben"
+
+msgid "UCS license import"
+msgstr "UCS-Lizenz-Import"
+
+msgid "UCS license request"
+msgstr "UCS-Lizenz-Anfrage"
+
+msgid "Univention Directory Manager"
+msgstr "Univention Directory Manager"
+
+msgid "User settings"
+msgstr "Benutzereinstellungen"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "blocklists"
+msgstr "Blocklisten"
+
+msgid "Blocklists"
+msgstr "Blocklisten"
+
+msgid "computers"
+msgstr "Rechner"
+
+msgid "contacts"
+msgstr "Kontakte"
+
+msgid "dhcp"
+msgstr "DHCP"
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "groups"
+msgstr "Gruppen"
+
+msgid "ldap,directory,udm"
+msgstr "LDAP,Verzeichnis,UDM"
+
+msgid "mail,e-mail,email"
+msgstr "Mail,E-Mail,Email"
+
+msgid "nagios"
+msgstr "Nagios"
+
+msgid "networks"
+msgstr "Netzwerke"
+
+msgid "policy,policies"
+msgstr "Richtlinien"
+
+msgid "portal"
+msgstr "Portal"
+
+msgid "printers"
+msgstr "Drucker"
+
+msgid "shares"
+msgstr "Freigaben"
+
+msgid "user,password"
+msgstr "Benutzer,Passwort"
+
+msgid "users"
+msgstr "Benutzer"

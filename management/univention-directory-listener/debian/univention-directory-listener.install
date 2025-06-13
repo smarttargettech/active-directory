@@ -1,0 +1,9 @@
+03univention-directory-listener.inst	usr/lib/univention-install/
+etc/network/if-post-down.d/univention-directory-listener	etc/network/if-post-down.d/
+examples	usr/share/doc/univention-directory-listener/
+listener/*	usr/lib/univention-directory-listener/system/
+src/dump	usr/sbin/
+src/listener	usr/sbin/
+src/listener-ctrl	usr/sbin/
+src/verify	usr/sbin/
+tools/*	usr/share/univention-directory-listener/

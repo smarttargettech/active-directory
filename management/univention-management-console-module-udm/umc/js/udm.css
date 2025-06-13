@@ -1,0 +1,181 @@
+.umc .umcLayoutRow.umcLayoutRow--umcSearchFormChangeViewButton {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0;
+}
+
+
+.umc .umcUDMUsersModule__jpegPhoto {
+	margin-top: 1rem;
+}
+.umc .umcUDMUsersModule__jpegPhoto .umcImage {
+	background: none;
+}
+.umc .umcUDMUsersModule__jpegPhoto .umcImageEmpty {
+	display: none;
+}
+.umc .umcUDMUsersModule__jpegPhoto .umcImage__styleWrapper {
+	justify-content: flex-start;
+}
+
+
+.umc .umcUDMDetailPageWarning {
+	font-size: var(--font-size-4)
+	margin-bottom: 1rem;
+}
+
+
+.umc .umcUDMLicenseIcon,
+.umc .umcUDMLicenseImportIcon {
+	height: 150px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+}
+
+.umc .umcUDMLicenseImportContent {
+	overflow: hidden;
+}
+
+.umc .umcUDMLicenseIcon {
+	background-image: url(udm/license.svg);
+}
+
+.umc .umcUDMLicenseImportIcon {
+	background-image: url(udm/license-import.svg);
+	margin-top: 35px;
+}
+
+@media (max-width: 549px) {
+	.umc .umcUDMLicenseImportIcon {
+		margin-top: 0px;
+	}
+}
+
+.umc .umcUDMLicenseTitlePane {
+	margin-top: 2em;
+}
+
+.umc .umcUdmLicenseImportDialog textarea {
+	height: 150px;
+	font-size: 1em;
+}
+
+.umc .umcUdmNewObjectDialog .dijitStackContainer {
+	height: auto !important;
+}
+
+.umc .umcUdmDialogPage .umcActivationLeaveFieldFreeMessage {
+	display: none;
+}
+
+@media (max-width: 991px) {
+	/* force the tree to have a fixed height in UDM modules */
+	.umc .umcModuleUDM .dijitTree {
+		height: 200px !important;
+	}
+}
+
+.umc .udmOverwriteLabel {
+	width: 100% !important;
+	font-style: italic;
+	padding-top: var(--layout-spacing-unit) !important;
+}
+
+.umc .umcLabelPane .udmAppLabel {
+	display: inline-grid;
+	gap: 6px 8px;
+	grid-template-columns: 1rem 3.5em auto;
+	grid-template-rows: auto auto;
+	grid-template-areas: "checkbox icon label" "overwrite overwrite overwrite";
+	align-items: center;
+	padding-bottom: 0;
+	margin-bottom: 1.2em;
+}
+.umc .umcLabelPane .udmAppLabel .umcLabelPaneLabeNodeTop,
+.umc .umcLabelPane .udmAppLabel .umcLabelPaneLabeNodeBottom {
+	display: none;
+}
+
+.umc .umcLabelPane .udmAppLabel .umcLabelPaneLabeNodeRight {
+	grid-area: label;
+}
+
+.umc .umcLabelPane .udmAppLabel .umcLabelPaneLabeContainerNode {
+	grid-area: checkbox;
+}
+
+.umc .umcLabelPane .udmAppLabel .udmAppIcon {
+	grid-area: icon;
+	width: 3.5em;
+	height: 3.5em;
+	background-size: 3.5em;
+	background-position: center center;
+}
+
+.umc .umcLabelPane .udmAppLabel .umcLabelPane {
+	grid-area: overwrite;
+}
+
+.umc .appTabIndented {
+	padding-left: 1.2em;
+}
+
+
+/* Module subTitle in DetailPage */
+.umcUDMUserType {
+	margin-right: calc(2 * var(--layout-spacing-unit))
+}
+
+
+/* Portal: anonymousEmpty */
+.umc .umcMultiInput.syntaxLocalizedAnonymousEmpty .umcMultiInputContainer {
+	display: grid;
+	grid-template-columns: 1fr 40px;
+	grid-template-rows: auto auto;
+	grid-template-areas: "language delete" "editor delete";
+}
+
+.umc .umcMultiInput.syntaxLocalizedAnonymousEmpty .umcMultiInputContainer .umcSize-One {
+	grid-area: language;
+}
+
+.umc .umcMultiInput.syntaxLocalizedAnonymousEmpty .umcMultiInputContainer .umcSize-Two {
+	grid-area: editor;
+	padding-right: 1em;
+}
+
+.umc .umcMultiInput.syntaxLocalizedAnonymousEmpty .umcMultiInputContainer .umcLabelPane-dijitButton {
+	grid-area: delete;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+/* ReferencingObjects widget */
+.umc .umcReferencingObjects {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: calc(2 * var(--layout-spacing-unit)); */
+    justify-items: flex-start;
+    margin: calc(-1 * var(--layout-spacing-unit));
+}
+.umc .umcReferencingObjects > .ucsButton {
+	margin: var(--layout-spacing-unit);
+}
+
+
+/* module specific layout */
+.umcTopContainer--layout-udm-dhcp-dhcp-searchpage .umcUDMSearchForm,
+.umcTopContainer--layout-udm-blocklists-all-searchpage .umcUDMSearchForm,
+.umcTopContainer--layout-udm-dns-dns-searchpage .umcUDMSearchForm {
+	margin-bottom: calc(3 * var(--layout-spacing-unit));
+}
+
+.udmNewObjectDialog__successNotification {
+		cursor: pointer;
+		padding: var(--layout-spacing-unit-small) var(--dijit-dialog-pane-content-padding);
+		background-color: var(--bgc-success);
+		margin: 0px calc(-1 * var(--dijit-dialog-pane-content-padding)) calc(2 * var(--layout-spacing-unit));
+}

@@ -1,0 +1,518 @@
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2013-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+from __future__ import annotations
+
+import copy
+import functools
+import json
+import os
+import socket
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, Any
+from urllib.parse import urlparse
+
+import pytest
+from keycloak import KeycloakAdmin, KeycloakOpenID
+from playwright.sync_api import Browser, BrowserContext, Page, expect
+from utils import (
+    get_language_code, get_portal_tile, grant_oidc_privileges, keycloak_login, keycloak_password_change,
+    legacy_auth_config_create, legacy_auth_config_remove, run_command,
+)
+
+from univention.appcenter.actions import get_action
+from univention.appcenter.app_cache import Apps
+from univention.config_registry import ConfigRegistry, handler_set, handler_unset
+from univention.lib.misc import custom_groupname
+from univention.testing.pytest_univention_playwright import fixtures
+from univention.testing.udm import UCSTestUDM
+from univention.testing.utils import (
+    UCSTestDomainAdminCredentials, get_ldap_connection, wait_for_listener_replication, wait_for_s4connector_replication,
+)
+from univention.udm import UDM
+from univention.udm.binary_props import Base64Bzip2BinaryProperty
+
+
+if TYPE_CHECKING:
+    from collections.abc import Callable, Generator, Iterator
+
+    from univention.udm.modules.settings_data import SettingsDataObject
+
+
+# don't use the ucs-test ucr fixture (UCSTestConfigRegistry)
+# in fixtures, this can lean to problems if system settings
+# are reverted after the test, e.g. appcenter/apps/$id/container
+# after univention-app reinitialize
+@pytest.fixture(scope='session')
+def ucr_proper() -> ConfigRegistry:
+    ucr = ConfigRegistry()
+    return ucr.load()
+
+
+@pytest.fixture
+def admin_account() -> UCSTestDomainAdminCredentials:
+    return UCSTestDomainAdminCredentials()
+
+
+@pytest.fixture
+def keycloak_secret() -> str | None:
+    secret_file = '/etc/keycloak.secret'
+    password = None
+    if os.path.isfile(secret_file):
+        with open(secret_file) as fd:
+            password = fd.read().strip()
+    return password
+
+
+# make sure we are the keycloak server, useful for tests that change local configuration
+# and expect a certain behavior in keycloak
+@pytest.fixture
+def is_keycloak(keycloak_config, ucr_proper):
+    keycloak_ip = socket.gethostbyname(keycloak_config.server)
+    my_ip = socket.gethostbyname(ucr_proper['hostname'])
+    if keycloak_ip != my_ip:
+        pytest.skip('this system is not the keycloak server, test makes no sense here')
+    try:
+        handler_set([f'hosts/static/{my_ip}={keycloak_config.server}'])
+        yield True
+    finally:
+        handler_unset([f'hosts/static/{my_ip}'])
+
+
+@pytest.fixture
+def keycloak_admin() -> str:
+    return 'admin'
+
+
+@pytest.fixture
+def keycloak_settings() -> dict:
+    apps_cache = Apps()
+    settings = {}
+    candidate = apps_cache.find('keycloak', latest=True)
+    configure = get_action('configure')
+    for setting in configure.list_config(candidate):
+        settings[setting['name']] = setting['value']
+    return settings
+
+
+@pytest.fixture
+def tracing_page(page, request: pytest.FixtureRequest, ucr_proper):
+    page.context.tracing.start(screenshots=True, snapshots=True)
+
+    yield page
+
+    fixtures.teardown_umc_browser_test(request, ucr_proper, page, page.context, page.context.browser)
+
+
+@pytest.fixture
+def upgrade_status_obj(ucr_proper) -> SettingsDataObject:
+    udm = UDM.admin().version(2)
+    mod = udm.get('settings/data')
+    obj = mod.get(f"cn=keycloak,cn=data,cn=univention,{ucr_proper.get('ldap/base')}")
+    orig_value = obj.props.data.raw
+
+    yield obj
+
+    obj.props.data = Base64Bzip2BinaryProperty('data', raw_value=orig_value)
+    obj.save()
+
+
+class UnverfiedUser:
+    def __init__(self, udm: UCSTestUDM, password: str = 'univention'):
+        self.ldap = get_ldap_connection(primary=True)
+        self.password = password
+        self.dn, self.username = udm.create_user(password=password)
+        changes = [
+            ('objectClass', [b''], [*self.ldap.get(self.dn).get('objectClass'), b'univentionPasswordSelfService']),
+            ('univentionPasswordSelfServiceEmail', [''], [b'root@localhost']),
+            ('univentionPasswordRecoveryEmailVerified', [''], [b'FALSE']),
+            ('univentionRegisteredThroughSelfService', [''], [b'TRUE']),
+        ]
+        self.ldap.modify(self.dn, changes)
+        wait_for_listener_replication()
+
+    def verify(self) -> None:
+        # verify
+        changes = [
+            ('univentionPasswordRecoveryEmailVerified', [b''], [b'TRUE']),
+        ]
+        self.ldap.modify(self.dn, changes)
+        wait_for_listener_replication()
+
+
+@pytest.fixture
+def unverified_user() -> Iterator[UnverfiedUser]:
+    with UCSTestUDM() as udm:
+        user = UnverfiedUser(udm)
+        yield user
+
+
+@pytest.fixture
+def portal_config(ucr_proper: ConfigRegistry) -> SimpleNamespace:
+    portal_fqdn = ucr_proper['umc/saml/sp-server'] or f"{ucr_proper['hostname']}.{ucr_proper['domainname']}"
+    config = {
+        'url': f'https://{portal_fqdn}/univention/portal',
+        'fqdn': portal_fqdn,
+        'title': 'Univention Portal',
+        'sso_login_tile': 'Login (Single sign-on)',
+        'sso_login_tile_de': 'Anmelden (Single Sign-on)',
+        'sso_oidc_login_tile': 'OIDC Login',
+        'tile_name_class': 'portal-tile__name',
+        'category_title_class': 'portal-category__title',
+        'categories_id': 'portalCategories',
+        'tile_class': 'portal-tile',
+        'groups_tile': 'School groups',
+        'users_tile': 'School users',
+        'username': 'admin',
+        'password': 'univention',
+        'header_menu_id': 'header-button-menu',
+        'portal_sidenavigation_username_class': 'portal-sidenavigation--username',
+        'logout_button_id': 'loginButton',
+    }
+
+    return SimpleNamespace(**config)
+
+
+@pytest.fixture
+def keycloak_config(ucr_proper: ConfigRegistry) -> SimpleNamespace:
+    udm_fqdn = f"{ucr_proper['hostname']}.{ucr_proper['domainname']}"
+    url = run_command(['univention-keycloak', 'get-keycloak-base-url']).rstrip()
+    server = urlparse(url).netloc
+    path = urlparse(url).path
+    password = ucr_proper['tests/domainadmin/pwd']
+    config = {
+        'server': server,
+        'path': path,
+        'url': os.path.join(url, ''),  # we need a trailing / here, see keycloak apache proxy config
+        'udm_endpoint': f'https://{udm_fqdn}/univention/udm',
+        'admin_url': f'{url}/admin',
+        'token_url': f'{url}/realms/ucs/protocol/openid-connect/token',
+        'logout_url': f'{url}/realms/ucs/protocol/openid-connect/logout',
+        'master_token_url': f'{url}/realms/master/protocol/openid-connect/token',
+        'users_url': f'{url}/admin/realms/ucs/users',
+        'sessions_url': f'{url}/admin/realms/ucs/sessions',
+        'client_session_stats_url': f'{url}/admin/realms/ucs/client-session-stats',
+        'logout_all_url': f'{url}/admin/realms/ucs/logout-all',
+        'title': 'Welcome to Keycloak',
+        'admin_console_class': 'welcome-primary-link',
+        'main_content_page_container_id': 'kc-main-content-page-container',
+        'login_data': {
+            'client_id': 'admin-cli',
+            'username': 'Administrator',
+            'password': f'{password}',
+            'grant_type': 'password',
+        },
+        'logout_all_data': {'realm': 'ucs'},
+        'login_id': 'kc-login',
+        'username_id': 'username',
+        'password_id': 'password',
+        'login_error_css_selector': "span[class='pf-c-alert__title kc-feedback-text']",
+        'password_update_error_css_selector': "span[class='pf-c-alert__title kc-feedback-text']",
+        'kc_passwd_update_form_id': 'kc-passwd-update-form',
+        'password_confirm_id': 'password-confirm',
+        'password_new_id': 'password-new',
+        'password_change_button_id': 'kc-form-buttons',
+        'kc_page_title_id': 'kc-page-title',
+    }
+    return SimpleNamespace(**config)
+
+
+@pytest.fixture(scope='session')
+def browser_context_args(browser_context_args):
+    expect.set_options(timeout=30 * 1000)
+    return {**browser_context_args, 'ignore_https_errors': True, 'locale': get_language_code()}
+
+
+@pytest.fixture(scope='session')
+def browser_type_launch_args(browser_type_launch_args):
+    return {
+        **browser_type_launch_args,
+        'executable_path': '/usr/bin/chromium',
+        'args': [
+            '--disable-gpu',
+        ],
+    }
+
+
+def __portal_login_func(
+    portal_config: SimpleNamespace,
+    keycloak_config: SimpleNamespace,
+    page: Page,
+    username: str,
+    password: str,
+    fails_with: str | None = None,
+    new_password: str | None = None,
+    new_password_confirm: str | None = None,
+    verify_login: bool | None = True,
+    url: str | None = None,
+    no_login: bool = False,
+    protocol: str | None = 'saml',
+):
+    url = url or portal_config.url
+    page.goto(url)
+    expect(page).to_have_title(portal_config.title)
+    sso_login_tile = portal_config.sso_oidc_login_tile if protocol == 'oidc' else portal_config.sso_login_tile
+    get_portal_tile(page, sso_login_tile, portal_config).click()
+    # login
+    keycloak_login(page, keycloak_config, username, password, fails_with=fails_with if not new_password else None, no_login=no_login)
+    # check password change
+    if new_password:
+        new_password_confirm = new_password_confirm or new_password
+        keycloak_password_change(page, keycloak_config, username, password, new_password, new_password_confirm, fails_with=fails_with)
+    if protocol == 'oidc':
+        grant_oidc_privileges(page)
+    if fails_with or no_login:
+        return page
+    # check that we are logged in
+    if verify_login:
+        header_menu = page.locator(f'#{portal_config.header_menu_id}')
+        expect(header_menu, 'header menu not visible').to_be_visible()
+    return page
+
+
+@pytest.fixture
+def portal_login_via_keycloak(tracing_page: Page, portal_config: SimpleNamespace, keycloak_config: SimpleNamespace):
+    return functools.partial(__portal_login_func, portal_config, keycloak_config, tracing_page)
+
+
+@pytest.fixture
+def portal_login_via_keycloak_custom_page(portal_config: SimpleNamespace, keycloak_config: SimpleNamespace):
+    return functools.partial(__portal_login_func, portal_config, keycloak_config)
+
+
+@pytest.fixture
+def keycloak_adm_login(tracing_page: Page, keycloak_config: SimpleNamespace):
+    page = tracing_page
+
+    def _func(
+        username: str,
+        password: str,
+        fails_with: str | None = None,
+        url: str | None = keycloak_config.url,
+        no_login: bool = False,
+    ):
+        page.goto(url)
+        page.wait_for_load_state('networkidle', timeout=5 * 1000)
+        expect(page).to_have_title('Univention Corporate Server Single-Sign On', timeout=30 * 1000)
+        keycloak_login(page, keycloak_config, username, password, fails_with=fails_with, no_login=no_login)
+        # check that we are logged in
+        if fails_with or no_login:
+            return page
+        expect(page).to_have_title('Keycloak Administration Console')
+        return page
+
+    return _func
+
+
+@pytest.fixture
+def domain_admins_dn(ucr_proper: ConfigRegistry) -> str:
+    return f"cn={custom_groupname('Domain Admins')},cn=groups,{ucr_proper['ldap/base']}"
+
+
+@pytest.fixture
+def keycloak_session(keycloak_config: SimpleNamespace) -> Callable[[str, str], KeycloakAdmin]:
+    def _session(username: str, password: str) -> KeycloakAdmin:
+        session = KeycloakAdmin(
+            server_url=keycloak_config.url,
+            username=username,
+            password=password,
+            realm_name='ucs',
+            user_realm_name='master',
+            verify=True,
+        )
+        session.path = keycloak_config.path
+        return session
+
+    return _session
+
+
+@pytest.fixture
+def keycloak_administrator_connection(keycloak_session: Callable, admin_account: UCSTestDomainAdminCredentials) -> KeycloakAdmin:
+    return keycloak_session(admin_account.username, admin_account.bindpw)
+
+
+@pytest.fixture
+def keycloak_admin_connection(
+    keycloak_session: Callable,
+    keycloak_admin: str,
+    keycloak_secret: str,
+) -> KeycloakAdmin:
+    if keycloak_secret:
+        return keycloak_session(keycloak_admin, keycloak_secret)
+
+
+@pytest.fixture
+def keycloak_openid(keycloak_secret: str, keycloak_config: SimpleNamespace) -> KeycloakOpenID:
+    def _session(client_id: str, realm_name: str = 'ucs', client_secret_key: str | None = None) -> KeycloakAdmin:
+        return KeycloakOpenID(
+            server_url=keycloak_config.url,
+            client_id=client_id,
+            realm_name=realm_name,
+            client_secret_key=client_secret_key or keycloak_secret,
+        )
+
+    return _session
+
+
+@pytest.fixture
+def keycloak_openid_connection(keycloak_openid: Callable) -> KeycloakOpenID:
+    return keycloak_openid('admin-cli')
+
+
+@pytest.fixture
+def legacy_authorization_setup_saml(
+    udm: UCSTestUDM,
+    ucr: ConfigRegistry,
+    keycloak_administrator_connection: KeycloakAdmin,
+    admin_account: UCSTestDomainAdminCredentials,
+    portal_config: SimpleNamespace,
+) -> Iterator[SimpleNamespace]:
+    group_dn, group_name = udm.create_group()
+    user_dn, user_name = udm.create_user(password='univention')
+    saml_client = f'https://{portal_config.fqdn}/univention/saml/metadata'
+    groups = {group_name: saml_client}
+
+    try:
+        # create flow
+        run_command(['univention-keycloak', 'legacy-authentication-flow', 'create'])
+        # create config
+        legacy_auth_config_create(keycloak_administrator_connection, ucr['ldap/base'], groups)
+        # add flow to client
+        run_command(['univention-keycloak', 'client-auth-flow', '--clientid', saml_client, '--auth-flow', 'browser flow with legacy app authorization'])
+        yield SimpleNamespace(
+            client=saml_client,
+            group=group_name,
+            group_dn=group_dn,
+            user=user_name,
+            user_dn=user_dn,
+            password='univention',
+        )
+    finally:
+        # cleanup
+        run_command(['univention-keycloak', 'legacy-authentication-flow', 'delete'])
+        legacy_auth_config_remove(keycloak_administrator_connection, groups)
+
+
+@pytest.fixture
+def legacy_authorization_setup_oidc(
+    udm: UCSTestUDM,
+    ucr: ConfigRegistry,
+    keycloak_administrator_connection: KeycloakAdmin,
+    admin_account: UCSTestDomainAdminCredentials,
+) -> Iterator[SimpleNamespace]:
+    group_dn, group_name = udm.create_group()
+    user_dn, user_name = udm.create_user(password='univention')
+    client = f'testclient-{user_name}'
+    client_secret = 'abc'
+    client_id = None
+    groups = {group_name: client}
+    wait_for_s4connector_replication()
+    try:
+        # create flow
+        run_command(['univention-keycloak', 'legacy-authentication-flow', 'create', '--flow', 'direct grant'])
+        # create client and add custom direct grant flow
+        run_command(['univention-keycloak', 'oidc/rp', 'create', client, '--client-secret', client_secret, '--app-url', 'https://*', '--direct-access-grants'])
+        client_id = keycloak_administrator_connection.get_client_id(client)
+        flow_id = next(
+            flow['id'] for flow in keycloak_administrator_connection.get_authentication_flows() if flow.get('alias') == 'direct grant flow with legacy app authorization'
+        )
+        client_data = keycloak_administrator_connection.get_client(client_id)
+        client_data['authenticationFlowBindingOverrides']['direct grant'] = flow_id
+        client_data['authenticationFlowBindingOverrides']['direct_grant'] = flow_id
+        keycloak_administrator_connection.update_client(client_id, client_data)
+        # create config
+        legacy_auth_config_create(keycloak_administrator_connection, ucr['ldap/base'], groups)
+        yield SimpleNamespace(
+            client=client,
+            client_secret=client_secret,
+            group=group_name,
+            group_dn=group_dn,
+            user=user_name,
+            user_dn=user_dn,
+            password='univention',
+        )
+    finally:
+        # cleanup
+        legacy_auth_config_remove(keycloak_administrator_connection, groups)
+        if client_id:
+            keycloak_administrator_connection.delete_client(client_id)
+        run_command(['univention-keycloak', 'legacy-authentication-flow', 'delete', '--flow', 'direct grant'])
+
+
+@pytest.fixture
+def modify_keycloak_clients(request):
+    mod_func: Callable[[dict[Any, Any]]] = request.param
+    modified_clients = []
+    oidc_clients = json.loads(run_command(['univention-keycloak', 'oidc/rp', 'get', '--json', '--all']))
+
+    for client in oidc_clients:
+        if '/univention/oidc' not in client['clientId']:
+            continue
+        modified_clients.append(client)
+        oidc_client_updated = copy.deepcopy(client)
+        mod_func(oidc_client_updated)
+        oidc_client_updated = json.dumps(oidc_client_updated)
+        run_command(['univention-keycloak', 'oidc/rp', 'update', client['clientId'], oidc_client_updated])
+    yield
+    for client in modified_clients:
+        run_command(['univention-keycloak', 'oidc/rp', 'update', client['clientId'], json.dumps(client)])
+
+
+@pytest.fixture
+def oidc_client_logout_meachanism(request):
+    modified_clients = []
+    oidc_clients = json.loads(run_command(['univention-keycloak', 'oidc/rp', 'get', '--json', '--all']))
+
+    for client in oidc_clients:
+        if '/univention/oidc' not in client['clientId']:
+            continue
+        modified_clients.append(client)
+        oidc_client_updated = copy.deepcopy(client)
+        oidc_client_updated['frontchannelLogout'] = request.param == 'frontchannel'
+        oidc_client_updated = json.dumps(oidc_client_updated)
+        run_command(['univention-keycloak', 'oidc/rp', 'update', client['clientId'], oidc_client_updated])
+
+    yield request.param
+
+    for client in modified_clients:
+        run_command(['univention-keycloak', 'oidc/rp', 'update', client['clientId'], json.dumps(client)])
+
+
+@pytest.fixture
+def multi_tab_context(browser: Browser, request: pytest.FixtureRequest, ucr_proper) -> Generator[BrowserContext, None, None]:
+    context = browser.new_context(ignore_https_errors=True)
+    context.set_default_timeout(30 * 1000)
+    expect.set_options(timeout=30 * 1000)
+
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
+    yield context
+
+    fixtures.teardown_umc_browser_test(request, ucr_proper, context.pages, context, browser)

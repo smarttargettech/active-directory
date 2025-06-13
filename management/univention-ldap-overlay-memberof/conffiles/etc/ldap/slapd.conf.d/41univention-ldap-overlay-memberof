@@ -1,0 +1,19 @@
+
+@!@
+dangling = configRegistry.get('ldap/overlay/memberof/dangling', 'ignore')
+dangling_error = configRegistry.get('ldap/overlay/memberof/dangling/errorcode')
+modifiersname = configRegistry.get('ldap/overlay/memberof/modifiersname')
+refint = configRegistry.is_true('ldap/overlay/memberof/refint')
+
+print('moduleload			 memberof.so')
+print('overlay				 memberof')
+print('memberof-group-oc	 posixGroup')
+print('memberof-member-ad	 uniqueMember')
+print('memberof-memberof-ad	 memberOf')
+print('memberof-dangling	 %s' % dangling)
+if dangling_error:
+    print('memberof-dangling-error	   %s' % dangling_error)
+if modifiersname:
+    print('memberof-dn			 %s' % modifiersname)
+print('memberof-refint		 %s' % ('true' if refint else 'false',))
+@!@

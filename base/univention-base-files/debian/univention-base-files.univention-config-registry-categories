@@ -1,0 +1,50 @@
+[system-base]
+name[de]=Basiseinstellungen
+name[en]=Base Settings
+icon=system-base.gif
+
+[system-network]
+name[de]=Netzwerkeinstellungen
+name[en]=Network configuration
+icon=system-network.gif
+
+[system-repository]
+name[de]=Repositoryeinstellungen
+name[en]=Repository settings
+icon=system-repository.gif
+
+[system-locale]
+name[de]=Spracheinstellungen
+name[en]=Locale settings
+icon=system-locale.gif
+
+[system-kernel]
+name[de]=Kerneleinstellungen
+name[en]=Kernel settings
+icon=system-kernel.gif
+
+[system-password]
+name[de]=Passworteinstellungen
+name[en]=Password settings
+icon=system-password.gif
+
+[system-services]
+name[de]=System: Verfügbare Dienste
+name[en]=System: Available Services
+icon=system-services.gif
+
+[service-ssh]
+name[de]=SSH
+name[en]=SSH
+icon=service-ssh.gif
+
+[service-ln]
+name[de]=Listener/Notifier-Replikation
+name[en]=Listener/notifier replication
+icon=service-ln.gif
+
+[service-ldap]
+name[de]=LDAP-Konfiguration
+name[en]=LDAP configuration
+icon=service-ldap.gif
+

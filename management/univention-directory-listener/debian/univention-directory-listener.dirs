@@ -1,0 +1,2 @@
+usr/lib/univention-directory-listener/user
+var/log/univention/listener_modules

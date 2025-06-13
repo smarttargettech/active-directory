@@ -1,0 +1,305 @@
+univention-server-overview (5.2.0) UNRELEASED; urgency=medium
+
+  * Bug #58344 UCS 5.2-2 version bump
+
+ -- Ivan Barbecho Delgado <ivan.delgado@univention.de>  Wed, 28 May 2025 16:49:47 +0200
+
+univention-server-overview (5.0.3-1) UNRELEASED; urgency=medium
+
+  * Bug #58015 UCS 5.2-1 version bump
+
+ -- Christian Castens <castens@univention.de>  Mon, 03 Mar 2025 10:45:32 +0100
+
+univention-server-overview (5.0.2-2) unstable; urgency=medium
+
+  * Issue univention/components/keycloak-app#206:
+    skip https:// prefix already part of ucs/server/sso/uri
+
+ -- Arvid <requate@univention.de>  Wed, 08 Jan 2025 18:52:29 +0100
+
+univention-server-overview (5.0.2-1) unstable; urgency=medium
+
+  * Issue univention/components/keycloak-app#206:
+    Change settings from keycloak/server/sso/fqdn to ucs/server/sso/uri
+
+ -- Felix Botner <botner@univention.de>  Wed, 08 Jan 2025 12:11:34 +0100
+
+univention-server-overview (5.0.2) unstable; urgency=medium
+
+  * Bug #56604: drop Python 2 compatibility
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 02:13:37 +0100
+
+univention-server-overview (5.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.2-0 version bump
+
+ -- Florian Best <best@univention.de>  Fri, 08 Mar 2024 00:12:18 +0100
+
+univention-server-overview (4.0.3) unstable; urgency=medium
+
+  * Bug #53127: upgrade to latest debhelper compat version
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:33 +0100
+
+univention-server-overview (4.0.2) unstable; urgency=medium
+
+  * Bug #56530: remove Python version specification in XML module
+    definition
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 23:53:26 +0100
+
+univention-server-overview (4.0.1) unstable; urgency=medium
+
+  * Bug #55706: UCS 5.1-0 version bump
+
+ -- Florian Best <best@univention.de>  Thu, 07 Mar 2024 22:19:31 +0100
+
+univention-server-overview (3.0.5-1) UNRELEASED; urgency=medium
+
+  * Bug #57118 UCS 5.0-7 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Mar 2024 15:51:48 +0100
+
+univention-server-overview (3.0.4-1) UNRELEASED; urgency=medium
+
+  * Bug #56832: UCS 5.0-6 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 07 Dec 2023 19:17:28 +0100
+
+univention-server-overview (3.0.3-1) unstable; urgency=medium
+
+  * Bug #31771: migrate tabs to spaces
+
+ -- Florian Best <best@univention.de>  Fri, 03 Feb 2023 04:17:41 +0100
+
+univention-server-overview (3.0.2-1) unstable; urgency=medium
+
+  * Bug #54706: drop Python 3 package files
+
+ -- Florian Best <best@univention.de>  Mon, 02 May 2022 12:34:56 +0200
+
+univention-server-overview (3.0.1-5) unstable; urgency=medium
+
+  * Bug #53390: implement light theme
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 11 Jun 2021 13:31:57 +0200
+
+univention-server-overview (3.0.1-4) unstable; urgency=medium
+
+  * Bug #53209: Fix join script handling (univention-join debhelper)
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Thu, 06 May 2021 15:41:20 +0200
+
+univention-server-overview (3.0.1-3) unstable; urgency=medium
+
+  * Bug #52869: newwindow for server-overview portal tile even for upgrades
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Wed, 28 Apr 2021 11:55:40 +0200
+
+univention-server-overview (3.0.1-2) unstable; urgency=medium
+
+  * Bug #52869: newwindow for server-overview portal tile
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Mon, 19 Apr 2021 17:55:17 +0200
+
+univention-server-overview (3.0.1-1) unstable; urgency=medium
+
+  * Bug #51328: migrate module to Python 3
+
+ -- Florian Best <best@univention.de>  Tue, 23 Mar 2021 21:16:15 +0100
+
+univention-server-overview (3.0.0-7) unstable; urgency=medium
+
+  * Bug #52437: Increment joinscript version by 10 relative to 4.4-7
+
+ -- Arvid <requate@univention.de>  Mon, 22 Mar 2021 18:29:46 +0100
+
+univention-server-overview (3.0.0-6) unstable; urgency=medium
+
+  * Bug #52869: Portal entries have to be created differently now
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Sat, 20 Mar 2021 01:38:26 +0100
+
+univention-server-overview (3.0.0-5) unstable; urgency=medium
+
+  * Bug #52453: adjust styling of server overview
+
+ -- Johannes Keiser <keiser@univention.de>  Fri, 05 Mar 2021 10:59:42 +0100
+
+univention-server-overview (3.0.0-4) unstable; urgency=medium
+
+  * Bug #52453: remove unused css class
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 10 Dec 2020 09:18:30 +0100
+
+univention-server-overview (3.0.0-3) unstable; urgency=medium
+
+  * Bug #43686: use systemctl calls for UDL
+
+ -- Jürn Brodersen <brodersen@univention.de>  Tue, 17 Nov 2020 12:34:32 +0100
+
+univention-server-overview (3.0.0-2) unstable; urgency=medium
+
+  * Bug #42374: Wording - Master -> Primary; Slave -> Replica
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 25 Sep 2020 01:30:51 +0200
+
+univention-server-overview (3.0.0-1) unstable; urgency=medium
+
+  * Bug #51419: UCS-5.0-0 version bump
+
+ -- Dirk Wiesenthal <wiesenthal@univention.de>  Fri, 05 Jun 2020 18:06:23 +0200
+
+univention-server-overview (2.0.1-5) unstable; urgency=medium
+
+  * Bug #51100: make UCR templates compatible to python3
+
+ -- Florian Best <best@univention.de>  Tue, 14 Apr 2020 11:39:47 +0200
+
+univention-server-overview (2.0.1-4) unstable; urgency=medium
+
+  * Bug #49164: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Wed, 16 Oct 2019 13:02:01 +0200
+
+univention-server-overview (2.0.1-3) unstable; urgency=medium
+
+  * Bug #49164: migrate to dh_python
+
+ -- Florian Best <best@univention.de>  Fri, 11 Oct 2019 14:08:56 +0200
+
+univention-server-overview (2.0.1-2) unstable; urgency=medium
+
+  * Bug #48471: UMC design adjustments
+
+ -- Johannes Keiser <keiser@univention.de>  Thu, 17 Jan 2019 16:20:35 +0100
+
+univention-server-overview (2.0.1-1) unstable; urgency=medium
+
+  * Bug #46969: bindpwdfile support
+
+ -- Felix Botner <botner@univention.de>  Fri, 21 Dec 2018 12:05:15 +0100
+
+univention-server-overview (2.0.0-1) unstable; urgency=medium
+
+  * Bug #48326: UCS-4.4-0 version bump
+
+ -- Philipp Hahn <hahn@univention.de>  Fri, 14 Dec 2018 15:12:40 +0100
+
+univention-server-overview (1.0.0-3) unstable; urgency=medium
+
+  * Bug #45423: Add CSP to server-overview site
+
+ -- Johannes Keiser <keiser@univention.de>  Wed, 11 Apr 2018 18:30:08 +0200
+
+univention-server-overview (1.0.0-2) unstable; urgency=medium
+
+  * Bug #43336: remove XS-Python-Version
+
+ -- Florian Best <best@univention.de>  Thu, 21 Dec 2017 11:52:26 +0100
+
+univention-server-overview (1.0.0-1) unstable; urgency=medium
+
+  * Bug #45841: UCS-4.3 version bump
+
+ -- Jürn Brodersen <brodersen@univention.de>  Mon, 11 Dec 2017 14:40:24 +0100
+
+univention-server-overview (0.0.3-9) unstable; urgency=medium
+
+  * Bug #44059: Add login button
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 27 Mar 2017 18:46:01 +0200
+
+univention-server-overview (0.0.3-8) unstable; urgency=medium
+
+  * Bug #44048: Only create portal entry in a multi-sever domain
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 23 Mar 2017 23:12:01 +0100
+
+univention-server-overview (0.0.3-7) unstable; urgency=medium
+
+  * Bug #43985: automatic detection if login state
+
+ -- Florian Best <best@univention.de>  Wed, 22 Mar 2017 14:53:10 +0100
+
+univention-server-overview (0.0.3-6) unstable; urgency=medium
+
+  * Bug #43595: Make while gallery tile clickable
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 15 Mar 2017 09:23:36 +0100
+
+univention-server-overview (0.0.3-5) unstable; urgency=medium
+
+  * Bug #43595: Make sure that the a-tag is not removed via _resizeItemNames()
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 13 Mar 2017 11:20:04 +0100
+
+univention-server-overview (0.0.3-4) unstable; urgency=medium
+
+  * Bug #42263: Filter out docker containers
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 13 Mar 2017 10:22:20 +0100
+
+univention-server-overview (0.0.3-3) unstable; urgency=medium
+
+  * Bug #43528: Move 'back to start site' menu entry into univention-web-js
+
+ -- Alexander Kläser <klaeser@univention.de>  Fri, 10 Mar 2017 15:09:33 +0100
+
+univention-server-overview (0.0.3-2) unstable; urgency=medium
+
+  * Bug #42263: Fix entries in umc/de.po
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 09 Mar 2017 22:30:04 +0100
+
+univention-server-overview (0.0.3-1) unstable; urgency=medium
+
+  * Bug #43680: add portal entry for server overview
+
+ -- Florian Best <best@univention.de>  Thu, 09 Mar 2017 13:38:31 +0100
+
+univention-server-overview (0.0.2-1) unstable; urgency=medium
+
+  * Bug #42263: Sort by server type + fix linking issues
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 08 Mar 2017 13:30:43 +0100
+
+univention-server-overview (0.0.1-6) unstable; urgency=medium
+
+  * Bug #42263: Adjust menu structure
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 07 Mar 2017 15:55:40 +0100
+
+univention-server-overview (0.0.1-5) unstable; urgency=medium
+
+  Bug #43595:
+  * Adjust domainname and version usage
+  * Add portal link into menu
+  * Integrate l10n
+
+ -- Alexander Kläser <klaeser@univention.de>  Mon, 06 Mar 2017 18:33:29 +0100
+
+univention-server-overview (0.0.1-4) unstable; urgency=medium
+
+  * Bug #43595: fix coding style + references + entitites.encode()
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Mar 2017 12:40:53 +0100
+
+univention-server-overview (0.0.1-3) unstable; urgency=medium
+
+  * Bug #43595: Use umc.tools.isIPAddress()
+
+ -- Alexander Kläser <klaeser@univention.de>  Thu, 02 Mar 2017 11:25:57 +0100
+
+univention-server-overview (0.0.1-2) unstable; urgency=medium
+
+  * Bug #43595: Adjust labels and some styling
+
+ -- Alexander Kläser <klaeser@univention.de>  Wed, 01 Mar 2017 10:25:32 +0100
+
+univention-server-overview (0.0.1-1) unstable; urgency=medium
+
+  * Bug #43595: Initial Release
+
+ -- Alexander Kläser <klaeser@univention.de>  Tue, 28 Feb 2017 15:35:44 +0100

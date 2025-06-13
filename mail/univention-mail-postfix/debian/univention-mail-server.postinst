@@ -1,0 +1,85 @@
+#!/bin/sh
+#
+# Univention Mail Server
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2011-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+univention-config-registry set \
+	mail/postfix/virtual/enabled=yes \
+	mail/postfix/transport/ldap/enabled=yes \
+	mail/postfix/inet/interfaces=all
+
+if dpkg --compare-versions "$2" lt 14.0.7-1
+then
+	univention-config-registry set \
+	mail/postfix/smtpd/data_restrictions?reject_unauth_pipelining \
+	mail/postfix/smtpd/discard_ehlo_keywords?"chunking, silent-discard"
+fi
+
+eval "$(univention-config-registry shell)"
+
+for file in transport virtual canonical access relocated; do
+  if [ ! -e /etc/postfix/$file ]; then
+      touch /etc/postfix/$file
+  fi
+  postmap /etc/postfix/$file
+done
+
+. /usr/share/univention-lib/all.sh
+call_joinscript 67univention-mail-server.inst
+
+if [ -z "$postfix_autostart" ] || [ "$postfix_autostart" = "yes" ]; then
+	/etc/init.d/postfix restart
+fi
+
+# configure firewall
+ucr set security/packetfilter/package/univention-mail-postfix/tcp/25/all="ACCEPT" \
+		security/packetfilter/package/univention-mail-postfix/tcp/25/all/en="SMTP" \
+		security/packetfilter/package/univention-mail-postfix/tcp/465/all="ACCEPT" \
+		security/packetfilter/package/univention-mail-postfix/tcp/465/all/en="SSMTP" \
+		security/packetfilter/package/univention-mail-postfix/tcp/587/all="ACCEPT" \
+		security/packetfilter/package/univention-mail-postfix/tcp/587/all/en="SMTP/submission"
+[ -x "/etc/init.d/univention-firewall" ] && invoke-rc.d univention-firewall restart
+
+if [ "$1" = "configure" ]; then
+	uinst=/usr/lib/univention-install/67univention-mail-server.uinst
+	[ -e "$uinst" ] && rm "$uinst"
+	if [ -z "$2" ]; then
+		ucr set mail/postfix/activate_unionmap_in_virtual_alias_maps=yes
+		ucr set mail/postfix/activate_ldap_attribute_mailForwardCopyToSelf_in_virtual_alias_maps=yes
+		/etc/init.d/postfix reload && /etc/init.d/postfix restart
+	fi
+fi
+
+
+exit 0

@@ -1,0 +1,47 @@
+[directory/manager/web/sizelimit]
+Description[de]=Diese Variable konfiguriert eine Obergrenze für Suchergebnisse in der Univention Management Console. Werden mehr Suchergebnisse gefunden als hier konfiguriert, wird die Suche abgebrochen und der Benutzer aufgefordert die Suche einzugrenzen. Ist die Variable nicht gesetzt, beträgt die Grenze 2000.
+Description[en]=This variable configures an upper limit for search results. If more search results have been found, the search is aborted and instead the user is asked to refine the search. If the variable is unset, the limit is 2000.
+Type=int
+Categories=management-umc
+
+[directory/reports/cleanup/age]
+Description[de]=Univention Directory Reports werden nach der hier konfigurierten Aufbewahrungszeit in Sekunden automatisch durch einen Cron-Job entfernt. Ist die Variable nicht gesetzt, gilt 43200 (12h).
+Description[en]=Univention Directory Reports are automatically removed through a Cron job after the retention time in seconds configured here. If the variable is unset, 43200 applies (12h).
+Type=int
+Categories=management-umc
+
+[directory/reports/cleanup/cron]
+Description[de]=Univention Directory Reports werden nach einiger Zeit (siehe 'directory/reports/cleanup/age') automatisch durch einen Cron-Job entfernt. Diese Variable konfiguriert den Zeitpunkt in Cron-Syntax, siehe 'man 5 crontab'.
+Description[en]=Univention Directory Reports are automatically removed through a Cron job after some retention time (see 'directory/reports/cleanup/age'). This variable configures the time in Cron syntax, see 'man 5 crontab'.
+Type=cron
+Categories=management-umc
+
+[directory/manager/web/modules/.*/.*/show/adnotification]
+Description[de]=Mit dieser Variable kann pro Modul eingestellt werden, ob ein Warnhinweis beim Hinzufügen von Objekten im Active Directory-Modus angezeigt werden soll.
+Description[en]=This variable allows to configure for every module whether a warning should be displayed when creating objects if the system is in Active Directory mode.
+Type=str
+Categories=management-umc
+
+[directory/manager/web/allow_wildcard_search]
+Description[de]=Definiert, ob Wildcards (*) in der Suche ausgewertet werden.
+Description[en]=Defines whether wildcards (*) are evaluated when searching.
+Type=bool
+Categories=management-umc
+
+[directory/manager/web/auto_substring_search]
+Description[de]=Definiert, ob automatisch nach Teilstrings gesucht wird.
+Description[en]=Defines if it is searched automatically for substrings.
+Type=bool
+Categories=management-umc
+
+[directory/manager/web/modules/users/user/wizard/property/.*/default]
+Description[de]=Definiert den Standardwert für das referenzierte Widget im Benutzererstellungsassistenten (Platzhalter sind z.B. invite, overridePWLength oder pwdChangeNextLogin). Achtung: Dies überschreibt den Wert aller Templates!
+Description[en]=Defines the default value for the referenced widget in the user create wizard (placeholder are e.g. invite, overridePWLength or pwdChangeNextLogin). Caution: This overwrites the value of all templates!
+Type=str
+Categories=management-umc
+
+[directory/manager/web/modules/users/user/wizard/property/.*/visible]
+Description[de]=Definiert, ob das referenzierte Widget im Benutzererstellungsassistenten standardmäßig angezeigt wird (Platzhalter sind z.B. invite, overridePWLength oder pwdChangeNextLogin).
+Description[en]=Defines if the referenced widget is shown in the user create wizard by default (placeholder are e.g. invite, overridePWLength or pwdChangeNextLogin).
+Type=bool
+Categories=management-umc

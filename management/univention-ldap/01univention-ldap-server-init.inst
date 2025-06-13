@@ -1,0 +1,114 @@
+#! /bin/bash
+#
+# Univention LDAP Server
+#  join script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2001-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+## joinscript api: bindpwdfile
+
+VERSION=1
+. /usr/share/univention-join/joinscripthelper.lib
+joinscript_init
+
+eval "$(univention-config-registry shell)"
+
+if [ -z "$ldap_server_type" ]; then
+	echo "ldap/server/type not set"
+	exit 1
+fi
+
+start-stop-daemon --stop --name slapd --retry TERM/30/KILL/5 --oknodo --quiet
+
+/usr/share/univention-ldap/ldap_setup_index --force-defaults ||
+	[ $? -eq 4 ]
+
+# initialize ldap
+database_name="id2entry"
+if [ "mdb" = "$ldap_database_type" ]; then
+	database_name="data"
+fi
+files=$(find /var/lib/univention-ldap/ldap/ -name "$database_name.*" -type f)
+if [ -z "$files" ]
+then
+	rm -f /var/lib/univention-ldap/ldap/*
+
+	if [ -e "/etc/ldap/slapd.d/cn=config.ldif" ]; then
+		mv "/etc/ldap/slapd.d/cn=config.ldif" "/etc/ldap/slapd.d/cn=config.ldif.DISABLED"
+	fi
+fi
+if [ -z "$files" ] && [ "$server_role" = "domaincontroller_master" ]
+then
+	if ! [ -e "/etc/ldap.secret" ]; then
+		LDAP_SECRET="not_found"
+	fi
+	if [ -z "$LDAP_SECRET" ]; then
+		pw_crypt=$(mkpasswd --hash=sha-512 --stdin < /etc/ldap.secret)
+	else
+		#if no ldap.secret is available, replication.py removes the ldap entries
+		pw_crypt="univention"
+	fi
+
+	backup_crypt=$(mkpasswd --hash=sha-512 --stdin < /etc/ldap-backup.secret)
+	firstdc="$(echo "$ldap_base" | sed -e 's|,.*||g;s|.*=||')"
+	if [ -z "$windows_domain" ]; then
+		sambadomain=${domainname%%.*}
+	else
+		sambadomain=$windows_domain
+	fi
+	realm=$(echo "$domainname" | sed -e 's/dc=//g;s/,/./g;s/[a-z]/\u&/g')
+	sid=$(/usr/sbin/univention-newsid)
+	Domain=$domainname
+	cat /usr/share/univention-ldap/base.ldif /usr/share/univention-ldap/core-edition.ldif |
+		 sed -e \
+		"s|@@%%@@ldap\.pw@@%%@@|$pw_crypt|;s|@@%%@@backup\.pw@@%%@@|$backup_crypt|;s|@@%%@@sambadomain@@%%@@|$sambadomain|;s|@@%%@@firstdc@@%%@@|$firstdc|;s|@@%%@@realm@@%%@@|$realm|;s|@@%%@@sid@@%%@@|$sid|;s|@@%@@domain@@%@@|$Domain|" | \
+		univention-config-registry filter |
+		slapadd -f /etc/ldap/slapd.conf >>/var/log/univention/join.log 2>&1 ||
+		exit 1
+
+	univention-config-registry set windows/domain?"$sambadomain" \
+		kerberos/realm?"$realm"
+
+	command -v sss_cache >/dev/null && sss_cache -U
+	# command -v sss_cache >/dev/null && sss_cache -G
+	command -v nscd >/dev/null && nscd -i group
+fi
+/usr/share/univention-ldap/setup-translog init "$@"
+
+# setup archive database
+if [ "$server_role" = "domaincontroller_master" ] || [ "$server_role" = "domaincontroller_backup" ]; then
+	/usr/share/univention-ldap/setup-internal init
+fi
+
+service slapd start
+
+joinscript_save_current_version
+exit 0

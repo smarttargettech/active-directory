@@ -1,0 +1,89 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: LDAP-replication to backup and slave
+## tags:
+##  - basic
+##  - apptest
+##  - replication
+## roles:
+##  - domaincontroller_backup
+##  - domaincontroller_slave
+## packages:
+##  - univention-config
+##  - univention-directory-manager-tools
+##  - ldap-utils
+## exposure: dangerous
+
+# Modification is done 8 times in rapid succession, then 4 times in 4 seconds, then rapidly 8 times again.
+# Finally this script waits for the container to appear in the local directory and checks that the latest modification was replicated.
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+# shellcheck source=../../lib/random.sh
+. "$TESTLIBPATH/random.sh" || exit 137
+
+set -o errexit # script bail out when it detects an error (a non-zero exit code).
+set -o pipefail
+set -o nounset # If expansion is attempted on an unset variable or parameter --> prints error
+
+container_name="$(random_chars 20 "${_lowerletters}${_upperletters}${_ciphers}")"
+container_position="cn=custom attributes,cn=univention,$ldap_base"
+
+create_container_with_description () {
+	local description=$1
+	udm-test container/cn create \
+		--set description="$description" \
+		--set name="$container_name" \
+		--position "$container_position"
+}
+remove_container_with_description () {
+	udm-test container/cn remove --dn "cn=$container_name,$container_position"
+}
+remove_create_container_with_description () {
+	remove_container_with_description
+	create_container_with_description "$1"
+}
+
+echo "Creating and modifiying object:"
+create_container_with_description "original"
+for i in $(seq 1 8)
+do
+	remove_create_container_with_description "other$i"
+done
+
+for i in $(seq 9 12)
+do
+	remove_create_container_with_description "other$i"
+	sleep 1s
+done
+
+for i in $(seq 13 20)
+do
+	remove_create_container_with_description "other$i"
+done
+
+wait_for_replication
+
+if ! univention-ldapsearch -LLL -b "cn=$container_name,$container_position"
+then
+	fail_test 1 'container not found!'
+else
+	echo 'OK: container was replicated.'
+	if ! univention-ldapsearch -LLL -b "cn=$container_name,$container_position" | grep -qs '^description:'
+	then
+		fail_test 1 'container has no "description"-attribute!'
+	else
+		echo 'OK: container has "description"-attribute.'
+		if ! univention-ldapsearch -LLL -b "cn=$container_name,$container_position" | grep -qs '^description:\s*other20$'
+		then
+			fail_test 1 'value of "description"-attribute is incorrect!'
+		else
+			echo 'OK: object was successfully replicated.'
+			#Test passed
+		fi
+	fi
+fi
+echo "Removing object:"
+remove_container_with_description
+
+exit $RETVAL

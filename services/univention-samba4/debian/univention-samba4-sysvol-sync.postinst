@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# Univention Samba4 Sysvol Yync
+#  postinst script
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2004-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+#DEBHELPER#
+
+# shellcheck source=/dev/null
+. /usr/share/univention-lib/base.sh
+
+if [ "$1" = "configure" ]; then
+	## create sysvol-sync logfile
+	create_logfile /var/log/univention/sysvol-sync.log "root:adm" 640
+
+	## activate sysvol replication
+	univention-config-registry set samba4/sysvol/cleanup/cron?"4 4 * * *"
+
+	## create the sysvol directory
+	[ -d /var/lib/samba/sysvol ] ||
+		install -m 755 -o root -g adm -d /var/lib/samba/sysvol
+
+	## create a sysvol backup directory
+	[ -d /var/lib/samba/sysvol_backup ] ||
+		install -m 755 -o root -g adm -d /var/lib/samba/sysvol_backup
+fi
+
+# Fix permissions for the sysvol share
+#  https://forge.univention.org/bugzilla/show_bug.cgi?id=27249
+if [ "$1" = "configure" ] && [ -z "$2" ]
+then
+	SYSVOL_LOCKFILE="/var/lock/sysvol-sync-dir"
+	touch "$SYSVOL_LOCKFILE" \
+	&& chgrp "DC Slave Hosts" "$SYSVOL_LOCKFILE" \
+	&& chmod g+w "$SYSVOL_LOCKFILE"
+
+	ucr set sshd/config/ClientAliveInterval?60
+	if [ -x /etc/init.d/ssh ]; then
+		invoke-rc.d ssh reload
+	fi
+fi
+
+exit 0

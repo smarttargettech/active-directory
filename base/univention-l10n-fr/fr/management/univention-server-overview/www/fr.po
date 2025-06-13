@@ -1,0 +1,49 @@
+# Sandrine Burriel <sandrine@workshop-chapina.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: univention-server-overview\n"
+"Report-Msgid-Bugs-To: packages@univention.de\n"
+"POT-Creation-Date: 2021-11-03 17:54+0100\n"
+"PO-Revision-Date: 2017-05-28 21:02+0900\n"
+"Last-Translator: Sandrine Burriel <sandrine@workshop-chapina.com>\n"
+"Language-Team: French <fr@workshop-chapina.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: www/main.js:75
+#, javascript-format
+msgid "%s - Server overview"
+msgstr "%s - Vue d'ensemble des serveurs"
+
+#: www/GalleryPane.js:43
+msgid "Backup Directory Node"
+msgstr "Backup Directory Node"
+
+#: www/GalleryPane.js:45
+msgid "Managed Node"
+msgstr "Serveur membre"
+
+#: www/GalleryPane.js:42
+msgid "Primary Directory Node"
+msgstr "Primary Directory Node"
+
+#: www/GalleryPane.js:44
+msgid "Replica Directory Node"
+msgstr "Replica Directory Node"
+
+#: www/main.js:82
+msgid "Search servers"
+msgstr "Serveurs de recherche"
+
+#: www/main.js:78
+#, javascript-format
+msgid "Server overview for domain %s"
+msgstr "Vue d'ensemble des serveurs pour le domaine %s"
+
+#: www/GalleryPane.js:52
+msgid "Unknown"
+msgstr "Inconnue"

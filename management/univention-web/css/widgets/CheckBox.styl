@@ -1,0 +1,84 @@
+/* CheckBox
+ *
+ * Styling CheckBox mainly includes:
+ *
+ * 1. Containers
+ * 		.dijitCheckBox|.dijitCheckBoxIcon - for border, padding, width|height and background image
+ *
+ * 2. CheckBox within ToggleButton
+ * 		.dijitToggleButton|.dijitToggleButtonChecked .* - for background image
+ *
+ * 3. Checked state
+ * 		.dijitCheckBoxChecked - for checked background-color|image
+ * 		.dijitToggleButtonChecked - for border, background-color|image, display and width|height
+ *
+ * 4. Hover state
+ * 		.dijitCheckBoxHover|.dijitCheckBoxCheckedHover - for background image
+ *
+ * 5. Disabled state
+ * 		.dijitCheckBoxDisabled|.dijitCheckBoxCheckedDisabled - for background image
+ */
+
+@require "../variables.styl"
+
+$borderWidth = 2px
+.dijitCheckBox
+	--local-border-color: var(--font-color-contrast-low)
+	--local-background-color: transparent
+	width: var(--font-size-3)
+	height: @width
+	border: $borderWidth solid var(--local-border-color)
+	border-radius: 2px
+	background-color: var(--local-background-color)
+	transition: opacity 250ms, background-color 250ms, border-color 250ms
+	position: relative
+
+	.featherIcon
+		width: 100%
+		height: @width
+		position: absolute
+		top: 0
+		left: 0
+		opacity: 0
+		transition: opacity 250ms, color 250ms
+		pointer-events: none
+		color: var(--local-border-color)
+		stroke-width: 3
+
+	&Checked,
+	&Indeterminate
+		--local-border-color: var(--color-accent)
+
+	&Checked
+		.icon-check
+			opacity: 1
+	&Indeterminate
+		.icon-check
+			opacity: 0
+		.icon-minus
+			opacity: 1
+
+	/.dojoxGridCellOver &,
+	&Hover,
+	&Active
+		--local-background-color: var(--bgc-checkbox-hover)
+
+	&Focused
+		--local-background-color: var(--bgc-checkbox-focus)
+
+	&Disabled
+		--local-border-color: var(--font-color-contrast-low)
+		opacity: 0.4
+
+.dijitCheckBoxInputStretcher
+	position: absolute
+	top: -($borderWidth)
+	right: -($borderWidth)
+	bottom: -($borderWidth)
+	left: -($borderWidth)
+
+.dijitCheckBoxInput
+	display: block
+	width: 100%
+	height: 100%
+	opacity: 0

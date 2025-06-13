@@ -1,0 +1,270 @@
+#!/usr/bin/python3
+#
+# Univention Management Console
+#
+# Like what you see? Join us!
+# https://www.univention.com/about-us/careers/vacancies/
+#
+# Copyright 2006-2025 Univention GmbH
+#
+# https://www.univention.de/
+#
+# All rights reserved.
+#
+# The source code of this program is made available
+# under the terms of the GNU Affero General Public License version 3
+# (GNU AGPL V3) as published by the Free Software Foundation.
+#
+# Binary versions of this program provided by Univention to you as
+# well as other copyrighted, protected or trademarked materials like
+# Logos, graphics, fonts, specific documentations and configurations,
+# cryptographic keys etc. are subject to a license agreement between
+# you and Univention and not subject to the GNU AGPL V3.
+#
+# In the case you use this program under the terms of the GNU AGPL V3,
+# the program is provided in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License with the Debian GNU/Linux or Univention distribution in file
+# /usr/share/common-licenses/AGPL-3; if not, see
+# <https://www.gnu.org/licenses/>.
+
+
+import ast
+import json
+import locale
+import os
+import pprint
+import sys
+from argparse import ArgumentParser, FileType, Namespace  # noqa: F401
+from datetime import datetime
+from getpass import getpass
+
+from univention.lib.umc import Client, ConnectionError, HTTPError, Unauthorized  # noqa: A004
+
+
+try:
+    from collections.abc import Sequence  # noqa: F401
+except ImportError:
+    pass
+
+
+class CLIClient:
+
+    def __init__(self, arguments):
+        self.arguments = arguments
+
+    def execute(self):
+        arguments = self.arguments
+        client = Client(arguments.server, language=(locale.getlocale()[0] or 'en-US').replace('_', '-'))
+
+        funcs = {
+            'COMMAND': client.umc_command,
+            'SET': lambda p, o, f: client.umc_set(o),
+            'GET': lambda p, o, f: client.umc_get(p, o),
+            'UPLOAD': lambda p, o, f: client.umc_upload(),
+            'AUTH': lambda p, o, f: client.umc_auth(o.get('username'), o.get('password')),
+        }
+        func = funcs[arguments.command.upper()]
+
+        if arguments.list_options and not arguments.eval_option:
+            options = arguments.options
+        elif arguments.filename:
+            body = arguments.filename.read()
+            mimetype = arguments.mimetype
+            if mimetype == 'application/json':
+                options = json.loads(body).get('options', {})
+            else:
+                options = None
+
+                def func(p, o, f):
+                    return client.request('POST', 'command/%s' % (p,), body, headers={'Content-Type': mimetype})
+        elif arguments.eval_option:
+            if not arguments.list_options:
+                options = ast.literal_eval(arguments.options[0])
+            else:
+                options = [ast.literal_eval(x) for x in arguments.options]
+        else:
+            options = {}
+            for opt in arguments.options:
+                key, value = opt.split('=', 1)
+                if ':' in key:
+                    try:
+                        value = {'bool': bool, 'int': int, 'str': str, 'unicode': str}[key.split(':', 1)[0]](value)
+                        key = key.split(':', 1)[1]
+                    except KeyError:
+                        pass
+                options[key] = value
+
+        if arguments.authenticate:
+            try:
+                client.authenticate(arguments.username, arguments.password)
+            except Unauthorized as exc:
+                print('authentication error:', exc.message, file=sys.stderr)
+                sys.exit(1)
+            except ConnectionError as exc:
+                print("Error: %s" % (exc,), file=sys.stderr)
+                sys.exit(1)
+
+        if arguments.timing:
+            self.__started = datetime.now()
+
+        exit_code = 0
+        try:
+            response = func(arguments.path, options, arguments.flavor)
+        except ConnectionError as exc:
+            print("Error: %s" % (exc,), file=sys.stderr)
+            sys.exit(1)
+        except HTTPError as exc:
+            response = exc.response
+            exit_code = 1
+
+        # if arguments.quit:
+        #     return exit_code
+
+        self.print_timing()
+
+        print('Response: %s' % arguments.command.upper())
+        print('  ---')
+        if arguments.path:
+            print('  ARGUMENTS: %s' % (arguments.path,))
+        mimetype = response.get_header('Content-Type')
+        print('  MIMETYPE : %s' % (mimetype,))
+        if mimetype.startswith('application/json'):
+            print('  STATUS   : %d' % response.status)
+            if options:
+                if self.arguments.prettyprint:
+                    print('  OPTIONS  : %s' % pprint.pformat(options, indent=2))
+                else:
+                    if isinstance(options, list | tuple):
+                        print('  OPTIONS  : %s' % ', '.join(str(x) for x in options))
+                    else:
+                        print('  OPTIONS  : %s' % ' '.join(['%s=%s' % (k, v) for k, v in options.items()]))
+            print('  MESSAGE  : %s' % response.message)
+            if isinstance(response.data, dict) and response.data.get('error'):
+                print('  ERROR    : %r' % (response.data['error'],))
+            result = response.result
+            if not result:
+                result = response.data
+            if self.arguments.prettyprint:
+                print('  RESULT   : %s' % pprint.pformat(result, indent=2))
+            else:
+                print('  RESULT   : %s' % result)
+        else:
+            print('BODY    : %s' % (response.data,))
+
+        return exit_code
+
+    def print_timing(self):  # type: () -> None
+        if not self.arguments.timing or self.arguments.quiet:
+            return
+        finished = datetime.now()
+        diff = finished - self.__started
+        print(' Request sent at', self.__started)
+        print(' Response received at', finished)
+        print(' Elapsed time', diff)
+
+
+def parse_args(argv=sys.argv):  # type: (Sequence[str]) -> Namespace
+    parser = ArgumentParser()
+    group = parser.add_argument_group('General')
+    group.add_argument(
+        '-d', '--debug', type=int, default=0,
+        help='if given than debugging is activated and set to the specified level [default: %(default)s]')
+    group.add_argument(
+        '-q', '--quiet', action='store_true',
+        help='Deprecated')
+    group.add_argument(
+        '-r', '--pretty-print', action='store_true', dest='prettyprint',
+        help='if given the output will be printed out using pretty print')
+    group.add_argument(
+        '-t', '--timing', action='store_true',
+        help='if given the amount of time required for the HTTP request is measured. -q will not suppress the output')
+    parser.add_argument_group(group)
+
+    group = parser.add_argument_group('Connection')
+    group.add_argument(
+        '-n', '--no-auth', action='store_false', dest='authenticate',
+        help='if given the client do not try to authenticate first')
+    group.add_argument(
+        '-p', '--port', type=int,
+        help='Deprecated')
+    group.add_argument(
+        '-P', '--password',
+        help='set password for authentication')
+    group.add_argument(
+        '-y', '--password_file', type=FileType("r"),
+        help='read password for authentication from given file')
+    group.add_argument(
+        '-s', '--server',
+        help='defines the host of the UMC daemon to connect to [default: %(default)s]')
+    group.add_argument(
+        '-u', '--unix-socket',
+        help='Deprecated')
+    group.add_argument(
+        '-U', '--username',
+        help='set username for authentication')
+    group.add_argument(
+        '-x', '--exit', action='store_true',
+        help='if given, the client send the request to the server and exits directly after it without waiting for the response')
+    parser.add_argument_group(group)
+
+    group = parser.add_argument_group('Request arguments')
+    group.add_argument(
+        '-e', '--eval-option', action='store_true',
+        help='if set the only given option is evalulated as Python code')
+    group.add_argument(
+        '-f', '--flavor',
+        help='set the required flavor')
+    group.add_argument(
+        '-F', '--filename', type=FileType("rb"),
+        help='Deprecated')
+    group.add_argument(
+        '-l', '--list-options', action='store_true',
+        help='if set all specified options will be assembled in a list')
+    group.add_argument(
+        '-m', '--mimetype', default='application/json',
+        help='Deprecated')
+    group.add_argument(
+        '-o', '--option', default=[], action='append', dest='options',
+        help='append an option to the request')
+    parser.add_argument_group(group)
+
+    prog = os.path.basename(sys.argv[0])
+    command = prog[4:] if prog.startswith("umc-") and prog != "umc-client" else ""
+    if command:
+        parser.set_defaults(command=command)
+    else:
+        parser.add_argument('command', help="UMC command")
+    parser.add_argument('path', nargs='?', help="UMC command arguments")
+
+    arguments = parser.parse_args(argv[1:])
+
+    return arguments
+
+
+def main():  # type: () -> None
+    arguments = parse_args()
+
+    try:
+        locale.setlocale(locale.LC_ALL, "")
+    except locale.Error:
+        pass
+
+    if arguments.authenticate:
+        if not arguments.username:
+            arguments.username = input('Username: ')
+        if arguments.password_file:
+            arguments.password = arguments.password_file.read().strip()
+        if not arguments.password:
+            arguments.password = getpass('Password: ')
+
+    client = CLIClient(arguments)
+    return client.execute()
+
+
+if __name__ == '__main__':
+    sys.exit(main())

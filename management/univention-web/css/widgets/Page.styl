@@ -1,0 +1,32 @@
+@require "../variables.styl"
+
+
+.umcPage:after
+	content: ''
+	display: block
+	clear: both
+
+.umcPageNavContent,
+.umcPageMainContent
+	overflow-y: auto
+	overflow-x: hidden
+
+.umcPageFooter
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap
+	gap: spacing(4) spacing(2)
+	overflow: hidden // for the negative margin in .umcPageFooterRight/Left. can also be removed if 'gap' is used
+
+.umcPageFooterLeft,
+.umcPageFooterRight
+	display: flex
+	flex-wrap: wrap
+	// gap: spacing(2) // replace margin with this if supported in all browsers
+	margin: spacing(-1)
+	> .ucsButton
+		margin: spacing(1)
+
+.umcPageFooterRight
+	margin-left: auto
+	justify-content: flex-end

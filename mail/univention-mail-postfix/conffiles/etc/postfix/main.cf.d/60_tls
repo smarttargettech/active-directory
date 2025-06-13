@@ -1,0 +1,59 @@
+#TLS settings
+smtpd_use_tls = yes
+smtpd_tls_auth_only = yes
+smtpd_starttls_timeout = 300s
+smtpd_timeout = 300s
+@!@
+fqdn = '%(hostname)s.%(domainname)s' % configRegistry
+print('smtpd_tls_mandatory_protocols = %s' % configRegistry.get('mail/postfix/smtpd/tls/mandatory_protocols', '>=TLSv1.2'))
+print('smtpd_tls_protocols = %s' % configRegistry.get('mail/postfix/smtpd/tls/protocols', '>=TLSv1.2'))
+print('smtpd_tls_exclude_ciphers = %s' % configRegistry.get('mail/postfix/smtpd/tls/exclude_ciphers', 'RC4, aNULL'))
+print('smtpd_tls_cert_file = %s' % configRegistry.get('mail/postfix/ssl/certificate', '/etc/univention/ssl/%s/cert.pem' % fqdn))
+print('smtpd_tls_key_file = %s' % configRegistry.get('mail/postfix/ssl/key', '/etc/univention/ssl/%s/private.key' % fqdn))
+if configRegistry.get('mail/postfix/ssl/cafile'):
+    print('smtpd_tls_CAfile = %s' % configRegistry['mail/postfix/ssl/cafile'])
+if configRegistry.get('mail/postfix/ssl/capath'):
+    print('smtpd_tls_CApath = %s' % configRegistry['mail/postfix/ssl/capath'])
+@!@
+smtpd_tls_received_header = no
+smtpd_tls_session_cache_timeout = 3600s
+
+tls_random_source = dev:/dev/urandom
+
+smtpd_sasl_local_domain =
+
+smtpd_sasl_security_options = noanonymous
+
+@!@
+if configRegistry.is_true('mail/postfix/dovecot_sasl'):
+    print('smtpd_sasl_type = dovecot')
+    print('smtpd_sasl_path = private/auth')
+@!@
+
+# smtp client
+@!@
+print('smtp_tls_security_level = %s' % configRegistry.get('mail/postfix/tls/client/level', 'may'))
+print('smtp_tls_mandatory_protocols = %s' % configRegistry.get('mail/postfix/tls/client/mandatory_protocols', '>=TLSv1.2'))
+print('smtp_tls_protocols = %s' % configRegistry.get('mail/postfix/tls/client/protocols', '>=TLSv1.2'))
+print('smtp_tls_exclude_ciphers = %s' % configRegistry.get('mail/postfix/tls/client/exclude_ciphers', 'RC4, aNULL'))
+print('smtp_tls_policy_maps = %s' % (configRegistry.get('mail/postfix/tls/policy/maps', 'hash:/etc/postfix/tls_policy'),))
+@!@
+
+
+# Support broken clients like Microsoft Outlook Express 4.x which expect AUTH=LOGIN instead of AUTH LOGIN
+broken_sasl_auth_clients = yes
+
+# tls logging
+smtp_tls_loglevel = @%@mail/postfix/smtp/tls/loglevel@%@
+smtpd_tls_loglevel = @%@mail/postfix/smtpd/tls/loglevel@%@
+
+# EDH config
+smtpd_tls_dh1024_param_file = @%@mail/postfix/smtpd/tls/dh1024/param/file@%@
+smtpd_tls_dh512_param_file = @%@mail/postfix/smtpd/tls/dh512/param/file@%@
+
+# use the Postfix SMTP server's cipher preference order instead of the remote client's cipher preference order.
+tls_preempt_cipherlist = @%@mail/postfix/tls/preempt/cipherlist@%@
+
+# The Postfix SMTP server security grade for ephemeral elliptic-curve Diffie-Hellman (EECDH) key exchange
+smtpd_tls_eecdh_grade = @%@mail/postfix/smtpd/tls/eecdh/grade@%@
+

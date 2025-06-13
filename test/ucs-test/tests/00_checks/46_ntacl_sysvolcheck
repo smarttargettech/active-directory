@@ -1,0 +1,19 @@
+#!/usr/share/ucs-test/runner bash
+# shellcheck shell=bash
+## desc: check samba-tool ntacl sysvolcheck
+## exposure: safe
+## tags:
+##  - apptest
+##  - SKIP-UCSSCHOOL
+## packages:
+## - univention-samba4
+
+# shellcheck source=../../lib/base.sh
+. "$TESTLIBPATH/base.sh" || exit 137
+
+echo "DEBUG: 46_ntacl_sysvolcheck"
+find /var/lib/samba/sysvol
+echo "DEBUG: 46_ntacl_sysvolcheck (done)"
+
+samba-tool ntacl sysvolcheck ||
+	fail_fast 110 "samba-tool ntacl sysvolcheck failed"
