@@ -2,7 +2,7 @@
 
 Este é o repositório de código do [**_Smarties Active Directory_ (SAD)**](https://sad.repository.smarttarget.tech), que consiste em uma plataforma de código aberto para gerenciamento de identidade e integração entre aplicativos e servidores.
 
-Em resumo, o sistema **SAD** é um diretório de serviços, baseado em um servidor samba, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, como o gerenciamento de servidores, serviços de rede e controle de acesso (**IAM**).
+Em resumo, o sistema **SAD** é um diretório de serviços, baseado em um servidor samba, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, dentre os quais o de gerenciamento de servidores e serviços de rede e de controle de acesso (**IAM**).
 
 A infraestrutura do sistema **SAD** provê algumas interfaces que permitem o gerenciamento do sistema, e podem ser acessadas por meio de aplicativo web, de linha de comando (CLI), ou através de chamadas à API, permitindo a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
 
