@@ -22,8 +22,8 @@ offerings](https://www.univention.com/download-and-support/support/commercial-su
 
 ## Termos de Licença 
 
-O __Smarties Active Directory__ foi desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
+O __*Smarties Active Directory*__ foi desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
 
-O código-base da fonte primária (__Univention Corporate Server__) está licenciado sob os termos AGPLv3, caso não tenha outro termo de licença no código-fonte.
+O código-base da fonte primária (__*Univention Corporate Server*__) está licenciado sob os termos AGPLv3, caso não tenha outro termo de licença no código-fonte.
 
 Verifique o [arquivo de licenças](./LICENSES.txt) para maiores informações. 
