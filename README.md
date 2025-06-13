@@ -1,4 +1,4 @@
-# Univention Corporate Server
+# Smarties Active Directory
 
 Welcome to the git mirror of Univention Corporate Server (UCS). [UCS](https://www.univention.com/products/ucs/) is an open source platform for identity management and to integrate server and cloud based applications.
 It features comprehensive Active Directory services based on Samba, an extensive App Center for easy application provisioning and various infrastructure services like management of virtual machine and IP addresses.
@@ -20,13 +20,10 @@ If you need direct help, the forum [Univention
 Help](https://help.univention.com) provides a very good community support. For commercial support, please have a look at our [support
 offerings](https://www.univention.com/download-and-support/support/commercial-support/).
 
-## Contributing
+## Termos de Licença 
 
-Please read the [contributing guide](./CONTRIBUTING.md) to find more information about the UCS development process, how to propose bugfixes and improvements.
-The [Code of Conduct contains guidelines](./CONTRIBUTING.md#code-of-conduct) we expect project participants to adhere to.
+O __Smarties Active Directory__ foi desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
 
-## License
+O código-base da fonte primária (__Univention Corporate Server__) está licenciado sob os termos AGPLv3, caso não tenha outro termo de licença no código-fonte.
 
-Univention Corporate Server is built on top of many existing open source projects which use their own licenses.
-The source code of all parts written by Univention like the management system is licensed under the AGPLv3 if not stated otherwise directly in the source code.
-Please see the [license file](./LICENSE) for more information.
+Verifique o [arquivo de licenças](./LICENSES.txt) para maiores informações. 
