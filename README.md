@@ -6,11 +6,11 @@ Em resumo, o sistema **SAD** é um diretório de serviços, baseado em um servid
 
 A estrutura do sistema **SAD** provê algumas interfaces que permitem o gerenciamento do sistema, e podem ser acessadas por meio de aplicativo web, de linha de comando (CLI), ou através de chamadas à API, permitindo a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
 
-## Termos de Licença 
+## Informações Legais
 
-A plataforma **SAD** é baseada no código do sistema [**_Univention Corporate Server_ (UCS)**](https://github.com/univention/univention-corporate-server) e segue os termos de licença AGPLv3. Outros termos de licença podem ser utilizados em parte específica dos arquivos do código-fonte, caso no qual esses termos serão descritos no respectivo arquivo.
+A plataforma **SAD** é baseada no código do sistema [**_Univention Corporate Server_ (UCS)**](https://github.com/univention/univention-corporate-server), este último encontrando-se sob os termos de licença AGPLv3. Parte específica do código-fonte pode estar sob termos de licença diferente, caso no qual esses termos serão descritos no respectivo arquivo.
 
-Diversos projetos de código aberto são utilizados pelo **UCS**, cada qual apresenta seus próprios termos de licença. As informações sobre os termos de licença desses projetos e da plataforma **UCS** podem ser consultadas no arquivo [_LICENSE_](https://github.com/univention/univention-corporate-server/LICENSE) de origem.
+Também diversos projetos de código aberto são utilizados pelo **UCS**, cada qual apresenta seus próprios termos de licença. As informações sobre os termos de licença desses projetos e da plataforma **UCS** podem ser consultadas no arquivo [_LICENSE_](https://github.com/univention/univention-corporate-server/LICENSE) de origem.
 
 ## Documentação e Download
 
