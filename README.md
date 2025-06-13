@@ -2,9 +2,9 @@
 
 Este é o repositório de código do [**_Smarties Active Directory_ (SAD)**](https://sad.repository.smarttarget.tech), que consiste em uma plataforma de código aberto para gerenciamento de identidade e integração de aplicativos e servidores.
 
-Primariamente, o **SAD** é um diretório de serviços, baseado no servidor _Samba_, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, como o gerenciamento de servidores, serviços de rede e controle de acesso (**IAM**).
+Primariamente, o **SAD** é um diretório de serviços, baseado em um servidor samba, que provê o provisionamento de aplicativos e vários serviços de infraestrutura, como o gerenciamento de servidores, serviços de rede e controle de acesso (**IAM**).
 
-O sistema é composto por diversas interfaces e pode ser acessado através de aplicativo web, linha de comando, ou chamadas de _API_. Essas ferramentas permitem a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
+O sistema é composto por diversas interfaces e pode ser acessado através de aplicativo web, linha de comando, ou chamadas de API. Essas ferramentas permitem a fácil administração de aplicativos, usuários e recursos do diretório de serviços. 
 
 ## Termos de Licença 
 
@@ -12,24 +12,10 @@ A plataforma **SAD** é baseada no código do sistema [**_Univention Corporate S
 
 Diversos projetos de código aberto são utilizados pelo **UCS**, cada qual apresenta seus próprios termos de licença. As informações sobre os termos de licença desses projetos e da plataforma **UCS** podem ser consultadas no arquivo [_LICENSE_](https://github.com/univention/univention-corporate-server/LICENSE) de origem.
 
-## Downloads
+## Documentação e Download
 
-Imagens ISO e de maquina virtual do sistema-basdvirtual machine images of UCS are [available for download](https://www.univention.com/products/download/)
+A documentação do **UCS**, incluindo um [Guia de Início Rápido](https://docs.software-univention.de/n/en/docs/quickstart.html#quickstart) pode ser encontrada em [https://docs.software-univention.de](https://docs.software-univention.de/).
 
-The online demo of UCS is available at [demo.univention.de](https://demo.univention.de/).
+Imagens ISO e de maquina virtual do **UCS** estão [disponíveis para download](https://www.univention.com/products/download/) e uma demonstração online pode ser acessada em [https://demo.univention.de](https://demo.univention.de/).
 
-## Documentation and Support
-
-The UCS documentation, including a Quickstart guide, can be found at [docs.software-univention.de](https://docs.software-univention.de/).
-
-If you need direct help, the forum [Univention
-Help](https://help.univention.com) provides a very good community support. For commercial support, please have a look at our [support
-offerings](https://www.univention.com/download-and-support/support/commercial-support/).
-
-## Termos de Licença 
-
-O sistema **_SAD_** é desenvolvido sobre uma série de projetos de código aberto, cada qual com seus termos de licença.
-
-O código-base da fonte primária (__*Univention Corporate Server*__) está licenciado sob os termos AGPLv3, caso não tenha outro termo de licença no código-fonte.
-
-Verifique o [arquivo de licenças](./LICENSES.txt) para maiores informações. 
+A plataforma **Univention** fornece uma boa comunidade de ajuda em seu [fórum de discussão](https://help.univention.com). Para suporte comercial ao sistema **UCS**, não incluindo o código do sistema **SAD**, acesse [ofertas de suporte](https://www.univention.com/download-and-support/support/commercial-support/) no site da **Univention**.
